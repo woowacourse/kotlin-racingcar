@@ -1,3 +1,3 @@
 package view.dto
 
-class PositionsDto(positions: List<Int>)
+data class PositionsDto(val positions: List<Int>)

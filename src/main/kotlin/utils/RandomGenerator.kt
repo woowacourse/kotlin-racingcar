@@ -1,4 +1,4 @@
-package randomutils
+package utils
 
 object RandomGenerator {
     private const val START_NUMBER: Int = 1

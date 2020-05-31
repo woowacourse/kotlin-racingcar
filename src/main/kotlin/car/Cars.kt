@@ -1,9 +1,11 @@
 package car
 
-import randomutils.RandomGenerator
+import utils.RandomGenerator
 import view.dto.PositionsDto
 
-class Cars(val cars: List<Car>) {
+class Cars(
+    val cars: List<Car>
+) {
     fun moveAll() {
         cars.forEach { it.move(RandomGenerator.generateRandom()) }
     }
