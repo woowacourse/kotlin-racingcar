@@ -3,8 +3,7 @@ package car
 class Car (
     private val threshold: Int
 ) {
-    var position: Int = 0
-    private set
+    val position: Position = Position()
 
     fun isMovable(inputValue: Int): Boolean {
         return inputValue >= threshold
@@ -12,7 +11,7 @@ class Car (
 
     fun move(inputValue: Int) {
         if (isMovable(inputValue)) {
-            position++
+            position.goForward()
         }
     }
 }

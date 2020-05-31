@@ -33,6 +33,6 @@ internal class CarTest {
         car.move(1)
         car.move(5)
         car.move(9)
-        assertThat(car.position).isEqualTo(2)
+        assertThat(car.position).isEqualTo(Position(2))
     }
 }
