@@ -1,6 +1,7 @@
 package car
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -24,5 +25,14 @@ internal class CarTest {
     fun `랜덤값에 따라 이동여부가 결정된다`(randomValue: Int, expected: Boolean) {
         val car: Car = Car(4)
         assertThat(car.isMovable(randomValue)).isEqualTo(expected)
+    }
+
+    @Test
+    fun `이동 한 만큼 자동차의 위치가 변한다`() {
+        val car = Car(4)
+        car.move(1)
+        car.move(5)
+        car.move(9)
+        assertThat(car.position).isEqualTo(2)
     }
 }
