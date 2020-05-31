@@ -1,4 +1,4 @@
-package car
+package domain.car
 
 data class Position(
     var position: Int = 0

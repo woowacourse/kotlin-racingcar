@@ -1,4 +1,4 @@
-package car
+package domain.car
 
 class Car (
     private val threshold: Int

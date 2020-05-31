@@ -1,4 +1,4 @@
-package car
+package domain.car
 
 import utils.RandomGenerator
 import view.dto.PositionsDto

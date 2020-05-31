@@ -1,5 +1,5 @@
-import car.Car
-import car.Cars
+package domain.car
+
 import view.dto.PositionsDto
 import view.dto.RoundDto
 

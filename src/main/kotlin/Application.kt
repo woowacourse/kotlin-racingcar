@@ -1,3 +1,4 @@
+import domain.car.RacingGame
 import view.InputView
 import view.OutputView
 
