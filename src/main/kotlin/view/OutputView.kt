@@ -21,6 +21,6 @@ object OutputView {
         positionsDto.positions
             .map { ResultParser.parseToDash(it) }
             .forEach { println(it) }
-        println()
+        println("=====================")
     }
 }
