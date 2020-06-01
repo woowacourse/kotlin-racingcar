@@ -16,10 +16,4 @@ internal class PositionTest {
     internal fun move() {
         assertThat(Position().move()).isEqualTo(Position(1))
     }
-
-    @Test
-    @DisplayName("Position 값")
-    internal fun getPosition() {
-        assertThat(Position().getPosition()).isEqualTo(0)
-    }
 }

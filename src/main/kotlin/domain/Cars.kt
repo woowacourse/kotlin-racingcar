@@ -4,11 +4,7 @@ import java.util.*
 import kotlin.collections.ArrayList
 
 class Cars(cars: List<Car> = Collections.emptyList()) {
-    private val cars: List<Car>
-
-    init {
-        this.cars = ArrayList(cars)
-    }
+    private val cars: List<Car> = Collections.unmodifiableList(ArrayList(cars))
 
     fun move() {
         for (car in cars) {
@@ -16,5 +12,5 @@ class Cars(cars: List<Car> = Collections.emptyList()) {
         }
     }
 
-    fun values() = Collections.unmodifiableList(cars)
+    fun values(): List<Car> = cars
 }
