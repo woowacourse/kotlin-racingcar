@@ -1,7 +1,7 @@
 package view
 
 object InputView {
-    fun receiveInput(): Int {
+    fun receiveCountOfCar(): Int {
         println("자동차 대수는 몇 대 인가요?")
         return readLine()!!.toInt()
     }
