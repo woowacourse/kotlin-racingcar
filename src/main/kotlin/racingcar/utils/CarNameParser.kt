@@ -4,7 +4,7 @@ object CarNameParser {
     private const val DELIMITER = ","
 
     fun parse(carNames: String?): List<String> {
-        if (carNames.isNullOrBlank()) throw IllegalArgumentException()
+        require(!carNames.isNullOrBlank())
         return carNames.split(DELIMITER)
     }
 }
