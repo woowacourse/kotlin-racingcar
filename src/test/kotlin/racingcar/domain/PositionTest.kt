@@ -14,8 +14,8 @@ internal class PositionTest {
     }
 
     @Test
-    fun go() {
+    fun plus() {
         val position = 0
-        assertThat(Position(position).go().position).isEqualTo(position + 1)
+        assertThat(Position(position).plus().position).isEqualTo(position + 1)
     }
 }

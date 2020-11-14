@@ -7,5 +7,5 @@ data class Position(val position: Int) {
         require(position >= MIN_POSITION)
     }
 
-    fun go() = Position(position + 1)
+    fun plus() = Position(position + 1)
 }
