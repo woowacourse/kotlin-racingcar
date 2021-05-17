@@ -38,4 +38,18 @@ internal class PersonTest {
         assertThat(person.age).isNull()
         assertThat(person.nickname).isNull()
     }
+
+    @DisplayName("기본 인자 테스트")
+    @Test
+    internal fun `default arguments`() {
+        //given
+        val person = Person("김경록")
+
+        //when
+
+        //then
+        assertThat(person.name).isEqualTo("김경록")
+        assertThat(person.age).isNull()
+        assertThat(person.nickname).isNull()
+    }
 }
