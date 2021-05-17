@@ -25,4 +25,17 @@ internal class PersonTest {
         assertThat(addedPersons).hasSize(4)
     }
 
+    @DisplayName("널 타입 테스트")
+    @Test
+    internal fun `nullable types`() {
+        //given
+        val person = Person("김경록", null, null)
+
+        //when
+
+        //then
+        assertThat(person.name).isEqualTo("김경록")
+        assertThat(person.age).isNull()
+        assertThat(person.nickname).isNull()
+    }
 }
