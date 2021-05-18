@@ -1,9 +1,9 @@
-package racingcar.domain
+package practice
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
+import practice.Person
 
 internal class PersonTest {
     @Test

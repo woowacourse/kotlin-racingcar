@@ -1,4 +1,4 @@
-package racingcar.domain
+package practice
 
 class Person(val name: String, val age: Int? = 0, var nickname: String? = null) {
     override fun equals(other: Any?): Boolean {
