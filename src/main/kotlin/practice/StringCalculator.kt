@@ -5,7 +5,7 @@ import java.util.function.IntBinaryOperator
 import java.util.regex.Pattern
 import kotlin.IllegalArgumentException as IllegalArgumentException1
 
-class StringCalculator {
+object StringCalculator {
     private val pattern: Pattern = Pattern.compile("^[0-9+-/* ]*$")
 
     fun calculate(input: String): Int {

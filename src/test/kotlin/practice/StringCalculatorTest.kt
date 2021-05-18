@@ -9,13 +9,11 @@ import org.junit.jupiter.params.provider.ValueSource
 
 internal class StringCalculatorTest {
 
-    private val calculator = StringCalculator()
-
     @DisplayName("잘못된 입력값 예외처리")
     @ParameterizedTest
     @ValueSource(strings = ["", "  ", "1 : 3", "1 + a"])
     internal fun validateInput(input: String?) {
-        Assertions.assertThatThrownBy { calculator.calculate(input!!) }
+        Assertions.assertThatThrownBy { StringCalculator.calculate(input!!) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("올바르지 않은 입력값입니다.")
     }
@@ -24,7 +22,7 @@ internal class StringCalculatorTest {
     @ParameterizedTest
     @ValueSource(strings = ["1 2", "+", "1 +", "+ 1", "1+2"])
     internal fun validateExpression(input: String?) {
-        Assertions.assertThatThrownBy { calculator.calculate(input!!) }
+        Assertions.assertThatThrownBy { StringCalculator.calculate(input!!) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("잘못된 수식입니다.")
     }
@@ -33,9 +31,9 @@ internal class StringCalculatorTest {
     @Test
     internal fun calculate() {
         assertAll(
-            { Assertions.assertThat(calculator.calculate("1 + 2")).isEqualTo(3) },
-            { Assertions.assertThat(calculator.calculate("8 + 2 / 2")).isEqualTo(5) },
-            { Assertions.assertThat(calculator.calculate("4 / 2 + 2 * 3")).isEqualTo(12) }
+            { Assertions.assertThat(StringCalculator.calculate("1 + 2")).isEqualTo(3) },
+            { Assertions.assertThat(StringCalculator.calculate("8 + 2 / 2")).isEqualTo(5) },
+            { Assertions.assertThat(StringCalculator.calculate("4 / 2 + 2 * 3")).isEqualTo(12) }
         )
     }
 }
