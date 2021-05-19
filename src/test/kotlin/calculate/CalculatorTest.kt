@@ -34,7 +34,6 @@ internal class CalculatorTest {
         val calculator = Calculator()
 
         //when //then
-        println(calculator.operate(input))
         assertThatThrownBy { calculator.operate(input) }
             .isExactlyInstanceOf(Class.forName("IllegalArgumentException"))
         assertThat(1).isEqualTo(1)
