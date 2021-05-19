@@ -59,4 +59,20 @@ class StringCalculatorTest {
             .hasMessageContaining("빈 문자열이면 안 됩니다.")
     }
 
+    @DisplayName("종합계산기")
+    @Test
+    internal fun totalCalculator() {
+
+        val result = stringCalculator.calculate("2 + 3 * 4 / 2")
+
+        assertThat(result).isEqualTo("10.0")
+    }
+
+    @DisplayName("실패 - 사칙연산 기호가 아닌 경우")
+    @Test
+    internal fun totalCalculatorFail() {
+        assertThatThrownBy { stringCalculator.calculate("2 + 3 * 4 // 2") }
+            .isInstanceOf(IllegalArgumentException::class.java)
+            .hasMessageContaining("사칙연산 기호가 아니네요.")
+    }
 }
