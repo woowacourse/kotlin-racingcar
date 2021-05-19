@@ -2,11 +2,11 @@ import kotlin.math.roundToInt
 
 class StringCalculator {
 
-    fun add(a: String, b: String): Int {
+    fun add(a: String, b: String): Float {
         validate(a, b)
 
-        val numberA: Int = a.toInt()
-        val numberB: Int = b.toInt()
+        val numberA =  a.toFloat()
+        val numberB= b.toFloat()
 
         return numberA + numberB
     }
@@ -17,20 +17,20 @@ class StringCalculator {
         }
     }
 
-    fun subtract(a: String, b: String): Int {
+    fun subtract(a: String, b: String): Float {
         validate(a, b)
 
-        val numberA: Int = a.toInt()
-        val numberB: Int = b.toInt()
+        val numberA =  a.toFloat()
+        val numberB= b.toFloat()
 
         return numberA - numberB
     }
 
-    fun multiply(a: String, b: String): Int {
+    fun multiply(a: String, b: String): Float {
         validate(a, b)
 
-        val numberA: Int = a.toInt()
-        val numberB: Int = b.toInt()
+        val numberA =  a.toFloat()
+        val numberB= b.toFloat()
 
         return numberA * numberB
 

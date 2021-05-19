@@ -12,27 +12,27 @@ class StringCalculatorTest {
     val stringCalculator = StringCalculator()
 
     @ParameterizedTest(name = "[{index}] {0} + {1} = {2}")
-    @CsvSource("1,2,3", "2,3,5", "3,10,13")
+    @CsvSource("1,2,3.0", "2,3,5.0", "3,10,13.0")
     internal fun add(a: String, b: String, answer: String) {
         val result = stringCalculator.add(a, b)
 
-        assertThat(result).isEqualTo(answer.toInt())
+        assertThat(result).isEqualTo(answer.toFloat())
     }
 
     @ParameterizedTest(name = "[{index}] {0} - {1} = {2}")
-    @CsvSource("1,2,-1", "7,2,5", "3,3,0")
+    @CsvSource("1,2,-1.0", "7,2,5.0", "3,3,0.0")
     internal fun subtract(a: String, b: String, answer: String) {
         val result = stringCalculator.subtract(a, b)
 
-        assertThat(result).isEqualTo(answer.toInt())
+        assertThat(result).isEqualTo(answer.toFloat())
     }
 
     @ParameterizedTest(name = "[{index}] {0} * {1} = {2}")
-    @CsvSource("1,2,2", "7,-2,-14", "3,0,0")
+    @CsvSource("1,2,2.0", "7,-2,-14.0", "3,0,0.0")
     internal fun multiply(a: String, b: String, answer: String) {
         val result = stringCalculator.multiply(a, b)
 
-        assertThat(result).isEqualTo(answer.toInt())
+        assertThat(result).isEqualTo(answer.toFloat())
     }
 
     @ParameterizedTest(name = "[{index}] {0} / {1} = {2}")
@@ -59,13 +59,22 @@ class StringCalculatorTest {
             .hasMessageContaining("빈 문자열이면 안 됩니다.")
     }
 
-    @DisplayName("종합계산기")
+    @DisplayName("종합계산기: 2 + 3 * 4 / 2 = 10.0")
     @Test
     internal fun totalCalculator() {
 
         val result = stringCalculator.calculate("2 + 3 * 4 / 2")
 
         assertThat(result).isEqualTo("10.0")
+    }
+
+    @DisplayName("종합계산기: 2 + 13 * 4 / 2 - 14  = 16.0")
+    @Test
+    internal fun totalCalculator1() {
+
+        val result = stringCalculator.calculate("2 + 13 * 4 / 2 - 14")
+
+        assertThat(result).isEqualTo("16.0")
     }
 
     @DisplayName("실패 - 사칙연산 기호가 아닌 경우")
