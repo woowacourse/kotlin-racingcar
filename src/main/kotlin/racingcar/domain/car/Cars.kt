@@ -1,9 +1,9 @@
-package racingcar.car
+package racingcar.domain.car
 
 import java.util.*
 import kotlin.streams.toList
 
-class Cars (cars : List<Car>){
+class Cars(cars: List<Car>) {
     private val random = Random()
     private val cars: List<Car> = cars
 
@@ -12,11 +12,11 @@ class Cars (cars : List<Car>){
             .forEach { car -> car.tryToMove(random.nextInt(10)) }
     }
 
-    fun findWinner(): List<Car> {
+    fun findWinners(): Cars {
         val maxPosition = findMaxPosition()
-        return cars.stream()
+        return Cars(cars.stream()
             .filter { car -> car.isIn(maxPosition) }
-            .toList()
+            .toList())
     }
 
     private fun findMaxPosition(): Int {
@@ -24,6 +24,10 @@ class Cars (cars : List<Car>){
             .mapToInt { car -> car.position() }
             .max()
             .orElseGet { 0 }
+    }
+
+    fun cars(): List<Car> {
+        return cars
     }
 }
 

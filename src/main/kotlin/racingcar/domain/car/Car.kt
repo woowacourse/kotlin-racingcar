@@ -1,36 +1,38 @@
-package racingcar.car
-
-import java.lang.IllegalArgumentException
+package racingcar.domain.car
 
 class Car(name: String) {
-    private val name : String? = name
-    private var position : Int = 0
+    private val name: String = name
+    private var position: Int = 0
 
     init {
         validateName(name)
     }
 
-    fun tryToMove(num: Int){
-        if(num >= 4){
+    fun tryToMove(num: Int) {
+        if (num >= 4) {
             position++
         }
     }
 
-    fun isIn(position : Int) : Boolean{
+    fun isIn(position: Int): Boolean {
         return this.position == position;
     }
 
-    fun position() : Int{
+    fun name(): String {
+        return name
+    }
+
+    fun position(): Int {
         return position
     }
 
     // name 포장하기
-    private fun validateName(name: String){
-        if(name.isBlank()){
+    private fun validateName(name: String) {
+        if (name.isBlank()) {
             throw IllegalArgumentException("이름은 빈 문자열일 수 없습니다.")
         }
 
-        if(name.length > 5){
+        if (name.length > 5) {
             throw IllegalArgumentException("이름은 5글자 초과일 수 없습니다.")
         }
     }
