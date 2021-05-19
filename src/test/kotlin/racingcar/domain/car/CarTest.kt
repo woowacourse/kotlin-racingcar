@@ -5,17 +5,18 @@ import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.domain.name.Name
 
 internal class CarTest {
 
-    val testCar = Car("test")
+    private val testCar = Car(Name("test"))
 
     @DisplayName("이름이 빈칸이면 예외를 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = ["", " "])
     fun validateNameBlank(name: String) {
         assertThatThrownBy {
-            Car(name)
+            Car(Name(name))
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
@@ -24,7 +25,7 @@ internal class CarTest {
     @ValueSource(strings = ["123456", "abcdef"])
     fun validateTooLongName(name: String) {
         assertThatThrownBy {
-            Car(name)
+            Car(Name(name))
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 

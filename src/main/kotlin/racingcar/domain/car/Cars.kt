@@ -1,11 +1,17 @@
 package racingcar.domain.car
 
+import java.lang.IllegalArgumentException
 import java.util.*
 import kotlin.streams.toList
 
 class Cars(cars: List<Car>) {
     private val random = Random()
-    private val cars: List<Car> = cars
+    private val cars: List<Car>
+
+    init {
+        validateDistinct(cars)
+        this.cars = cars
+    }
 
     fun moveCars() {
         cars.stream()
@@ -28,6 +34,18 @@ class Cars(cars: List<Car>) {
 
     fun cars(): List<Car> {
         return cars
+    }
+
+    private fun validateDistinct(cars: List<Car>){
+        val distinctSize = cars.stream()
+            .map { it.name() }
+            .distinct()
+            .count()
+            .toInt()
+
+        if ( cars.size != distinctSize) {
+            throw IllegalArgumentException("중복된 이름을 사용할 수 없습니다.")
+        }
     }
 }
 

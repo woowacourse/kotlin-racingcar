@@ -1,12 +1,10 @@
 package racingcar.domain.car
 
-class Car(name: String) {
-    private val name: String = name
-    private var position: Int = 0
+import racingcar.domain.name.Name
 
-    init {
-        validateName(name)
-    }
+class Car(name: Name) {
+    private val name: Name = name
+    private var position: Int = 0
 
     fun tryToMove(num: Int) {
         if (num >= 4) {
@@ -19,25 +17,10 @@ class Car(name: String) {
     }
 
     fun name(): String {
-        return name
+        return name.name()
     }
 
     fun position(): Int {
         return position
-    }
-
-    // name 포장하기
-    private fun validateName(name: String) {
-        if (name.isBlank()) {
-            throw IllegalArgumentException("이름은 빈 문자열일 수 없습니다.")
-        }
-
-        if (name.length > 5) {
-            throw IllegalArgumentException("이름은 5글자 초과일 수 없습니다.")
-        }
-    }
-
-    override fun toString(): String {
-        return "Car(name=$name, position=$position)"
     }
 }

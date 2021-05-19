@@ -1,12 +1,16 @@
 package racingcar.input
 
+import racingcar.domain.name.Name
 import java.util.*
+import kotlin.streams.toList
 
-class InputView(val scanner: Scanner) {
+class InputView(private val scanner: Scanner) {
 
-    fun inputCarNames(): List<String> {
+    fun inputCarNames(): List<Name> {
         println("자동차 이름을 입력하세요.")
-        return readLine().split(",")
+        return readLine().split(",").stream()
+            .map { Name(it.trim()) }
+            .toList()
     }
 
     fun inputLaps(): Int {

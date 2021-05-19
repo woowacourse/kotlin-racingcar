@@ -30,7 +30,6 @@ class RacingGame(scanner: Scanner) {
     private fun initPlayers(): Cars {
         val carNames = inputView.inputCarNames()
         val carList = carNames.stream()
-            .map { it.trim() }
             .map { Car(it) }
             .toList()
 
