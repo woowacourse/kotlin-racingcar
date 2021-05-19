@@ -2,6 +2,7 @@ package calculate
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Disabled
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -26,6 +27,7 @@ internal class CalculatorTest {
         assertThat(result).isEqualTo(Number(expected))
     }
 
+    @Disabled
     @DisplayName("유효하지 않은 숫자가 들어왔을 때, 계산하는 기능을 테스트한다")
     @Test
     internal fun `test calculate if not validate number`() {
