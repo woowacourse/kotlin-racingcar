@@ -1,6 +1,7 @@
 package racingcar.input
 
-import racingcar.domain.name.Name
+import racingcar.domain.Laps
+import racingcar.domain.Name
 import java.util.*
 import kotlin.streams.toList
 
@@ -13,9 +14,9 @@ class InputView(private val scanner: Scanner) {
             .toList()
     }
 
-    fun inputLaps(): Int {
+    fun inputLaps(): Laps {
         println("시도 횟수를 입력하세요.")
-        return readLine().toInt()
+        return Laps(readLine().toInt())
     }
 
     private fun readLine(): String {

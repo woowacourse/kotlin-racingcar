@@ -1,5 +1,6 @@
 package racingcar.controller
 
+import racingcar.domain.Laps
 import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
 import racingcar.input.InputView
@@ -19,11 +20,14 @@ class RacingGame(scanner: Scanner) {
         printWinner(players)
     }
 
-    private fun rounds(laps: Int, players: Cars) {
+    private fun rounds(laps: Laps, players: Cars) {
         outputView.printResult()
-        for (i in 0 until laps) {
+
+        var currentLap = laps
+        while (!currentLap.isEnd()) {
             players.moveCars()
             outputView.printCars(players.cars())
+            currentLap = currentLap.next()
         }
     }
 

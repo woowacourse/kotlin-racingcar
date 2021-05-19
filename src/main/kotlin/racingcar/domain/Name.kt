@@ -1,4 +1,6 @@
-package racingcar.domain.name
+package racingcar.domain
+
+const val MINIMUM_NAME_LENGTH = 5;
 
 class Name(name: String) {
     private val name: String;
@@ -13,7 +15,7 @@ class Name(name: String) {
             throw IllegalArgumentException("이름은 빈 문자열일 수 없습니다.")
         }
 
-        if (name.length > 5) {
+        if (name.length > MINIMUM_NAME_LENGTH) {
             throw IllegalArgumentException("이름은 5글자 초과일 수 없습니다.")
         }
     }

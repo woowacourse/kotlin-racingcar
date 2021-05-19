@@ -4,8 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import racingcar.domain.name.Name
-import java.lang.IllegalArgumentException
+import racingcar.domain.Name
 
 internal class CarsTest {
     private val car1 = Car(Name("pobi"))
