@@ -27,7 +27,7 @@ class Cars(private val cars: ArrayList<Car>) {
         val status = LinkedHashMap<String, Int>()
 
         for (car in cars) {
-            status[car.name] = car.getPosition()
+            status[car.name] = car.position
         }
 
         return status
@@ -35,7 +35,7 @@ class Cars(private val cars: ArrayList<Car>) {
 
     fun winners(): List<String> {
         val winningPosition: Int = cars
-            .map { car -> car.getPosition() }
+            .map { car -> car.position }
             .max()!!
         return cars.filter { car -> car.isSamePosition(winningPosition) }
             .map { car -> car.name }

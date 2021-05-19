@@ -1,7 +1,8 @@
 package racingcar.domain
 
 data class Car(private val strategy: MoveStrategy, val name: String) {
-    private var position: Int = 0
+    var position: Int = 0
+        private set
 
     constructor(strategy: MoveStrategy) : this(strategy, DEFAULT_NAME)
     constructor(name: String) : this(RandomMoveStrategy, name)
@@ -22,18 +23,14 @@ data class Car(private val strategy: MoveStrategy, val name: String) {
         return this.position == position
     }
 
-    fun getPosition(): Int {
-        return position
-    }
-
-    init {
-        validateName(name)
-    }
-
     private fun validateName(name: String) {
         if (name.length > MAX_NAME_LENGTH || name.isEmpty()) {
             throw IllegalArgumentException("이름은 1 ~ 5 사이의 길이여야합니다.")
         }
 
+    }
+
+    init {
+        validateName(name)
     }
 }
