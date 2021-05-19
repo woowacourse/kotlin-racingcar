@@ -7,7 +7,7 @@ class OutputView {
 
     fun printCars(cars: List<Car>) {
         cars.stream()
-            .forEach { car -> printCar(car) }
+            .forEach { printCar(it) }
         println()
     }
 
@@ -15,7 +15,7 @@ class OutputView {
         val name = car.name()
         val positionBar = positionBar(car.position())
 
-        print("$name : $positionBar")
+        println("$name : $positionBar")
     }
 
     private fun positionBar(position: Int): String {
@@ -28,9 +28,9 @@ class OutputView {
 
     fun printWinners(winners: List<Car>) {
         val winnerNames = winners.stream()
-            .map { car -> car.name() }
+            .map { it.name() }
             .toList()
-            .joinToString { "," }
+            .joinToString(",")
 
         println(winnerNames + "가 최종 우승하였습니다.")
     }

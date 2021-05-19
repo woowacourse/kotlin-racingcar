@@ -9,19 +9,19 @@ class Cars(cars: List<Car>) {
 
     fun moveCars() {
         cars.stream()
-            .forEach { car -> car.tryToMove(random.nextInt(10)) }
+            .forEach { it.tryToMove(random.nextInt(10)) }
     }
 
     fun findWinners(): Cars {
         val maxPosition = findMaxPosition()
         return Cars(cars.stream()
-            .filter { car -> car.isIn(maxPosition) }
+            .filter { it.isIn(maxPosition) }
             .toList())
     }
 
     private fun findMaxPosition(): Int {
         return cars.stream()
-            .mapToInt { car -> car.position() }
+            .mapToInt { it.position() }
             .max()
             .orElseGet { 0 }
     }
