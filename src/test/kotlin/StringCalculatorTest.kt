@@ -9,7 +9,7 @@ import java.lang.IllegalArgumentException
 @DisplayName("문자열계산기")
 class StringCalculatorTest {
 
-    val stringCalculator = StringCalculator()
+    private val stringCalculator = StringCalculator()
 
     @ParameterizedTest(name = "[{index}] {0} + {1} = {2}")
     @CsvSource("1,2,3.0", "2,3,5.0", "3,10,13.0")

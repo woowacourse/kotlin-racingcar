@@ -5,14 +5,14 @@ class StringCalculator {
     fun add(a: String, b: String): Float {
         validate(a, b)
 
-        val numberA =  a.toFloat()
-        val numberB= b.toFloat()
+        val numberA = a.toFloat()
+        val numberB = b.toFloat()
 
         return numberA + numberB
     }
 
     private fun validate(a: String, b: String) {
-        if (a.isNullOrBlank() || b.isNullOrBlank()) {
+        if (a.isBlank() || b.isBlank()) {
             throw IllegalArgumentException("빈 문자열이면 안 됩니다.")
         }
     }
@@ -20,8 +20,8 @@ class StringCalculator {
     fun subtract(a: String, b: String): Float {
         validate(a, b)
 
-        val numberA =  a.toFloat()
-        val numberB= b.toFloat()
+        val numberA = a.toFloat()
+        val numberB = b.toFloat()
 
         return numberA - numberB
     }
@@ -29,8 +29,8 @@ class StringCalculator {
     fun multiply(a: String, b: String): Float {
         validate(a, b)
 
-        val numberA =  a.toFloat()
-        val numberB= b.toFloat()
+        val numberA = a.toFloat()
+        val numberB = b.toFloat()
 
         return numberA * numberB
 
