@@ -1,16 +1,20 @@
 package racingcar.domain
 
-import java.lang.IllegalArgumentException
-
 data class Car(private val strategy: MoveStrategy, val name: String) {
     private var position: Int = 0
 
-    constructor(strategy: MoveStrategy) : this(strategy, "abc")
+    constructor(strategy: MoveStrategy) : this(strategy, DEFAULT_NAME)
     constructor(name: String) : this(RandomMoveStrategy, name)
+
+    companion object {
+        private const val DEFAULT_NAME = "abc"
+        private const val MOVE_UNIT = 1
+        private const val MAX_NAME_LENGTH = 5
+    }
 
     fun move() {
         if (strategy.isMovable()) {
-            position += 1
+            position += MOVE_UNIT
         }
     }
 
@@ -18,15 +22,16 @@ data class Car(private val strategy: MoveStrategy, val name: String) {
         return this.position == position
     }
 
-    fun getPosition():Int {
+    fun getPosition(): Int {
         return position
     }
-init{
-    validateName(name)
-}
+
+    init {
+        validateName(name)
+    }
 
     private fun validateName(name: String) {
-        if(name.length > 5|| name.isEmpty()){
+        if (name.length > MAX_NAME_LENGTH || name.isEmpty()) {
             throw IllegalArgumentException("이름은 1 ~ 5 사이의 길이여야합니다.")
         }
 
