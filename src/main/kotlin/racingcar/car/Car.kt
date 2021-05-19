@@ -3,11 +3,25 @@ package racingcar.car
 import java.lang.IllegalArgumentException
 
 class Car(name: String) {
-    val name : String? = name
-    var position : Int = 0
+    private val name : String? = name
+    private var position : Int = 0
 
     init {
         validateName(name)
+    }
+
+    fun tryToMove(num: Int){
+        if(num >= 4){
+            position++
+        }
+    }
+
+    fun isIn(position : Int) : Boolean{
+        return this.position == position;
+    }
+
+    fun position() : Int{
+        return position
     }
 
     // name 포장하기
