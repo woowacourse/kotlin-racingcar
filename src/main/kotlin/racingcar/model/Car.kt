@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.model
 
 class Car(var position: Int = 0) {
 
