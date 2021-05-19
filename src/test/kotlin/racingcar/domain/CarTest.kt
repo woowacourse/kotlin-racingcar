@@ -10,7 +10,7 @@ class CarTest {
 
     @Test
     internal fun move() {
-        val moveStrategy:MoveStrategy = object:MoveStrategy{
+        val moveStrategy: MoveStrategy = object : MoveStrategy {
             override fun isMovable(): Boolean {
                 return true
             }

@@ -2,17 +2,16 @@ package racingcar.view
 
 object OutputView {
 
+    private const val PROGRESS_BAR = "-"
+
     fun printRaceInitMessage() {
-        println("실행결과")
+        println("실행 결과")
     }
 
-    fun printStatus(result:LinkedHashMap<String, Int>) {
-        for(name in result.keys){
+    fun printStatus(result: LinkedHashMap<String, Int>) {
+        for (name in result.keys) {
             val position = result[name]!!
-            var processBar = ""
-            for (i in 0 until position){
-                processBar += "-"
-            }
+            val processBar = PROGRESS_BAR.repeat(position)
             println("$name : $processBar")
         }
         println()

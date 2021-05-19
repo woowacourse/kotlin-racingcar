@@ -1,7 +1,5 @@
 package racingcar.domain
 
-import java.util.LinkedHashMap
-
 class Cars(private val cars: ArrayList<Car>) {
 
     constructor(carNum: Int) : this(ArrayList()) {
@@ -26,9 +24,9 @@ class Cars(private val cars: ArrayList<Car>) {
     }
 
     fun status(): LinkedHashMap<String, Int> {
-        val status = LinkedHashMap<String,Int>()
+        val status = LinkedHashMap<String, Int>()
 
-        for(car in cars){
+        for (car in cars) {
             status[car.name] = car.getPosition()
         }
 
@@ -37,10 +35,10 @@ class Cars(private val cars: ArrayList<Car>) {
 
     fun winners(): List<String> {
         val winningPosition: Int = cars
-            .map {car -> car.getPosition()}
+            .map { car -> car.getPosition() }
             .max()!!
-        return cars.filter { car -> car.isSamePosition(winningPosition)}
-            .map {car -> car.name}
+        return cars.filter { car -> car.isSamePosition(winningPosition) }
+            .map { car -> car.name }
             .toList()
     }
 
