@@ -13,7 +13,7 @@ object OutputView {
 
     private fun printResult(cars: Cars) {
         for (car in cars.cars) {
-            println("-".repeat(car.position))
+            println("${car.name} : ${"-".repeat(car.position)}")
         }
         println()
     }

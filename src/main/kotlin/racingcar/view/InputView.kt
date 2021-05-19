@@ -2,9 +2,10 @@ package racingcar.view
 
 object InputView {
 
-    fun inputCarNumber(): Int {
-        println("자동차 대수는 몇 대인가요?")
-        return readLine()!!.toInt()
+    fun inputCarNames(): List<String> {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        val trimCarNames = readLine()!!.replace(" ", "")
+        return trimCarNames.split(",")
     }
 
     fun inputTryNumber(): Int {

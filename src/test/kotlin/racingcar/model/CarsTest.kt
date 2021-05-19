@@ -10,7 +10,7 @@ internal class CarsTest {
     @Test
     internal fun `create cars`() {
         //given
-        val carGroup = listOf(Car(), Car())
+        val carGroup = listOf(Car("Benz"), Car("KIA"))
 
         //when
         val result = Cars(carGroup)
@@ -23,7 +23,7 @@ internal class CarsTest {
     @Test
     internal fun moveAll() {
         //given
-        val carGroup = listOf(Car(), Car())
+        val carGroup = listOf(Car("Benz"), Car("KIA"))
         val cars = Cars(carGroup)
 
         //when

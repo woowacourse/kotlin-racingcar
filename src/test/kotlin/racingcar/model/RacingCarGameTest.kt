@@ -11,7 +11,7 @@ internal class RacingCarGameTest {
     @Test
     internal fun race() {
         //given
-        val cars = Cars(listOf(Car(), Car()))
+        val cars = Cars(listOf(Car("Benz"), Car("Kia")))
         val tryNumber = 2
         val racingCarGame = RacingCarGame(cars, tryNumber)
 
