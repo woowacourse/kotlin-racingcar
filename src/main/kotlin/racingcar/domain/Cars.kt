@@ -1,18 +1,26 @@
 package racingcar.domain
 
-import org.jetbrains.annotations.TestOnly
-import kotlin.random.Random
+class Cars(private val cars: ArrayList<Car>) {
 
-class Cars(private val carNum: Int) {
-    private val cars: ArrayList<Car> = ArrayList()
+    constructor(carNum: Int) : this(ArrayList()) {
+        createList(carNum)
+    }
+
+    private fun createList(carNum: Int) {
+        for (i in 0 until carNum) {
+            cars.add(Car(RandomMoveStrategy()))
+        }
+    }
+
 
     fun cars(): List<Car> {
         return cars.toList()
     }
 
-    init {
-        for (i in 0 until carNum) {
-            cars.add(Car(RandomMoveStrategy()))
-        }
+    fun race() {
+        cars.stream()
+            .forEach { car -> car.move() }
+
     }
+
 }
