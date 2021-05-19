@@ -34,4 +34,8 @@ class Car(name: String) {
             throw IllegalArgumentException("이름은 5글자 초과일 수 없습니다.")
         }
     }
+
+    override fun toString(): String {
+        return "Car(name=$name, position=$position)"
+    }
 }

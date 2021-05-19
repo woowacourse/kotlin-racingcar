@@ -1,6 +1,7 @@
 package racingcar
 
 import racingcar.car.Car
+import racingcar.car.Cars
 import racingcar.input.InputView
 import java.util.*
 import kotlin.streams.toList
@@ -13,21 +14,18 @@ fun main(){
     val inputView = InputView(Scanner(System.`in`))
     val inputLine = inputView.inputCarNames()
     println(inputLine)
+
+    playGame()
 }
 
 // RacingGame으로 포장하기
 fun playGame(){
     val inputView = InputView(Scanner(System.`in`))
-    val inputLine = inputView.inputCarNames()
+    val carNames = inputView.inputCarNames()
+    val carList = carNames.stream().map { name -> Car(name) }.toList()
 
-    val random = Random()
+    val cars = Cars(carList)
+    cars.moveCars()
 
-    // cars로 포장하기
-    val cars = inputLine.split(",")
-        .stream()
-        .map { name -> Car(name) }
-        .toList();
-
-    cars.stream()
-        .forEach{car -> car.tryToMove(random.nextInt(10))}
+    val findWinner = cars.findWinner()
 }
