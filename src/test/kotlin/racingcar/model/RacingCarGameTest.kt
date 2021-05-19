@@ -29,4 +29,23 @@ internal class RacingCarGameTest {
             { assertThat(result[1].cars[1].position).isBetween(0, 2) }
         )
     }
+
+    @DisplayName("우승자들을 찾는디")
+    @Test
+    internal fun `findWinner`() {
+        //given
+        val cars = Cars(listOf(Car("Benz", 4), Car("Kia"), Car("ROKI", 3)))
+        val tryNumber = 4
+        val racingCarGame = RacingCarGame(cars, tryNumber)
+
+        //when
+        val winners = racingCarGame.findWinners()
+
+        //then
+        assertAll(
+            { assertThat(winners).hasSize(1)},
+            { assertThat(winners[0].name).isEqualTo("Benz")},
+            { assertThat(winners[0].position).isEqualTo(4)}
+        )
+    }
 }

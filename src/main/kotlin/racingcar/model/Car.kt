@@ -20,4 +20,8 @@ class Car(val name: String, val position: Int = 0) {
         return this
     }
 
+    fun isSamePosition(position: Int): Boolean {
+        return this.position == position
+    }
+
 }

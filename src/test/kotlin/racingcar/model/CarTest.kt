@@ -4,8 +4,8 @@ import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
-import java.lang.IllegalArgumentException
 
 internal class CarTest {
 
@@ -51,5 +51,19 @@ internal class CarTest {
         //when //then
         assertThatIllegalArgumentException()
             .isThrownBy { Car(name) }
+    }
+
+    @DisplayName("Position이 같은지 확인한다")
+    @ParameterizedTest
+    @CsvSource(value = ["3:3:true", "2:1:false"], delimiter = ':')
+    internal fun `isSamePosition`(position: Int, targetPosition: Int, expected:Boolean) {
+        //given
+        val car = Car(name = "BENZ", position = position)
+
+        //when
+        val actual = car.isSamePosition(targetPosition)
+
+        //then
+        assertThat(actual).isEqualTo(expected)
     }
 }
