@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.model.Car
 
 internal class CarTest {
 
@@ -23,10 +22,10 @@ internal class CarTest {
         val car = Car()
 
         //when
-        car.move(3)
+        val stoppedCar = car.move(3)
 
         //then
-        assertThat(car.position).isEqualTo(0)
+        assertThat(stoppedCar.position).isEqualTo(0)
     }
 
     @DisplayName("move pivot 보다 condition이 크거나 같으면 정지한다")
@@ -37,9 +36,9 @@ internal class CarTest {
         val car = Car()
 
         //when
-        car.move(condition)
+        val movedCar = car.move(condition)
 
         //then
-        assertThat(car.position).isEqualTo(1)
+        assertThat(movedCar.position).isEqualTo(1)
     }
 }
