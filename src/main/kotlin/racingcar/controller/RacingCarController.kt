@@ -9,6 +9,9 @@ class RacingCarController {
     fun run() {
         val cars = createCars(InputView.inputCarNumber())
         val tryNumber = InputView.inputTryNumber()
+        val racingCarGame = RacingCarGame(cars, tryNumber)
+        val racingResult = racingCarGame.race()
+        OutputView.printResults(racingResult)
     }
 
     private fun createCars(carNumber: Int): Cars {

@@ -1,6 +1,6 @@
 package racingcar.model
 
-class Car(var position: Int = 0) {
+class Car(val position: Int = 0) {
 
     companion object {
         const val MOVE_PIVOT: Int = 4
@@ -8,8 +8,9 @@ class Car(var position: Int = 0) {
 
     fun move(condition: Int) {
         if (condition >= MOVE_PIVOT) {
-            position++
+            return Car(position + 1)
         }
+        return this
     }
 
 }
