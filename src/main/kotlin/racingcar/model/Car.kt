@@ -3,7 +3,6 @@ package racingcar.model
 class Car(val name: String, val position: Int = 0) {
 
     companion object {
-        const val MOVE_PIVOT: Int = 4
         const val MAX_NAME_LENGTH: Int = 5
     }
 
@@ -13,8 +12,8 @@ class Car(val name: String, val position: Int = 0) {
         }
     }
 
-    fun move(condition: Int) : Car{
-        if (condition >= MOVE_PIVOT) {
+    fun move(moveStrategy: MoveStrategy) : Car{
+        if (moveStrategy.move()) {
             return Car(name, position + 1)
         }
         return this

@@ -22,11 +22,11 @@ internal class RacingCarGameTest {
         assertAll(
             { assertThat(result).hasSize(tryNumber) },
             { assertThat(result[0].cars).hasSize(2) },
-            { assertThat(result[0].cars[0].position).isBetween(0, 2) },
-            { assertThat(result[0].cars[1].position).isBetween(0, 2) },
+            { assertThat(result[0].cars[0].position).isEqualTo(1) },
+            { assertThat(result[0].cars[1].position).isEqualTo(1) },
             { assertThat(result[1].cars).hasSize(2) },
-            { assertThat(result[1].cars[0].position).isBetween(0, 2) },
-            { assertThat(result[1].cars[1].position).isBetween(0, 2) }
+            { assertThat(result[1].cars[0].position).isEqualTo(2) },
+            { assertThat(result[1].cars[1].position).isEqualTo(2) }
         )
     }
 

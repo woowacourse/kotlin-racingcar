@@ -1,14 +1,13 @@
 package racingcar.model
 
-import racingcar.util.RandomUtil
 import kotlin.streams.toList
 
 class Cars(val cars: List<Car>) {
 
-    fun moveAll(): Cars {
+    fun moveAll(moveStrategy: MoveStrategy): Cars {
         val cars = arrayListOf<Car>()
         for (car in this.cars) {
-            cars.add(car.move(RandomUtil.generateRandomNumber()))
+            cars.add(car.move(moveStrategy))
         }
         return Cars(cars)
     }
