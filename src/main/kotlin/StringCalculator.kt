@@ -57,29 +57,27 @@ class StringCalculator {
 
         val process = ArrayList<String>()
         process.add(given[0])
-        for (i in 1 until given.size) {
-            if(i % 2 != 0){
-                val result = selectOperator(given[i], process.last(), given[i + 1])
-                process.add(result)
-            }
+        for (i in 1 until given.size step 2) {
+            val result = selectOperator(given[i], process.last(), given[i + 1])
+            process.add(result)
         }
 
         return process.last()
 
     }
 
-    private fun selectOperator(operator: String, a: String, b: String):String {
-        if(operator == "+"){
-           return add(a,b).toString()
+    private fun selectOperator(operator: String, a: String, b: String): String {
+        if (operator == "+") {
+            return add(a, b).toString()
         }
-        if(operator == "-"){
-            return subtract(a,b).toString()
+        if (operator == "-") {
+            return subtract(a, b).toString()
         }
-        if(operator == "*"){
-            return multiply(a,b).toString()
+        if (operator == "*") {
+            return multiply(a, b).toString()
         }
-        if(operator == "/"){
-            return divide(a,b).toString()
+        if (operator == "/") {
+            return divide(a, b).toString()
         }
         throw IllegalArgumentException("사칙연산 기호가 아니네요.")
     }
