@@ -34,7 +34,7 @@ internal class CarsTest {
     @DisplayName("중복 이름이 존재할 경우 에러가 발생한다.")
     @Test
     fun carsWithDuplicatedNames() {
-        val car1 = Car(Name("pobi"))
+        val car1 = Car(Name("pobi "))
         val car2 = Car(Name("pobi"))
 
         assertThatThrownBy {

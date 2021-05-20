@@ -6,8 +6,8 @@ class Name(name: String) {
     private val name: String;
 
     init {
-        validateName(name)
-        this.name = name;
+        validateName(name.trim())
+        this.name = name.trim();
     }
 
     private fun validateName(name: String) {

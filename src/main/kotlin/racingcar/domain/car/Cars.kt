@@ -1,5 +1,6 @@
 package racingcar.domain.car
 
+import racingcar.domain.Position
 import java.util.*
 import kotlin.streams.toList
 
@@ -26,11 +27,13 @@ class Cars(cars: List<Car>) {
             .toList())
     }
 
-    private fun findMaxPosition(): Int {
-        return cars.stream()
+    private fun findMaxPosition(): Position {
+        val maxValue = cars.stream()
             .mapToInt { it.position() }
             .max()
             .orElseGet { 0 }
+
+        return Position(maxValue)
     }
 
     fun cars(): List<Car> {
