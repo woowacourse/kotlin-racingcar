@@ -1,10 +1,10 @@
 package racingcar
 
-import racingcar.controller.RacingGame
+import racingcar.controller.GameController
 import java.util.*
 
 fun main() {
     val scanner = Scanner(System.`in`)
-    val racingGame = RacingGame(scanner)
+    val racingGame = GameController(scanner)
     racingGame.playGame()
 }
