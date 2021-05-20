@@ -17,7 +17,10 @@ class Cars(cars: List<Car>) {
 
     fun moveCars() {
         cars.stream()
-            .forEach { it.tryToMove(random.nextInt(RANDOM_BOUND_TO)) }
+            .forEach {
+                val num = random.nextInt(RANDOM_BOUND_TO)
+                it.tryToMove(num)
+            }
     }
 
     fun findWinners(): Cars {

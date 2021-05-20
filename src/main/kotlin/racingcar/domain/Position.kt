@@ -1,23 +1,23 @@
 package racingcar.domain
 
-import java.lang.IllegalArgumentException
+val STARTING_POSITION = Position(0)
 
-class Position (position:Int){
+class Position(position: Int) {
 
-    val value :Int
+    private val value: Int
 
-    init{
-        if(position<0){
+    init {
+        if (position < 0) {
             throw IllegalArgumentException("위치는 음수일 수 없습니다.")
         }
         this.value = position
     }
 
-    fun moveForward() : Position{
-        return Position(value+1)
+    fun moveForward(): Position {
+        return Position(value + 1)
     }
 
-    fun value() : Int{
+    fun value(): Int {
         return value
     }
 

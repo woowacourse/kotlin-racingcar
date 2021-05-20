@@ -2,15 +2,16 @@ package racingcar.domain.car
 
 import racingcar.domain.Name
 import racingcar.domain.Position
+import racingcar.domain.STARTING_POSITION
 
-const val MINIMUM_TO_MOVE = 4;
+const val CONDITION_TO_MOVE = 4;
 
 class Car(name: Name) {
-    private val name: Name = name
-    private var position: Position = Position(0)
+    private val name = name
+    private var position = STARTING_POSITION
 
     fun tryToMove(num: Int) {
-        if (num >= MINIMUM_TO_MOVE) {
+        if (num >= CONDITION_TO_MOVE) {
             position = position.moveForward()
         }
     }

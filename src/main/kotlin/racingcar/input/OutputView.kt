@@ -1,12 +1,13 @@
 package racingcar.input
 
 import racingcar.domain.car.Car
+import racingcar.domain.car.Cars
 import kotlin.streams.toList
 
 class OutputView {
 
-    fun printCars(cars: List<Car>) {
-        cars.stream()
+    fun printCars(cars: Cars) {
+        cars.cars().stream()
             .forEach { printCar(it) }
         println()
     }
@@ -26,8 +27,9 @@ class OutputView {
         return bar.toString()
     }
 
-    fun printWinners(winners: List<Car>) {
-        val winnerNames = winners.stream()
+    fun printWinners(winners: Cars) {
+        val winnerCars = winners.cars()
+        val winnerNames = winnerCars.stream()
             .map { it.name() }
             .toList()
             .joinToString(",")

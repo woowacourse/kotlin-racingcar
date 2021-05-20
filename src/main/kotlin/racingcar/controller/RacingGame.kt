@@ -13,35 +13,39 @@ class RacingGame(scanner: Scanner) {
     private val outputView = OutputView()
 
     fun playGame() {
-        val players = initPlayers()
-        val laps = inputView.inputLaps()
+        val cars = initCars()
+        val laps = initLaps()
 
-        rounds(laps, players)
-        printWinner(players)
+        rounds(laps, cars)
+        printWinner(cars)
     }
 
-    private fun rounds(laps: Laps, players: Cars) {
+    private fun rounds(laps: Laps, cars: Cars) {
         outputView.printResult()
 
         var currentLap = laps
         while (!currentLap.isEnd()) {
-            players.moveCars()
-            outputView.printCars(players.cars())
+            cars.moveCars()
+            outputView.printCars(cars)
             currentLap = currentLap.next()
         }
     }
 
-    private fun initPlayers(): Cars {
+    private fun printWinner(cars: Cars) {
+        val winners = cars.findWinners()
+        outputView.printWinners(winners)
+    }
+
+    private fun initLaps(): Laps {
+        return inputView.inputLaps()
+    }
+
+    private fun initCars(): Cars {
         val carNames = inputView.inputCarNames()
         val carList = carNames.stream()
             .map { Car(it) }
             .toList()
 
         return Cars(carList)
-    }
-
-    private fun printWinner(players: Cars) {
-        val winners = players.findWinners()
-        outputView.printWinners(winners.cars())
     }
 }
