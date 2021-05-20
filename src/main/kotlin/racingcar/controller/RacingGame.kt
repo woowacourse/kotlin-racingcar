@@ -5,12 +5,12 @@ import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
 import racingcar.input.InputView
 import racingcar.input.OutputView
-import java.util.*
 import kotlin.streams.toList
 
-class RacingGame(scanner: Scanner) {
-    private val inputView = InputView(scanner)
-    private val outputView = OutputView()
+class RacingGame(inputView: InputView, outputView: OutputView) {
+
+    private val inputView = inputView
+    private val outputView = outputView
 
     fun playGame() {
         val cars = initCars()

@@ -1,6 +1,7 @@
 package racingcar.domain
 
 class Laps(laps: Int) {
+
     private val laps: Int
 
     init {

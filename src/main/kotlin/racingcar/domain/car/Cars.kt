@@ -7,6 +7,7 @@ import kotlin.streams.toList
 const val RANDOM_BOUND_TO = 10
 
 class Cars(cars: List<Car>) {
+
     private val random = Random()
     private val cars: List<Car>
 
