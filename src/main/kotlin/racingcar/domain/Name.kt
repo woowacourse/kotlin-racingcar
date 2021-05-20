@@ -3,14 +3,14 @@ package racingcar.domain
 const val MINIMUM_NAME_LENGTH = 5;
 
 class Name(name: String) {
-    private val name: String;
+    private val value: String;
 
     init {
-        validateName(name.trim())
-        this.name = name.trim();
+        validate(name.trim())
+        this.value = name.trim();
     }
 
-    private fun validateName(name: String) {
+    private fun validate(name: String) {
         if (name.isBlank()) {
             throw IllegalArgumentException("이름은 빈 문자열일 수 없습니다.")
         }
@@ -20,8 +20,8 @@ class Name(name: String) {
         }
     }
 
-    fun name(): String {
-        return name
+    fun value(): String {
+        return value
     }
 
     override fun equals(other: Any?): Boolean {
@@ -29,11 +29,11 @@ class Name(name: String) {
         if (javaClass != other?.javaClass) return false
 
         other as Name
-        if (name != other.name) return false
+        if (value != other.value) return false
         return true
     }
 
     override fun hashCode(): Int {
-        return name.hashCode()
+        return value.hashCode()
     }
 }
