@@ -21,7 +21,7 @@ class Car(name: Name) {
     }
 
     fun name(): String {
-        return name.name()
+        return name.value()
     }
 
     fun position(): Int {
