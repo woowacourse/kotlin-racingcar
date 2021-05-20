@@ -18,7 +18,7 @@ internal class CarsTest {
         car1.tryToMove(5)
 
         val winners = cars.findWinners()
-        assertThat(winners.cars()).isEqualTo(listOf(car1))
+        assertThat(winners.asList()).isEqualTo(listOf(car1))
     }
 
     @DisplayName("우승자를 찾는다. :: 우승자가 여러 명일 경우")
@@ -28,7 +28,7 @@ internal class CarsTest {
         car2.tryToMove(5)
 
         val winners = cars.findWinners()
-        assertThat(winners.cars()).isEqualTo(listOf(car1, car2))
+        assertThat(winners.asList()).isEqualTo(listOf(car1, car2))
     }
 
     @DisplayName("중복 이름이 존재할 경우 에러가 발생한다.")
