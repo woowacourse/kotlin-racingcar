@@ -5,6 +5,7 @@ import racingcar.domain.car.Cars
 import kotlin.streams.toList
 
 class RacingGame (cars:List<Name>, laps:Laps){
+
     private val cars : Cars
     private var laps : Laps
 

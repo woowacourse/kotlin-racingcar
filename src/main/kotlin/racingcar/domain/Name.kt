@@ -3,6 +3,7 @@ package racingcar.domain
 const val MINIMUM_NAME_LENGTH = 5;
 
 class Name(name: String) {
+
     private val value: String;
 
     init {

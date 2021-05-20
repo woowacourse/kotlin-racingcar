@@ -7,6 +7,7 @@ import racingcar.domain.STARTING_POSITION
 const val CONDITION_TO_MOVE = 4;
 
 class Car(name: Name) {
+
     private val name = name
     private var position = STARTING_POSITION
 
