@@ -10,4 +10,9 @@ class RacingCarGame(var cars: Cars, val tryNumber: Int) {
         }
         return carsGroup
     }
+
+    fun findWinners(): List<Car> {
+        val maxPosition = cars.findMaxPosition()
+        return cars.findCarsBySamePosition(maxPosition)
+    }
 }
