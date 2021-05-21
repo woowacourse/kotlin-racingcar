@@ -27,7 +27,11 @@ internal class CarsTest {
         val cars = Cars(carGroup)
 
         //when
-        val movedCars = cars.moveAll()
+        val movedCars = cars.moveAll(object:MoveStrategy{
+            override fun move(): Boolean {
+                return true
+            }
+        })
 
         //then
         assertAll(

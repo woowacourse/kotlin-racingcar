@@ -16,7 +16,11 @@ internal class RacingCarGameTest {
         val racingCarGame = RacingCarGame(cars, tryNumber)
 
         //when
-        val result = racingCarGame.race()
+        val result = racingCarGame.race(object:MoveStrategy{
+            override fun move(): Boolean {
+                return true
+            }
+        })
 
         //then
         assertAll(

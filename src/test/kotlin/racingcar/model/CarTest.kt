@@ -21,21 +21,28 @@ internal class CarTest {
         val car = Car("Benz")
 
         //when
-        val stoppedCar = car.move(3)
+        val stoppedCar = car.move(object:MoveStrategy{
+            override fun move(): Boolean {
+                return false
+            }
+        })
 
         //then
         assertThat(stoppedCar.position).isEqualTo(0)
     }
 
     @DisplayName("move pivot 보다 condition이 크거나 같으면 정지한다")
-    @ParameterizedTest
-    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
-    internal fun `move car when condition less than move pivot`(condition: Int) {
+    @Test
+    internal fun `move car when condition more than move pivot`() {
         //given
         val car = Car("Benz")
 
         //when
-        val movedCar = car.move(condition)
+        val movedCar = car.move(object:MoveStrategy{
+            override fun move(): Boolean {
+                return true
+            }
+        })
 
         //then
         assertThat(movedCar.position).isEqualTo(1)
