@@ -1,5 +1,3 @@
 package domain
 
-class Cars(val cars: List<Car>) {
-
-}
+class Cars(val cars: List<Car>)

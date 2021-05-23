@@ -12,6 +12,5 @@ class Winner(val cars: Cars) {
             maxScore = max(car.distance, maxScore)
         }
         return cars.cars.filter { it.distance == maxScore }.map { it.name }
-
     }
 }

@@ -16,22 +16,20 @@ class GameController(val view: View) {
 
         println("실행 결과")
         for (i in 0 until numMatch) {
-            moveCars(cars);
+            moveCars(cars)
             view.printCarScore(cars, numMatch)
         }
         view.printWinner(Winner(cars).findWinnerNames())
-
-
     }
 
     private fun moveCars(cars: Cars) {
-        val random = Random();
+        val random = Random()
         val expectedMoveCars = cars.cars.filter { random.nextInt(10) > 4 }
         expectedMoveCars.map { it.move() }
     }
 
     private fun createCars(carNames: String): Cars {
-        val cars = ArrayList<Car>();
+        val cars = ArrayList<Car>()
         for (carName in carNames.split(",")) {
             cars.add(Car(carName, 0))
         }
