@@ -4,10 +4,9 @@ import domain.Car
 import domain.Cars
 import view.View
 import view.ViewValidator
-import java.util.*
-import kotlin.collections.ArrayList
+import kotlin.random.Random
 
-class GameController(val view: View) {
+class GameController(private val view: View) {
     fun gameStart() {
         val validator = ViewValidator()
         val carNames = validator.validCarNames(view.inputNumCar())
@@ -23,7 +22,7 @@ class GameController(val view: View) {
     }
 
     private fun moveCars(cars: Cars) {
-        val random = Random()
+        val random = Random
         val expectedMoveCars = cars.cars.filter { random.nextInt(10) > 4 }
         expectedMoveCars.map { it.move() }
     }

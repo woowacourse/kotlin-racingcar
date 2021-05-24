@@ -2,13 +2,10 @@ package view
 
 class ViewValidator {
     fun validNumMatch(numMatch: String?): Int {
-        return Integer.parseInt(numMatch)
+        return numMatch?.toInt() ?: 0
     }
 
     fun validCarNames(inputNumCar: String?): String {
-        if (inputNumCar == null) {
-            return " "
-        }
-        return inputNumCar
+        return inputNumCar ?: ""
     }
 }

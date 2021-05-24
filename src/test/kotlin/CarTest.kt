@@ -6,7 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-
+import view.ViewValidator
 
 class CarTest {
 
@@ -31,7 +31,7 @@ class CarTest {
     fun noCarDistanceParameter() {
         val car = Car("car1")
 
-        assertThat(car.distance).isEqualTo(0);
+        assertThat(car.distance).isEqualTo(0)
     }
 
     @DisplayName("자동차가 움직이는 경우")
@@ -39,14 +39,14 @@ class CarTest {
     fun carMove() {
         var car = Car("car1")
         car.move()
-        assertThat(car.distance).isEqualTo(1);
+        assertThat(car.distance).isEqualTo(1)
     }
 
     @DisplayName("자동차의 거리값으로 null이 오는 경우")
     @Test
     fun nullCarDistance() {
         var car = Car("car1", null)
-        assertThat(car.distance).isEqualTo(0);
+        assertThat(car.distance).isEqualTo(0)
     }
 
     @DisplayName("자동차 이름이 여러개가 오고 올바르지 않은 값인 경우")
@@ -69,8 +69,16 @@ class CarTest {
         val car2 = Car("winner2", 10)
         val car3 = Car("winner3", 5)
 
-
         val cars = Cars(listOf<Car>(car1, car2, car3))
         print(assertThat(Winner(cars).findWinnerNames()).hasSize(2))
+    }
+
+    @DisplayName("반복 횟수가 null 인 경우")
+    @Test
+    fun nullMatchCount() {
+        val viewValidator = ViewValidator()
+
+        assertThat(viewValidator.validNumMatch(null)).isEqualTo(0)
+
     }
 }
