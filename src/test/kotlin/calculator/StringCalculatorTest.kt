@@ -1,7 +1,8 @@
 package calculator
 
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.EmptySource
@@ -20,13 +21,13 @@ internal class StringCalculatorTest {
     @EmptySource
     internal fun `입력값이 null이거나 빈 공백 문자일 경우 IllegalArgumentException throw`(input: String) {
         val stringCalculator = StringCalculator()
-        assertThatIllegalArgumentException().isThrownBy { stringCalculator.calculate(input) }
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate(input) }
     }
 
     @Test
     internal fun `사칙연산 기호가 아닌 경우 IllegalArgumentException throw`() {
         val stringCalculator = StringCalculator()
-        assertThatIllegalArgumentException().isThrownBy { stringCalculator.calculate("10 . 2 = 3") }
+        assertThrows<IllegalArgumentException> { stringCalculator.calculate("10 . 2 = 3") }
     }
 
     companion object {
