@@ -27,7 +27,7 @@ class CarTest {
     @DisplayName("자동차가 움직이는 경우")
     @Test
     fun carMove() {
-        var car = Car("car1")
+        val car = Car("car1")
         car.move()
         assertThat(car).isEqualTo(Car("car1", 1))
     }
@@ -35,7 +35,7 @@ class CarTest {
     @DisplayName("자동차의 거리값으로 null이 오는 경우")
     @Test
     fun nullCarDistance() {
-        var car = Car("car1", null)
+        val car = Car("car1", null)
         assertThat(car).isEqualTo(Car("car1", 0))
     }
 
@@ -77,5 +77,4 @@ class CarTest {
             viewValidator.validNumMatch("TEST")
         }
     }
-
 }

@@ -1,4 +1,3 @@
 package exception
 
-class InvalidCarNameException(message: String) : RuntimeException(message) {
-}
+class InvalidCarNameException(message: String) : RuntimeException(message)
