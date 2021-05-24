@@ -10,19 +10,19 @@ internal class RacingCarGameTest {
     @DisplayName("자동차 게임을 진행한다")
     @Test
     internal fun race() {
-        //given
+        // given
         val cars = Cars(listOf(Car("Benz"), Car("Kia")))
         val tryNumber = 2
         val racingCarGame = RacingCarGame(cars, tryNumber)
 
-        //when
-        val result = racingCarGame.race(object:MoveStrategy{
+        // when
+        val result = racingCarGame.race(object : MoveStrategy {
             override fun move(): Boolean {
                 return true
             }
         })
 
-        //then
+        // then
         assertAll(
             { assertThat(result).hasSize(tryNumber) },
             { assertThat(result[0].cars).hasSize(2) },
@@ -37,19 +37,19 @@ internal class RacingCarGameTest {
     @DisplayName("우승자들을 찾는디")
     @Test
     internal fun `findWinner`() {
-        //given
+        // given
         val cars = Cars(listOf(Car("Benz", 4), Car("Kia"), Car("ROKI", 3)))
         val tryNumber = 4
         val racingCarGame = RacingCarGame(cars, tryNumber)
 
-        //when
+        // when
         val winners = racingCarGame.findWinners()
 
-        //then
+        // then
         assertAll(
-            { assertThat(winners).hasSize(1)},
-            { assertThat(winners[0].name).isEqualTo("Benz")},
-            { assertThat(winners[0].position).isEqualTo(4)}
+            { assertThat(winners).hasSize(1) },
+            { assertThat(winners[0].name).isEqualTo("Benz") },
+            { assertThat(winners[0].position).isEqualTo(4) }
         )
     }
 }

@@ -17,44 +17,44 @@ internal class CarTest {
     @DisplayName("move pivot 보다 condition이 작으면 정지한다")
     @Test
     internal fun `stop car when condition less than move pivot`() {
-        //given
+        // given
         val car = Car("Benz")
 
-        //when
-        val stoppedCar = car.move(object:MoveStrategy{
+        // when
+        val stoppedCar = car.move(object : MoveStrategy {
             override fun move(): Boolean {
                 return false
             }
         })
 
-        //then
+        // then
         assertThat(stoppedCar.position).isEqualTo(0)
     }
 
     @DisplayName("move pivot 보다 condition이 크거나 같으면 정지한다")
     @Test
     internal fun `move car when condition more than move pivot`() {
-        //given
+        // given
         val car = Car("Benz")
 
-        //when
-        val movedCar = car.move(object:MoveStrategy{
+        // when
+        val movedCar = car.move(object : MoveStrategy {
             override fun move(): Boolean {
                 return true
             }
         })
 
-        //then
+        // then
         assertThat(movedCar.position).isEqualTo(1)
     }
 
     @DisplayName("자동차의 이름이 5글자를 초과하면 예외를 발생한다")
     @Test
     internal fun `car name length over than max car name length`() {
-        //given
+        // given
         val name = "Hyundai"
 
-        //when //then
+        // when //then
         assertThatIllegalArgumentException()
             .isThrownBy { Car(name) }
     }
@@ -62,14 +62,14 @@ internal class CarTest {
     @DisplayName("Position이 같은지 확인한다")
     @ParameterizedTest
     @CsvSource(value = ["3:3:true", "2:1:false"], delimiter = ':')
-    internal fun `isSamePosition`(position: Int, targetPosition: Int, expected:Boolean) {
-        //given
+    internal fun `isSamePosition`(position: Int, targetPosition: Int, expected: Boolean) {
+        // given
         val car = Car(name = "BENZ", position = position)
 
-        //when
+        // when
         val actual = car.isSamePosition(targetPosition)
 
-        //then
+        // then
         assertThat(actual).isEqualTo(expected)
     }
 }

@@ -22,9 +22,9 @@ internal class PersonTest {
     @Test
     fun `nullable types`() {
         val person = Person("신지혜", null, null)
-        assertThat(person.name).isEqualTo("신지혜");
-        assertThat(person.age).isNull();
-        assertThat(person.nickname).isNull();
+        assertThat(person.name).isEqualTo("신지혜")
+        assertThat(person.age).isNull()
+        assertThat(person.nickname).isNull()
     }
 
     @Test
@@ -44,4 +44,3 @@ internal class PersonTest {
         assertThat(person1).isEqualTo(person2)
     }
 }
-

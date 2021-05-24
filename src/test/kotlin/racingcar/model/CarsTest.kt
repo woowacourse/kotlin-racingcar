@@ -9,31 +9,31 @@ internal class CarsTest {
 
     @Test
     internal fun `create cars`() {
-        //given
+        // given
         val carGroup = listOf(Car("Benz"), Car("KIA"))
 
-        //when
+        // when
         val result = Cars(carGroup)
 
-        //then
+        // then
         assertThat(result).isNotNull
     }
 
     @DisplayName("모든 자동차를 전진 or 정지 시킨다")
     @Test
     internal fun moveAll() {
-        //given
+        // given
         val carGroup = listOf(Car("Benz"), Car("KIA"))
         val cars = Cars(carGroup)
 
-        //when
-        val movedCars = cars.moveAll(object:MoveStrategy{
+        // when
+        val movedCars = cars.moveAll(object : MoveStrategy {
             override fun move(): Boolean {
                 return true
             }
         })
 
-        //then
+        // then
         assertAll(
             { assertThat(movedCars.cars).hasSize(2) },
             { assertThat(movedCars.cars[0].position).isBetween(0, 1) },
@@ -44,31 +44,35 @@ internal class CarsTest {
     @DisplayName("자동차들 중 가장 먼 위치를 찾는다")
     @Test
     internal fun `findMaxPosition`() {
-        //given
+        // given
         val cars = Cars(listOf(Car("BENZ", 3), Car("KIA", 1)))
 
-        //when
+        // when
         val maxPosition = cars.findMaxPosition()
 
-        //then
+        // then
         assertThat(maxPosition).isEqualTo(3)
     }
 
     @DisplayName("자동차들 중에서 주어진 값과 같은 위치에 있는 자동차들을 찾는다")
     @Test
     internal fun `findCarsBySamePosition`() {
-        //given
-        val cars = Cars(listOf(Car("BENZ", 3), Car("KIA", 1),
-        Car("ROKI", 3)))
+        // given
+        val cars = Cars(
+            listOf(
+                Car("BENZ", 3), Car("KIA", 1),
+                Car("ROKI", 3)
+            )
+        )
 
-        //when
+        // when
         val findCars = cars.findCarsBySamePosition(3)
 
-        //then
+        // then
         assertAll(
-            { assertThat(findCars).hasSize(2)},
-            { assertThat(findCars[0].position).isEqualTo(3)},
-            { assertThat(findCars[1].position).isEqualTo(3)}
+            { assertThat(findCars).hasSize(2) },
+            { assertThat(findCars[0].position).isEqualTo(3) },
+            { assertThat(findCars[1].position).isEqualTo(3) }
         )
     }
 }

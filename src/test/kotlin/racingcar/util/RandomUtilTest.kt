@@ -9,10 +9,10 @@ internal class RandomUtilTest {
     @DisplayName("0 ~ 9 사이의 랜덤 숫자를 생성한다")
     @Test
     internal fun `generate random number`() {
-        //when
+        // when
         val randomNumber = RandomUtil.generateRandomNumber()
 
-        //then
+        // then
         assertThat(randomNumber).isBetween(0, 9)
     }
 }

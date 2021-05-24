@@ -2,17 +2,13 @@ package racingcar.model
 
 class Car(val name: String, val position: Int = 0) {
 
-    companion object {
-        const val MAX_NAME_LENGTH: Int = 5
-    }
-
     init {
-        if (name.length > MAX_NAME_LENGTH) {
-            throw IllegalArgumentException("자동차의 이름은 5글자를 초과할 수 없습니다.")
+        require(name.length <= MAX_NAME_LENGTH) {
+            "자동차의 이름은 5글자를 초과할 수 없습니다."
         }
     }
 
-    fun move(moveStrategy: MoveStrategy) : Car{
+    fun move(moveStrategy: MoveStrategy): Car {
         if (moveStrategy.move()) {
             return Car(name, position + 1)
         }
@@ -23,4 +19,7 @@ class Car(val name: String, val position: Int = 0) {
         return this.position == position
     }
 
+    companion object {
+        const val MAX_NAME_LENGTH: Int = 5
+    }
 }
