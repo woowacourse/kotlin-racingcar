@@ -13,18 +13,8 @@ internal class CarsTest {
 
     @Test
     internal fun race() {
-        val moveStrategy: MoveStrategy = object : MoveStrategy {
-            override fun isMovable(): Boolean {
-                return true
-            }
-        }
-        val stopStrategy: MoveStrategy = object : MoveStrategy {
-            override fun isMovable(): Boolean {
-                return false
-            }
-        }
-        val betterCar = Car(moveStrategy)
-        val aaronCar = Car(stopStrategy)
+        val betterCar = Car { true }
+        val aaronCar = Car { false }
 
         val cars = Cars(arrayListOf(betterCar, aaronCar))
         cars.race()
@@ -32,6 +22,4 @@ internal class CarsTest {
         assertThat(betterCar.isSamePosition(1)).isTrue()
         assertThat(aaronCar.isSamePosition(0)).isTrue()
     }
-
-
 }

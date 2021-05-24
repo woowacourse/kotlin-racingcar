@@ -10,12 +10,7 @@ class CarTest {
 
     @Test
     internal fun move() {
-        val moveStrategy: MoveStrategy = object : MoveStrategy {
-            override fun isMovable(): Boolean {
-                return true
-            }
-
-        }
+        val moveStrategy: () -> Boolean = { true }
         val car = Car(moveStrategy)
         car.move()
         assertThat(car.isSamePosition(1)).isTrue()
@@ -23,8 +18,8 @@ class CarTest {
 
     @Test
     internal fun create() {
-        val car = Car(RandomMoveStrategy, "aaron")
-        val car1 = Car(RandomMoveStrategy, "aaron")
+        val car = Car(randomMoveStrategy, "aaron")
+        val car1 = Car(randomMoveStrategy, "aaron")
 
         assertThat(car).isEqualTo(car1)
     }

@@ -7,10 +7,6 @@ import racingcar.view.OutputView
 
 class RaceController {
 
-    companion object {
-        private const val DELIMITER = ","
-    }
-
     fun run() {
         val names: List<String> = InputView.inputNames().split(DELIMITER)
         val namesToCar: ArrayList<Car> = names
@@ -29,5 +25,9 @@ class RaceController {
             cars.race()
             OutputView.printStatus(cars.status())
         }
+    }
+
+    companion object {
+        private const val DELIMITER = ","
     }
 }

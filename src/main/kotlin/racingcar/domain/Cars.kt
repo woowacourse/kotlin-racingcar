@@ -8,10 +8,9 @@ class Cars(private val cars: ArrayList<Car>) {
 
     private fun createList(carNum: Int) {
         for (i in 0 until carNum) {
-            cars.add(Car(RandomMoveStrategy))
+            cars.add(Car(randomMoveStrategy))
         }
     }
-
 
     fun cars(): List<Car> {
         return cars.toList()
@@ -20,7 +19,6 @@ class Cars(private val cars: ArrayList<Car>) {
     fun race() {
         cars.stream()
             .forEach { car -> car.move() }
-
     }
 
     fun status(): LinkedHashMap<String, Int> {
@@ -35,11 +33,9 @@ class Cars(private val cars: ArrayList<Car>) {
 
     fun winners(): List<String> {
         val winningPosition: Int = cars
-            .map { car -> car.getPosition() }
+            .map { it.getPosition() }
             .max()!!
-        return cars.filter { car -> car.isSamePosition(winningPosition) }
+        return cars.filter { it.isSamePosition(winningPosition) }
             .map { car -> car.name }
-            .toList()
     }
-
 }

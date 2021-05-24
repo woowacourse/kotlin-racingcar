@@ -33,7 +33,6 @@ class StringCalculator {
         val numberB = b.toFloat()
 
         return numberA * numberB
-
     }
 
     fun divide(a: String, b: String): Float {
@@ -63,7 +62,6 @@ class StringCalculator {
         }
 
         return process.last()
-
     }
 
     private fun selectOperator(operator: String, a: String, b: String): String {
@@ -81,5 +79,4 @@ class StringCalculator {
         }
         throw IllegalArgumentException("사칙연산 기호가 아니네요.")
     }
-
 }
