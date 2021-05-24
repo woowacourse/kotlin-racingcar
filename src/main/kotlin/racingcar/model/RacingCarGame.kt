@@ -1,6 +1,6 @@
 package racingcar.model
 
-class RacingCarGame(var cars: Cars, val tryNumber: Int) {
+class RacingCarGame(var cars: Cars, private val tryNumber: Int) {
 
     fun race(moveStrategy: MoveStrategy): List<Cars> {
         val carsGroup = arrayListOf<Cars>()

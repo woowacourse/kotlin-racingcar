@@ -1,7 +1,5 @@
 package racingcar.model
 
-import kotlin.streams.toList
-
 class Cars(val cars: List<Car>) {
 
     fun moveAll(moveStrategy: MoveStrategy): Cars {
@@ -13,14 +11,10 @@ class Cars(val cars: List<Car>) {
     }
 
     fun findMaxPosition(): Int {
-        return cars.stream()
-            .map { it.position }
-            .toList()
-            .max()!!
+        return cars.maxBy { it.position }!!.position
     }
 
     fun findCarsBySamePosition(position: Int): List<Car> {
         return cars.filter { it.isSamePosition(position) }
-            .toList()
     }
 }
