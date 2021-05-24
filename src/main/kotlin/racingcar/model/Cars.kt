@@ -3,11 +3,8 @@ package racingcar.model
 class Cars(val cars: List<Car>) {
 
     fun moveAll(moveStrategy: MoveStrategy): Cars {
-        val cars = arrayListOf<Car>()
-        for (car in this.cars) {
-            cars.add(car.move(moveStrategy))
-        }
-        return Cars(cars)
+        val newCars = cars.map { it.move(moveStrategy) }
+        return Cars(newCars)
     }
 
     fun findMaxPosition(): Int {
