@@ -6,6 +6,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import view.ViewValidator
 
 class CarTest {
@@ -79,6 +80,15 @@ class CarTest {
         val viewValidator = ViewValidator()
 
         assertThat(viewValidator.validNumMatch(null)).isEqualTo(0)
-
     }
+
+    @DisplayName("반복 횟수가 숫자가 아닌 경우")
+    @Test()
+    fun exceptionMatchCount() {
+        val viewValidator = ViewValidator()
+        assertThrows<NumberFormatException> {
+            assertThat(viewValidator.validNumMatch("TEST"))
+        }
+    }
+
 }
