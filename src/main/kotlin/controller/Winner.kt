@@ -1,16 +1,13 @@
 package controller
 
+import domain.Car
 import domain.Cars
-import kotlin.math.max
 
-class Winner(val cars: Cars) {
+class Winner(private val cars: Cars) {
 
-    fun findWinnerNames(): List<String> {
-        val winners = ArrayList<String>()
-        var maxScore = 0
-        for (car in cars.cars) {
-            maxScore = max(car.distance, maxScore)
-        }
-        return cars.cars.filter { it.distance == maxScore }.map { it.name }
+    fun findWinnerNames(): List<Car> {
+        val maxScore: Int = cars.cars.maxBy { it.distance }?.distance ?: 0
+        return cars.cars.filter { car -> car.distance == maxScore }
+
     }
 }

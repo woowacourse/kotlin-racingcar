@@ -6,32 +6,25 @@ import view.View
 import view.ViewValidator
 import kotlin.random.Random
 
+const val RANDOM_BOUNDARY = 4
+const val RANDOM_MAX = 10
+
 class GameController(private val view: View) {
     fun gameStart() {
         val validator = ViewValidator()
         val carNames = validator.validCarNames(view.inputNumCar())
         val numMatch = validator.validNumMatch(view.inputNumMatch())
         val cars = createCars(carNames)
+        val random = Random
 
         println("실행 결과")
         for (i in 0 until numMatch) {
-            moveCars(cars)
-            view.printCarScore(cars, numMatch)
+            cars.randomMove(random, randomMax = RANDOM_MAX, boundary = RANDOM_BOUNDARY)
+            view.printCarScore(cars)
         }
         view.printWinner(Winner(cars).findWinnerNames())
     }
 
-    private fun moveCars(cars: Cars) {
-        val random = Random
-        val expectedMoveCars = cars.cars.filter { random.nextInt(10) > 4 }
-        expectedMoveCars.map { it.move() }
-    }
-
-    private fun createCars(carNames: String): Cars {
-        val cars = ArrayList<Car>()
-        for (carName in carNames.split(",")) {
-            cars.add(Car(carName, 0))
-        }
-        return Cars(cars)
-    }
+    private fun createCars(carNames: String): Cars =
+        Cars(carNames.split(",").map { Car(it, 0) })
 }

@@ -36,7 +36,7 @@ class CarTest {
     @Test
     fun nullCarDistance() {
         var car = Car("car1", null)
-        assertThat(car.distance).isEqualTo(Car("car1", 0))
+        assertThat(car).isEqualTo(Car("car1", 0))
     }
 
     @DisplayName("자동차 이름이 여러개가 오고 올바르지 않은 값인 경우")

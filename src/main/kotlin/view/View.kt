@@ -1,5 +1,6 @@
 package view
 
+import domain.Car
 import domain.Cars
 
 class View {
@@ -18,15 +19,14 @@ class View {
         println("잘못된 게임 정보입니다.")
     }
 
-    fun printCarScore(cars: Cars, numMatch: Int) {
-        for (car in cars.cars) {
+    fun printCarScore(cars: Cars) {
+        cars.cars.forEach { car ->
             println(car.name + " : " + "-".repeat(car.distance))
         }
         println()
     }
 
-    fun printWinner(winners: List<String>) {
-
-        print(winners.joinToString(", ") + "가 최종 우승했습니다.")
+    fun printWinner(winners: List<Car>) {
+        print(winners.joinToString(", ") { it.name } + "가 최종 우승했습니다.")
     }
 }

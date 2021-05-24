@@ -10,10 +10,10 @@ class Car(val name: String, distance: Int) {
     constructor(name: String, distance: Int?) : this(name, 0)
 
     init {
-        validCarName(name)
+        validateCarName(name)
     }
 
-    private fun validCarName(name: String) {
+    private fun validateCarName(name: String) {
         if (name.isEmpty()) {
             throw InvalidCarNameException("not allowed empty")
         }
