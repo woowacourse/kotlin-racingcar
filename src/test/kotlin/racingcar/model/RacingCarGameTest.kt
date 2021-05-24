@@ -24,32 +24,15 @@ internal class RacingCarGameTest {
 
         // then
         assertAll(
-            { assertThat(result).hasSize(tryNumber) },
-            { assertThat(result[0].cars).hasSize(2) },
-            { assertThat(result[0].cars[0].position).isEqualTo(1) },
-            { assertThat(result[0].cars[1].position).isEqualTo(1) },
-            { assertThat(result[1].cars).hasSize(2) },
-            { assertThat(result[1].cars[0].position).isEqualTo(2) },
-            { assertThat(result[1].cars[1].position).isEqualTo(2) }
+            { assertThat(result.first).hasSize(tryNumber) },
+            { assertThat(result.first[0].cars).hasSize(2) },
+            { assertThat(result.first[0].cars[0].position).isEqualTo(1) },
+            { assertThat(result.first[0].cars[1].position).isEqualTo(1) },
+            { assertThat(result.first[1].cars).hasSize(2) },
+            { assertThat(result.first[1].cars[0].position).isEqualTo(2) },
+            { assertThat(result.first[1].cars[1].position).isEqualTo(2) },
+            { assertThat(result.second).hasSize(2) }
         )
     }
 
-    @DisplayName("우승자들을 찾는디")
-    @Test
-    internal fun `findWinner`() {
-        // given
-        val cars = Cars(listOf(Car("Benz", 4), Car("Kia"), Car("ROKI", 3)))
-        val tryNumber = 4
-        val racingCarGame = RacingCarGame(cars, tryNumber)
-
-        // when
-        val winners = racingCarGame.findWinners()
-
-        // then
-        assertAll(
-            { assertThat(winners).hasSize(1) },
-            { assertThat(winners[0].name).isEqualTo("Benz") },
-            { assertThat(winners[0].position).isEqualTo(4) }
-        )
-    }
 }

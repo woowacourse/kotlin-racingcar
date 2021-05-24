@@ -15,8 +15,7 @@ class RacingCarController {
         val tryNumber = inputTryNumber()
         val racingCarGame = RacingCarGame(cars, tryNumber)
         val racingResult = racingCarGame.race(RandomMoveStrategy())
-        val winners = racingCarGame.findWinners()
-        printResults(Pair(racingResult, winners))
+        printResults(racingResult)
     }
 
     private fun createCars(carNames: List<String>): Cars {

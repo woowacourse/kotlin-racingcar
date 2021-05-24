@@ -10,7 +10,7 @@ internal class RandomUtilTest {
     @Test
     internal fun `generate random number`() {
         // when
-        val randomNumber = RandomUtil.generateRandomNumber()
+        val randomNumber = generateRandomNumber()
 
         // then
         assertThat(randomNumber).isBetween(0, 9)
