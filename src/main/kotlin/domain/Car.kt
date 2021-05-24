@@ -25,4 +25,20 @@ class Car(val name: String, distance: Int) {
     fun move() {
         this.distance++
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Car) return false
+
+        if (name != other.name) return false
+        if (distance != other.distance) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + distance
+        return result
+    }
 }

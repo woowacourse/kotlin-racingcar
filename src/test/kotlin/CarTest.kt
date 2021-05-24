@@ -3,26 +3,16 @@ import domain.Car
 import domain.Cars
 import exception.InvalidCarNameException
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertThrows
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import view.ViewValidator
 
 class CarTest {
-
-    @DisplayName("자동차 이름이 없는 경우")
-    @Test
-    fun nullCarName() {
-        assertThrows(InvalidCarNameException::class.java) {
-            Car("", 0)
-        }
-    }
-
-    @DisplayName("자동차 이름이 없는 경우")
+    @DisplayName("자동차 이름이 공백인 경우")
     @Test
     fun blankCarName() {
-        assertThrows(InvalidCarNameException::class.java) {
+        assertThrows<InvalidCarNameException> {
             Car("", 0)
         }
     }
@@ -31,7 +21,6 @@ class CarTest {
     @Test
     fun noCarDistanceParameter() {
         val car = Car("car1")
-
         assertThat(car.distance).isEqualTo(0)
     }
 
@@ -40,14 +29,14 @@ class CarTest {
     fun carMove() {
         var car = Car("car1")
         car.move()
-        assertThat(car.distance).isEqualTo(1)
+        assertThat(car).isEqualTo(Car("car1", 1))
     }
 
     @DisplayName("자동차의 거리값으로 null이 오는 경우")
     @Test
     fun nullCarDistance() {
         var car = Car("car1", null)
-        assertThat(car.distance).isEqualTo(0)
+        assertThat(car.distance).isEqualTo(Car("car1", 0))
     }
 
     @DisplayName("자동차 이름이 여러개가 오고 올바르지 않은 값인 경우")
@@ -55,10 +44,8 @@ class CarTest {
     fun invalidNames() {
         val inputNames = "test1, test2, test3 ,tes tt"
 
-        assertThrows(InvalidCarNameException::class.java) {
-            for (carName in inputNames.split(",")) {
-                Car(carName, 0)
-            }
+        assertThrows<InvalidCarNameException> {
+            inputNames.split(",").map { Car(it, 0) }
         }
     }
 
@@ -68,9 +55,9 @@ class CarTest {
 
         val car1 = Car("winner1", 10)
         val car2 = Car("winner2", 10)
-        val car3 = Car("winner3", 5)
+        val car3 = Car("loser", 5)
 
-        val cars = Cars(listOf<Car>(car1, car2, car3))
+        val cars = Cars(listOf(car1, car2, car3))
         print(assertThat(Winner(cars).findWinnerNames()).hasSize(2))
     }
 
@@ -87,7 +74,7 @@ class CarTest {
     fun exceptionMatchCount() {
         val viewValidator = ViewValidator()
         assertThrows<NumberFormatException> {
-            assertThat(viewValidator.validNumMatch("TEST"))
+            viewValidator.validNumMatch("TEST")
         }
     }
 
