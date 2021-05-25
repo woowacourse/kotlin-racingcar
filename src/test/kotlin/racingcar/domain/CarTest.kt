@@ -1,12 +1,12 @@
 package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class CarTest {
+internal class CarTest {
 
     @Test
     internal fun move() {
@@ -27,9 +27,8 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = ["", "abcdef"])
     internal fun validateName(input: String) {
+        val exception = assertThrows<IllegalArgumentException> { Car(name = input) }
 
-        assertThatThrownBy { Car(name = input) }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("이름은 1 ~ 5 사이의 길이여야합니다.")
+        assertThat(exception.message).isEqualTo("이름은 1 ~ 5 사이의 길이여야합니다.")
     }
 }
