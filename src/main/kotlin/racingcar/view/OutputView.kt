@@ -8,11 +8,11 @@ object OutputView {
         println("실행 결과")
     }
 
-    fun printStatus(result: LinkedHashMap<String, Int>) {
-        for (name in result.keys) {
-            val position = result[name] ?: 0
+    fun printStatus(pairs: List<Pair<String, Int>>) {
+        for (pair in pairs) {
+            val position = pair.second
             val processBar = PROGRESS_BAR.repeat(position)
-            println("$name : $processBar")
+            println("${pair.first} : $processBar")
         }
         println()
     }

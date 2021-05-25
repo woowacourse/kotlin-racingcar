@@ -1,27 +1,17 @@
 package racingcar.domain
 
-class Cars(private val cars: List<Car>) {
+class Cars(val cars: List<Car>) {
 
     constructor(carNum: Int) : this(createList(carNum)) {
         createList(carNum)
-    }
-
-    fun cars(): List<Car> {
-        return cars.toList()
     }
 
     fun race() {
         cars.forEach { it.move() }
     }
 
-    fun status(): LinkedHashMap<String, Int> {
-        val status = LinkedHashMap<String, Int>()
-
-        for (car in cars) {
-            status[car.name] = car.position
-        }
-
-        return status
+    fun status(): List<Pair<String, Int>> {
+        return cars.map { car -> Pair(car.name, car.position) }
     }
 
     fun winners(): List<String> {
