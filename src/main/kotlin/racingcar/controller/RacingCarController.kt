@@ -19,10 +19,6 @@ class RacingCarController {
     }
 
     private fun createCars(carNames: List<String>): Cars {
-        val cars = arrayListOf<Car>()
-        for (carName in carNames) {
-            cars.add(Car(carName))
-        }
-        return Cars(cars)
+        return Cars(carNames.map { Car(it) })
     }
 }
