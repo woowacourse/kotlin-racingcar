@@ -1,3 +1,5 @@
+package calculator
+
 import kotlin.math.roundToInt
 
 class StringCalculator {
