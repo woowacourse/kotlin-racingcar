@@ -25,11 +25,7 @@ class Cars(val cars: List<Car>) {
 
     companion object {
         private fun createList(carNum: Int): List<Car> {
-            val cars = mutableListOf<Car>()
-            for (i in 0 until carNum) {
-                cars.add(Car(randomMoveStrategy))
-            }
-            return cars
+            return (1..carNum).map { Car(randomMoveStrategy) }
         }
     }
 }

@@ -9,7 +9,7 @@ object OutputView {
     }
 
     fun printStatus(pairs: List<Pair<String, Int>>) {
-        for (pair in pairs) {
+        pairs.forEach { pair ->
             val position = pair.second
             val processBar = PROGRESS_BAR.repeat(position)
             println("${pair.first} : $processBar")
