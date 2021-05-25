@@ -1,15 +1,9 @@
 package racingcar.domain
 
-class Cars(private val cars: ArrayList<Car>) {
+class Cars(private val cars: List<Car>) {
 
-    constructor(carNum: Int) : this(ArrayList()) {
+    constructor(carNum: Int) : this(createList(carNum)) {
         createList(carNum)
-    }
-
-    private fun createList(carNum: Int) {
-        for (i in 0 until carNum) {
-            cars.add(Car(randomMoveStrategy))
-        }
     }
 
     fun cars(): List<Car> {
@@ -17,15 +11,14 @@ class Cars(private val cars: ArrayList<Car>) {
     }
 
     fun race() {
-        cars.stream()
-            .forEach { car -> car.move() }
+        cars.forEach { it.move() }
     }
 
     fun status(): LinkedHashMap<String, Int> {
         val status = LinkedHashMap<String, Int>()
 
         for (car in cars) {
-            status[car.name] = car.getPosition()
+            status[car.name] = car.position
         }
 
         return status
@@ -33,9 +26,29 @@ class Cars(private val cars: ArrayList<Car>) {
 
     fun winners(): List<String> {
         val winningPosition: Int = cars
-            .map { it.getPosition() }
-            .max()!!
-        return cars.filter { it.isSamePosition(winningPosition) }
-            .map { car -> car.name }
+            .map { it.position }
+            .max() ?: 0
+        return cars
+            .filter { it.isSamePosition(winningPosition) }
+            .map { it.name }
+    }
+
+    companion object {
+        private fun createList(carNum: Int): List<Car> {
+            val cars = mutableListOf<Car>()
+            for (i in 0 until carNum) {
+                cars.add(Car(randomMoveStrategy))
+            }
+            return cars
+        }
     }
 }
+
+val randomMoveStrategy: () -> Boolean = fun(): Boolean {
+    val randomNumber = Math.random() * 10 + 1
+    if (randomNumber >= 4) {
+        return true
+    }
+    return false
+}
+

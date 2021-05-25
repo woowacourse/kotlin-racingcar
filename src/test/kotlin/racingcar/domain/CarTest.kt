@@ -28,7 +28,7 @@ class CarTest {
     @ValueSource(strings = ["", "abcdef"])
     internal fun validateName(input: String) {
 
-        assertThatThrownBy { Car(input) }
+        assertThatThrownBy { Car(name = input) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("이름은 1 ~ 5 사이의 길이여야합니다.")
     }

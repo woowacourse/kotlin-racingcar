@@ -10,7 +10,7 @@ object OutputView {
 
     fun printStatus(result: LinkedHashMap<String, Int>) {
         for (name in result.keys) {
-            val position = result[name]!!
+            val position = result[name] ?: 0
             val processBar = PROGRESS_BAR.repeat(position)
             println("$name : $processBar")
         }
@@ -18,7 +18,7 @@ object OutputView {
     }
 
     fun printWinners(winners: List<String>) {
-        val winnerNames = winners.joinToString ()
+        val winnerNames = winners.joinToString()
         println("$winnerNames 가 최종 우승했습니다.")
     }
 }

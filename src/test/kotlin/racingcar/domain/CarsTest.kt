@@ -13,8 +13,8 @@ internal class CarsTest {
 
     @Test
     internal fun race() {
-        val betterCar = Car { true }
-        val aaronCar = Car { false }
+        val betterCar = Car(strategy = { true })
+        val aaronCar = Car(strategy = { false })
 
         val cars = Cars(arrayListOf(betterCar, aaronCar))
         cars.race()

@@ -9,9 +9,8 @@ class RaceController {
 
     fun run() {
         val names: List<String> = InputView.inputNames().split(DELIMITER)
-        val namesToCar: ArrayList<Car> = names
-            .map { name -> Car(name) }
-            .toCollection(arrayListOf())
+        val namesToCar: List<Car> = names
+            .map { name -> Car(name = name) }
         val cars = Cars(namesToCar)
         val laps = InputView.inputLaps()
 
@@ -21,7 +20,7 @@ class RaceController {
 
     private fun race(laps: Int, cars: Cars) {
         OutputView.printRaceInitMessage()
-        for (i in 0 until laps) {
+        repeat(laps) {
             cars.race()
             OutputView.printStatus(cars.status())
         }
@@ -30,4 +29,9 @@ class RaceController {
     companion object {
         private const val DELIMITER = ","
     }
+}
+
+fun main() {
+    val controller = RaceController()
+    controller.run()
 }

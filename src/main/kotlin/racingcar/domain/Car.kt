@@ -1,11 +1,12 @@
 package racingcar.domain
 
-data class Car(private val strategy: () -> Boolean, val name: String) {
-    private var position: Int = 0
+data class Car(private val strategy: () -> Boolean = randomMoveStrategy, val name: String = DEFAULT_NAME) {
+    var position: Int = 0
+        private set
 
-    constructor(strategy: () -> Boolean) : this(strategy, DEFAULT_NAME)
-    constructor(name: String) : this(randomMoveStrategy, name)
-
+    init {
+        require(name.length in 1..MAX_NAME_LENGTH) { "이름은 1 ~ 5 사이의 길이여야합니다." }
+    }
 
     fun move() {
         if (strategy()) {
@@ -15,20 +16,6 @@ data class Car(private val strategy: () -> Boolean, val name: String) {
 
     fun isSamePosition(position: Int): Boolean {
         return this.position == position
-    }
-
-    fun getPosition(): Int {
-        return position
-    }
-
-    init {
-        validateName(name)
-    }
-
-    private fun validateName(name: String) {
-        if (name.length > MAX_NAME_LENGTH || name.isEmpty()) {
-            throw IllegalArgumentException("이름은 1 ~ 5 사이의 길이여야합니다.")
-        }
     }
 
     companion object {
