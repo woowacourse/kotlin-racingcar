@@ -1,17 +1,17 @@
 package racingcar.model
 
-class Cars(val cars: List<Car>) {
+class Cars(val cars: List<Car>) : List<Car> by cars {
 
     fun moveAll(moveStrategy: MoveStrategy): Cars {
-        val newCars = cars.map { it.move(moveStrategy) }
+        val newCars = map { it.move(moveStrategy) }
         return Cars(newCars)
     }
 
     fun findMaxPosition(): Int {
-        return cars.maxBy { it.position }!!.position
+        return maxBy { it.position }?.position ?: 0
     }
 
     fun findCarsBySamePosition(position: Int): List<Car> {
-        return cars.filter { it.isSamePosition(position) }
+        return filter { it.isSamePosition(position) }
     }
 }

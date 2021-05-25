@@ -14,8 +14,8 @@ fun printResults(pair: Pair<List<Cars>, List<Car>>) {
 }
 
 private fun printResult(cars: Cars) {
-    for (car in cars.cars) {
-        println("${car.name} : ${"-".repeat(car.position)}")
+    cars.forEach {
+        println("${it.name} : ${"-".repeat(it.position)}")
     }
     println()
 }

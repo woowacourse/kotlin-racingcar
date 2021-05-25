@@ -8,7 +8,7 @@ class RacingCarGame(var cars: Cars, private val tryNumber: Int) {
             cars = cars.moveAll(moveStrategy)
             carsGroup.add(this.cars)
         }
-        return Pair(carsGroup, findWinners())
+        return carsGroup to findWinners()
     }
 
     private fun findWinners(): List<Car> {

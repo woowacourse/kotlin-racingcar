@@ -12,6 +12,7 @@ class Car(val name: String, val position: Int = 0) {
         if (moveStrategy.move()) {
             return Car(name, position + 1)
         }
+
         return this
     }
 
@@ -20,6 +21,6 @@ class Car(val name: String, val position: Int = 0) {
     }
 
     companion object {
-        const val MAX_NAME_LENGTH: Int = 5
+        private const val MAX_NAME_LENGTH: Int = 5
     }
 }
