@@ -7,8 +7,8 @@ internal class CarsTest {
 
     @Test
     internal fun create() {
-        val cars = Cars(3)
-        assertThat(cars.cars()).hasSize(3)
+        val cars = Cars(6)
+        assertThat(cars.cars()).hasSize(6)
     }
 
     @Test

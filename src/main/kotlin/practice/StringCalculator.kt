@@ -37,7 +37,7 @@ object StringCalculator {
             val operator = expressionElements.poll()
             val nextValue = expressionElements.poll()
                 .toInt()
-            result = Operator.calculate(result, nextValue, operator).orElseThrow()
+            result = Operator.calculate(result, nextValue, operator) ?: 0
         }
         return result
     }
@@ -53,11 +53,12 @@ enum class Operator(
     DIVIDE("/", IntBinaryOperator { a: Int, b: Int -> a / b });
 
     companion object {
-        fun calculate(a: Int, b: Int, operator: String): Optional<Int> {
+        fun calculate(a: Int, b: Int, operator: String): Int? {
             return Arrays.stream(values())
                 .filter { calc: Operator -> calc.signature == operator }
                 .map { calc: Operator -> calc.function.applyAsInt(a, b) }
                 .findFirst()
+                .orElseThrow { IllegalArgumentException() }
         }
     }
 }

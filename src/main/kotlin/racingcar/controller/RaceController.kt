@@ -2,32 +2,26 @@ package racingcar.controller
 
 import racingcar.domain.Car
 import racingcar.domain.Cars
-import racingcar.view.InputView
-import racingcar.view.OutputView
+import racingcar.view.*
+
+private const val DELIMITER = ","
 
 class RaceController {
 
-    companion object {
-        private const val DELIMITER = ","
-    }
-
     fun run() {
-        val names: List<String> = InputView.inputNames().split(DELIMITER)
-        val namesToCar: ArrayList<Car> = names
-            .map { name -> Car(name) }
-            .toCollection(arrayListOf())
-        val cars = Cars(namesToCar)
-        val laps = InputView.inputLaps()
+        val names: List<String> = inputNames().split(DELIMITER)
+        val cars = Cars(names.map { Car(name = it) }.toMutableList())
+        val laps = inputLaps()
 
         race(laps, cars)
-        OutputView.printWinners(cars.winners())
+        printWinners(cars.winners())
     }
 
     private fun race(laps: Int, cars: Cars) {
-        OutputView.printRaceInitMessage()
-        for (i in 0 until laps) {
+        printRaceInitMessage()
+        repeat(laps) {
             cars.race()
-            OutputView.printStatus(cars.status())
+            printStatus(cars.status())
         }
     }
 }
