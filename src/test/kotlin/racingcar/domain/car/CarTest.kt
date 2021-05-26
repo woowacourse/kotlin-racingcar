@@ -1,8 +1,8 @@
 package racingcar.domain.car
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.domain.Name
@@ -15,18 +15,18 @@ internal class CarTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " "])
     fun validateNameBlank(name: String) {
-        assertThatThrownBy {
+        assertThrows<IllegalArgumentException> {
             Car(Name(name))
-        }.isInstanceOf(IllegalArgumentException::class.java)
+        }
     }
 
     @DisplayName("이름이 5글자 초과면 예외를 발생한다.")
     @ParameterizedTest
     @ValueSource(strings = ["123456", "abcdef"])
     fun validateTooLongName(name: String) {
-        assertThatThrownBy {
+        assertThrows<IllegalArgumentException> {
             Car(Name(name))
-        }.isInstanceOf(IllegalArgumentException::class.java)
+        }
     }
 
     @DisplayName("4이상의 값이 입력할 시 이동한다.")
