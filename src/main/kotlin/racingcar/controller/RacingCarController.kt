@@ -4,14 +4,15 @@ import racingcar.model.Car
 import racingcar.model.Cars
 import racingcar.model.RacingCarGame
 import racingcar.model.RandomMoveStrategy
-import racingcar.view.InputView
 import racingcar.view.OutputView
+import racingcar.view.inputCarNames
+import racingcar.view.inputTryNumber
 
 class RacingCarController {
 
     fun run() {
-        val cars = createCars(InputView.inputCarNames())
-        val tryNumber = InputView.inputTryNumber()
+        val cars = createCars(inputCarNames())
+        val tryNumber = inputTryNumber()
         val racingCarGame = RacingCarGame(cars, tryNumber)
         val racingResult = racingCarGame.race(RandomMoveStrategy())
         OutputView.printResults(racingResult)

@@ -2,11 +2,9 @@ package racingcar.model
 
 import racingcar.util.RandomUtil
 
-class RandomMoveStrategy : MoveStrategy {
+const val MOVE_PIVOT = 4
 
-    companion object {
-        const val MOVE_PIVOT: Int = 4
-    }
+class RandomMoveStrategy : MoveStrategy {
 
     override fun move(): Boolean {
         return RandomUtil.generateRandomNumber() >= MOVE_PIVOT

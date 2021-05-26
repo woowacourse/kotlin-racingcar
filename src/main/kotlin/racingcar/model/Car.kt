@@ -1,10 +1,8 @@
 package racingcar.model
 
-class Car(val name: String, val position: Int = 0) {
+const val MAX_NAME_LENGTH = 5
 
-    companion object {
-        const val MAX_NAME_LENGTH: Int = 5
-    }
+class Car(val name: String, val position: Int = 0) {
 
     init {
         if (name.length > MAX_NAME_LENGTH) {
@@ -12,7 +10,7 @@ class Car(val name: String, val position: Int = 0) {
         }
     }
 
-    fun move(moveStrategy: MoveStrategy) : Car{
+    fun move(moveStrategy: MoveStrategy): Car {
         if (moveStrategy.move()) {
             return Car(name, position + 1)
         }
@@ -22,5 +20,4 @@ class Car(val name: String, val position: Int = 0) {
     fun isSamePosition(position: Int): Boolean {
         return this.position == position
     }
-
 }

@@ -1,10 +1,12 @@
 package racingcar.model
 
-class RacingCarGame(var cars: Cars, val tryNumber: Int) {
+class RacingCarGame(cars: Cars, private val tryNumber: Int) {
+    var cars: Cars = cars
+    private set
 
     fun race(moveStrategy: MoveStrategy): List<Cars> {
-        val carsGroup = arrayListOf<Cars>()
-        for (i in 0 until tryNumber) {
+        val carsGroup = mutableListOf<Cars>()
+        repeat(tryNumber) {
             this.cars = this.cars.moveAll(moveStrategy)
             carsGroup.add(this.cars)
         }
