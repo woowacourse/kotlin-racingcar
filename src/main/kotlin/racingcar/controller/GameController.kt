@@ -3,8 +3,8 @@ package racingcar.controller
 import racingcar.domain.RacingGame
 import racingcar.domain.car.Car
 import racingcar.domain.car.Cars
-import racingcar.input.InputView
-import racingcar.input.OutputView
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 class GameController {
     fun playGame() {
@@ -12,13 +12,9 @@ class GameController {
         val laps = InputView.inputLaps()
 
         val racingGame = RacingGame(Cars(carNames), laps)
+        racingGame.race()
 
-        OutputView.printResult()
-        while (!racingGame.isEnd()) {
-            racingGame.race()
-            OutputView.printCars(racingGame.cars)
-        }
-
+        OutputView.printHistory(racingGame.history())
         OutputView.printWinners(racingGame.winner())
     }
 }

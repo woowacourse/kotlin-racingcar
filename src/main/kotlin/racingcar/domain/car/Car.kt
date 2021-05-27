@@ -2,18 +2,16 @@ package racingcar.domain.car
 
 import racingcar.domain.Name
 import racingcar.domain.Position
-import racingcar.domain.STARTING_POSITION
 
 private const val CONDITION_TO_MOVE = 4;
 
-class Car(val name: Name) {
+class Car(val name: Name, private val position: Position = Position.STARTING_POSITION) {
 
-    private var position = STARTING_POSITION
-
-    fun tryToMove(num: Int) {
+    fun tryToMove(num: Int): Car {
         if (num >= CONDITION_TO_MOVE) {
-            position = position.moveForward()
+            return Car(name, position.moveForward())
         }
+        return Car(name, position)
     }
 
     fun isIn(position: Position): Boolean {

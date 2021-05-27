@@ -1,12 +1,9 @@
 package racingcar.domain
 
-class Laps(laps: Int) {
-
-    private val laps: Int
+data class Laps(private val laps: Int) {
 
     init {
         require(laps >= 0) { "시도 횟수는 음수일 수 없습니다." }
-        this.laps = laps
     }
 
     fun next(): Laps {

@@ -1,7 +1,5 @@
 package racingcar.domain
 
-val STARTING_POSITION = Position(0)
-
 data class Position(val value: Int) {
 
     init {
@@ -10,5 +8,9 @@ data class Position(val value: Int) {
 
     fun moveForward(): Position {
         return Position(value + 1)
+    }
+
+    companion object {
+        val STARTING_POSITION = Position(0)
     }
 }

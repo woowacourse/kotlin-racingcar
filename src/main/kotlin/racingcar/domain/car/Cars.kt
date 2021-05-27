@@ -12,10 +12,11 @@ class Cars(val cars: List<Car>) {
         require(cars.size == distinctSize) { "중복된 이름을 사용할 수 없습니다." }
     }
 
-    fun moveCars() {
-        cars.forEach {
+    fun moveCars(): Cars {
+        val afterMove = cars.map {
             it.tryToMove(random.nextInt(RANDOM_BOUND_TO))
         }
+        return Cars(afterMove)
     }
 
     fun findWinners(): Cars {
