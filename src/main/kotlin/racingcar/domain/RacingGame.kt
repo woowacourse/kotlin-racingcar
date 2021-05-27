@@ -2,16 +2,16 @@ package racingcar.domain
 
 import racingcar.domain.car.Cars
 
-class RacingGame(private var cars: Cars, private val laps: Laps) {
+class RacingGame(private var cars: Cars, private var laps: Laps) {
 
     private val history = mutableListOf(cars)
 
     fun race() {
-        var laps = laps
         while (!laps.isEnd()) {
             cars = cars.moveCars()
-            history.add(cars)
             laps = laps.next()
+
+            history.add(cars)
         }
     }
 

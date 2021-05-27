@@ -5,7 +5,7 @@ import racingcar.domain.Name
 
 object InputView {
 
-    tailrec fun inputCarNames(): List<Name> {
+    fun inputCarNames(): List<Name> {
         return try {
             println("자동차 이름을 입력하세요.")
             return readLine()!!.split(",").map { Name(it.trim()) }
@@ -14,7 +14,7 @@ object InputView {
         }
     }
 
-    tailrec fun inputLaps(): Laps {
+    fun inputLaps(): Laps {
         return try {
             println("시도 횟수를 입력하세요.")
             Laps(readLine()!!.toInt())
