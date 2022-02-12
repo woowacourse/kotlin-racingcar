@@ -1,4 +1,4 @@
-package water.racingcar
+package water.racingcar.ui
 
 import water.racingcar.dto.InputDto
 

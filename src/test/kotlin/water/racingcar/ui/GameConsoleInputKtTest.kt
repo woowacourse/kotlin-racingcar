@@ -1,9 +1,8 @@
-package water.racingcar.code
+package water.racingcar.ui
 
 import io.kotest.core.spec.style.BehaviorSpec
 import io.kotest.matchers.collections.shouldContainAll
 import io.kotest.matchers.shouldBe
-import water.racingcar.GameConsoleInput
 import kotlin.collections.ArrayList
 
 internal class GameConsoleInputKtTest : BehaviorSpec ({
