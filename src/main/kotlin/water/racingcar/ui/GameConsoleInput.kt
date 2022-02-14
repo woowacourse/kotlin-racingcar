@@ -1,13 +1,13 @@
 package water.racingcar.ui
 
 import water.racingcar.dto.InputDto
+import kotlin.math.abs
 
 class GameConsoleInput {
     // 이름과 이동횟수를 입력받아서 이를 dto 객체로 반환한다.
     fun getInputs(): InputDto {
         val carNameList: List<String> = getCarNamesInput()
         val times = getTimesInput()
-
         return InputDto(carNameList,times)
     }
 
@@ -39,22 +39,34 @@ class GameConsoleInput {
             println("$PLAY_TIMES_ERROR_INFO_MESSAGE\n$PLAY_TIMES_INPUT_INFO_MESSAGE")
             null
         }
-        return times
+        return times?.let { abs(it) }
     }
 
     // 이름이 5자 이상이거나 사용자가 값을 입력하지 않으면 빈 배열을 반환하고 정상적으로 입력했을 경우 리스트 형태로 반환한다.
     fun getListOfNames(input: String?): List<String> {
         val nameList = input?.split(",")
-        val exceedNameLimitList  = nameList?.filter { it.length > 5 }
-
-        if (input?.isEmpty() == true || exceedNameLimitList?.isNotEmpty() == true) {
+        if (input?.isEmpty() == true || !validNameLength(nameList)) {
             println(CAR_NAME_INPUT_INFO_MESSAGE)
             return ArrayList()
         }
         return nameList.orEmpty()
-    } companion object {
+    }
+
+    // 이름이 5자 이상인 값이 입력되었다면 false 를 리턴하고, 정상적으로 입력되었다면 true 를 리턴합니다.
+    private fun validNameLength(nameList: List<String>?): Boolean {
+        val exceedNameLimitList = nameList?.filter { it.length > NAME_LENGTH_LIMIT }
+        if (exceedNameLimitList?.isNotEmpty() == true) {
+            println(CAR_NAME_INPUT_ERROR_INFO_MESSAGE)
+            return false
+        }
+        return true
+    }
+
+    companion object {
         const val CAR_NAME_INPUT_INFO_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분) "
+        const val CAR_NAME_INPUT_ERROR_INFO_MESSAGE = "※ 이름은 5자 이하만 가능합니다."
         const val PLAY_TIMES_INPUT_INFO_MESSAGE = "시도할 회수는 몇회인가요?"
         const val PLAY_TIMES_ERROR_INFO_MESSAGE = "※ 숫자를 입력해주세요. ex) 5"
+        const val NAME_LENGTH_LIMIT = 5
     }
 }

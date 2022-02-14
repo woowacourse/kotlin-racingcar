@@ -2,6 +2,7 @@ package water.racingcar.domain
 
 class Car(val name: String) {
     var movedValue: Int = 0
+        private set
 
     fun move(randomNumber: Int) {
         if (randomNumber >= 4)

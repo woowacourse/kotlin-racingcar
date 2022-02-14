@@ -26,7 +26,9 @@ internal class CarTest : BehaviorSpec({
 
     given("Car 을 출력할 때"){
         val carPrintSample = Car("name")
-        carPrintSample.movedValue = 2
+        // 2번 이동한다.
+        carPrintSample.move(5)
+        carPrintSample.move(5)
         `when`("움직인 값이 2라면") {
             then ("이름과 전진한 만큼 '-'를 사용하여 출력한다."){
                 carPrintSample.toString() shouldBe "${carPrintSample.name} : --"
