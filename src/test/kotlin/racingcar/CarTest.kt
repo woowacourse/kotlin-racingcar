@@ -42,4 +42,20 @@ class CarTest {
         val car = Car("huni")
         assertThat(car).isEqualTo(Car("huni", 0))
     }
+
+    @DisplayName("4이상의 수가 들어올 경우 전진한다.")
+    @Test
+    fun moveWhenOverStandard() {
+        val car = Car("huni")
+        car.move(4)
+        assertThat(car.position).isEqualTo(1);
+    }
+
+    @DisplayName("3이하의 수가 들어올 경우 유지한다.")
+    @Test
+    fun noMoveWhenUnderStandard() {
+        val car = Car("huni")
+        car.move(3)
+        assertThat(car.position).isEqualTo(0);
+    }
 }
