@@ -16,8 +16,8 @@
 
 * Cars
 - [x] 이름 중복
-- [ ] 외부에서 moveFactors를 받아 이동
+- [x] 외부에서 moveFactors를 받아 이동
 
 * Winner
-- [ ] Cars
-- [ ] get Winner
+- [x] Cars
+- [x] get Winner

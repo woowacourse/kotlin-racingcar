@@ -29,4 +29,7 @@ data class Car(val name: String, var position : Int = 0) {
             position++;
         }
     }
+
+    fun isSamePosition(position: Int) : Boolean = position == this.position
+
 }
