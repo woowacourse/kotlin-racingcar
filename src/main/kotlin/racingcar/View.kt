@@ -11,8 +11,17 @@ fun inputNames(): List<String> {
 
 fun inputRounds(): Int {
     println("시도할 회수는 몇회인가요?")
-    return readLineNotNull().toInt()
+    return inputToInt()
 }
+
+private fun inputToInt() : Int{
+    try {
+        return readLineNotNull().toInt()
+    } catch (e: NumberFormatException) {
+        throw NumberFormatException("[ERROR] 숫자를 입력하세요")
+    }
+}
+
 
 fun printResultMessage() {
     println("\n실행 결과")
