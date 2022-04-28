@@ -1,11 +1,13 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 
 class GameResultTest {
 
+    @DisplayName("승자를 가져온다")
     @Test
     fun pickWinners() {
         val cars = createCars()
