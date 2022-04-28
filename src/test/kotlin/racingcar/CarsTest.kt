@@ -27,7 +27,27 @@ class CarsTest {
             { assertThat(cars.cars).contains(Car("choi")) },
             { assertThat(cars.cars).contains(Car("jae")) }
         )
+    }
 
+    @DisplayName("모든 자동차를 이동한다.")
+    @Test
+    fun moveAll() {
+        var cars = Cars.of(listOf("huni", "choi", "jae"))
+        cars.moveAll(listOf(3, 4, 4))
+        assertAll(
+            { assertThat(cars.cars[0].position).isEqualTo(0) },
+            { assertThat(cars.cars[1].position).isEqualTo(1) },
+            { assertThat(cars.cars[2].position).isEqualTo(1) }
+        )
+    }
+
+    @Test
+    fun moveException() {
+        var cars = Cars.of(listOf("huni", "choi", "jae"))
+        assertThrows<IllegalArgumentException> {
+            cars.moveAll(listOf(3, 4))
+            haveMessage("[ERROR] 이동 요소 입력을 다시해주세요.")
+        }
     }
 
 }
