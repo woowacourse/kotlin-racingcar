@@ -22,6 +22,7 @@ private fun inputToInt() : Int{
     }
 }
 
+private fun readLineNotNull() = readLine() ?: throw NoSuchElementException("[ERROR] 값을 입력하세요")
 
 fun printResultMessage() {
     println("\n실행 결과")
@@ -40,6 +41,8 @@ fun printFinalResult(winners: List<String>) {
     println("${winners.joinToString(", ")}가 최종 우승했습니다.")
 }
 
-private fun readLineNotNull() = readLine() ?: throw NoSuchElementException("[ERROR] 값을 입력하세요")
+fun printMessage(message: String) {
+    println(message)
+}
 
 
