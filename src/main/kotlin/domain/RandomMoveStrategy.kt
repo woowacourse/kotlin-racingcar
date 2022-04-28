@@ -1,6 +1,6 @@
 package domain
 
-class RandomMoveStrategy: MoveStrategy {
+class RandomMoveStrategy : MoveStrategy {
 
     override fun canGO(): Boolean {
         val number = Math.random() * 10;

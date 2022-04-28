@@ -1,6 +1,6 @@
 package domain
 
-data class Car(val name: String): Comparable<Car> {
+class Car(val name: String) : Comparable<Car> {
 
     var position: Int = 0
         private set

@@ -8,9 +8,6 @@ internal class CarTest {
 
     @Test
     fun nameOverFiveLength() {
-        val car = Car("sds")
-
-
         assertThatThrownBy { Car("123456") }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("이름은 5글자를 초과할 수 없습니다.")
