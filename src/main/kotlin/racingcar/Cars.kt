@@ -5,18 +5,22 @@ import java.util.stream.Collectors
 class Cars private constructor(val cars: List<Car>) {
 
     init {
-        validateDuplicateNames(cars)
+        validateCars(cars)
     }
 
     companion object {
         fun of(names : List<String>) : Cars {
             return Cars(names.stream()
-                .map { name -> Car(name) }
+                .map { Car(it) }
                 .collect(Collectors.toList()))
         }
     }
 
-    private fun validateDuplicateNames(cars: List<Car>) {
+    private fun validateCars(cars: List<Car>) {
+        if (cars.isEmpty()) {
+            throw IllegalArgumentException("[ERROR] 최소 하나의 자동차를 입력하세요.")
+        }
+
         if (cars.size != cars.distinct().size) {
             throw IllegalArgumentException("[ERROR] 중복된 이름이 존재합니다.")
         }

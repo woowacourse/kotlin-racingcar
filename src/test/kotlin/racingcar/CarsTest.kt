@@ -18,6 +18,15 @@ class CarsTest {
         }
     }
 
+    @DisplayName("자동차의 개수가 0일 경우 예외를 발생한다.")
+    @Test
+    fun carsEmptyException() {
+        assertThrows<IllegalArgumentException> {
+            Cars.of(listOf())
+            haveMessage("[ERROR] 최소 하나의 자동차를 입력하세요.")
+        }
+    }
+
     @DisplayName("정상적으로 cars를 생성한다.")
     @Test
     fun create() {
@@ -41,6 +50,7 @@ class CarsTest {
         )
     }
 
+    @DisplayName("이동 요소의 개수가 맞지 않을경우 에러를 발생한다.")
     @Test
     fun moveException() {
         var cars = Cars.of(listOf("huni", "choi", "jae"))
