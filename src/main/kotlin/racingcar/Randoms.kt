@@ -4,7 +4,7 @@ import java.util.Random
 import java.util.stream.Collectors
 import java.util.stream.IntStream
 
-class Randoms(val amount: Int) {
+class Randoms(private val amount: Int) {
 
     fun generate(startInclusive: Int, endExclusive: Int): List<Int> = IntStream.range(0, amount)
         .map { getRandomNumber(startInclusive, endExclusive) }

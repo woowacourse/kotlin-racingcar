@@ -5,7 +5,6 @@ const val MOVE_STANDARD = 4;
 
 data class Car(val name: String, var position : Int = 0) {
 
-
     init {
         validateCarName(name)
     }
