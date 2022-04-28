@@ -3,8 +3,6 @@ package view
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStreamReader
-import java.util.Arrays
-import java.util.function.Consumer
 
 object InputView {
 
@@ -30,9 +28,9 @@ object InputView {
             return splitCarNames(line)
         }
 
+
     private fun splitCarNames(readLine: String): List<String> {
-        val carNames = Arrays.asList(*readLine.split(CAR_DELIMITER.toRegex()).dropLastWhile { it.isEmpty() }
-            .toTypedArray())
+        val carNames = readLine.split(CAR_DELIMITER)
         try {
             validateNameSize(carNames)
             validateDuplication(carNames)
@@ -45,8 +43,7 @@ object InputView {
 
     val numberOfGames: Int
         get() {
-            var numberOfGames = 0
-            numberOfGames = try {
+            val numberOfGames = try {
                 val line = bufferedReader.readLine()
                 validateEmptyString(line)
                 toInt(line)
@@ -67,11 +64,11 @@ object InputView {
     }
 
     private fun validateNameSize(carNames: List<String>) {
-        carNames.forEach(Consumer { carName: String ->
+        carNames.forEach{ carName: String ->
             if (carName.length < MIN_NAME_LENGTH || carName.length > MAX_NAME_LENGTH) {
                 throw IllegalArgumentException("자동차 이름의 길이는 한 글자 이상, 다섯 글자 이하여야합니다.")
             }
-        })
+        }
     }
 
     private fun validateDuplication(carNames: List<String>) {
