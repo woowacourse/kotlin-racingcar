@@ -2,7 +2,7 @@ package racingcar
 
 import java.util.stream.Collectors
 
-class Cars private constructor(cars: List<Car>) {
+class Cars private constructor(val cars: List<Car>) {
 
     init {
         validateDuplicateNames(cars)
