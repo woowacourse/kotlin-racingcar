@@ -18,8 +18,8 @@ class GameResultTest {
 
         assertAll(
             { assertThat(winners).hasSize(2) },
-            { assertThat(winners[0].name).isEqualTo("jae") },
-            { assertThat(winners[1].name).isEqualTo("choi") }
+            { assertThat(winners[0]).isEqualTo("jae") },
+            { assertThat(winners[1]).isEqualTo("choi") }
         )
     }
 

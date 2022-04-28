@@ -4,11 +4,12 @@ import java.util.stream.Collectors
 
 class GameResult(private val cars: Cars) {
 
-    fun pickWinners(): List<Car> {
+    fun pickWinners(): List<String> {
         val rawCars = cars.cars
         val max = calculateMaxPosition(rawCars)
         return rawCars.stream()
             .filter { it.isSamePosition(max) }
+            .map { it.name }
             .collect(Collectors.toList())
     }
 
