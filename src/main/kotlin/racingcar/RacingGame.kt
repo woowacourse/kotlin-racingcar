@@ -1,5 +1,7 @@
 package racingcar
 
+import java.lang.NumberFormatException
+
 class RacingGame {
 
     fun play() {
@@ -31,7 +33,7 @@ class RacingGame {
     private fun getIntegerRounds(): Int {
         return try {
             inputRounds()
-        } catch (e: IllegalArgumentException) {
+        } catch (e: NumberFormatException) {
             e.message?.let { printMessage(it) }
             getIntegerRounds()
         }
