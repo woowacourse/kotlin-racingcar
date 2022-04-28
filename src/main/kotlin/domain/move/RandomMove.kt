@@ -2,7 +2,7 @@ package domain.move
 
 import java.util.Random
 
-class RandomMove : MoveStrategy{
+class RandomMove : MoveStrategy {
 
     private val RANDOM_NUMBER_RANGE = 10
     private val MOVABLE_NUMBER_THRESHOLD = 4
