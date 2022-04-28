@@ -1,4 +1,4 @@
-package domain
+package racingcar.domain
 
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
@@ -9,7 +9,7 @@ class CarsTest {
 
     @Test
     fun duplicateNames() {
-        Assertions.assertThatThrownBy { Cars(listOf("ab","ab")) }
+        Assertions.assertThatThrownBy { Cars(listOf("ab", "ab")) }
             .isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("중복된 이름을 입력하면 안됩니다.")
     }

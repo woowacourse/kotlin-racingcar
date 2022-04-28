@@ -1,4 +1,4 @@
-package domain
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.params.ParameterizedTest
@@ -13,7 +13,6 @@ internal class RacingGameTest {
         val racingGame = RacingGame(listOf("a", "b", "c"), 3, fixedMoveStrategy)
 
         for (i in 1..roundNum) {
-            println(i)
             racingGame.playRound()
         }
 

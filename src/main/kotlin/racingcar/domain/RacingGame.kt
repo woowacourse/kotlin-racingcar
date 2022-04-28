@@ -1,4 +1,4 @@
-package domain
+package racingcar.domain
 
 class RacingGame(carNames: List<String>, private val totalRounds: Int, private val moveStrategy: MoveStrategy) {
 
