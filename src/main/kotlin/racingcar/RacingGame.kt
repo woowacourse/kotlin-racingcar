@@ -25,7 +25,7 @@ class RacingGame {
         return try {
             Cars.of(inputNames())
         } catch (e: IllegalArgumentException) {
-            e.message?.let { printMessage(it) }
+            e.message?.let(::printMessage)
             createCarsByInputNames()
         }
     }
@@ -34,7 +34,7 @@ class RacingGame {
         return try {
             inputRounds()
         } catch (e: NumberFormatException) {
-            e.message?.let { printMessage(it) }
+            e.message?.let(::printMessage)
             getIntegerRounds()
         }
     }
