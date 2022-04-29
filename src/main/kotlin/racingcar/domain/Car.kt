@@ -1,8 +1,8 @@
 package racingcar.domain
 
-class Car(val name: Name, private var position: Position) {
+class Car(val name: Name, private var position: Position = Position()) {
 
-    constructor(name: String, position: Int) : this(Name(name), Position(position))
+    constructor(name: String, position: Int = 0) : this(Name(name), Position(position))
 
     fun moveForward() {
         position = position.increase()

@@ -13,7 +13,7 @@ class PositionTest {
 
     @Test
     fun increaseDistance() {
-        val position = Position(0)
+        val position = Position()
 
         val increased = position.increase()
 

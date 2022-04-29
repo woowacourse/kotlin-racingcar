@@ -1,10 +1,8 @@
 package racingcar.domain
 
-data class Position(val distance: Int) {
+data class Position(val distance: Int = 0) {
     init {
-        if (distance < 0) {
-            throw IllegalArgumentException("위치는 0 이상의 정수여야 합니다.")
-        }
+        require(distance >= 0) { "위치는 0 이상의 정수여야 합니다." }
     }
 
     fun increase(): Position {
