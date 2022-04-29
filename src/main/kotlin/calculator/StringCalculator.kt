@@ -10,12 +10,21 @@ class StringCalculator(val numbers: List<Int>) {
 
     companion object {
         fun split(input: String): StringCalculator {
-            val numbers = input.split(",", ":")
+            val numbers = splitCustom(input)
                 .stream()
                 .map { it.toInt() }
                 .collect(Collectors.toList())
                 .toList()
             return StringCalculator(numbers)
+        }
+
+        private fun splitCustom(input: String): List<String> {
+            val splitInput = input.split("\n")
+            val splitDelimiter = splitInput[0]
+            if (splitDelimiter.startsWith("//")) {
+                return splitInput[1].split(splitDelimiter.substring(2, 3))
+            }
+            return input.split(",", ":")
         }
     }
 

@@ -29,4 +29,16 @@ class StringCalculatorTest {
             haveMessage("[ERROR] 숫자는 양수여야 합니다.")
         }
     }
+
+    @DisplayName("커스텀 구분자를 넣어 숫자를 나눌 수 있다")
+    @Test
+    fun splitCustomDelimiter() {
+        val stringCalculator = StringCalculator.split("//;\n1;2;3")
+        assertAll(
+            { assertThat(stringCalculator.numbers).hasSize(3) },
+            { assertThat(stringCalculator.numbers).contains(1) },
+            { assertThat(stringCalculator.numbers).contains(2) },
+            { assertThat(stringCalculator.numbers).contains(3) }
+        )
+    }
 }
