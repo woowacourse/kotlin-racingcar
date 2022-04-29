@@ -9,7 +9,7 @@ fun printRoundResultMessage() {
     println(ROUND_RESULT)
 }
 
-fun printErrorMessage(error: String) {
+fun printErrorMessage(error: String?) {
     println(error)
 }
 
