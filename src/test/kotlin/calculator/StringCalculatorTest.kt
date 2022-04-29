@@ -6,7 +6,6 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertThrows
-import racingcar.printResultMessage
 
 class StringCalculatorTest {
 
@@ -50,5 +49,12 @@ class StringCalculatorTest {
             StringCalculator.split("r,2,3")
             haveMessage("[ERROR] 숫자를 입력하세요")
         }
+    }
+
+    @DisplayName("값을 더한다.")
+    @Test
+    fun sum() {
+        val result = StringCalculator.split("1,2,3").sum()
+        assertThat(result).isEqualTo(6);
     }
 }

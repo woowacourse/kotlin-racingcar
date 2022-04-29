@@ -42,4 +42,6 @@ class StringCalculator(val numbers: List<Int>) {
             .findAny()
             .ifPresent { throw IllegalArgumentException("[ERROR] 숫자는 양수여야 합니다.") }
     }
+
+    fun sum(): Int = numbers.sum()
 }
