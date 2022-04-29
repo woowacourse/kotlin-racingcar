@@ -6,6 +6,7 @@ import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertThrows
+import racingcar.printResultMessage
 
 class StringCalculatorTest {
 
@@ -40,5 +41,14 @@ class StringCalculatorTest {
             { assertThat(stringCalculator.numbers).contains(2) },
             { assertThat(stringCalculator.numbers).contains(3) }
         )
+    }
+
+    @DisplayName("숫자를 입력하지 않을 시 에러를 발생한다.")
+    @Test
+    fun splitNotNumberException() {
+        assertThrows<IllegalArgumentException> {
+            StringCalculator.split("r,2,3")
+            haveMessage("[ERROR] 숫자를 입력하세요")
+        }
     }
 }

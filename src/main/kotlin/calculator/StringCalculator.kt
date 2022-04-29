@@ -12,7 +12,7 @@ class StringCalculator(val numbers: List<Int>) {
         fun split(input: String): StringCalculator {
             val numbers = splitCustom(input)
                 .stream()
-                .map { it.toInt() }
+                .map { toInt(it) }
                 .collect(Collectors.toList())
                 .toList()
             return StringCalculator(numbers)
@@ -25,6 +25,14 @@ class StringCalculator(val numbers: List<Int>) {
                 return splitInput[1].split(splitDelimiter.substring(2, 3))
             }
             return input.split(",", ":")
+        }
+
+        private fun toInt(number: String) : Int{
+            try {
+                return number.toInt()
+            } catch (e: NumberFormatException) {
+                throw IllegalArgumentException("[ERROR] 숫자를 입력하세요")
+            }
         }
     }
 
