@@ -1,9 +1,9 @@
 package racingcar.utils
 
 import racingcar.domain.Car
+import racingcar.domain.validateCarName
 import racingcar.ui.getCarNamesByUser
 import racingcar.ui.printErrorMessage
-import racingcar.validator.validateCarName
 import racingcar.validator.validateCarNames
 
 fun getCarNamesInput(): List<Car> {
