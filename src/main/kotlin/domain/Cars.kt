@@ -8,7 +8,7 @@ data class Cars(val cars: List<Car>) {
     companion object {
         fun from(carNames: List<String>): Cars {
             val cars = carNames.stream()
-                .map { carName: String -> Car(carName) }
+                .map { carName -> Car(carName) }
                 .collect(Collectors.toList<Car>())
             return Cars(cars)
         }
@@ -18,8 +18,8 @@ data class Cars(val cars: List<Car>) {
         val maxPosition = getMaxPosition()
 
         return cars.stream()
-            .filter { car: Car -> car.position == maxPosition }
-            .map { car: Car -> car.name }
+            .filter { car -> car.position == maxPosition }
+            .map { car -> car.name }
             .collect(Collectors.toList<String>())
     }
 
@@ -33,6 +33,6 @@ data class Cars(val cars: List<Car>) {
 
     fun moveCars(moveStrategy: MoveStrategy) {
         cars.stream()
-            .forEach { car: Car -> car.move(moveStrategy.isMovable()) }
+            .forEach { it.move(moveStrategy.isMovable()) }
     }
 }

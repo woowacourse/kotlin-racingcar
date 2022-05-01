@@ -25,7 +25,7 @@ object OutputView {
     }
 
     fun printGameResult(cars: List<Car>) {
-        cars.forEach { car: Car -> println(visualizeCarPosition(car)) }
+        cars.forEach { println(visualizeCarPosition(it)) }
         println()
     }
 
