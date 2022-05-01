@@ -6,7 +6,7 @@ import racingcar.ui.printRoundResult
 private const val START_RANDOM_NUMBER = 0
 private const val END_RANDOM_NUMBER = 9
 
-class KRacingService(private val cars: List<Car>) {
+class RacingService(private val cars: List<Car>) {
 
     fun race(round: Int) {
         for (i: Int in START_RANDOM_NUMBER..round) {

@@ -8,17 +8,17 @@ import racingcar.domain.Car
 
 private const val PROCEED_FLAG_NUMBER = 4
 
-class KRacingServiceTest {
+class RacingServiceTest {
 
     private val carA = Car("a")
     private val carB = Car("b")
     private val carC = Car("c")
     private val carD = Car("d")
-    private var racingService = KRacingService(listOf())
+    private var racingService = RacingService(listOf())
 
     @BeforeEach
     fun setUp() {
-        racingService = KRacingService(listOf(carA, carB, carC, carD))
+        racingService = RacingService(listOf(carA, carB, carC, carD))
     }
 
     @Test
