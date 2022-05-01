@@ -4,7 +4,7 @@ import racingcar.validator.validateCarName
 
 private var PROCEED_FLAG_NUMBER = 4
 
-data class KCar(val name: String, var position: Int = 0) {
+data class Car(val name: String, var position: Int = 0) {
 
     init {
         validateCarName(name)

@@ -4,16 +4,16 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import racingcar.domain.KCar
+import racingcar.domain.Car
 
 private const val PROCEED_FLAG_NUMBER = 4
 
 class KRacingServiceTest {
 
-    private val carA = KCar("a")
-    private val carB = KCar("b")
-    private val carC = KCar("c")
-    private val carD = KCar("d")
+    private val carA = Car("a")
+    private val carB = Car("b")
+    private val carC = Car("c")
+    private val carD = Car("d")
     private var racingService = KRacingService(listOf())
 
     @BeforeEach

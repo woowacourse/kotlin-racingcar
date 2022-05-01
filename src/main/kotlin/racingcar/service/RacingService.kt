@@ -1,13 +1,13 @@
 package racingcar.service
 
-import racingcar.domain.KCar
+import racingcar.domain.Car
 import racingcar.ui.printRoundResult
 import racingcar.utils.random
 
 private const val START_RANDOM_NUMBER = 0
 private const val END_RANDOM_NUMBER = 9
 
-class KRacingService(private val cars: List<KCar>) {
+class KRacingService(private val cars: List<Car>) {
 
     fun race(round: Int) {
         for (i: Int in START_RANDOM_NUMBER..round) {
@@ -15,7 +15,7 @@ class KRacingService(private val cars: List<KCar>) {
         }
     }
 
-    fun findWinners(): List<KCar> {
+    fun findWinners(): List<Car> {
         return cars
             .filter { car -> car.position == findMaxPosition() }
             .toList()

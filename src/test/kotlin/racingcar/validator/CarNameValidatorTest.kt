@@ -4,7 +4,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-class KCarNameValidatorTest {
+class CarNameValidatorTest {
     @Test
     @DisplayName("이름이 5글자 초과일 경우 예외를 발생해야 합니다.")
     fun validateNameLength() {

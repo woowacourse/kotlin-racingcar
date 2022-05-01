@@ -1,12 +1,12 @@
 package racingcar.utils
 
-import racingcar.domain.KCar
+import racingcar.domain.Car
 import racingcar.ui.getCarNamesByUser
 import racingcar.ui.printErrorMessage
 import racingcar.validator.validateCarName
 import racingcar.validator.validateCarNames
 
-fun getCarNamesInput(): List<KCar> {
+fun getCarNamesInput(): List<Car> {
     val userInput = getCarNamesByUser()
     return try {
         generateCars(userInput)
@@ -16,14 +16,14 @@ fun getCarNamesInput(): List<KCar> {
     }
 }
 
-fun generateCars(userInput: String?): List<KCar> {
+fun generateCars(userInput: String?): List<Car> {
     val carNames = separateCarNames(userInput)
     validateCarNames(carNames)
     carNames.forEach { carName ->
         validateCarName(carName)
     }
     return carNames
-        .map { name -> KCar(name) }
+        .map { name -> Car(name) }
         .toList()
 }
 

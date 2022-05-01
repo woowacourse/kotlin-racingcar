@@ -4,7 +4,7 @@ import io.kotest.assertions.throwables.shouldThrow
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-class KRoundNumberValidatorTest {
+class RoundNumberValidatorTest {
     @Test
     @DisplayName("라운드가 음수일 경우 예외를 발생헤야 합니다.")
     fun validateRoundByMinus() {
