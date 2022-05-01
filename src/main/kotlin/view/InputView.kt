@@ -1,7 +1,6 @@
 package view
 
 import domain.Name
-import java.util.Collections
 import java.util.stream.Collectors
 
 object InputView {
@@ -42,14 +41,6 @@ object InputView {
             }
             return numberOfGames
         }
-
-    private fun validateDuplication(carNames: List<String>) {
-        val isDuplicated = carNames.stream()
-            .distinct()
-            .count() == carNames.size.toLong()
-
-        require(isDuplicated) { "자동차 이름은 중복이 되면 안됩니다." }
-    }
 
     private fun toInt(line: String): Int {
         validateNumber(line)

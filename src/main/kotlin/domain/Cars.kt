@@ -23,16 +23,16 @@ data class Cars(val cars: List<Car>) {
             .collect(Collectors.toList<String>())
     }
 
-    private fun getMaxPosition(): Int {
+    private fun getMaxPosition(): Position {
         return cars.stream()
+            .map { it.position }
             .sorted()
             .findFirst()
             .orElseThrow { NoSuchElementException() }
-            .position
     }
 
     fun moveCars(moveStrategy: MoveStrategy) {
         cars.stream()
-            .forEach { it.move(moveStrategy.isMovable()) }
+            .forEach { it.move(moveStrategy) }
     }
 }

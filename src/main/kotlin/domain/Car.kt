@@ -1,14 +1,10 @@
 package domain
 
-data class Car(val name: Name, var position: Int = 0) : Comparable<Car> {
+import domain.move.MoveStrategy
 
-    fun move(isMovable: Boolean) {
-        if (isMovable) {
-            position++
-        }
-    }
+data class Car(val name: Name, val position: Position = Position()) {
 
-    override fun compareTo(other: Car): Int {
-        return other.position - this.position
+    fun move(strategy: MoveStrategy): Car {
+        return Car(name, position.move(strategy))
     }
 }
