@@ -13,9 +13,10 @@ class PositionTest {
 
     @Test
     fun increaseDistance() {
+        val strategy = RandomMovingStrategy((0..9), 0)
         val position = Position()
 
-        val increased = position.increase()
+        val increased = position.increase(strategy)
 
         assertThat(increased.distance).isEqualTo(1)
     }
