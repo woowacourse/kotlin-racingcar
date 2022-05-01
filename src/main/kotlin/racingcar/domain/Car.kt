@@ -11,22 +11,22 @@ data class Car(val name: String, var position: Int = 0) {
         validateCarName(name)
     }
 
+    private fun validateCarName(name: String) {
+        require(!isEmptyName(name)) { EMPTY_NAME_ERROR_MESSAGE }
+        require(!isIllegalLength(name)) { MAX_NAME_LENGTH_ERROR_MESSAGE }
+    }
+
+    private fun isEmptyName(name: String): Boolean {
+        return name.isNullOrBlank()
+    }
+
+    private fun isIllegalLength(name: String): Boolean {
+        return name.length > MAX_LENGTH
+    }
+
     fun proceed(number: Int) {
         if (number >= PROCEED_FLAG_NUMBER) {
             position++
         }
     }
-}
-
-fun validateCarName(name: String) {
-    require(!isEmptyName(name)) { EMPTY_NAME_ERROR_MESSAGE }
-    require(!isIllegalLength(name)) { MAX_NAME_LENGTH_ERROR_MESSAGE }
-}
-
-fun isEmptyName(name: String): Boolean {
-    return name.isNullOrBlank()
-}
-
-fun isIllegalLength(name: String): Boolean {
-    return name.length > MAX_LENGTH
 }

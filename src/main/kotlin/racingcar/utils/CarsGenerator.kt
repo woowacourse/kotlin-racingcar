@@ -1,27 +1,26 @@
 package racingcar.utils
 
 import racingcar.domain.Car
-import racingcar.domain.validateCarName
+import racingcar.domain.Cars
 import racingcar.ui.getCarNamesByUser
 import racingcar.ui.printErrorMessage
-import racingcar.validator.validateCarNames
 
-fun getCarNamesInput(): List<Car> {
+fun getCarInput(): Cars {
     val userInput = getCarNamesByUser()
     return try {
-        generateCars(userInput)
+        Cars(generateCars(userInput))
     } catch (e: IllegalArgumentException) {
         printErrorMessage(e.message)
-        getCarNamesInput()
+        getCarInput()
     }
 }
 
 fun generateCars(userInput: String?): List<Car> {
     val carNames = separateCarNames(userInput)
-    validateCarNames(carNames)
-    carNames.forEach { carName ->
-        validateCarName(carName)
-    }
+    // validateCarNames(carNames)
+    // carNames.forEach { carName ->
+    //     validateCarName(carName)
+    // }
     return carNames
         .map { name -> Car(name) }
         .toList()

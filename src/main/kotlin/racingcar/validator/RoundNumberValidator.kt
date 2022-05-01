@@ -5,7 +5,7 @@ private const val NULL_ERROR_MESSAGE = "널값을 입력할 수 없습니다."
 private val POSITIVE_INTEGER_REGEX = Regex("^([1-9][0-9]*)$")
 
 fun validateRoundNumber(round: String?) {
-    require(!isNull(round)) { NULL_ERROR_MESSAGE }
+    //require(!isNull(round)) { NULL_ERROR_MESSAGE }
     require(isPositiveNumber(round)) { INVALID_ROUND_ERROR_MESSAGE }
 }
 

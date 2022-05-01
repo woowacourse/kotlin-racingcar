@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import racingcar.domain.Car
+import racingcar.domain.Cars
 
 private const val PROCEED_FLAG_NUMBER = 4
 
@@ -14,11 +15,11 @@ class RacingServiceTest {
     private val carB = Car("b")
     private val carC = Car("c")
     private val carD = Car("d")
-    private var racingService = RacingService(listOf())
+    private var racingService = RacingService(Cars(listOf()))
 
     @BeforeEach
     fun setUp() {
-        racingService = RacingService(listOf(carA, carB, carC, carD))
+        racingService = RacingService(Cars(listOf(carA, carB, carC, carD)))
     }
 
     @Test
