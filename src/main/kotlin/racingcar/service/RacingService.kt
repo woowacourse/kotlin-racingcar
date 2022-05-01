@@ -2,7 +2,6 @@ package racingcar.service
 
 import racingcar.domain.Car
 import racingcar.ui.printRoundResult
-import racingcar.utils.random
 
 private const val START_RANDOM_NUMBER = 0
 private const val END_RANDOM_NUMBER = 9
@@ -27,7 +26,7 @@ class KRacingService(private val cars: List<Car>) {
     }
 
     private fun raceRound() {
-        cars.forEach { car -> car.proceed(random(START_RANDOM_NUMBER, END_RANDOM_NUMBER)) }
+        cars.forEach { car -> car.proceed((START_RANDOM_NUMBER..END_RANDOM_NUMBER).random()) }
         printRoundResult(cars)
     }
 }
