@@ -6,9 +6,9 @@ import java.util.stream.Collectors
 data class Cars(val cars: List<Car>) {
 
     companion object {
-        fun from(carNames: List<String>): Cars {
+        fun from(carNames: List<Name>): Cars {
             val cars = carNames.stream()
-                .map { carName -> Car(carName) }
+                .map { Car(it) }
                 .collect(Collectors.toList<Car>())
             return Cars(cars)
         }
@@ -19,7 +19,7 @@ data class Cars(val cars: List<Car>) {
 
         return cars.stream()
             .filter { car -> car.position == maxPosition }
-            .map { car -> car.name }
+            .map { car -> car.name.toString() }
             .collect(Collectors.toList<String>())
     }
 

@@ -1,6 +1,6 @@
 package domain
 
-data class Car(val name: String?, var position: Int = 0) : Comparable<Car> {
+data class Car(val name: Name, var position: Int = 0) : Comparable<Car> {
 
     fun move(isMovable: Boolean) {
         if (isMovable) {

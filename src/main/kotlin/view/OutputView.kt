@@ -30,7 +30,7 @@ object OutputView {
     }
 
     private fun visualizeCarPosition(car: Car): String {
-        return car.name + DELIMITER_BETWEEN_NAME_AND_POSITION + POSITION_INDICATOR.repeat(car.position)
+        return car.name.toString() + DELIMITER_BETWEEN_NAME_AND_POSITION + POSITION_INDICATOR.repeat(car.position)
     }
 
     fun printWinners(winners: List<String>) {
