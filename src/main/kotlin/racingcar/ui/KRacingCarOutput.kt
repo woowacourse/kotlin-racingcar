@@ -21,15 +21,13 @@ fun printRoundResult(cars: List<KCar>) {
 }
 
 private fun printCarPositionInfo(car: KCar) {
-    println("$car.name$ : ${"-".repeat(car.position)}")
+    println("${car.name} : ${"-".repeat(car.position)}")
 }
 
 fun printWinners(winners: List<KCar>) {
-    println("${getWinnerNames(winners)}$WINNER_MESSAGE")
+    println("${getWinnerNames(winners)} $WINNER_MESSAGE")
 }
 
 fun getWinnerNames(winners: List<KCar>): String{
-    return winners
-        .map { car -> car.name }
-        .joinToString { ", " }
+    return winners.joinToString(separator = ", ") { winner -> winner.name }
 }
