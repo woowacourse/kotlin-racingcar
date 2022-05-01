@@ -1,7 +1,7 @@
 package study
 
-import org.assertj.core.api.Assertions.*
-
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 
 class StringCalculatorTest {
@@ -29,12 +29,12 @@ class StringCalculatorTest {
         // then
         assertThat(result).isEqualTo(5)
     }
-    
+
     @Test
     fun multiply() {
         // given
         val str = "2 * 5"
-        
+
         // when
         val result = StringCalculator.calculate(str)
 

@@ -6,7 +6,7 @@ object StringCalculator {
         "+" to { left: Int, right: Int -> left + right },
         "-" to { left: Int, right: Int -> left - right },
         "*" to { left: Int, right: Int -> left * right },
-        "/" to fun (left: Int, right: Int): Int {
+        "/" to fun(left: Int, right: Int): Int {
             require(right != 0) { "0으로 나눌 수 없습니다." }
             return left / right
         }
@@ -27,7 +27,7 @@ object StringCalculator {
 
     private fun operate(left: Int, right: Int, operator: String): Int {
         return OPERATORS.getOrElse(operator)
-        { throw IllegalArgumentException("해당하는 연산자가 없습니다.") } (left, right)
+        { throw IllegalArgumentException("해당하는 연산자가 없습니다.") }(left, right)
     }
 
     private fun parseInt(string: String): Int {

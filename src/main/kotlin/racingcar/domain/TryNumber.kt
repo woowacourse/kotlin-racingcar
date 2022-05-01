@@ -3,6 +3,7 @@ package racingcar.domain
 import racingcar.util.parseInt
 
 data class TryNumber(private var value: Int) {
+
     constructor(input: String) : this(parseInt(input))
 
     init {

@@ -5,10 +5,6 @@ import org.junit.jupiter.api.Test
 
 class CarsTest {
 
-    companion object {
-        val STRATEGY = RandomMovingStrategy()
-    }
-
     @Test
     fun duplicatedNames() {
         val names = listOf("pobi", "jason", "pobi")

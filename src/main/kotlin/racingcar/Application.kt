@@ -6,7 +6,6 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 fun main() {
-
     var cars = Cars.from(InputView.inputCarNames())
     val tryNumber = TryNumber(InputView.inputTryNumber())
 
