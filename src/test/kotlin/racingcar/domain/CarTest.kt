@@ -22,8 +22,8 @@ class CarTest {
         val car = Car(name, position)
         val strategy = RandomMovingStrategy((0..9), 0)
 
-        car.moveForward(strategy)
+        val movedCar = car.moveForward(strategy)
 
-        assertThat(car.isSamePosition(Position(1))).isTrue
+        assertThat(movedCar.isSamePosition(Position(1))).isTrue
     }
 }
