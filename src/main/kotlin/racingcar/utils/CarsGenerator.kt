@@ -17,10 +17,6 @@ fun getCarInput(): Cars {
 
 fun generateCars(userInput: String?): List<Car> {
     val carNames = separateCarNames(userInput)
-    // validateCarNames(carNames)
-    // carNames.forEach { carName ->
-    //     validateCarName(carName)
-    // }
     return carNames
         .map { name -> Car(name) }
         .toList()
