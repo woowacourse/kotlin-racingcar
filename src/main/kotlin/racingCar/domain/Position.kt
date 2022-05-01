@@ -1,6 +1,6 @@
-package domain
+package racingCar.domain
 
-import domain.move.MoveStrategy
+import racingCar.domain.move.MoveStrategy
 
 data class Position(var index: Int = 0) : Comparable<Position> {
 

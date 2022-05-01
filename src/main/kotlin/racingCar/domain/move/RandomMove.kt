@@ -1,4 +1,4 @@
-package domain.move
+package racingCar.domain.move
 
 import java.util.Random
 
@@ -15,4 +15,6 @@ class RandomMove : MoveStrategy {
         val random = Random()
         return random.nextInt(RANDOM_NUMBER_RANGE)
     }
+
+
 }

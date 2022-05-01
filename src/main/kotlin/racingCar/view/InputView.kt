@@ -1,6 +1,6 @@
-package view
+package racingCar.view
 
-import domain.Name
+import racingCar.domain.Name
 import java.util.stream.Collectors
 
 object InputView {
@@ -19,14 +19,15 @@ object InputView {
         }
 
     private fun splitCarNames(names: String): List<Name> {
-        var carNames = names.split(CAR_DELIMITER)
+        var splitNames = names.split(CAR_DELIMITER)
         try {
-            return carNames.stream()
+            val names = splitNames.stream()
                 .map { Name(it) }
                 .collect(Collectors.toList())
+            return names
         } catch (e: IllegalArgumentException) {
             OutputView.printException(e.message)
-            return splitCarNames(names)
+            return carNames
         }
     }
 
@@ -48,6 +49,6 @@ object InputView {
     }
 
     private fun validateNumber(number: String) {
-        require(number.matches(Regex(NUMBER_REGEX)) && number.toInt() > 0) { "시도할 횟수는 양수만 입력 가능합니다." }
+        require(number.matches(Regex(NUMBER_REGEX)) && number.toInt() > 0) { "[ERROR] 시도할 횟수는 양수만 입력 가능합니다." }
     }
 }

@@ -1,6 +1,6 @@
-package domain
+package racingCar.domain
 
-import domain.move.MoveStrategy
+import racingCar.domain.move.MoveStrategy
 import java.util.stream.Collectors
 
 data class Cars(val cars: List<Car>) {
@@ -18,8 +18,8 @@ data class Cars(val cars: List<Car>) {
         val maxPosition = getMaxPosition()
 
         return cars.stream()
-            .filter { car -> car.position == maxPosition }
-            .map { car -> car.name.toString() }
+            .filter { it.position == maxPosition }
+            .map { it.name.toString() }
             .collect(Collectors.toList<String>())
     }
 

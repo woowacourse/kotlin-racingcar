@@ -1,7 +1,7 @@
-import domain.Cars
-import domain.move.RandomMove
-import view.InputView
-import view.OutputView
+import racingCar.domain.Cars
+import racingCar.domain.move.RandomMove
+import racingCar.view.InputView
+import racingCar.view.OutputView
 
 fun main() {
     val cars = createCars()

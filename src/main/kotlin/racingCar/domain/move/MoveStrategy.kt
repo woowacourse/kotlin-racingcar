@@ -1,4 +1,4 @@
-package domain.move
+package racingCar.domain.move
 
 interface MoveStrategy {
 
