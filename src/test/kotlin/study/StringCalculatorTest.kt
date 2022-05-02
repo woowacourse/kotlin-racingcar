@@ -1,8 +1,8 @@
 package study
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class StringCalculatorTest {
 
@@ -72,8 +72,7 @@ class StringCalculatorTest {
         val str = "3 2 *"
 
         // then
-        assertThatIllegalArgumentException()
-            .isThrownBy { StringCalculator.calculate(str) }
+        assertThrows <IllegalArgumentException> { StringCalculator.calculate(str) }
     }
 
     @Test
@@ -82,8 +81,7 @@ class StringCalculatorTest {
         val str = "3 @ 2"
 
         // then
-        assertThatIllegalArgumentException()
-            .isThrownBy { StringCalculator.calculate(str) }
+        assertThrows <IllegalArgumentException> { StringCalculator.calculate(str) }
     }
 
     @Test
@@ -92,7 +90,6 @@ class StringCalculatorTest {
         val str = "3 / 0"
 
         // then
-        assertThatIllegalArgumentException()
-            .isThrownBy { StringCalculator.calculate(str) }
+        assertThrows <IllegalArgumentException> { StringCalculator.calculate(str) }
     }
 }

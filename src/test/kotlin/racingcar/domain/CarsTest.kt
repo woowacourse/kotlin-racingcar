@@ -2,8 +2,8 @@ package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatCode
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class CarsTest {
 
@@ -11,14 +11,14 @@ class CarsTest {
     fun duplicatedNames() {
         val names = listOf("pobi", "jason", "pobi")
 
-        assertThatIllegalArgumentException().isThrownBy { Cars.from(names) }
+        assertThrows <IllegalArgumentException> { Cars.from(names) }
     }
 
     @Test
     fun emptyNames() {
         val names = "".split(",")
 
-        assertThatIllegalArgumentException().isThrownBy { Cars.from(names) }
+        assertThrows <IllegalArgumentException> { Cars.from(names) }
     }
 
     @Test

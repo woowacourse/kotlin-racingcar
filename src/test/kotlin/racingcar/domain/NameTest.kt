@@ -1,7 +1,7 @@
 package racingcar.domain
 
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class NameTest {
 
@@ -9,13 +9,13 @@ class NameTest {
     fun longName() {
         val value = "summer"
 
-        assertThatIllegalArgumentException().isThrownBy { Name(value) }
+        assertThrows <IllegalArgumentException> { Name(value) }
     }
 
     @Test
     fun `blank Name`() {
         val value = ""
 
-        assertThatIllegalArgumentException().isThrownBy { Name(value) }
+        assertThrows <IllegalArgumentException> { Name(value) }
     }
 }
