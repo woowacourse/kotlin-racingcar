@@ -6,9 +6,9 @@ object StringCalculator {
         "+" to { left: Int, right: Int -> left + right },
         "-" to { left: Int, right: Int -> left - right },
         "*" to { left: Int, right: Int -> left * right },
-        "/" to fun(left: Int, right: Int): Int {
+        "/" to { left: Int, right: Int ->
             require(right != 0) { "0으로 나눌 수 없습니다." }
-            return left / right
+            left / right
         }
     )
 
