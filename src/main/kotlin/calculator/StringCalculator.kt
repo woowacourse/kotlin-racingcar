@@ -1,7 +1,5 @@
 package calculator
 
-import kotlin.IllegalArgumentException
-
 class StringCalculator {
 
     fun add(input: String?): Int {
@@ -42,8 +40,8 @@ class StringCalculator {
     }
 
     private fun validatePositive(number: Int) {
-        if ( number < 0) {
-            throw IllegalArgumentException("음수를 입력하면 안됩니다.");
+        if (number < 0) {
+            throw IllegalArgumentException("음수를 입력하면 안됩니다.")
         }
     }
 }

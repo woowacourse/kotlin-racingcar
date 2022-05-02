@@ -3,7 +3,7 @@ package racingcar.domain
 class RacingGame(carNames: List<String>, private val totalRounds: Int, private val moveStrategy: MoveStrategy) {
 
     private val cars: Cars
-    private var currentRound = 0;
+    private var currentRound = 0
 
     init {
         if (totalRounds <= 0) {
