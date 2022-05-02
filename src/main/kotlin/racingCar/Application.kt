@@ -5,28 +5,27 @@ import racingCar.view.OutputView
 
 fun main() {
     val cars = createCars()
-    var numberOfGames = getNumberOfGames()
-    startRace(cars, numberOfGames)
+    startRace(cars, getNumberOfGames())
     endGame(cars)
 }
 
-fun createCars(): Cars {
+tailrec fun createCars(): Cars {
     OutputView.printInputCarName()
-    try {
-        return Cars.from(InputView.carNames)
+    return try {
+        Cars.from(InputView.carNames)
     } catch (e: IllegalArgumentException) {
         OutputView.printException(e.message)
-        return createCars()
+        createCars()
     }
 }
 
-fun getNumberOfGames(): Int {
+tailrec fun getNumberOfGames(): Int {
     OutputView.printInputNumberOfGames()
-    try {
-        return InputView.numberOfGames
+    return try {
+        InputView.numberOfGames
     } catch (e: IllegalArgumentException) {
         OutputView.printException(e.message)
-        return getNumberOfGames()
+        getNumberOfGames()
     }
 }
 

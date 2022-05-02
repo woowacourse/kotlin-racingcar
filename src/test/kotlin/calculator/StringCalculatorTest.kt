@@ -1,8 +1,8 @@
 package calculator
 
-import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class StringCalculatorTest {
 
@@ -33,7 +33,6 @@ class StringCalculatorTest {
 
     @Test
     fun divideZero() {
-        Assertions.assertThatIllegalArgumentException()
-            .isThrownBy { StringCalculator.calculate("10 / 0") }
+        assertThrows<IllegalArgumentException> { StringCalculator.calculate("10 / 0") }
     }
 }

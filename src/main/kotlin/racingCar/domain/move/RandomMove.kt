@@ -1,18 +1,18 @@
 package racingCar.domain.move
 
-import java.util.Random
-
 class RandomMove : MoveStrategy {
-
-    private val RANDOM_NUMBER_RANGE = 10
-    private val MOVABLE_NUMBER_THRESHOLD = 4
 
     override fun isMovable(): Boolean {
         return generateRandomNumber() >= MOVABLE_NUMBER_THRESHOLD
     }
 
     private fun generateRandomNumber(): Int {
-        val random = Random()
-        return random.nextInt(RANDOM_NUMBER_RANGE)
+        return (MIN_RANDOM_RANGE..MAX_RANDOM_RANGE).random()
+    }
+
+    companion object {
+        private const val MIN_RANDOM_RANGE = 0
+        private const val MAX_RANDOM_RANGE = 9
+        private const val MOVABLE_NUMBER_THRESHOLD = 4
     }
 }
