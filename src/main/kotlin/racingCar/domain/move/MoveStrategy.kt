@@ -1,6 +1,6 @@
 package racingCar.domain.move
 
-interface MoveStrategy {
+fun interface MoveStrategy {
 
     fun isMovable(): Boolean
 }
