@@ -1,6 +1,5 @@
 package racingcar.domain
 
-
 class RandomMovingStrategy(
     private val range: IntRange = (RANDOM_MIN_VALUE..RANDOM_MAX_VALUE),
     private val threshold: Int = THRESHOLD

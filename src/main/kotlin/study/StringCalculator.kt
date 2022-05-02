@@ -26,8 +26,7 @@ object StringCalculator {
     }
 
     private fun operate(left: Int, right: Int, operator: String): Int {
-        return OPERATORS.getOrElse(operator)
-        { throw IllegalArgumentException("해당하는 연산자가 없습니다.") }(left, right)
+        return OPERATORS.getOrElse(operator) { throw IllegalArgumentException("해당하는 연산자가 없습니다.") }(left, right)
     }
 
     private fun parseInt(string: String): Int {

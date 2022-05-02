@@ -19,9 +19,12 @@ class Cars(val cars: List<Car>, private val strategy: MovingStrategy = RandomMov
     }
 
     fun move(): Cars {
-        return Cars(cars.stream()
-            .map { it.moveForward(strategy) }
-            .collect(Collectors.toList()), strategy)
+        return Cars(
+            cars.stream()
+                .map { it.moveForward(strategy) }
+                .collect(Collectors.toList()),
+            strategy
+        )
     }
 
     fun findWinners(): List<Car> {
