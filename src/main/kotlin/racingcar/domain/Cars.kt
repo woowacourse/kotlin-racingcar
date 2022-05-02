@@ -3,7 +3,7 @@ package racingcar.domain
 class Cars(val cars: List<Car>, private val strategy: MovingStrategy = RandomMovingStrategy()) {
 
     init {
-        require(cars.toSet().size == cars.size) { "자동차 이름에 중복이 있습니다." }
+        require(cars.distinct().size == cars.size) { "자동차 이름에 중복이 있습니다." }
     }
 
     fun move(): Cars {
