@@ -4,7 +4,7 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
-internal class NameTest{
+internal class NameTest {
 
     @Test
     @DisplayName("빈 값이 들어갈 수 없다")

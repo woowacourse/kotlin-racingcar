@@ -14,8 +14,7 @@ object StringCalculator {
     }
 
     private fun operate(first: Int, second: Int, operator: String): Int {
-        return OPERATORS.getOrElse(operator)
-        { throw IllegalArgumentException("연산이 없습니다.") }(first, second)
+        return OPERATORS.getOrElse(operator) { throw IllegalArgumentException("연산이 없습니다.") }(first, second)
     }
 
     private val OPERATORS =

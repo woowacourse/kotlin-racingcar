@@ -15,6 +15,4 @@ class RandomMove : MoveStrategy {
         val random = Random()
         return random.nextInt(RANDOM_NUMBER_RANGE)
     }
-
-
 }
