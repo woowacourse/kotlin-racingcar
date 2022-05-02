@@ -1,15 +1,10 @@
 package racingcar
 
 import java.util.Random
-import java.util.stream.Collectors
-import java.util.stream.IntStream
 
 class Randoms(private val amount: Int) {
-
-    fun generate(startInclusive: Int, endExclusive: Int): List<Int> = IntStream.range(0, amount)
-        .map { getRandomNumber(startInclusive, endExclusive) }
-        .boxed()
-        .collect(Collectors.toList())
+    fun generate(startInclusive: Int, endExclusive: Int): List<Int> =
+        (1..amount).map { getRandomNumber(startInclusive, endExclusive) }
 
     private fun getRandomNumber(startInclusive: Int, endExclusive: Int): Int {
         val random = Random()

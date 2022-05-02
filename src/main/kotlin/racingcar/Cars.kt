@@ -1,7 +1,5 @@
 package racingcar
 
-import java.util.stream.Collectors
-
 class Cars private constructor(val cars: List<Car>) {
 
     init {
@@ -9,13 +7,7 @@ class Cars private constructor(val cars: List<Car>) {
     }
 
     companion object {
-        fun of(names: List<String>): Cars {
-            return Cars(
-                names.stream()
-                    .map { Car(it) }
-                    .collect(Collectors.toList())
-            )
-        }
+        fun of(names: List<String>): Cars = Cars(names.map { Car(it) })
     }
 
     private fun validateCars(cars: List<Car>) {

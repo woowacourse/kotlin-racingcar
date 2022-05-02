@@ -13,7 +13,7 @@ class RacingGame {
     private fun progressRounds(cars: Cars, randoms: Randoms) {
         val rounds = getIntegerRounds()
         printResultMessage()
-        for (round in 0 until rounds) {
+        for (round in 1..rounds) {
             cars.moveAll(randoms.generate(0, 10))
             printCurrentResult(cars.cars)
         }
