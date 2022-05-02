@@ -30,10 +30,6 @@ object StringCalculator {
     }
 
     private fun parseInt(string: String): Int {
-        try {
-            return string.toInt()
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException("숫자로 변환할 수 없습니다.")
-        }
+        return string.toIntOrNull() ?: throw IllegalArgumentException("숫자로 변환할 수 없습니다.")
     }
 }
