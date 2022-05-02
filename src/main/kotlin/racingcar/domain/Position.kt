@@ -14,6 +14,6 @@ data class Position(val distance: Int = 0) : Comparable<Position> {
     }
 
     override fun compareTo(other: Position): Int {
-        return other.distance.compareTo(this.distance)
+        return this.distance.compareTo(other.distance)
     }
 }
