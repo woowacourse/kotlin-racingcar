@@ -1,6 +1,6 @@
 package racingcar
 
-import io.kotest.matchers.throwable.haveMessage
+import io.kotest.matchers.throwable.shouldHaveMessage
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -14,8 +14,7 @@ class CarsTest {
     fun nameDuplicateException() {
         assertThrows<IllegalArgumentException> {
             Cars.of(listOf("huni", "huni"))
-            haveMessage("[ERROR] 중복된 이름이 존재합니다.")
-        }
+        }.shouldHaveMessage("[ERROR] 중복된 이름이 존재합니다.")
     }
 
     @DisplayName("자동차의 개수가 0일 경우 예외를 발생한다.")
@@ -23,8 +22,7 @@ class CarsTest {
     fun carsEmptyException() {
         assertThrows<IllegalArgumentException> {
             Cars.of(listOf())
-            haveMessage("[ERROR] 최소 하나의 자동차를 입력하세요.")
-        }
+        }.shouldHaveMessage("[ERROR] 최소 하나의 자동차를 입력하세요.")
     }
 
     @DisplayName("정상적으로 cars를 생성한다.")
@@ -56,7 +54,6 @@ class CarsTest {
         var cars = Cars.of(listOf("huni", "choi", "jae"))
         assertThrows<IllegalArgumentException> {
             cars.moveAll(listOf(3, 4))
-            haveMessage("[ERROR] 이동 요소 입력을 다시해주세요.")
-        }
+        }.shouldHaveMessage("[ERROR] 이동 요소 입력을 다시해주세요.")
     }
 }

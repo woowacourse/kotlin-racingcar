@@ -1,6 +1,6 @@
 package calculator
 
-import io.kotest.matchers.throwable.haveMessage
+import io.kotest.matchers.throwable.shouldHaveMessage
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
@@ -26,8 +26,7 @@ class StringCalculatorTest {
     fun splitNegativeException() {
         assertThrows<IllegalArgumentException> {
             StringCalculator.split("-1,2,3")
-            haveMessage("[ERROR] 숫자는 양수여야 합니다.")
-        }
+        }.shouldHaveMessage("[ERROR] 숫자는 양수여야 합니다.")
     }
 
     @DisplayName("커스텀 구분자를 넣어 숫자를 나눌 수 있다")
@@ -47,8 +46,7 @@ class StringCalculatorTest {
     fun splitNotNumberException() {
         assertThrows<IllegalArgumentException> {
             StringCalculator.split("r,2,3")
-            haveMessage("[ERROR] 숫자를 입력하세요")
-        }
+        }.shouldHaveMessage("[ERROR] 숫자를 입력하세요")
     }
 
     @DisplayName("값을 더한다.")
