@@ -6,6 +6,7 @@ private const val ROUND_INPUT_MESSAGE = "시도할 회수는 몇회인가요?"
 fun getCarNamesByUser(): String? {
     println(CAR_NAME_INPUT_MESSAGE)
     return readLine()
+    //readln
 }
 
 fun getRoundByUser(): String? {

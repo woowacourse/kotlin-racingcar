@@ -7,16 +7,16 @@ private const val END_RANDOM_NUMBER = 9
 
 class Cars(private val cars: List<Car>) {
     init {
-        validateCarNames(cars.map { car -> car.name }.toList())
+        validateCarNames(cars.map { it.name })
     }
 
     private fun validateCarNames(names: List<String>?) {
-        require(names != null) { NULL_ERROR_MESSAGE }
+        requireNotNull(names) { NULL_ERROR_MESSAGE }
         require(!isDuplicateNames(names)) { DUPLICATE_CAR_NAME_EXIST_ERROR_MESSAGE }
     }
 
     private fun isDuplicateNames(names: List<String>): Boolean {
-        return HashSet(names).size != names.size
+        return names.distinct().size != names.size
     }
 
     fun proceed() {
@@ -25,13 +25,13 @@ class Cars(private val cars: List<Car>) {
 
     fun findWinners(): List<Car> {
         return cars
-            .filter { car -> car.position == findMaxPosition() }
+            .filter { it.position == findMaxPosition() }
             .toList()
     }
 
     private fun findMaxPosition(): Int {
         return cars
-            .maxOf { car -> car.position }
+            .maxOf { it.position }
     }
 
     fun getCars(): List<Car> {

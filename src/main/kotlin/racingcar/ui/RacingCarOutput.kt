@@ -14,8 +14,8 @@ fun printErrorMessage(error: String?) {
 }
 
 fun printRoundResult(cars: List<Car>) {
-    cars.forEach {
-        car -> printCarPositionInfo(car)
+    cars.forEach { car ->
+        printCarPositionInfo(car)
     }
     println()
 }
@@ -28,6 +28,6 @@ fun printWinners(winners: List<Car>) {
     println("${getWinnerNames(winners)} $WINNER_MESSAGE")
 }
 
-fun getWinnerNames(winners: List<Car>): String{
+fun getWinnerNames(winners: List<Car>): String {
     return winners.joinToString(separator = ", ") { winner -> winner.name }
 }
