@@ -15,7 +15,7 @@ import org.junit.jupiter.api.assertDoesNotThrow
 // data class == equalsAndHashcode, copy, toString(), 생성자에 존재하는 프로퍼티를 기준으로 생성
 // 코틀린은 기본값이 존재해야 한다.
 data class Person(val name: String, val age: Int, val nickname: String? = name) {
-    var phoneNumber : String = ""
+    var phoneNumber: String = ""
 
     fun greeting() {
         println("Hello $name")
@@ -50,7 +50,7 @@ class PersonTest {
     @Test
     fun setter() {
         val person = Person("최재훈", 26, "huni")
-        assertThat(person.phoneNumber).isEmpty();
+        assertThat(person.phoneNumber).isEmpty()
         person.phoneNumber = "01012345678"
         assertThat(person.phoneNumber).isEqualTo("01012345678")
     }

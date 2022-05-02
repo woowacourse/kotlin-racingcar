@@ -55,6 +55,6 @@ class StringCalculatorTest {
     @Test
     fun sum() {
         val result = StringCalculator.split("1,2,3").sum()
-        assertThat(result).isEqualTo(6);
+        assertThat(result).isEqualTo(6)
     }
 }

@@ -9,10 +9,12 @@ class Cars private constructor(val cars: List<Car>) {
     }
 
     companion object {
-        fun of(names : List<String>) : Cars {
-            return Cars(names.stream()
-                .map { Car(it) }
-                .collect(Collectors.toList()))
+        fun of(names: List<String>): Cars {
+            return Cars(
+                names.stream()
+                    .map { Car(it) }
+                    .collect(Collectors.toList())
+            )
         }
     }
 

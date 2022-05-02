@@ -59,5 +59,4 @@ class CarsTest {
             haveMessage("[ERROR] 이동 요소 입력을 다시해주세요.")
         }
     }
-
 }

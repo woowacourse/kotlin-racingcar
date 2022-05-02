@@ -1,15 +1,15 @@
 package racingcar
 
-const val MAX_LENGTH = 5;
-const val MOVE_STANDARD = 4;
+const val MAX_LENGTH = 5
+const val MOVE_STANDARD = 4
 
-data class Car(val name: String, var position : Int = 0) {
+data class Car(val name: String, var position: Int = 0) {
 
     init {
         validateCarName(name)
     }
 
-    private fun validateCarName(name : String) {
+    private fun validateCarName(name: String) {
         if (name.isBlank()) {
             throw IllegalArgumentException("[ERROR] 이름을 입력하지 않았습니다.")
         }
@@ -25,10 +25,9 @@ data class Car(val name: String, var position : Int = 0) {
 
     fun move(moveFactor: Int) {
         if (moveFactor >= MOVE_STANDARD) {
-            position++;
+            position++
         }
     }
 
-    fun isSamePosition(position: Int) : Boolean = position == this.position
-
+    fun isSamePosition(position: Int): Boolean = position == this.position
 }

@@ -4,7 +4,6 @@ import io.kotest.matchers.throwable.haveMessage
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertThrows
 
 class CarTest {
@@ -48,7 +47,7 @@ class CarTest {
     fun moveWhenOverStandard() {
         val car = Car("huni")
         car.move(4)
-        assertThat(car.position).isEqualTo(1);
+        assertThat(car.position).isEqualTo(1)
     }
 
     @DisplayName("3이하의 수가 들어올 경우 유지한다.")
@@ -56,6 +55,6 @@ class CarTest {
     fun noMoveWhenUnderStandard() {
         val car = Car("huni")
         car.move(3)
-        assertThat(car.position).isEqualTo(0);
+        assertThat(car.position).isEqualTo(0)
     }
 }

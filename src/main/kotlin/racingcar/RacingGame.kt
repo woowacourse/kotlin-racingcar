@@ -1,7 +1,5 @@
 package racingcar
 
-import java.lang.NumberFormatException
-
 class RacingGame {
 
     fun play() {
@@ -12,7 +10,7 @@ class RacingGame {
         printFinalResult(gameResult.pickWinners())
     }
 
-    private fun progressRounds( cars: Cars, randoms: Randoms) {
+    private fun progressRounds(cars: Cars, randoms: Randoms) {
         val rounds = getIntegerRounds()
         printResultMessage()
         for (round in 0 until rounds) {

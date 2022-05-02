@@ -14,7 +14,7 @@ fun inputRounds(): Int {
     return inputToInt()
 }
 
-private fun inputToInt() : Int{
+private fun inputToInt(): Int {
     try {
         return readLineNotNull().toInt()
     } catch (e: NumberFormatException) {
@@ -44,5 +44,3 @@ fun printFinalResult(winners: List<String>) {
 fun printMessage(message: String) {
     println(message)
 }
-
-

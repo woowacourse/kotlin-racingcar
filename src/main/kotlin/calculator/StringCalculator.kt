@@ -27,7 +27,7 @@ class StringCalculator(val numbers: List<Int>) {
             return input.split(",", ":")
         }
 
-        private fun toInt(number: String) : Int{
+        private fun toInt(number: String): Int {
             try {
                 return number.toInt()
             } catch (e: NumberFormatException) {
