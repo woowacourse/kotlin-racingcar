@@ -19,8 +19,7 @@ object InputView {
     private tailrec fun splitCarNames(names: String): List<Name> {
         var splitNames = names.split(CAR_DELIMITER)
         try {
-            return splitNames
-                .map { Name(it) }
+            return splitNames.map { Name(it) }
         } catch (e: IllegalArgumentException) {
             OutputView.printException(e.message)
             return carNames

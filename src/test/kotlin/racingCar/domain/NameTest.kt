@@ -9,12 +9,12 @@ internal class NameTest {
     @Test
     @DisplayName("빈 값이 들어갈 수 없다")
     fun notEmpty() {
-        assertThrows<IllegalArgumentException>{Name("")}
+        assertThrows<IllegalArgumentException> { Name("") }
     }
 
     @Test
     @DisplayName("6자리 이상 들어갈 수 없다")
     fun overSize() {
-        assertThrows<IllegalArgumentException>{Name("pepper")}
+        assertThrows<IllegalArgumentException> { Name("pepper") }
     }
 }
