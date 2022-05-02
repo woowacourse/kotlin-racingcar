@@ -60,7 +60,7 @@ object InputView {
         val isDuplicated = carNames.stream()
             .distinct()
             .count() != carNames.size.toLong()
-        require (!isDuplicated) {"자동차 이름은 중복이 되면 안됩니다."}
+        require(!isDuplicated) { "자동차 이름은 중복이 되면 안됩니다." }
     }
 
     private fun validateNumber(number: String) {

@@ -11,7 +11,7 @@ internal class CarsTest {
     @Test
     @DisplayName("position이 가장 높은 자동차가 우승한다.")
     fun decideFinalWinner() {
-        val pepperCar = Car(Name("pepper"), Position(1))
+        val pepperCar = Car(Name("peper"), Position(1))
         val zeroCar = Car(Name("zero"), Position(2))
         val jasonCar = Car(Name("jason"), Position(3))
         val cars = Cars(listOf(pepperCar, zeroCar, jasonCar))
