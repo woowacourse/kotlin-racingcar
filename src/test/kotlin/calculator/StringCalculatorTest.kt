@@ -1,13 +1,13 @@
 package calculator
 
+import io.kotest.matchers.throwable.shouldHaveMessage
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
-import java.lang.IllegalArgumentException
 
 class StringCalculatorTest {
 
@@ -43,8 +43,7 @@ class StringCalculatorTest {
 
     @Test
     fun `음수가 존재할 경우 예외가 발생한다`() {
-        assertThatThrownBy { calculator.add("-1,2,3") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("음수를 입력하면 안됩니다.")
+        assertThrows<IllegalArgumentException> { calculator.add("-1,2,3") }
+            .shouldHaveMessage("음수를 입력하면 안됩니다.")
     }
 }

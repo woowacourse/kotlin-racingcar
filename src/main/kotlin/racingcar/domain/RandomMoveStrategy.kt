@@ -3,7 +3,7 @@ package racingcar.domain
 class RandomMoveStrategy : MoveStrategy {
 
     override fun canGO(): Boolean {
-        val number = Math.random() * 10;
+        val number = (0..9).random()
         return number >= 4
     }
 }

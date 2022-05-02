@@ -1,8 +1,10 @@
 package racingcar.domain
 
+import io.kotest.matchers.throwable.shouldHaveMessage
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class CarTest {
 
@@ -15,9 +17,9 @@ internal class CarTest {
 
     @Test
     fun nameIsBlank() {
-        assertThatThrownBy { Car("   ") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("공백을 입력하면 안 됩니다.")
+        assertThrows<IllegalArgumentException> {
+            Car("   ")
+        }.shouldHaveMessage("공백을 입력하면 안됩니다.")
     }
 
     @Test
