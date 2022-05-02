@@ -1,14 +1,14 @@
 package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 
 class PositionTest {
 
     @Test
     fun notPositive() {
-        assertThatThrownBy { Position(-1) }.isInstanceOf(IllegalArgumentException::class.java)
+        assertThatIllegalArgumentException().isThrownBy { Position(-1) }
     }
 
     @Test

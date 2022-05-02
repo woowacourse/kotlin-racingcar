@@ -1,8 +1,6 @@
 package racingcar.domain
 
-import org.assertj.core.api.Assertions.*
-
-import org.junit.jupiter.api.DisplayName
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 internal class MovingStrategyTest {
