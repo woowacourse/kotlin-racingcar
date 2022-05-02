@@ -14,7 +14,7 @@ class RacingGame {
         val rounds = getIntegerRounds()
         printResultMessage()
         for (round in 1..rounds) {
-            cars.moveAll(randoms.generate(0, 10))
+            cars.moveAll(randoms.generate())
             printCurrentResult(cars.cars)
         }
     }

@@ -11,7 +11,7 @@ class RandomsTest {
     @Test
     fun generateRandoms() {
         val randoms = Randoms(3)
-        val moveFactors = randoms.generate(0, 10)
+        val moveFactors = randoms.generate()
 
         assertThat(moveFactors).hasSize(3)
     }
@@ -20,7 +20,7 @@ class RandomsTest {
     @Test
     fun generateInRange() {
         val randoms = Randoms(3)
-        val moveFactors = randoms.generate(0, 10)
+        val moveFactors = randoms.generate()
         assertAll(
             { assertThat(moveFactors[0]).isLessThan(10).isGreaterThanOrEqualTo(0) },
             { assertThat(moveFactors[1]).isLessThan(10).isGreaterThanOrEqualTo(0) },
