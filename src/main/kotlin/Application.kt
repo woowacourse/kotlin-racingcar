@@ -5,18 +5,18 @@ import view.OutputView
 
 fun main() {
     val cars = createCars()
-    var numberOfGames = getNumberOfGames()
+    val numberOfGames = getNumberOfGames()
     startRace(cars, numberOfGames)
     endGame(cars)
 }
 
 fun createCars(): Cars {
     OutputView.printInputCarName()
-    try {
-        return Cars.from(InputView.carNames)
+    return try {
+        Cars.from(InputView.carNames)
     } catch (e: IllegalArgumentException) {
         OutputView.printException(e.message)
-        return createCars()
+        createCars()
     }
 }
 

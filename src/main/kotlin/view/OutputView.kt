@@ -1,6 +1,7 @@
 package view
 
 import domain.Car
+import vo.Name
 
 object OutputView {
 
@@ -25,19 +26,20 @@ object OutputView {
     }
 
     fun printGameResult(cars: List<Car>) {
-        cars.forEach { car: Car -> println(visualizeCarPosition(car)) }
+        cars.forEach {  println(visualizeCarPosition(it)) }
         println()
     }
 
     private fun visualizeCarPosition(car: Car): String {
-        return car.name + DELIMITER_BETWEEN_NAME_AND_POSITION + POSITION_INDICATOR.repeat(car.position)
+        return car.name.toString() + DELIMITER_BETWEEN_NAME_AND_POSITION + POSITION_INDICATOR.repeat(car.getPosition())
     }
 
-    fun printWinners(winners: List<String>) {
-        System.out.println(
+    fun printWinners(winners: List<Name>) {
+        val winnerNames = winners.map { it.name }
+        println(
             java.lang.String.join(
                 WINNER_DELIMITER,
-                winners
+                winnerNames
             ) + "가 최종 우승했습니다."
         )
     }

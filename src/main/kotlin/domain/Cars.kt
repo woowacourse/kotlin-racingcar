@@ -1,6 +1,8 @@
 package domain
 
 import domain.move.MoveStrategy
+import vo.Name
+import vo.Position
 import java.util.stream.Collectors
 
 data class Cars(val cars: List<Car>) {
@@ -8,27 +10,27 @@ data class Cars(val cars: List<Car>) {
     companion object {
         fun from(carNames: List<String>): Cars {
             val cars = carNames.stream()
-                .map { carName: String -> Car(carName) }
+                .map { Car(Name(it)) }
                 .collect(Collectors.toList<Car>())
             return Cars(cars)
         }
     }
 
-    fun getWinners(): List<String> {
+    fun getWinners(): List<Name> {
         val maxPosition = getMaxPosition()
 
         return cars.stream()
-            .filter { car: Car -> car.position == maxPosition }
-            .map { car: Car -> car.name }
-            .collect(Collectors.toList<String>())
+            .filter { it.getPosition() == maxPosition.position }
+            .map { it.name }
+            .collect(Collectors.toList<Name>())
     }
 
-    private fun getMaxPosition(): Int {
+    private fun getMaxPosition(): Position {
         return cars.stream()
+            .map { it.position }
             .sorted()
             .findFirst()
             .orElseThrow { NoSuchElementException() }
-            .position
     }
 
     fun moveCars(moveStrategy: MoveStrategy) {
