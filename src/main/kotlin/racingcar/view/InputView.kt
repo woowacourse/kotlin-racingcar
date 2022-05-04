@@ -11,6 +11,6 @@ object InputView {
 
     fun prompt(message: String): String {
         println(message)
-        return readLine() ?: prompt(message)
+        return readln()
     }
 }
