@@ -1,12 +1,9 @@
 package racingcar
 
-import java.util.stream.Collectors
-
 fun inputNames(): List<String> {
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-    val input = readLineNotNull()
-    return input.split(",").stream()
-        .collect(Collectors.toList())
+    val input = readln()
+    return input.split(",")
 }
 
 fun inputRounds(): Int {
@@ -16,13 +13,11 @@ fun inputRounds(): Int {
 
 private fun inputToInt(): Int {
     try {
-        return readLineNotNull().toInt()
+        return readln().toInt()
     } catch (e: NumberFormatException) {
         throw NumberFormatException("[ERROR] 숫자를 입력하세요")
     }
 }
-
-private fun readLineNotNull() = readLine() ?: throw NoSuchElementException("[ERROR] 값을 입력하세요")
 
 fun printResultMessage() {
     println("\n실행 결과")

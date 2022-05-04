@@ -25,4 +25,6 @@ class Cars private constructor(val cars: List<Car>) {
     private fun validateMoveFactors(moveFactors: List<Int>) {
         require(moveFactors.size == cars.size) { "[ERROR] 이동 요소 입력을 다시해주세요." }
     }
+
+    fun max() : Int = cars.maxOf { it.position }
 }

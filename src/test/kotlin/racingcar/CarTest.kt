@@ -32,13 +32,6 @@ class CarTest {
         }.shouldHaveMessage("[ERROR] 이름은 5자 이하로 입력하세요.")
     }
 
-    @DisplayName("position을 입력하지않으면 0 포지션의 차가 생성된다.")
-    @Test
-    fun createCarNoPositionInsert() {
-        val car = Car("huni")
-        assertThat(car).isEqualTo(Car("huni", 0))
-    }
-
     @DisplayName("4이상의 수가 들어올 경우 전진한다.")
     @Test
     fun moveWhenOverStandard() {

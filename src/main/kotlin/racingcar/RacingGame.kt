@@ -4,13 +4,13 @@ class RacingGame {
 
     fun play() {
         val cars = createCarsByInputNames()
-        val randoms = Randoms(cars.cars.size)
-        progressRounds(cars, randoms)
+        progressRounds(cars)
         val gameResult = GameResult(cars)
         printFinalResult(gameResult.pickWinners())
     }
 
-    private fun progressRounds(cars: Cars, randoms: Randoms) {
+    private fun progressRounds(cars: Cars) {
+        val randoms = Randoms(cars.cars.size)
         val rounds = getIntegerRounds()
         printResultMessage()
         for (round in 1..rounds) {
