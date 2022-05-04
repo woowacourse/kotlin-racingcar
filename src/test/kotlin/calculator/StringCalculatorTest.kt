@@ -1,10 +1,13 @@
 package calculator
 
+import io.kotest.assertions.assertSoftly
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertThrows
 
 class StringCalculatorTest {
@@ -13,18 +16,20 @@ class StringCalculatorTest {
     @Test
     fun split() {
         val stringCalculator = StringCalculator.split("1,2,3")
-        assertAll(
-            { assertThat(stringCalculator.numbers).hasSize(3) },
-            { assertThat(stringCalculator.numbers).contains(1) },
-            { assertThat(stringCalculator.numbers).contains(2) },
-            { assertThat(stringCalculator.numbers).contains(3) }
-        )
+        val numbers = stringCalculator.numbers
+
+        assertSoftly(numbers) {
+            shouldHaveSize(3)
+            shouldContain(1)
+            shouldContain(2)
+            shouldContain(3)
+        }
     }
 
     @DisplayName("음수를 넣으면 에러가 발생한다.")
     @Test
     fun splitNegativeException() {
-        assertThrows<IllegalArgumentException> {
+        shouldThrow<IllegalArgumentException> {
             StringCalculator.split("-1,2,3")
         }.shouldHaveMessage("[ERROR] 숫자는 양수여야 합니다.")
     }
@@ -33,12 +38,14 @@ class StringCalculatorTest {
     @Test
     fun splitCustomDelimiter() {
         val stringCalculator = StringCalculator.split("//;\n1;2;3")
-        assertAll(
-            { assertThat(stringCalculator.numbers).hasSize(3) },
-            { assertThat(stringCalculator.numbers).contains(1) },
-            { assertThat(stringCalculator.numbers).contains(2) },
-            { assertThat(stringCalculator.numbers).contains(3) }
-        )
+        val numbers = stringCalculator.numbers
+
+        assertSoftly(numbers) {
+            shouldHaveSize(3)
+            shouldContain(1)
+            shouldContain(2)
+            shouldContain(3)
+        }
     }
 
     @DisplayName("숫자를 입력하지 않을 시 에러를 발생한다.")
@@ -53,6 +60,6 @@ class StringCalculatorTest {
     @Test
     fun sum() {
         val result = StringCalculator.split("1,2,3").sum()
-        assertThat(result).isEqualTo(6)
+        result shouldBe 6
     }
 }

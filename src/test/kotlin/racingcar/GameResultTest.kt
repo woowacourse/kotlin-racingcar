@@ -1,9 +1,10 @@
 package racingcar
 
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.assertions.assertSoftly
+import io.kotest.matchers.collections.shouldHaveSize
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
 
 class GameResultTest {
 
@@ -16,11 +17,11 @@ class GameResultTest {
         val result = GameResult(cars)
         val winners = result.pickWinners()
 
-        assertAll(
-            { assertThat(winners).hasSize(2) },
-            { assertThat(winners[0]).isEqualTo("jae") },
-            { assertThat(winners[1]).isEqualTo("choi") }
-        )
+        assertSoftly(winners) {
+            shouldHaveSize(2)
+            it[0] shouldBe "jae"
+            it[1] shouldBe "choi"
+        }
     }
 
     private fun createCars() = Cars.of(listOf("huni", "jae", "choi"))

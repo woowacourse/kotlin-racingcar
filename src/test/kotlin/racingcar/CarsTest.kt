@@ -1,19 +1,19 @@
 package racingcar
 
+import io.kotest.assertions.assertSoftly
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.collections.shouldContain
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.throwable.shouldHaveMessage
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
-import org.junit.jupiter.api.assertThrows
 
 class CarsTest {
 
     @DisplayName("중복된 이름이 존재하는 경우 예외를 발생한다.")
     @Test
     fun nameDuplicateException() {
-        assertThrows<IllegalArgumentException> {
+        shouldThrow<IllegalArgumentException> {
             Cars.of(listOf("huni", "huni"))
         }.shouldHaveMessage("[ERROR] 중복된 이름이 존재합니다.")
     }
@@ -21,7 +21,7 @@ class CarsTest {
     @DisplayName("자동차의 개수가 0일 경우 예외를 발생한다.")
     @Test
     fun carsEmptyException() {
-        assertThrows<IllegalArgumentException> {
+        shouldThrow<IllegalArgumentException> {
             Cars.of(listOf())
         }.shouldHaveMessage("[ERROR] 최소 하나의 자동차를 입력하세요.")
     }
@@ -30,11 +30,12 @@ class CarsTest {
     @Test
     fun create() {
         val cars = Cars.of(listOf("huni", "choi", "jae"))
-        assertAll(
-            { assertThat(cars.cars).contains(Car("huni")) },
-            { assertThat(cars.cars).contains(Car("choi")) },
-            { assertThat(cars.cars).contains(Car("jae")) }
-        )
+
+        assertSoftly(cars.cars) {
+            shouldContain(Car("huni"))
+            shouldContain(Car("choi"))
+            shouldContain(Car("jae"))
+        }
     }
 
     @DisplayName("모든 자동차를 이동한다.")
@@ -42,18 +43,19 @@ class CarsTest {
     fun moveAll() {
         val cars = Cars.of(listOf("huni", "choi", "jae"))
         cars.moveAll(listOf(3, 4, 4))
-        assertAll(
-            { assertThat(cars.cars[0].position).isEqualTo(0) },
-            { assertThat(cars.cars[1].position).isEqualTo(1) },
-            { assertThat(cars.cars[2].position).isEqualTo(1) }
-        )
+
+        assertSoftly(cars.cars) {
+            it[0].position shouldBe 0
+            it[1].position shouldBe 1
+            it[2].position shouldBe 1
+        }
     }
 
     @DisplayName("이동 요소의 개수가 맞지 않을경우 에러를 발생한다.")
     @Test
     fun moveException() {
         val cars = Cars.of(listOf("huni", "choi", "jae"))
-        assertThrows<IllegalArgumentException> {
+        shouldThrow<IllegalArgumentException> {
             cars.moveAll(listOf(3, 4))
         }.shouldHaveMessage("[ERROR] 이동 요소 입력을 다시해주세요.")
     }
