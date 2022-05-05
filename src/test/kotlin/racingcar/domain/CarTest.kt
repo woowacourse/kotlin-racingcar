@@ -1,7 +1,7 @@
 package racingcar.domain
 
 import io.kotest.assertions.throwables.shouldThrow
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.shouldBe
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -38,7 +38,8 @@ class CarTest {
     fun proceed() {
         val car = Car("k")
         car.proceed(PROCEED_FLAG_NUMBER)
-        assertThat(car.position).isEqualTo(1)
+
+        car.position shouldBe 1
     }
 
     @Test
@@ -46,6 +47,7 @@ class CarTest {
     fun not_proceed() {
         val car = Car("k")
         car.proceed(PROCEED_FLAG_NUMBER - 1)
-        assertThat(car.position).isEqualTo(0)
+
+        car.position shouldBe 0
     }
 }

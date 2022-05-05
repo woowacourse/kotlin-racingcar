@@ -1,7 +1,9 @@
 package racingcar.domain
 
 import io.kotest.assertions.throwables.shouldThrow
-import org.assertj.core.api.Assertions.assertThat
+import io.kotest.matchers.collections.shouldContain
+import io.kotest.matchers.collections.shouldContainAll
+import io.kotest.matchers.collections.shouldHaveSize
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -24,9 +26,10 @@ class CarsTest {
         val cars = Cars(listOf(carA, carB))
 
         carA.proceed(PROCEED_FLAG_NUMBER)
-        assertThat(cars.findWinners())
-            .hasSize(1)
-            .contains(carA)
+
+        cars.findWinners()
+            .shouldHaveSize(1)
+            .shouldContain(carA)
     }
 
     @Test
@@ -38,8 +41,9 @@ class CarsTest {
 
         carA.proceed(PROCEED_FLAG_NUMBER)
         carB.proceed(PROCEED_FLAG_NUMBER)
-        assertThat(cars.findWinners())
-            .hasSize(2)
-            .contains(carA, carB)
+
+        cars.findWinners()
+            .shouldHaveSize(2)
+            .shouldContainAll(carA, carB)
     }
 }
