@@ -26,7 +26,6 @@ class Cars(private val cars: List<Car>) {
     fun findWinners(): List<Car> {
         return cars
             .filter { it.position == findMaxPosition() }
-            .toList()
     }
 
     private fun findMaxPosition(): Int {
