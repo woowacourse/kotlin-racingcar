@@ -29,5 +29,5 @@ fun printWinners(winners: List<Car>) {
 }
 
 fun getWinnerNames(winners: List<Car>): String {
-    return winners.joinToString(separator = ", ") { winner -> winner.name }
+    return winners.joinToString(separator = ", ") { it.name }
 }

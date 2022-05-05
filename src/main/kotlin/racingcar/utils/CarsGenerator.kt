@@ -18,7 +18,7 @@ fun getCarInput(): Cars {
 fun generateCars(userInput: String?): List<Car> {
     val carNames = separateCarNames(userInput)
     return carNames
-        .map { Car(it) }
+        .map(::Car)
 }
 
 private fun separateCarNames(userInput: String?): List<String> {
