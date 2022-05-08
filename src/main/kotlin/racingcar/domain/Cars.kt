@@ -1,7 +1,5 @@
 package racingcar.domain
 
-import java.util.stream.Collectors
-
 class Cars(carNames: List<String>) {
 
     val cars: List<Car>
@@ -10,12 +8,7 @@ class Cars(carNames: List<String>) {
         if (carNames.size != HashSet(carNames).size) {
             throw IllegalArgumentException("중복된 이름을 입력하면 안됩니다.")
         }
-
-        val cars: MutableList<Car> = ArrayList()
-        for (name in carNames) {
-            cars.add(Car(name))
-        }
-        this.cars = cars
+        this.cars = carNames.map { Car(it) }
     }
 
     fun race(moveStrategy: MoveStrategy) {
@@ -25,12 +18,7 @@ class Cars(carNames: List<String>) {
     }
 
     fun findWinners(): List<Car> {
-        val carMaxPosition = cars.stream()
-            .max(Car::compareTo)
-            .orElseThrow { IllegalArgumentException("Car 리스트가 비어있습니다.") }
-
-        return cars.stream()
-            .filter { car -> car.isSamePosition(carMaxPosition) }
-            .collect(Collectors.toList())
+        val carMaxPosition = cars.maxOrNull() ?: throw IllegalArgumentException("Car 리스트가 비어있습니다.")
+        return cars.filter { car -> car.isSamePosition(carMaxPosition) }
     }
 }

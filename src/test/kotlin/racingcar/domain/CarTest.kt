@@ -1,23 +1,22 @@
 package racingcar.domain
 
+import io.kotest.matchers.throwable.shouldHaveMessage
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class CarTest {
 
     @Test
     fun nameOverFiveLength() {
-        assertThatThrownBy { Car("123456") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("이름은 5글자를 초과할 수 없습니다.")
+        assertThrows<IllegalArgumentException> { Car("123456") }
+            .shouldHaveMessage("이름은 5글자를 초과할 수 없습니다.")
     }
 
     @Test
     fun nameIsBlank() {
-        assertThatThrownBy { Car("   ") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("공백을 입력하면 안 됩니다.")
+        assertThrows<IllegalArgumentException> { Car("   ") }
+            .shouldHaveMessage("공백을 입력하면 안 됩니다.")
     }
 
     @Test

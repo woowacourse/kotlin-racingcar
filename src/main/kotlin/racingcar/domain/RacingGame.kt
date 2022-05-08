@@ -6,9 +6,7 @@ class RacingGame(carNames: List<String>, private val totalRounds: Int, private v
     private var currentRound = 0;
 
     init {
-        if (totalRounds <= 0) {
-            throw IllegalArgumentException("양수를 입력해야 합니다.")
-        }
+        require(totalRounds > 0) {"양수를 입력해야 합니다."}
         this.cars = Cars(carNames)
     }
 

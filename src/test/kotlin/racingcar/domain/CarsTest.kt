@@ -1,17 +1,16 @@
 package racingcar.domain
 
-import org.assertj.core.api.Assertions
+import io.kotest.matchers.throwable.shouldHaveMessage
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import java.util.stream.Collectors
+import org.junit.jupiter.api.assertThrows
 
 class CarsTest {
 
     @Test
     fun duplicateNames() {
-        Assertions.assertThatThrownBy { Cars(listOf("ab", "ab")) }
-            .isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("중복된 이름을 입력하면 안됩니다.")
+        assertThrows<IllegalArgumentException> { Cars(listOf("ab", "ab")) }
+            .shouldHaveMessage("중복된 이름을 입력하면 안됩니다.")
     }
 
     @Test
@@ -22,7 +21,7 @@ class CarsTest {
         cars.race(fixedMoveStrategy)
         cars.race(fixedMoveStrategy)
 
-        val winnerNames = cars.findWinners().stream().map(Car::name).collect(Collectors.toList())
+        val winnerNames = cars.findWinners().map(Car::name)
         assertThat(winnerNames).containsExactly("a")
     }
 }

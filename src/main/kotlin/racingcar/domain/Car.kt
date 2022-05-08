@@ -6,16 +6,12 @@ class Car(val name: String) : Comparable<Car> {
         private set
 
     init {
-        if (name.isBlank()) {
-            throw IllegalArgumentException("공백을 입력하면 안 됩니다.")
-        }
-        if (name.length > 5) {
-            throw IllegalArgumentException("이름은 5글자를 초과할 수 없습니다.")
-        }
+        require(name.isNotBlank()) { "공백을 입력하면 안 됩니다." }
+        require(name.length <= 5) { "이름은 5글자를 초과할 수 없습니다." }
     }
 
-    fun goOrNot(randomMoveStrategy: MoveStrategy) {
-        if (randomMoveStrategy.canGO()) go()
+    fun goOrNot(moveStrategy: MoveStrategy) {
+        if (moveStrategy.canGO()) go()
     }
 
     private fun go() {
