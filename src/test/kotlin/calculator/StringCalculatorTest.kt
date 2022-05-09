@@ -1,9 +1,9 @@
 package calculator
 
 import org.assertj.core.api.Assertions.assertThat
-import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 internal class StringCalculatorTest {
     private val stringCalculator = StringCalculator()
@@ -11,8 +11,9 @@ internal class StringCalculatorTest {
     @Test
     @DisplayName("공백이 입력된 경우 IllegalArgumentException 예외가 발생한다.")
     fun splitAndSum_blank() {
-        assertThatIllegalArgumentException()
-            .isThrownBy { stringCalculator.calculate("") }
+        assertThrows<IllegalArgumentException> {
+            stringCalculator.calculate("")
+        }
     }
 
     @Test
@@ -26,6 +27,7 @@ internal class StringCalculatorTest {
     fun subtract() {
         assertThat(stringCalculator.calculate("6 - 3")).isEqualTo(3)
     }
+
     @Test
     @DisplayName("곱셈을 계산한다.")
     fun multiply() {

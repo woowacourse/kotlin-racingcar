@@ -1,18 +1,16 @@
 package domain.move
 
-import java.util.Random
+private const val MIN = 0
+private const val MAX = 9
+private const val MOVABLE_NUMBER_THRESHOLD = 4
 
 class RandomMove : MoveStrategy {
-
-    private val RANDOM_NUMBER_RANGE = 10
-    private val MOVABLE_NUMBER_THRESHOLD = 4
 
     override fun isMovable(): Boolean {
         return generateRandomNumber() >= MOVABLE_NUMBER_THRESHOLD
     }
 
     private fun generateRandomNumber(): Int {
-        val random = Random()
-        return random.nextInt(RANDOM_NUMBER_RANGE)
+        return (MIN..MAX).random()
     }
 }

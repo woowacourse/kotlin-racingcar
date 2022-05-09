@@ -16,8 +16,4 @@ data class Position(var position: Int = 0) : Comparable<Position> {
     override fun compareTo(other: Position): Int {
         return other.position - this.position
     }
-
-    fun value(): Int {
-        return position
-    }
 }
