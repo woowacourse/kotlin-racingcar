@@ -1,3 +1,9 @@
-class Car (val name: String) {
-    val position: Int = 0
+class Car(name: String) {
+    val name: String
+    val position = 0
+
+    init {
+        require(name.length <= 5)
+        this.name = name
+    }
 }
