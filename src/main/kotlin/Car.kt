@@ -1,9 +1,16 @@
-class Car(name: String) {
-    val name: String
-    val position = 0
+class Car(val name: String) {
+    var position = 0
+        private set
 
     init {
         require(name.length <= 5)
-        this.name = name
+    }
+
+    fun move(x: Int) {
+        if (x >= MOVABLE_BOUND) position += 1
+    }
+
+    companion object {
+        private const val MOVABLE_BOUND = 4
     }
 }
