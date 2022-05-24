@@ -1,8 +1,9 @@
 package racingcar
 
 import io.kotest.core.spec.style.AnnotationSpec
-import io.kotest.core.spec.style.Test
 import io.kotest.matchers.collections.shouldContainExactly
+import racingcar.domain.Car
+import racingcar.domain.Cars
 
 class CarsTest : AnnotationSpec() {
 
