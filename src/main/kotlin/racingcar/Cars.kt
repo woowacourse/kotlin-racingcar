@@ -7,8 +7,6 @@ class Cars(val values: List<Car>) {
     }
 
     fun moveAll() {
-        for (value in values) {
-            value.move((1..9).random())
-        }
+        values.forEach { it.move((1..9).random()) }
     }
 }
