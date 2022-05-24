@@ -2,6 +2,7 @@ package racingcar
 
 import racingcar.domain.Car
 import racingcar.domain.Cars
+import racingcar.domain.Count
 import racingcar.view.readNames
 import racingcar.view.showCarsPosition
 import racingcar.view.showCountInputMessage
@@ -13,9 +14,9 @@ class RacingGame {
         val cars = tryMakeCars()
 
         showCountInputMessage()
-        val count: Int = tryMakeCount()
+        val count: Count = tryMakeCount()
 
-        for (i in 1..count) {
+        for (i in 1..count.value) {
             cars.moveAll()
             showCarsPosition(cars)
         }
@@ -24,7 +25,7 @@ class RacingGame {
         println("${winners.joinToString { car -> car.name }}가 최종 우승했습니다.")
     }
 
-    private fun tryMakeCount(): Int {
+    private fun tryMakeCount(): Count {
         return try {
             makeCount()
         } catch (e: IllegalArgumentException) {
@@ -33,7 +34,7 @@ class RacingGame {
         }
     }
 
-    private fun makeCount() = readln().toIntOrNull() ?: throw IllegalArgumentException("1~1000 사이의 숫자를 입력해주세요.")
+    private fun makeCount() = Count(readln().toIntOrNull() ?: throw IllegalArgumentException("숫자를 입력해주세요."))
 
     private fun tryMakeCars(): Cars {
         return try {
