@@ -5,7 +5,8 @@ class Car(val name: String) {
         private set
 
     init {
-        require(name.length <= 5)
+        require(name.isNotEmpty()) { "이름은 빈 값일 수 없습니다." }
+        require(name.length <= 5) { "이름은 5자 이하로 입력하세요." }
     }
 
     fun move(x: Int) {

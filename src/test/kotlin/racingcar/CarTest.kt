@@ -23,6 +23,15 @@ class CarTest : AnnotationSpec() {
     }
 
     @Test
+    fun `자동차 이름이 빈 값일 경우 예외를 던진다`() {
+        val invalidName = ""
+
+        shouldThrow<IllegalArgumentException> {
+            Car(invalidName)
+        }
+    }
+
+    @Test
     fun `4이상인 경우 자동차의 position이 1 증가`() {
         val car = Car("json")
         car.move(4)
