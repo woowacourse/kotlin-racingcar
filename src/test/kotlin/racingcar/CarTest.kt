@@ -1,6 +1,8 @@
-import io.kotest.matchers.shouldBe
-import io.kotest.assertions.throwables.*
+package racingcar
+
+import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.AnnotationSpec
+import io.kotest.matchers.shouldBe
 
 class CarTest : AnnotationSpec() {
 
