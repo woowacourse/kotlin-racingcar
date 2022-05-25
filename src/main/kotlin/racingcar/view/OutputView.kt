@@ -1,5 +1,6 @@
 package racingcar.view
 
+import racingcar.domain.Car
 import racingcar.domain.Cars
 
 fun showNameInputMessage() {
@@ -15,4 +16,8 @@ fun showCarsPosition(cars: Cars) {
         println("${car.name} : " + "-".repeat(car.position))
     }
     println()
+}
+
+fun showWinners(winners: List<Car>) {
+    println("${winners.joinToString { car -> car.name }}가 최종 우승했습니다.")
 }

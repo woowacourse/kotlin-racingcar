@@ -3,10 +3,7 @@ package racingcar
 import racingcar.domain.Car
 import racingcar.domain.Cars
 import racingcar.domain.Count
-import racingcar.view.readNames
-import racingcar.view.showCarsPosition
-import racingcar.view.showCountInputMessage
-import racingcar.view.showNameInputMessage
+import racingcar.view.*
 
 class RacingGame {
     fun play() {
@@ -16,13 +13,17 @@ class RacingGame {
         showCountInputMessage()
         val count: Count = tryMakeCount()
 
+        val winners = playTurn(cars, count)
+
+        showWinners(winners)
+    }
+
+    private fun playTurn(cars: Cars, count: Count): List<Car> {
         for (i in 1..count.value) {
             cars.moveAll()
             showCarsPosition(cars)
         }
-
-        val winners = cars.findWinners()
-        println("${winners.joinToString { car -> car.name }}가 최종 우승했습니다.")
+        return cars.findWinners()
     }
 
     private fun tryMakeCount(): Count {
