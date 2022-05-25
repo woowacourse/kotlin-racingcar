@@ -12,5 +12,4 @@ class CountTest: AnnotationSpec() {
             Count(0)
         }
     }
-
 }

@@ -6,6 +6,7 @@ import racingcar.domain.Count
 import racingcar.view.*
 
 class RacingGame {
+
     fun play() {
         showNameInputMessage()
         val cars = tryMakeCars()
@@ -13,18 +14,21 @@ class RacingGame {
         showCountInputMessage()
         val count: Count = tryMakeCount()
 
-        val winners = playTurn(cars, count)
+        val winners = playRace(cars, count)
 
         showWinners(winners)
     }
 
-    private fun playTurn(cars: Cars, count: Count): List<Car> {
-        for (i in 1..count.value) {
-            cars.moveAll()
-            showCarsPosition(cars)
+    private fun tryMakeCars(): Cars {
+        return try {
+            makeCars()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            tryMakeCars()
         }
-        return cars.findWinners()
     }
+
+    private fun makeCars() = Cars(readNames().map { Car(it) })
 
     private fun tryMakeCount(): Count {
         return try {
@@ -37,14 +41,11 @@ class RacingGame {
 
     private fun makeCount() = Count(readln().toIntOrNull() ?: throw IllegalArgumentException("숫자를 입력해주세요."))
 
-    private fun tryMakeCars(): Cars {
-        return try {
-            makeCars()
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
-            tryMakeCars()
+    private fun playRace(cars: Cars, count: Count): List<Car> {
+        for (i in 1..count.value) {
+            cars.moveAll()
+            showCarsPosition(cars)
         }
+        return cars.findWinners()
     }
-
-    private fun makeCars() = Cars(readNames().map { Car(it) })
 }
