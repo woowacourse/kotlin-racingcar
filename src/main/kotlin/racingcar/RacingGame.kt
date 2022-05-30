@@ -42,7 +42,7 @@ class RacingGame {
     private fun makeCount() = Count(readln().toIntOrNull() ?: throw IllegalArgumentException("숫자를 입력해주세요."))
 
     private fun playRace(cars: Cars, count: Count): List<Car> {
-        for (i in 1..count.value) {
+        repeat(count.value) {
             cars.moveAll()
             showCarsPosition(cars)
         }
