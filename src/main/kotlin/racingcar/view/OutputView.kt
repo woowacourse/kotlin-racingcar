@@ -19,5 +19,5 @@ fun showCarsPosition(cars: Cars) {
 }
 
 fun showWinners(winners: List<Car>) {
-    println("${winners.joinToString { car -> car.name }}가 최종 우승했습니다.")
+    println("${winners.joinToString { it.name }}가 최종 우승했습니다.")
 }
