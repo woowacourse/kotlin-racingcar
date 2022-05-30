@@ -12,9 +12,9 @@ fun showCountInputMessage() {
 }
 
 fun showCarsPosition(cars: Cars) {
-    for (car in cars.values) {
-        println("${car.name} : " + "-".repeat(car.position))
-    }
+    println(
+        cars.values.joinToString(separator = "\n") { "${it.name} : ${"-".repeat(it.position)}" }
+    )
     println()
 }
 
