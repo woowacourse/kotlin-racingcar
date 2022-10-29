@@ -17,9 +17,7 @@ class Cars(
 
     fun moveAll() {
         for (car in cars) {
-            if (strategy.isMovable()) {
-                car.moveForward(strategy)
-            }
+            car.moveForward(strategy)
         }
     }
 

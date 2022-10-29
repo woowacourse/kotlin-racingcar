@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test
 class CarTest {
 
     @Test
-    fun 같은_위치_판별() {
+    fun `같은 위치 판별`() {
         val car1 = Car("토르", 2)
 
         assertThat(car1.isSamePosition(Position(2))).isTrue()
@@ -16,7 +16,7 @@ class CarTest {
 
     @Test
     fun 자동차_전진() {
-        val car = Car("토르, 0")
+        val car = Car("토르", 0)
 
         car.moveForward(AlwaysMoveStrategy())
 

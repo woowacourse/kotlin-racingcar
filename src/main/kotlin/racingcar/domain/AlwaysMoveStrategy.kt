@@ -2,7 +2,5 @@ package racingcar.domain
 
 class AlwaysMoveStrategy : MovingStrategy {
 
-    override fun isMovable(): Boolean {
-        return true
-    }
+    override fun isMovable(): Boolean = true
 }
