@@ -1,5 +1,6 @@
 package racingcar.domain
 
+import io.kotest.matchers.booleans.shouldBeTrue
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Assertions.*
@@ -11,7 +12,7 @@ class CarTest {
     fun `같은 위치 판별`() {
         val car1 = Car("토르", 2)
 
-        assertThat(car1.isSamePosition(Position(2))).isTrue()
+        car1.isSamePosition(Position(2)).shouldBeTrue()
     }
 
     @Test
@@ -20,6 +21,6 @@ class CarTest {
 
         car.moveForward(AlwaysMoveStrategy())
 
-        assertThat(car.isSamePosition(Position(1))).isTrue()
+        car.isSamePosition(Position(1)).shouldBeTrue()
     }
 }
