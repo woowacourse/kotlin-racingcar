@@ -1,3 +1,5 @@
+package domain
+
 class Name(
     val value: String
 ) {
