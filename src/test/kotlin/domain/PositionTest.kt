@@ -13,8 +13,7 @@ internal class PositionTest : StringSpec({
     }
 
     "위치값이 0 미만이면 예외를 발생시킨다." {
-        shouldThrow<IllegalArgumentException> {
-            Position(-1)
-        }.message should match("위치는 0 이상이어야 합니다.")
+        shouldThrow<IllegalArgumentException> { Position(-1) }
+            .message should match("위치는 0 이상이어야 합니다.")
     }
 })
