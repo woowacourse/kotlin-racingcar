@@ -3,7 +3,6 @@ package domain
 class Cars(
     val items: List<Car>
 ) {
-
     constructor(vararg names: String) : this(names.map { Car(it) })
 
     init {

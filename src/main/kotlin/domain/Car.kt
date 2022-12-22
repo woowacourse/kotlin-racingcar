@@ -1,14 +1,11 @@
 package domain
 
 class Car(
-    val name: Name,
-    var position: Position = Position()
+    val name: Name
 ) {
-
-    companion object {
-        const val MOVING_STANDARD: Int = 4
-    }
-
+    var position: Position = Position()
+        private set
+    
     constructor(name: String) : this(Name(name))
 
     fun move(generator: NumberGenerator) {
@@ -19,5 +16,9 @@ class Car(
 
     fun isSamePosition(car: Car): Boolean {
         return this.position == car.position
+    }
+
+    companion object {
+        const val MOVING_STANDARD: Int = 4
     }
 }
