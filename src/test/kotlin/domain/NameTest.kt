@@ -6,7 +6,6 @@ import io.kotest.matchers.should
 import io.kotest.matchers.string.match
 
 internal class NameTest : StringSpec({
-
     "이름이_0자_또는_6자_이상이면_예외를_발생시킨다" {
         listOf("", "123456").forEach { input: String ->
             shouldThrow<IllegalArgumentException> { Name(input) }

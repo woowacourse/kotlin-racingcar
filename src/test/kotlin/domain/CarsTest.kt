@@ -7,7 +7,6 @@ import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.match
 
 internal class CarsTest : StringSpec({
-
     "중복된 자동차 이름이 있으면 예외를 발생시킨다." {
         shouldThrow<IllegalArgumentException> { Cars("자동차", "자동차") }
             .message should match("자동차 이름은 중복될 수 없습니다.")

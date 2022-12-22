@@ -7,7 +7,6 @@ import io.kotest.matchers.should
 import io.kotest.matchers.string.match
 
 internal class PositionTest : StringSpec({
-
     "위치 객체를 생성하면 기본값은 0이다." {
         Position().value shouldBeExactly 0
     }

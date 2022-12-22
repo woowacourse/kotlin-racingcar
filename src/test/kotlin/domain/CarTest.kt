@@ -4,7 +4,6 @@ import io.kotest.core.spec.style.StringSpec
 import io.kotest.matchers.shouldBe
 
 internal class CarTest : StringSpec({
-
     "3 이하의 숫자가 생성되면 정지한다." {
         val car = Car("자동차")
 
