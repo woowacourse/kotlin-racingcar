@@ -5,7 +5,7 @@ class Car(
 ) {
     var position: Position = Position()
         private set
-    
+
     constructor(name: String) : this(Name(name))
 
     fun move(generator: NumberGenerator) {
@@ -19,6 +19,6 @@ class Car(
     }
 
     companion object {
-        const val MOVING_STANDARD: Int = 4
+        private const val MOVING_STANDARD: Int = 4
     }
 }
