@@ -1,10 +1,8 @@
 package domain
 
-class Cars(
+class Cars private constructor(
     val items: List<Car>
 ) {
-    constructor(vararg names: String) : this(names.map { Car(it) })
-
     init {
         val distinctCount = items.map { it.name }
             .distinct()
@@ -14,5 +12,9 @@ class Cars(
 
     fun move(numberGenerator: NumberGenerator) {
         items.forEach { it.move(numberGenerator) }
+    }
+
+    companion object {
+        fun fromNames(names: List<String>): Cars = Cars(names.map { Car(it) })
     }
 }
