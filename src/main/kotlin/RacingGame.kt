@@ -1,10 +1,7 @@
 import domain.Cars
 import domain.NumberGenerator
 import domain.RandomNumberGenerator
-import view.inputNames
-import view.inputTotalRound
-import view.printCarsPosition
-import view.printErrorMessage
+import view.*
 
 class RacingGame(
     private val numberGenerator: NumberGenerator = RandomNumberGenerator()
@@ -17,6 +14,7 @@ class RacingGame(
             cars.move(numberGenerator)
             printCarsPosition(cars.items)
         }
+        printWinners(cars.winners)
     }
 
     private fun createCars(): Cars {
