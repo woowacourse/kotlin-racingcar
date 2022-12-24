@@ -3,6 +3,7 @@ import domain.NumberGenerator
 import domain.RandomNumberGenerator
 import view.inputNames
 import view.inputTotalRound
+import view.printCarsPosition
 import view.printErrorMessage
 
 class RacingGame(
@@ -14,6 +15,7 @@ class RacingGame(
         var currentRound = 0
         while (currentRound++ < totalRound) {
             cars.move(numberGenerator)
+            printCarsPosition(cars.items)
         }
     }
 
