@@ -2,6 +2,7 @@ package domain
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.StringSpec
+import io.kotest.matchers.collections.shouldContainExactly
 import io.kotest.matchers.should
 import io.kotest.matchers.shouldBe
 import io.kotest.matchers.string.match
@@ -18,5 +19,16 @@ internal class CarsTest : StringSpec({
         cars.move { 4 }
 
         cars.items.forEach { it.position shouldBe Position(1) }
+    }
+
+    "우승자들을 구할 수 있다." {
+        val cars = Cars.fromNames(listOf("우승자", "그냥자동차"))
+        var index = 0
+
+        cars.move {
+            4 - index++
+        }
+
+        cars.winners.map { it.name }.toList().shouldContainExactly(Name("우승자"))
     }
 })

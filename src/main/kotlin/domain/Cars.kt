@@ -1,8 +1,16 @@
 package domain
 
+import java.util.Collections.max
+
 class Cars private constructor(
     val items: List<Car>
 ) {
+    val winners: List<Car>
+        get() {
+            val maxPosition = max(items.map { it.position })
+            return items.filter { it.isLocatedAt(maxPosition) }
+        }
+
     init {
         val distinctCount = items.map { it.name }
             .distinct()

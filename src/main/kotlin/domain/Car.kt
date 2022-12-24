@@ -18,6 +18,8 @@ class Car(
         return this.position == car.position
     }
 
+    fun isLocatedAt(position: Position): Boolean = this.position == position
+
     companion object {
         private const val MOVING_STANDARD: Int = 4
     }

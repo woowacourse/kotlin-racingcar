@@ -20,12 +20,10 @@ internal class CarTest : StringSpec({
         car.position.value shouldBe 1
     }
 
-    "자동차의 위치가 같은지 판단할 수 있다." {
-        val car1 = Car("자동차1")
-        val car2 = Car("자동차2")
-        car1.move { 4 }
-        car2.move { 4 }
+    "자동차가 특정 위치에 있는지 판단할 수 있다." {
+        val car = Car("자동차1")
+        car.move { 4 }
 
-        car1.isSamePosition(car2) shouldBe true
+        car.isLocatedAt(Position(1)) shouldBe true
     }
 })
