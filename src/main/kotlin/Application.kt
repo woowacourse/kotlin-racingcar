@@ -1,4 +1,6 @@
+import domain.RandomNumberGenerator
+
 fun main() {
-    val racingGame = RacingGame()
+    val racingGame = RacingGame(RandomNumberGenerator())
     racingGame.play()
 }

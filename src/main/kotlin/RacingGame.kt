@@ -1,10 +1,9 @@
 import domain.Cars
 import domain.NumberGenerator
-import domain.RandomNumberGenerator
 import view.*
 
 class RacingGame(
-    private val numberGenerator: NumberGenerator = RandomNumberGenerator()
+    private val numberGenerator: NumberGenerator
 ) {
     fun play() {
         val cars = createCars()
