@@ -14,10 +14,6 @@ class Car(
         }
     }
 
-    fun isSamePosition(car: Car): Boolean {
-        return this.position == car.position
-    }
-
     fun isLocatedAt(position: Position): Boolean = this.position == position
 
     companion object {
