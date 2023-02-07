@@ -1,6 +1,6 @@
 # domain
 ## Car
-- [ ] 정보를 저장한다.
+- [X] 정보를 저장한다.
 - [ ] 이름, 현재 위치
 
 ## NumberGenerator
