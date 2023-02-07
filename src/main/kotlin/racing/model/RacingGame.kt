@@ -1,4 +1,3 @@
 package racing.model
 
-class RacingGame {
-}
+class RacingGame

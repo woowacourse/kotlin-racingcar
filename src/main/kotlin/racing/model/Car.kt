@@ -1,4 +1,3 @@
 package racing.model
 
-class Car {
-}
+class Car
