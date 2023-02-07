@@ -12,4 +12,6 @@ class Car(private var name: String) {
     override fun toString(): String {
         return name + " : " + "-".repeat(position)
     }
+
+    fun getName() = name
 }
