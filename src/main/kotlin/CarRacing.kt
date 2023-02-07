@@ -5,6 +5,7 @@ class CarRacing(
     fun play() {
         val cars = initCars()
         val numberOfTry = initNumberOfTry()
+        moveCars(numberOfTry, cars)
     }
 
     private fun initCars(): List<Car> {
@@ -25,5 +26,17 @@ class CarRacing(
         inputValidator.validateIsNumeric(numberOfTry)
 
         return numberOfTry.toInt()
+    }
+
+    private fun moveCars(numberOfTry: Int, cars: List<Car>) {
+        repeat(numberOfTry) {
+            moveCar(cars)
+        }
+    }
+
+    private fun moveCar(cars: List<Car>) {
+        cars.forEach { car ->
+            car.move()
+        }
     }
 }
