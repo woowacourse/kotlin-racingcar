@@ -1,13 +1,14 @@
 # domain
 ## Car
 - [X] 정보를 저장한다.
-- [ ] 이름, 현재 위치
+  - [X] 이름, 현재 위치
+- [ ] 입력 받은 숫자가 4이상일 경우 한칸 이동
 
 ## NumberGenerator
 - [ ] RandomNumberGenerator
-- [ ] 0부터 9사이에 무작위 값을 구한 후 무작위 값이 4이상을 반환한다.
 
-## GameManager
+## RacingManager
+- [ ] 게임을 실행한다.
 - [ ] 현재 도착한 Car가 있는지 확인한다.
 
 # INPUT  
