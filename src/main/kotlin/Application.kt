@@ -5,4 +5,5 @@ import view.OutputView
 
 fun main() {
     val controller = Controller(InputView(Validator()), OutputView())
+    controller.start()
 }
