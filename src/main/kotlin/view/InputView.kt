@@ -1,8 +1,15 @@
 package view
 
-class InputView {
+import exception.Validator
 
-    fun readCarNames() {
+class InputView(
+    private val validator: Validator
+) {
+
+    fun readCarNames(): List<String> {
+        val console = System.console()
+        val input = console.readLine()
+        return validator.checkCarName(input)
     }
 
     fun readRoundCount() {

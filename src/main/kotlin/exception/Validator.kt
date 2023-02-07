@@ -1,6 +1,7 @@
 package exception
 
 class Validator {
-    fun checkCarName() {
+    fun checkCarName(input: String): List<String> {
+        return listOf()
     }
 }
