@@ -19,4 +19,17 @@ class Validator {
 
         return names
     }
+
+    fun checkRoundCount(input: String): Int {
+        val roundCount = input.toIntOrNull() ?: throw IllegalArgumentException("error")
+
+        if (roundCount <= 0) {
+            throw IllegalArgumentException("0보다 작습니다.")
+        }
+        if (roundCount > Int.MAX_VALUE) {
+            throw IllegalArgumentException("너무 숫자가 큼 ㅜㅜ")
+        }
+
+        return roundCount
+    }
 }

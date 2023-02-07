@@ -10,4 +10,10 @@ class InputView(private val validator: Validator) {
         return validator.checkCarNames(input)
     }
 
+    fun readRoundCount(): Int {
+        val input = readln()
+
+        return validator.checkRoundCount(input)
+    }
+
 }
