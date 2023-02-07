@@ -20,11 +20,20 @@ class World {
         for (i in 0 until cars.size) {
             processStep(cars[i])
         }
+        outputView.printMessage(OutputView.MSG_STEP_RESULT)
+        outputView.stepResult(cars)
     }
 
-    fun determineWinner() {
+    fun quit() {
+        outputView.winner(determineWinner())
+    }
+
+    fun determineWinner(): List<Car> {
         val sortedCars = cars.sortedWith { car, car2 -> if (car.compareTo(car2)) 1 else -1 }
+        println(sortedCars)
         val winners = sortedCars.filter { it.compareTo(sortedCars[0]) }
+        println(winners)
+        return winners
     }
 
     fun processStep(car: Car) {

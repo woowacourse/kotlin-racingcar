@@ -7,6 +7,7 @@ class OutputView {
         for (car in cars) {
             println(car.toString())
         }
+        println()
     }
 
     fun winner(winners: List<Car>) {
