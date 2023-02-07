@@ -2,7 +2,11 @@ class Car {
     private var name: String = ""
     private var position: Int = 0
 
-    public fun forward() {
+    fun forward() {
         position++
+    }
+
+    fun compareTo(car: Car): Boolean {
+        return this.position >= car.position
     }
 }

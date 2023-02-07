@@ -1,5 +1,4 @@
 class Application {
     fun main() {
-
     }
 }

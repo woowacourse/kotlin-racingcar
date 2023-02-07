@@ -14,6 +14,8 @@ class World {
     }
 
     fun determineWinner() {
+        val sortedCars = cars.sortedWith { car, car2 -> if (car.compareTo(car2)) 1 else -1 }
+        val winners = sortedCars.filter { it.compareTo(sortedCars[0]) }
     }
 
     fun processStep(car: Car) {
