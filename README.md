@@ -27,3 +27,9 @@
 - run
 
 ## Constants
+
+## Validator
+- checkName
+- checkNameSize
+- checkNameNull
+- checkNameEmpty
