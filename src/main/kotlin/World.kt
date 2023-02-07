@@ -9,6 +9,7 @@ class World {
 
     fun run() {
         for (i in 0 until cars.size) {
+            processStep(cars[i])
         }
     }
 
