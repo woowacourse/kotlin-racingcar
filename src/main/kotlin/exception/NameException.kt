@@ -2,16 +2,24 @@ package exception
 
 import message.ExceptionMessage
 
-class NameException(carNames: List<String>) {
+class NameException(carNames: String) {
     init {
-        checkNameRange(carNames)
+        checkNames(carNames)
     }
 
-    private fun checkNameRange(carNames: List<String>) {
-        carNames.forEach { name ->
-            if (name.isEmpty() || name.length > 5) {
-                throw IllegalArgumentException(ExceptionMessage.NAME_RANGE_ERROR_MASSAGE)
-            }
+    private fun checkNames(carNames: String) {
+        splitCarNames(carNames).forEach { name ->
+            checkNameRange(name)
         }
+    }
+
+    private fun checkNameRange(carName: String) {
+        if (carName.isEmpty() || carName.length > 5) {
+            throw IllegalArgumentException(ExceptionMessage.NAME_RANGE_ERROR_MASSAGE)
+        }
+    }
+
+    private fun splitCarNames(carNames: String): List<String> {
+        return carNames.split(",")
     }
 }
