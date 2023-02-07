@@ -7,3 +7,5 @@ const val OUTPUT_RESULT = "\n실행 결과"
 const val OUTPUT_WINNER = "최종 우승자: "
 
 const val STATE_UNIT = "-"
+
+const val MAX_NAME_LENGTH = 5
