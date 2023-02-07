@@ -13,4 +13,11 @@ class InputView {
 
         return br.readLine()
     }
+
+    fun inputNumberOfTry(): String {
+        bw.write("시도할 횟수는 몇 회인가요?")
+        bw.flush()
+
+        return br.readLine()
+    }
 }
