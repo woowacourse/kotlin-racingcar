@@ -22,6 +22,8 @@
 - getRandomNumber: Int
 
 ## RaceGame
-- main
+- tryMove
+- equalMaxValue
+- run
 
 ## Constants
