@@ -9,11 +9,9 @@ class OutputView {
         println(Constants.INPUT_TRY_NUMBER)
     }
 
-    fun outputResults(cars: List<Car>) {
+    fun outputResults() {
+        println()
         println(Constants.OUTPUT_RESULT)
-        for (car in cars) {
-            outputResult(car)
-        }
     }
 
     fun outputResult(car: Car) {
