@@ -8,7 +8,7 @@
 - move
 
 ## InputView
-- inputCarNames: List<String>
+- inputCarNames: List<Car>
 - inputTryNumber: Int
 
 ## OutputView
