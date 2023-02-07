@@ -1,18 +1,16 @@
 class InputView {
+    private val exceptions = Exceptions()
+
     fun carNames(): List<String> {
-        val input = readLine()
-        val names = input?.split(",")
-        if (names != null) {
-            return names
-        }
-        return listOf()
+        val input = readln()
+        val names = input.split(",")
+        exceptions.validateNames(names)
+        return names
     }
 
     fun attemptCount(): Int {
-        val input = readLine()
-        if (input != null) {
-            return input.toInt()
-        }
-        return 0
+        val input = readln()
+        exceptions.validateAttemptCount(input)
+        return input.toInt()
     }
 }
