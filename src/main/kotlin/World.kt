@@ -4,10 +4,16 @@ class World {
     val cars = mutableListOf<Car>()
     var attemptCount = 0
     val outputView = OutputView()
+    val inputView = InputView()
 
     fun init() {
         outputView.printMessage(OutputView.MSG_INPUT_CAR_NAME)
+        val names = inputView.carNames()
+        for (name in names) {
+            cars.add(Car(name))
+        }
         outputView.printMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
+        attemptCount = inputView.attemptCount()
     }
 
     fun run() {
