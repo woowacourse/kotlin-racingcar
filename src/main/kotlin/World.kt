@@ -3,8 +3,11 @@ import java.util.Random
 class World {
     val cars = mutableListOf<Car>()
     var attemptCount = 0
+    val outputView = OutputView()
 
     fun init() {
+        outputView.printMessage(OutputView.MSG_INPUT_CAR_NAME)
+        outputView.printMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
     }
 
     fun run() {
