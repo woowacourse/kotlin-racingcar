@@ -1,17 +1,19 @@
 ## 요구 사항 문서
 
 ## 입력
-- [ ] 이름을 입력 받는다.
+- [x] 이름을 입력 받는다.
 - [ ] 시도 횟수를 입력 받는다.
 
 ### 예외 처리
 #### 이름
-- [ ] 이름 1자 이상 5자 이하여야 한다.
+- [x] 이름 1자 이상 5자 이하여야 한다.
+- [x] 빈칸은 입력 할 수 없다.
 <!-- - [ ] 쉼표를 제외한 특수문자는 입력할 수 없다. -->
 
 #### 게임 시도 횟수
 - [ ] 횟수는 숫자만 입력해야 한다.
 - [ ] 횟수는 양의 정수여야 한다.
+- [ ] 빈칸은 입력 할 수 없다.
 
 ## 출력
 - [ ] 게임 시작 안내 문구를 출력한다.
@@ -28,12 +30,15 @@
 ## 구현할 기능 목록
 1. NameException 클래스
 + 이름 입력 시 발생하는 예외 처리 클래스 
-- [ ] checkNameRange - 이름이 5자 초과하는지 check 
+- [x] checkNames - 이름들이 모두 올바른지 check
+- [x] checkNameRange - 이름이 5자 초과하는지 check 
+- [x] checkEmpty - 입력된 값이 빈칸인지 check
+- [x] splitCarNames - 입력된 값 쉼표를 기준으로 split
 
 2. TryCountException 클래스
 + 게임 시도 횟수 입력 시 발생하는 예외 처리 클래스
-- [ ] checkTryCountInteger : 시도 횟수가 숫자인지 check
-- [ ] checkTryCountPositive : 시도 횟수가 양의 정수인지 check
+- [x] checkTryCountInteger : 시도 횟수가 숫자인지 check
+- [x] checkTryCountPositive : 시도 횟수가 양의 정수인지 check
 
 3. InputView 클래스
 + 게임 진행 시 발생하는 입력 처리 클래스
