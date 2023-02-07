@@ -14,4 +14,8 @@ class InputView {
         require(carName.length in 1..5) { println(ERROR_INPUT_NAME_AT_MOST_FIVE) }
         return carName
     }
+
+    fun inputRacingCount(): Int {
+        return readLine()?.toIntOrNull() ?: 0
+    }
 }
