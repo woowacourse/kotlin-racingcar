@@ -30,9 +30,7 @@ class World {
 
     fun determineWinner(): List<Car> {
         val sortedCars = cars.sortedWith { car, car2 -> if (car.compareTo(car2)) -1 else 1 }
-        println(sortedCars)
         val winners = sortedCars.filter { it.compareTo(sortedCars[0]) }
-        println(winners)
         return winners
     }
 
