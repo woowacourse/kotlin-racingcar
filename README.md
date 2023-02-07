@@ -15,6 +15,7 @@
 - outputCarNames
 - outputTryNumber
 - outputResult
+- outputResults
 - outputWinners
 
 ## RandomGenerator
@@ -22,3 +23,5 @@
 
 ## RaceGame
 - main
+
+## Constants
