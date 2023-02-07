@@ -5,7 +5,7 @@
 - [ ] 입력 받은 숫자가 4이상일 경우 한칸 이동
 
 ## NumberGenerator
-- [ ] RandomNumberGenerator
+- [X] RandomNumberGenerator
 
 ## RacingManager
 - [ ] 게임을 실행한다.
