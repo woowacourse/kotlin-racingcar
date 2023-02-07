@@ -2,7 +2,16 @@ package exception
 
 class Validator {
     fun checkCarName(input: String): List<String> {
-        return listOf()
+        val names = input.split(",")
+        for (name in names) {
+            if (name.length > 5) {
+                throw IllegalArgumentException("[ERROR] 5자를 초과할 수 없습니다.")
+            }
+            if (name.isEmpty()) {
+                throw IllegalArgumentException("[ERROR] 올바른 입력 형식이 아닙니다.")
+            }
+        }
+        return names
     }
 
     fun checkRoundCount(input: String): Int {
