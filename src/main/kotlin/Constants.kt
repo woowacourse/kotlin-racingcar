@@ -5,5 +5,7 @@ class Constants {
         const val INPUT_TRY_NUMBER = "시도할 횟수는 몇 회인가요?"
         const val OUTPUT_RESULT = "실행 결과"
         const val OUTPUT_WINNER = "최종 우승자: "
+        const val INPUT_NAME_SIZE_ERROR_MESSAGE = "자동차 이름의 길이가 5를 초괴합니다."
+        const val INPUT_NAME_NULL_ERROR_MESSAGE = "자동차 이름이 입력되지 않았습니다."
     }
 }
