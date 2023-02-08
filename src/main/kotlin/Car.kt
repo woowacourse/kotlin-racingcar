@@ -10,11 +10,7 @@ class Car(
     }
 
     fun move() {
-        val randomNumber = RacingNumberGenerator().generate()
-
-        if (randomNumber >= 4) {
-            position++
-        }
+        position++
     }
 
     fun getCar(): Pair<String, Int> {

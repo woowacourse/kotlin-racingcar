@@ -1,7 +1,3 @@
-import InputView.inputCarNames
-import InputView.inputNumberOfTry
-import OutputView.printResult
-import OutputView.printWinner
 
 class CarRacing(
     private val referee: Referee = Referee(),
@@ -17,13 +13,13 @@ class CarRacing(
     }
 
     private fun initCars(): List<Car> {
-        val names = inputCarNames().split(',')
+        val names = InputView.inputCarNames().split(',')
 
         return carGenerator.generateCars(names)
     }
 
     private fun initNumberOfTry(): Int {
-        val numberOfTry = inputNumberOfTry()
+        val numberOfTry = InputView.inputNumberOfTry()
 
         inputValidator.validateIsNumeric(numberOfTry)
 
@@ -44,10 +40,10 @@ class CarRacing(
     }
 
     private fun showWinner(cars: List<Car>) {
-        printWinner(referee.decideWinner(cars))
+        OutputView.printWinner(referee.decideWinner(cars))
     }
 
     private fun showResult(cars: List<Car>) {
-        printResult(cars)
+        OutputView.printResult(cars)
     }
 }
