@@ -5,8 +5,10 @@ import OutputView.printWinner
 
 class CarRacing(
     private val referee: Referee = Referee(),
+    private val carGenerator: CarGenerator = CarGenerator(),
     private val inputValidator: InputValidator = InputValidator()
 ) {
+
     fun play() {
         val cars = initCars()
         val numberOfTry = initNumberOfTry()
@@ -17,13 +19,7 @@ class CarRacing(
     private fun initCars(): List<Car> {
         val names = inputCarNames().split(',')
 
-        names.forEach { name ->
-            inputValidator.validateNameLength(name)
-        }
-
-        return names.map { name ->
-            Car(0, name)
-        }
+        return carGenerator.generateCars(names)
     }
 
     private fun initNumberOfTry(): Int {
