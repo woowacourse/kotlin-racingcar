@@ -1,3 +1,3 @@
 fun main() {
-    CarRacing().play()
+    CarRacingGame().play()
 }

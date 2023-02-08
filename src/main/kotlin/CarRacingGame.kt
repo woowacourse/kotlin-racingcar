@@ -1,5 +1,5 @@
 
-class CarRacing(
+class CarRacingGame(
     private val referee: Referee = Referee(),
     private val carGenerator: CarGenerator = CarGenerator(),
     private val inputValidator: InputValidator = InputValidator()
