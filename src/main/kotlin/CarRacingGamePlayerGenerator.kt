@@ -1,6 +1,6 @@
-class CarRacerGenerator {
+class CarRacingGamePlayerGenerator {
 
     fun generateCarRacers(cars: List<Car>, numberOfTry: Int) = cars.map { car ->
-        CarRacer(car, numberOfTry)
+        CarRacingGamePlayer(car, numberOfTry)
     }
 }
