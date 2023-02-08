@@ -1,7 +1,10 @@
 package racingcar.service
 
 import racingcar.model.Car
+import racingcar.utils.END_RANDOM_MOVEMENT_PROBABILITY
+import racingcar.utils.MOVEMENT_PROBABILITY
 import racingcar.utils.Random
+import racingcar.utils.START_RANDOM_MOVEMENT_PROBABILITY
 
 class RacingService {
 
@@ -14,8 +17,8 @@ class RacingService {
     }
 
     private fun isMove(): Boolean {
-        val random = Random.pickInRange(1, 10)
-        if (random < 4) {
+        val random = Random.pickInRange(START_RANDOM_MOVEMENT_PROBABILITY, END_RANDOM_MOVEMENT_PROBABILITY)
+        if (random < MOVEMENT_PROBABILITY) {
             return false
         }
         return true
