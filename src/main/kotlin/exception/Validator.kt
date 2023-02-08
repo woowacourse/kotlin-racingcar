@@ -2,7 +2,7 @@ package exception
 
 class Validator {
     fun checkCarName(input: String): List<String> {
-        val names = input.split(",")
+        val names = input.split(",").map { it.trim() }
         for (name in names) {
             if (name.length > 5) {
                 throw IllegalArgumentException(NAME_LENGTH_ERROR)
