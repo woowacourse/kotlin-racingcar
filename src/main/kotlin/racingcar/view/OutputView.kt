@@ -20,7 +20,7 @@ class OutputView {
         println(OUTPUT_RESULT_MESSAGE)
     }
 
-    fun printWinner(cars: List<String>) {
-        print(OUTPUT_WINNER_MESSAGE + cars.joinToString(", ") { it })
+    fun printWinner(carNames: List<String>) {
+        print(OUTPUT_WINNER_MESSAGE + carNames.joinToString(", ") { it })
     }
 }
