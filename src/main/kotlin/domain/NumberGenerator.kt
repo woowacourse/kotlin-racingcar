@@ -1,3 +1,5 @@
 package domain
 
-interface NumberGenerator
+interface NumberGenerator {
+    fun generate(): Int
+}
