@@ -1,31 +1,20 @@
 class RaceGame {
     private val outputView = OutputView()
     private val inputView = InputView()
-    private val randomGenerator = RandomGenerator()
-    private var maxValue = -1
 
-    private fun tryMove(cars: List<Car>) {
-        for (car in cars) {
-            car.move(randomGenerator.getRandomNumber())
-            outputView.outputResult(car)
-            if (car.getInfo().second > maxValue) maxValue = car.getInfo().second
+    private fun tryMove(cars: Cars) {
+        for (pos in 0 until cars.getCarSize()) {
+            cars.move(pos)
+            outputView.outputResult(cars.getCar(pos))
         }
     }
 
-    private fun equalMaxValue(cars: List<Car>): List<String> {
-        val maxEqualCars = cars.filter {
-            it.getInfo().second == maxValue
-        }.toList()
-        val names = mutableListOf<String>()
-        for (car in maxEqualCars) {
-            names.add(car.getInfo().first)
-        }
-        return names
+    private fun equalMaxValue(cars: Cars): List<String> {
+        return cars.findWinners()
     }
 
     fun run() {
-        outputView.outputCarNames()
-        val cars = inputView.inputCarNames()
+        val cars = executeInputCarNames()
         val tryNumber = executeInputTryNumber()
         outputView.outputResults()
         for (i in 1..tryNumber) {
@@ -47,6 +36,20 @@ class RaceGame {
         } catch (e: IllegalArgumentException) {
             outputView.outputErrorMessage(e.message!!)
             return executeInputTryNumber()
+        }
+    }
+
+    private fun executeInputCarNames(): Cars {
+        outputView.outputCarNames()
+        return getInputCarNames(inputView.inputCarNames())
+    }
+    private fun getInputCarNames(cars: String?): Cars {
+        try {
+            Validator().checkName(cars)
+            return Cars(cars!!)
+        } catch (e: IllegalArgumentException) {
+            outputView.outputErrorMessage(e.message!!)
+            return executeInputCarNames()
         }
     }
 }
