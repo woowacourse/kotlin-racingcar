@@ -16,7 +16,7 @@ class Validator {
     }
 
     private fun checkNameSize(name: String) {
-        require(name.length < 5) { Constants.INPUT_NAME_SIZE_ERROR_MESSAGE }
+        require(name.split(",").size < 5) { Constants.INPUT_NAME_SIZE_ERROR_MESSAGE }
     }
 
     private fun checkNameEmpty(name: String) {
