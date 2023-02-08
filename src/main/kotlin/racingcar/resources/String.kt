@@ -4,6 +4,7 @@ package racingcar.resources
 
 // FOR OUTPUT VIEW
 const val OUTPUT_RESULT_MESSAGE = "실행 결과"
+const val OUTPUT_WINNER_MESSAGE = "최종 우승자: "
 
 // FOR INPUT VIEW
 const val INPUT_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)"

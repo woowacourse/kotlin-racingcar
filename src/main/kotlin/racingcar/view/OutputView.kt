@@ -2,6 +2,7 @@ package racingcar.view
 
 import racingcar.domain.Car
 import racingcar.resources.OUTPUT_RESULT_MESSAGE
+import racingcar.resources.OUTPUT_WINNER_MESSAGE
 
 class OutputView {
     fun printCarsState(cars: List<Car>) {
@@ -16,5 +17,9 @@ class OutputView {
 
     fun printResult() {
         println(OUTPUT_RESULT_MESSAGE)
+    }
+
+    fun printWinner(cars: List<String>) {
+        print(OUTPUT_WINNER_MESSAGE + cars.joinToString(", ") { it })
     }
 }

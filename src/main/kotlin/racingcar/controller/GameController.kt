@@ -17,5 +17,6 @@ class GameController {
         while (!racingManager.checkGameIsOver()) {
             output.printCarsState(racingManager.race())
         }
+        output.printWinner(racingManager.getWinner())
     }
 }
