@@ -2,9 +2,13 @@ package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 class RacingGameTest {
-    val racingGame = RacingGame()
+    val inputView = InputView()
+    val outputView = OutputView()
+    val racingGame = RacingGame(inputView, outputView)
 
     @Test
     fun `전진하는 경우`() {
