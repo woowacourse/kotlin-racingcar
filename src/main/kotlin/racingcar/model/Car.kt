@@ -11,7 +11,6 @@ class Car(private var name: String) {
     }
 
     fun compareTo(car: Car): Boolean {
-        exception.validateCompareTo(car)
         return this.position >= car.position
     }
 

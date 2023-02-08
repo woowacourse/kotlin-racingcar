@@ -12,7 +12,6 @@ class WorldExceptions {
     }
 
     fun validateProcessStep(car: Car, number: Int) {
-        checkNotNull(car) { "자동차 객체는 null이 아니어야 합니다." }
         require(number in 0..9) { "생성된 임의 숫자는 0에서 9사이어야 합니다." }
     }
 }
