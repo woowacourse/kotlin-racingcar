@@ -1,6 +1,7 @@
 package domain
 
-class Car(val name: String, val moveCount: Int) {
+class Car(val name: String, private var moveCount: Int) {
     fun move() {
+        moveCount++
     }
 }
