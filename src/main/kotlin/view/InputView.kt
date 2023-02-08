@@ -7,7 +7,6 @@ import exception.TryCountException
 class InputView {
     fun inputName(): String {
         val carNames = readLine()
-        NullException(carNames)
         NameException(carNames!!)
         return carNames
     }

@@ -4,11 +4,13 @@ import message.ExceptionMessage
 
 class NameException(carNames: String) {
     init {
+        NullException(carNames)
         checkNames(carNames)
     }
 
     private fun checkNames(carNames: String) {
         splitCarNames(carNames).forEach { name ->
+            NullException(name)
             checkNameRange(name)
         }
     }
