@@ -1,6 +1,9 @@
 package racingcar
 
+import racingcar.exceptions.CarExceptions
+
 class Car(private var name: String) {
+    val exception = CarExceptions()
     private var position: Int = 0
 
     fun forward() {
@@ -8,6 +11,7 @@ class Car(private var name: String) {
     }
 
     fun compareTo(car: Car): Boolean {
+        exception.validateCompareTo(car)
         return this.position >= car.position
     }
 
