@@ -2,6 +2,7 @@ package racingcar.view
 
 import racingcar.resources.ERROR_INPUT_NAME_AT_MOST_FIVE
 import racingcar.resources.INPUT_CAR_NAMES
+import racingcar.resources.INPUT_COUNT
 
 class InputView {
     fun inputCarNames(): List<String> {
@@ -16,6 +17,7 @@ class InputView {
     }
 
     fun inputRacingCount(): Int {
+        println(INPUT_COUNT)
         return readLine()?.toIntOrNull() ?: 0
     }
 }
