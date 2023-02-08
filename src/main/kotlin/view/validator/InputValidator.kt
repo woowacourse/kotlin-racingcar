@@ -7,7 +7,7 @@ import common.CAR_NAMES_SIZE_ERROR
 object InputValidator {
     fun validateCarNames(names: String) {
         val carNames = names.split(",").map { it.trim() }
-        require(carNames.size != carNames.distinct().size) {
+        require(carNames.size == carNames.distinct().size) {
             CAR_NAMES_DISTINCT_ERROR
         }
         require(carNames.size in 2..20) {
