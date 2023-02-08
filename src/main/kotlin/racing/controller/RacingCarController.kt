@@ -3,6 +3,7 @@ package racing.controller
 import racing.model.Car
 import racing.model.RacingGame
 import racing.view.InputView
+import racing.view.OutputView
 
 class RacingCarController {
 
@@ -18,5 +19,15 @@ class RacingCarController {
         println("시도할 횟수는 몇 회인가요?")
         maxMoveCount = InputView.inputCount()
         racingGame.initRacing(cars)
+        startRacing()
+    }
+
+    private fun startRacing() {
+        println("실행 결과")
+        repeat(maxMoveCount) {
+            racingGame.move()
+            OutputView.printCurrentPosition(racingGame.getCars())
+        }
+        OutputView.printWinners(racingGame.getWinners())
     }
 }
