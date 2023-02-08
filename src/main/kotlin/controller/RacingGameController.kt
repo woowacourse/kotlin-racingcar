@@ -23,14 +23,24 @@ class RacingGameController {
     }
 
     fun getCarNames() {
-        outputView.printCar()
-        val carsName = racingCarGameService.splitCarNames(inputView.inputName())
-        carsInfo = racingCarGameService.initCarInfo(carsName)
+        try {
+            outputView.printCar()
+            val carsName = racingCarGameService.splitCarNames(inputView.inputName())
+            carsInfo = racingCarGameService.initCarInfo(carsName)
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+            getCarNames()
+        }
     }
 
     fun getTryCount() {
-        outputView.printTryCount()
-        tryCount = inputView.inputTryCount().toInt()
+        try {
+            outputView.printTryCount()
+            tryCount = inputView.inputTryCount().toInt()
+        } catch (e: IllegalArgumentException) {
+            e.printStackTrace()
+            getTryCount()
+        }
     }
 
     fun playRound() {
