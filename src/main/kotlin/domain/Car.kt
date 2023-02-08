@@ -2,6 +2,7 @@ package domain
 
 import data.ComparisonResult
 import dto.CarMetadataDTO
+import dto.RaceResultDTO
 
 class Car(
     private val generator: NumberGenerator,
@@ -9,9 +10,10 @@ class Car(
     private var distance: Int = 0
 ) {
 
-    fun race() {
+    fun race(): RaceResultDTO {
         val number = generator.generate()
         if (checkGo(number)) go()
+        return RaceResultDTO(getRaceResult())
     }
 
     fun compare(winnerDistance: Int): CarMetadataDTO {
@@ -33,6 +35,10 @@ class Car(
 
     private fun go() {
         distance++
+    }
+
+    private fun getRaceResult(): String {
+        return "$name : ${"-".repeat(distance)}"
     }
 
     companion object {
