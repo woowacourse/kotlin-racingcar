@@ -1,7 +1,5 @@
 package domain
 
 class RandomNumberGenerator : CarNumberGenerator {
-    override fun generate(): Int {
-        return 0
-    }
+    override fun generate() = (0..9).random()
 }
