@@ -33,9 +33,7 @@ class World {
 
     fun run() {
         outputView.printMessage(OutputView.MSG_STEP_RESULT)
-        racingManager.run {
-            outputView.stepResult(it)
-        }
+        outputView.stepResult(racingManager.run())
     }
 
     fun quit() {

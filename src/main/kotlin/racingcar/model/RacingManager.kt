@@ -25,17 +25,19 @@ class RacingManager {
         return sortedCars.filter { it.compareTo(sortedCars[0]) }
     }
 
-    fun run(output: (car: List<Car>) -> Unit) {
+    fun run(): String {
+        val result = mutableListOf<String>()
         for (i in 0 until attemptCount) {
-            attempt(output)
+            result.add(attempt())
         }
+        return result.joinToString("\n\n")
     }
 
-    private fun attempt(output: (car: List<Car>) -> Unit) {
+    private fun attempt(): String {
         for (i in 0 until cars.size) {
             processStep(i, Util.generateRandom())
         }
-        output(cars)
+        return cars.joinToString("\n") { it.toString() }
     }
 
     fun processStep(index: Int, number: Int) {

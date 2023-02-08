@@ -7,10 +7,8 @@ class OutputView {
         println(message)
     }
 
-    fun stepResult(cars: List<Car>) {
-        for (car in cars) {
-            println(car.toString())
-        }
+    fun stepResult(result: String) {
+        println(result)
         println()
     }
 
