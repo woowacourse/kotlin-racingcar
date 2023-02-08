@@ -10,6 +10,9 @@ class RacingCar(
         movingState += 1
     }
 
+    fun getName(): String = this.name
+    fun getMovingState(): Int = this.movingState
+
     fun getStateProgress(): String {
         var value = ""
         for (i in 0 until movingState) {

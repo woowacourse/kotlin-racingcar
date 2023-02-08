@@ -26,7 +26,7 @@ class OutputView {
         println()
     }
 
-    fun printWinner() {
-        println(OUTPUT_WINNER)
+    fun printWinner(winner: List<String>) {
+        println("$OUTPUT_WINNER${winner.joinToString(separator = ", ")}")
     }
 }

@@ -21,7 +21,20 @@ class RacingGame(
             playRound(cars)
         }
 
-        outputView.printWinner()
+        outputView.printWinner(getWinner(cars))
+    }
+
+    fun getWinner(cars: List<RacingCar>): List<String> {
+        val sortedCars = cars.sortedByDescending {
+            it.getMovingState()
+        }
+        val maxState = sortedCars[0].getMovingState()
+
+        return sortedCars.filter {
+            it.getMovingState() == maxState
+        }.map {
+            it.getName()
+        }
     }
 
     fun playRound(cars: MutableList<RacingCar>) {
