@@ -9,7 +9,7 @@ class InputView {
         return cars.toList()
     }
 
-    fun inputTryNumber(): Int {
-        return readLine()!!.toInt()
+    fun inputTryNumber(): String? {
+        return readLine()
     }
 }
