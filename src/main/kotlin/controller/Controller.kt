@@ -14,13 +14,9 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
     }
 
     private fun initializeCars(): List<Car> {
-        val cars = mutableListOf<Car>()
         outputView.printCarNamesPrompt()
-        val names = RepeatInputProcess.repeat { inputView.readCarNames() } as List<String>
-        for (name in names) {
-            cars.add(Car(name, 0))
-        }
-        return cars
+        val names = RepeatInputProcess.repeat { inputView.readCarNames() } as List<*>
+        return names.map { Car(it as String, 0) }
     }
 
     private fun initializeRoundCount(): Int {
@@ -39,9 +35,12 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
     private fun playOneRound(cars: List<Car>) {
         val generator = RandomNumberGenerator()
         for (car in cars) {
-            val number = generator.generate()
-            if (number >= MIN_MOVE_NUMBER) car.move()
+            tryMove(car, generator.generate())
         }
+    }
+
+    private fun tryMove(car: Car, number: Int) {
+        if (number >= MIN_MOVE_NUMBER) car.move()
     }
 
     private fun finishGame(cars: List<Car>) {
