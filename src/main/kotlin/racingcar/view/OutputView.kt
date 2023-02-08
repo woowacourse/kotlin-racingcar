@@ -27,8 +27,9 @@ class OutputView {
 
     private fun formatWinner(winners: List<Car>, index: Int, formattedString: StringBuilder) {
         formattedString.append(winners[index].getName())
-        if (index < winners.size - 1)
+        if (index < winners.size - 1) {
             formattedString.append(", ")
+        }
     }
 
     companion object {
