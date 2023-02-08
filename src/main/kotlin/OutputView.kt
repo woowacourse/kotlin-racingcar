@@ -14,6 +14,10 @@ class OutputView {
         println(Constants.OUTPUT_RESULT)
     }
 
+    fun outputErrorMessage(error: String) {
+        println(error)
+    }
+
     fun outputResult(car: Car) {
         val carInfo = car.getInfo()
         print(carInfo.first + " : ")
