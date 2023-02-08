@@ -1,4 +1,4 @@
-class InputValidator {
+object InputValidator {
 
     fun validateIsNumeric(numberOfTry: String) {
         require(numberOfTry.isNumeric()) {

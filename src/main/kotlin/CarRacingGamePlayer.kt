@@ -3,13 +3,14 @@ class CarRacingGamePlayer(
     private val numberOfTry: Int
 ) {
 
-    private fun moveCar(): List<PathState> {
+    fun moveCar(): CarPath {
         val path = mutableListOf<PathState>()
+
         repeat(numberOfTry) {
             path.add(drive())
         }
 
-        return path.toList()
+        return CarPath(car.getName(), path)
     }
 
     private fun drive(): PathState {

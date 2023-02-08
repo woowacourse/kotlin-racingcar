@@ -13,7 +13,7 @@ class Car(
         position++
     }
 
-    fun getCar(): Pair<String, Int> {
-        return Pair(name, position)
+    fun getName(): String {
+        return name
     }
 }
