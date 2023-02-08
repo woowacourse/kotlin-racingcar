@@ -12,7 +12,6 @@ const val INPUT_COUNT = "시도할 횟수는 몇 회인가요?"
 
 // FOR ERROR MESSAGE
 private const val ERROR_MESSAGE_PREFIX = "[ERROR] "
-const val ERROR_INPUT_NAME_AT_MOST_FIVE = ERROR_MESSAGE_PREFIX + "자동차 이름은 5자를 초과할 수 없습니다."
 const val ERROR_INPUT_COUNT = ERROR_MESSAGE_PREFIX + "숫자는 0부터 9까지만 입력할 수 있습니다."
 const val ERROR_RACING_COUNT_AT_MOST_ONE = ERROR_MESSAGE_PREFIX + "경주 횟수는 1 이상이어야 합니다."
 const val ERROR_NAME_LENGTH_FROM_ONE_TO_FIVE = ERROR_MESSAGE_PREFIX + "자동차 이름은 1~5자 사이어야 합니다."
