@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.exceptions.WorldExceptions
 import java.util.Random
 
 class World {
@@ -7,6 +8,7 @@ class World {
     var attemptCount = 0
     val outputView = OutputView()
     val inputView = InputView()
+    val exceptions = WorldExceptions()
 
     fun init() {
         outputView.printMessage(OutputView.MSG_INPUT_CAR_NAME)
@@ -14,8 +16,10 @@ class World {
         for (name in names) {
             cars.add(Car(name))
         }
+        exceptions.validateCarCount(cars)
         outputView.printMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
         attemptCount = inputView.attemptCount()
+        exceptions.validateAttemptCount(attemptCount)
     }
 
     fun run() {
