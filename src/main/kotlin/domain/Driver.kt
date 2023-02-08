@@ -2,10 +2,10 @@ package domain
 
 import util.DriverDecision
 
-class Driver {
+class Driver(private val numberGenerator: NumberGenerator) {
 
-    fun decideGoAndStop(randomNum: Int): DriverDecision {
-        if (randomNum > BOUNDARY) {
+    fun decideMovement(): DriverDecision {
+        if (numberGenerator.generate() > BOUNDARY) {
             return DriverDecision.GO
         }
         return DriverDecision.STOP
