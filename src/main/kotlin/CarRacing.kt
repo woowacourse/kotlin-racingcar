@@ -1,6 +1,7 @@
 class CarRacing(
     private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView(),
+    private val referee: Referee = Referee(),
     private val inputValidator: InputValidator = InputValidator()
 ) {
     fun play() {
@@ -43,18 +44,8 @@ class CarRacing(
         }
     }
 
-    private fun getWinner(cars: List<Car>): List<Car> {
-        val carRacers = cars.sortedByDescending { car ->
-            car.getCar().second
-        }
-        val winner = cars.filter { car ->
-            car.getCar().second == carRacers[0].getCar().second
-        }
-        return winner
-    }
-
     private fun showWinner(cars: List<Car>) {
-        outputView.printWinner(getWinner(cars))
+        outputView.printWinner(referee.decideWinner(cars))
     }
 
     private fun showResult(cars: List<Car>) {
