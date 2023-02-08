@@ -9,7 +9,7 @@
 
 ## InputView
 - inputCarNames: List<Car>
-- inputTryNumber: Int
+- inputTryNumber: String?
 
 ## OutputView
 - outputCarNames
@@ -17,6 +17,7 @@
 - outputResult
 - outputResults
 - outputWinners
+- outputErrorMessage
 
 ## RandomGenerator
 - getRandomNumber: Int
@@ -25,6 +26,8 @@
 - tryMove
 - equalMaxValue
 - run
+- executeInputTryNumber
+- getInputTryNumber
 
 ## Constants
 
@@ -33,3 +36,6 @@
 - checkNameSize
 - checkNameNull
 - checkNameEmpty
+- checkTryNumber
+- checkTryNumberNull
+- checkTryNumberIsRight
