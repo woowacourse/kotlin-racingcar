@@ -1,6 +1,6 @@
 package util
 
-enum class DriverDecision {
-    GO,
-    STOP;
+enum class DriverDecision(val distance: String) {
+    GO("-"),
+    STOP("");
 }
