@@ -11,23 +11,23 @@ class Validator {
         checkTryNumberIsRight(name)
     }
 
-    fun checkNameNull(name: String?) {
+    private fun checkNameNull(name: String?) {
         require(name != null) { Constants.INPUT_NAME_NULL_ERROR_MESSAGE }
     }
 
-    fun checkNameSize(name: String) {
+    private fun checkNameSize(name: String) {
         require(name.length < 5) { Constants.INPUT_NAME_SIZE_ERROR_MESSAGE }
     }
 
-    fun checkNameEmpty(name: String) {
+    private fun checkNameEmpty(name: String) {
         require(name != "") { Constants.INPUT_NAME_NULL_ERROR_MESSAGE }
     }
 
-    fun checkTryNumberNull(number: String?) {
+    private fun checkTryNumberNull(number: String?) {
         require(number != null) { Constants.INPUT_TRY_NUMBER_NULL_ERROR_MESSAGE }
     }
 
-    fun checkTryNumberIsRight(number: String?) {
+    private fun checkTryNumberIsRight(number: String?) {
         try {
             number!!.toInt()
         } catch (e: NumberFormatException) {
