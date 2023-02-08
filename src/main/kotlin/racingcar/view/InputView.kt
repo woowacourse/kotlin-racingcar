@@ -23,7 +23,7 @@ class InputView {
         }
     }
 
-    fun getTrialNumber(): Int {
+    fun getMovingCount(): Int {
         val input = readLine()?.trim()
 
         if (!input.isNullOrBlank()) {
