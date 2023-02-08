@@ -1,5 +1,7 @@
 package view
 
+import domain.Car
+
 class OutputView {
 
     fun printCarNamesPrompt() {
@@ -17,7 +19,11 @@ class OutputView {
     fun printWinners() {
     }
 
-    fun printRoundResult() {
+    fun printRoundResult(cars: List<Car>) {
+        cars.forEach {
+            println("${it.name} : ${"-".repeat(it.getMoveCount())}")
+        }
+        println()
     }
 
     fun printCarStatus() {

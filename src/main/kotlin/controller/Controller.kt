@@ -25,8 +25,10 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
     }
 
     private fun playGame() {
+        outputView.printRoundResultMessage()
         repeat(roundCount) {
             playOneRound()
+            outputView.printRoundResult(cars)
         }
     }
 
