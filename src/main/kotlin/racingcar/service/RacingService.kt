@@ -1,7 +1,7 @@
 package racingcar.service
 
 import racingcar.model.Car
-import kotlin.random.Random
+import racingcar.utils.Random
 
 class RacingService {
 
@@ -14,7 +14,7 @@ class RacingService {
     }
 
     private fun isMove(): Boolean {
-        val random = Random.nextInt(10)
+        val random = Random.pickInRange(1, 10)
         if (random < 4) {
             return false
         }
