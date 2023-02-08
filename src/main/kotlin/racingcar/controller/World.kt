@@ -3,9 +3,9 @@ package racingcar.controller
 import racingcar.Util
 import racingcar.exceptions.WorldExceptions
 import racingcar.model.Car
+import racingcar.model.RacingManager
 import racingcar.view.InputView
 import racingcar.view.OutputView
-import java.util.Random
 
 class World {
     val cars = mutableListOf<Car>()
@@ -13,6 +13,7 @@ class World {
     private val outputView = OutputView()
     private val inputView = InputView()
     private val exceptions = WorldExceptions()
+    private val racingManager = RacingManager()
 
     fun init() {
         initCar()
@@ -46,29 +47,13 @@ class World {
 
     private fun attempt() {
         for (i in 0 until cars.size) {
-            processStep(cars[i], generateRandom())
+            racingManager.processStep(cars[i], Util.generateRandom())
         }
         outputView.printMessage(OutputView.MSG_STEP_RESULT)
         outputView.stepResult(cars)
     }
 
     fun quit() {
-        outputView.winner(determineWinner())
-    }
-
-    fun determineWinner(): List<Car> {
-        val sortedCars = cars.sortedWith { car, car2 -> if (car.compareTo(car2)) -1 else 1 }
-        return sortedCars.filter { it.compareTo(sortedCars[0]) }
-    }
-
-    fun processStep(car: Car, number: Int) {
-        exceptions.validateProcessStep(car, number)
-        if (number >= 4) {
-            car.forward()
-        }
-    }
-
-    private fun generateRandom(): Int {
-        return Random().nextInt(10)
+        outputView.winner(racingManager.determineWinner(cars))
     }
 }

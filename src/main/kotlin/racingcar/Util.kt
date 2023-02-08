@@ -1,5 +1,7 @@
 package racingcar
 
+import java.util.Random
+
 class Util {
     companion object {
         fun tryAndRerun(fn: () -> Unit) {
@@ -15,6 +17,10 @@ class Util {
                 }
                 break
             }
+        }
+
+        fun generateRandom(): Int {
+            return Random().nextInt(10)
         }
     }
 }
