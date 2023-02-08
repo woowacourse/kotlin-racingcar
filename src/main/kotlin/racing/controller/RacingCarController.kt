@@ -1,3 +1,22 @@
 package racing.controller
 
-class RacingCarController
+import racing.model.Car
+import racing.model.RacingGame
+import racing.view.InputView
+
+class RacingCarController {
+
+    private val racingGame = RacingGame()
+    private var maxMoveCount = 0
+
+    fun initRace() {
+        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+        val cars = mutableListOf<Car>()
+        for (carName in InputView.inputCarNames()) {
+            cars.add(Car(carName))
+        }
+        println("시도할 횟수는 몇 회인가요?")
+        maxMoveCount = InputView.inputCount()
+        racingGame.initRacing(cars)
+    }
+}
