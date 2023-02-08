@@ -7,5 +7,7 @@ class Constants {
         const val OUTPUT_WINNER = "최종 우승자: "
         const val INPUT_NAME_SIZE_ERROR_MESSAGE = "자동차 이름의 길이가 5를 초괴합니다."
         const val INPUT_NAME_NULL_ERROR_MESSAGE = "자동차 이름이 입력되지 않았습니다."
+        const val INPUT_TRY_NUMBER_NULL_ERROR_MESSAGE = "시도할 횟수가 입력되지 않았습니다."
+        const val INPUT_TRY_NUMBER_RIGHT_ERROR_MESSAGE = "시도할 횟수가 올바르게 입력되지 않았습니다."
     }
 }
