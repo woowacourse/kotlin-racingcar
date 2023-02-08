@@ -10,6 +10,7 @@ class OutputView {
         cars.forEach { car ->
             println("$car : ${car.getPositionAsDash()}")
         }
+        println()
     }
 
     fun printWinners(winners: List<Car>) = println(WINNER_NOTIFICATION_MESSAGE + winners.joinToString(", "))
