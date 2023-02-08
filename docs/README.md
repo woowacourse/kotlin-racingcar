@@ -47,8 +47,8 @@
 
 4. OutputView 클래스
 + 게임 진행 시 출력 처리 클래스
-- [ ] printGameStart : 게임 시작 안내 문구를 출력한다
-- [ ] printTryCount : 시도 횟수 안내 문구를 출력한다
+- [x] printCar : 차 이름 입력 안내 문구를 출력한다
+- [x] printTryCount : 시도 횟수 안내 문구를 출력한다
 - [ ] printRoundResult : 라운드 결과를 출력한다
 - [ ] printWinner : 최종 우승자를 출력한다
 
