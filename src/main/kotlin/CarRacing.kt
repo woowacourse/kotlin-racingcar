@@ -7,6 +7,7 @@ class CarRacing(
         val cars = initCars()
         val numberOfTry = initNumberOfTry()
         moveCars(numberOfTry, cars)
+        showWinner(cars)
     }
 
     private fun initCars(): List<Car> {
@@ -40,6 +41,20 @@ class CarRacing(
         cars.forEach { car ->
             car.move()
         }
+    }
+
+    private fun getWinner(cars: List<Car>): List<Car> {
+        val carRacers = cars.sortedByDescending { car ->
+            car.getCar().second
+        }
+        val winner = cars.filter { car ->
+            car.getCar().second == carRacers[0].getCar().second
+        }
+        return winner
+    }
+
+    private fun showWinner(cars: List<Car>) {
+        outputView.printWinner(getWinner(cars))
     }
 
     private fun showResult(cars: List<Car>) {
