@@ -11,7 +11,7 @@ object InputView {
             UserInputValidator.validateUserCarNameBlank(carName)
         }
 
-        return userInput
+        return carNames
     }
 
     fun inputCount(): Int {
