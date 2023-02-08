@@ -2,8 +2,8 @@ package racing.view
 
 import racing.validators.UserInputValidator
 
-class InputView {
-    fun inputCarNames(): String {
+object InputView {
+    fun inputCarNames(): List<String> {
         val userInput = readLine()
         val carNames = userInput!!.split(",")
         for (carName in carNames) {

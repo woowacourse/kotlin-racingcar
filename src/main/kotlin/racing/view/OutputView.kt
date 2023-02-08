@@ -2,13 +2,7 @@ package racing.view
 
 import racing.model.Car
 
-class OutputView {
-    fun printResult(cars: List<Car>, maxMoveCount: Int) {
-        println("실행 결과")
-        repeat(maxMoveCount) {
-            printCurrentPosition(cars)
-        }
-    }
+object OutputView {
 
     private fun printCurrentPosition(cars: List<Car>) {
         for (car in cars) {
