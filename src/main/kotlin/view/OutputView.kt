@@ -33,4 +33,8 @@ class OutputView {
     fun printWinner(winners: List<String>) {
         println(WINNER + winners.joinToString(SEPARATOR))
     }
+
+    fun printErrorMessage(message: String) {
+        println(message)
+    }
 }
