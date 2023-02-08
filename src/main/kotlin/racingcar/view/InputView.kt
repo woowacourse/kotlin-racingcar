@@ -5,7 +5,7 @@ import racingcar.constant.ERROR_WRONG_NUMBER
 import racingcar.domain.Validator
 
 class InputView {
-    fun getCarsName() {
+    fun getCarsName(): List<String> {
         val input = readLine()?.trim()
 
         if (!input.isNullOrBlank()) {
@@ -13,6 +13,8 @@ class InputView {
         } else {
             throw IllegalArgumentException(ERROR_NAME_LENGTH)
         }
+
+        return input.split(",")
     }
 
     fun checkNameLength(value: List<String>) {
