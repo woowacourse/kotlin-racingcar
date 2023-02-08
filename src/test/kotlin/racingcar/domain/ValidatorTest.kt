@@ -12,4 +12,12 @@ class ValidatorTest {
             Validator.isNameLengthInRange(input),
         ).isFalse
     }
+
+    @ValueSource(strings = ["", "a", "0d9", "-1"])
+    @ParameterizedTest
+    fun `숫자가 올바르지 않은 경우 오류 발생`(input: String) {
+        assertThat(
+            Validator.isNumber(input),
+        ).isFalse
+    }
 }
