@@ -1,6 +1,6 @@
-package racingcar
+package racingcar.exceptions
 
-class Exceptions {
+class InputViewExceptions {
     fun validateNames(names: List<String>) {
         require(names.isNotEmpty())
         require(names.all { it.length <= 5 })

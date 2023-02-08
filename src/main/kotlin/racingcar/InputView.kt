@@ -1,7 +1,9 @@
 package racingcar
 
+import racingcar.exceptions.InputViewExceptions
+
 class InputView {
-    private val exceptions = Exceptions()
+    private val exceptions = InputViewExceptions()
 
     fun carNames(): List<String> {
         val input = readln()
