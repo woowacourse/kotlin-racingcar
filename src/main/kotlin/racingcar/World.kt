@@ -41,6 +41,7 @@ class World {
     }
 
     fun processStep(car: Car, number: Int) {
+        exceptions.validateProcessStep(car, number)
         if (number >= 4) {
             car.forward()
         }
