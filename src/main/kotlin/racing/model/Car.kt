@@ -7,6 +7,8 @@ class Car(private val name: String) {
 
     fun getPosition() = position
 
+    fun getName() = name
+
     fun move() {
         val randomNumber = numberGenerator.generate()
         if (checkMove(randomNumber)) position++
