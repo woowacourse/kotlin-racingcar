@@ -8,6 +8,7 @@ const val OUTPUT_WINNER = "최종 우승자: "
 
 const val STATE_UNIT = "-"
 
+const val STANDARD_MOVING = 4
 const val MAX_NAME_LENGTH = 5
 
 const val ERROR_NAME_LENGTH = "이름의 길이가 올바르지 않습니다."
