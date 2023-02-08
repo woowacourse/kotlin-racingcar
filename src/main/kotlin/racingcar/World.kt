@@ -11,15 +11,20 @@ class World {
     val exceptions = WorldExceptions()
 
     fun init() {
-        outputView.printMessage(OutputView.MSG_INPUT_CAR_NAME)
-        val names = inputView.carNames()
-        for (name in names) {
-            cars.add(Car(name))
+        Util.tryAndRerun {
+            outputView.printMessage(OutputView.MSG_INPUT_CAR_NAME)
+            val names = inputView.carNames()
+            for (name in names) {
+                cars.add(Car(name))
+            }
+            exceptions.validateCarCount(cars)
         }
-        exceptions.validateCarCount(cars)
-        outputView.printMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
-        attemptCount = inputView.attemptCount()
-        exceptions.validateAttemptCount(attemptCount)
+
+        Util.tryAndRerun {
+            outputView.printMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
+            attemptCount = inputView.attemptCount()
+            exceptions.validateAttemptCount(attemptCount)
+        }
     }
 
     fun run() {
