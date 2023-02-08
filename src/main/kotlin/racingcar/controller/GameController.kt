@@ -24,7 +24,8 @@ class GameController {
     private fun startGame() {
         output.printResult()
         while (!racingManager.checkGameIsOver()) {
-            output.printCarsState(racingManager.race())
+            racingManager.race()
+            output.printCarsState(racingManager.getCarNames(), racingManager.getCarLocations())
         }
     }
 

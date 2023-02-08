@@ -15,6 +15,14 @@ class RacingManager(
         return cars
     }
 
+    fun getCarNames(): List<String> {
+        return cars.map { it.name }
+    }
+
+    fun getCarLocations(): List<Int> {
+        return cars.map { it.location }
+    }
+
     fun setGame(carNames: List<String>, racingCount: Int) {
         this.cars = carNames.map { Car(it) }
         this.racingCount = racingCount

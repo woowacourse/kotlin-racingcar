@@ -1,18 +1,19 @@
 package racingcar.view
 
-import racingcar.domain.Car
 import racingcar.resources.OUTPUT_RESULT_MESSAGE
 import racingcar.resources.OUTPUT_WINNER_MESSAGE
 
 class OutputView {
-    fun printCarsState(cars: List<Car>) {
-        cars.forEach { car -> printCarState(car) }
+    fun printCarsState(carNames: List<String>, carLocations: List<Int>) {
+        carNames.forEachIndexed { index, carName ->
+            printCarState(carName, carLocations[index])
+        }
         println()
     }
 
-    private fun printCarState(car: Car) {
-        print("${car.name} : ")
-        println("-".repeat(car.location))
+    private fun printCarState(carName: String, carLocation: Int) {
+        print("$carName : ")
+        println("-".repeat(carLocation))
     }
 
     fun printResult() {
