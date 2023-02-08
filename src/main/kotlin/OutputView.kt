@@ -2,9 +2,10 @@ import View.bw
 
 object OutputView {
 
-    fun printResult(cars: List<Car>) {
-        cars.forEach { car ->
-            bw.write(car.getCar().first + " : " + "-".repeat(car.getCar().second) + "\n")
+    fun printResult(carsPath: List<CarPath>, numberOfTry: Int) {
+
+        carsPath.forEach { carPath ->
+            bw.write(carPath.carName + " : " + carPath.path.subList(0,numberOfTry).joinToString("") + "\n")
             bw.flush()
         }
         println()
@@ -12,7 +13,7 @@ object OutputView {
 
     fun printWinner(cars: List<Car>) {
         cars.forEach { car ->
-            bw.write(car.getCar().first + ", ")
+            bw.write(car.getName() + ", ")
             bw.flush()
         }
     }

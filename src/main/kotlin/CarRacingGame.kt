@@ -5,8 +5,11 @@ class CarRacingGame(
 ) {
 
     fun play() {
-        val players = initPlayers()
-        val result = startDriving(players)
+        val cars = initCars()
+        val numberOfTry = initNumberOfTry()
+        val players = initPlayers(cars, numberOfTry)
+        val carsPath = startDriving(players)
+        showResult(carsPath, numberOfTry)
     }
 
     private fun initCars(): List<Car> {
@@ -23,28 +26,32 @@ class CarRacingGame(
         return numberOfTry.toInt()
     }
 
-    private fun initPlayers(): List<CarRacingGamePlayer> {
-        val cars = initCars()
-        val numberOfTry = initNumberOfTry()
+    private fun initPlayers(cars: List<Car>, numberOfTry: Int): List<CarRacingGamePlayer> {
 
         return carRacingGamePlayerGenerator.generateCarRacers(cars, numberOfTry)
     }
 
     private fun startDriving(players: List<CarRacingGamePlayer>): List<CarPath> {
-        val carPath = mutableListOf<CarPath>()
+        val carsPath = mutableListOf<CarPath>()
 
         players.forEach { player ->
-            carPath.add(player.moveCar())
+            carsPath.add(player.moveCar())
         }
 
-        return carPath.toList()
+        return carsPath.toList()
     }
 
     private fun showWinner(cars: List<Car>) {
         OutputView.printWinner(referee.decideWinner(cars))
     }
 
-    private fun showResult(cars: List<Car>) {
-        OutputView.printResult(cars)
+    private fun showPath(carsPath: List<CarPath>, numberOfTry: Int) {
+        repeat(numberOfTry) { number ->
+            OutputView.printResult(carsPath, number)
+        }
+    }
+
+    private fun showResult(carsPath: List<CarPath>, numberOfTry: Int) {
+        showPath(carsPath, numberOfTry)
     }
 }
