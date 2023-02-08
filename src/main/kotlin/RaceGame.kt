@@ -35,12 +35,12 @@ class RaceGame {
         outputView.outputWinners(equalMaxValue(cars))
     }
 
-    fun executeInputTryNumber(): Int {
+    private fun executeInputTryNumber(): Int {
         outputView.outputTryNumber()
         return getInputTryNumber(inputView.inputTryNumber())
     }
 
-    fun getInputTryNumber(number: String?): Int {
+    private fun getInputTryNumber(number: String?): Int {
         try {
             Validator().checkTryNumber(number)
             return number!!.toInt()
