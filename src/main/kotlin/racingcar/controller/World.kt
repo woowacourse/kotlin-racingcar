@@ -15,6 +15,11 @@ class World {
     private val exceptions = WorldExceptions()
 
     fun init() {
+        initCar()
+        initAttemptCount()
+    }
+
+    private fun initCar() {
         Util.tryAndRerun {
             outputView.printMessage(OutputView.MSG_INPUT_CAR_NAME)
             val names = inputView.carNames()
@@ -23,7 +28,9 @@ class World {
             }
             exceptions.validateCarCount(cars)
         }
+    }
 
+    private fun initAttemptCount() {
         Util.tryAndRerun {
             outputView.printMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
             attemptCount = inputView.attemptCount()
