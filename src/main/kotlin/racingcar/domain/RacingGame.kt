@@ -1,3 +1,6 @@
 package racingcar.domain
 
-class RacingGame
+class RacingGame {
+    fun runGame() {
+    }
+}
