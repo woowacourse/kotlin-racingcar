@@ -4,14 +4,22 @@ class Validator {
     fun checkCarName(input: String): List<String> {
         val names = input.split(",").map { it.trim() }
         for (name in names) {
-            if (name.length > MAX_NAME_LENGTH) {
-                throw IllegalArgumentException(NAME_LENGTH_ERROR)
-            }
-            if (name.isEmpty()) {
-                throw IllegalArgumentException(INVALID_NAME_ERROR)
-            }
+            checkCarNameLength(name)
+            checkInvalidateCarName(name)
         }
         return names
+    }
+
+    private fun checkCarNameLength(name: String) {
+        if (name.length > MAX_NAME_LENGTH) {
+            throw IllegalArgumentException(NAME_LENGTH_ERROR)
+        }
+    }
+
+    private fun checkInvalidateCarName(name: String) {
+        if (name.isEmpty()) {
+            throw IllegalArgumentException(INVALID_NAME_ERROR)
+        }
     }
 
     fun checkRoundCount(input: String): Int {
