@@ -22,4 +22,21 @@ class RacingCarTest {
             car.toString(),
         )
     }
+
+    @Test
+    fun `전진 정도에 따른 객체 비교 테스트`() {
+        val other = RacingCar("other")
+        moveCar(other, 2)
+        moveCar(car, 1)
+        assertEquals(
+            -1,
+            car.compareTo(other),
+        )
+    }
+
+    private fun moveCar(car: RacingCar, count: Int) {
+        for (i in 0 until count) {
+            car.moveForward()
+        }
+    }
 }

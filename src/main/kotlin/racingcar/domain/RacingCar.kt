@@ -16,7 +16,6 @@ class RacingCar(
             value += STATE_UNIT
         }
         return value
-        // TODO: test code 작성
     }
 
     override fun toString(): String = "$name : ${getStateProgress()}"
