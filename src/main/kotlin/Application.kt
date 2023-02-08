@@ -1,2 +1,3 @@
 fun main() {
+    CarRacing().play()
 }
