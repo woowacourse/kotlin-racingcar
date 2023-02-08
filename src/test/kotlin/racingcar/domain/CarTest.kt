@@ -9,6 +9,12 @@ import java.lang.IllegalArgumentException
 
 internal class CarTest {
     @Test
+    fun `Car 객체의 이름은 1자 이상 5자 이하만 가능`() {
+        assertThrows<IllegalArgumentException> { Car("") }
+        assertThrows<IllegalArgumentException> { Car("123456") }
+    }
+
+    @Test
     fun `Car 객체 생성이 잘 되는지 확인`() {
         val car = Car("hihi")
         assertThat(car.name).isEqualTo("hihi")
