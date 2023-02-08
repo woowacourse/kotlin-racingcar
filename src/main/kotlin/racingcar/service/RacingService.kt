@@ -20,4 +20,9 @@ class RacingService {
         }
         return true
     }
+
+    fun getWinners(cars: List<Car>): List<Car> {
+        val winnerStandard = cars.max()
+        return cars.filter { it == winnerStandard }
+    }
 }
