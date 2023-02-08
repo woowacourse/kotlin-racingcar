@@ -1,11 +1,6 @@
-import java.io.BufferedReader
-import java.io.BufferedWriter
-import java.io.InputStreamReader
-import java.io.OutputStreamWriter
+import View.bw
 
-class OutputView {
-    private val br = BufferedReader(InputStreamReader(System.`in`))
-    private val bw = BufferedWriter(OutputStreamWriter(System.`out`))
+object OutputView {
 
     fun printResult(cars: List<Car>) {
         cars.forEach { car ->
