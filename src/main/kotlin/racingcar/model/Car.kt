@@ -24,4 +24,6 @@ class Car(
         result = 31 * result + position
         return result
     }
+
+    fun getPositionAsDash() = "-".repeat(position)
 }
