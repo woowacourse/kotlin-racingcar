@@ -1,50 +1,25 @@
 package racingcar
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class WorldTest {
 
     @Test
-    fun getCars() {
-    }
-
-    @Test
-    fun getAttemptCount() {
-    }
-
-    @Test
-    fun setAttemptCount() {
-    }
-
-    @Test
-    fun getOutputView() {
-    }
-
-    @Test
-    fun getInputView() {
-    }
-
-    @Test
-    fun init() {
-    }
-
-    @Test
-    fun run() {
-    }
-
-    @Test
-    fun quit() {
-    }
-
-    @Test
     fun determineWinner() {
-    }
+        val world = World()
+        world.cars.add(Car("test1"))
+        world.cars.add(Car("test2"))
+        world.cars.add(Car("test3"))
 
-    @Test
-    fun processStep() {
-    }
+        world.processStep(world.cars[0], 3)
+        world.processStep(world.cars[1], 4)
+        world.processStep(world.cars[2], 7)
+        world.processStep(world.cars[0], 2)
+        world.processStep(world.cars[1], 1)
+        world.processStep(world.cars[2], 4)
 
-    @Test
-    fun generateRandom() {
+        val winners = world.determineWinner()
+        assertThat(winners).isEqualTo(listOf(world.cars[2]))
     }
 }

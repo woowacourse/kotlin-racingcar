@@ -20,7 +20,7 @@ class World {
 
     fun run() {
         for (i in 0 until cars.size) {
-            processStep(cars[i])
+            processStep(cars[i], generateRandom())
         }
         outputView.printMessage(OutputView.MSG_STEP_RESULT)
         outputView.stepResult(cars)
@@ -36,8 +36,7 @@ class World {
         return winners
     }
 
-    fun processStep(car: Car) {
-        val number = generateRandom()
+    fun processStep(car: Car, number: Int) {
         if (number >= 4) {
             car.forward()
         }
