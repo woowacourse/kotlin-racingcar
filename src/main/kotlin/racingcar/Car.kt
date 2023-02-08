@@ -1,3 +1,5 @@
+package racingcar
+
 class Car(private var name: String) {
     private var position: Int = 0
 

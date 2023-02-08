@@ -1,3 +1,5 @@
+package racingcar
+
 class Exceptions {
     fun validateNames(names: List<String>) {
         require(names.isNotEmpty())

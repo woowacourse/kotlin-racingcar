@@ -1,3 +1,5 @@
+package racingcar
+
 class InputView {
     private val exceptions = Exceptions()
 

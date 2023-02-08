@@ -1,3 +1,5 @@
+package racingcar
+
 class OutputView {
     fun printMessage(message: String) {
         println(message)
