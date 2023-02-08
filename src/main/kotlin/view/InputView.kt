@@ -1,11 +1,13 @@
 package view
 
 import exception.NameException
+import exception.NullException
 
 class InputView {
-    fun inputName(): String? {
+    fun inputName(): String {
         val carNames = readLine()
-        NameException(carNames)
+        NullException(carNames)
+        NameException(carNames!!)
         return carNames
     }
 }

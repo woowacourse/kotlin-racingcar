@@ -42,8 +42,8 @@
 
 3. InputView 클래스
 + 게임 진행 시 발생하는 입력 처리 클래스
-- [ ] inputName : 이름을 입력 받는다 
-- [ ] inputTryCount : 시도 횟수를 입력 받는다
+- [x] inputName : 이름을 입력 받는다 
+- [x] inputTryCount : 시도 횟수를 입력 받는다
 
 4. OutputView 클래스
 + 게임 진행 시 출력 처리 클래스

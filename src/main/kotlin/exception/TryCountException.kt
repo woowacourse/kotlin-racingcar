@@ -2,15 +2,15 @@ package exception
 
 import message.ExceptionMessage
 
-class TryCountException(tryCount: String) {
+class TryCountException(tryCount: String?) {
     init {
         checkTryCountInteger(tryCount)
-        checkTryCountPositive(tryCount)
+        checkTryCountPositive(tryCount!!)
     }
 
-    private fun checkTryCountInteger(tryCount: String) {
+    private fun checkTryCountInteger(tryCount: String?) {
         try {
-            tryCount.toInt()
+            tryCount!!.toInt()
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException(ExceptionMessage.TRY_COUNT_INTEGER_ERROR_MESSAGE)
         }
