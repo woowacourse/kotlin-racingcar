@@ -3,7 +3,12 @@ class Validator {
     fun checkName(name: String?) {
         checkNameNull(name)
         checkNameEmpty(name!!)
-        checkNameSize(name!!)
+        checkNameSize(name)
+    }
+
+    fun checkTryNumber(name: String?) {
+        checkTryNumberNull(name)
+        checkTryNumberIsRight(name)
     }
 
     fun checkNameNull(name: String?) {
@@ -16,5 +21,17 @@ class Validator {
 
     fun checkNameEmpty(name: String) {
         require(name != "") { Constants.INPUT_NAME_NULL_ERROR_MESSAGE }
+    }
+
+    fun checkTryNumberNull(number: String?) {
+        require(number != null) { Constants.INPUT_TRY_NUMBER_NULL_ERROR_MESSAGE }
+    }
+
+    fun checkTryNumberIsRight(number: String?) {
+        try {
+            number!!.toInt()
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException(Constants.INPUT_TRY_NUMBER_RIGHT_ERROR_MESSAGE)
+        }
     }
 }
