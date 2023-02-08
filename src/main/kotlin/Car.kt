@@ -1,4 +1,4 @@
-class Car(private val name: String, private var position: Int) {
+class Car(private val name: String, private var position: Int = 0) {
 
     init {
         Validator().checkName(name)
