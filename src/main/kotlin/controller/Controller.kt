@@ -12,6 +12,7 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
     fun start() {
         initializeGame()
         playGame()
+        finishGame()
     }
 
     private fun initializeGame() {
@@ -41,5 +42,6 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
     }
 
     private fun finishGame() {
+        outputView.printWinners(cars)
     }
 }

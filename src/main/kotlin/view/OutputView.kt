@@ -16,9 +16,6 @@ class OutputView {
         println("실행 결과")
     }
 
-    fun printWinners() {
-    }
-
     fun printRoundResult(cars: List<Car>) {
         cars.forEach {
             println("${it.name} : ${"-".repeat(it.getMoveCount())}")
@@ -26,6 +23,16 @@ class OutputView {
         println()
     }
 
-    fun printCarStatus() {
+    fun printWinners(cars: List<Car>) {
+        val counts = mutableListOf<Int>()
+
+        cars.forEach {
+            counts.add(it.getMoveCount())
+        }
+        val maxCount = counts.max()
+        val winners = cars.filter {
+            it.getMoveCount() == maxCount
+        }
+        println("최종 우승자: ${winners.joinToString(", ") { it.name }}")
     }
 }
