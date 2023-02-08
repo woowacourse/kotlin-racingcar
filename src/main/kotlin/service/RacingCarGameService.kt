@@ -25,4 +25,17 @@ class RacingCarGameService {
     }
 
     fun moveForward(isPossibleMove: Boolean): Int = if (isPossibleMove) 1 else 0
+
+    fun getWinner(carsInfo: List<Car>): List<String> {
+        val winners = mutableListOf<String>()
+        val sortedCarsInfo = carsInfo.sortedByDescending { car -> car.position }
+        val maximum = sortedCarsInfo[0].position
+        val winnersCarInfo = sortedCarsInfo.filter { car -> car.position == maximum }
+
+        winnersCarInfo.forEach { car ->
+            winners.add(car.name)
+        }
+
+        return winners.toList()
+    }
 }
