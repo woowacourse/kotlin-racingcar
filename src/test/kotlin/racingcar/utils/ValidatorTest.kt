@@ -30,4 +30,20 @@ internal class ValidatorTest {
             validator.checkCarNames(input)
         }
     }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1", Int.MAX_VALUE.toString(), "5", "6"])
+    fun `시도 횟수 해피 테스트`(input: String) {
+        assertDoesNotThrow {
+            validator.checkRoundCount(input)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["0", (Int.MAX_VALUE.toLong() + 1).toString(), "-1", "*", "", "otter", "buna"])
+    fun `시도 횟수 예외 테스트`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            validator.checkRoundCount(input)
+        }
+    }
 }
