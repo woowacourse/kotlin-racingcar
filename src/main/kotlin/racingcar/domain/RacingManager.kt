@@ -7,6 +7,7 @@ class RacingManager(
 ) {
     private lateinit var cars: List<Car>
     private var racingCount = 0
+
     fun race(): List<Car> {
         require(racingCount > 0) { ERROR_RACING_COUNT_AT_MOST_ONE }
         racingCount--

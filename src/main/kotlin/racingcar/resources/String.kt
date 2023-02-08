@@ -3,6 +3,7 @@ package racingcar.resources
 // FOR MENU RECOMMEND LOGIC
 
 // FOR OUTPUT VIEW
+const val OUTPUT_RESULT_MESSAGE = "실행 결과"
 
 // FOR INPUT VIEW
 const val INPUT_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)"
