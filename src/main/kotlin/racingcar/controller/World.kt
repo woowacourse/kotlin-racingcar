@@ -1,6 +1,10 @@
-package racingcar
+package racingcar.controller
 
+import racingcar.Util
 import racingcar.exceptions.WorldExceptions
+import racingcar.model.Car
+import racingcar.view.InputView
+import racingcar.view.OutputView
 import java.util.Random
 
 class World {

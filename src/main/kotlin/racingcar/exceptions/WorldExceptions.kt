@@ -1,6 +1,6 @@
 package racingcar.exceptions
 
-import racingcar.Car
+import racingcar.model.Car
 
 class WorldExceptions {
     fun validateCarCount(cars: List<Car>) {

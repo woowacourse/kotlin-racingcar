@@ -1,5 +1,7 @@
 package racingcar
 
+import racingcar.controller.World
+
 fun main() {
     try {
         val world = World()
