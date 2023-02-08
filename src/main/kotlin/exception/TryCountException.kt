@@ -17,7 +17,7 @@ class TryCountException(tryCount: String?) {
     }
 
     private fun checkTryCountPositive(tryCount: String) {
-        if (tryCount.toInt() < 0)
+        if (tryCount.toInt() <= 0)
             throw IllegalArgumentException(ExceptionMessage.TRY_COUNT_POSITIVE_ERROR_MESSAGE)
     }
 }
