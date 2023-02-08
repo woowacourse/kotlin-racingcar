@@ -8,7 +8,8 @@ class Car(private val name: String) {
     fun getPosition() = position
 
     fun move() {
-        position++
+        val randomNumber = numberGenerator.generate()
+        if (checkMove(randomNumber)) position++
     }
 
     private fun checkMove(randomNumber: Int) = randomNumber >= CAN_MOVE_MINIMUM
