@@ -4,7 +4,7 @@ class Car(
 ) {
 
     fun move() {
-        val randomNumber = Dice().roll()
+        val randomNumber = RacingNumberGenerator().generate()
 
         if (randomNumber >= 4) {
             position++
