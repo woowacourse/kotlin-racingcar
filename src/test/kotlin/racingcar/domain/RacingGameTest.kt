@@ -2,13 +2,15 @@ package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racingcar.domain.numbergenerator.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingGameTest {
     val inputView = InputView()
     val outputView = OutputView()
-    val racingGame = RacingGame(inputView, outputView)
+    val generator = RandomNumberGenerator()
+    val racingGame = RacingGame(inputView, outputView, generator)
 
     @Test
     fun `전진하는 경우`() {
