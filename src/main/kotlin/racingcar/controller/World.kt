@@ -39,6 +39,12 @@ class World {
     }
 
     fun run() {
+        for (i in 0 until attemptCount) {
+            attempt()
+        }
+    }
+
+    private fun attempt() {
         for (i in 0 until cars.size) {
             processStep(cars[i], generateRandom())
         }
