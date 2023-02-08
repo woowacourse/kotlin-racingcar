@@ -23,17 +23,8 @@ class OutputView {
         println()
     }
 
-    fun printWinners(cars: List<Car>) {
-        val counts = mutableListOf<Int>()
-
-        cars.forEach {
-            counts.add(it.getMoveCount())
-        }
-        val maxCount = counts.max()
-        val winners = cars.filter {
-            it.getMoveCount() == maxCount
-        }
-        println(FINAL_RESULT.format(winners.joinToString(", ") { it.name }))
+    fun printWinners(winners: List<String>) {
+        println(FINAL_RESULT.format(winners.joinToString(", ")))
     }
 
     companion object {
