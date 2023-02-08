@@ -12,6 +12,7 @@ class NameException(carNames: String) {
         splitCarNames(carNames).forEach { name ->
             NullException(name)
             checkNameRange(name)
+            checkCarNameEnglishNumber(name)
         }
     }
 
@@ -23,5 +24,10 @@ class NameException(carNames: String) {
 
     private fun splitCarNames(carNames: String): List<String> {
         return carNames.split(",")
+    }
+
+    private fun checkCarNameEnglishNumber(carName: String) {
+        if (!Regex("^[a-zA-Z0-9]*\$").matches(carName))
+            throw IllegalArgumentException(ExceptionMessage.NAME_IS_ONLY_ENGLISH_AND_NUMBER)
     }
 }
