@@ -1,5 +1,6 @@
 package view.validator
 
+import common.ADVANCE_COUNT_ERROR
 import common.CAR_NAMES_DISTINCT_ERROR
 import common.CAR_NAMES_REGEX_ERROR
 import common.CAR_NAMES_SIZE_ERROR
@@ -17,4 +18,12 @@ object InputValidator {
             CAR_NAMES_REGEX_ERROR
         }
     }
+
+    fun validateAdvanceCount(count: String) {
+        require(count.isAllDigit() && count.length in 1..3 && count.toInt() in 1..100) {
+            ADVANCE_COUNT_ERROR
+        }
+    }
+
+    private fun String.isAllDigit(): Boolean = this.all { it.isDigit() }
 }
