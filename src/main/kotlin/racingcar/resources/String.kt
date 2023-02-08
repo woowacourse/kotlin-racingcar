@@ -10,3 +10,4 @@ const val INPUT_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이�
 // FOR ERROR MESSAGE
 private const val ERROR_MESSAGE_PREFIX = "[ERROR] "
 const val ERROR_INPUT_NAME_AT_MOST_FIVE = ERROR_MESSAGE_PREFIX + "자동차 이름은 5자를 초과할 수 없습니다."
+const val ERROR_INPUT_COUNT = ERROR_MESSAGE_PREFIX + "숫자는 0부터 9까지만 입력할 수 있습니다."
