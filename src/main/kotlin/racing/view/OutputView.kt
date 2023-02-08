@@ -4,7 +4,7 @@ import racing.model.Car
 
 object OutputView {
 
-    private fun printCurrentPosition(cars: List<Car>) {
+    fun printCurrentPosition(cars: List<Car>) {
         for (car in cars) {
             println("${car.getName()} : ${getDash(car.getPosition())}")
         }
