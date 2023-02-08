@@ -4,7 +4,7 @@ class Validator {
     fun checkCarName(input: String): List<String> {
         val names = input.split(",").map { it.trim() }
         for (name in names) {
-            if (name.length > 5) {
+            if (name.length > MAX_NAME_LENGTH) {
                 throw IllegalArgumentException(NAME_LENGTH_ERROR)
             }
             if (name.isEmpty()) {
@@ -26,5 +26,6 @@ class Validator {
         private const val INVALID_NAME_ERROR = "$ERROR 올바른 입력 형식이 아닙니다."
         private const val NOT_NUMBER_ERROR = "$ERROR 숫자가 아닙니다."
         private const val NEGATIVE_NUMBER_ERROR = "$ERROR 시도 횟수는 음수일 수 없습니다."
+        private const val MAX_NAME_LENGTH = 5
     }
 }
