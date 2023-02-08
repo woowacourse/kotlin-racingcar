@@ -3,7 +3,7 @@ package racingcar
 import racingcar.exceptions.CarExceptions
 
 class Car(private var name: String) {
-    val exception = CarExceptions()
+    private val exception = CarExceptions()
     private var position: Int = 0
 
     fun forward() {

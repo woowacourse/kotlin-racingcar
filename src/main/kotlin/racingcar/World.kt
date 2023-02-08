@@ -6,9 +6,9 @@ import java.util.Random
 class World {
     val cars = mutableListOf<Car>()
     var attemptCount = 0
-    val outputView = OutputView()
-    val inputView = InputView()
-    val exceptions = WorldExceptions()
+    private val outputView = OutputView()
+    private val inputView = InputView()
+    private val exceptions = WorldExceptions()
 
     fun init() {
         Util.tryAndRerun {
@@ -41,8 +41,7 @@ class World {
 
     fun determineWinner(): List<Car> {
         val sortedCars = cars.sortedWith { car, car2 -> if (car.compareTo(car2)) -1 else 1 }
-        val winners = sortedCars.filter { it.compareTo(sortedCars[0]) }
-        return winners
+        return sortedCars.filter { it.compareTo(sortedCars[0]) }
     }
 
     fun processStep(car: Car, number: Int) {
@@ -52,7 +51,7 @@ class World {
         }
     }
 
-    fun generateRandom(): Int {
+    private fun generateRandom(): Int {
         return Random().nextInt(10)
     }
 }
