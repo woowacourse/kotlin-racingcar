@@ -9,6 +9,6 @@ class InputView {
     }
 
     fun enterTryCount(): Int {
-        return (readLine() ?: throw IllegalArgumentException(INPUT_NULL)).toInt()
+        return readLine()?.toIntOrNull() ?: throw IllegalArgumentException(INPUT_NULL)
     }
 }
