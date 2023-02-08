@@ -5,9 +5,8 @@ class RacingGame {
 
     fun getCars() = cars.toList()
 
-    fun racingStart(cars: List<Car>, maxMoveCount: Int) {
+    fun initRacing(cars: List<Car>) {
         this.cars.addAll(cars)
-        move(cars)
     }
 
     fun getWinners(): List<String> {
@@ -19,7 +18,7 @@ class RacingGame {
         return result.toList()
     }
 
-    private fun move(cars: List<Car>) {
+    fun move() {
         for (car in cars) {
             car.move()
         }
