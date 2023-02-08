@@ -15,6 +15,8 @@ class Validator {
     }
 
     fun checkRoundCount(input: String): Int {
-        return input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자가 아닙니다.")
+        val num = input.toIntOrNull() ?: throw IllegalArgumentException("[ERROR] 숫자가 아닙니다.")
+        if (num < 0) throw IllegalArgumentException("[ERROR] 시도 횟수는 음수일 수 없습니다.")
+        return num
     }
 }
