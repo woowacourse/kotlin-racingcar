@@ -37,12 +37,16 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
         val generator = RandomNumberGenerator()
         for (car in cars) {
             val number = generator.generate()
-            if (number >= 4) car.move()
+            if (number >= MIN_MOVE_NUMBER) car.move()
         }
     }
 
     private fun finishGame() {
         val maxCount = cars.maxOfOrNull { it.getMoveCount() }
         outputView.printWinners(cars.filter { it.getMoveCount() == maxCount }.map { it.name })
+    }
+
+    companion object {
+        private const val MIN_MOVE_NUMBER = 4
     }
 }
