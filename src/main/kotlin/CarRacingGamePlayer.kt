@@ -10,7 +10,7 @@ class CarRacingGamePlayer(
             path.add(drive())
         }
 
-        return CarPath(car.getName(), path)
+        return CarPath(car.getCar().first, path)
     }
 
     private fun drive(): PathState {

@@ -9,7 +9,8 @@ class CarRacingGame(
         val numberOfTry = initNumberOfTry()
         val players = initPlayers(cars, numberOfTry)
         val carsPath = startDriving(players)
-        showResult(carsPath, numberOfTry)
+        showPath(carsPath, numberOfTry)
+        showWinner(cars)
     }
 
     private fun initCars(): List<Car> {
@@ -49,9 +50,5 @@ class CarRacingGame(
         repeat(numberOfTry) { number ->
             OutputView.printResult(carsPath, number)
         }
-    }
-
-    private fun showResult(carsPath: List<CarPath>, numberOfTry: Int) {
-        showPath(carsPath, numberOfTry)
     }
 }
