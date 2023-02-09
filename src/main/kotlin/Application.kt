@@ -1,5 +1,7 @@
-import domain.CarRacingGame
+import domain.CarRacingGameController
 
 fun main() {
-    CarRacingGame().play()
+    val carRacingGameController = CarRacingGameController()
+
+    carRacingGameController.startGame()
 }

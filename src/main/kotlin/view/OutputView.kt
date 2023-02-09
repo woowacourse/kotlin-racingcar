@@ -1,16 +1,15 @@
 package view
 
 import data.CarPath
-import FINAL_WINNER
-import RESULT
-import getPathMarks
-import subPath
+import util.FINAL_WINNER
+import util.getPathMarks
+import util.subPath
 import view.View.bw
 
 object OutputView {
 
-    fun printMsg() {
-        bw.write(RESULT)
+    fun printMsg(msg: String) {
+        bw.write(msg)
         bw.flush()
     }
 

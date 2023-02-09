@@ -1,5 +1,7 @@
 package data
 
+import util.CAR_NAME_ERROR_MSG
+
 class Car(
     private var position: Int,
     private val name: String
@@ -7,7 +9,7 @@ class Car(
 
     init {
         require(name.length <= 5) {
-            "[ERROR] 자동차 이름은 5자를 초과할 수 없다."
+            CAR_NAME_ERROR_MSG
         }
     }
 

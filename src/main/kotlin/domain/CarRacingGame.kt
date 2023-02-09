@@ -3,47 +3,10 @@ package domain
 import data.Car
 import data.CarPath
 import data.CarRacingGamePlayer
-import data.generator.CarGenerator
-import data.generator.CarRacingGamePlayerGenerator
-import view.InputView
-import view.OutputView
 
-class CarRacingGame(
-    private val referee: Referee = Referee(),
-    private val carGenerator: CarGenerator = CarGenerator(),
-    private val carRacingGamePlayerGenerator: CarRacingGamePlayerGenerator = CarRacingGamePlayerGenerator()
-) {
+class CarRacingGame {
 
-    fun play() {
-        val cars = initCars()
-        val numberOfTry = initNumberOfTry()
-        val players = initPlayers(cars, numberOfTry)
-        val carsPath = startDriving(players)
-
-        showPath(carsPath, numberOfTry)
-        showWinner(cars)
-    }
-
-    private fun initCars(): List<Car> {
-        val names = InputView.inputCarNames().split(',')
-
-        return carGenerator.generateCars(names)
-    }
-
-    private fun initNumberOfTry(): Int {
-        val numberOfTry = InputView.inputNumberOfTry()
-
-        InputValidator.validateIsNumeric(numberOfTry)
-
-        return numberOfTry.toInt()
-    }
-
-    private fun initPlayers(cars: List<Car>, numberOfTry: Int): List<CarRacingGamePlayer> {
-
-        return carRacingGamePlayerGenerator.generateCarRacers(cars, numberOfTry)
-    }
-
-    private fun startDriving(players: List<CarRacingGamePlayer>): List<CarPath> {
+    fun startDriving(players: List<CarRacingGamePlayer>): List<CarPath> {
         val carsPath = mutableListOf<CarPath>()
 
         players.forEach { player ->
@@ -53,15 +16,18 @@ class CarRacingGame(
         return carsPath.toList()
     }
 
-    private fun showWinner(cars: List<Car>) {
-        OutputView.printWinner(referee.decideWinner(cars))
-    }
-
-    private fun showPath(carsPath: List<CarPath>, numberOfTry: Int) {
-        OutputView.printMsg()
-
-        repeat(numberOfTry) { number ->
-            OutputView.printResult(carsPath, number)
+    fun decideWinner(cars: List<Car>): List<String> {
+        val maxScore = cars.getMaxScore()
+        val winners = cars.filter { car ->
+            car.getCar().second == maxScore
+        }.map { car ->
+            car.getCar().first
         }
+
+        return winners
     }
+
+    private fun List<Car>.getMaxScore(): Int = this.maxBy { car ->
+        car.getCar().second
+    }.getCar().second
 }

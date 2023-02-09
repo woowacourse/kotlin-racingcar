@@ -1,6 +1,6 @@
 package domain
 
-import NUMERIC_ERROR_MSG
+import util.NUMERIC_ERROR_MSG
 
 object InputValidator {
 
