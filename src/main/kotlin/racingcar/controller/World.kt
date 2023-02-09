@@ -33,12 +33,12 @@ class World {
         }
     }
 
-    fun run() {
+    private fun run() {
         outputView.printMessage(OutputView.MSG_STEP_RESULT)
         outputView.stepResult(racingManager.run())
     }
 
-    fun quit() {
+    private fun quit() {
         outputView.winner(racingManager.determineWinner())
     }
 }
