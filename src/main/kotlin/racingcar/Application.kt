@@ -6,12 +6,8 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 fun main() {
-    try {
-        val inputView = InputView()
-        val outputView = OutputView()
-        val generator = RandomNumberGenerator()
-        RacingGame(inputView, outputView, generator).runGame()
-    } catch (e: IllegalArgumentException) {
-        println(e.message)
-    }
+    val inputView = InputView()
+    val outputView = OutputView()
+    val generator = RandomNumberGenerator()
+    RacingGame(inputView, outputView, generator).runGame()
 }

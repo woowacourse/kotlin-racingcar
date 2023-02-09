@@ -5,7 +5,17 @@ import racingcar.constant.ERROR_WRONG_NUMBER
 import racingcar.domain.Validator
 
 class InputView {
-    fun getCarsName(): List<String> {
+    fun getCarsName(printInfo: () -> Unit): List<String> {
+        return try {
+            printInfo()
+            getVerifiedCarsName()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            getCarsName(printInfo)
+        }
+    }
+
+    private fun getVerifiedCarsName(): List<String> {
         val input = readLine()?.trim()
         val names: List<String>
 
@@ -27,7 +37,17 @@ class InputView {
         }
     }
 
-    fun getMovingCount(): Int {
+    fun getMovingCount(printInfo: () -> Unit): Int {
+        return try {
+            printInfo()
+            getVerifiedMovingCount()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            getMovingCount(printInfo)
+        }
+    }
+
+    private fun getVerifiedMovingCount(): Int {
         val input = readLine()?.trim()
 
         if (!input.isNullOrBlank()) {

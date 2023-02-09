@@ -51,13 +51,11 @@ class RacingGame(
     }
 
     fun getCarsName(): List<String> {
-        outputView.printGettingCarsName()
-        return inputView.getCarsName()
+        return inputView.getCarsName { outputView.printGettingCarsName() }
     }
 
     fun getMovingCount(): Int {
-        outputView.printGettingMovingCount()
-        return inputView.getMovingCount()
+        return inputView.getMovingCount { outputView.printGettingMovingCount() }
     }
 
     fun checkGoingForward(randomNumber: Int): Boolean = randomNumber >= STANDARD_MOVING
