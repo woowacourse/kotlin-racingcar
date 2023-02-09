@@ -29,14 +29,25 @@ class RacingManagerTest {
 
         racingManager.initCars(listOf("test1", "test2", "test3"))
 
-        racingManager.processStep(0, 3)
-        racingManager.processStep(1, 1)
-        racingManager.processStep(2, 7)
-        racingManager.processStep(0, 1)
-        racingManager.processStep(1, 5)
-        racingManager.processStep(2, 6)
+        racingManager.step(0, 3)
+        racingManager.step(1, 1)
+        racingManager.step(2, 7)
+        racingManager.step(0, 1)
+        racingManager.step(1, 5)
+        racingManager.step(2, 6)
 
         val winners = racingManager.determineWinner()
         assertThat(winners[0].getName()).isEqualTo("test3")
+    }
+
+    @Test
+    fun step() {
+        val racingManager = RacingManager()
+        racingManager.initCars(listOf("test1", "test2"))
+
+        assertThrows<IllegalArgumentException> {
+            racingManager.step(0, -1)
+            racingManager.step(1, 10)
+        }
     }
 }
