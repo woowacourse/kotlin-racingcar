@@ -12,14 +12,5 @@ class RacingCar(
 
     fun getName(): String = this.name
     fun getMovingState(): Int = this.movingState
-
-    fun getStateProgress(): String {
-        var value = ""
-        for (i in 0 until movingState) {
-            value += STATE_UNIT
-        }
-        return value
-    }
-
-    override fun toString(): String = "$name : ${getStateProgress()}"
+    override fun toString(): String = "$name : ${STATE_UNIT.repeat(movingState)}"
 }
