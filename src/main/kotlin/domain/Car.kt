@@ -1,6 +1,6 @@
 package domain
 
-class Car(val name: String, private var moveCount: Int) {
+class Car(private val name: String, private var moveCount: Int) {
     private fun move() {
         moveCount++
     }
@@ -11,6 +11,8 @@ class Car(val name: String, private var moveCount: Int) {
     }
 
     fun getMoveCount() = moveCount
+
+    fun getName() = name
 
     companion object {
         private const val MIN_MOVE_NUMBER = 4
