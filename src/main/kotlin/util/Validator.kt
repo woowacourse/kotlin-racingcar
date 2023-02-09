@@ -13,6 +13,7 @@ class Validator {
         checkNameNull(name)
         checkNameEmpty(name!!)
         checkNameSize(name)
+        checkNameRight(name)
     }
 
     fun checkTryNumber(name: String?) {
