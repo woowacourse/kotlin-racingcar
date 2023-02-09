@@ -13,6 +13,7 @@ class Controller(
 
     fun run() {
         setUp()
+        race()
     }
 
     private fun setUp() {
@@ -43,7 +44,19 @@ class Controller(
         }
     }
 
-    private fun race() {}
+    private fun race() {
+        outputView.printExecutionResult()
+        for (t in 0 until time) {
+            raceOneTime()
+            outputView.printInterval()
+        }
+    }
+
+    private fun raceOneTime() {
+        cars.map { car ->
+            outputView.printRaceResult(car.race())
+        }
+    }
 
     private fun announceWinners() {}
 }
