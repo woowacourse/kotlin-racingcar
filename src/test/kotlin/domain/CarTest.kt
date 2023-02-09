@@ -9,8 +9,8 @@ class CarTest {
         val generator = TestNumberGenerator(listOf(2, 4, 3, 9, 5, 0))
         val name = "pobi"
         val car = Car(generator, name)
-        val raceTraces = listOf("", "-", "-", "--", "---", "---")
-        raceTraces.map { trace -> assertThat(car.race().getResult()).isEqualTo("$name : $trace") }
+        val distances = listOf(0, 1, 1, 2, 3, 3)
+        distances.map { distance -> assertThat(car.race().getDistance()).isEqualTo(distance) }
     }
 
     class TestNumberGenerator(numbers: List<Int>) : NumberGenerator {

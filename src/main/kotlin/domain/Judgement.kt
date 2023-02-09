@@ -14,6 +14,7 @@ class Judgement(private val cars: List<Car>) {
     }
 
     private fun updateWinners(carMetadataDTO: CarMetadataDTO) {
+        check(carMetadataDTO.getComparisonResult() != ComparisonResult.NONE) { ERROR_NONE_STATE }
         if (carMetadataDTO.getComparisonResult() == ComparisonResult.LOSE) return
 
         if (carMetadataDTO.getComparisonResult() == ComparisonResult.WIN) resetWinners(carMetadataDTO.getDistance())
@@ -27,5 +28,9 @@ class Judgement(private val cars: List<Car>) {
 
     private fun addWinner(name: String) {
         winners.add(name)
+    }
+
+    companion object {
+        const val ERROR_NONE_STATE = "올바르지 않은 Comparison Result 입니다."
     }
 }

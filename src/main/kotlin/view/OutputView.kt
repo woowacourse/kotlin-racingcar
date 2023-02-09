@@ -1,6 +1,6 @@
 package view
 
-import dto.RaceResultDTO
+import dto.CarMetadataDTO
 import dto.WinnersDTO
 
 class OutputView {
@@ -8,8 +8,8 @@ class OutputView {
         println(EXECUTION_RESULT)
     }
 
-    fun printRaceResult(raceResultDTO: RaceResultDTO) {
-        println(raceResultDTO.getResult())
+    fun printRaceResult(carMetadataDTO: CarMetadataDTO) {
+        println("${carMetadataDTO.getName()} : ${"-".repeat(carMetadataDTO.getDistance())}")
     }
 
     fun printWinners(winnersDTO: WinnersDTO) {
