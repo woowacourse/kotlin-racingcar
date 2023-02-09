@@ -31,10 +31,10 @@ class RaceGame {
         return getInputTryNumber(inputView.inputTryNumber())
     }
 
-    private fun getInputTryNumber(number: String?): Int {
+    private fun getInputTryNumber(number: String): Int {
         return try {
             Validator().checkTryNumber(number)
-            number!!.toInt()
+            number.toInt()
         } catch (e: IllegalArgumentException) {
             outputView.outputErrorMessage(e.message!!)
             executeInputTryNumber()
@@ -46,12 +46,12 @@ class RaceGame {
         return getInputCarNames(inputView.inputCarNames())
     }
 
-    private fun getInputCarNames(cars: String?): Cars {
+    private fun getInputCarNames(cars: String): Cars {
         return try {
             Validator().checkNames(cars)
-            Cars(cars!!)
+            Cars(cars)
         } catch (e: IllegalArgumentException) {
-            outputView.outputErrorMessage(e.message!!)
+            outputView.outputErrorMessage(e.message ?: "에러가 발생했습니다.")
             executeInputCarNames()
         }
     }
