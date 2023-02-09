@@ -17,7 +17,7 @@ internal class ValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["sooda, buna", "sooda,buna", "   sooda,  buna  "])
-    fun `자동차 이름 검증 해피 테스트`(input: String) {
+    fun `자동차 이름 검증 노말 테스트`(input: String) {
         assertDoesNotThrow {
             validator.checkCarNames(input)
         }
@@ -33,7 +33,7 @@ internal class ValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1", Int.MAX_VALUE.toString(), "5", "6"])
-    fun `시도 횟수 해피 테스트`(input: String) {
+    fun `시도 횟수 노말 테스트`(input: String) {
         assertDoesNotThrow {
             validator.checkRoundCount(input)
         }
