@@ -15,5 +15,4 @@ class InputView(private val validator: Validator) {
 
         return validator.checkRoundCount(input)
     }
-
 }
