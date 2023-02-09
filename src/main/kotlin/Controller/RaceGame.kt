@@ -40,7 +40,7 @@ class RaceGame {
             Validator().checkTryNumber(number)
             return number!!.toInt()
         } catch (e: IllegalArgumentException) {
-            outputView.outputErrorMessage(e.message!!)
+            outputView.outputErrorMessage(e)
             return executeInputTryNumber()
         }
     }
@@ -54,7 +54,7 @@ class RaceGame {
             Validator().checkNames(cars)
             Cars(cars!!)
         } catch (e: IllegalArgumentException) {
-            outputView.outputErrorMessage(e.message!!)
+            outputView.outputErrorMessage(e)
             executeInputCarNames()
         }
     }
