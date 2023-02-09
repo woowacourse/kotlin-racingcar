@@ -46,7 +46,7 @@ class RacingManager {
     fun makeAttemptLog() = cars.joinToString("\n") { it.toString() }
 
     fun step(index: Int, number: Int) {
-        exceptions.validateStep(cars[index], number)
+        exceptions.validateStep(number)
         if (number >= 4) {
             cars[index].forward()
         }
