@@ -9,5 +9,6 @@ class Constants {
         const val INPUT_NAME_NULL_ERROR_MESSAGE = "자동차 이름이 입력되지 않았습니다."
         const val INPUT_TRY_NUMBER_NULL_ERROR_MESSAGE = "시도할 횟수가 입력되지 않았습니다."
         const val INPUT_TRY_NUMBER_RIGHT_ERROR_MESSAGE = "시도할 횟수가 올바르게 입력되지 않았습니다."
+        const val INPUT_NAME_RIGHT_ERROR_MESSAGE = "자동차 이름은 한글과 영어만 가능합니다."
     }
 }
