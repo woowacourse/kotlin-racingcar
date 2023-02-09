@@ -12,10 +12,9 @@
 - cars: List<Car>
 ### method
 - mappingCars
-- getCar
+- getCarInfo
 - getCarSize
 - move
-- findMaxPosition
 - findWinners
 
 ## InputView
@@ -35,7 +34,6 @@
 
 ## RaceGame
 - tryMove
-- equalMaxValue
 - run
 - executeInputTryNumber
 - getInputTryNumber
