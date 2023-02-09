@@ -5,14 +5,14 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import util.CarFactory
+import util.TestCarFactory
 
 internal class CarTest {
 
     @MethodSource("provideCar")
     @ParameterizedTest
     fun `차 주행 테스트`(randNum: Int, expectedDistance: String) {
-        val car = CarFactory.makeCar("세훈", randNum)
+        val car = TestCarFactory.makeCar("세훈", randNum)
 
         car.decideCarMovement()
 
@@ -22,9 +22,9 @@ internal class CarTest {
     @ValueSource(strings = ["", "실패실패실패", "성", "공성공성공"])
     @ParameterizedTest
     fun `차 이름 유효성 확인 테스트`(carName: String) {
-        var car = CarFactory.makeCar("temp", 5)
+        var car = TestCarFactory.makeCar("temp", 5)
 
-        val carException = kotlin.runCatching { car = CarFactory.makeCar(carName, 5) }.exceptionOrNull()
+        val carException = kotlin.runCatching { car = TestCarFactory.makeCar(carName, 5) }.exceptionOrNull()
 
         when (carException == null) {
             true -> testSuccessCase(car, carName)
