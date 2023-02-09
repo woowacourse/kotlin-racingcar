@@ -2,21 +2,21 @@ package exception
 
 import message.ExceptionMessage
 
-class TryCountException(tryCount: String?) {
-    init {
+class TryCountException {
+    fun checkTryCount(tryCount: String) {
         checkTryCountInteger(tryCount)
-        checkTryCountPositive(tryCount!!)
+        checkTryCountPositive(tryCount)
     }
 
-    private fun checkTryCountInteger(tryCount: String?) {
+    fun checkTryCountInteger(tryCount: String) {
         try {
-            tryCount!!.toInt()
+            tryCount.toInt()
         } catch (e: IllegalArgumentException) {
             throw IllegalArgumentException(ExceptionMessage.TRY_COUNT_INTEGER_ERROR_MESSAGE)
         }
     }
 
-    private fun checkTryCountPositive(tryCount: String) {
+    fun checkTryCountPositive(tryCount: String) {
         if (tryCount.toInt() <= 0)
             throw IllegalArgumentException(ExceptionMessage.TRY_COUNT_POSITIVE_ERROR_MESSAGE)
     }
