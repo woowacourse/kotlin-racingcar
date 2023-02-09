@@ -2,8 +2,27 @@ package racingcar.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class RacingManagerTest {
+    @Test
+    fun initCars() {
+        val racingManager = RacingManager()
+
+        assertThrows<IllegalArgumentException> {
+            racingManager.initCars(listOf())
+        }
+    }
+
+    @Test
+    fun setAttemptCount() {
+        val racingManager = RacingManager()
+
+        assertThrows<IllegalArgumentException> {
+            racingManager.setAttemptCount(0)
+        }
+    }
+
     @Test
     fun determineWinner() {
         val racingManager = RacingManager()
