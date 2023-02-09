@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class CarTest {
     @Test
-    fun forward() {
+    fun `forward와 compareTo 테스트`() {
         val car1 = Car("test1")
         val car2 = Car("test2")
         car1.forward()

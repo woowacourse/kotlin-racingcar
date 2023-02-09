@@ -6,7 +6,7 @@ import org.junit.jupiter.api.assertThrows
 
 class RacingManagerTest {
     @Test
-    fun initCars() {
+    fun `0개의 자동차로 초기화 시 예외 테스트`() {
         val racingManager = RacingManager()
 
         assertThrows<IllegalArgumentException> {
@@ -15,7 +15,7 @@ class RacingManagerTest {
     }
 
     @Test
-    fun setAttemptCount() {
+    fun `시도횟수 0으로 설정 시 예외 테스트`() {
         val racingManager = RacingManager()
 
         assertThrows<IllegalArgumentException> {
@@ -24,7 +24,7 @@ class RacingManagerTest {
     }
 
     @Test
-    fun determineWinner() {
+    fun `우승자 결정 테스트`() {
         val racingManager = RacingManager()
 
         racingManager.initCars(listOf("test1", "test2", "test3"))
@@ -41,7 +41,7 @@ class RacingManagerTest {
     }
 
     @Test
-    fun step() {
+    fun `잘못된 숫자 입력 시 전진 예외 테스트`() {
         val racingManager = RacingManager()
         racingManager.initCars(listOf("test1", "test2"))
 
@@ -52,7 +52,7 @@ class RacingManagerTest {
     }
 
     @Test
-    fun attempt() {
+    fun `racing 1회 시도 테스트`() {
         val racingManager = RacingManager()
         racingManager.initCars(listOf("test1", "test2"))
 
@@ -63,7 +63,7 @@ class RacingManagerTest {
     }
 
     @Test
-    fun run() {
+    fun `racing 전체 테스트`() {
         val racingManager = RacingManager()
         racingManager.initCars(listOf("test1", "test2"))
 
