@@ -4,6 +4,7 @@ class Validator {
 
     fun checkNames(names: String?) {
         checkNameNull(names)
+        checkNameEmpty(names!!)
         for (name in names!!.split(",")) {
             checkName(name.trim())
         }
