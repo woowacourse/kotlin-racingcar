@@ -20,15 +20,13 @@ object InputValidator {
     }
 
     fun validateAdvanceCount(count: String) {
-        require(count.isAllDigit() && count.length in 1..3 && count.toInt() in MIN_ADVANCE_COUNT_RANGE..MAX_ADVANCE_COUNT_RANGE) {
+        require(count.matches(Regex("[0-9]{1,3}")) && count.toInt() in MIN_ADVANCE_COUNT_RANGE..MAX_ADVANCE_COUNT_RANGE) {
             ADVANCE_COUNT_ERROR
         }
     }
 
-    private fun String.isAllDigit(): Boolean = this.all { it.isDigit() }
-
-    const val MIN_CAR_NAMES_SIZE = 2
-    const val MAX_CAR_NAMES_SIZE = 20
-    const val MIN_ADVANCE_COUNT_RANGE = 1
-    const val MAX_ADVANCE_COUNT_RANGE = 100
+    private const val MIN_CAR_NAMES_SIZE = 2
+    private const val MAX_CAR_NAMES_SIZE = 20
+    private const val MIN_ADVANCE_COUNT_RANGE = 1
+    private const val MAX_ADVANCE_COUNT_RANGE = 100
 }
