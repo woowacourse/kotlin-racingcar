@@ -36,7 +36,7 @@ class RacingManager {
 
     fun makeRunLog(result: List<String>) = result.joinToString("\n\n")
 
-    fun attempt(): String {
+    private fun attempt(): String {
         for (i in 0 until cars.size) {
             step(i, Util.generateRandom())
         }
