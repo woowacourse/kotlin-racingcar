@@ -1,14 +1,14 @@
 package racingcar.domain
 
 import racingcar.constant.STANDARD_OF_MOVING
-import racingcar.domain.numbergenerator.RandomNumberGenerator
+import racingcar.domain.numbergenerator.NumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingGame(
     private val inputView: InputView,
     private val outputView: OutputView,
-    private val generator: RandomNumberGenerator,
+    private val generator: NumberGenerator,
 ) {
     fun runGame() {
         val names = getCarsName()
