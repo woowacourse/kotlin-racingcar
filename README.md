@@ -7,6 +7,17 @@
 - getInfo: Pair<String, Int>
 - move
 
+## Cars
+### field
+- cars: List<Car>
+### method
+- mappingCars
+- getCar
+- getCarSize
+- move
+- findMaxPosition
+- findWinners
+
 ## InputView
 - inputCarNames: List<Car>
 - inputTryNumber: String?
@@ -28,10 +39,13 @@
 - run
 - executeInputTryNumber
 - getInputTryNumber
+- executeInputCarNames
+- getInputCarNames
 
 ## Constants
 
 ## Validator
+- checkNames
 - checkName
 - checkNameSize
 - checkNameNull
@@ -39,3 +53,4 @@
 - checkTryNumber
 - checkTryNumberNull
 - checkTryNumberIsRight
+- checkNameRight
