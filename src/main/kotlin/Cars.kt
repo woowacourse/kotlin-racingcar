@@ -1,21 +1,28 @@
 class Cars(input: String) {
     private val cars: List<Car>
-    var maxValue = -1
 
     init {
         this.cars = mappingCars(input)
     }
 
-    private fun mappingCars(input: String): List<Car> = input.split(",").mapIndexed { index, name -> Car(name) }
+    private fun mappingCars(input: String): List<Car> = input.split(",").mapIndexed { _, name -> Car(name) }
     fun getCar(position: Int): Car = cars[position]
     fun getCarSize(): Int = cars.size
 
     fun move(position: Int) {
         cars[position].move(RandomGenerator().getRandomNumber())
-        if (cars[position].getInfo().second > maxValue) maxValue = cars[position].getInfo().second
+    }
+
+    private fun findMaxPosition(): Int {
+        return cars.sortedByDescending {
+            it.getInfo().second
+        }.maxByOrNull {
+            it.getInfo().second
+        }!!.getInfo().second
     }
 
     fun findWinners(): List<String> {
+        val maxValue = findMaxPosition()
         val maxEqualCars = cars.filter {
             it.getInfo().second == maxValue
         }.toList()
