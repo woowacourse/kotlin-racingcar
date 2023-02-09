@@ -1,7 +1,7 @@
 package racingcar.model
 
 class Car(private var name: String) {
-    private var position: Int = 0
+    private var position = 0
 
     fun forward() {
         position++
