@@ -18,11 +18,9 @@ class OutputView {
 
     fun winner(winners: List<Car>) {
         var formattedString = StringBuilder()
-
         for (i in winners.indices) {
             formatWinner(winners, i, formattedString)
         }
-
         println(formattedString.toString())
     }
 
