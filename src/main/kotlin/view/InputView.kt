@@ -7,12 +7,12 @@ class InputView(
 ) {
 
     fun readCarNames(): List<String> {
-        val input = readlnOrNull() ?: ""
-        return input.let { validator.checkCarName(input) }
+        val input = readln()
+        return validator.checkCarName(input)
     }
 
     fun readRoundCount(): Int {
-        val input = readlnOrNull() ?: ""
+        val input = readln()
         return validator.checkRoundCount(input)
     }
 }
