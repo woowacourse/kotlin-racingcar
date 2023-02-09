@@ -27,8 +27,6 @@ internal class RacingServiceTest {
         }
     }
 
-    // TODO) Car 도메인에서 객체 생성시 검증
-
     @ParameterizedTest
     @MethodSource("provideCars")
     fun `최종 우승자 산출 해피 테스트`(cars: List<Car>, expectedWinnersCount: Int) {

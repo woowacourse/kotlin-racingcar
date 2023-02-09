@@ -1,9 +1,16 @@
 package racingcar.model
 
+import racingcar.utils.Validator
+
 class Car(
     private val name: String,
     private var position: Int = 0
 ) : Comparable<Car> {
+
+    init {
+        val validator = Validator()
+        validator.checkCarNameLength(name)
+    }
 
     fun move() = ++position
 

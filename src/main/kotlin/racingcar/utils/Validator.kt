@@ -30,7 +30,7 @@ class Validator {
         return roundCount
     }
 
-    private fun checkCarNameLength(name: String) {
+    fun checkCarNameLength(name: String) {
         if (name.length !in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) {
             throw IllegalArgumentException(CAR_NAME_BOUNDARY_ERROR_MESSAGE)
         }
