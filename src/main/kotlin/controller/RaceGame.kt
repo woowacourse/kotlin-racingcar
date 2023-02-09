@@ -1,4 +1,4 @@
-package Controller
+package controller
 import model.Cars
 import util.Validator
 import view.InputView
