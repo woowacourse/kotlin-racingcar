@@ -18,8 +18,8 @@ class OutputView {
         println(Constants.OUTPUT_RESULT)
     }
 
-    fun outputErrorMessage(error: String) {
-        println(error)
+    fun outputErrorMessage(error: IllegalArgumentException) {
+        println(error.message)
     }
 
     fun outputResult(car: Car) {
