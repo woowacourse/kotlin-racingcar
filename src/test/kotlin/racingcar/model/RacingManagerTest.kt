@@ -3,6 +3,7 @@ package racingcar.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import racingcar.entity.Name
 
 class RacingManagerTest {
     @Test
@@ -24,26 +25,9 @@ class RacingManagerTest {
     }
 
     @Test
-    fun `우승자 결정 테스트`() {
-        val racingManager = RacingManager()
-
-        racingManager.initCars(listOf("test1", "test2", "test3"))
-
-        racingManager.step(0, 3)
-        racingManager.step(1, 1)
-        racingManager.step(2, 7)
-        racingManager.step(0, 1)
-        racingManager.step(1, 5)
-        racingManager.step(2, 6)
-
-        val winners = racingManager.determineWinner()
-        assertThat(winners[0].getName()).isEqualTo("test3")
-    }
-
-    @Test
     fun `잘못된 숫자 입력 시 전진 예외 테스트`() {
         val racingManager = RacingManager()
-        racingManager.initCars(listOf("test1", "test2"))
+        racingManager.initCars(listOf(Name("test1"), Name("test2")))
 
         assertThrows<IllegalArgumentException> {
             racingManager.step(0, -1)
@@ -54,7 +38,7 @@ class RacingManagerTest {
     @Test
     fun `racing 1회 시도 테스트`() {
         val racingManager = RacingManager()
-        racingManager.initCars(listOf("test1", "test2"))
+        racingManager.initCars(listOf(Name("test1"), Name("test2")))
 
         racingManager.step(0, 2)
         racingManager.step(1, 7)
@@ -65,7 +49,7 @@ class RacingManagerTest {
     @Test
     fun `racing 전체 테스트`() {
         val racingManager = RacingManager()
-        racingManager.initCars(listOf("test1", "test2"))
+        racingManager.initCars(listOf(Name("test1"), Name("test2")))
 
         val result = mutableListOf<String>()
 

@@ -5,9 +5,10 @@ import racingcar.entity.Name
 import racingcar.misc.Util
 import racingcar.misc.Values
 
-class CarManager(private val cars: MutableList<Car>) {
+class CarManager() {
+    private lateinit var cars: MutableList<Car>
     fun init(names: List<Name>) {
-        cars.clear()
+        cars = mutableListOf()
         for (name in names) {
             cars.add(Car(name))
         }
@@ -19,19 +20,20 @@ class CarManager(private val cars: MutableList<Car>) {
         return sortedCars.filter { it.compareTo(sortedCars[0]) }.reversed()
     }
 
-    fun attempt(): String {
+    fun attempt() {
         for (i in 0 until cars.size) {
             step(i, Util.generateRandom())
         }
-        return makeAttemptLog()
     }
-
-    fun makeAttemptLog() = cars.joinToString("\n") { it.toString() }
 
     fun step(index: Int, number: Int) {
         require(number in Values.MIN_RANDOM_NUMBER..Values.MAX_RANDOM_NUMBER) { "생성된 임의 숫자는 0에서 9사이어야 합니다." }
         if (number >= Values.WIN_NUMBER) {
             cars[index].forward()
         }
+    }
+
+    override fun toString(): String {
+        return cars.joinToString("\n") { it.toString() }
     }
 }

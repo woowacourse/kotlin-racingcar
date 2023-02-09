@@ -11,4 +11,8 @@ class Name(private val name: String) {
     override fun toString(): String {
         return name
     }
+
+    override fun equals(other: Any?): Boolean {
+        return this.name == other.toString()
+    }
 }

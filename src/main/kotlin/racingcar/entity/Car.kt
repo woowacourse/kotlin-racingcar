@@ -11,9 +11,9 @@ class Car(private var name: Name) {
         return position.compareTo(car.position)
     }
 
-    override fun toString(): String {
-        return "$name : $position"
-    }
+    override fun toString() = "$name : $position"
+
+    override fun equals(other: Any?) = this.position == (other as Car).position && this.name == other.name
 
     fun getName() = name
 }
