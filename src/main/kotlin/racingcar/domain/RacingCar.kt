@@ -5,7 +5,7 @@ import racingcar.constant.STATE_UNIT
 class RacingCar(
     private val name: String,
     private var movingState: Int = 0,
-) : Comparable<RacingCar> {
+) {
     fun moveForward() {
         movingState += 1
     }
@@ -22,8 +22,4 @@ class RacingCar(
     }
 
     override fun toString(): String = "$name : ${getStateProgress()}"
-
-    override fun compareTo(other: RacingCar): Int {
-        return if (this.movingState >= other.movingState) 1 else -1
-    }
 }
