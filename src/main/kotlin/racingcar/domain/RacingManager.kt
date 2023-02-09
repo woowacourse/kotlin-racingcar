@@ -27,13 +27,11 @@ class RacingManager(
         this.racingCount = racingCount
     }
 
-    fun checkGameIsOver(): Boolean {
-        return racingCount == 0
-    }
+    fun isOver() = racingCount == 0
 
     fun getWinner(): List<String> {
-        return cars
-            .filter { car -> car.location == cars.maxBy { it.location }.location }
+        val maxLocation = cars.maxOf { it.location }
+        return cars.filter { car -> car.location == maxLocation }
             .map { it.name }
     }
 }

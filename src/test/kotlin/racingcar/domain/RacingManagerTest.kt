@@ -42,6 +42,6 @@ internal class RacingManagerTest {
         val racingManager = RacingManager(RandomNumberGenerator())
         racingManager.setGame(listOf("test1", "test2", "test3"), 1)
         racingManager.race()
-        assertEquals(true, racingManager.checkGameIsOver())
+        assertEquals(true, racingManager.isOver())
     }
 }
