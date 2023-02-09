@@ -1,7 +1,7 @@
 package domain
 
 class CarRacingGameManager(
-    val cars: List<Car>,
+    private val cars: List<Car>,
     private val movingStrategy: MovingStrategy
 ) {
     fun allCarsTryToMoveForward() =
