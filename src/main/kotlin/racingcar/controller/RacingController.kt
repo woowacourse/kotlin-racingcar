@@ -14,20 +14,17 @@ class RacingController(
     private val outputView: OutputView = OutputView(),
     private val racingService: RacingService = RacingService(),
 ) {
-    fun start() {
-        val carNames = readCarNames()
+    fun runRacing() {
+        val cars = readCars()
         val roundCount = readRoundCount()
-        val cars = createCars(carNames)
 
-        printRoundCountRequestMessage()
-        repeat(roundCount) {
-            moveCarsRandomly(cars)
-            printRoundResult(cars)
-        }
+        runRounds(roundCount, cars)
 
         val winners = getWinners(cars)
         printWinners(winners)
     }
+
+    private fun readCars() = createCars(readCarNames())
 
     private fun readCarNames(): List<String> {
         outputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
@@ -45,17 +42,28 @@ class RacingController(
 
     private fun printWinners(winners: List<Car>) = outputView.printWinners(winners)
 
+    private fun runRounds(roundCount: Int, cars: List<Car>) {
+        printRoundCountRequestMessage()
+        repeat(roundCount) {
+            runRound(cars)
+        }
+    }
+
+    private fun runRound(cars: List<Car>) {
+        moveCarsRandomly(cars)
+        printRoundResult(cars)
+    }
+
     private fun moveCarsRandomly(cars: List<Car>) {
         cars.forEach { car ->
             racingService.moveRandomly(car)
         }
     }
 
-    private fun createCars(carNames: List<String>): List<Car> {
-        return carNames.map { carName ->
+    private fun createCars(carNames: List<String>) =
+        carNames.map { carName ->
             racingService.createCar(carName)
         }
-    }
 
     private fun getWinners(cars: List<Car>): List<Car> = racingService.getWinners(cars)
 }

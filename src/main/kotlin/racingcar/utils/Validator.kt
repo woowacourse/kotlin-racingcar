@@ -1,29 +1,21 @@
 package racingcar.utils
 
 class Validator {
+    fun checkCarNames(names: List<String>): List<String> {
+        checkDuplicatedCarNames(names)
+        return names
+    }
 
-    fun checkCarNames(input: String): List<String> {
-        val names = input.split(CAR_NAME_DELIMITER).toMutableList()
-
-        for (i in names.indices) {
-            names[i] = names[i].trim()
-            checkCarNameLength(names[i])
-        }
-
+    private fun checkDuplicatedCarNames(names: List<String>) {
         if (names.toSet().size != names.size) {
             throw IllegalArgumentException(DUPLICATED_CAR_NAME_ERROR_MESSAGE)
         }
-
-        return names
     }
 
     fun checkRoundCount(input: String): Int {
         val roundCount = input.toIntOrNull() ?: throw IllegalArgumentException(NOT_INTEGER_TYPE_ERROR_MESSAGE)
 
-        if (roundCount < MIN_ROUND_COUNT) {
-            throw IllegalArgumentException(ROUND_COUNT_BOUNDARY_ERROR_MESSAGE)
-        }
-        if (roundCount > MAX_ROUND_COUNT) {
+        if (roundCount !in MIN_ROUND_COUNT..MAX_ROUND_COUNT) {
             throw IllegalArgumentException(ROUND_COUNT_BOUNDARY_ERROR_MESSAGE)
         }
 
