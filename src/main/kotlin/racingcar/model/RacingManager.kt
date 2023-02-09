@@ -9,6 +9,7 @@ class RacingManager {
     private var attemptCount = 0
 
     fun initCars(names: List<String>) {
+        cars.clear()
         for (name in names) {
             cars.add(Car(name))
         }
