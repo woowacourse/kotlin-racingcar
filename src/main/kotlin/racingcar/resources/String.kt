@@ -1,7 +1,5 @@
 package racingcar.resources
 
-// FOR MENU RECOMMEND LOGIC
-
 // FOR OUTPUT VIEW
 const val OUTPUT_RESULT_MESSAGE = "실행 결과"
 const val OUTPUT_WINNER_MESSAGE = "최종 우승자: "
