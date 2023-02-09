@@ -20,7 +20,7 @@ object InputValidator {
     }
 
     fun validateAdvanceCount(count: String) {
-        require(count.matches(Regex("[0-9]{1,3}")) && count.toInt() in MIN_ADVANCE_COUNT_RANGE..MAX_ADVANCE_COUNT_RANGE) {
+        require(count.matches(Regex("\\d{1,3}")) && count.toInt() in MIN_ADVANCE_COUNT_RANGE..MAX_ADVANCE_COUNT_RANGE) {
             ADVANCE_COUNT_ERROR
         }
     }
