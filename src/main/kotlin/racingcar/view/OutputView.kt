@@ -17,18 +17,7 @@ class OutputView {
     }
 
     fun winner(winners: List<Car>) {
-        val formattedString = StringBuilder()
-        for (i in winners.indices) {
-            formatWinner(winners, i, formattedString)
-        }
-        println(formattedString.toString())
-    }
-
-    private fun formatWinner(winners: List<Car>, index: Int, formattedString: StringBuilder) {
-        formattedString.append(winners[index].getName())
-        if (index < winners.size - 1) {
-            formattedString.append(", ")
-        }
+        println(winners.joinToString(", ") { it.getName() })
     }
 
     companion object {
