@@ -1,7 +1,6 @@
 package controller
 
 import model.Car
-import service.ConvertToOutputFormat
 import service.RacingCarGameService
 import view.InputView
 import view.OutputView
@@ -11,7 +10,6 @@ class RacingGameController {
     private val outputView = OutputView()
 
     private val racingCarGameService = RacingCarGameService()
-    private val convertToOutputFormat = ConvertToOutputFormat()
     private var carsInfo = listOf<Car>()
     private var tryCount = 0
 
@@ -44,9 +42,9 @@ class RacingGameController {
     }
 
     fun playRound() {
-        carsInfo = racingCarGameService.getRoundResult(carsInfo)
+        carsInfo = racingCarGameService.moveCars(carsInfo)
 
-        outputView.printRoundResult(convertToOutputFormat.convertRoundResult(carsInfo))
+        outputView.printRoundResult(racingCarGameService.getRoundResult(carsInfo))
     }
 
     fun playWholeRacing() {
@@ -55,6 +53,6 @@ class RacingGameController {
     }
 
     fun gerWinner() {
-        outputView.printWinner(convertToOutputFormat.convertWinnerResult(racingCarGameService.getWinner(carsInfo)))
+        outputView.printWinner(racingCarGameService.getWinners(racingCarGameService.getMaxPositionCars(carsInfo)))
     }
 }

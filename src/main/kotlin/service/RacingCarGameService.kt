@@ -3,7 +3,6 @@ package service
 import model.Car
 
 class RacingCarGameService {
-    fun isPossibleMove(): Boolean = RandomNumberGenerator().generate() >= 4
 
     fun splitCarNames(carNames: String): List<String> = carNames.split(",")
 
@@ -16,26 +15,33 @@ class RacingCarGameService {
         return carsInfo.toList()
     }
 
-    fun getRoundResult(carsInfo: List<Car>): List<Car> {
+    fun moveCars(carsInfo: List<Car>): List<Car> {
         carsInfo.forEach { car ->
-            car.position += moveForward(isPossibleMove())
+            car.moveForward(car.isPossibleMove())
         }
 
         return carsInfo
     }
 
-    fun moveForward(isPossibleMove: Boolean): Int = if (isPossibleMove) 1 else 0
+    fun getMaxPositionCars(carsInfo: List<Car>): List<Car> {
+        val maxCarInfo = carsInfo.maxWith(Car::compareTo)
+        return carsInfo.filter { maxCarInfo.isSamePosition(it) }
+    }
 
-    fun getWinner(carsInfo: List<Car>): List<String> {
-        val winners = mutableListOf<String>()
-        val sortedCarsInfo = carsInfo.sortedByDescending { car -> car.position }
-        val maximum = sortedCarsInfo[0].position
-        val winnersCarInfo = sortedCarsInfo.filter { car -> car.position == maximum }
-
-        winnersCarInfo.forEach { car ->
-            winners.add(car.name)
+    fun getRoundResult(carsInfo: List<Car>): String {
+        var roundResult = ""
+        carsInfo.forEach { car ->
+            roundResult += "${car.getPresentStatus()}\n"
         }
+        return roundResult
+    }
 
-        return winners.toList()
+    fun getWinners(carsInfo: List<Car>): String {
+        var winners = "최종 우승자: "
+
+        carsInfo.forEach { car ->
+            winners += "${car.getWinnerName()}, "
+        }
+        return winners.substring(0, winners.length - 2)
     }
 }
