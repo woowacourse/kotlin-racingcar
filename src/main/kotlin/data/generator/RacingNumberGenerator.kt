@@ -1,6 +1,6 @@
 package data.generator
 
-class RacingNumberGenerator : RandomNumberGenerator {
+class RacingNumberGenerator : NumberGenerator {
 
     override fun generate(): Int {
         return (0..9).random()

@@ -1,5 +1,5 @@
 package data.generator
 
-interface RandomNumberGenerator {
+interface NumberGenerator {
     fun generate(): Int
 }

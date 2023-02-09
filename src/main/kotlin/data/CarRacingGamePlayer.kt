@@ -1,10 +1,12 @@
 package data
 
+import data.generator.NumberGenerator
 import data.generator.RacingNumberGenerator
 
 class CarRacingGamePlayer(
     private val car: Car,
-    private val numberOfTry: Int
+    private val numberOfTry: Int,
+    private val numberGenerator: NumberGenerator = RacingNumberGenerator()
 ) {
 
     fun moveCar(): CarPath {
@@ -18,7 +20,7 @@ class CarRacingGamePlayer(
     }
 
     private fun drive(): PathState {
-        val randomNumber = RacingNumberGenerator().generate()
+        val randomNumber = numberGenerator.generate()
 
         if (randomNumber >= 4) {
             car.move()
