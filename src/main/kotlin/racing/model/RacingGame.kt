@@ -20,9 +20,9 @@ class RacingGame {
         return result.toList()
     }
 
-    fun moveCars(carCount: List<Int>) {
+    fun moveCars(randomNumbers: List<Int>) {
         for ((index, car) in cars.withIndex()) {
-            car.move(carCount[index])
+            car.move(randomNumbers[index])
         }
     }
 
