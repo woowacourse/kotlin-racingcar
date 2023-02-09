@@ -17,7 +17,7 @@ class RacingCarGameService {
 
     fun moveCars(carsInfo: List<Car>): List<Car> {
         carsInfo.forEach { car ->
-            car.moveForward(car.isPossibleMove())
+            car.moveForward(car.isPossibleMove(RandomNumberGenerator().generate()))
         }
 
         return carsInfo

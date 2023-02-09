@@ -1,7 +1,5 @@
 package model
 
-import service.RandomNumberGenerator
-
 class Car(private val name: String, private var position: Int) : Comparable<Car> {
     fun moveForward(isPossibleMove: Boolean) {
         if (isPossibleMove) this.position += 1
@@ -11,7 +9,7 @@ class Car(private val name: String, private var position: Int) : Comparable<Car>
         return other.position == this.position
     }
 
-    fun isPossibleMove(): Boolean = RandomNumberGenerator().generate() >= 4
+    fun isPossibleMove(number: Int): Boolean = number >= 4
 
     fun getPresentStatus(): String {
         var status = "${this.name} : "
