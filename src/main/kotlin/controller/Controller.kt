@@ -26,14 +26,14 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
 
     private fun playGame(cars: List<Car>, roundCount: Int) {
         outputView.printRoundResultMessage()
+        val generator = RandomNumberGenerator()
         repeat(roundCount) {
-            playOneRound(cars)
+            playOneRound(cars, generator)
             outputView.printRoundResult(cars)
         }
     }
 
-    private fun playOneRound(cars: List<Car>) {
-        val generator = RandomNumberGenerator()
+    private fun playOneRound(cars: List<Car>, generator: RandomNumberGenerator) {
         for (car in cars) {
             car.tryMove(generator)
         }
