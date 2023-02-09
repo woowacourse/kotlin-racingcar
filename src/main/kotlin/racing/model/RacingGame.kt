@@ -1,5 +1,7 @@
 package racing.model
 
+import racing.util.NumberGenerator
+
 class RacingGame {
     private val cars = mutableListOf<Car>()
 
@@ -22,5 +24,17 @@ class RacingGame {
         for (car in cars) {
             car.move()
         }
+    }
+
+    fun createRandomNumbers(count: Int): List<Int> {
+        val result = mutableListOf<Int>()
+        repeat(count) {
+            result.add(numberGenerator.generate())
+        }
+        return result
+    }
+
+    companion object {
+        private val numberGenerator = NumberGenerator()
     }
 }
