@@ -30,18 +30,22 @@ class RacingManager {
         for (i in 0 until attemptCount) {
             result.add(attempt())
         }
-        return result.joinToString("\n\n")
+        return makeRunLog(result)
     }
+
+    private fun makeRunLog(result: List<String>) = result.joinToString("\n\n")
 
     private fun attempt(): String {
         for (i in 0 until cars.size) {
             step(i, Util.generateRandom())
         }
-        return cars.joinToString("\n") { it.toString() }
+        return makeAttemptLog()
     }
 
-    fun step(index: Int, number: Int) {
-        exceptions.validateProcessStep(cars[index], number)
+    private fun makeAttemptLog() = cars.joinToString("\n") { it.toString() }
+
+    private fun step(index: Int, number: Int) {
+        exceptions.validateStep(cars[index], number)
         if (number >= 4) {
             cars[index].forward()
         }
