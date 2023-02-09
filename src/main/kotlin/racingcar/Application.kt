@@ -4,10 +4,7 @@ import racingcar.controller.World
 
 fun main() {
     try {
-        val world = World()
-        world.init()
-        world.run()
-        world.quit()
+        World()
     } catch (e: Exception) {
         when (e) {
             is IllegalArgumentException, is IllegalStateException -> {

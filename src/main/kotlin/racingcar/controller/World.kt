@@ -10,9 +10,11 @@ class World {
     private val inputView = InputView()
     private val racingManager = RacingManager()
 
-    fun init() {
+    init {
         initCars()
         initAttemptCount()
+        run()
+        quit()
     }
 
     private fun initCars() {
