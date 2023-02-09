@@ -5,7 +5,7 @@ class Cars(input: String) {
         this.cars = mappingCars(input)
     }
 
-    private fun mappingCars(input: String): List<Car> = input.split(",").mapIndexed { _, name -> Car(name) }
+    private fun mappingCars(input: String): List<Car> = input.split(",").mapIndexed { _, name -> Car(name.trim()) }
     fun getCar(position: Int): Car = cars[position]
     fun getCarSize(): Int = cars.size
 
