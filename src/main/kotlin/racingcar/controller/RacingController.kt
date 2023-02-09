@@ -15,7 +15,7 @@ class RacingController(
     private val racingService: RacingService = RacingService(),
 ) {
     fun runRacing() {
-        val cars = readCars()
+        val cars = createCars(readCarNames())
         val roundCount = readRoundCount()
 
         runRounds(roundCount, cars)
@@ -23,8 +23,6 @@ class RacingController(
         val winners = getWinners(cars)
         printWinners(winners)
     }
-
-    private fun readCars() = createCars(readCarNames())
 
     private fun readCarNames(): List<String> {
         outputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)

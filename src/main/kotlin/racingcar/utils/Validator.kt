@@ -13,7 +13,9 @@ class Validator {
     }
 
     fun checkRoundCount(input: String): Int {
-        val roundCount = input.toIntOrNull() ?: throw IllegalArgumentException(NOT_INTEGER_TYPE_ERROR_MESSAGE)
+        val roundCount = input.toIntOrNull()
+
+        requireNotNull(roundCount) { NOT_INTEGER_TYPE_ERROR_MESSAGE }
 
         if (roundCount !in MIN_ROUND_COUNT..MAX_ROUND_COUNT) {
             throw IllegalArgumentException(ROUND_COUNT_BOUNDARY_ERROR_MESSAGE)

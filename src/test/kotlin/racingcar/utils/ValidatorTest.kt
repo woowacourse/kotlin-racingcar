@@ -17,17 +17,23 @@ internal class ValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["sooda, buna", "sooda,buna", "   sooda,  buna  "])
-    fun `자동차 이름 검증 노말 테스트`(input: String) {
+    fun `자동차 이름 중복 노말 테스트`(input: String) {
         assertDoesNotThrow {
-            validator.checkCarNames(input)
+            val names = input.split(CAR_NAME_DELIMITER).toMutableList()
+            BlankRemover.removeBlank(names)
+
+            validator.checkCarNames(names)
         }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["soodal, buna", "sooda, sooda", "", ",", "buna, "])
-    fun `자동차 이름 검증 예외 테스트`(input: String) {
+    @ValueSource(strings = ["soodal, soodal", "buna, buna"])
+    fun `자동차 이름 중복 예외 테스트`(input: String) {
         assertThrows<IllegalArgumentException> {
-            validator.checkCarNames(input)
+            val names = input.split(CAR_NAME_DELIMITER).toMutableList()
+            BlankRemover.removeBlank(names)
+
+            validator.checkCarNames(names)
         }
     }
 

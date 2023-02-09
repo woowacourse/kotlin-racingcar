@@ -13,5 +13,7 @@ class OutputView {
         println()
     }
 
-    fun printWinners(winners: List<Car>) = println(WINNER_NOTIFICATION_MESSAGE + winners.joinToString(", "))
+    fun printWinners(winners: List<Car>) {
+        println("$WINNER_NOTIFICATION_MESSAGE: ${winners.joinToString(", ")}")
+    }
 }
