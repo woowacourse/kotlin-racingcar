@@ -24,14 +24,9 @@ class Cars(input: String) {
     }
 
     fun findWinners(): List<String> {
-        val maxValue = findMaxPosition()
         val maxEqualCars = cars.filter {
-            it.getInfo().second == maxValue
+            it.getInfo().second == findMaxPosition()
         }.toList()
-        val names = mutableListOf<String>()
-        for (car in maxEqualCars) {
-            names.add(car.getInfo().first)
-        }
-        return names
+        return maxEqualCars.map { it.getInfo().first }
     }
 }
