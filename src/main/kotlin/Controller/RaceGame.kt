@@ -8,17 +8,6 @@ class RaceGame {
     private val outputView = OutputView()
     private val inputView = InputView()
 
-    private fun tryMove(cars: Cars) {
-        for (pos in 0 until cars.getCarSize()) {
-            cars.move(pos)
-            outputView.outputResult(cars.getCar(pos))
-        }
-    }
-
-    private fun equalMaxValue(cars: Cars): List<String> {
-        return cars.findWinners()
-    }
-
     fun run() {
         val cars = executeInputCarNames()
         val tryNumber = executeInputTryNumber()
@@ -27,7 +16,14 @@ class RaceGame {
             tryMove(cars)
             println()
         }
-        outputView.outputWinners(equalMaxValue(cars))
+        outputView.outputWinners(cars.findWinners())
+    }
+
+    private fun tryMove(cars: Cars) {
+        for (pos in 0 until cars.getCarSize()) {
+            cars.move(pos)
+            outputView.outputResult(cars.getCarInfo(pos))
+        }
     }
 
     private fun executeInputTryNumber(): Int {
@@ -36,12 +32,12 @@ class RaceGame {
     }
 
     private fun getInputTryNumber(number: String?): Int {
-        try {
+        return try {
             Validator().checkTryNumber(number)
-            return number!!.toInt()
+            number!!.toInt()
         } catch (e: IllegalArgumentException) {
             outputView.outputErrorMessage(e.message!!)
-            return executeInputTryNumber()
+            executeInputTryNumber()
         }
     }
 
@@ -49,6 +45,7 @@ class RaceGame {
         outputView.outputCarNames()
         return getInputCarNames(inputView.inputCarNames())
     }
+
     private fun getInputCarNames(cars: String?): Cars {
         return try {
             Validator().checkNames(cars)
