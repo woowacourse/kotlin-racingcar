@@ -16,13 +16,17 @@ class CarRacingGameController(
 ) {
 
     fun startGame() {
-        val cars = initCars()
-        val numberOfTry = initNumberOfTry()
-        val players = initPlayers(cars, numberOfTry)
-        val carsPath = carRacingGame.startDriving(players)
+        try {
+            val cars = initCars()
+            val numberOfTry = initNumberOfTry()
+            val players = initPlayers(cars, numberOfTry)
+            val carsPath = carRacingGame.startDriving(players)
 
-        showPath(carsPath, numberOfTry)
-        showWinner(cars)
+            showPath(carsPath, numberOfTry)
+            showWinner(cars)
+        } catch (e: IllegalArgumentException) {
+            OutputView.printMsg(e.message!!)
+        }
     }
 
     private fun initCars(): List<Car> {
