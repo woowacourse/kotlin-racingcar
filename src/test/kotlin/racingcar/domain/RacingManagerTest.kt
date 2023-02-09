@@ -9,11 +9,12 @@ internal class RacingManagerTest {
     fun `게임 초기 세팅이 잘 되는지 확인`() {
         val racingManager = RacingManager(RandomNumberGenerator())
         racingManager.setGame(listOf("test1", "test2", "test3"), 5)
-        val cars = racingManager.race()
-        assertEquals(3, cars.size)
-        assertEquals("test1", cars[0].name)
-        assertEquals("test2", cars[1].name)
-        assertEquals("test3", cars[2].name)
+        racingManager.race()
+        val names = racingManager.getCarNames()
+        assertEquals(3, names.size)
+        assertEquals("test1", names[0])
+        assertEquals("test2", names[1])
+        assertEquals("test3", names[2])
     }
 
     @Test
@@ -27,11 +28,13 @@ internal class RacingManagerTest {
 
         val racingManager = RacingManager(TestNumberGenerator())
         racingManager.setGame(listOf("test1", "test2", "test3"), 5)
-        val cars = racingManager.race()
-        assertEquals(3, cars.size)
-        assertEquals(0, cars[0].location)
-        assertEquals(1, cars[1].location)
-        assertEquals(1, cars[2].location)
+        racingManager.race()
+        val locations = racingManager.getCarLocations()
+        assertEquals(3, racingManager.getCarNames().size)
+        assertEquals(3, locations.size)
+        assertEquals(0, locations[0])
+        assertEquals(1, locations[1])
+        assertEquals(1, locations[2])
     }
 
     @Test
@@ -39,6 +42,6 @@ internal class RacingManagerTest {
         val racingManager = RacingManager(RandomNumberGenerator())
         racingManager.setGame(listOf("test1", "test2", "test3"), 1)
         racingManager.race()
-        assertEquals(false, racingManager.checkGameIsOver())
+        assertEquals(true, racingManager.checkGameIsOver())
     }
 }
