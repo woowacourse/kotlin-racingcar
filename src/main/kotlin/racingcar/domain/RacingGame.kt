@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.constant.STANDARD_MOVING
+import racingcar.constant.STANDARD_OF_MOVING
 import racingcar.domain.numbergenerator.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -58,5 +58,5 @@ class RacingGame(
         return inputView.getMovingCount { outputView.printGettingMovingCount() }
     }
 
-    fun checkGoingForward(randomNumber: Int): Boolean = randomNumber >= STANDARD_MOVING
+    fun checkGoingForward(randomNumber: Int): Boolean = randomNumber >= STANDARD_OF_MOVING
 }
