@@ -23,7 +23,7 @@ class RacingManager {
 
     fun determineWinner(): List<Car> {
         val sortedCars = cars.sortedWith { car, car2 -> if (car.compareTo(car2)) -1 else 1 }
-        return sortedCars.filter { it.compareTo(sortedCars[0]) }
+        return sortedCars.filter { it.compareTo(sortedCars[0]) }.reversed()
     }
 
     fun run(): String {
