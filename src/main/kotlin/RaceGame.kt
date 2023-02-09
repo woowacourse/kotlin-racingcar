@@ -44,12 +44,12 @@ class RaceGame {
         return getInputCarNames(inputView.inputCarNames())
     }
     private fun getInputCarNames(cars: String?): Cars {
-        try {
+        return try {
             Validator().checkName(cars)
-            return Cars(cars!!)
+            Cars(cars!!)
         } catch (e: IllegalArgumentException) {
             outputView.outputErrorMessage(e.message!!)
-            return executeInputCarNames()
+            executeInputCarNames()
         }
     }
 }
