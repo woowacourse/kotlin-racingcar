@@ -8,20 +8,37 @@ import view.InputView
 import view.OutputView
 
 fun main() {
+    val cars = askCarNames()
+
+    val advanceCount: Int = askAdvanceCount()
+
+    val gameManager = CarRacingGameManager(cars, RandomMovingStrategy())
+
+    runGame(cars, advanceCount, gameManager)
+
+    printGameResult(gameManager)
+}
+
+private fun askCarNames(): List<Car> {
     OutputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
     val carNames: List<String> = InputView.readCarNames()
-    val cars = carNames.map { Car(it) }
+    return carNames.map { Car(it) }
+}
 
+private fun askAdvanceCount(): Int {
     OutputView.printMessage(ADVANCE_COUNT_REQUEST_MESSAGE)
-    val advanceCount: Int = InputView.readAdvanceCount()
+    return InputView.readAdvanceCount()
+}
 
+private fun runGame(cars: List<Car>, advanceCount: Int, gameManager: CarRacingGameManager) {
     OutputView.printMessage(GAME_RESULT_HEADER)
-    val racingGameManager = CarRacingGameManager(cars, RandomMovingStrategy())
     repeat(advanceCount) {
-        racingGameManager.allCarsTryToMoveForward()
+        gameManager.allCarsTryToMoveForward()
         OutputView.printGameStatus(cars)
     }
+}
 
-    val winCars: List<Car> = racingGameManager.getWinCars()
+private fun printGameResult(gameManager: CarRacingGameManager) {
+    val winCars: List<Car> = gameManager.getWinCars()
     OutputView.printGameResult(winCars)
 }
