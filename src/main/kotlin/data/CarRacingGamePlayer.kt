@@ -1,3 +1,7 @@
+package data
+
+import data.generator.RacingNumberGenerator
+
 class CarRacingGamePlayer(
     private val car: Car,
     private val numberOfTry: Int

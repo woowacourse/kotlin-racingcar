@@ -1,5 +1,9 @@
-import View.br
-import View.bw
+package view
+
+import CAR_NAMES_REQUEST_MSG
+import NUMBER_OF_TRY_REQUEST_MSG
+import view.View.br
+import view.View.bw
 
 object InputView {
 

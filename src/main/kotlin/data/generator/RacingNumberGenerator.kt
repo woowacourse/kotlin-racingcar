@@ -1,3 +1,5 @@
+package data.generator
+
 class RacingNumberGenerator : RandomNumberGenerator {
 
     override fun generate(): Int {

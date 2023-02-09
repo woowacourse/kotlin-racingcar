@@ -1,3 +1,6 @@
+import data.CarPath
+import data.PathState
+
 fun List<PathState>.getPathMarks(): String {
     var pathMarks = ""
 

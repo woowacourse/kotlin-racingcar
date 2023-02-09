@@ -1,3 +1,13 @@
+package domain
+
+import data.Car
+import data.CarPath
+import data.CarRacingGamePlayer
+import data.generator.CarGenerator
+import data.generator.CarRacingGamePlayerGenerator
+import view.InputView
+import view.OutputView
+
 class CarRacingGame(
     private val referee: Referee = Referee(),
     private val carGenerator: CarGenerator = CarGenerator(),

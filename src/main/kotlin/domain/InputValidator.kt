@@ -1,3 +1,7 @@
+package domain
+
+import NUMERIC_ERROR_MSG
+
 object InputValidator {
 
     fun validateIsNumeric(numberOfTry: String) {

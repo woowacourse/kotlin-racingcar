@@ -1,3 +1,7 @@
+package domain
+
+import data.Car
+
 class Referee {
 
     fun decideWinner(cars: List<Car>): List<String> {
