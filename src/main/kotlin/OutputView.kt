@@ -9,7 +9,7 @@ object OutputView {
 
     fun printResult(carsPath: List<CarPath>, numberOfTry: Int) {
         carsPath.forEach { carPath ->
-            bw.write(carPath.carName + " : " + carPath.path.subList(0, numberOfTry + 1).getPathMarks() + "\n")
+            bw.write(carPath.carName + " : " + carPath.subPath(numberOfTry).getPathMarks() + "\n")
             bw.flush()
         }
         bw.write("\n")

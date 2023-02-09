@@ -7,3 +7,5 @@ fun List<PathState>.getPathMarks(): String {
 
     return pathMarks
 }
+
+fun CarPath.subPath(number: Int) = this.path.subList(0, number + 1)

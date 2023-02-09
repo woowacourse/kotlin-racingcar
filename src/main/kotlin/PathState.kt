@@ -1,4 +1,4 @@
 enum class PathState(val state: String) {
-    MOVE("-"),
-    STOP("")
+    MOVE(MOVE_MARK),
+    STOP(STOP_MARK)
 }
