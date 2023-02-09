@@ -1,3 +1,7 @@
+package model
+
+import util.Validator
+
 class Car(private val name: String, private var position: Int = 0) {
 
     init {

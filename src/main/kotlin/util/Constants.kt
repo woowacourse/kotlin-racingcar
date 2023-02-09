@@ -1,3 +1,5 @@
+package util
+
 class Constants {
 
     companion object {

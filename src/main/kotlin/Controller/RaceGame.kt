@@ -1,3 +1,9 @@
+package Controller
+import model.Cars
+import util.Validator
+import view.InputView
+import view.OutputView
+
 class RaceGame {
     private val outputView = OutputView()
     private val inputView = InputView()
@@ -45,7 +51,7 @@ class RaceGame {
     }
     private fun getInputCarNames(cars: String?): Cars {
         return try {
-            Validator().checkName(cars)
+            Validator().checkNames(cars)
             Cars(cars!!)
         } catch (e: IllegalArgumentException) {
             outputView.outputErrorMessage(e.message!!)

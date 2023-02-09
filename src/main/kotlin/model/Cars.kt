@@ -1,3 +1,7 @@
+package model
+
+import generator.RandomGenerator
+
 class Cars(input: String) {
     private val cars: List<Car>
 

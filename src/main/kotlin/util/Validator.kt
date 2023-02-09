@@ -1,8 +1,10 @@
+package util
+
 class Validator {
 
-    fun checkNames(names: String) {
+    fun checkNames(names: String?) {
         checkNameNull(names)
-        for (name in names.split(",")) {
+        for (name in names!!.split(",")) {
             checkName(name.trim())
         }
     }

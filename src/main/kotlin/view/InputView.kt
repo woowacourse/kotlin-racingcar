@@ -1,3 +1,5 @@
+package view
+
 class InputView {
     fun inputCarNames(): String? {
         return readLine()

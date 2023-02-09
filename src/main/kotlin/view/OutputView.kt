@@ -1,3 +1,7 @@
+package view
+
+import model.Car
+import util.Constants
 
 class OutputView {
 
