@@ -10,7 +10,7 @@ class Cars(input: String) {
     }
 
     private fun mappingCars(input: String): List<Car> = input.split(",").mapIndexed { _, name -> Car(name.trim()) }
-    fun getCar(position: Int): Car = cars[position]
+    fun getCarInfo(position: Int): Pair<String, Int> = cars[position].getInfo()
     fun getCarSize(): Int = cars.size
 
     fun move(position: Int) {
