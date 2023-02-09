@@ -19,26 +19,25 @@ class World {
 
     private fun initCars() {
         Util.tryAndRerun {
-            outputView.printMessage(OutputView.MSG_INPUT_CAR_NAME)
-            val names = inputView.carNames()
-            racingManager.initCars(names)
+            outputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
+            racingManager.initCars(inputView.carNames())
         }
     }
 
     private fun initAttemptCount() {
         Util.tryAndRerun {
-            outputView.printMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
-            val attemptCount = inputView.attemptCount()
-            racingManager.setAttemptCount(attemptCount)
+            outputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
+            racingManager.setAttemptCount(inputView.attemptCount())
         }
     }
 
     private fun run() {
-        outputView.printMessage(OutputView.MSG_STEP_RESULT)
+        outputView.printLnMessage(OutputView.MSG_STEP_RESULT)
         outputView.stepResult(racingManager.run())
     }
 
     private fun quit() {
+        outputView.printMessage(OutputView.MSG_WINNER)
         outputView.winner(racingManager.determineWinner())
     }
 }
