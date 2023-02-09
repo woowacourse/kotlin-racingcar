@@ -17,23 +17,8 @@ class Cars(input: String) {
         cars[position].move(RandomGenerator().getRandomNumber())
     }
 
-    private fun findMaxPosition(): Int {
-        return cars.sortedByDescending {
-            it.getInfo().second
-        }.maxByOrNull {
-            it.getInfo().second
-        }!!.getInfo().second
-    }
-
     fun findWinners(): List<String> {
-        val maxValue = findMaxPosition()
-        val maxEqualCars = cars.filter {
-            it.getInfo().second == maxValue
-        }.toList()
-        val names = mutableListOf<String>()
-        for (car in maxEqualCars) {
-            names.add(car.getInfo().first)
-        }
-        return names
+        val equalCars = cars.groupBy({ it.getInfo().second }, { it.getInfo().first })
+        return equalCars[equalCars.keys.max()]?.toList() ?: listOf()
     }
 }
