@@ -9,17 +9,17 @@ class ValidatorTest {
     private val validator = Validator()
 
     @Test
-    fun checkNameTest() {
+    fun checkNamesTest() {
         assertDoesNotThrow {
-            validator.checkName("dool")
+            validator.checkNames("dool,pobi,woni")
         }
     }
 
-    @ValueSource(strings = ["", "abcdef"])
+    @ValueSource(strings = ["abcdef,\" \",*()"])
     @ParameterizedTest
-    fun checkNameExceptionTest(input: String) {
+    fun checkNamesExceptionTest(input: String) {
         assertThrows<IllegalArgumentException> {
-            validator.checkName(input)
+            validator.checkNames(input)
         }
     }
 
