@@ -37,17 +37,17 @@ class InputView {
         }
     }
 
-    fun getMovingCount(printInfo: () -> Unit): Int {
+    fun getRoundCount(printInfo: () -> Unit): Int {
         return try {
             printInfo()
-            getVerifiedMovingCount()
+            getVerifiedRoundCount()
         } catch (e: IllegalArgumentException) {
             println(e.message)
-            getMovingCount(printInfo)
+            getRoundCount(printInfo)
         }
     }
 
-    private fun getVerifiedMovingCount(): Int {
+    private fun getVerifiedRoundCount(): Int {
         val input = readLine()?.trim()
 
         if (!input.isNullOrBlank()) {

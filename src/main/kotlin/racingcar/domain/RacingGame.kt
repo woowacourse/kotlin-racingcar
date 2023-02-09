@@ -12,12 +12,12 @@ class RacingGame(
 ) {
     fun runGame() {
         val names = getCarsName()
-        val movingCount = getMovingCount()
+        val roundCount = getRoundCount()
         val cars = mutableListOf<RacingCar>()
         names.forEach { cars.add(RacingCar(it)) }
 
         outputView.printResult()
-        for (i in 0 until movingCount) {
+        for (i in 0 until roundCount) {
             playRound(cars)
         }
 
@@ -25,16 +25,10 @@ class RacingGame(
     }
 
     fun getWinner(cars: List<RacingCar>): List<String> {
-        val sortedCars = cars.sortedByDescending {
-            it.getMovingState()
-        }
+        val sortedCars = cars.sortedByDescending { it.getMovingState() }
         val maxState = sortedCars[0].getMovingState()
 
-        return sortedCars.filter {
-            it.getMovingState() == maxState
-        }.map {
-            it.getName()
-        }
+        return sortedCars.filter { it.getMovingState() == maxState }.map { it.getName() }
     }
 
     fun playRound(cars: MutableList<RacingCar>) {
@@ -54,8 +48,8 @@ class RacingGame(
         return inputView.getCarsName { outputView.printGettingCarsName() }
     }
 
-    fun getMovingCount(): Int {
-        return inputView.getMovingCount { outputView.printGettingMovingCount() }
+    fun getRoundCount(): Int {
+        return inputView.getRoundCount { outputView.printGettingRoundCount() }
     }
 
     fun checkGoingForward(randomNumber: Int): Boolean = randomNumber >= STANDARD_OF_MOVING
