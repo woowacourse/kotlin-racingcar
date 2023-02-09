@@ -1,14 +1,14 @@
 package racingcar.domain
 
 import racingcar.resources.ERROR_INPUT_COUNT
-import racingcar.resources.ERROR_NAME_LENGTH_FROM_ONE_TO_FIVE
+import racingcar.resources.ERROR_NAME_LENGTH_RANGE
 
 class Car(val name: String) {
     var location = 0
         private set
 
     init {
-        require(name.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH) { ERROR_NAME_LENGTH_FROM_ONE_TO_FIVE }
+        require(name.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH) { ERROR_NAME_LENGTH_RANGE }
     }
 
     fun plusLocation(num: Int) {

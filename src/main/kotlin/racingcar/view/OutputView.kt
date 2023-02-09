@@ -1,7 +1,7 @@
 package racingcar.view
 
-import racingcar.resources.OUTPUT_RESULT_MESSAGE
-import racingcar.resources.OUTPUT_WINNER_MESSAGE
+import racingcar.resources.OUTPUT_RESULT
+import racingcar.resources.OUTPUT_WINNER
 
 class OutputView {
     fun printCarsState(carNames: List<String>, carLocations: List<Int>) {
@@ -17,10 +17,10 @@ class OutputView {
     }
 
     fun printResult() {
-        println(OUTPUT_RESULT_MESSAGE)
+        println(OUTPUT_RESULT)
     }
 
     fun printWinner(carNames: List<String>) {
-        print(OUTPUT_WINNER_MESSAGE + carNames.joinToString(", "))
+        print(OUTPUT_WINNER + carNames.joinToString(", "))
     }
 }
