@@ -21,6 +21,10 @@ class OutputView {
         winners.joinToString { ", " }
     }
 
+    fun printInterval() {
+        println()
+    }
+
     companion object {
         const val ERROR_HEADER = "[ERROR]"
         const val EXECUTION_RESULT = "실행 결과"
