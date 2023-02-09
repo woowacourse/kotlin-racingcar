@@ -20,31 +20,35 @@ class Controller(
     }
 
     private fun setUp() {
-        setUpCars()
-        setUpRaceTime()
+        var completeSetUpCar = false
+        var completeSetUpRaceTime = false
+        while (!completeSetUpCar) {
+            completeSetUpCar = setUpCars()
+        }
+        while (!completeSetUpRaceTime) {
+            completeSetUpRaceTime = setUpRaceTime()
+        }
         outputView.printInterval()
     }
 
-    private fun setUpCars() {
-        while (true) {
-            try {
-                val carsDTO = inputView.readCars()
-                carsDTO.getCars().map { car -> cars.add(car) }
-                return
-            } catch (e: IllegalArgumentException) {
-                outputView.printError(e.message ?: "")
-            }
+    private fun setUpCars(): Boolean {
+        return try {
+            val carsDTO = inputView.readCars()
+            carsDTO.getCars().map { car -> cars.add(car) }
+            true
+        } catch (e: IllegalArgumentException) {
+            outputView.printError(e.message ?: "")
+            false
         }
     }
 
-    private fun setUpRaceTime() {
-        while (true) {
-            try {
-                time = inputView.readRaceTime().getRaceTime()
-                return
-            } catch (e: IllegalArgumentException) {
-                outputView.printError(e.message ?: "")
-            }
+    private fun setUpRaceTime(): Boolean {
+        return try {
+            time = inputView.readRaceTime().getRaceTime()
+            true
+        } catch (e: IllegalArgumentException) {
+            outputView.printError(e.message ?: "")
+            false
         }
     }
 
