@@ -1,5 +1,12 @@
 class Validator {
 
+    fun checkNames(names: String) {
+        checkNameNull(names)
+        for (name in names.split(",")) {
+            checkName(name.trim())
+        }
+    }
+
     fun checkName(name: String?) {
         checkNameNull(name)
         checkNameEmpty(name!!)
@@ -16,11 +23,15 @@ class Validator {
     }
 
     private fun checkNameSize(name: String) {
-        require(name.split(",").size < 5) { Constants.INPUT_NAME_SIZE_ERROR_MESSAGE }
+        require(name.length < 5) { Constants.INPUT_NAME_SIZE_ERROR_MESSAGE }
     }
 
     private fun checkNameEmpty(name: String) {
         require(name != "") { Constants.INPUT_NAME_NULL_ERROR_MESSAGE }
+    }
+
+    private fun checkNameRight(name: String) {
+        require(name.contains("^[a-zA-Z가-힣]*$".toRegex())) { Constants.INPUT_NAME_RIGHT_ERROR_MESSAGE }
     }
 
     private fun checkTryNumberNull(number: String?) {
