@@ -20,9 +20,7 @@ class InputView {
         val names: List<String>
 
         if (!input.isNullOrBlank()) {
-            names = input.split(",").map {
-                it.trim()
-            }
+            names = input.split(",").map { it.trim() }
             checkNameLength(names)
         } else {
             throw IllegalArgumentException(ERROR_NAME_LENGTH)

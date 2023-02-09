@@ -20,9 +20,7 @@ class OutputView {
     }
 
     fun printEachRound(cars: List<RacingCar>) {
-        cars.forEach {
-            println(it.toString())
-        }
+        cars.forEach { println(it.toString()) }
         println()
     }
 
