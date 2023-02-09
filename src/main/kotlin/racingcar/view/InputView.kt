@@ -7,14 +7,18 @@ import racingcar.domain.Validator
 class InputView {
     fun getCarsName(): List<String> {
         val input = readLine()?.trim()
+        val names: List<String>
 
         if (!input.isNullOrBlank()) {
-            checkNameLength(input.split(","))
+            names = input.split(",").map {
+                it.trim()
+            }
+            checkNameLength(names)
         } else {
             throw IllegalArgumentException(ERROR_NAME_LENGTH)
         }
 
-        return input.split(",")
+        return names
     }
 
     fun checkNameLength(value: List<String>) {
