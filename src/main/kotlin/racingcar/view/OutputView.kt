@@ -5,15 +5,15 @@ import racingcar.resources.OUTPUT_WINNER_MESSAGE
 
 class OutputView {
     fun printCarsState(carNames: List<String>, carLocations: List<Int>) {
-        carNames.forEachIndexed { index, carName ->
-            printCarState(carName, carLocations[index])
+        val carStates = carNames.zip(carLocations)
+        carStates.forEach { (carName, carLocation) ->
+            printCarState(carName, carLocation)
         }
         println()
     }
 
     private fun printCarState(carName: String, carLocation: Int) {
-        print("$carName : ")
-        println("-".repeat(carLocation))
+        println(carName + " : " + "-".repeat(carLocation))
     }
 
     fun printResult() {
@@ -21,6 +21,6 @@ class OutputView {
     }
 
     fun printWinner(carNames: List<String>) {
-        print(OUTPUT_WINNER_MESSAGE + carNames.joinToString(", ") { it })
+        print(OUTPUT_WINNER_MESSAGE + carNames.joinToString(", "))
     }
 }
