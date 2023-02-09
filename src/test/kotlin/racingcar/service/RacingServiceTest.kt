@@ -10,6 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource
 import racingcar.model.Car
 import java.util.stream.Stream
 import kotlin.test.assertEquals
+import kotlin.test.assertNotEquals
 
 internal class RacingServiceTest {
 
@@ -37,18 +38,22 @@ internal class RacingServiceTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideCars")
+    @MethodSource("provideCarsForHappyCase")
     fun `최종 우승자 산출 해피 테스트`(cars: List<Car>, expectedWinnersCount: Int) {
         val realWinnersCount = racingService.getWinners(cars).size
         assertEquals(realWinnersCount, expectedWinnersCount)
     }
 
-    // TODO 최종 우승자 산출 예외 테스트
-    // 객체에서 값 검증 기능 추가
+    @ParameterizedTest
+    @MethodSource("provideCarsForExceptionCase")
+    fun `최종 우승자 산출 예외 테스트`(cars: List<Car>, expectedWinnersCount: Int) {
+        val realWinnersCount = racingService.getWinners(cars).size
+        assertNotEquals(realWinnersCount, expectedWinnersCount)
+    }
 
     companion object {
         @JvmStatic
-        fun provideCars(): Stream<Arguments> {
+        fun provideCarsForHappyCase(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of(
                     listOf(
@@ -73,6 +78,44 @@ internal class RacingServiceTest {
                         Car("sunny", 0),
                     ),
                     3
+                ),
+            )
+        }
+
+        @JvmStatic
+        fun provideCarsForExceptionCase(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of(
+                    listOf(
+                        Car("sooda", 7),
+                        Car("buna", 6),
+                        Car("sunny", 2),
+                    ),
+                    2
+                ),
+                Arguments.of(
+                    listOf(
+                        Car("sooda", 7),
+                        Car("buna", 2),
+                        Car("sunny", 7),
+                    ),
+                    1
+                ),
+                Arguments.of(
+                    listOf(
+                        Car("sooda", 0),
+                        Car("buna", 0),
+                        Car("sunny", 0),
+                    ),
+                    0
+                ),
+                Arguments.of(
+                    listOf(
+                        Car("sooda", 1),
+                        Car("buna", 2),
+                        Car("sunny", 3),
+                    ),
+                    4
                 ),
             )
         }
