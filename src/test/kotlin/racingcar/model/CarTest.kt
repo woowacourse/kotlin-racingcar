@@ -10,7 +10,7 @@ class CarTest {
 
     @BeforeEach
     fun beforeEach() {
-        car = Car("soodal")
+        car = Car("otter")
     }
 
     @Test

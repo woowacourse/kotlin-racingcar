@@ -2,6 +2,7 @@ package racingcar.service
 
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
@@ -23,7 +24,15 @@ internal class RacingServiceTest {
     @ValueSource(strings = ["buna", "sooda"])
     fun `자동차 객체 생성 해피 케이스`(carName: String) {
         assertDoesNotThrow {
-            Car(carName)
+            racingService.createCar(carName)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["soooodal", "buuuuuuuna", ""])
+    fun `자동차 객체 생성 예외 케이스`(carName: String) {
+        assertThrows<IllegalArgumentException> {
+            racingService.createCar(carName)
         }
     }
 
