@@ -14,20 +14,16 @@ class RacingManager(
         cars.forEach { it.plusLocation(numberGenerator.generateNumber(Car.MIN_NUMBER, Car.MAX_NUMBER)) }
     }
 
-    fun getCarNames(): List<String> {
-        return cars.map { it.name }
-    }
+    fun getCarNames(): List<String> = cars.map { it.name }
 
-    fun getCarLocations(): List<Int> {
-        return cars.map { it.location }
-    }
+    fun getCarLocations(): List<Int> = cars.map { it.location }
 
     fun setGame(carNames: List<String>, racingCount: Int) {
         this.cars = carNames.map { Car(it) }
         this.racingCount = racingCount
     }
 
-    fun isOver() = racingCount == 0
+    fun isOver(): Boolean = racingCount == 0
 
     fun getWinner(): List<String> {
         val maxLocation = cars.maxOf { it.location }
