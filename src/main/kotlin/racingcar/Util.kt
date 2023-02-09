@@ -9,10 +9,7 @@ class Util {
                 try {
                     fn()
                 } catch (e: IllegalArgumentException) {
-                    println("[ERROR]: " + e.message)
-                    continue
-                } catch (e: IllegalStateException) {
-                    println("[ERROR]: " + e.message)
+                    println("잘못된 입력 : " + e.message)
                     continue
                 }
                 break

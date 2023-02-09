@@ -8,9 +8,11 @@ fun main() {
         world.init()
         world.run()
         world.quit()
-    } catch (e: IllegalArgumentException) {
-        println("[ERROR]: " + e.message)
-    } catch (e: IllegalStateException) {
-        println("[ERROR]: " + e.message)
+    } catch (e: Exception) {
+        when (e) {
+            is IllegalArgumentException, is IllegalStateException -> {
+                println("[ERROR]: " + e.message)
+            }
+        }
     }
 }
