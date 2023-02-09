@@ -6,7 +6,7 @@ import org.junit.jupiter.params.provider.CsvSource
 import util.DriverDecision
 import util.TestNumberGenerator
 
-class DriverTest {
+internal class DriverTest {
 
     @CsvSource(value = ["1,STOP", "2,STOP", "3,STOP", "4,GO"])
     @ParameterizedTest
