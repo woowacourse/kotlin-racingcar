@@ -1,6 +1,7 @@
 package controller
 
 import domain.Car
+import domain.Judgement
 import view.InputView
 import view.OutputView
 
@@ -8,12 +9,14 @@ class Controller(
     private val inputView: InputView,
     private val outputView: OutputView
 ) {
-    private lateinit var cars: List<Car>
+    private val cars = mutableListOf<Car>()
+    private val judgement = Judgement(cars)
     private var time = 0
 
     fun run() {
         setUp()
         race()
+        announceWinners()
     }
 
     private fun setUp() {
@@ -25,7 +28,8 @@ class Controller(
     private fun setUpCars() {
         while (true) {
             try {
-                cars = inputView.readCars().getCars()
+                val carsDTO = inputView.readCars()
+                carsDTO.getCars().map { car -> cars.add(car) }
                 return
             } catch (e: IllegalArgumentException) {
                 outputView.printError(e.message ?: "")
@@ -58,5 +62,8 @@ class Controller(
         }
     }
 
-    private fun announceWinners() {}
+    private fun announceWinners() {
+        val winnersDTO = judgement.findWinners()
+        outputView.printWinners(winnersDTO)
+    }
 }

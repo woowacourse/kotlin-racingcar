@@ -18,7 +18,7 @@ class OutputView {
 
     fun printWinners(winnersDTO: WinnersDTO) {
         val winners = winnersDTO.getWinners()
-        winners.joinToString { ", " }
+        println("$FINAL_WINNER ${winners.joinToString(", ")}")
     }
 
     fun printInterval() {
@@ -28,6 +28,6 @@ class OutputView {
     companion object {
         const val ERROR_HEADER = "[ERROR]"
         const val EXECUTION_RESULT = "실행 결과"
-        const val FINAL_WINNER = "최종 우승자: "
+        const val FINAL_WINNER = "최종 우승자:"
     }
 }
