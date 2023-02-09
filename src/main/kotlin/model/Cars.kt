@@ -18,9 +18,7 @@ class Cars(input: String) {
     }
 
     private fun findMaxPosition(): Int {
-        return cars.sortedByDescending {
-            it.getInfo().second
-        }.maxByOrNull {
+        return cars.maxByOrNull {
             it.getInfo().second
         }!!.getInfo().second
     }
