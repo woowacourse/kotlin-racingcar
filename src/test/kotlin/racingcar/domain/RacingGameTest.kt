@@ -38,4 +38,16 @@ class RacingGameTest {
             car.getMovingState(),
         )
     }
+
+    @Test
+    fun `우승자 찾기 테스트`() {
+        val cars = listOf(
+            RacingCar("one", 3),
+            RacingCar("two", 2),
+            RacingCar("three", 3),
+        )
+        assertThat(
+            racingGame.getWinner(cars),
+        ).contains("one", "three").doesNotContain("two")
+    }
 }
