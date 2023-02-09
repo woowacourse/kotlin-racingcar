@@ -1,5 +1,6 @@
 package racingcar.controller
 
+import racingcar.entity.Name
 import racingcar.misc.Util
 import racingcar.model.RacingManager
 import racingcar.view.InputView
@@ -20,7 +21,7 @@ class World {
     private fun initCars() {
         Util.tryAndRerun {
             outputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
-            racingManager.initCars(inputView.carNames())
+            racingManager.initCars(inputView.carNames().map { Name(it) })
         }
     }
 

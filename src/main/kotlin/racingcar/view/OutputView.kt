@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.Car
+import racingcar.entity.Car
 
 class OutputView {
     fun printLnMessage(message: String) {
@@ -17,7 +17,7 @@ class OutputView {
     }
 
     fun winner(winners: List<Car>) {
-        println(winners.joinToString(", ") { it.getName() })
+        println(winners.joinToString(", ") { it.getName().toString() })
     }
 
     companion object {
