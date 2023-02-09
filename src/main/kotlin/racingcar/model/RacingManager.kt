@@ -35,12 +35,12 @@ class RacingManager {
 
     private fun attempt(): String {
         for (i in 0 until cars.size) {
-            processStep(i, Util.generateRandom())
+            step(i, Util.generateRandom())
         }
         return cars.joinToString("\n") { it.toString() }
     }
 
-    fun processStep(index: Int, number: Int) {
+    fun step(index: Int, number: Int) {
         exceptions.validateProcessStep(cars[index], number)
         if (number >= 4) {
             cars[index].forward()
