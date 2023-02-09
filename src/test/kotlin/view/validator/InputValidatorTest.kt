@@ -9,17 +9,58 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class InputValidatorTest {
 
-    @Test
-    fun `자동차 이름 입력 성공 테스트`() {
-        assertThatCode {
-            InputValidator.validateCarNames("wooah,토마스,멘델")
-        }.doesNotThrowAnyException()
-    }
+    @Nested
+    inner class `validateCarNames 메소드는` {
 
-    @ParameterizedTest
-    @ValueSource(strings = ["men2e,토마스", "mendel,hi", "hi"])
-    fun `자동차 이름 입력 실패 테스트`(names: String) {
-        assertThatIllegalArgumentException().isThrownBy { InputValidator.validateCarNames(names) }
+        @Nested
+        inner class `자동차 이름에 숫자가 포함되었다면` {
+            private val carNames = "men2e,토마스"
+
+            @Test
+            fun `예외 메세지가 포함된 예외를 던진다`() {
+                assertThatIllegalArgumentException().isThrownBy { InputValidator.validateCarNames(carNames) }
+            }
+        }
+
+        @Nested
+        inner class `자동차 이름의 길이가 1 이상 5 이하가 아니라면` {
+
+            @ParameterizedTest
+            @ValueSource(strings = ["mendel, hi", ", hi"])
+            fun `예외 메세지가 포함된 예외를 던진다`(carNames: String) {
+                assertThatIllegalArgumentException().isThrownBy { InputValidator.validateCarNames(carNames) }
+            }
+        }
+
+        @Nested
+        inner class `자동차 이름의 갯수가 2개 이상 20개 이하가 아니라면` {
+            private val carNames = "hi"
+
+            @Test
+            fun `예외 메세지가 포함된 예외를 던진다`() {
+                assertThatIllegalArgumentException().isThrownBy { InputValidator.validateCarNames(carNames) }
+            }
+        }
+
+        @Nested
+        inner class `자동차 이름이 중복되었다면` {
+            private val carNames = "hi,hi"
+
+            @Test
+            fun `예외 메세지가 포함된 예외를 던진다`() {
+                assertThatIllegalArgumentException().isThrownBy { InputValidator.validateCarNames(carNames) }
+            }
+        }
+
+        @Nested
+        inner class `모든 자동차 이름이 1~5글자이고 모든 문자가 한글 또는 영어라면` {
+            val carNames = "wooah,토마스,멘델"
+
+            @Test
+            fun `예외를 던지지 않는다`() {
+                assertThatCode { InputValidator.validateCarNames(carNames) }.doesNotThrowAnyException()
+            }
+        }
     }
 
     @Nested
