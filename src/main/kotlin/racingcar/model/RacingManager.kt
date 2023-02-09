@@ -1,10 +1,10 @@
 package racingcar.model
 
-import racingcar.Util
 import racingcar.exceptions.RacingManagerExceptions
+import racingcar.misc.Util
+import racingcar.misc.Values
 
 class RacingManager {
-    private val exceptions = RacingManagerExceptions()
     private val cars = mutableListOf<Car>()
     private var attemptCount = 0
 
@@ -13,12 +13,12 @@ class RacingManager {
         for (name in names) {
             cars.add(Car(name))
         }
-        exceptions.validateCarCount(cars)
+        RacingManagerExceptions.validateCarCount(cars)
     }
 
     fun setAttemptCount(attemptCount: Int) {
         this.attemptCount = attemptCount
-        exceptions.validateAttemptCount(this.attemptCount)
+        RacingManagerExceptions.validateAttemptCount(this.attemptCount)
     }
 
     fun determineWinner(): List<Car> {
@@ -46,8 +46,8 @@ class RacingManager {
     fun makeAttemptLog() = cars.joinToString("\n") { it.toString() }
 
     fun step(index: Int, number: Int) {
-        exceptions.validateStep(number)
-        if (number >= 4) {
+        RacingManagerExceptions.validateStep(number)
+        if (number >= Values.WIN_NUMBER) {
             cars[index].forward()
         }
     }

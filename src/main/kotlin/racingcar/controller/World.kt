@@ -1,6 +1,6 @@
 package racingcar.controller
 
-import racingcar.Util
+import racingcar.misc.Util
 import racingcar.model.RacingManager
 import racingcar.view.InputView
 import racingcar.view.OutputView
