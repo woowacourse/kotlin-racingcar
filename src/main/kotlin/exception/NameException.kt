@@ -2,8 +2,8 @@ package exception
 
 import message.ExceptionMessage
 
-class NameException {
-    private val nullException = NullException()
+class NameException(private val nullException: NullException = NullException()) {
+
     fun checkNames(carNames: String) {
         splitCarNames(carNames).forEach { name ->
             checkNameRange(nullException.checkNull(name))

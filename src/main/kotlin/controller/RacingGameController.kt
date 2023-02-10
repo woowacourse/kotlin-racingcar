@@ -5,13 +5,13 @@ import service.RacingCarGameService
 import view.InputView
 import view.OutputView
 
-class RacingGameController {
-    private val inputView = InputView()
-    private val outputView = OutputView()
-
-    private val racingCarGameService = RacingCarGameService()
-    private var carsInfo = listOf<Car>()
-    private var tryCount = 0
+class RacingGameController(
+    private var carsInfo: List<Car> = listOf(),
+    private var tryCount: Int = 0,
+    private val inputView: InputView = InputView(),
+    private val outputView: OutputView = OutputView(),
+    private val racingCarGameService: RacingCarGameService = RacingCarGameService()
+) {
 
     fun run() {
         getCarNames()

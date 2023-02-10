@@ -4,10 +4,11 @@ import exception.NameException
 import exception.NullException
 import exception.TryCountException
 
-class InputView {
-    private val nullException = NullException()
-    private val nameException = NameException()
-    private val tryCountException = TryCountException()
+class InputView(
+    private val nullException: NullException = NullException(),
+    private val nameException: NameException = NameException(),
+    private val tryCountException: TryCountException = TryCountException()
+) {
 
     fun inputName(): String {
         val input = readLine()
