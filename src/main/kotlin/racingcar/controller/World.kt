@@ -32,12 +32,12 @@ class World {
         } as AttemptCount
     }
 
-    fun run() {
+    fun startRace() {
         outputView.printLnMessage(OutputView.MSG_STEP_RESULT)
         outputView.stepResult(racingManager.run())
     }
 
-    fun quit() {
+    fun finishRace() {
         outputView.printMessage(OutputView.MSG_WINNER)
         outputView.winner(racingManager.determineWinner())
     }

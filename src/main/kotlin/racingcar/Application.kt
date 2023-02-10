@@ -5,8 +5,8 @@ import racingcar.controller.World
 fun main() {
     runCatching {
         val world = World()
-        world.run()
-        world.quit()
+        world.startRace()
+        world.finishRace()
     }.onFailure {
         println("[ERROR]: " + it.message)
     }
