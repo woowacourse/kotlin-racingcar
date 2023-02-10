@@ -11,12 +11,11 @@ class Controller(
     private val inputView: InputView,
     private val outputView: OutputView
 ) {
-    private var time = 0
 
     fun run() {
         val cars = setUpCars()
-        setUpRaceTime()
-        race(cars)
+        val raceTime = setUpRaceTime()
+        race(cars, raceTime)
         announceWinners(cars)
     }
 
@@ -30,19 +29,19 @@ class Controller(
         }
     }
 
-    private fun setUpRaceTime(): Boolean {
-        return try {
-            time = inputView.readRaceTime().getRaceTime()
-            true
-        } catch (e: IllegalArgumentException) {
-            outputView.printError(e.message ?: "")
-            false
+    private fun setUpRaceTime(): Int {
+        while (true) {
+            try {
+                return inputView.readRaceTime().getRaceTime()
+            } catch (e: IllegalArgumentException) {
+                outputView.printError(e.message ?: "")
+            }
         }
     }
 
-    private fun race(cars: List<Car>) {
+    private fun race(cars: List<Car>, raceTime: Int) {
         outputView.printExecutionResult()
-        repeat(time) {
+        repeat(raceTime) {
             raceOneTime(cars)
             outputView.printInterval()
         }

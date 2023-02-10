@@ -14,11 +14,11 @@ class Judgement(private val cars: List<Car>) {
     }
 
     private fun updateWinners(raceResultDTO: RaceResultDTO) {
-        check(raceResultDTO.getComparisonResult() != ComparisonResult.NONE) { ERROR_NONE_STATE }
-        if (raceResultDTO.getComparisonResult() == ComparisonResult.LOSE) return
+        check(raceResultDTO.comparisonResult != ComparisonResult.NONE) { ERROR_NONE_STATE }
+        if (raceResultDTO.comparisonResult == ComparisonResult.LOSE) return
 
-        if (raceResultDTO.getComparisonResult() == ComparisonResult.WIN) resetWinners(raceResultDTO.getDistance())
-        addWinner(raceResultDTO.getName())
+        if (raceResultDTO.comparisonResult == ComparisonResult.WIN) resetWinners(raceResultDTO.distance)
+        addWinner(raceResultDTO.name)
     }
 
     private fun resetWinners(distance: Int) {
