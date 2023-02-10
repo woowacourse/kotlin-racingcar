@@ -1,23 +1,27 @@
 package racingcar.view
 
 import racingcar.entity.Car
+import racingcar.entity.Position
 
 class OutputView {
     fun printLnMessage(message: String) {
         println(message)
     }
 
-    fun printMessage(message: String) {
-        print(message)
+    fun attemptHistory(result: List<List<Car>>) {
+        println(MSG_STEP_RESULT)
+        val attempts = result.map { formatAttempt(it) }
+        attempts.forEach { println(it) }
     }
 
-    fun stepResult(result: String) {
-        println(result)
-        println()
-    }
+    private fun formatAttempt(car: List<Car>): String =
+        car.joinToString("\n", "", "\n") { "${it.name.value} : ${formatPosition(it.position)}" }
+
+    private fun formatPosition(position: Position): String = "-".repeat(position.value)
 
     fun winner(winners: List<Car>) {
-        println(winners.joinToString(", ") { it.getName().toString() })
+        print(MSG_WINNER)
+        println(winners.joinToString(", ") { it.name.value })
     }
 
     companion object {

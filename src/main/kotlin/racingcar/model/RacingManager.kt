@@ -1,24 +1,15 @@
 package racingcar.model
 
 import racingcar.entity.AttemptCount
+import racingcar.entity.Car
 
 class RacingManager(private val carManager: CarManager, private val attemptCount: AttemptCount) {
-    fun determineWinner() = carManager.determineWinner()
-
-    fun run(): String {
-        val result = mutableListOf<String>()
-        for (i in attemptCount.indices) {
-            result.add(attempt())
-        }
-        return makeRunLog(result)
+    fun run(): List<List<Car>> {
+        return (0 until attemptCount.value).map { carManager.attempt() }
     }
 
-    fun makeRunLog(result: List<String>) = result.joinToString("\n\n")
-
-    fun attempt(): String {
-        carManager.attempt()
-        return makeAttemptLog()
+    fun determineWinner(): List<Car> {
+        val sortedCars = carManager.sortCarByPosition()
+        return sortedCars.filter { it.compareByPosition(sortedCars[0]) }.reversed()
     }
-
-    fun makeAttemptLog() = carManager.toString()
 }

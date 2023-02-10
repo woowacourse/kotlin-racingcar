@@ -35,8 +35,8 @@ class World {
     }
 
     fun startRace() {
-        val stepResult = racingManager.run()
-        outputView.stepResult(stepResult)
+        val attemptHistory = racingManager.run()
+        outputView.attemptHistory(attemptHistory)
     }
 
     fun finishRace() {
