@@ -12,9 +12,15 @@ class InputView(private val validator: Validator) {
         return validator.checkCarNames(names)
     }
 
-    fun readRoundCount() = validator.checkRoundCount(readln())
+    fun readNumber(): Int {
+        val number = readln().toIntOrNull()
+        requireNotNull(number) { NOT_NUMERIC_ERROR_MESSAGE }
+
+        return number
+    }
 
     companion object {
         const val CAR_NAME_DELIMITER = ","
+        const val NOT_NUMERIC_ERROR_MESSAGE = "입력값이 숫자가 아닙니다."
     }
 }

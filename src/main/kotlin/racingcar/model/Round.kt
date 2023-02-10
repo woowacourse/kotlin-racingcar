@@ -2,12 +2,16 @@ package racingcar.model
 
 import racingcar.utils.MAX_ROUND_COUNT
 import racingcar.utils.MIN_ROUND_COUNT
-import racingcar.utils.Validator
 
 class Round(val count: Int) {
     init {
         if (count !in MIN_ROUND_COUNT..MAX_ROUND_COUNT) {
-            throw IllegalArgumentException(Validator.ROUND_COUNT_OVER_BOUNDARY_ERROR_MESSAGE)
+            throw IllegalArgumentException(ROUND_COUNT_OVER_BOUNDARY_ERROR_MESSAGE)
         }
+    }
+
+    companion object {
+        private const val ROUND_COUNT_OVER_BOUNDARY_ERROR_MESSAGE =
+            "라운드 횟수의 범위는 $MIN_ROUND_COUNT 이상 $MAX_ROUND_COUNT 이하입니다."
     }
 }
