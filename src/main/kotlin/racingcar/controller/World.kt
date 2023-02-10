@@ -2,9 +2,10 @@ package racingcar.controller
 
 import racingcar.entity.AttemptCount
 import racingcar.entity.Name
-import racingcar.misc.Util
+import racingcar.misc.tryAndRerun
 import racingcar.model.CarManager
 import racingcar.model.RacingManager
+import racingcar.model.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -18,14 +19,14 @@ class World {
     }
 
     private fun initCars(): CarManager {
-        return Util.tryAndRerun {
+        return tryAndRerun {
             outputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
-            CarManager(inputView.carNames().map { Name(it) })
+            CarManager(RandomNumberGenerator(), inputView.carNames().map { Name(it) })
         } as CarManager
     }
 
     private fun initAttemptCount(): AttemptCount {
-        return Util.tryAndRerun {
+        return tryAndRerun {
             outputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
             AttemptCount(inputView.attemptCount())
         } as AttemptCount
