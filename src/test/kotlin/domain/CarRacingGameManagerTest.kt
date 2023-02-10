@@ -50,11 +50,13 @@ internal class CarRacingGameManagerTest {
 
             private fun getCars(): List<Car> {
                 val cars = listOf(
-                    Car("1", OnlyAdvanceMovingStrategy()),
-                    Car("2", OnlyAdvanceMovingStrategy()),
-                    Car("3", OnlyAdvanceMovingStrategy())
+                    Car("pobi", OnlyAdvanceMovingStrategy()),
+                    Car("james", OnlyAdvanceMovingStrategy()),
+                    Car("tony", OnlyAdvanceMovingStrategy())
                 )
-                cars.forEach { car -> repeat(car.name.toInt()) { car.move() } }
+                repeat(1) { cars[0].move() }
+                repeat(2) { cars[1].move() }
+                repeat(3) { cars[2].move() }
                 return cars
             }
         }
