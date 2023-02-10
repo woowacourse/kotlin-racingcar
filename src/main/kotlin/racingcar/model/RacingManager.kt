@@ -1,20 +1,8 @@
 package racingcar.model
 
 import racingcar.entity.AttemptCount
-import racingcar.entity.Name
 
-class RacingManager {
-    private val carManager = CarManager()
-    private lateinit var attemptCount: AttemptCount
-
-    fun initCars(names: List<Name>) {
-        carManager.init(names)
-    }
-
-    fun setAttemptCount(attemptCount: Int) {
-        this.attemptCount = AttemptCount(attemptCount)
-    }
-
+class RacingManager(private val carManager: CarManager, private val attemptCount: AttemptCount) {
     fun determineWinner() = carManager.determineWinner()
 
     fun run(): String {
