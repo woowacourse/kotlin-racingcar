@@ -1,10 +1,13 @@
 package racingcar.entity
 
+import racingcar.misc.Values
+
 class Car(private var name: Name) {
     private var position = Position(0)
 
-    fun forward() {
-        position.addPosition(1)
+    fun forward(number: Int) {
+        if (number >= Values.MAX_RANDOM_NUMBER)
+            position.addPosition(1)
     }
 
     fun compareTo(car: Car): Boolean {
