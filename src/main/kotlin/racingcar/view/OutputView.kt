@@ -4,7 +4,7 @@ import racingcar.racingcar.domain.RaceResultDto
 
 class OutputView {
     fun printRaceResult(raceResultDto: RaceResultDto) {
-        println(OUTPUT_RESULT_PREFIX)
+        println(RESULT_PREFIX)
         raceResultDto.result.forEach { locations ->
             printCarsState(raceResultDto.names, locations)
         }
@@ -22,11 +22,11 @@ class OutputView {
     }
 
     fun printWinner(names: List<String>) {
-        print(OUTPUT_WINNER + names.joinToString(", "))
+        print(WINNER + names.joinToString(", "))
     }
 
     companion object {
-        private const val OUTPUT_RESULT_PREFIX = "실행 결과"
-        private const val OUTPUT_WINNER = "최종 우승자: "
+        private const val RESULT_PREFIX = "실행 결과"
+        private const val WINNER = "최종 우승자: "
     }
 }
