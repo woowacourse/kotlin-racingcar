@@ -1,66 +1,44 @@
 import data.Car
-import data.CarRacingGamePlayer
-import data.PathState
+import data.Car.Companion.INITIAL_POSITION
 import data.generator.NumberGenerator
+import data.generator.RacingNumberGenerator.Companion.MINIMUM_NUMBER
+import data.generator.RacingNumberGenerator.Companion.MINIMUM_NUMBER_TO_MOVE
+import domain.CarRacingGame
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.ValueSource
+import org.junit.jupiter.api.Test
 
 class CarMovingTest {
 
-    class MovingNumberGenerator : NumberGenerator {
-
-        override fun generate(): Int {
-            return (4..9).random()
-        }
-    }
-
-    class StopNumberGenerator : NumberGenerator {
-
-        override fun generate(): Int {
-            return (0..3).random()
-        }
-    }
-
-    private lateinit var stopNumberGenerator: StopNumberGenerator
-    private lateinit var movingNumberGenerator: MovingNumberGenerator
+    private lateinit var carRacingGame: CarRacingGame
 
     @BeforeEach
     fun setUp() {
-        stopNumberGenerator = StopNumberGenerator()
-        movingNumberGenerator = MovingNumberGenerator()
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [2, 3, 4, 5, 6, 7])
-    fun `정지 테스트 `(numberOfTry: Int) {
-        val player = CarRacingGamePlayer(
-            car = Car(0, "우기"),
-            numberOfTry = numberOfTry,
-            numberGenerator = stopNumberGenerator
+    @Test
+    private fun `정지 테스트 `() {
+        val car = Car(
+            name = "우기",
+            racingNumberGenerator = object : NumberGenerator {
+                override fun generate(): Int = MINIMUM_NUMBER
+            }
         )
 
-        assertThat(
-            player.moveCar().path.count { pathState ->
-                pathState == PathState.MOVE
-            }
-        ).isEqualTo(0)
+        car.move()
+        assertThat(car.position).isEqualTo(INITIAL_POSITION)
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [2, 3, 4, 5, 6, 7])
-    fun `전진 테스트`(numberOfTry: Int) {
-        val player = CarRacingGamePlayer(
-            car = Car(0, "우기"),
-            numberOfTry = numberOfTry,
-            numberGenerator = movingNumberGenerator
+    @Test
+    fun `전진 테스트`() {
+        val car = Car(
+            name = "우기",
+            racingNumberGenerator = object : NumberGenerator {
+                override fun generate(): Int = MINIMUM_NUMBER_TO_MOVE
+            }
         )
 
-        assertThat(
-            player.moveCar().path.count { pathState ->
-                pathState == PathState.MOVE
-            }
-        ).isEqualTo(numberOfTry)
+        car.move()
+        assertThat(car.position).isEqualTo(1)
     }
 }
