@@ -40,7 +40,6 @@ internal class ApplicationKtTest {
             return Stream.of(
                 Arguments.of("otter,buna", "6"),
                 Arguments.of("otter, buna", "1"),
-                // Arguments.of("otter", "${Int.MAX_VALUE}"),
                 Arguments.of("buna", "1"),
                 Arguments.of("otter,buna,스캇,핑구,써니,우기,아따맘마,말파이트", "1"),
             )
