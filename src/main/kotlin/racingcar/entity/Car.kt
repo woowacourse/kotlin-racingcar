@@ -1,6 +1,6 @@
 package racingcar.entity
 
-class Car(private var name: Name) {
+data class Car(val name: Name) {
     private var position = Position(0)
 
     fun forward(number: Int) {
@@ -13,8 +13,6 @@ class Car(private var name: Name) {
     }
 
     override fun toString() = "$name : $position"
-
-    override fun equals(other: Any?) = this.position == (other as Car).position && this.name == other.name
 
     companion object {
         const val WIN_NUMBER = 4
