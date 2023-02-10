@@ -9,7 +9,7 @@ private const val EXCEPTION_NULL = "[ERROR] exception 메시지가 null입니다
 
 class GameController(
     private val inputView: InputView,
-    private val outputView: OutputView
+    private val outputView: OutputView,
 ) {
     private var cars: List<Car> = emptyList()
     private var tryCount: Int = 0
@@ -58,7 +58,7 @@ class GameController(
 
     private fun moveAllCar() {
         cars.forEach {
-            it.decideCarMovement()
+            it.move()
         }
     }
 
