@@ -1,6 +1,11 @@
 package domain
 
 class Car(private val name: String, private var moveCount: Int) {
+
+    init {
+        require(name.length <= MAX_NAME_LENGTH && name.isNotEmpty())
+    }
+
     private fun move() {
         moveCount++
     }
@@ -16,5 +21,6 @@ class Car(private val name: String, private var moveCount: Int) {
 
     companion object {
         private const val MIN_MOVE_NUMBER = 4
+        const val MAX_NAME_LENGTH = 5
     }
 }
