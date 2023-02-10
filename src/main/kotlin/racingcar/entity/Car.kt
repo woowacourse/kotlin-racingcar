@@ -1,20 +1,20 @@
 package racingcar.entity
 
 data class Car(val name: Name) {
-    private var position = Position(0)
+    val position = Position(DEFAULT_POSITION)
 
     fun forward(number: Int) {
         if (number >= WIN_NUMBER)
-            position.addPosition(1)
+            position.addPosition(FORWARD_LENGTH)
     }
 
     fun compareTo(car: Car): Boolean {
         return position.compareTo(car.position)
     }
 
-    override fun toString() = "$name : $position"
-
     companion object {
         const val WIN_NUMBER = 4
+        const val DEFAULT_POSITION = 0
+        const val FORWARD_LENGTH = 1
     }
 }
