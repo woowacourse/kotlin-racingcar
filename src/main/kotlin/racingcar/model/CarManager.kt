@@ -3,7 +3,7 @@ package racingcar.model
 import racingcar.entity.Car
 import racingcar.entity.Name
 
-open class CarManager(private val numberGenerator: NumberGenerator, names: List<Name>) {
+class CarManager(private val numberGenerator: NumberGenerator, names: List<Name>) {
     val cars: List<Car> = names.map { Car(it) }
 
     init {
@@ -19,10 +19,6 @@ open class CarManager(private val numberGenerator: NumberGenerator, names: List<
         for (idx in cars.indices) {
             cars[idx].forward(numberGenerator.generate())
         }
-    }
-
-    override fun toString(): String {
-        return cars.joinToString("\n") { it.toString() }
     }
 
     companion object {
