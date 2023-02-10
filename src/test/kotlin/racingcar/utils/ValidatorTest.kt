@@ -19,9 +19,9 @@ internal class ValidatorTest {
     @ValueSource(strings = ["sooda, buna", "sooda,buna", "   sooda,  buna  "])
     fun `자동차 이름 중복 노말 테스트`(input: String) {
         assertDoesNotThrow {
-            val names = input.split(CAR_NAME_DELIMITER).toMutableList()
-            BlankRemover.removeBlank(names)
-
+            val names = input
+                .split(CAR_NAME_DELIMITER)
+                .removeBlank()
             validator.checkCarNames(names)
         }
     }
@@ -30,9 +30,9 @@ internal class ValidatorTest {
     @ValueSource(strings = ["soodal, soodal", "buna, buna"])
     fun `자동차 이름 중복 예외 테스트`(input: String) {
         assertThrows<IllegalArgumentException> {
-            val names = input.split(CAR_NAME_DELIMITER).toMutableList()
-            BlankRemover.removeBlank(names)
-
+            val names = input
+                .split(CAR_NAME_DELIMITER)
+                .removeBlank()
             validator.checkCarNames(names)
         }
     }
