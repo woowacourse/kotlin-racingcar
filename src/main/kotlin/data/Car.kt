@@ -1,15 +1,14 @@
 package data
 
-import util.CAR_NAME_ERROR_MSG
+import InputError
 
-class Car(
-    private var position: Int,
-    private val name: String
-) {
+class Car(val name: String) {
+    var position = INITIAL_POSITION
+        private set
 
     init {
-        require(name.length <= 5) {
-            CAR_NAME_ERROR_MSG
+        require(name.length <= NAME_LENGTH_LIMIT) {
+            InputError.CAR_NAME_ERROR
         }
     }
 
@@ -17,7 +16,8 @@ class Car(
         position++
     }
 
-    fun getCar(): Pair<String, Int> {
-        return Pair(name, position)
+    companion object {
+        private const val INITIAL_POSITION = 0
+        private const val NAME_LENGTH_LIMIT = 5
     }
 }
