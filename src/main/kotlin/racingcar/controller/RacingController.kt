@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.model.Car
+import racingcar.model.Round
 import racingcar.service.RacingService
 import racingcar.utils.Validator
 import racingcar.view.InputView
@@ -13,9 +14,9 @@ class RacingController(
 ) {
     fun runRacing() {
         val cars = createCars(readCarNames())
-        val roundCount = readRoundCount()
+        val round = readRound()
 
-        runRounds(roundCount, cars)
+        runRounds(round.count, cars)
 
         val winners = getWinners(cars)
         printWinners(winners)
@@ -26,9 +27,9 @@ class RacingController(
         return inputView.readCarNames()
     }
 
-    private fun readRoundCount(): Int {
+    private fun readRound(): Round {
         outputView.printMessage(ROUND_COUNT_REQUEST_MESSAGE)
-        return inputView.readRoundCount()
+        return Round(inputView.readRoundCount())
     }
 
     private fun printRoundCountRequestMessage() = outputView.printMessage(ROUNDS_RESULT_NOTIFICATION_MESSAGE)
