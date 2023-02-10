@@ -8,8 +8,6 @@ import view.OutputView
 class RacingGameController(
     private var carsInfo: List<Car> = listOf(),
     private var tryCount: Int = DEFAULT_TRY_COUNT,
-    private val inputView: InputView = InputView(),
-    private val outputView: OutputView = OutputView(),
     private val racingCarGameService: RacingCarGameService = RacingCarGameService()
 ) {
 
@@ -22,8 +20,8 @@ class RacingGameController(
 
     fun inputCarNames() {
         try {
-            outputView.printCar()
-            val carsName = racingCarGameService.splitCarNames(inputView.inputName())
+            OutputView.printCar()
+            val carsName = racingCarGameService.splitCarNames(InputView.inputName())
             carsInfo = racingCarGameService.initCarsInfo(carsName)
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
@@ -33,8 +31,8 @@ class RacingGameController(
 
     fun inputTryCount() {
         try {
-            outputView.printTryCount()
-            tryCount = inputView.inputTryCount().toInt()
+            OutputView.printTryCount()
+            tryCount = InputView.inputTryCount().toInt()
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
             inputTryCount()
@@ -44,11 +42,11 @@ class RacingGameController(
     fun playRound() {
         carsInfo = racingCarGameService.moveCars(carsInfo)
 
-        outputView.printRoundResult(racingCarGameService.getRoundResult(carsInfo))
+        OutputView.printRoundResult(racingCarGameService.getRoundResult(carsInfo))
     }
 
     fun playWholeRacing() {
-        outputView.printRunResultMessage()
+        OutputView.printRunResultMessage()
         repeat(tryCount - 1) {
             playRound()
         }
@@ -57,7 +55,7 @@ class RacingGameController(
     fun outputWinner() {
         val winnerInfo = racingCarGameService.getMaxPositionCars(carsInfo)
         val winnerNames = racingCarGameService.getWinners(winnerInfo)
-        outputView.printWinner(winnerNames)
+        OutputView.printWinner(winnerNames)
     }
 
     companion object {

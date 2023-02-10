@@ -1,6 +1,6 @@
 package validation
 
-class NullValidation {
+object NullValidation {
 
     fun checkNull(input: String?): String {
         if (input.isNullOrBlank())
@@ -8,7 +8,5 @@ class NullValidation {
         return input
     }
 
-    companion object {
-        const val INPUT_IS_EMPTY_ERROR_MESSAGE = "[ERROR] 아무것도 입력하지 않았습니다."
-    }
+    private const val INPUT_IS_EMPTY_ERROR_MESSAGE = "[ERROR] 아무것도 입력하지 않았습니다."
 }

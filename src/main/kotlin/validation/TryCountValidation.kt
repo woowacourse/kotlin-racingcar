@@ -1,6 +1,6 @@
 package validation
 
-class TryCountValidation {
+object TryCountValidation {
     fun checkTryCount(tryCount: String) {
         checkTryCountInteger(tryCount)
         checkTryCountPositive(tryCount)
@@ -19,10 +19,8 @@ class TryCountValidation {
             throw IllegalArgumentException(TRY_COUNT_POSITIVE_ERROR_MESSAGE)
     }
 
-    companion object {
-        const val MINIMUM_TRY_COUNT = 1
+    private const val MINIMUM_TRY_COUNT = 1
 
-        const val TRY_COUNT_INTEGER_ERROR_MESSAGE = "[ERROR] 시도 횟수는 숫자만 입력해 주세요"
-        const val TRY_COUNT_POSITIVE_ERROR_MESSAGE = "[ERROR] 시도 횟수는 양의 정수여야 합니다"
-    }
+    private const val TRY_COUNT_INTEGER_ERROR_MESSAGE = "[ERROR] 시도 횟수는 숫자만 입력해 주세요"
+    private const val TRY_COUNT_POSITIVE_ERROR_MESSAGE = "[ERROR] 시도 횟수는 양의 정수여야 합니다"
 }
