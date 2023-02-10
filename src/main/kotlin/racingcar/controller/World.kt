@@ -21,24 +21,26 @@ class World {
     private fun initCars(): CarManager {
         return tryAndRerun {
             outputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
-            CarManager(RandomNumberGenerator(), inputView.carNames().map { Name(it) })
+            val names = inputView.carNames().map { Name(it) }
+            CarManager(RandomNumberGenerator(), names)
         } as CarManager
     }
 
     private fun initAttemptCount(): AttemptCount {
         return tryAndRerun {
             outputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
-            AttemptCount(inputView.attemptCount())
+            val attemptCount = inputView.attemptCount()
+            AttemptCount(attemptCount)
         } as AttemptCount
     }
 
     fun startRace() {
-        outputView.printLnMessage(OutputView.MSG_STEP_RESULT)
-        outputView.stepResult(racingManager.run())
+        val stepResult = racingManager.run()
+        outputView.stepResult(stepResult)
     }
 
     fun finishRace() {
-        outputView.printMessage(OutputView.MSG_WINNER)
-        outputView.winner(racingManager.determineWinner())
+        val winner = racingManager.determineWinner()
+        outputView.winner(winner)
     }
 }
