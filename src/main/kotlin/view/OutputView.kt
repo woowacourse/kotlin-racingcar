@@ -18,9 +18,13 @@ class OutputView {
 
     fun printRoundResult(cars: List<Car>) {
         cars.forEach { car ->
-            println("${car.getName()} : ${"-".repeat(car.getMoveCount())}")
+            println("${car.getName()} : ${makeCarMoveShape(car.getMoveCount())}")
         }
         println()
+    }
+
+    private fun makeCarMoveShape(moveCount: Int): String {
+        return "-".repeat(moveCount)
     }
 
     fun printWinners(winners: List<String>) {
