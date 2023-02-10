@@ -2,67 +2,43 @@ package racingcar.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
+import racingcar.entity.AttemptCount
+import racingcar.entity.Car
 import racingcar.entity.Name
+import racingcar.entity.Position
 
 class RacingManagerTest {
     @Test
-    fun `0개의 자동차로 초기화 시 예외 테스트`() {
-        val racingManager = RacingManager()
+    fun `3번의 시도로 레이싱 실행시 각 시도별 기록 저장`() {
+        val names = listOf("test1", "test2", "test3")
+        val positions = listOf(Position(3), Position(4), Position(2))
+        val cars = names.mapIndexed { idx, name -> Car(Name(name), positions[idx]) }
+        val sequentialNumberGenerator = SequentialNumberGenerator(listOf(1, 4, 6, 3, 8, 3, 5, 3, 9))
+        val carManager = CarManager(sequentialNumberGenerator, cars)
+        val racingManager = RacingManager(carManager, AttemptCount(3))
 
-        assertThrows<IllegalArgumentException> {
-            racingManager.initCars(listOf())
-        }
+        val attemptHistory = racingManager.run()
+
+        assertThat(attemptHistory.map { it.map { car -> car.position.value } }).isEqualTo(
+            listOf(
+                listOf(3, 5, 3),
+                listOf(3, 6, 3),
+                listOf(4, 6, 4)
+            )
+        )
     }
 
     @Test
-    fun `시도횟수 0으로 설정 시 예외 테스트`() {
-        val racingManager = RacingManager()
+    fun `우승자 결정 시 가장 높은 position을 가진 Car들만 출력`() {
+        val names = listOf("test1", "test2", "test3")
+        val positions = listOf(Position(4), Position(4), Position(2))
+        val cars = names.mapIndexed { idx, name -> Car(Name(name), positions[idx]) }
+        val sequentialNumberGenerator = SequentialNumberGenerator(listOf())
+        val carManager = CarManager(sequentialNumberGenerator, cars)
+        val racingManager = RacingManager(carManager, AttemptCount(3))
 
-        assertThrows<IllegalArgumentException> {
-            racingManager.setAttemptCount(0)
-        }
-    }
+        val winner = racingManager.determineWinner()
 
-    @Test
-    fun `잘못된 숫자 입력 시 전진 예외 테스트`() {
-        val racingManager = RacingManager()
-        racingManager.initCars(listOf(Name("test1"), Name("test2")))
-
-        assertThrows<IllegalArgumentException> {
-            racingManager.step(0, -1)
-            racingManager.step(1, 10)
-        }
-    }
-
-    @Test
-    fun `racing 1회 시도 테스트`() {
-        val racingManager = RacingManager()
-        racingManager.initCars(listOf(Name("test1"), Name("test2")))
-
-        racingManager.step(0, 2)
-        racingManager.step(1, 7)
-
-        assertThat(racingManager.makeAttemptLog()).isEqualTo("test1 : \ntest2 : -")
-    }
-
-    @Test
-    fun `racing 전체 테스트`() {
-        val racingManager = RacingManager()
-        racingManager.initCars(listOf(Name("test1"), Name("test2")))
-
-        val result = mutableListOf<String>()
-
-        racingManager.step(0, 2)
-        racingManager.step(1, 7)
-
-        result.add(racingManager.makeAttemptLog())
-
-        racingManager.step(0, 9)
-        racingManager.step(1, 5)
-
-        result.add(racingManager.makeAttemptLog())
-
-        assertThat(racingManager.makeRunLog(result)).isEqualTo("test1 : \ntest2 : -\n\ntest1 : -\ntest2 : --")
+        assertThat(winner.map { car -> car.name.value }).isEqualTo(listOf("test1", "test2"))
     }
 }
