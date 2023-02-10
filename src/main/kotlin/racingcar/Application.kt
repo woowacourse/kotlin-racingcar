@@ -3,15 +3,11 @@ package racingcar
 import racingcar.controller.World
 
 fun main() {
-    try {
+    runCatching {
         val world = World()
         world.run()
         world.quit()
-    } catch (e: Exception) {
-        when (e) {
-            is IllegalArgumentException, is IllegalStateException -> {
-                println("[ERROR]: " + e.message)
-            }
-        }
+    }.onFailure {
+        println("[ERROR]: " + it.message)
     }
 }
