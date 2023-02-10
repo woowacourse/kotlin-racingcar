@@ -19,12 +19,9 @@ class RacingCarController {
     }
 
     private fun startRacing(maxMoveCount: Int, racingGame: RacingGame) {
-        println("실행 결과")
-        val carCount = racingGame.getCars().size
-        repeat(maxMoveCount) {
-            racingGame.moveCars(racingGame.createRandomNumbers(carCount))
-            OutputView.printCurrentPosition(racingGame.getCars())
-        }
+        val result = racingGame.race(maxMoveCount)
+        val carNames = racingGame.getCars().map { it.getName() }
+        OutputView.printGameResult(carNames, result)
         OutputView.printWinners(racingGame.getWinners())
     }
 }

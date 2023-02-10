@@ -21,6 +21,23 @@ class RacingGame {
         return result.toList()
     }
 
+    fun race(maxMoveCount: Int): List<List<Int>> {
+        val result = mutableListOf<List<Int>>()
+        repeat(maxMoveCount) {
+            moveCars(createRandomNumbers(cars.size))
+            result.add(getGameResultOneTurn())
+        }
+        return result
+    }
+
+    private fun getGameResultOneTurn(): List<Int> {
+        val result = mutableListOf<Int>()
+        cars.map {
+            result.add(it.getPosition())
+        }
+        return result
+    }
+
     fun moveCars(randomNumbers: List<Int>) {
         for ((index, car) in cars.withIndex()) {
             car.move(randomNumbers[index])

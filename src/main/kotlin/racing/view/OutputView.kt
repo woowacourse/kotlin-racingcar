@@ -1,12 +1,17 @@
 package racing.view
 
-import racing.model.Car
-
 object OutputView {
 
-    fun printCurrentPosition(cars: List<Car>) {
-        for (car in cars) {
-            println("${car.getName()} : ${getDash(car.getPosition())}")
+    fun printGameResult(cars: List<String>, carsMoveProgress: List<List<Int>>) {
+        println("실행 결과")
+        repeat(carsMoveProgress.size) {
+            printCurrentPosition(cars, carsMoveProgress[it])
+        }
+    }
+
+    private fun printCurrentPosition(carNames: List<String>, carsMoveProgress: List<Int>) {
+        carNames.forEachIndexed { index, carName ->
+            println("$carName : ${getDash(carsMoveProgress[index])}")
         }
         println()
     }
@@ -23,3 +28,5 @@ object OutputView {
         println("최종 우승자: ${winners.joinToString(", ")}")
     }
 }
+
+
