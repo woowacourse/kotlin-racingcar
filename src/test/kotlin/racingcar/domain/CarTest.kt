@@ -44,9 +44,9 @@ internal class CarTest {
         assertThat(car.location).isEqualTo(1)
     }
 
-    @ParameterizedTest(name = "잘못된 입력일 경우 에러 메시지 발생 {argumentsWithNames}")
+    @ParameterizedTest(name = "0~9이외 수 입력 시 오류 발생 {argumentsWithNames}")
     @ValueSource(ints = [-1, 10])
-    fun `잘못된 입력일 경우`(input: Int) {
+    fun `0~9이외 수 입력 시 오류 발생`(input: Int) {
         val car = Car("hihi")
         assertThrows<IllegalArgumentException> {
             car.move(input)
