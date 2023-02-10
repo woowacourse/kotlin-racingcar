@@ -1,8 +1,7 @@
 package view
 
 import data.CarPath
-import util.getPathMarks
-import util.subPath
+import data.PathState
 import view.View.bw
 
 object OutputView {
@@ -28,4 +27,16 @@ object OutputView {
         bw.write(winners.joinToString(", ") + '\n')
         bw.flush()
     }
+
+    private fun List<PathState>.getPathMarks(): String {
+        var pathMarks = ""
+
+        this.forEach { pathState ->
+            pathMarks += pathState.state
+        }
+
+        return pathMarks
+    }
+
+    private fun CarPath.subPath(number: Int) = this.path.subList(0, number + 1)
 }
