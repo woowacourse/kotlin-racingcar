@@ -11,8 +11,8 @@ open class CarManager(private val numberGenerator: NumberGenerator, names: List<
     }
 
     fun determineWinner(): List<Car> {
-        val sortedCars = cars.sortedWith { car, car2 -> if (car.compareTo(car2)) -1 else 1 }
-        return sortedCars.filter { it.compareTo(sortedCars[0]) }.reversed()
+        val sortedCars = cars.sortedWith { car, car2 -> if (car.compareByPosition(car2)) -1 else 1 }
+        return sortedCars.filter { it.compareByPosition(sortedCars[0]) }.reversed()
     }
 
     fun attempt() {
