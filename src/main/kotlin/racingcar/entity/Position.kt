@@ -12,8 +12,4 @@ data class Position(private var _value: Int) {
     fun compareTo(position: Position): Boolean {
         return this.value >= position.value
     }
-
-    override fun toString(): String {
-        return "-".repeat(value)
-    }
 }
