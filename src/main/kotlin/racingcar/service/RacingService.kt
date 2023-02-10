@@ -1,10 +1,7 @@
 package racingcar.service
 
 import racingcar.model.Car
-import racingcar.utils.END_RANDOM_MOVEMENT_PROBABILITY
-import racingcar.utils.MOVEMENT_PROBABILITY
 import racingcar.utils.Random
-import racingcar.utils.START_RANDOM_MOVEMENT_PROBABILITY
 
 class RacingService {
 
@@ -27,5 +24,11 @@ class RacingService {
     fun getWinners(cars: List<Car>): List<Car> {
         val winnerStandard = cars.max()
         return cars.filter { it == winnerStandard }
+    }
+
+    companion object {
+        const val START_RANDOM_MOVEMENT_PROBABILITY = 1
+        const val END_RANDOM_MOVEMENT_PROBABILITY = 10
+        const val MOVEMENT_PROBABILITY = 4
     }
 }
