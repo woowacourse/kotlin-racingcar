@@ -10,8 +10,8 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class World {
-    private val outputView = OutputView()
-    private val inputView = InputView()
+    private val outputView: OutputView = OutputView()
+    private val inputView: InputView = InputView()
     private val racingManager: RacingManager
 
     init {
