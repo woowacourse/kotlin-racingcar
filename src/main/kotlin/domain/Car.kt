@@ -4,7 +4,7 @@ import dto.RaceResultDTO
 
 class Car(
     private val generator: NumberGenerator,
-    private val name: String,
+    val name: String,
     private var distance: Int = 0
 ) {
 
@@ -15,18 +15,10 @@ class Car(
     fun race(): RaceResultDTO {
         val number = generator.generate()
         if (checkGo(number)) go()
-        return RaceResultDTO(ComparisonResult.LOSE, distance, name)
+        return RaceResultDTO(distance, name)
     }
 
-    fun compare(winnerDistance: Int): RaceResultDTO {
-        val difference = distance - winnerDistance
-        val comparisonResult = when {
-            difference > 0 -> ComparisonResult.WIN
-            difference < 0 -> ComparisonResult.LOSE
-            else -> ComparisonResult.DRAW
-        }
-        return RaceResultDTO(comparisonResult, distance, name)
-    }
+    fun getDistance() = distance
 
     private fun checkGo(number: Int): Boolean {
         if (number >= RANGE_LOWER_INCLUSIVE)

@@ -1,7 +1,6 @@
 package view
 
 import dto.RaceResultDTO
-import dto.WinnersDTO
 
 class OutputView {
     fun printError(message: String) {
@@ -16,8 +15,7 @@ class OutputView {
         println("${carMetadataDTO.name} : ${"-".repeat(carMetadataDTO.distance)}")
     }
 
-    fun printWinners(winnersDTO: WinnersDTO) {
-        val winners = winnersDTO.winners
+    fun printWinners(winners: List<String>) {
         println("$FINAL_WINNER ${winners.joinToString(", ")}")
     }
 

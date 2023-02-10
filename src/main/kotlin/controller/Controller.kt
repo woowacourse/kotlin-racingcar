@@ -54,7 +54,7 @@ class Controller(
     }
 
     private fun announceWinners(cars: List<Car>) {
-        val winnersDTO = Judgement(cars).findWinners()
-        outputView.printWinners(winnersDTO)
+        val winners = Judgement(cars).findWinners()
+        outputView.printWinners(winners)
     }
 }

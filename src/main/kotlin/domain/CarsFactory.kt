@@ -8,7 +8,7 @@ class CarsFactory(private val names: List<String>) {
     }
 
     fun makeCars(numberGenerator: RandomNumberGenerator): List<Car> {
-        return names.map { name -> Car(numberGenerator, name, 0) }
+        return names.map { name -> Car(numberGenerator, name) }
     }
 
     private fun validateCarCount() {
