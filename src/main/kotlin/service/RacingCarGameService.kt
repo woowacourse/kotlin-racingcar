@@ -40,7 +40,7 @@ class RacingCarGameService {
         var winners = "최종 우승자: "
 
         carsInfo.forEach { car ->
-            winners += "${car.getWinnerName()}, "
+            winners += "${car.name}, "
         }
         return winners.substring(SUBSTRING_START_POSITION, winners.length - SUBSTRING_DELETE_COMMA_AND_SPACE)
     }
