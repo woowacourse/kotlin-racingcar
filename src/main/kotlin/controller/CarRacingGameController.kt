@@ -1,3 +1,5 @@
+package controller
+
 import data.Car
 import data.CarRacingGameDataSource
 import domain.CarGenerator
