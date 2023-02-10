@@ -1,5 +1,6 @@
 package controller
 import model.Cars
+import util.CarHelper
 import util.Validator
 import view.InputView
 import view.OutputView
@@ -15,7 +16,7 @@ class RaceGame {
         repeat(tryNumber) {
             tryMove(cars)
         }
-        outputView.outputWinners(cars.findWinners())
+        outputView.outputWinners(CarHelper.findWinners(cars))
     }
 
     private fun tryMove(cars: Cars) {
@@ -32,13 +33,13 @@ class RaceGame {
     }
 
     private fun getInputTryNumber(number: String): Int {
-        return try {
+        return runCatching {
             Validator().checkTryNumber(number)
             number.toInt()
-        } catch (e: IllegalArgumentException) {
-            outputView.outputErrorMessage(e.message ?: "에러가 발생했습니다.")
+        }.onFailure {
+            outputView.outputErrorMessage(it.message ?: "에러가 발생했습니다.")
             executeInputTryNumber()
-        }
+        }.getOrDefault(0)
     }
 
     private fun executeInputCarNames(): Cars {
@@ -47,12 +48,12 @@ class RaceGame {
     }
 
     private fun getInputCarNames(cars: String): Cars {
-        return try {
+        return runCatching {
             Validator().checkNames(cars)
             Cars(cars)
-        } catch (e: IllegalArgumentException) {
-            outputView.outputErrorMessage(e.message ?: "에러가 발생했습니다.")
+        }.onFailure {
+            outputView.outputErrorMessage(it.message ?: "에러가 발생했습니다.")
             executeInputCarNames()
-        }
+        }.getOrDefault(Cars(""))
     }
 }
