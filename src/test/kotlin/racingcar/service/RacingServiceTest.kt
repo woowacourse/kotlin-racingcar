@@ -23,7 +23,7 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["buna", "sooda"])
-    fun `자동차 객체 생성 노말 테스트`(carName: String) {
+    fun `공백이 아닌 1글자 이상 5글자 이하의 이름인 경우, createCar시, 예외가 발생하지 않는다`(carName: String) {
         assertDoesNotThrow {
             racingService.createCar(carName)
         }
@@ -31,7 +31,7 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["soooodal", "buuuuuuuna", ""])
-    fun `자동차 객체 생성 예외 테스트`(carName: String) {
+    fun `공백이나 5글자이상의 이름인 경우, createCar시 , IllegalArgumentException가 발생한다`(carName: String) {
         assertThrows<IllegalArgumentException> {
             racingService.createCar(carName)
         }
@@ -39,7 +39,11 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @MethodSource("provideCarsForHappyCase")
-    fun `최종 우승자 산출 노말 테스트`(cars: List<Car>, moveCounts: List<Int>, expectedWinnersCount: Int) {
+    fun `각 자동차가 moveCount만큼 이동한 경우, 우승자 산출시, expectedWinnersCount와 동일하다`(
+        cars: List<Car>,
+        moveCounts: List<Int>,
+        expectedWinnersCount: Int
+    ) {
         cars.forEachIndexed { index, car ->
             repeat(moveCounts[index]) {
                 car.move()
@@ -47,12 +51,17 @@ internal class RacingServiceTest {
         }
 
         val realWinnersCount = racingService.getWinners(cars).size
+
         assertEquals(realWinnersCount, expectedWinnersCount)
     }
 
     @ParameterizedTest
     @MethodSource("provideCarsForExceptionCase")
-    fun `최종 우승자 산출 예외 테스트`(cars: List<Car>, moveCounts: List<Int>, expectedWinnersCount: Int) {
+    fun `각 자동차가 moveCount만큼 이동한 경우, 우승자 산출시 expectedWinnersCount와 다르면, IllegalArgumentException가 발생한다`(
+        cars: List<Car>,
+        moveCounts: List<Int>,
+        expectedWinnersCount: Int
+    ) {
         cars.forEachIndexed { index, car ->
             repeat(moveCounts[index]) {
                 car.move()
@@ -60,6 +69,7 @@ internal class RacingServiceTest {
         }
 
         val realWinnersCount = racingService.getWinners(cars).size
+
         assertNotEquals(realWinnersCount, expectedWinnersCount)
     }
 
