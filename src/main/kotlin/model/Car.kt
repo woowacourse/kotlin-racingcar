@@ -1,8 +1,12 @@
 package model
 
-class Car(private val name: String, private var position: Int) : Comparable<Car> {
+class Car(val name: String, position: Int) : Comparable<Car> {
+
+    var position = 0
+        private set
+
     fun moveForward(isPossibleMove: Boolean) {
-        if (isPossibleMove) this.position += 1
+        if (isPossibleMove) this.position++
     }
 
     fun isSamePosition(other: Car): Boolean {
@@ -15,10 +19,6 @@ class Car(private val name: String, private var position: Int) : Comparable<Car>
         var status = "${this.name} : "
         for (i in 1..this.position) status += "-"
         return status
-    }
-
-    fun getWinnerName(): String {
-        return this.name
     }
 
     override fun compareTo(other: Car): Int {
