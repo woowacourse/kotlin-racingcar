@@ -2,10 +2,9 @@ package racingcar.model
 
 import racingcar.entity.Car
 import racingcar.entity.Name
-import racingcar.misc.Util
 import racingcar.misc.Values
 
-class CarManager(names: List<Name>) {
+open class CarManager(private val numberGenerator: NumberGenerator, names: List<Name>) {
     val cars: List<Car> = names.map { Car(it) }
 
     init {
@@ -19,7 +18,7 @@ class CarManager(names: List<Name>) {
 
     fun attempt() {
         for (i in cars.indices) {
-            step(i, Util.generateRandom())
+            step(i, numberGenerator.generate())
         }
     }
 
