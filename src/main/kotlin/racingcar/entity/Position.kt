@@ -2,11 +2,11 @@ package racingcar.entity
 
 data class Position(private var _value: Int) {
     var value: Int = _value
-        get() = value
+        get() = _value
         private set
 
     fun addPosition(length: Int) {
-        value += length
+        _value += length
     }
 
     fun compareTo(position: Position): Boolean {
