@@ -1,5 +1,5 @@
 package racingcar.domain
 
 interface NumberGenerator {
-    fun generateNumber(MIN_NUMBER: Int, MAX_NUMBER: Int): Int
+    fun generateNumber(minNumber: Int, maxNumber: Int): Int
 }

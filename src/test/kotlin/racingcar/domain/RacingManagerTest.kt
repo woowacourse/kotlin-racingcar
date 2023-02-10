@@ -20,7 +20,7 @@ internal class RacingManagerTest {
     fun `레이스 게임이 잘 작동하는지 확인`() {
         class TestNumberGenerator : NumberGenerator {
             val list = mutableListOf(1, 4, 9)
-            override fun generateNumber(MIN_NUMBER: Int, MAX_NUMBER: Int): Int {
+            override fun generateNumber(minNumber: Int, maxNumber: Int): Int {
                 return list.removeAt(0)
             }
         }
