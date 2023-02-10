@@ -11,9 +11,9 @@ class Car(val name: String) {
         require(name.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH) { ERROR_NAME_LENGTH_RANGE }
     }
 
-    fun plusLocation(num: Int) {
-        require(num in MIN_NUMBER..MAX_NUMBER) { ERROR_INPUT_COUNT }
-        if (num >= STANDARD_NUMBER) {
+    fun move(condition: Int) {
+        require(condition in MIN_BOUNDARY..MAX_BOUNDARY) { ERROR_INPUT_COUNT }
+        if (condition >= STANDARD_BOUNDARY) {
             this.location++
         }
     }
@@ -21,8 +21,8 @@ class Car(val name: String) {
     companion object {
         const val MIN_NAME_LENGTH = 1
         const val MAX_NAME_LENGTH = 5
-        const val MIN_NUMBER = 0
-        const val MAX_NUMBER = 9
-        const val STANDARD_NUMBER = 4
+        const val MIN_BOUNDARY = 0
+        const val MAX_BOUNDARY = 9
+        const val STANDARD_BOUNDARY = 4
     }
 }

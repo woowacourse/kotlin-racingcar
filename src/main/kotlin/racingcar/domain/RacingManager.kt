@@ -12,7 +12,7 @@ class RacingManager(
     fun race(): List<Car> {
         require(racingCount > 0) { ERROR_RACING_COUNT_AT_MOST_ONE }
         racingCount--
-        cars.forEach { it.plusLocation(numberGenerator.generateNumber(Car.MIN_NUMBER, Car.MAX_NUMBER)) }
+        cars.forEach { it.move(numberGenerator.generateNumber(Car.MIN_BOUNDARY, Car.MAX_BOUNDARY)) }
         return cars
     }
 

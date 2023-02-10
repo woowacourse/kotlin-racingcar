@@ -32,7 +32,7 @@ internal class CarTest {
     @ValueSource(ints = [0, 1, 2, 3])
     fun `숫자가 4 이하인 경우 이동하지 않는지 확인`(input: Int) {
         val car = Car("hihi")
-        car.plusLocation(input)
+        car.move(input)
         assertThat(car.location).isEqualTo(0)
     }
 
@@ -40,7 +40,7 @@ internal class CarTest {
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `숫자가 4 이상인 경우 이동하는지 확인`(input: Int) {
         val car = Car("hihi")
-        car.plusLocation(input)
+        car.move(input)
         assertThat(car.location).isEqualTo(1)
     }
 
@@ -49,7 +49,7 @@ internal class CarTest {
     fun `잘못된 입력일 경우`(input: Int) {
         val car = Car("hihi")
         assertThrows<IllegalArgumentException> {
-            car.plusLocation(input)
+            car.move(input)
         }
     }
 }
