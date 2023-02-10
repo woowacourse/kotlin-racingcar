@@ -11,34 +11,33 @@ internal class CarTest {
 
     @MethodSource("provideCar")
     @ParameterizedTest
-    fun `차 주행 테스트`(randNum: Int, expectedDistance: String) {
+    fun `move 함수가 제대로 동작하는지 테스트`(randNum: Int, expectedDistance: String) {
+        // given
         val car = TestCarFactory.makeCar("세훈", randNum)
-
+        // when
         car.move()
-
+        // then
         assertThat(car.distance).isEqualTo(expectedDistance)
     }
 
-    @ValueSource(strings = ["", "실패실패실패", "성", "공성공성공"])
+    @ValueSource(strings = ["", "실패실패실패"])
     @ParameterizedTest
-    fun `차 이름 유효성 확인 테스트`(carName: String) {
-        var car = TestCarFactory.makeCar("temp", 5)
-
-        val carException = kotlin.runCatching { car = TestCarFactory.makeCar(carName, 5) }.exceptionOrNull()
-
-        when (carException == null) {
-            true -> testSuccessCase(car, carName)
-            false -> testFailCase(carException)
-        }
-    }
-
-    private fun testFailCase(carException: Throwable) {
+    fun `차 이름이 1~5 범위 밖인 경우`(carName: String) {
+        // given
+        // when
+        val carException = kotlin.runCatching { TestCarFactory.makeCar(carName, 5) }.exceptionOrNull()
+        // then
         assertThat(carException).isInstanceOf(Exception::class.java)
         assertThat(carException).hasMessage(Car.NAME_CONVENTION_ERROR_MESSAGE)
     }
 
-    private fun testSuccessCase(car: Car, expectedCarName: String) {
-        assertThat(car.carName).isEqualTo(expectedCarName)
+    @ValueSource(strings = ["성", "공성공성공"])
+    @ParameterizedTest
+    fun `차 이름이 1~5 범위 안인 경우`(carName: String) {
+        // when
+        val car = TestCarFactory.makeCar(carName, 5)
+        // then
+        assertThat(car.carName).isEqualTo(carName)
     }
 
     companion object {
