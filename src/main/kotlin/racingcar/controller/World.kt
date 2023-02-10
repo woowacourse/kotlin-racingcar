@@ -1,7 +1,9 @@
 package racingcar.controller
 
+import racingcar.entity.AttemptCount
 import racingcar.entity.Name
 import racingcar.misc.Util
+import racingcar.model.CarManager
 import racingcar.model.RacingManager
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -9,35 +11,32 @@ import racingcar.view.OutputView
 class World {
     private val outputView = OutputView()
     private val inputView = InputView()
-    private val racingManager = RacingManager()
+    private val racingManager: RacingManager
 
     init {
-        initCars()
-        initAttemptCount()
-        run()
-        quit()
+        racingManager = RacingManager(initCars(), initAttemptCount())
     }
 
-    private fun initCars() {
-        Util.tryAndRerun {
+    private fun initCars(): CarManager {
+        return Util.tryAndRerun {
             outputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
-            racingManager.initCars(inputView.carNames().map { Name(it) })
-        }
+            CarManager(inputView.carNames().map { Name(it) })
+        } as CarManager
     }
 
-    private fun initAttemptCount() {
-        Util.tryAndRerun {
+    private fun initAttemptCount(): AttemptCount {
+        return Util.tryAndRerun {
             outputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
-            racingManager.setAttemptCount(inputView.attemptCount())
-        }
+            AttemptCount(inputView.attemptCount())
+        } as AttemptCount
     }
 
-    private fun run() {
+    fun run() {
         outputView.printLnMessage(OutputView.MSG_STEP_RESULT)
         outputView.stepResult(racingManager.run())
     }
 
-    private fun quit() {
+    fun quit() {
         outputView.printMessage(OutputView.MSG_WINNER)
         outputView.winner(racingManager.determineWinner())
     }
