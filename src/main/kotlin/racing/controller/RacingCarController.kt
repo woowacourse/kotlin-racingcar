@@ -7,9 +7,6 @@ import racing.view.OutputView
 
 class RacingCarController {
 
-    private val racingGame = RacingGame()
-    private var maxMoveCount = 0
-
     fun initRace() {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         val cars = mutableListOf<Car>()
@@ -17,12 +14,13 @@ class RacingCarController {
             cars.add(Car(carName))
         }
         println("시도할 횟수는 몇 회인가요?")
-        maxMoveCount = InputView.inputCount()
+        val maxMoveCount = InputView.inputCount()
+        val racingGame = RacingGame()
         racingGame.initRacing(cars)
-        startRacing()
+        startRacing(maxMoveCount, racingGame)
     }
 
-    private fun startRacing() {
+    private fun startRacing(maxMoveCount: Int, racingGame: RacingGame) {
         println("실행 결과")
         val carCount = racingGame.getCars().size
         repeat(maxMoveCount) {
