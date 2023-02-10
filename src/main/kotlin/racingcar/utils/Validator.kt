@@ -24,15 +24,7 @@ class Validator {
         return roundCount
     }
 
-    fun checkCarNameLength(name: String) {
-        if (name.length !in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) {
-            throw IllegalArgumentException(CAR_NAME_LENGTH_OVER_BOUNDARY_ERROR_MESSAGE)
-        }
-    }
-
     companion object {
-        const val CAR_NAME_LENGTH_OVER_BOUNDARY_ERROR_MESSAGE =
-            "자동차 이름 길이의 범위는 $MIN_CAR_NAME_LENGTH 이상 $MAX_CAR_NAME_LENGTH 이하입니다."
 
         const val DUPLICATED_CAR_NAME_ERROR_MESSAGE =
             "중복된 자동차 이름이 존재합니다."
