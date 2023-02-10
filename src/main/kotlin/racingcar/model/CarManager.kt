@@ -16,8 +16,8 @@ class CarManager(private val numberGenerator: NumberGenerator, names: List<Name>
     }
 
     fun attempt() {
-        for (idx in cars.indices) {
-            cars[idx].forward(numberGenerator.generate())
+        cars.forEach {
+            it.forward(numberGenerator.generate())
         }
     }
 
