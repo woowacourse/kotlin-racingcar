@@ -17,7 +17,7 @@ internal class ValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["sooda, buna", "sooda,buna", "   sooda,  buna  "])
-    fun `자동차 이름 중복 노말 테스트`(input: String) {
+    fun `자동차 이름 중복 정상 테스트`(input: String) {
         assertDoesNotThrow {
             val names = input.split(CAR_NAME_DELIMITER).toMutableList()
             BlankRemover.removeBlank(names)
@@ -39,7 +39,7 @@ internal class ValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1", Int.MAX_VALUE.toString(), "5", "6"])
-    fun `시도 횟수 노말 테스트`(input: String) {
+    fun `시도 횟수 정상 테스트`(input: String) {
         assertDoesNotThrow {
             validator.checkRoundCount(input)
         }

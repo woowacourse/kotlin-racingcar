@@ -23,7 +23,7 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["buna", "sooda"])
-    fun `자동차 객체 생성 노말 테스트`(carName: String) {
+    fun `자동차 객체 생성 정상 테스트`(carName: String) {
         assertDoesNotThrow {
             racingService.createCar(carName)
         }
@@ -39,7 +39,7 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @MethodSource("provideCarsForHappyCase")
-    fun `최종 우승자 산출 노말 테스트`(cars: List<Car>, expectedWinnersCount: Int) {
+    fun `최종 우승자 산출 정상 테스트`(cars: List<Car>, expectedWinnersCount: Int) {
         val realWinnersCount = racingService.getWinners(cars).size
         assertEquals(realWinnersCount, expectedWinnersCount)
     }

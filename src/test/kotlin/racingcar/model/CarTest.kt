@@ -14,7 +14,7 @@ class CarTest {
     }
 
     @Test
-    fun testCarMovement() {
+    fun `움직임 정상 테스트`() {
         val moveCount = 5
 
         repeat(moveCount) {

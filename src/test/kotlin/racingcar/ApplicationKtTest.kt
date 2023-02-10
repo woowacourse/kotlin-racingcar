@@ -12,7 +12,7 @@ internal class ApplicationKtTest {
 
     @ParameterizedTest
     @MethodSource("provideInputNormalCases")
-    fun `전체 기능 노말 테스트`(carNames: String, roundCount: String) {
+    fun `전체 기능 정상 테스트`(carNames: String, roundCount: String) {
         setInput(carNames, roundCount)
         assertDoesNotThrow {
             main()
