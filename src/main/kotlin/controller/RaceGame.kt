@@ -19,7 +19,7 @@ class RaceGame {
     }
 
     private fun tryMove(cars: Cars) {
-        for (pos in 0 until cars.getCarSize()) {
+        repeat(cars.getCarSize()) { pos ->
             cars.move(pos)
             outputView.outputResult(cars.getCarInfo(pos))
         }
