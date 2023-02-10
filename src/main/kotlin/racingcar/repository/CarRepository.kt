@@ -8,7 +8,7 @@ class CarRepository : Repository<Car> {
     override fun selectAll(): List<Car> = cars
 
     override fun insert(item: Car) {
-        check(!cars.contains(item)) { DUPLICATED_CAR_NAME_ERROR_MESSAGE }
+        require(cars.none { it.name == item.name }) { DUPLICATED_CAR_NAME_ERROR_MESSAGE }
         cars.add(item)
     }
 
