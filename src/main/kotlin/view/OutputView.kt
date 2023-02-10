@@ -17,7 +17,7 @@ class OutputView {
     }
 
     fun printWinners(winnersDTO: WinnersDTO) {
-        val winners = winnersDTO.getWinners()
+        val winners = winnersDTO.winners
         println("$FINAL_WINNER ${winners.joinToString(", ")}")
     }
 

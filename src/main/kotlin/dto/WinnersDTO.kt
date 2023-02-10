@@ -1,7 +1,3 @@
 package dto
 
-class WinnersDTO(private val winners: List<String>) {
-    fun getWinners(): List<String> {
-        return winners
-    }
-}
+data class WinnersDTO(val winners: List<String>)
