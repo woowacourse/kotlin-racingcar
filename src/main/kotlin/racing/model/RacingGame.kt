@@ -8,6 +8,7 @@ class RacingGame {
     fun getCars() = cars.toList()
 
     fun initRacing(cars: List<Car>) {
+        this.cars.clear()
         this.cars.addAll(cars)
     }
 
