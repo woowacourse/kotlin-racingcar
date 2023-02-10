@@ -7,18 +7,29 @@ class CarTest {
 
     @Test
     fun getInfoTest() {
-        assertThat(Car("dool", 0).getInfo()).isEqualTo(Pair("dool", 0))
+        val car = Car("dool")
+        assertThat(car.getInfo().name).isEqualTo("dool")
+        assertThat(car.getInfo().position).isEqualTo(0)
+    }
+
+    @Test
+    fun getInfoExceptionTest() {
         assertThrows<IllegalArgumentException> {
-            assertThat(Car("dooly", 0).getInfo()).isEqualTo(Pair("dooly", 0))
+            Car("dooly", 0)
         }
     }
 
     @Test
     fun moveTest() {
-        val car = Car("dool", 0)
+        val car = Car("dool")
         car.move(3)
-        assertThat(car.getInfo().second).isEqualTo(0)
+        assertThat(car.getInfo().position).isEqualTo(0)
+    }
+
+    @Test
+    fun dontMoveTest() {
+        val car = Car("dool")
         car.move(4)
-        assertThat(car.getInfo().second).isEqualTo(1)
+        assertThat(car.getInfo().position).isEqualTo(1)
     }
 }
