@@ -1,7 +1,5 @@
 package data
 
-import data.generator.RacingNumberGenerator
-
 class Car(
     val name: String,
     position: Int = 0
@@ -15,20 +13,19 @@ class Car(
         }
     }
 
-    fun move(numberOfTry: Int): CarPath {
+    fun recordPath(numberOfTry: Int, condition: Int): CarPath {
         val path = mutableListOf<PathState>()
 
         repeat(numberOfTry) {
-            path.add(drive())
+            path.add(move(condition))
         }
 
         return CarPath(this.name, path)
     }
 
-    private fun drive(): PathState {
-        val randomNumber = RacingNumberGenerator().generate()
+    private fun move(condition: Int): PathState {
 
-        if (randomNumber >= 4) {
+        if (condition >= MOVE_LEAST_NUMBER) {
             position++
             return PathState.MOVE
         }
@@ -39,5 +36,6 @@ class Car(
     companion object {
         const val CAR_NAME_MAX = 5
         const val CAR_NAME_ERROR_MSG = "[ERROR] 자동차 이름은 5자를 초과할 수 없다."
+        const val MOVE_LEAST_NUMBER = 4
     }
 }

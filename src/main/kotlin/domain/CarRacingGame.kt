@@ -2,6 +2,7 @@ package domain
 
 import data.Car
 import data.CarPath
+import data.generator.RacingNumberGenerator
 
 class CarRacingGame {
 
@@ -9,7 +10,8 @@ class CarRacingGame {
         val carsPath = mutableListOf<CarPath>()
 
         cars.forEach { car ->
-            carsPath.add(car.move(numberOfTry))
+            val condition = RacingNumberGenerator().generate()
+            carsPath.add(car.recordPath(numberOfTry, condition))
         }
 
         return carsPath.toList()
@@ -26,7 +28,7 @@ class CarRacingGame {
         return winners
     }
 
-    private fun List<Car>.getMaxScore(): Int = this.maxBy { car ->
-        car.position
-    }.position
+    private fun List<Car>.getMaxScore(): Int = this.maxOf {
+        it.position
+    }
 }
