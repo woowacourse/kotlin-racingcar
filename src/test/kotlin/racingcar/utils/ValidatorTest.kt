@@ -20,7 +20,7 @@ internal class ValidatorTest {
     fun `자동차 이름 중복 정상 테스트`(input: String) {
         assertDoesNotThrow {
             val names = input.split(CAR_NAME_DELIMITER).toMutableList()
-            BlankRemover.removeBlank(names)
+            TextUtils.removeTextsBlank(names)
 
             validator.checkCarNames(names)
         }
@@ -28,10 +28,12 @@ internal class ValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["soodal, soodal", "buna, buna"])
+    // todo 공백 제거 후
     fun `자동차 이름 중복 예외 테스트`(input: String) {
         assertThrows<IllegalArgumentException> {
             val names = input.split(CAR_NAME_DELIMITER).toMutableList()
-            BlankRemover.removeBlank(names)
+
+            TextUtils.removeTextsBlank(names)
 
             validator.checkCarNames(names)
         }
