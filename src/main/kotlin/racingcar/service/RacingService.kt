@@ -24,9 +24,9 @@ class RacingService(
         }
     }
 
-    private fun isMove(): Boolean = (getRandomProbabilityInRange() < MOVEMENT_PROBABILITY)
+    private fun isMove(): Boolean = (getRandomProbability() < MOVEMENT_PROBABILITY)
 
-    private fun getRandomProbabilityInRange(): Int =
+    private fun getRandomProbability(): Int =
         (START_RANDOM_MOVEMENT_PROBABILITY..END_RANDOM_MOVEMENT_PROBABILITY).random()
 
     fun getWinners(): List<Car> {
