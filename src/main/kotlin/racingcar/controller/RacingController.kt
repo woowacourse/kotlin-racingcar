@@ -58,7 +58,7 @@ class RacingController(
         }
     }
 
-    private fun createCars(carNames: List<String>) =
+    private fun createCars(carNames: List<String>): List<Car> =
         carNames.map { carName ->
             racingService.createCar(carName)
         }
