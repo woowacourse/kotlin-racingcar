@@ -16,8 +16,6 @@ class Car(private var name: Name) {
 
     override fun equals(other: Any?) = this.position == (other as Car).position && this.name == other.name
 
-    fun getName() = name
-
     companion object {
         const val WIN_NUMBER = 4
     }
