@@ -1,15 +1,11 @@
 package domain
 
 import data.Car
-import data.generator.NumberGenerator
-import data.generator.RacingNumberGenerator
 
-class CarRacingGame(
-    private val carRacingNumberGenerator: NumberGenerator = RacingNumberGenerator()
-) {
+class CarRacingGame {
 
     fun moveCars(cars: List<Car>) = cars.forEach { car ->
-        car.move(carRacingNumberGenerator.generate())
+        car.move()
     }
 
     fun decideWinner(cars: List<Car>): List<String> {
