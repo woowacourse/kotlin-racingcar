@@ -1,13 +1,14 @@
 package racingcar.entity
 
-class AttemptCount constructor(private val attemptCount: Int) {
+class AttemptCount constructor(private val value: Int) {
     init {
-        require(attemptCount >= MIN_ATTEMPT_COUNT) { "1번 이상 시도해아 합니다." }
+        require(value >= MIN_ATTEMPT_COUNT) { "1번 이상 시도해아 합니다." }
     }
 
-    val indices = IntRange(0, attemptCount)
+    val indices = IntRange(MIN_ATTEMPT_RANGE, value)
 
     companion object {
         const val MIN_ATTEMPT_COUNT = 1
+        const val MIN_ATTEMPT_RANGE = 0
     }
 }
