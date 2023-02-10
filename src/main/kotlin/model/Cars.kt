@@ -5,7 +5,7 @@ import generator.RandomGenerator
 class Cars(cars: List<Car>) {
 
     var cars: List<Car> = cars
-        get() = cars
+        get() = field
 
     fun move() {
         cars.forEach { it.move(RandomGenerator().getRandomNumber()) }
