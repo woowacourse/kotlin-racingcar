@@ -17,8 +17,8 @@ class OutputView {
     }
 
     fun printRoundResult(cars: List<Car>) {
-        cars.forEach {
-            println("${it.getName()} : ${"-".repeat(it.getMoveCount())}")
+        cars.forEach { car ->
+            println("${car.getName()} : ${"-".repeat(car.getMoveCount())}")
         }
         println()
     }
