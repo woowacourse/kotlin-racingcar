@@ -59,14 +59,17 @@ class Controller(
     }
 
     private fun finishGame(cars: List<Car>) {
+        outputView.printWinners(findWinners(cars))
+    }
+
+    fun findWinners(cars: List<Car>): List<String> {
         val maxCount = cars.maxOfOrNull { car ->
             car.moveCount
         }
-        val winners = cars.filter { car ->
+        return cars.filter { car ->
             car.moveCount == maxCount
         }.map { winner ->
             winner.name
         }
-        outputView.printWinners(winners)
     }
 }
