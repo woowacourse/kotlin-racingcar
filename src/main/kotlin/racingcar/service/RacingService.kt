@@ -3,9 +3,6 @@ package racingcar.service
 import racingcar.model.Car
 import racingcar.repository.CarRepository
 import racingcar.repository.Repository
-import racingcar.utils.END_RANDOM_MOVEMENT_PROBABILITY
-import racingcar.utils.MOVEMENT_PROBABILITY
-import racingcar.utils.START_RANDOM_MOVEMENT_PROBABILITY
 
 class RacingService(
     private val carRepository: Repository<Car> = CarRepository()
@@ -35,5 +32,11 @@ class RacingService(
     fun getWinners(cars: List<Car>): List<Car> {
         val winnerStandard = cars.maxBy { it.position }
         return cars.filter { it.position == winnerStandard.position }
+    }
+
+    companion object {
+        private const val START_RANDOM_MOVEMENT_PROBABILITY = 1
+        private const val END_RANDOM_MOVEMENT_PROBABILITY = 10
+        private const val MOVEMENT_PROBABILITY = 4
     }
 }
