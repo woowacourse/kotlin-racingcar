@@ -6,7 +6,7 @@ class Car(private var name: Name) {
     private var position = Position(0)
 
     fun forward(number: Int) {
-        if (number >= Values.MAX_RANDOM_NUMBER)
+        if (number >= Values.WIN_NUMBER)
             position.addPosition(1)
     }
 
