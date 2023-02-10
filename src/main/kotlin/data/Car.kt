@@ -12,8 +12,10 @@ class Car(val name: String) {
         }
     }
 
-    fun move() {
-        position++
+    fun move(number: Int) {
+        if (number >= 4) {
+            position++
+        }
     }
 
     companion object {
