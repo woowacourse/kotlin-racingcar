@@ -3,7 +3,6 @@ package domain
 import data.Car
 import data.CarPath
 import data.generator.CarGenerator
-import util.RESULT
 import view.InputView
 import view.OutputView
 
@@ -26,7 +25,7 @@ class CarRacingGameController(
     }
 
     private fun initCars(): List<Car> {
-        val names = InputView.inputCarNames().split(',')
+        val names = InputView.inputCarNames().split(SEPARATOR)
 
         return carGenerator.generateCars(names)
     }
@@ -49,5 +48,10 @@ class CarRacingGameController(
         repeat(numberOfTry) { number ->
             OutputView.printResult(carsPath, number)
         }
+    }
+
+    companion object {
+        const val RESULT = "실행 결과\n"
+        const val SEPARATOR = ','
     }
 }

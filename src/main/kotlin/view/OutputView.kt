@@ -1,12 +1,13 @@
 package view
 
 import data.CarPath
-import util.FINAL_WINNER
 import util.getPathMarks
 import util.subPath
 import view.View.bw
 
 object OutputView {
+
+    private const val FINAL_WINNER = "최종 우승자: "
 
     fun printMsg(msg: String) {
         bw.write(msg)
