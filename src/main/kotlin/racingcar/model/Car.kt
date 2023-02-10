@@ -4,8 +4,9 @@ import racingcar.utils.Validator
 
 class Car(
     val name: String,
-    private var position: Int = 0
 ) : Comparable<Car> {
+    var position: Int = 0
+        private set
 
     init {
         val validator = Validator()
@@ -29,6 +30,4 @@ class Car(
         result = 31 * result + position
         return result
     }
-
-    fun getPositionAsDash() = "-".repeat(position)
 }

@@ -21,6 +21,6 @@ class CarTest {
             car.move()
         }
 
-        assertEquals("-".repeat(moveCount), car.getPositionAsDash())
+        assertEquals("-".repeat(moveCount), "-".repeat(car.position))
     }
 }

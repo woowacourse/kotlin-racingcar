@@ -39,14 +39,26 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @MethodSource("provideCarsForHappyCase")
-    fun `최종 우승자 산출 노말 테스트`(cars: List<Car>, expectedWinnersCount: Int) {
+    fun `최종 우승자 산출 노말 테스트`(cars: List<Car>, moveCounts: List<Int>, expectedWinnersCount: Int) {
+        cars.forEachIndexed { index, car ->
+            repeat(moveCounts[index]) {
+                car.move()
+            }
+        }
+
         val realWinnersCount = racingService.getWinners(cars).size
         assertEquals(realWinnersCount, expectedWinnersCount)
     }
 
     @ParameterizedTest
     @MethodSource("provideCarsForExceptionCase")
-    fun `최종 우승자 산출 예외 테스트`(cars: List<Car>, expectedWinnersCount: Int) {
+    fun `최종 우승자 산출 예외 테스트`(cars: List<Car>, moveCounts: List<Int>, expectedWinnersCount: Int) {
+        cars.forEachIndexed { index, car ->
+            repeat(moveCounts[index]) {
+                car.move()
+            }
+        }
+
         val realWinnersCount = racingService.getWinners(cars).size
         assertNotEquals(realWinnersCount, expectedWinnersCount)
     }
@@ -57,26 +69,29 @@ internal class RacingServiceTest {
             return Stream.of(
                 Arguments.of(
                     listOf(
-                        Car("sooda", 7),
-                        Car("buna", 6),
-                        Car("sunny", 2),
+                        Car("sooda"),
+                        Car("buna"),
+                        Car("sunny"),
                     ),
+                    listOf(7, 6, 2),
                     1
                 ),
                 Arguments.of(
                     listOf(
-                        Car("sooda", 7),
-                        Car("buna", 7),
-                        Car("sunny", 7),
+                        Car("sooda"),
+                        Car("buna"),
+                        Car("sunny"),
                     ),
+                    listOf(7, 7, 7),
                     3
                 ),
                 Arguments.of(
                     listOf(
-                        Car("sooda", 0),
-                        Car("buna", 0),
-                        Car("sunny", 0),
+                        Car("sooda"),
+                        Car("buna"),
+                        Car("sunny"),
                     ),
+                    listOf(0, 0, 0),
                     3
                 ),
             )
@@ -87,34 +102,38 @@ internal class RacingServiceTest {
             return Stream.of(
                 Arguments.of(
                     listOf(
-                        Car("sooda", 7),
-                        Car("buna", 6),
-                        Car("sunny", 2),
+                        Car("sooda"),
+                        Car("buna"),
+                        Car("sunny"),
                     ),
+                    listOf(7, 6, 2),
                     2
                 ),
                 Arguments.of(
                     listOf(
-                        Car("sooda", 7),
-                        Car("buna", 2),
-                        Car("sunny", 7),
+                        Car("sooda"),
+                        Car("buna"),
+                        Car("sunny"),
                     ),
+                    listOf(7, 2, 7),
                     1
                 ),
                 Arguments.of(
                     listOf(
-                        Car("sooda", 0),
-                        Car("buna", 0),
-                        Car("sunny", 0),
+                        Car("sooda"),
+                        Car("buna"),
+                        Car("sunny"),
                     ),
+                    listOf(0, 0, 0),
                     0
                 ),
                 Arguments.of(
                     listOf(
-                        Car("sooda", 1),
-                        Car("buna", 2),
-                        Car("sunny", 3),
+                        Car("sooda"),
+                        Car("buna"),
+                        Car("sunny"),
                     ),
+                    listOf(1, 2, 3),
                     4
                 ),
             )
