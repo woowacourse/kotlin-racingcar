@@ -1,10 +1,10 @@
 package validation
 
-class NameValidation(private val nullValidation: NullValidation = NullValidation()) {
+class NameValidation {
 
     fun checkNames(carNames: String) {
         splitCarNames(carNames).forEach { name ->
-            checkNameRange(nullValidation.checkNull(name))
+            checkNameRange(name)
             checkCarNameEnglishNumber(name)
         }
     }
