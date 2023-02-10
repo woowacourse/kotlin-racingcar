@@ -1,6 +1,6 @@
 package domain
 
-import data.EMPTY
+import view.OutputView.EMPTY
 import view.OutputView.TOKENIZER
 
 object InputValidator {
