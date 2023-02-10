@@ -1,7 +1,9 @@
 package racingcar
 
 import racingcar.controller.GameController
+import racingcar.domain.RacingManager
+import racingcar.domain.RandomNumberGenerator
 
 fun main() {
-    GameController().runGame()
+    GameController(RacingManager(RandomNumberGenerator())).runGame()
 }

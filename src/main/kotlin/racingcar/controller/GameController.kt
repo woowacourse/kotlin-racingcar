@@ -1,14 +1,14 @@
 package racingcar.controller
 
 import racingcar.domain.RacingManager
-import racingcar.domain.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class GameController {
+class GameController(
+    private val racingManager: RacingManager,
+) {
     private val input by lazy { InputView() }
     private val output by lazy { OutputView() }
-    private lateinit var racingManager: RacingManager
 
     fun runGame() {
         initGame()
@@ -17,7 +17,6 @@ class GameController {
     }
 
     private fun initGame() {
-        racingManager = RacingManager(RandomNumberGenerator())
         racingManager.setGame(input.inputCarNames(), input.inputRacingCount())
     }
 
