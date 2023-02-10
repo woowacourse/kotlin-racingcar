@@ -12,7 +12,7 @@ internal class ApplicationKtTest {
 
     @ParameterizedTest
     @MethodSource("provideInputNormalCases")
-    fun `전체 기능 정상 테스트`(carNames: String, roundCount: String) {
+    fun `기능 정상 테스트`(carNames: String, roundCount: String) {
         setInput(carNames, roundCount)
         assertDoesNotThrow {
             main()
@@ -21,7 +21,7 @@ internal class ApplicationKtTest {
 
     @ParameterizedTest
     @MethodSource("provideInputExceptionCases")
-    fun `전체 기능 예외 테스트`(carNames: String, roundCount: String) {
+    fun `기능 예외 테스트`(carNames: String, roundCount: String) {
         setInput(carNames, roundCount)
         assertThrows<IllegalArgumentException> {
             main()
@@ -40,7 +40,6 @@ internal class ApplicationKtTest {
             return Stream.of(
                 Arguments.of("otter,buna", "6"),
                 Arguments.of("otter, buna", "1"),
-                // Arguments.of("otter", "${Int.MAX_VALUE}"),
                 Arguments.of("buna", "1"),
                 Arguments.of("otter,buna,스캇,핑구,써니,우기,아따맘마,말파이트", "1"),
             )
@@ -50,7 +49,6 @@ internal class ApplicationKtTest {
         fun provideInputExceptionCases(): Stream<Arguments> {
             return Stream.of(
                 Arguments.of("otter123,buna", "6"),
-                // Arguments.of("otter,buna", "${Int.MAX_VALUE.toLong() + 1}"),
                 Arguments.of("otter,buna", "-1"),
                 Arguments.of(" ", "2"),
                 Arguments.of("", "2"),

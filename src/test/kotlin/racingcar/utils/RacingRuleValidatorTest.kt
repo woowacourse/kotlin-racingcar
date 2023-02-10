@@ -7,14 +7,14 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.controller.ViewController
 
-internal class ValidatorTest {
+internal class RacingRuleValidatorTest {
 
-    private lateinit var validator: RacingRuleValidator
+    private lateinit var racingRuleValidator: RacingRuleValidator
     private lateinit var viewController: ViewController
 
     @BeforeEach
     fun beforeEach() {
-        this.validator = RacingRuleValidator()
+        this.racingRuleValidator = RacingRuleValidator()
         viewController = ViewController()
     }
 
@@ -24,7 +24,7 @@ internal class ValidatorTest {
         assertDoesNotThrow {
             val names = TextUtils.removeTextsBlank(input.split(TEXT_IN_LINE_DELIMITER))
 
-            require(validator.isValidateNotDuplicatedCarNames(names))
+            require(racingRuleValidator.isValidateNotDuplicatedCarNames(names))
         }
     }
 
@@ -34,7 +34,7 @@ internal class ValidatorTest {
         assertThrows<IllegalArgumentException> {
             val names = TextUtils.removeTextsBlank(input.split(TEXT_IN_LINE_DELIMITER))
 
-            require(validator.isValidateNotDuplicatedCarNames(names))
+            require(racingRuleValidator.isValidateNotDuplicatedCarNames(names))
         }
     }
 
@@ -42,7 +42,7 @@ internal class ValidatorTest {
     @ValueSource(strings = ["1", Int.MAX_VALUE.toString(), "5", "6"])
     fun `시도 횟수 정상 테스트`(input: String) {
         assertDoesNotThrow {
-            require(validator.isValidateRoundCountBoundary(input.toInt()))
+            require(racingRuleValidator.isValidateRoundCountBoundary(input.toInt()))
         }
     }
 
@@ -50,7 +50,7 @@ internal class ValidatorTest {
     @ValueSource(strings = ["0", (Int.MAX_VALUE.toLong() + 1).toString(), "-1", "*", "", "otter", "buna"])
     fun `시도 횟수 예외 테스트`(input: String) {
         assertThrows<IllegalArgumentException> {
-            require(validator.isValidateRoundCountBoundary(input.toInt()))
+            require(racingRuleValidator.isValidateRoundCountBoundary(input.toInt()))
         }
     }
 }
