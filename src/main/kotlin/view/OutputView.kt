@@ -17,6 +17,10 @@ class OutputView {
         println(Constants.OUTPUT_RESULT)
     }
 
+    fun outputNextLine() {
+        println()
+    }
+
     fun outputErrorMessage(error: String) {
         println(error)
     }

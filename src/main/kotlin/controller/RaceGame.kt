@@ -12,9 +12,8 @@ class RaceGame {
         val cars = executeInputCarNames()
         val tryNumber = executeInputTryNumber()
         outputView.outputResults()
-        for (i in 1..tryNumber) {
+        repeat(tryNumber) {
             tryMove(cars)
-            println()
         }
         outputView.outputWinners(cars.findWinners())
     }
@@ -24,6 +23,7 @@ class RaceGame {
             cars.move(pos)
             outputView.outputResult(cars.getCarInfo(pos))
         }
+        outputView.outputNextLine()
     }
 
     private fun executeInputTryNumber(): Int {
@@ -36,7 +36,7 @@ class RaceGame {
             Validator().checkTryNumber(number)
             number.toInt()
         } catch (e: IllegalArgumentException) {
-            outputView.outputErrorMessage(e.message!!)
+            outputView.outputErrorMessage(e.message ?: "에러가 발생했습니다.")
             executeInputTryNumber()
         }
     }
