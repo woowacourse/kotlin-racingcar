@@ -5,7 +5,11 @@ import domain.RandomNumberGenerator
 import view.InputView
 import view.OutputView
 
-class Controller(private val inputView: InputView, private val outputView: OutputView) {
+class Controller(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+    private val generator: RandomNumberGenerator
+) {
     fun start() {
         val cars = initializeCars()
         playGame(cars, initializeRoundCount())
@@ -42,16 +46,15 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
 
     private fun playGame(cars: List<Car>, roundCount: Int) {
         outputView.printRoundResultMessage()
-        val generator = RandomNumberGenerator()
         repeat(roundCount) {
-            playOneRound(cars, generator)
+            playOneRound(cars)
             outputView.printRoundResult(cars)
         }
     }
 
-    private fun playOneRound(cars: List<Car>, generator: RandomNumberGenerator) {
+    private fun playOneRound(cars: List<Car>) {
         cars.forEach { car ->
-            car.tryMove(generator)
+            car.tryMove(generator.generate())
         }
     }
 

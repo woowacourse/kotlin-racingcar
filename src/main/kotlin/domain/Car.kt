@@ -13,8 +13,7 @@ class Car(private val name: String, private var moveCount: Int) {
         moveCount++
     }
 
-    fun tryMove(generator: CarNumberGenerator) {
-        val number = generator.generate()
+    fun tryMove(number: Int) {
         if (number >= MIN_MOVE_NUMBER) move()
     }
 
