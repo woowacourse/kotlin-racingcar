@@ -65,7 +65,7 @@ class Controller(
         val winners = cars.filter { car ->
             car.getMoveCount() == maxCount
         }.map { winner ->
-            winner.getName()
+            winner.name
         }
         outputView.printWinners(winners)
     }

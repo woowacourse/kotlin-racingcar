@@ -2,7 +2,7 @@ package domain
 
 import exception.InputValidator
 
-class Car(private val name: String, private var moveCount: Int) {
+class Car(val name: String, private var moveCount: Int) {
 
     init {
         require(name.length <= MAX_NAME_LENGTH) { InputValidator.NAME_LENGTH_ERROR }
@@ -18,8 +18,6 @@ class Car(private val name: String, private var moveCount: Int) {
     }
 
     fun getMoveCount() = moveCount
-
-    fun getName() = name
 
     companion object {
         private const val MIN_MOVE_NUMBER = 4
