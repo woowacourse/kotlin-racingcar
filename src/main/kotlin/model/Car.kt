@@ -1,18 +1,17 @@
 package model
 
+import util.Constants
 import util.Validator
 
-class Car(private val name: String, private var position: Int = 0) {
+class Car(val name: String) {
+    var position: Int = 0
+        private set
 
     init {
         Validator().checkName(name)
     }
 
-    fun getInfo(): Pair<String, Int> {
-        return Pair(name, position)
-    }
-
     fun move(random: Int) {
-        if (random >= 4) position++
+        if (random >= Constants.RANDOM_MOVE_LIMIT_NUM) position++
     }
 }
