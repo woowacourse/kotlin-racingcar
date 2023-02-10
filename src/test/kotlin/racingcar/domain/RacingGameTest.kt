@@ -8,10 +8,11 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingGameTest {
-    val inputView = InputView()
-    val outputView = OutputView()
-    val generator = StubNumberGenerator(mutableListOf(5, 3, 5))
-    val racingGame = RacingGame(inputView, outputView, generator)
+    private val racingGame = RacingGame(
+        InputView(),
+        OutputView(),
+        StubNumberGenerator(mutableListOf(5, 3, 5))
+    )
 
     @Test
     fun `전진하는 경우`() {
