@@ -26,8 +26,8 @@ class OutputView {
     fun outputResult(cars: Cars) {
         cars.cars.forEach {
             outputCarResult(it)
-            println()
         }
+        println()
     }
 
     fun outputCarResult(car: Car) {
