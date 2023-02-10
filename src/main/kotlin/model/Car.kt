@@ -13,7 +13,7 @@ class Car(val name: String, position: Int) : Comparable<Car> {
         return other.position == this.position
     }
 
-    fun isPossibleMove(number: Int): Boolean = number >= 4
+    fun isPossibleMove(number: Int): Boolean = number >= MAXIMUM_POSSIBLE_FORWARD_NUMBER
 
     fun getPresentStatus(): String {
         var status = "${this.name} : "
@@ -23,5 +23,9 @@ class Car(val name: String, position: Int) : Comparable<Car> {
 
     override fun compareTo(other: Car): Int {
         return this.position - other.position
+    }
+
+    companion object {
+        const val MAXIMUM_POSSIBLE_FORWARD_NUMBER = 4
     }
 }
