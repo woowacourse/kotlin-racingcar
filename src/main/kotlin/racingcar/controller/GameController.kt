@@ -24,8 +24,8 @@ class GameController {
     private fun startGame() {
         output.printResult()
         while (!racingManager.isOver()) {
-            racingManager.race()
-            output.printCarsState(racingManager.getCarNames(), racingManager.getCarLocations())
+            val cars = racingManager.race()
+            output.printCarsState(cars)
         }
     }
 
