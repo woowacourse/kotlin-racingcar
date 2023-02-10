@@ -50,7 +50,7 @@ class Controller(private val inputView: InputView, private val outputView: Outpu
     }
 
     private fun playOneRound(cars: List<Car>, generator: RandomNumberGenerator) {
-        for (car in cars) {
+        cars.forEach { car ->
             car.tryMove(generator)
         }
     }
