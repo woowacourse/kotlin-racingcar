@@ -1,56 +1,23 @@
 # 자동차 경주 게임
-## Car
-### field
-- name: String
-- position: Int
-### method
-- getInfo: Pair<String, Int>
-- move
 
-## Cars
-### field
-- cars: List<Car>
-### method
-- mappingCars
-- getCar
-- getCarSize
-- move
-- findMaxPosition
-- findWinners
+## 기능 요구 사항
+-[ ] 자동차 이름 입력 받기
+    -[ ] 이름은 ","로 구분
+        -[ ] 이름 사이와 양 끝 공백 제거
+        -[ ] 이름 null인 경우 예외 처리
+        -[ ] 이름 empty인 경우 예외 처리 
+        -[ ] 이름 5글자 이상일 경우 예외 처리
+        -[ ] 이름 한글, 영어가 아닌 경우 예외 처리  
+-[ ] 시도 횟수 입력 받기
+    -[ ] 횟수 null인 경우 예외 처리
+    -[ ] 횟수 empty(공백)인 경우 예외 처리
+    -[ ] 횟수 숫자가 아닌 경우 예외 처리
+-[ ] 0에서 9사이의 랜덤값 생성
+-[ ] 시도횟수 만큼 자동차들 이동
+    -[ ] 4미만의 값이 들어올 경우 정지
+    -[ ] 4이상의 값이 들어올 경우 전진
+-[ ] 시도횟수만큼 자동차들이 이동한 결과를 출력
+-[ ] 이동한 길이가 가장 긴 자동차 이름을 출력
+  -[ ] 이동한 길이가 가장 긴 자동차가 여러 개일 경우 리스트 출력
 
-## InputView
-- inputCarNames: List<Car>
-- inputTryNumber: String?
 
-## OutputView
-- outputCarNames
-- outputTryNumber
-- outputResult
-- outputResults
-- outputWinners
-- outputErrorMessage
-
-## RandomGenerator
-- getRandomNumber: Int
-
-## RaceGame
-- tryMove
-- equalMaxValue
-- run
-- executeInputTryNumber
-- getInputTryNumber
-- executeInputCarNames
-- getInputCarNames
-
-## Constants
-
-## Validator
-- checkNames
-- checkName
-- checkNameSize
-- checkNameNull
-- checkNameEmpty
-- checkTryNumber
-- checkTryNumberNull
-- checkTryNumberIsRight
-- checkNameRight
