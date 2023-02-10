@@ -14,30 +14,30 @@ class RacingGameController(
 ) {
 
     fun run() {
-        getCarNames()
-        getTryCount()
+        inputCarNames()
+        inputTryCount()
         playWholeRacing()
-        gerWinner()
+        outputWinner()
     }
 
-    fun getCarNames() {
+    fun inputCarNames() {
         try {
             outputView.printCar()
             val carsName = racingCarGameService.splitCarNames(inputView.inputName())
-            carsInfo = racingCarGameService.initCarInfo(carsName)
+            carsInfo = racingCarGameService.initCarsInfo(carsName)
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
-            getCarNames()
+            inputCarNames()
         }
     }
 
-    fun getTryCount() {
+    fun inputTryCount() {
         try {
             outputView.printTryCount()
             tryCount = inputView.inputTryCount().toInt()
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
-            getTryCount()
+            inputTryCount()
         }
     }
 
@@ -52,7 +52,7 @@ class RacingGameController(
         for (round in 1..tryCount) playRound()
     }
 
-    fun gerWinner() {
+    fun outputWinner() {
         outputView.printWinner(racingCarGameService.getWinners(racingCarGameService.getMaxPositionCars(carsInfo)))
     }
 }

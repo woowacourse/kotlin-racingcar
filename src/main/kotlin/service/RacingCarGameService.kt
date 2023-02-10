@@ -6,7 +6,7 @@ class RacingCarGameService {
 
     fun splitCarNames(carNames: String): List<String> = carNames.split(",")
 
-    fun initCarInfo(carNames: List<String>): List<Car> {
+    fun initCarsInfo(carNames: List<String>): List<Car> {
         val carsInfo = mutableListOf<Car>()
         carNames.forEach { name ->
             carsInfo.add(Car(name, 0))
