@@ -1,9 +1,11 @@
 package data
 
 class Car(
-    private var position: Int,
-    private val name: String
+    val name: String,
+    position: Int = 0
 ) {
+    var position: Int = position
+        private set
 
     init {
         require(name.length <= CAR_NAME_MAX) {
@@ -13,10 +15,6 @@ class Car(
 
     fun move() {
         position++
-    }
-
-    fun getCar(): Pair<String, Int> {
-        return Pair(name, position)
     }
 
     companion object {

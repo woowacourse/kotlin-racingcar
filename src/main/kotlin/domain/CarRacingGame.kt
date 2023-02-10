@@ -19,15 +19,15 @@ class CarRacingGame {
     fun decideWinner(cars: List<Car>): List<String> {
         val maxScore = cars.getMaxScore()
         val winners = cars.filter { car ->
-            car.getCar().second == maxScore
+            car.position == maxScore
         }.map { car ->
-            car.getCar().first
+            car.name
         }
 
         return winners
     }
 
     private fun List<Car>.getMaxScore(): Int = this.maxBy { car ->
-        car.getCar().second
-    }.getCar().second
+        car.position
+    }.position
 }
