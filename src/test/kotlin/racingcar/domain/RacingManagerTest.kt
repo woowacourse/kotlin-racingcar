@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 internal class RacingManagerTest {
 
     @Test
-    fun `게임 초기 세팅이 잘 되는지 확인`() {
+    fun `게임 초기 세팅이 되는지 확인`() {
         val racingManager = RacingManager(RandomNumberGenerator())
         racingManager.setGame(listOf("test1", "test2", "test3"), 5)
         val cars = racingManager.race()
@@ -17,7 +17,7 @@ internal class RacingManagerTest {
     }
 
     @Test
-    fun `레이스 게임이 잘 작동하는지 확인`() {
+    fun `레이스 게임이 작동하는지 확인`() {
         class TestNumberGenerator : NumberGenerator {
             val list = mutableListOf(1, 4, 9)
             override fun generateNumber(minNumber: Int, maxNumber: Int): Int {
@@ -35,7 +35,7 @@ internal class RacingManagerTest {
     }
 
     @Test
-    fun `게임오버가 잘 작동하는지 확인`() {
+    fun `게임오버가 작동하는지 확인`() {
         val racingManager = RacingManager(RandomNumberGenerator())
         racingManager.setGame(listOf("test1", "test2", "test3"), 1)
         racingManager.race()
