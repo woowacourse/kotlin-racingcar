@@ -1,6 +1,6 @@
 package domain
 
-import util.DriverDecision
+import domain.numbergenerator.NumberGenerator
 
 class Driver(private val numberGenerator: NumberGenerator) {
 

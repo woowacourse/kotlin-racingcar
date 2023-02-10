@@ -1,7 +1,7 @@
 import domain.Car
 import domain.Driver
-import domain.RandomNumberGenerator
 import domain.Referee
+import domain.numbergenerator.RandomNumberGenerator
 import view.InputView
 import view.OutputView
 
