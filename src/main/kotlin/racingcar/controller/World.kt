@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.entity.AttemptCount
+import racingcar.entity.Car
 import racingcar.entity.Name
 import racingcar.misc.tryAndRerun
 import racingcar.model.CarManager
@@ -22,7 +23,8 @@ class World {
         return tryAndRerun {
             outputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
             val names = inputView.carNames().map { Name(it) }
-            CarManager(RandomNumberGenerator(), names)
+            val cars = names.map { Car(it) }
+            CarManager(RandomNumberGenerator(), cars)
         } as CarManager
     }
 
