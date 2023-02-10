@@ -6,11 +6,11 @@ import racingcar.resources.INPUT_COUNT
 class InputView {
     fun inputCarNames(): List<String> {
         println(INPUT_CAR_NAMES)
-        return readLine()?.split(',') ?: listOf("")
+        return readlnOrNull()?.split(',') ?: List(0) { "" }
     }
 
     fun inputRacingCount(): Int {
         println(INPUT_COUNT)
-        return readLine()?.toIntOrNull() ?: 0
+        return readlnOrNull()?.toIntOrNull() ?: 0
     }
 }
