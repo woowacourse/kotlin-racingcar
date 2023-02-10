@@ -2,8 +2,8 @@ package racingcar.model
 
 class Round(val count: Int) {
     init {
-        if (count !in MIN_ROUND_COUNT..MAX_ROUND_COUNT) {
-            throw IllegalArgumentException(ROUND_COUNT_OVER_BOUNDARY_ERROR_MESSAGE)
+        require(count in MIN_ROUND_COUNT..MAX_ROUND_COUNT) {
+            ROUND_COUNT_OVER_BOUNDARY_ERROR_MESSAGE
         }
     }
 
