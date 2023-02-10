@@ -1,13 +1,12 @@
 package controller
+
 import model.Cars
 import util.CarsHelper
 import util.Validator
 import view.InputView
 import view.OutputView
 
-class RaceGame {
-    private val outputView = OutputView()
-    private val inputView = InputView()
+class RaceGame(private val outputView: OutputView, private val inputView: InputView) {
 
     fun run() {
         val cars = executeInputCarNames()
