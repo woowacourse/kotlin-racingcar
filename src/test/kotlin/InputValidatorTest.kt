@@ -17,7 +17,7 @@ class InputValidatorTest {
     @Test
     fun `자동차 이름 입력시 ,를 연속으로 입력한 경우`() {
         assertThrows<IllegalArgumentException> {
-            InputValidator.validateEmptyInput("두치,뿌꾸,,,,,")
+            InputValidator.validateSuccessiveTokenizer("두치,뿌꾸,,,,,")
         }
     }
 }

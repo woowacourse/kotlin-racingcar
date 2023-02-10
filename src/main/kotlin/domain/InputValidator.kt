@@ -6,7 +6,7 @@ import view.OutputView.TOKENIZER
 
 object InputValidator {
 
-    fun validateEmptyInput(nameInput: String): List<String> {
+    fun validateSuccessiveTokenizer(nameInput: String): List<String> {
         val names = nameInput.split(TOKENIZER)
 
         names.forEach { name ->

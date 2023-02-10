@@ -22,7 +22,7 @@ class CarRacingGameController(
     }
 
     private fun initCars(): List<Car> {
-        val names = InputValidator.validateEmptyInput(InputView.inputCarNames())
+        val names = InputValidator.validateSuccessiveTokenizer(InputView.inputCarNames())
 
         return carGenerator.generateCars(names)
     }
