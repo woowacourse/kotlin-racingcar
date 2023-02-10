@@ -8,6 +8,5 @@ const val FINAL_WINNER = "최종 우승자: "
 
 const val NUMERIC_ERROR_MSG = "[ERROR] 시도 횟수는 숫자 입력으로만 받습니다."
 
-
 const val MOVE_MARK = "-"
 const val STOP_MARK = ""

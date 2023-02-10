@@ -2,15 +2,14 @@ package domain
 
 import data.Car
 import data.CarPath
-import data.CarRacingGamePlayer
 
 class CarRacingGame {
 
-    fun startDriving(players: List<CarRacingGamePlayer>): List<CarPath> {
+    fun startDriving(cars: List<Car>, numberOfTry: Int): List<CarPath> {
         val carsPath = mutableListOf<CarPath>()
 
-        players.forEach { player ->
-            carsPath.add(player.moveCar())
+        cars.forEach { car ->
+            carsPath.add(car.move(numberOfTry))
         }
 
         return carsPath.toList()

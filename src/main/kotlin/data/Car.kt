@@ -1,5 +1,7 @@
 package data
 
+import data.generator.RacingNumberGenerator
+
 class Car(
     val name: String,
     position: Int = 0
@@ -13,8 +15,25 @@ class Car(
         }
     }
 
-    fun move() {
-        position++
+    fun move(numberOfTry: Int): CarPath {
+        val path = mutableListOf<PathState>()
+
+        repeat(numberOfTry) {
+            path.add(drive())
+        }
+
+        return CarPath(this.name, path)
+    }
+
+    private fun drive(): PathState {
+        val randomNumber = RacingNumberGenerator().generate()
+
+        if (randomNumber >= 4) {
+            position++
+            return PathState.MOVE
+        }
+
+        return PathState.STOP
     }
 
     companion object {
