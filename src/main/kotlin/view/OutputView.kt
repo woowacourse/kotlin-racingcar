@@ -1,6 +1,7 @@
 package view
 
 import model.Car
+import model.Cars
 import util.Constants
 
 class OutputView {
@@ -22,12 +23,16 @@ class OutputView {
         println(error.message)
     }
 
-    fun outputResult(car: Car) {
-        val carInfo = car.getInfo()
-        print(carInfo.first + " : ")
-        for (i in 1..carInfo.second) {
-            print("-")
+    fun outputResult(cars: Cars) {
+        cars.cars.forEach {
+            outputCarResult(it)
+            println()
         }
+    }
+
+    fun outputCarResult(car: Car) {
+        print(car.name + " : ")
+        repeat(car.position) { print("-") }
         println()
     }
 
