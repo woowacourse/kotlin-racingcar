@@ -7,7 +7,7 @@ class RandomGeneratorTest {
     @Test
     fun getRandomNumberTest() {
         var isTrue = true
-        for (i in 1..100) {
+        repeat(100) {
             val number = RandomGenerator().getRandomNumber()
             if (number < 0 || number > 9) {
                 isTrue = false
