@@ -1,13 +1,25 @@
 package racingcar.service
 
 import racingcar.model.Car
+import racingcar.repository.CarRepository
+import racingcar.repository.Repository
 import racingcar.utils.END_RANDOM_MOVEMENT_PROBABILITY
 import racingcar.utils.MOVEMENT_PROBABILITY
 import racingcar.utils.START_RANDOM_MOVEMENT_PROBABILITY
 
-class RacingService {
+class RacingService(
+    private val carRepository: Repository<Car> = CarRepository()
+) {
+    fun getAll(): List<Car> = carRepository.selectAll()
 
-    fun createCar(carName: String) = Car(carName)
+    fun insertCars(cars: List<Car>) {
+        cars.forEach { insertCar(it) }
+    }
+
+    private fun insertCar(car: Car) = carRepository.insert(car)
+
+    fun createCars(names: List<String>): List<Car> =
+        names.map { Car(it) }
 
     fun moveRandomly(car: Car) {
         if (isMove()) {

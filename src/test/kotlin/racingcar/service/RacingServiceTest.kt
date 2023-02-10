@@ -2,11 +2,11 @@ package racingcar.service
 
 import org.junit.jupiter.api.Assertions.assertDoesNotThrow
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.ValueSource
 import racingcar.model.Car
 import java.util.stream.Stream
 import kotlin.test.assertEquals
@@ -21,33 +21,35 @@ internal class RacingServiceTest {
         this.racingService = RacingService()
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = ["buna", "sooda"])
-    fun `공백이 아닌 1글자 이상 5글자 이하의 이름인 경우, createCar시, 예외가 발생하지 않는다`(carName: String) {
+    @Test
+    fun `자동차 이름이 중복되지 않는 경우, insertCars시, 예외가 발생하지 않는다`() {
+        val carNames = listOf("buna", "sooda", "jack")
+        val cars = carNames.map { Car(it) }
+
         assertDoesNotThrow {
-            racingService.createCar(carName)
+            racingService.insertCars(cars)
         }
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = ["soooodal", "buuuuuuuna", ""])
-    fun `공백이나 5글자이상의 이름인 경우, createCar시 , IllegalArgumentException가 발생한다`(carName: String) {
-        assertThrows<IllegalArgumentException> {
-            racingService.createCar(carName)
+    @Test
+    fun `자동차 이름이 중복되는 경우, insertCars시, IllegalStateException 예외가 발생한다`() {
+        val carNames = listOf("buna", "buna", "buna")
+        val cars = carNames.map { Car(it) }
+
+        assertThrows<IllegalStateException> {
+            racingService.insertCars(cars)
         }
     }
 
     @ParameterizedTest
     @MethodSource("provideCarsForHappyCase")
-    fun `각 자동차가 moveCount만큼 이동한 경우, 우승자 산출시, expectedWinnersCount와 동일하다`(
+    fun `각 자동차가 moveCount만큼 이동한 경우, 우승자 산출시, expectedWinnersCount와 동일해야 한다`(
         cars: List<Car>,
         moveCounts: List<Int>,
         expectedWinnersCount: Int
     ) {
         cars.forEachIndexed { index, car ->
-            repeat(moveCounts[index]) {
-                car.move()
-            }
+            repeat(moveCounts[index]) { car.move() }
         }
 
         val realWinnersCount = racingService.getWinners(cars).size

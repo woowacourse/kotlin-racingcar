@@ -3,17 +3,18 @@ package racingcar.controller
 import racingcar.model.Car
 import racingcar.model.Round
 import racingcar.service.RacingService
-import racingcar.utils.Validator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingController(
-    private val inputView: InputView = InputView(Validator()),
+    private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView(),
     private val racingService: RacingService = RacingService(),
 ) {
     fun runRacing() {
-        val cars = createCars(readCarNames())
+        val cars = racingService.createCars(readCarNames())
+        racingService.insertCars(cars)
+
         val round = readRound()
 
         runRounds(round.count, cars)
@@ -29,7 +30,7 @@ class RacingController(
 
     private fun readRound(): Round {
         outputView.printMessage(ROUND_COUNT_REQUEST_MESSAGE)
-        return Round(inputView.readRoundCount())
+        return Round(inputView.readNumber())
     }
 
     private fun printRoundCountRequestMessage() = outputView.printMessage(ROUNDS_RESULT_NOTIFICATION_MESSAGE)
@@ -56,17 +57,12 @@ class RacingController(
         }
     }
 
-    private fun createCars(carNames: List<String>): List<Car> =
-        carNames.map { carName ->
-            racingService.createCar(carName)
-        }
-
     private fun getWinners(cars: List<Car>): List<Car> = racingService.getWinners(cars)
 
     companion object {
-        const val CAR_NAMES_REQUEST_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
-        const val ROUND_COUNT_REQUEST_MESSAGE = "시도할 횟수는 몇 회인가요?"
-        const val ROUNDS_RESULT_NOTIFICATION_MESSAGE = "\n실행 결과"
-        const val WINNER_NOTIFICATION_MESSAGE = "최종 우승자"
+        private const val CAR_NAMES_REQUEST_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
+        private const val ROUND_COUNT_REQUEST_MESSAGE = "시도할 횟수는 몇 회인가요?"
+        private const val ROUNDS_RESULT_NOTIFICATION_MESSAGE = "\n실행 결과"
+        private const val WINNER_NOTIFICATION_MESSAGE = "최종 우승자"
     }
 }

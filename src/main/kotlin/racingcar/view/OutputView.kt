@@ -13,13 +13,13 @@ class OutputView {
     }
 
     fun printWinners(winners: List<Car>) {
-        println("$WINNER_NOTIFICATION_MESSAGE: ${winners.joinToString(", ")}")
+        println("$WINNER_NOTIFICATION_MESSAGE: ${winners.joinToString(", ") { it.name }}")
     }
 
     private fun getPositionAsDash(position: Int): String = DASH.repeat(position)
 
     companion object {
-        const val WINNER_NOTIFICATION_MESSAGE = "최종 우승자"
-        const val DASH = "-"
+        private const val WINNER_NOTIFICATION_MESSAGE = "최종 우승자"
+        private const val DASH = "-"
     }
 }
