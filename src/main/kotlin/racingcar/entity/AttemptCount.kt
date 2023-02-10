@@ -1,6 +1,6 @@
 package racingcar.entity
 
-class AttemptCount constructor(val value: Int) {
+data class AttemptCount (val value: Int) {
     val indices = IntRange(MIN_ATTEMPT_RANGE, value)
 
     init {

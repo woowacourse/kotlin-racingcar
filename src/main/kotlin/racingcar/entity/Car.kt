@@ -8,7 +8,7 @@ data class Car(val name: Name) {
             position.addPosition(FORWARD_LENGTH)
     }
 
-    fun compareTo(car: Car): Boolean {
+    fun compareByPosition(car: Car): Boolean {
         return position.compareTo(car.position)
     }
 
