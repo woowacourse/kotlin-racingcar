@@ -1,9 +1,9 @@
 package view
 
-import exception.Validator
+import exception.InputValidator
 
 class InputView(
-    private val validator: Validator
+    private val validator: InputValidator
 ) {
 
     fun readCarNames(): List<String> {

@@ -5,7 +5,7 @@ import org.junit.jupiter.api.assertThrows
 
 class ValidatorTest {
 
-    private val validator = Validator()
+    private val validator = InputValidator()
 
     @Test
     fun `이름이 5자를 넘으면 예외가 발생한다`() {
