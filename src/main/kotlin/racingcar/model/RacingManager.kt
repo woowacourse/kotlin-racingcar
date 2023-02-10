@@ -21,8 +21,4 @@ class RacingManager(private val carManager: CarManager, private val attemptCount
     }
 
     fun makeAttemptLog() = carManager.toString()
-
-    fun step(index: Int, number: Int) {
-        carManager.step(index, number)
-    }
 }
