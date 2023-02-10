@@ -1,33 +1,26 @@
 package domain
 
 import data.Car
-import data.CarPath
-import data.CarRacingGamePlayer
+import data.generator.NumberGenerator
+import data.generator.RacingNumberGenerator
 
-class CarRacingGame {
+class CarRacingGame(
+    private val carRacingNumberGenerator: NumberGenerator = RacingNumberGenerator()
+) {
 
-    fun startDriving(players: List<CarRacingGamePlayer>): List<CarPath> {
-        val carsPath = mutableListOf<CarPath>()
-
-        players.forEach { player ->
-            carsPath.add(player.moveCar())
-        }
-
-        return carsPath.toList()
+    fun moveCars(cars: List<Car>) = cars.forEach { car ->
+        car.move(carRacingNumberGenerator.generate())
     }
 
     fun decideWinner(cars: List<Car>): List<String> {
-        val maxScore = cars.getMaxScore()
+        val farthestDistance = cars.maxBy { car -> car.position }.position
+
         val winners = cars.filter { car ->
-            car.getCar().second == maxScore
+            car.position == farthestDistance
         }.map { car ->
-            car.getCar().first
+            car.name
         }
 
         return winners
     }
-
-    private fun List<Car>.getMaxScore(): Int = this.maxBy { car ->
-        car.getCar().second
-    }.getCar().second
 }
