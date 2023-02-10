@@ -1,6 +1,7 @@
 package racingcar.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 
 internal class RaceManagerTest {
@@ -22,6 +23,15 @@ internal class RaceManagerTest {
         raceManager.setGame(listOf("test1", "test2", "test3"), 2)
         val raceResult = raceManager.race()
         assertEquals(listOf(listOf(0, 1, 1), listOf(0, 2, 2)), raceResult.result)
+    }
+
+    @Test
+    fun `우승자 정상반환 확인`() {
+        val raceManager = RaceManager(TestNumberGenerator(mutableListOf(1, 4, 9, 1, 4, 9)))
+        raceManager.setGame(listOf("test1", "test2", "test3"), 2)
+        raceManager.race()
+        assertEquals(raceManager.getWinner(), listOf("test2", "test3"))
+        assertNotEquals(raceManager.getWinner(), listOf("test3"))
     }
 
     class TestNumberGenerator(private val numbers: MutableList<Int>) : NumberGenerator {
