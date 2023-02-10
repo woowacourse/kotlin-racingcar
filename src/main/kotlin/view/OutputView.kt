@@ -1,6 +1,5 @@
 package view
 
-import common.GAME_RESULT_FORMAT
 import domain.Car
 
 object OutputView {
@@ -16,3 +15,5 @@ object OutputView {
     fun printGameResult(winCars: List<Car>) =
         println(GAME_RESULT_FORMAT.format(winCars.joinToString(", ") { it.name }))
 }
+
+private const val GAME_RESULT_FORMAT = "최종 우승자: %s"
