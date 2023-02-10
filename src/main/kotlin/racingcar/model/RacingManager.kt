@@ -1,5 +1,6 @@
 package racingcar.model
 
+import racingcar.entity.AttemptCount
 import racingcar.entity.Name
 
 class RacingManager {
