@@ -3,6 +3,10 @@ package data.generator
 class RacingNumberGenerator : NumberGenerator {
 
     override fun generate(): Int {
-        return (0..9).random()
+        return NUMBER_RANGE.random()
+    }
+
+    companion object {
+        private val NUMBER_RANGE = 0..9
     }
 }
