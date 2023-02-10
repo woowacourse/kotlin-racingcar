@@ -23,7 +23,7 @@ class Controller(
                 inputView.readCarNames()
             }.onSuccess { names ->
                 return names.map { name ->
-                    Car(name, 0)
+                    Car(name)
                 }
             }.onFailure { e ->
                 println(e.message.toString())
@@ -60,10 +60,10 @@ class Controller(
 
     private fun finishGame(cars: List<Car>) {
         val maxCount = cars.maxOfOrNull { car ->
-            car.getMoveCount()
+            car.moveCount
         }
         val winners = cars.filter { car ->
-            car.getMoveCount() == maxCount
+            car.moveCount == maxCount
         }.map { winner ->
             winner.name
         }

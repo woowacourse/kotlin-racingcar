@@ -18,7 +18,7 @@ class OutputView {
 
     fun printRoundResult(cars: List<Car>) {
         cars.forEach { car ->
-            println("${car.name} : ${makeCarMoveShape(car.getMoveCount())}")
+            println("${car.name} : ${makeCarMoveShape(car.moveCount)}")
         }
         println()
     }
