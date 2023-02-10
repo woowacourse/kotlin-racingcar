@@ -1,15 +1,19 @@
 package racingcar.entity
 
-class Position(private var position: Int) {
-    fun addPosition(value: Int) {
-        position += value
+data class Position(private var _value: Int) {
+    var value: Int = _value
+        get() = value
+        private set
+
+    fun addPosition(length: Int) {
+        value += length
     }
 
     fun compareTo(position: Position): Boolean {
-        return this.position >= position.position
+        return this.value >= position.value
     }
 
     override fun toString(): String {
-        return "-".repeat(position)
+        return "-".repeat(value)
     }
 }
