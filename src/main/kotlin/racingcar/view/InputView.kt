@@ -1,6 +1,6 @@
 package racingcar.view
 
-class InputView {
+object InputView {
     fun carNames(): List<String> {
         val input = readln()
         val names = input.split(",")

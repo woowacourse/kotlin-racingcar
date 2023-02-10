@@ -11,8 +11,6 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class World {
-    private val outputView: OutputView = OutputView()
-    private val inputView: InputView = InputView()
     private val racingManager: RacingManager
 
     init {
@@ -21,8 +19,8 @@ class World {
 
     private fun initCars(): CarManager {
         return tryAndRerun {
-            outputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
-            val names = inputView.carNames().map { Name(it) }
+            OutputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
+            val names = InputView.carNames().map { Name(it) }
             val cars = names.map { Car(it) }
             CarManager(RandomNumberGenerator(), cars)
         } as CarManager
@@ -30,19 +28,19 @@ class World {
 
     private fun initAttemptCount(): AttemptCount {
         return tryAndRerun {
-            outputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
-            val attemptCount = inputView.attemptCount()
+            OutputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
+            val attemptCount = InputView.attemptCount()
             AttemptCount(attemptCount)
         } as AttemptCount
     }
 
     fun startRace() {
         val attemptHistory = racingManager.run()
-        outputView.attemptHistory(attemptHistory)
+        OutputView.attemptHistory(attemptHistory)
     }
 
     fun finishRace() {
         val winner = racingManager.determineWinner()
-        outputView.winner(winner)
+        OutputView.winner(winner)
     }
 }
