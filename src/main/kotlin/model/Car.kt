@@ -17,7 +17,7 @@ class Car(val name: String, position: Int) : Comparable<Car> {
 
     fun getPresentStatus(): String {
         var status = "${this.name} : "
-        for (i in 1..this.position) status += "-"
+        repeat(this.position) { status += "-" }
         return status
     }
 
