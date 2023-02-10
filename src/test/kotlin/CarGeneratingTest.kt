@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class CarTest {
+class CarGeneratingTest {
     private lateinit var carGenerator: CarGenerator
 
     @BeforeEach
@@ -34,7 +34,7 @@ class CarTest {
             ),
             Arguments.of(
                 listOf("배달의 민족", "곽두팔")
-            )
+            ),
         )
     }
 }
