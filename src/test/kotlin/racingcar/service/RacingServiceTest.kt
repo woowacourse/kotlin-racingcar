@@ -50,7 +50,7 @@ internal class RacingServiceTest {
     ) {
         racingService.insertCars(cars)
         racingService.getAll().forEachIndexed { index, car ->
-            repeat(moveCounts[index]) { car.move() }
+            repeat(moveCounts[index]) { car.move(ABSOLUTE_MOVE_CONDITION) }
         }
 
         val realWinnersCount = racingService.getWinners().size
@@ -68,7 +68,7 @@ internal class RacingServiceTest {
         racingService.insertCars(cars)
         racingService.getAll().forEachIndexed { index, car ->
             repeat(moveCounts[index]) {
-                car.move()
+                car.move(ABSOLUTE_MOVE_CONDITION)
             }
         }
 
@@ -78,6 +78,8 @@ internal class RacingServiceTest {
     }
 
     companion object {
+        private const val ABSOLUTE_MOVE_CONDITION = 10
+
         @JvmStatic
         fun provideCarsForHappyCase(): Stream<Arguments> {
             return Stream.of(

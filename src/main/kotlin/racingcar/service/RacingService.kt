@@ -19,12 +19,8 @@ class RacingService(
         names.map { Car(it) }
 
     fun moveRandomly(car: Car) {
-        if (isMove()) {
-            car.move()
-        }
+        car.move(getRandomProbability())
     }
-
-    private fun isMove(): Boolean = (getRandomProbability() < MOVEMENT_PROBABILITY)
 
     private fun getRandomProbability(): Int =
         (START_RANDOM_MOVEMENT_PROBABILITY..END_RANDOM_MOVEMENT_PROBABILITY).random()
@@ -38,6 +34,5 @@ class RacingService(
     companion object {
         private const val START_RANDOM_MOVEMENT_PROBABILITY = 1
         private const val END_RANDOM_MOVEMENT_PROBABILITY = 10
-        private const val MOVEMENT_PROBABILITY = 4
     }
 }

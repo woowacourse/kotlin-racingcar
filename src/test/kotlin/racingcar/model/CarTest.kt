@@ -28,11 +28,14 @@ class CarTest {
     @ValueSource(ints = [1, 5, 10])
     fun `movement가 주어졌을 때, 자동차를 movement만큼 이동시, 자동차가 position 만큼 이동한다`(movement: Int) {
         val car = Car("otter")
-
         repeat(movement) {
-            car.move()
+            car.move(ABSOLUTE_MOVE_CONDITION)
         }
 
         assertEquals(movement, car.position)
+    }
+
+    companion object {
+        private const val ABSOLUTE_MOVE_CONDITION = 10
     }
 }
