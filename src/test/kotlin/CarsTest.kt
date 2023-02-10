@@ -8,8 +8,8 @@ class CarsTest {
     @Test
     fun mappingCarsTest() {
         val carNames = listOf("pobi", "dool", "woni")
-        for (i in 0 until cars.getCarSize()) {
-            assertThat(cars.getCarInfo(i).first).isEqualTo(carNames[i])
+        repeat(cars.getCarSize()) {
+            assertThat(cars.getCarInfo(it).name).isEqualTo(carNames[it])
         }
     }
 
