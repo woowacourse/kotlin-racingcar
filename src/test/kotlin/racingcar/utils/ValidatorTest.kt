@@ -5,37 +5,36 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.controller.ViewController
 
 internal class ValidatorTest {
 
-    private lateinit var validator: Validator
+    private lateinit var validator: RacingRuleValidator
+    private lateinit var viewController: ViewController
 
     @BeforeEach
     fun beforeEach() {
-        this.validator = Validator()
+        this.validator = RacingRuleValidator()
+        viewController = ViewController()
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["sooda, buna", "sooda,buna", "   sooda,  buna  "])
     fun `자동차 이름 중복 정상 테스트`(input: String) {
         assertDoesNotThrow {
-            val names = input.split(TEXT_IN_LINE_DELIMITER).toMutableList()
-            TextUtils.removeTextsBlank(names)
+            val names = TextUtils.removeTextsBlank(input.split(TEXT_IN_LINE_DELIMITER))
 
-            validator.checkCarNames(names)
+            require(validator.isValidateNotDuplicatedCarNames(names))
         }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["soodal, soodal", "buna, buna"])
-    // todo 공백 제거 후
+    @ValueSource(strings = ["soodal, soodal", "buna,  buna"])
     fun `자동차 이름 중복 예외 테스트`(input: String) {
         assertThrows<IllegalArgumentException> {
-            val names = input.split(TEXT_IN_LINE_DELIMITER).toMutableList()
+            val names = TextUtils.removeTextsBlank(input.split(TEXT_IN_LINE_DELIMITER))
 
-            TextUtils.removeTextsBlank(names)
-
-            validator.checkCarNames(names)
+            require(validator.isValidateNotDuplicatedCarNames(names))
         }
     }
 
@@ -43,7 +42,7 @@ internal class ValidatorTest {
     @ValueSource(strings = ["1", Int.MAX_VALUE.toString(), "5", "6"])
     fun `시도 횟수 정상 테스트`(input: String) {
         assertDoesNotThrow {
-            validator.checkRoundCount(input)
+            require(validator.isValidateRoundCountBoundary(input.toInt()))
         }
     }
 
@@ -51,7 +50,7 @@ internal class ValidatorTest {
     @ValueSource(strings = ["0", (Int.MAX_VALUE.toLong() + 1).toString(), "-1", "*", "", "otter", "buna"])
     fun `시도 횟수 예외 테스트`(input: String) {
         assertThrows<IllegalArgumentException> {
-            validator.checkRoundCount(input)
+            require(validator.isValidateRoundCountBoundary(input.toInt()))
         }
     }
 }
