@@ -13,6 +13,10 @@ class Car(private val name: String, private var position: Int = 0) {
     }
 
     fun move(condition: Int) {
-        if (condition >= 4) position++
+        if (condition >= MOVING_POINT) position++
+    }
+
+    companion object {
+        const val MOVING_POINT = 4
     }
 }
