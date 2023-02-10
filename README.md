@@ -16,14 +16,3 @@
 
 - 자동차 이름은 5자를 초과할 수 없다.
 - 자동차 이름은 쉼표로 구분된다.
-
-## 테스트 리스트
-- 우승자 판별 기능 테스트
-- checkMove() 테스트
-- 자동차 이동 테스트
-- validation test
-- throw exception 테스트
-  - validation 예외 값
-- 모든 자동차 이동 테스트
-- initCars() 테스트
-- 전체 진행 테스트
