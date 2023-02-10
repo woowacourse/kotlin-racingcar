@@ -18,7 +18,7 @@ class RacingService {
     private fun isMove(): Boolean = (getRandomProbabilityInRange() < MOVEMENT_PROBABILITY)
 
     private fun getRandomProbabilityInRange(): Int =
-        (START_RANDOM_MOVEMENT_PROBABILITY..END_RANDOM_MOVEMENT_PROBABILITY + 1).random()
+        (START_RANDOM_MOVEMENT_PROBABILITY..END_RANDOM_MOVEMENT_PROBABILITY).random()
 
     fun getWinners(cars: List<Car>): List<Car> {
         val winnerStandard = cars.max()
