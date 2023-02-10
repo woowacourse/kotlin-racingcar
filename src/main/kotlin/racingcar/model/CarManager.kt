@@ -5,13 +5,10 @@ import racingcar.entity.Name
 import racingcar.misc.Util
 import racingcar.misc.Values
 
-class CarManager() {
-    private lateinit var cars: MutableList<Car>
-    fun init(names: List<Name>) {
-        cars = mutableListOf()
-        for (name in names) {
-            cars.add(Car(name))
-        }
+class CarManager(names: List<Name>) {
+    val cars: List<Car> = names.map { Car(it) }
+
+    init {
         require(cars.size >= Values.MIN_CAR_COUNT) { "경주에는 자동차 2대 이상이 필요합니다." }
     }
 
@@ -21,7 +18,7 @@ class CarManager() {
     }
 
     fun attempt() {
-        for (i in 0 until cars.size) {
+        for (i in cars.indices) {
             step(i, Util.generateRandom())
         }
     }
