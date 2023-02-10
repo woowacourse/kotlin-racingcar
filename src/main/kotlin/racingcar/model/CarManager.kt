@@ -17,15 +17,8 @@ open class CarManager(private val numberGenerator: NumberGenerator, names: List<
     }
 
     fun attempt() {
-        for (i in cars.indices) {
-            step(i, numberGenerator.generate())
-        }
-    }
-
-    fun step(index: Int, number: Int) {
-        require(number in Values.MIN_RANDOM_NUMBER..Values.MAX_RANDOM_NUMBER) { "생성된 임의 숫자는 0에서 9사이어야 합니다." }
-        if (number >= Values.WIN_NUMBER) {
-            cars[index].forward()
+        for (idx in cars.indices) {
+            cars[idx].forward(numberGenerator.generate())
         }
     }
 
