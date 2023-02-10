@@ -8,8 +8,8 @@ class Car(private val name: String, private var position: Int = 0) {
         Validator().checkName(name)
     }
 
-    fun getInfo(): Pair<String, Int> {
-        return Pair(name, position)
+    fun getInfo(): CarInfo {
+        return CarInfo(name, position)
     }
 
     fun move(condition: Int) {
