@@ -1,13 +1,13 @@
 package racingcar.domain
 
 class RacingCar(
-    private val name: String,
-    private var movingState: Int = 0,
+    val name: String,
+    private var _movingState: Int = 0,
 ) {
-    fun moveForward() {
-        movingState += 1
-    }
+    val movingState: Int
+        get() = _movingState
 
-    fun getName(): String = this.name
-    fun getMovingState(): Int = this.movingState
+    fun moveForward() {
+        _movingState += 1
+    }
 }
