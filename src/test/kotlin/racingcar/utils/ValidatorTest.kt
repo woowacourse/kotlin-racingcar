@@ -19,7 +19,7 @@ internal class ValidatorTest {
     @ValueSource(strings = ["sooda, buna", "sooda,buna", "   sooda,  buna  "])
     fun `자동차 이름 중복 정상 테스트`(input: String) {
         assertDoesNotThrow {
-            val names = input.split(CAR_NAME_DELIMITER).toMutableList()
+            val names = input.split(TEXT_IN_LINE_DELIMITER).toMutableList()
             TextUtils.removeTextsBlank(names)
 
             validator.checkCarNames(names)
@@ -31,7 +31,7 @@ internal class ValidatorTest {
     // todo 공백 제거 후
     fun `자동차 이름 중복 예외 테스트`(input: String) {
         assertThrows<IllegalArgumentException> {
-            val names = input.split(CAR_NAME_DELIMITER).toMutableList()
+            val names = input.split(TEXT_IN_LINE_DELIMITER).toMutableList()
 
             TextUtils.removeTextsBlank(names)
 

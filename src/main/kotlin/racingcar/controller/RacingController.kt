@@ -2,46 +2,23 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.service.RacingService
-import racingcar.utils.CAR_NAMES_REQUEST_MESSAGE
-import racingcar.utils.ROUNDS_RESULT_NOTIFICATION_MESSAGE
-import racingcar.utils.ROUND_COUNT_REQUEST_MESSAGE
-import racingcar.utils.Validator
-import racingcar.view.InputView
-import racingcar.view.OutputView
 
 class RacingController(
-    private val inputView: InputView = InputView(Validator()),
-    private val outputView: OutputView = OutputView(),
+    private val viewController: ViewController = ViewController(),
     private val racingService: RacingService = RacingService(),
 ) {
     fun runRacing() {
-        val cars = createCars(readCarNames())
-        val roundCount = readRoundCount()
+        val cars = createCars(viewController.readCarNames())
+        val roundCount = viewController.readRoundCount()
 
         runRounds(roundCount, cars)
 
         val winners = getWinners(cars)
-        printWinners(winners)
+        viewController.printWinners(winners)
     }
-
-    private fun readCarNames(): List<String> {
-        outputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
-        return inputView.readCarNames()
-    }
-
-    private fun readRoundCount(): Int {
-        outputView.printMessage(ROUND_COUNT_REQUEST_MESSAGE)
-        return inputView.readRoundCount()
-    }
-
-    private fun printRoundCountRequestMessage() = outputView.printMessage(ROUNDS_RESULT_NOTIFICATION_MESSAGE)
-
-    private fun printRoundResult(cars: List<Car>) = outputView.printRoundResult(cars)
-
-    private fun printWinners(winners: List<Car>) = outputView.printWinners(winners)
 
     private fun runRounds(roundCount: Int, cars: List<Car>) {
-        printRoundCountRequestMessage()
+        viewController.printRunResult()
         repeat(roundCount) {
             runRound(cars)
         }
@@ -49,7 +26,7 @@ class RacingController(
 
     private fun runRound(cars: List<Car>) {
         moveCarsRandomly(cars)
-        printRoundResult(cars)
+        viewController.printRoundResult(cars)
     }
 
     private fun moveCarsRandomly(cars: List<Car>) {

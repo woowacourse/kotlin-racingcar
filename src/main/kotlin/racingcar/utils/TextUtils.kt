@@ -1,10 +1,8 @@
 package racingcar.utils
 
-abstract class TextUtils {
+object TextUtils {
 
-    companion object {
-        fun removeTextsBlank(names: List<String>): List<String> {
-            return names.map { it.trim() }.toList()
-        }
+    fun removeTextsBlank(names: List<String>): List<String> {
+        return names.map { it.trim() }.toList()
     }
 }
