@@ -1,7 +1,6 @@
 package racingcar.view
 
 import racingcar.model.Car
-import racingcar.utils.WINNER_NOTIFICATION_MESSAGE
 
 class OutputView {
     fun printMessage(message: String) = println(message)
@@ -17,6 +16,10 @@ class OutputView {
         println("$WINNER_NOTIFICATION_MESSAGE: ${winners.joinToString(", ")}")
     }
 
-    private fun getPositionAsDash(position: Int): String =
-        "-".repeat(position)
+    private fun getPositionAsDash(position: Int): String = DASH.repeat(position)
+
+    companion object {
+        const val WINNER_NOTIFICATION_MESSAGE = "최종 우승자"
+        const val DASH = "-"
+    }
 }

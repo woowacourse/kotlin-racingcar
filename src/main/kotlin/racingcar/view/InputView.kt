@@ -1,6 +1,5 @@
 package racingcar.view
 
-import racingcar.utils.CAR_NAME_DELIMITER
 import racingcar.utils.Validator
 import racingcar.utils.removeBlank
 
@@ -14,4 +13,8 @@ class InputView(private val validator: Validator) {
     }
 
     fun readRoundCount() = validator.checkRoundCount(readln())
+
+    companion object {
+        const val CAR_NAME_DELIMITER = ","
+    }
 }

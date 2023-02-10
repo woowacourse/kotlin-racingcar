@@ -2,9 +2,6 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.service.RacingService
-import racingcar.utils.CAR_NAMES_REQUEST_MESSAGE
-import racingcar.utils.ROUNDS_RESULT_NOTIFICATION_MESSAGE
-import racingcar.utils.ROUND_COUNT_REQUEST_MESSAGE
 import racingcar.utils.Validator
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -64,4 +61,11 @@ class RacingController(
         }
 
     private fun getWinners(cars: List<Car>): List<Car> = racingService.getWinners(cars)
+
+    companion object {
+        const val CAR_NAMES_REQUEST_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
+        const val ROUND_COUNT_REQUEST_MESSAGE = "시도할 횟수는 몇 회인가요?"
+        const val ROUNDS_RESULT_NOTIFICATION_MESSAGE = "\n실행 결과"
+        const val WINNER_NOTIFICATION_MESSAGE = "최종 우승자"
+    }
 }

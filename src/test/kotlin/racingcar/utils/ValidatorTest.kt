@@ -4,7 +4,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.Arguments
+import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import java.util.stream.Stream
 
 internal class ValidatorTest {
 
@@ -16,23 +19,17 @@ internal class ValidatorTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["sooda, buna", "sooda,buna", "   sooda,  buna  "])
-    fun `자동차 이름 중복 노말 테스트`(input: String) {
+    @MethodSource("provideHappyCaseForDuplicatedNames")
+    fun `자동차 이름 중복 노말 테스트`(names: List<String>) {
         assertDoesNotThrow {
-            val names = input
-                .split(CAR_NAME_DELIMITER)
-                .removeBlank()
             validator.checkCarNames(names)
         }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["soodal, soodal", "buna, buna"])
-    fun `자동차 이름 중복 예외 테스트`(input: String) {
+    @MethodSource("provideExceptionCaseForDuplicatedNames")
+    fun `자동차 이름 중복 예외 테스트`(names: List<String>) {
         assertThrows<IllegalArgumentException> {
-            val names = input
-                .split(CAR_NAME_DELIMITER)
-                .removeBlank()
             validator.checkCarNames(names)
         }
     }
@@ -51,5 +48,21 @@ internal class ValidatorTest {
         assertThrows<IllegalArgumentException> {
             validator.checkRoundCount(input)
         }
+    }
+
+    companion object {
+        @JvmStatic
+        fun provideHappyCaseForDuplicatedNames(): Stream<Arguments> =
+            Stream.of(
+                Arguments.of(listOf("sooda", "buna")),
+                Arguments.of(listOf("sooda", "buna", "soda", "bunaa")),
+            )
+
+        @JvmStatic
+        fun provideExceptionCaseForDuplicatedNames(): Stream<Arguments> =
+            Stream.of(
+                Arguments.of(listOf("soodal", "soodal")),
+                Arguments.of(listOf("buna", "buna")),
+            )
     }
 }
