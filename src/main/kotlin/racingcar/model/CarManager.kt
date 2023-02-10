@@ -2,13 +2,12 @@ package racingcar.model
 
 import racingcar.entity.Car
 import racingcar.entity.Name
-import racingcar.misc.Values
 
 open class CarManager(private val numberGenerator: NumberGenerator, names: List<Name>) {
     val cars: List<Car> = names.map { Car(it) }
 
     init {
-        require(cars.size >= Values.MIN_CAR_COUNT) { "경주에는 자동차 2대 이상이 필요합니다." }
+        require(cars.size >= MIN_CAR_COUNT) { "경주에는 자동차 2대 이상이 필요합니다." }
     }
 
     fun determineWinner(): List<Car> {
@@ -24,5 +23,9 @@ open class CarManager(private val numberGenerator: NumberGenerator, names: List<
 
     override fun toString(): String {
         return cars.joinToString("\n") { it.toString() }
+    }
+
+    companion object {
+        const val MIN_CAR_COUNT = 2
     }
 }
