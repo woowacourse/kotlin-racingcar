@@ -6,5 +6,7 @@ data class Car(
     var advanceCount: Int = 0
         private set
 
-    fun move() = advanceCount++
+    fun move() {
+        advanceCount++
+    }
 }
