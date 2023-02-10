@@ -1,6 +1,6 @@
 package controller
 import model.Cars
-import util.CarHelper
+import util.CarsHelper
 import util.Validator
 import view.InputView
 import view.OutputView
@@ -16,7 +16,7 @@ class RaceGame {
         repeat(tryNumber) {
             tryMove(cars)
         }
-        outputView.outputWinners(CarHelper.findWinners(cars))
+        outputView.outputWinners(CarsHelper.findWinners(cars))
     }
 
     private fun tryMove(cars: Cars) {

@@ -2,7 +2,7 @@ package util
 
 import model.Cars
 
-class CarHelper {
+class CarsHelper {
     companion object {
         fun findWinners(cars: Cars): List<String> {
             val carInfos = cars.getCarInfos()
