@@ -1,7 +1,9 @@
 package controller
 
 import domain.Car
+import domain.CarsFactory
 import domain.Judgement
+import domain.RandomNumberGenerator
 import view.InputView
 import view.OutputView
 
@@ -9,36 +11,22 @@ class Controller(
     private val inputView: InputView,
     private val outputView: OutputView
 ) {
-    private val cars = mutableListOf<Car>()
-    private val judgement = Judgement(cars)
     private var time = 0
 
     fun run() {
-        setUp()
-        race()
-        announceWinners()
+        val cars = setUpCars()
+        setUpRaceTime()
+        race(cars)
+        announceWinners(cars)
     }
 
-    private fun setUp() {
-        var completeSetUpCar = false
-        var completeSetUpRaceTime = false
-        while (!completeSetUpCar) {
-            completeSetUpCar = setUpCars()
-        }
-        while (!completeSetUpRaceTime) {
-            completeSetUpRaceTime = setUpRaceTime()
-        }
-        outputView.printInterval()
-    }
-
-    private fun setUpCars(): Boolean {
-        return try {
-            val carsDTO = inputView.readCars()
-            carsDTO.getCars().map { car -> cars.add(car) }
-            true
-        } catch (e: IllegalArgumentException) {
-            outputView.printError(e.message ?: "")
-            false
+    private fun setUpCars(): List<Car> {
+        while (true) {
+            try {
+                return CarsFactory(inputView.readCars()).makeCars(RandomNumberGenerator())
+            } catch (e: IllegalArgumentException) {
+                outputView.printError(e.message ?: "")
+            }
         }
     }
 
@@ -52,22 +40,22 @@ class Controller(
         }
     }
 
-    private fun race() {
+    private fun race(cars: List<Car>) {
         outputView.printExecutionResult()
-        for (t in 0 until time) {
-            raceOneTime()
+        repeat(time) {
+            raceOneTime(cars)
             outputView.printInterval()
         }
     }
 
-    private fun raceOneTime() {
-        cars.map { car ->
+    private fun raceOneTime(cars: List<Car>) {
+        cars.forEach { car ->
             outputView.printRaceResult(car.race())
         }
     }
 
-    private fun announceWinners() {
-        val winnersDTO = judgement.findWinners()
+    private fun announceWinners(cars: List<Car>) {
+        val winnersDTO = Judgement(cars).findWinners()
         outputView.printWinners(winnersDTO)
     }
 }
