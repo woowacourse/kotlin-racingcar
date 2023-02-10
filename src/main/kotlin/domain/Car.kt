@@ -1,9 +1,12 @@
 package domain
 
+import exception.Validator
+
 class Car(private val name: String, private var moveCount: Int) {
 
     init {
-        require(name.length <= MAX_NAME_LENGTH && name.isNotEmpty())
+        require(name.length <= MAX_NAME_LENGTH) { Validator.NAME_LENGTH_ERROR }
+        require(name.isNotEmpty()) { Validator.INVALID_NAME_ERROR }
     }
 
     private fun move() {
