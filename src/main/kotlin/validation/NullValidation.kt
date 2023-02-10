@@ -1,8 +1,8 @@
-package exception
+package validation
 
 import message.ExceptionMessage
 
-class NullException {
+class NullValidation {
 
     fun checkNull(input: String?): String {
         if (input.isNullOrBlank())

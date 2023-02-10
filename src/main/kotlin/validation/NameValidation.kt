@@ -1,12 +1,12 @@
-package exception
+package validation
 
 import message.ExceptionMessage
 
-class NameException(private val nullException: NullException = NullException()) {
+class NameValidation(private val nullValidation: NullValidation = NullValidation()) {
 
     fun checkNames(carNames: String) {
         splitCarNames(carNames).forEach { name ->
-            checkNameRange(nullException.checkNull(name))
+            checkNameRange(nullValidation.checkNull(name))
             checkCarNameEnglishNumber(name)
         }
     }

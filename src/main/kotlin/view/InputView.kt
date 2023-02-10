@@ -1,26 +1,26 @@
 package view
 
-import exception.NameException
-import exception.NullException
-import exception.TryCountException
+import validation.NameValidation
+import validation.NullValidation
+import validation.TryCountValidation
 
 class InputView(
-    private val nullException: NullException = NullException(),
-    private val nameException: NameException = NameException(),
-    private val tryCountException: TryCountException = TryCountException()
+    private val nullValidation: NullValidation = NullValidation(),
+    private val nameValidation: NameValidation = NameValidation(),
+    private val tryCountValidation: TryCountValidation = TryCountValidation()
 ) {
 
     fun inputName(): String {
         val input = readLine()
-        val carNames = nullException.checkNull(input)
-        nameException.checkNames(carNames)
+        val carNames = nullValidation.checkNull(input)
+        nameValidation.checkNames(carNames)
         return carNames
     }
 
     fun inputTryCount(): String {
         val input = readLine()
-        val tryCount = nullException.checkNull(input)
-        tryCountException.checkTryCount(tryCount)
+        val tryCount = nullValidation.checkNull(input)
+        tryCountValidation.checkTryCount(tryCount)
         return tryCount
     }
 }

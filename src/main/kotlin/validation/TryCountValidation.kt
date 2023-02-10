@@ -1,8 +1,8 @@
-package exception
+package validation
 
 import message.ExceptionMessage
 
-class TryCountException {
+class TryCountValidation {
     fun checkTryCount(tryCount: String) {
         checkTryCountInteger(tryCount)
         checkTryCountPositive(tryCount)
