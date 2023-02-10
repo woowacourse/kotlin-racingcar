@@ -11,7 +11,7 @@ object InputValidator {
 
         names.forEach { name ->
             require(name != EMPTY) {
-                InputError.EMPTY_INPUT_ERROR.message
+                InputError.SUCCESSIVE_TOKENIZER_ERROR.message
             }
         }
 
