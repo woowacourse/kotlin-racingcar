@@ -2,31 +2,29 @@ package model
 
 import generator.RandomGenerator
 
-class Cars(input: String) {
-    private val cars: List<Car>
+class Cars(cars: List<Car>) {
 
-    init {
-        this.cars = mappingCars(input)
-    }
+    var cars: List<Car> = cars
+        get() = cars
 
-    private fun mappingCars(input: String): List<Car> = input.split(",").mapIndexed { _, name -> Car(name.trim()) }
-    fun getCar(position: Int): Car = cars[position]
-    fun getCarSize(): Int = cars.size
-
-    fun move(position: Int) {
-        cars[position].move(RandomGenerator().getRandomNumber())
+    fun move() {
+        cars.forEach { it.move(RandomGenerator().getRandomNumber()) }
     }
 
     private fun findMaxPosition(): Int {
         return cars.maxByOrNull {
-            it.getInfo().second
-        }!!.getInfo().second
+            it.position
+        }!!.position
     }
 
     fun findWinners(): List<String> {
         val maxEqualCars = cars.filter {
-            it.getInfo().second == findMaxPosition()
+            it.position == findMaxPosition()
         }.toList()
-        return maxEqualCars.map { it.getInfo().first }
+        return maxEqualCars.map { it.name }
+    }
+
+    companion object {
+        fun mappingCars(input: String) = Cars(input.split(",").mapIndexed { _, name -> Car(name.trim()) })
     }
 }
