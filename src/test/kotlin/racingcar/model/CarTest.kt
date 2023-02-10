@@ -14,13 +14,13 @@ class CarTest {
     }
 
     @Test
-    fun testCarMovement() {
+    fun `자동차 이동횟수 일치 테스트`() {
         val moveCount = 5
 
         repeat(moveCount) {
             car.move()
         }
 
-        assertEquals("-".repeat(moveCount), "-".repeat(car.position))
+        assertEquals(moveCount, car.position)
     }
 }
