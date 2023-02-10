@@ -1,11 +1,8 @@
 package racingcar.model
 
 import racingcar.entity.Car
-import racingcar.entity.Name
 
-class CarManager(private val numberGenerator: NumberGenerator, names: List<Name>) {
-    private val cars: List<Car> = names.map { Car(it) }
-
+class CarManager(private val numberGenerator: NumberGenerator, val cars: List<Car>) {
     init {
         require(cars.size >= MIN_CAR_COUNT) { "경주에는 자동차 2대 이상이 필요합니다." }
     }
