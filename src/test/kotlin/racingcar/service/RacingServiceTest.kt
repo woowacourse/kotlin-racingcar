@@ -32,11 +32,11 @@ internal class RacingServiceTest {
     }
 
     @Test
-    fun `자동차 이름이 중복되는 경우, insertCars시, IllegalStateException 예외가 발생한다`() {
+    fun `자동차 이름이 중복되는 경우, insertCars시, IllegalArgumentException 예외가 발생한다`() {
         val carNames = listOf("buna", "buna", "buna")
         val cars = carNames.map { Car(it) }
 
-        assertThrows<IllegalStateException> {
+        assertThrows<IllegalArgumentException> {
             racingService.insertCars(cars)
         }
     }
@@ -48,7 +48,8 @@ internal class RacingServiceTest {
         moveCounts: List<Int>,
         expectedWinnersCount: Int
     ) {
-        cars.forEachIndexed { index, car ->
+        racingService.insertCars(cars)
+        racingService.getAll().forEachIndexed { index, car ->
             repeat(moveCounts[index]) { car.move() }
         }
 
@@ -64,7 +65,8 @@ internal class RacingServiceTest {
         moveCounts: List<Int>,
         expectedWinnersCount: Int
     ) {
-        cars.forEachIndexed { index, car ->
+        racingService.insertCars(cars)
+        racingService.getAll().forEachIndexed { index, car ->
             repeat(moveCounts[index]) {
                 car.move()
             }
