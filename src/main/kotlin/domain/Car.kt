@@ -1,12 +1,13 @@
 package domain
 
 class Car(
-    val name: String,
+    val name: String, private val movingStrategy: MovingStrategy
 ) {
     var advanceCount: Int = 0
         private set
 
     fun move() {
-        advanceCount++
+        if (movingStrategy.isMovable())
+            advanceCount++
     }
 }

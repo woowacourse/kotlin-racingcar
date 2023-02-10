@@ -1,11 +1,10 @@
 package domain
 
 class CarRacingGameManager(
-    private val cars: List<Car>,
-    private val movingStrategy: MovingStrategy
+    private val cars: List<Car>
 ) {
     fun allCarsTryToMoveForward() =
-        cars.forEach { if (movingStrategy.isMovable()) it.move() }
+        cars.forEach { it.move() }
 
     fun getWinCars(): List<Car> {
         val maxAdvancedCount: Int = cars.maxOf { it.advanceCount }

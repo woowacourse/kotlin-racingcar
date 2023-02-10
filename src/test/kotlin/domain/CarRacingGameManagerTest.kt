@@ -10,8 +10,12 @@ internal class CarRacingGameManagerTest {
     inner class `allCarsTryToMoveForward 메소드는` {
         @Nested
         inner class `첫 번째와 세 번째 차만 전진을 한다면` {
-            private val cars: List<Car> = listOf(Car("pobi"), Car("mendl"), Car("thom"))
-            private val gameManager = CarRacingGameManager(cars, FakeMovingStrategy())
+            private val cars: List<Car> = listOf(
+                Car("pobi", OnlyAdvanceMovingStrategy()),
+                Car("mendl", OnlyStopMovingStrategy()),
+                Car("thom", OnlyAdvanceMovingStrategy())
+            )
+            private val gameManager = CarRacingGameManager(cars)
 
             @Test
             fun `첫 번째 차와 세 번째 차의 전진 횟수만 1이 된다`() {
@@ -35,7 +39,7 @@ internal class CarRacingGameManagerTest {
         @Nested
         inner class `자동차들을 받으면` {
             private val cars: List<Car> = getCars()
-            private val gameManager = CarRacingGameManager(cars, RandomMovingStrategy())
+            private val gameManager = CarRacingGameManager(cars)
 
             @Test
             fun `전진 횟수가 가장 많은 자동차들을 반환한다`() {
@@ -45,10 +49,23 @@ internal class CarRacingGameManagerTest {
             }
 
             private fun getCars(): List<Car> {
-                val cars = listOf(Car("1"), Car("2"), Car("3"))
+                val cars = listOf(
+                    Car("1", OnlyAdvanceMovingStrategy()),
+                    Car("2", OnlyAdvanceMovingStrategy()),
+                    Car("3", OnlyAdvanceMovingStrategy())
+                )
                 cars.forEach { car -> repeat(car.name.toInt()) { car.move() } }
                 return cars
             }
         }
+    }
+
+    inner class OnlyAdvanceMovingStrategy() : MovingStrategy {
+        override fun isMovable(): Boolean = true
+    }
+
+    inner class OnlyStopMovingStrategy() : MovingStrategy {
+
+        override fun isMovable(): Boolean = false
     }
 }

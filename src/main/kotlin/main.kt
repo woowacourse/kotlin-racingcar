@@ -9,7 +9,7 @@ fun main() {
 
     val advanceCount: Int = askAdvanceCount()
 
-    val gameManager = CarRacingGameManager(cars, RandomMovingStrategy())
+    val gameManager = CarRacingGameManager(cars)
 
     runGame(cars, advanceCount, gameManager)
 
@@ -19,7 +19,7 @@ fun main() {
 private fun askCarNames(): List<Car> {
     OutputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
     val carNames: List<String> = InputView.readCarNames()
-    return carNames.map { Car(it) }
+    return carNames.map { Car(it, RandomMovingStrategy()) }
 }
 
 private fun askAdvanceCount(): Int {
