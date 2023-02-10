@@ -1,6 +1,6 @@
 package racingcar.domain
 
-import racingcar.resources.ERROR_RACING_COUNT_AT_MOST_ONE
+import racingcar.resources.ERROR_MESSAGE_PREFIX
 
 class RacingManager(
     private val numberGenerator: NumberGenerator,
@@ -27,5 +27,9 @@ class RacingManager(
         val maxLocation = cars.maxOf { it.location }
         return cars.filter { car -> car.location == maxLocation }
             .map { it.name }
+    }
+
+    companion object {
+        private const val ERROR_RACING_COUNT_AT_MOST_ONE = ERROR_MESSAGE_PREFIX + "경주 횟수는 1 이상이어야 합니다."
     }
 }

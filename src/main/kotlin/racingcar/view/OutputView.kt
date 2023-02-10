@@ -1,8 +1,6 @@
 package racingcar.view
 
 import racingcar.domain.Car
-import racingcar.resources.OUTPUT_RESULT
-import racingcar.resources.OUTPUT_WINNER
 
 class OutputView {
     fun printCarsState(cars: List<Car>) {
@@ -22,5 +20,10 @@ class OutputView {
 
     fun printWinner(carNames: List<String>) {
         print(OUTPUT_WINNER + carNames.joinToString(", "))
+    }
+
+    companion object {
+        private const val OUTPUT_RESULT = "실행 결과"
+        private const val OUTPUT_WINNER = "최종 우승자: "
     }
 }
