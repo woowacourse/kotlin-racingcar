@@ -1,41 +1,50 @@
 package racingcar.model
 
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import racingcar.entity.Car
 import racingcar.entity.Name
+import racingcar.entity.Position
 
 class CarManagerTest {
     @Test
-    fun `우승자 결정 테스트`() {
-        val carManager = CarManager()
-        carManager.init(mutableListOf(Name("test1"), Name("test2"), Name("test3")))
-
-        carManager.step(0, 3)
-        carManager.step(1, 1)
-        carManager.step(2, 7)
-        carManager.step(0, 1)
-        carManager.step(1, 5)
-        carManager.step(2, 6)
-
-        val winners = carManager.determineWinner()
-        Assertions.assertThat(winners[0].getName()).isEqualTo(Name("test3"))
-    }
-
-    @Test
-    fun `자동차 초기화 예외 테스트`() {
+    fun `CarManager를 생성 할 때 cars의 size가 1이하면 IllegalArgumentException 예외 발생`() {
         assertThrows<IllegalArgumentException> {
-            val carManager = CarManager()
-            carManager.init(listOf(Name("test1")))
+            val names = listOf("test1")
+            val positions = listOf(Position(3))
+            val cars = names.mapIndexed { idx, name -> Car(Name(name), positions[idx]) }
+            val sequentialNumberGenerator = SequentialNumberGenerator(listOf())
+
+            CarManager(sequentialNumberGenerator, cars)
         }
     }
 
     @Test
-    fun `자동차 전진 예외 테스트`() {
-        assertThrows<IllegalArgumentException> {
-            val carManager = CarManager()
-            carManager.init(mutableListOf(Name("test1"), Name("test2"), Name("test3")))
-            carManager.step(0, 10)
-        }
+    fun `모든 자동차에 대해 Position을 기준으로 정렬시 내림차순 정렬 성공`() {
+        val names = listOf("test1", "test2", "test3")
+        val positions = listOf(Position(3), Position(4), Position(2))
+        val cars = names.mapIndexed { idx, name -> Car(Name(name), positions[idx]) }
+        val sequentialNumberGenerator = SequentialNumberGenerator(listOf())
+        val carManager = CarManager(sequentialNumberGenerator, cars)
+
+        val winners = carManager.sortCarByPosition()
+
+        assertThat(winners[0].name.value).isEqualTo("test2")
+    }
+
+    @Test
+    fun `모든 자동차에 대해 1회 전진시 성공`() {
+        val names = listOf("test1", "test2", "test3")
+        val positions = listOf(Position(3), Position(4), Position(2))
+        val cars = names.mapIndexed { idx, name -> Car(Name(name), positions[idx]) }
+        val sequentialNumberGenerator = SequentialNumberGenerator(listOf(5, 6, 7))
+        val carManager = CarManager(sequentialNumberGenerator, cars)
+
+        carManager.attempt()
+
+        assertThat(carManager.cars[0].position.value).isEqualTo(4)
+        assertThat(carManager.cars[1].position.value).isEqualTo(5)
+        assertThat(carManager.cars[2].position.value).isEqualTo(3)
     }
 }
