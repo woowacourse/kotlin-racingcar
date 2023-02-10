@@ -18,7 +18,7 @@ internal class CarTest {
     @ParameterizedTest(name = "Car 객체의 이름은 1자 이상 5자 이하 이외에는 에러가 난다 {argumentsWithNames}")
     @ValueSource(strings = ["", "123456"])
     fun `Car 객체의 이름은 1자 이상 5자 이하 이외에는 에러가 난다`(input: String) {
-        assertThrows<IllegalArgumentException> { Car("") }
+        assertThrows<IllegalArgumentException> { Car(input) }
     }
 
     @Test
