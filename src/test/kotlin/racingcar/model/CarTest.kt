@@ -5,6 +5,7 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import kotlin.test.assertNotEquals
 
 class CarTest {
 
@@ -14,6 +15,26 @@ class CarTest {
         assertDoesNotThrow {
             Car(name)
         }
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9, 10])
+    fun `4이상 10이하일 때, Car의 move 호출시, position이 증가한다`(condition: Int) {
+        val car = Car("otter")
+
+        car.move(condition)
+
+        assertEquals(car.position, ONE_STEP)
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [1, 2, 3])
+    fun `4미만일 때, Car의 move 호출시, position이 증가하지 않는다`(condition: Int) {
+        val car = Car("otter")
+
+        car.move(condition)
+
+        assertNotEquals(car.position, ONE_STEP)
     }
 
     @ParameterizedTest
@@ -37,5 +58,6 @@ class CarTest {
 
     companion object {
         private const val ABSOLUTE_MOVE_CONDITION = 10
+        private const val ONE_STEP = 1
     }
 }
