@@ -1,7 +1,7 @@
 package domain
 
 import data.ComparisonResult
-import dto.CarMetadataDTO
+import dto.RaceResultDTO
 
 class Car(
     private val generator: NumberGenerator,
@@ -13,21 +13,20 @@ class Car(
         validateCarName()
     }
 
-    fun race(): CarMetadataDTO {
+    fun race(): RaceResultDTO {
         val number = generator.generate()
         if (checkGo(number)) go()
-        return CarMetadataDTO(ComparisonResult.NONE, distance, name)
+        return RaceResultDTO(ComparisonResult.LOSE, distance, name)
     }
 
-    fun compare(winnerDistance: Int): CarMetadataDTO {
+    fun compare(winnerDistance: Int): RaceResultDTO {
         val difference = distance - winnerDistance
         val comparisonResult = when {
             difference > 0 -> ComparisonResult.WIN
             difference < 0 -> ComparisonResult.LOSE
             else -> ComparisonResult.DRAW
         }
-
-        return CarMetadataDTO(comparisonResult, distance, name)
+        return RaceResultDTO(comparisonResult, distance, name)
     }
 
     private fun checkGo(number: Int): Boolean {

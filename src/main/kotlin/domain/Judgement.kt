@@ -1,7 +1,7 @@
 package domain
 
 import data.ComparisonResult
-import dto.CarMetadataDTO
+import dto.RaceResultDTO
 import dto.WinnersDTO
 
 class Judgement(private val cars: List<Car>) {
@@ -13,12 +13,12 @@ class Judgement(private val cars: List<Car>) {
         return WinnersDTO(winners)
     }
 
-    private fun updateWinners(carMetadataDTO: CarMetadataDTO) {
-        check(carMetadataDTO.getComparisonResult() != ComparisonResult.NONE) { ERROR_NONE_STATE }
-        if (carMetadataDTO.getComparisonResult() == ComparisonResult.LOSE) return
+    private fun updateWinners(raceResultDTO: RaceResultDTO) {
+        check(raceResultDTO.getComparisonResult() != ComparisonResult.NONE) { ERROR_NONE_STATE }
+        if (raceResultDTO.getComparisonResult() == ComparisonResult.LOSE) return
 
-        if (carMetadataDTO.getComparisonResult() == ComparisonResult.WIN) resetWinners(carMetadataDTO.getDistance())
-        addWinner(carMetadataDTO.getName())
+        if (raceResultDTO.getComparisonResult() == ComparisonResult.WIN) resetWinners(raceResultDTO.getDistance())
+        addWinner(raceResultDTO.getName())
     }
 
     private fun resetWinners(distance: Int) {
