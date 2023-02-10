@@ -12,7 +12,10 @@ internal class ApplicationKtTest {
 
     @ParameterizedTest
     @MethodSource("provideInputNormalCases")
-    fun `전체 기능 노말 테스트`(carNames: String, roundCount: String) {
+    fun `1글자 이상 5글자 이하의 중복되지 않은 이름과 1이상 Int 최대값 이하의 라운드 횟수가 주어졌을 때, 자동차 경주를 시작하면, 예외가 발생하지 않는다`(
+        carNames: String,
+        roundCount: String
+    ) {
         setInput(carNames, roundCount)
         assertDoesNotThrow {
             main()
@@ -20,8 +23,32 @@ internal class ApplicationKtTest {
     }
 
     @ParameterizedTest
-    @MethodSource("provideInputExceptionCases")
-    fun `전체 기능 예외 테스트`(carNames: String, roundCount: String) {
+    @MethodSource("provideDuplicatedNameCases")
+    fun `중복된 이름이 주어졌을 때, 자동차 경주를 시작하면, IllegalArgumentException 예외가 발생한다`(carNames: String, roundCount: String) {
+        setInput(carNames, roundCount)
+        assertThrows<IllegalArgumentException> {
+            main()
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideOutOfNameLengthCases")
+    fun `길이가 1글자 미만 또는 5글자 초과한 이름이 주어졌을 때, 자동차 경주를 시작하면, IllegalArgumentException 예외가 발생한다`(
+        carNames: String,
+        roundCount: String
+    ) {
+        setInput(carNames, roundCount)
+        assertThrows<IllegalArgumentException> {
+            main()
+        }
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideOutOfRoundCases")
+    fun `1미만 Int 최대값 초과한 라운드 횟수가 주어졌을 때, 자동차 경주를 시작하면, IllegalArgumentException 예외가 발생한다`(
+        carNames: String,
+        roundCount: String
+    ) {
         setInput(carNames, roundCount)
         assertThrows<IllegalArgumentException> {
             main()
@@ -46,15 +73,26 @@ internal class ApplicationKtTest {
         }
 
         @JvmStatic
-        fun provideInputExceptionCases(): Stream<Arguments> {
+        fun provideDuplicatedNameCases(): Stream<Arguments> {
             return Stream.of(
-                Arguments.of("otter123,buna", "6"),
-                Arguments.of("otter,buna", "${Int.MAX_VALUE.toLong() + 1}"),
-                Arguments.of("otter,buna", "-1"),
-                Arguments.of(" ", "2"),
-                Arguments.of("", "2"),
-                Arguments.of(",,,,,,", "3"),
                 Arguments.of("buna,buna,  buna", "3"),
+                Arguments.of("otter,otter,buna", "3"),
+            )
+        }
+
+        @JvmStatic
+        fun provideOutOfNameLengthCases(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of("otter123,buna, buna", "3"),
+                Arguments.of("", "2"),
+            )
+        }
+
+        @JvmStatic
+        fun provideOutOfRoundCases(): Stream<Arguments> {
+            return Stream.of(
+                Arguments.of("otter, buna", "${Int.MAX_VALUE.toLong() + 1}"),
+                Arguments.of("otter, buna", "-1"),
             )
         }
     }
