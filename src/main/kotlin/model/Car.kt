@@ -12,7 +12,7 @@ class Car(private val name: String, private var position: Int = 0) {
         return Pair(name, position)
     }
 
-    fun move(random: Int) {
-        if (random >= 4) position++
+    fun move(condition: Int) {
+        if (condition >= 4) position++
     }
 }
