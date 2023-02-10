@@ -1,12 +1,10 @@
 package domain
 
-import util.NUMERIC_ERROR_MSG
-
 object InputValidator {
 
     fun validateIsNumeric(numberOfTry: String) {
         require(numberOfTry.isNumeric()) {
-            NUMERIC_ERROR_MSG
+            InputError.NUMERIC_ERROR.message
         }
     }
 
