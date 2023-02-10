@@ -1,4 +1,4 @@
-package data.generator
+package domain
 
 import data.Car
 

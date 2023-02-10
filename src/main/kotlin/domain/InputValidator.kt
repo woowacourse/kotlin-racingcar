@@ -1,5 +1,6 @@
 package domain
 
+import data.InputError
 import view.OutputView.EMPTY
 import view.OutputView.TOKENIZER
 

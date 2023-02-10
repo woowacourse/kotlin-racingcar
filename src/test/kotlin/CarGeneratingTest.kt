@@ -1,4 +1,4 @@
-import data.generator.CarGenerator
+import domain.CarGenerator
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.TestInstance
 import org.junit.jupiter.api.assertThrows

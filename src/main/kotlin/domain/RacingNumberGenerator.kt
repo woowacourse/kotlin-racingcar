@@ -1,4 +1,4 @@
-package data.generator
+package domain
 
 class RacingNumberGenerator : NumberGenerator {
 

@@ -1,9 +1,8 @@
 package data
 
-import InputError
-import data.generator.NumberGenerator
-import data.generator.RacingNumberGenerator
-import data.generator.RacingNumberGenerator.Companion.MINIMUM_NUMBER_TO_MOVE
+import domain.NumberGenerator
+import domain.RacingNumberGenerator
+import domain.RacingNumberGenerator.Companion.MINIMUM_NUMBER_TO_MOVE
 
 class Car(
     val name: String,

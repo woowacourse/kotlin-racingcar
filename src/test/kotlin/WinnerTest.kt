@@ -1,7 +1,7 @@
 import data.Car
-import data.generator.NumberGenerator
-import data.generator.RacingNumberGenerator
 import domain.CarRacingGame
+import domain.NumberGenerator
+import domain.RacingNumberGenerator
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test

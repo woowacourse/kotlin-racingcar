@@ -1,3 +1,5 @@
+package data
+
 enum class InputError(
     val message: String
 ) {

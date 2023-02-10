@@ -1,8 +1,8 @@
-package domain
-
 import data.Car
 import data.CarRacingGameDataSource
-import data.generator.CarGenerator
+import domain.CarGenerator
+import domain.CarRacingGame
+import domain.InputValidator
 import view.InputView
 import view.OutputView
 

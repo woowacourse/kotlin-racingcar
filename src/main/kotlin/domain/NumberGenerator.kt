@@ -1,4 +1,4 @@
-package data.generator
+package domain
 
 interface NumberGenerator {
     fun generate(): Int
