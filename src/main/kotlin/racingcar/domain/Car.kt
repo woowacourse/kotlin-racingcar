@@ -19,10 +19,10 @@ class Car(val name: String) {
     }
 
     companion object {
-        const val MIN_NAME_LENGTH = 1
-        const val MAX_NAME_LENGTH = 5
+        private const val MIN_NAME_LENGTH = 1
+        private const val MAX_NAME_LENGTH = 5
         const val MIN_BOUNDARY = 0
         const val MAX_BOUNDARY = 9
-        const val STANDARD_BOUNDARY = 4
+        private const val STANDARD_BOUNDARY = 4
     }
 }
