@@ -1,40 +1,15 @@
-import data.generator.CarGenerator
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.TestInstance
+import data.Car
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.Arguments
-import org.junit.jupiter.params.provider.MethodSource
-import java.util.stream.Stream
+import org.junit.jupiter.params.provider.ValueSource
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 class CarTest {
-    private lateinit var carGenerator: CarGenerator
-
-    @BeforeEach
-    fun setUp() {
-        carGenerator = CarGenerator()
-    }
 
     @ParameterizedTest
-    @MethodSource("generateInValidCarName")
-    fun `유효하지 않은 자동차 이름 확인하기`(names: List<String>) {
+    @ValueSource(strings = ["우아한테크코스", "배달의 민족", "만세만세만만세"])
+    fun `유효하지 않은 자동차 이름 확인하기`(name: String) {
         assertThrows<IllegalArgumentException> {
-            carGenerator.generateCars(names)
+            Car(name)
         }
-    }
-
-    private fun generateInValidCarName(): Stream<Arguments> {
-        return Stream.of(
-            Arguments.of(
-                listOf("아우디", "안희애", "우아한테크코스")
-            ),
-            Arguments.of(
-                listOf("우기", "우아한형제들")
-            ),
-            Arguments.of(
-                listOf("배달의 민족", "곽두팔")
-            )
-        )
     }
 }
