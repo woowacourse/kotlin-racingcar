@@ -3,9 +3,7 @@ package racingcar.model
 import racingcar.utils.MAX_CAR_NAME_LENGTH
 import racingcar.utils.MIN_CAR_NAME_LENGTH
 
-class Car(
-    val name: String,
-) : Comparable<Car> {
+class Car(val name: String) {
     var position: Int = 0
         private set
 
@@ -16,8 +14,6 @@ class Car(
     }
 
     fun move() = ++position
-
-    override fun compareTo(other: Car) = this.position - other.position
 
     companion object {
         private const val CAR_NAME_LENGTH_OVER_BOUNDARY_ERROR_MESSAGE =
