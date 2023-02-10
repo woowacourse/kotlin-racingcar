@@ -1,6 +1,5 @@
 package domain
 
-import data.ComparisonResult
 import dto.RaceResultDTO
 import dto.WinnersDTO
 
@@ -14,7 +13,6 @@ class Judgement(private val cars: List<Car>) {
     }
 
     private fun updateWinners(raceResultDTO: RaceResultDTO) {
-        check(raceResultDTO.comparisonResult != ComparisonResult.NONE) { ERROR_NONE_STATE }
         if (raceResultDTO.comparisonResult == ComparisonResult.LOSE) return
 
         if (raceResultDTO.comparisonResult == ComparisonResult.WIN) resetWinners(raceResultDTO.distance)
@@ -28,9 +26,5 @@ class Judgement(private val cars: List<Car>) {
 
     private fun addWinner(name: String) {
         winners.add(name)
-    }
-
-    companion object {
-        const val ERROR_NONE_STATE = "올바르지 않은 Comparison Result 입니다."
     }
 }

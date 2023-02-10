@@ -1,6 +1,6 @@
 package dto
 
-import data.ComparisonResult
+import domain.ComparisonResult
 
 data class RaceResultDTO(
     val comparisonResult: ComparisonResult,

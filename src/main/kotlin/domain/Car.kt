@@ -1,6 +1,5 @@
 package domain
 
-import data.ComparisonResult
 import dto.RaceResultDTO
 
 class Car(
