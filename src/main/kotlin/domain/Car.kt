@@ -2,8 +2,8 @@ package domain
 
 class Car(val carName: String, private val driver: Driver) {
 
-    private var _distance = ""
-    val distance get() = _distance
+    var distance: String = ""
+        private set
 
     init {
         require(carName.length in RANGE) { NAME_CONVENTION_ERROR_MESSAGE }
@@ -11,7 +11,7 @@ class Car(val carName: String, private val driver: Driver) {
 
     fun decideCarMovement() {
         val decision = driver.decideMovement()
-        _distance += decision.distance
+        distance += decision.distance
     }
 
     companion object {
