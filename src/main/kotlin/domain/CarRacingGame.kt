@@ -2,7 +2,6 @@ package domain
 
 import data.Car
 import data.CarPath
-import data.generator.RacingNumberGenerator
 
 class CarRacingGame {
 
@@ -10,8 +9,7 @@ class CarRacingGame {
         val carsPath = mutableListOf<CarPath>()
 
         cars.forEach { car ->
-            val condition = RacingNumberGenerator().generate()
-            carsPath.add(car.recordPath(numberOfTry, condition))
+            carsPath.add(car.recordPath(numberOfTry))
         }
 
         return carsPath.toList()

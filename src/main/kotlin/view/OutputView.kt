@@ -2,30 +2,26 @@ package view
 
 import data.CarPath
 import data.PathState
-import view.View.bw
 
 object OutputView {
 
     private const val FINAL_WINNER = "최종 우승자: "
+    private const val SEPARATOR = ", "
 
     fun printMsg(msg: String) {
-        bw.write(msg)
-        bw.flush()
+        println(msg)
     }
 
     fun printResult(carsPath: List<CarPath>, numberOfTry: Int) {
         carsPath.forEach { carPath ->
-            bw.write(carPath.carName + " : " + carPath.subPath(numberOfTry).getPathMarks() + "\n")
-            bw.flush()
+            println(carPath.carName + " : " + carPath.subPath(numberOfTry).getPathMarks())
         }
-        bw.write("\n")
-        bw.flush()
+        println()
     }
 
     fun printWinner(winners: List<String>) {
-        bw.write(FINAL_WINNER)
-        bw.write(winners.joinToString(", ") + '\n')
-        bw.flush()
+        print(FINAL_WINNER)
+        println(winners.joinToString(SEPARATOR))
     }
 
     private fun List<PathState>.getPathMarks(): String {

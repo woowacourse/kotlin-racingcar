@@ -1,5 +1,7 @@
 package data
 
+import data.generator.RacingNumberGenerator
+
 class Car(
     val name: String,
     position: Int = 0
@@ -13,10 +15,11 @@ class Car(
         }
     }
 
-    fun recordPath(numberOfTry: Int, condition: Int): CarPath {
+    fun recordPath(numberOfTry: Int): CarPath {
         val path = mutableListOf<PathState>()
 
         repeat(numberOfTry) {
+            val condition = RacingNumberGenerator().generate()
             path.add(move(condition))
         }
 
@@ -24,7 +27,6 @@ class Car(
     }
 
     private fun move(condition: Int): PathState {
-
         if (condition >= MOVE_LEAST_NUMBER) {
             position++
             return PathState.MOVE
