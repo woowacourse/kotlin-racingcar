@@ -9,7 +9,7 @@ class RacingCarGameService {
     fun initCarsInfo(carNames: List<String>): List<Car> {
         val carsInfo = mutableListOf<Car>()
         carNames.forEach { name ->
-            carsInfo.add(Car(name, 0))
+            carsInfo.add(Car(name, DEFAULT_CAR_POSITION))
         }
 
         return carsInfo.toList()
@@ -42,6 +42,12 @@ class RacingCarGameService {
         carsInfo.forEach { car ->
             winners += "${car.getWinnerName()}, "
         }
-        return winners.substring(0, winners.length - 2)
+        return winners.substring(SUBSTRING_START_POSITION, winners.length - SUBSTRING_DELETE_COMMA_AND_SPACE)
+    }
+
+    companion object {
+        const val DEFAULT_CAR_POSITION = 0
+        const val SUBSTRING_START_POSITION = 0
+        const val SUBSTRING_DELETE_COMMA_AND_SPACE = 2
     }
 }

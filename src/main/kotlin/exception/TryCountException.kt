@@ -17,7 +17,11 @@ class TryCountException {
     }
 
     fun checkTryCountPositive(tryCount: String) {
-        if (tryCount.toInt() <= 0)
+        if (tryCount.toInt() < MINIMUM_TRY_COUNT)
             throw IllegalArgumentException(ExceptionMessage.TRY_COUNT_POSITIVE_ERROR_MESSAGE)
+    }
+
+    companion object {
+        const val MINIMUM_TRY_COUNT = 1
     }
 }

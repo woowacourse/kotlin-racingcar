@@ -12,7 +12,7 @@ class NameException(private val nullException: NullException = NullException()) 
     }
 
     fun checkNameRange(carName: String) {
-        if (carName.isEmpty() || carName.length > 5) {
+        if (carName.isEmpty() || carName.length > MAXIMUM_CAR_NAME_LENGTH) {
             throw IllegalArgumentException(ExceptionMessage.NAME_RANGE_ERROR_MASSAGE)
         }
     }
@@ -24,5 +24,9 @@ class NameException(private val nullException: NullException = NullException()) 
     fun checkCarNameEnglishNumber(carName: String) {
         if (!Regex("^[a-zA-Z0-9]*\$").matches(carName))
             throw IllegalArgumentException(ExceptionMessage.NAME_IS_ONLY_ENGLISH_AND_NUMBER)
+    }
+
+    companion object {
+        const val MAXIMUM_CAR_NAME_LENGTH = 5
     }
 }

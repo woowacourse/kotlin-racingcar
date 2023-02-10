@@ -7,7 +7,7 @@ import view.OutputView
 
 class RacingGameController(
     private var carsInfo: List<Car> = listOf(),
-    private var tryCount: Int = 0,
+    private var tryCount: Int = DEFAULT_TRY_COUNT,
     private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView(),
     private val racingCarGameService: RacingCarGameService = RacingCarGameService()
@@ -54,5 +54,9 @@ class RacingGameController(
 
     fun outputWinner() {
         outputView.printWinner(racingCarGameService.getWinners(racingCarGameService.getMaxPositionCars(carsInfo)))
+    }
+
+    companion object {
+        const val DEFAULT_TRY_COUNT = 0
     }
 }
