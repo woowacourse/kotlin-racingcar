@@ -1,7 +1,6 @@
 package racingcar.model
 
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -11,7 +10,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["buna", "otter", "jack", "son"])
-    fun `자동차 생성 노말 테스트`(name: String) {
+    fun `1글자 이상 5글자 이하의 이름이 주어졌을 때, 자동차 객체 생성시, 예외가 발생하지 않는다`(name: String) {
         assertDoesNotThrow {
             Car(name)
         }
@@ -19,21 +18,21 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["refactoring", "reviewer", "", "jackson"])
-    fun `자동차 생성 이름 길이 예외 테스트`(name: String) {
+    fun `공백이나 5글자 이상의 이름이 주어졌을 때, 자동차 생성시, IllegalArgumentException 예외가 발생한다`(name: String) {
         assertThrows<IllegalArgumentException> {
             Car(name)
         }
     }
 
-    @Test
-    fun `자동차 이동횟수 일치 테스트`() {
+    @ParameterizedTest
+    @ValueSource(ints = [1, 5, 10])
+    fun `movement가 주어졌을 때, 자동차를 movement만큼 이동시, 자동차가 position 만큼 이동한다`(movement: Int) {
         val car = Car("otter")
-        val moveCount = 5
 
-        repeat(moveCount) {
+        repeat(movement) {
             car.move()
         }
 
-        assertEquals(moveCount, car.position)
+        assertEquals(movement, car.position)
     }
 }
