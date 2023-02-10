@@ -2,7 +2,7 @@ package racingcar.view
 
 import racingcar.constant.ERROR_NAME_LENGTH
 import racingcar.constant.ERROR_WRONG_NUMBER
-import racingcar.domain.Validator
+import racingcar.domain.InputValueValidator
 
 class InputView {
     fun getCarsName(printInfo: () -> Unit): List<String> {
@@ -31,7 +31,7 @@ class InputView {
 
     fun checkNameLength(value: List<String>) {
         value.forEach {
-            require(Validator.isNameLengthInRange(it)) { ERROR_NAME_LENGTH }
+            require(InputValueValidator.isNameLengthInRange(it)) { ERROR_NAME_LENGTH }
         }
     }
 
@@ -49,7 +49,7 @@ class InputView {
         val input = readLine()?.trim()
 
         if (!input.isNullOrBlank()) {
-            require(Validator.isNumber(input)) { ERROR_WRONG_NUMBER }
+            require(InputValueValidator.isNumber(input)) { ERROR_WRONG_NUMBER }
         } else {
             throw IllegalArgumentException(ERROR_WRONG_NUMBER)
         }
