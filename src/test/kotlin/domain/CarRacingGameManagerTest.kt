@@ -45,7 +45,7 @@ internal class CarRacingGameManagerTest {
         return cars
     }
 
-    class OnlyAdvanceMovingStrategy() : MovingStrategy {
+    private class OnlyAdvanceMovingStrategy() : MovingStrategy {
         override fun isMovable(): Boolean = true
     }
 }
