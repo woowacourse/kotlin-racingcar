@@ -30,7 +30,7 @@ class Car(
     }
 
     private fun checkGo(number: Int): Boolean {
-        if (number in RANGE_LOWER_INCLUSIVE..RANGE_UPPER_INCLUSIVE)
+        if (number >= RANGE_LOWER_INCLUSIVE)
             return true
         return false
     }
@@ -52,7 +52,6 @@ class Car(
         const val NAME_UPPER_LETTER = 122
 
         const val RANGE_LOWER_INCLUSIVE = 4
-        const val RANGE_UPPER_INCLUSIVE = 9
 
         const val ERROR_NAME_LENGTH = "자동차 이름은 1글자 이상 5글자 이하여야 합니다."
         const val ERROR_NAME = "자동차 이름은 공백이 없는 영문 소문자여야 합니다."
