@@ -52,7 +52,7 @@ internal class RacingServiceTest {
             repeat(moveCounts[index]) { car.move() }
         }
 
-        val realWinnersCount = racingService.getWinners(cars).size
+        val realWinnersCount = racingService.getWinners().size
 
         assertEquals(realWinnersCount, expectedWinnersCount)
     }
@@ -70,7 +70,7 @@ internal class RacingServiceTest {
             }
         }
 
-        val realWinnersCount = racingService.getWinners(cars).size
+        val realWinnersCount = racingService.getWinners().size
 
         assertNotEquals(realWinnersCount, expectedWinnersCount)
     }
