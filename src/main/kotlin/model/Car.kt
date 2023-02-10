@@ -8,9 +8,7 @@ class Car(private val name: String, private var position: Int = 0) {
         Validator().checkName(name)
     }
 
-    fun getInfo(): CarInfo {
-        return CarInfo(name, position)
-    }
+    fun getInfo(): CarInfo = CarInfo(name, position)
 
     fun move(condition: Int) {
         if (condition >= MOVING_POINT) position++
