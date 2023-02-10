@@ -1,29 +1,32 @@
 package racingcar.view
 
-import racingcar.domain.Car
+import racingcar.racingcar.domain.RaceResultDto
 
 class OutputView {
-    fun printCarsState(cars: List<Car>) {
-        cars.forEach { car ->
-            printCarState(car.name, car.location)
+    fun printRaceResult(raceResultDto: RaceResultDto) {
+        println(OUTPUT_RESULT_PREFIX)
+        raceResultDto.result.forEach { locations ->
+            printCarsState(raceResultDto.names, locations)
+        }
+    }
+
+    private fun printCarsState(names: List<String>, locations: List<Int>) {
+        locations.forEachIndexed { i, _ ->
+            printCarState(names[i], locations[i])
         }
         println()
     }
 
-    private fun printCarState(carName: String, carLocation: Int) {
-        println(carName + " : " + "-".repeat(carLocation))
+    private fun printCarState(name: String, location: Int) {
+        println("$name : ${"-".repeat(location)}")
     }
 
-    fun printResult() {
-        println(OUTPUT_RESULT)
-    }
-
-    fun printWinner(carNames: List<String>) {
-        print(OUTPUT_WINNER + carNames.joinToString(", "))
+    fun printWinner(names: List<String>) {
+        print(OUTPUT_WINNER + names.joinToString(", "))
     }
 
     companion object {
-        private const val OUTPUT_RESULT = "실행 결과"
+        private const val OUTPUT_RESULT_PREFIX = "실행 결과"
         private const val OUTPUT_WINNER = "최종 우승자: "
     }
 }
