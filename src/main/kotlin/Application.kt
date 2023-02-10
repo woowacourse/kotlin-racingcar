@@ -1,5 +1,3 @@
 fun main() {
-    val carRacingGameController = CarRacingGameController()
-
-    carRacingGameController.play()
+    CarRacingGameController().play()
 }
