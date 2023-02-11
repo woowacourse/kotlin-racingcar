@@ -1,10 +1,21 @@
-import data.Car
-import data.PathState
-import data.generator.NumberGenerator
-import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Test
+package data
 
-class CarMovingTest {
+import data.generator.NumberGenerator
+import org.assertj.core.api.Assertions
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
+
+class CarTest {
+
+    @ParameterizedTest
+    @ValueSource(strings = ["우아한테크코스", "배달의 민족", "만세만세만만세", " "])
+    fun `유효하지 않은 자동차 이름 확인하기`(name: String) {
+        assertThrows<IllegalArgumentException> {
+            Car(name)
+        }
+    }
 
     @Test
     fun `정지 테스트 `() {
@@ -14,7 +25,7 @@ class CarMovingTest {
                 return (0..3).random()
             }
         }.generate()
-        assertThat(car.move(condition)).isEqualTo(PathState.STOP)
+        Assertions.assertThat(car.move(condition)).isEqualTo(PathState.STOP)
     }
 
     @Test
@@ -25,7 +36,7 @@ class CarMovingTest {
                 return (4..9).random()
             }
         }.generate()
-        assertThat(car.move(condition)).isEqualTo(PathState.MOVE)
+        Assertions.assertThat(car.move(condition)).isEqualTo(PathState.MOVE)
     }
 
     companion object {
