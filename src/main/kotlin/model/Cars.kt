@@ -4,7 +4,7 @@ import generator.NumberGenerator
 
 class Cars(cars: List<Car>, private val numberGenerator: NumberGenerator) {
 
-    var cars: List<Car> = cars
+    var cars: List<Car> = cars.toList()
         get() = field
 
     fun move() {
