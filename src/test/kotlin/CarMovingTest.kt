@@ -27,4 +27,9 @@ class CarMovingTest {
         }.generate()
         assertThat(car.move(condition)).isEqualTo(PathState.MOVE)
     }
+
+    companion object {
+        const val MOVE_NUMBER = 4
+        const val STOP_NUMBER = 0
+    }
 }
