@@ -5,11 +5,11 @@ import service.RacingCarGameService
 import view.InputView
 import view.OutputView
 
-class RacingGameController {
-    private val inputView = InputView()
-    private val outputView = OutputView()
-
-    private val racingCarGameService = RacingCarGameService()
+class RacingGameController(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+    private val racingCarGameService: RacingCarGameService
+) {
     private var carsInfo = listOf<Car>()
     private var tryCount = 0
 
@@ -43,8 +43,8 @@ class RacingGameController {
 
     fun playRound() {
         carsInfo = racingCarGameService.moveCars(carsInfo)
-
-        outputView.printRoundResult(racingCarGameService.getRoundResult(carsInfo))
+        val roundResult = racingCarGameService.getRoundResult(carsInfo)
+        outputView.printRoundResult(roundResult)
     }
 
     fun playWholeRacing() {
@@ -53,6 +53,8 @@ class RacingGameController {
     }
 
     fun gerWinner() {
-        outputView.printWinner(racingCarGameService.getWinners(racingCarGameService.getMaxPositionCars(carsInfo)))
+        val winners = racingCarGameService.getWinners(carsInfo)
+        val winnersOutput = racingCarGameService.getWinnersOutput(winners)
+        outputView.printWinner(winnersOutput)
     }
 }
