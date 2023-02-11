@@ -6,7 +6,7 @@ object OutputView {
 
     fun printCurrentPosition(cars: List<Car>) {
         for (car in cars) {
-            println("${car.getName()} : ${getDash(car.getPosition())}")
+            println("${car.name} : ${getDash(car.position)}")
         }
         println()
     }

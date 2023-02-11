@@ -12,10 +12,10 @@ class RacingGame {
     }
 
     fun getWinners(): List<String> {
-        cars.sortBy { it.getPosition() }
+        cars.sortBy { it.position }
         val result = mutableListOf<String>()
         for (car in cars) {
-            if (car.getPosition() == cars.last().getPosition()) result.add(car.getName())
+            if (car.position == cars.last().position) result.add(car.name)
         }
         return result.toList()
     }

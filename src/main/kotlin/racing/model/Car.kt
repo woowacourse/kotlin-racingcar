@@ -1,11 +1,8 @@
 package racing.model
 
-class Car(private val name: String) {
-    private var position = 0
-
-    fun getPosition() = position
-
-    fun getName() = name
+class Car(val name: String) {
+    var position = 0
+        private set
 
     fun move(randomNumber: Int) {
         if (checkMove(randomNumber)) position++

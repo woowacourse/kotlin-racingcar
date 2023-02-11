@@ -15,8 +15,8 @@ internal class RacingGameTest {
 
     @Test
     fun `getCars()로 반환이 되는지 확인`() {
-        val cars = racingGame.getCars().map { it.getName() }
-        val expectation = listOf(Car("woni"), Car("pobi"), Car("jason")).map { it.getName() }
+        val cars = racingGame.getCars().map { it.name }
+        val expectation = listOf(Car("woni"), Car("pobi"), Car("jason")).map { it.name }
         assertThat(cars).isEqualTo(expectation)
     }
 
@@ -29,7 +29,7 @@ internal class RacingGameTest {
     @Test
     fun moveCars() {
         racingGame.moveCars(listOf(4, 3, 8))
-        val cars = racingGame.getCars().map { it.getPosition() }
+        val cars = racingGame.getCars().map { it.position }
         val expectation = listOf(1, 0, 1)
         assertThat(cars).isEqualTo(expectation)
     }
