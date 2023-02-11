@@ -8,7 +8,6 @@ class RacingNumberGenerator : NumberGenerator {
 
     companion object {
         const val MINIMUM_NUMBER = 0
-        const val MINIMUM_NUMBER_TO_MOVE = 4
         const val MAXIMUM_NUMBER = 9
     }
 }

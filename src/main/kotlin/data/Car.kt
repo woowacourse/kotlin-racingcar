@@ -2,7 +2,6 @@ package data
 
 import domain.NumberGenerator
 import domain.RacingNumberGenerator
-import domain.RacingNumberGenerator.Companion.MINIMUM_NUMBER_TO_MOVE
 
 class Car(
     val name: String,
@@ -25,6 +24,7 @@ class Car(
 
     companion object {
         private const val NAME_LENGTH_LIMIT = 5
+        const val MINIMUM_NUMBER_TO_MOVE = 4
         const val INITIAL_POSITION = 0
     }
 }
