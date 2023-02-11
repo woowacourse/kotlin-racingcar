@@ -14,9 +14,12 @@ class CarRacingGameController(
     private val validateUseCases: ValidateUseCases = ValidateUseCases()
 ) {
 
+    private val carRacingGameDataSource: CarRacingGameDataSource by lazy {
+        initCarRacingGameDataSource()
+    }
+
     fun play() {
         runCatching {
-            val carRacingGameDataSource = initCarRacingGameDataSource()
             start(carRacingGameDataSource.cars, carRacingGameDataSource.numberOfTry)
             end(carRacingGameDataSource.cars)
         }.onFailure { exception ->
@@ -42,13 +45,13 @@ class CarRacingGameController(
 
     private fun start(cars: List<Car>, numberOfTry: Int) {
         repeat(numberOfTry) { count ->
-            carRacingGame.moveCars(cars)
+            carRacingGame.moveCarsOneCycle(cars)
             OutputView.printPath(count, cars)
         }
     }
 
     private fun end(cars: List<Car>) {
-        val winners = carRacingGame.decideWinner(cars)
+        val winners = carRacingGame.getWinners(cars)
 
         OutputView.printWinner(winners)
     }
