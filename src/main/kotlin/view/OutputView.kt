@@ -8,6 +8,7 @@ object OutputView {
     private const val FINAL_WINNER = "최종 우승자: "
     private const val CAR_PATH = "%s : %s"
     private const val DASH = "-"
+    private const val INITIAL_NUMBER_OF_TRY = 0
     private const val TOKENIZER = ","
 
     fun printErrorMsg(msg: String) {
@@ -19,8 +20,8 @@ object OutputView {
         println(winners.joinToString("$TOKENIZER "))
     }
 
-    fun printPath(count: Int, cars: List<Car>) {
-        if (count == 0) {
+    fun printPath(numberOfTry: Int, cars: List<Car>) {
+        if (numberOfTry == INITIAL_NUMBER_OF_TRY) {
             println(RESULT)
         }
 
