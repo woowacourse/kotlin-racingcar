@@ -1,8 +1,7 @@
-package domain_test
+package domaintest
 
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
@@ -25,9 +24,11 @@ class CarTest : BaseTest() {
             stopCar.move()
         }
 
-        assertThat(stopCars.filter { stopCar ->
-            stopCar.position == INITIAL_POSITION
-        }).isEqualTo(stopCars)
+        assertThat(
+            stopCars.filter { stopCar ->
+                stopCar.position == INITIAL_POSITION
+            }
+        ).isEqualTo(stopCars)
     }
 
     @Test
@@ -36,9 +37,11 @@ class CarTest : BaseTest() {
             movingCar.move()
         }
 
-        assertThat(stopCars.filter { stopCar ->
-            stopCar.position == 1
-        }).isEqualTo(movingCars)
+        assertThat(
+            stopCars.filter { stopCar ->
+                stopCar.position == 1
+            }
+        ).isEqualTo(movingCars)
     }
 
     private fun generateInValidCarName(): Stream<Arguments> {
