@@ -8,7 +8,7 @@ class Car(
         private set
 
     init {
-        require(name.length <= CAR_NAME_MAX) {
+        require(name.length <= CAR_NAME_MAX && name.isNotBlank()) {
             CAR_NAME_ERROR_MSG
         }
     }
