@@ -2,7 +2,7 @@ package controller
 
 import data.Car
 import data.CarRacingGameDataSource
-import domain.CarRacingGame
+import domain.game.CarRacingGame
 import domain.generator.CarGenerator
 import domain.validator.ValidateUseCases
 import view.InputView
