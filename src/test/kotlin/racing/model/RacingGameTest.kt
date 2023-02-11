@@ -6,16 +6,11 @@ import org.junit.jupiter.api.Test
 
 internal class RacingGameTest {
 
-    private val racingGame = RacingGame()
-
-    @BeforeEach
-    fun setUp() {
-        racingGame.initRacing(listOf(Car("woni"), Car("pobi"), Car("jason")))
-    }
+    private val racingGame = RacingGame(mutableListOf(Car("woni"), Car("pobi"), Car("jason")))
 
     @Test
     fun `getCars()로 반환이 되는지 확인`() {
-        val cars = racingGame.getCars().map { it.name }
+        val cars = racingGame.cars.map { it.name }
         val expectation = listOf(Car("woni"), Car("pobi"), Car("jason")).map { it.name }
         assertThat(cars).isEqualTo(expectation)
     }
@@ -29,7 +24,7 @@ internal class RacingGameTest {
     @Test
     fun moveCars() {
         racingGame.moveCars(listOf(4, 3, 8))
-        val cars = racingGame.getCars().map { it.position }
+        val cars = racingGame.cars.map { it.position }
         val expectation = listOf(1, 0, 1)
         assertThat(cars).isEqualTo(expectation)
     }
@@ -37,12 +32,12 @@ internal class RacingGameTest {
     @Test
     fun `우승자가 한명일 때`() {
         racingGame.moveCars(listOf(2, 3, 4))
-        assertThat(racingGame.getWinners()).isEqualTo(listOf("jason"))
+        assertThat(racingGame.getWinnerNames()).isEqualTo(listOf("jason"))
     }
 
     @Test
     fun `우승자가 여러명일 때`() {
         racingGame.moveCars(listOf(1, 4, 4))
-        assertThat(racingGame.getWinners()).isEqualTo(listOf("pobi", "jason"))
+        assertThat(racingGame.getWinnerNames()).isEqualTo(listOf("pobi", "jason"))
     }
 }
