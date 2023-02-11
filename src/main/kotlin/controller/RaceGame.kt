@@ -5,10 +5,7 @@ import util.Validator
 import view.InputView
 import view.OutputView
 
-class RaceGame {
-
-    private val inputView = InputView()
-    private val outputView = OutputView()
+class RaceGame(private val inputView: InputView, private val outputView: OutputView) {
 
     private fun tryMove(cars: Cars) {
         cars.move()
