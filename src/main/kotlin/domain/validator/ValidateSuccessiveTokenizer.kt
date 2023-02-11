@@ -1,7 +1,5 @@
 package domain.validator
 
-import data.InputError
-
 class ValidateSuccessiveTokenizer {
 
     operator fun invoke(nameInput: String): List<String> {
@@ -9,7 +7,7 @@ class ValidateSuccessiveTokenizer {
 
         names.forEach { name ->
             require(name != EMPTY) {
-                InputError.SUCCESSIVE_TOKENIZER_ERROR.message
+                SUCCESSIVE_TOKENIZER_ERROR
             }
         }
 
@@ -19,5 +17,6 @@ class ValidateSuccessiveTokenizer {
     companion object {
         private const val TOKENIZER = ","
         private const val EMPTY = ""
+        private const val SUCCESSIVE_TOKENIZER_ERROR = "[ERROR] 이름 입력시 ,를 연속적으로 입력할 수 없습니다."
     }
 }

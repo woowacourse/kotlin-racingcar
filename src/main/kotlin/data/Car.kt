@@ -12,7 +12,7 @@ class Car(
 
     init {
         require(name.length <= NAME_LENGTH_LIMIT) {
-            InputError.CAR_NAME_ERROR
+            CAR_NAME_ERROR
         }
     }
 
@@ -24,7 +24,8 @@ class Car(
 
     companion object {
         private const val NAME_LENGTH_LIMIT = 5
-        const val MINIMUM_NUMBER_TO_MOVE = 4
-        const val INITIAL_POSITION = 0
+        private const val MINIMUM_NUMBER_TO_MOVE = 4
+        private const val INITIAL_POSITION = 0
+        private const val CAR_NAME_ERROR = "[ERROR] 자동차 이름은 5자를 초과할 수 없습니다."
     }
 }
