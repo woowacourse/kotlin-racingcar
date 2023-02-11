@@ -2,32 +2,28 @@ package racing.model
 
 import racing.util.NumberGenerator
 
-class RacingGame(private val _cars: MutableList<Car>) {
-
-    val cars: List<Car>
-        get() {
-            return _cars
-        }
+class RacingGame(val cars: List<Car>) {
 
     fun getWinnerNames(): List<String> {
         val maxPosition: Int = getMaxPosition()
-        val winners: List<Car> = _cars.filter { car: Car -> car.position == maxPosition }
+        val winners: List<Car> = cars.filter { car: Car -> car.position == maxPosition }
         return winners.map { car: Car -> car.name }
     }
 
     private fun getMaxPosition(): Int {
-        return _cars.maxBy { car: Car -> car.position }.position
+        return cars.maxBy { car: Car -> car.position }.position
     }
 
-    fun moveCars(randomNumbers: List<Int>) {
-        for ((index, car) in _cars.withIndex()) {
+    fun moveCars() {
+        for ((index, car) in cars.withIndex()) {
+            val randomNumbers: List<Int> = createRandomNumbers()
             car.move(randomNumbers[index])
         }
     }
 
-    fun createRandomNumbers(count: Int): List<Int> {
+    fun createRandomNumbers(): List<Int> {
         val result = mutableListOf<Int>()
-        repeat(count) {
+        repeat(cars.size) {
             result.add(numberGenerator.generate())
         }
         return result
