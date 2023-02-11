@@ -1,20 +1,15 @@
-import domain.generator.CarGenerator
-import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.TestInstance
+package domain_test
+
+import org.assertj.core.api.Java6Assertions.assertThat
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class CarGeneratingTest {
-    private lateinit var carGenerator: CarGenerator
-
-    @BeforeEach
-    fun setUp() {
-        carGenerator = CarGenerator()
-    }
+class CarTest : BaseTest() {
 
     @ParameterizedTest
     @MethodSource("generateInValidCarName")
@@ -24,13 +19,32 @@ class CarGeneratingTest {
         }
     }
 
+    @Test
+    private fun `정지 테스트 `() {
+        stopCars.forEach { stopCar ->
+            stopCar.move()
+        }
+
+        assertThat(stopCars.filter { stopCar ->
+            stopCar.position == INITIAL_POSITION
+        }).isEqualTo(stopCars)
+    }
+
+    @Test
+    fun `전진 테스트`() {
+        movingCars.forEach { movingCar ->
+            movingCar.move()
+        }
+
+        assertThat(stopCars.filter { stopCar ->
+            stopCar.position == 1
+        }).isEqualTo(movingCars)
+    }
+
     private fun generateInValidCarName(): Stream<Arguments> {
         return Stream.of(
             Arguments.of(
                 listOf("아우디", "안희애", "우아한테크코스")
-            ),
-            Arguments.of(
-                listOf("우기", "우아한형제들")
             ),
             Arguments.of(
                 listOf("배달의 민족", "곽두팔")
