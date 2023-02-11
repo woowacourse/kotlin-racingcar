@@ -1,7 +1,8 @@
 package racingcar.controller
 
-import racingcar.model.car.Car
 import racingcar.model.Round
+import racingcar.model.car.Car
+import racingcar.model.car.Cars
 import racingcar.service.RacingService
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -9,15 +10,14 @@ import racingcar.view.OutputView
 class RacingController(
     private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView(),
-    private val racingService: RacingService = RacingService(),
 ) {
-    fun runRacing() {
-        val cars = racingService.createCars(readCarNames())
-        racingService.insertCars(cars)
+    private lateinit var racingService: RacingService
 
+    fun runRacing() {
+        racingService = RacingService(readCarNames())
         val round = readRound()
 
-        runRounds(round.count, cars)
+        runRounds(round)
 
         val winners = getWinners()
         printWinners(winners)
@@ -35,25 +35,14 @@ class RacingController(
 
     private fun printRoundCountRequestMessage() = outputView.printMessage(ROUNDS_RESULT_NOTIFICATION_MESSAGE)
 
-    private fun printRoundResult(cars: List<Car>) = outputView.printRoundResult(cars)
+    private fun printRoundResult(cars: Cars) = outputView.printRoundResult(cars)
 
     private fun printWinners(winners: List<Car>) = outputView.printWinners(winners)
 
-    private fun runRounds(roundCount: Int, cars: List<Car>) {
+    private fun runRounds(round: Round) {
         printRoundCountRequestMessage()
-        repeat(roundCount) {
-            runRound(cars)
-        }
-    }
-
-    private fun runRound(cars: List<Car>) {
-        moveCarsRandomly(cars)
-        printRoundResult(cars)
-    }
-
-    private fun moveCarsRandomly(cars: List<Car>) {
-        cars.forEach { car ->
-            racingService.moveRandomly(car)
+        racingService.runAllRounds(round) { eachRoundCars ->
+            printRoundResult(eachRoundCars)
         }
     }
 
