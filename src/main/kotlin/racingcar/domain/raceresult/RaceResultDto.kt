@@ -1,4 +1,4 @@
-package racingcar.racingcar.domain
+package racingcar.racingcar.domain.raceresult
 
 data class RaceResultDto(
     val names: List<String>,

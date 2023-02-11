@@ -10,16 +10,16 @@ internal class RaceManagerTest {
     @Test
     fun `게임 결과가 정상적으로 반환된다`() {
         val raceManager = RaceManager(TestNumberGenerator(mutableListOf(1, 4, 9, 1, 4, 9)))
-        var carFactory = CarFactory(listOf("test1", "test2", "test3"))
-        carFactory = raceManager.race(carFactory, 2)
-        assertEquals(listOf(listOf(0, 1, 1), listOf(0, 2, 2)), carFactory.record)
+        val carFactory = CarFactory(listOf("test1", "test2", "test3"))
+        val raceResult = raceManager.race(carFactory, 2)
+        assertEquals(listOf(listOf(0, 1, 1), listOf(0, 2, 2)), raceResult.result)
     }
 
     @Test
     fun `우승자 정상반환 확인`() {
         val raceManager = RaceManager(TestNumberGenerator(mutableListOf(1, 4, 9, 1, 4, 9)))
-        var carFactory = CarFactory(listOf("test1", "test2", "test3"))
-        carFactory = raceManager.race(carFactory, 2)
+        val carFactory = CarFactory(listOf("test1", "test2", "test3"))
+        raceManager.race(carFactory, 2)
         assertEquals(raceManager.getWinners(carFactory), listOf("test2", "test3"))
         assertNotEquals(raceManager.getWinners(carFactory), listOf("test3"))
     }
