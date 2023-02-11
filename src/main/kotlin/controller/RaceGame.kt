@@ -5,14 +5,13 @@ import view.InputView
 import view.OutputView
 
 class RaceGame {
-    private val outputView = OutputView()
+
     private val inputView = InputView()
+    private val outputView = OutputView()
 
     private fun tryMove(cars: Cars) {
-        for (pos in 0 until cars.getCarSize()) {
-            cars.move(pos)
-            outputView.outputResult(cars.getCar(pos))
-        }
+        cars.move()
+        outputView.outputResult(cars)
     }
 
     private fun equalMaxValue(cars: Cars): List<String> {
@@ -22,40 +21,49 @@ class RaceGame {
     fun run() {
         val cars = executeInputCarNames()
         val tryNumber = executeInputTryNumber()
+        startGame(tryNumber, cars)
+        endGame(cars)
+    }
+
+    private fun startGame(tryNumber: Int, cars: Cars) {
         outputView.outputResults()
-        for (i in 1..tryNumber) {
-            tryMove(cars)
-            println()
-        }
+        repeat(tryNumber) { tryMove(cars) }
+    }
+
+    private fun endGame(cars: Cars) {
         outputView.outputWinners(equalMaxValue(cars))
     }
 
     private fun executeInputTryNumber(): Int {
-        outputView.outputTryNumber()
-        return getInputTryNumber(inputView.inputTryNumber())
+        var result: Int?
+        do {
+            outputView.outputTryNumber()
+            result = getInputTryNumber(inputView.inputTryNumber())
+        } while (result == null)
+        return result
     }
 
-    private fun getInputTryNumber(number: String?): Int {
-        try {
+    private fun getInputTryNumber(number: String?): Int? {
+        return runCatching {
             Validator().checkTryNumber(number)
-            return number!!.toInt()
-        } catch (e: IllegalArgumentException) {
-            outputView.outputErrorMessage(e)
-            return executeInputTryNumber()
-        }
+            number!!.toInt()
+        }.onFailure { outputView.outputErrorMessage(it.message!!) }
+            .getOrNull()
     }
 
     private fun executeInputCarNames(): Cars {
-        outputView.outputCarNames()
-        return getInputCarNames(inputView.inputCarNames())
+        var result: Cars?
+        do {
+            outputView.outputCarNames()
+            result = getInputCarNames(inputView.inputCarNames())
+        } while (result == null)
+        return result
     }
-    private fun getInputCarNames(cars: String?): Cars {
-        return try {
+    private fun getInputCarNames(cars: String?): Cars? {
+        return runCatching {
             Validator().checkNames(cars)
-            Cars(cars!!)
-        } catch (e: IllegalArgumentException) {
-            outputView.outputErrorMessage(e)
-            executeInputCarNames()
-        }
+            Cars.mappingCars(cars!!)
+        }.onFailure { outputView.outputErrorMessage(it.message!!) }
+            .getOrNull()
     }
 }
