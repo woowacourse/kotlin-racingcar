@@ -4,31 +4,38 @@ import racing.model.Car
 import racing.model.RacingGame
 import racing.view.InputView
 import racing.view.OutputView
+import racing.view.UI
 
 class RacingCarController {
 
-    private val racingGame = RacingGame()
-    private var maxMoveCount = 0
+    private val racingGame: RacingGame
 
-    fun initRace() {
-        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-        val cars = mutableListOf<Car>()
-        for (carName in InputView.inputCarNames()) {
-            cars.add(Car(carName))
-        }
-        println("시도할 횟수는 몇 회인가요?")
-        maxMoveCount = InputView.inputCount()
-        racingGame.initRacing(cars)
-        startRacing()
+    init {
+        val cars = getCars()
+        racingGame = RacingGame(cars)
     }
 
-    private fun startRacing() {
-        println("실행 결과")
-        val carCount = racingGame.getCars().size
-        repeat(maxMoveCount) {
-            racingGame.moveCars(racingGame.createRandomNumbers(carCount))
-            OutputView.printCurrentPosition(racingGame.getCars())
+    fun startRace() {
+        val moveTimes = getMoveTimes()
+        printResult(moveTimes)
+    }
+
+    private fun getCars(): List<Car> {
+        UI.printRequestCarNames()
+        return InputView.inputCarNames().map { Car(it) }
+    }
+
+    private fun getMoveTimes(): Int {
+        UI.printRequestTimes()
+        return InputView.inputCount()
+    }
+
+    private fun printResult(moveTimes: Int) {
+        UI.printResult()
+        repeat(moveTimes) {
+            racingGame.moveCars()
+            OutputView.printCurrentPosition(racingGame.cars)
         }
-        OutputView.printWinners(racingGame.getWinners())
+        OutputView.printWinners(racingGame.getWinnerNames())
     }
 }
