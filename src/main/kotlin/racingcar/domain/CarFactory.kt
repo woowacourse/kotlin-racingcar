@@ -1,7 +1,7 @@
 package racingcar.racingcar.domain
 
 import racingcar.domain.Car
-import racingcar.domain.NumberGenerator
+import racingcar.racingcar.domain.numbergenerator.NumberGenerator
 
 class CarFactory(names: List<String>) {
     var cars = listOf<Car>()

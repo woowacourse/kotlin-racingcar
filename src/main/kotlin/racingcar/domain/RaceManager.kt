@@ -1,6 +1,7 @@
 package racingcar.domain
 
 import racingcar.racingcar.domain.CarFactory
+import racingcar.racingcar.domain.numbergenerator.NumberGenerator
 import racingcar.racingcar.domain.raceresult.RaceResult
 
 class RaceManager(

@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 import racingcar.racingcar.domain.CarFactory
+import racingcar.racingcar.domain.numbergenerator.NumberGenerator
 
 internal class RaceManagerTest {
 
