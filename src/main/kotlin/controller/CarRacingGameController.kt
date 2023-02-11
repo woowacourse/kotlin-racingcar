@@ -4,13 +4,14 @@ import data.Car
 import data.CarRacingGameDataSource
 import domain.CarGenerator
 import domain.CarRacingGame
-import domain.InputValidator
+import domain.validator.ValidateUseCases
 import view.InputView
 import view.OutputView
 
 class CarRacingGameController(
     private val carRacingGame: CarRacingGame = CarRacingGame(),
-    private val carGenerator: CarGenerator = CarGenerator()
+    private val carGenerator: CarGenerator = CarGenerator(),
+    private val validateUseCases: ValidateUseCases = ValidateUseCases()
 ) {
 
     fun play() {
@@ -24,13 +25,13 @@ class CarRacingGameController(
     }
 
     private fun initCars(): List<Car> {
-        val names = InputValidator.validateSuccessiveTokenizer(InputView.inputCarNames())
+        val names = validateUseCases.validateSuccessiveTokenizer(InputView.inputCarNames())
 
         return carGenerator.generateCars(names)
     }
 
     private fun initNumberOfTry(): Int =
-        InputValidator.validateIsNumeric(InputView.inputNumberOfTry())
+        validateUseCases.validateNumberOfTry(InputView.inputNumberOfTry())
 
     private fun initCarRacingGameDataSource(): CarRacingGameDataSource {
         val cars = initCars()
