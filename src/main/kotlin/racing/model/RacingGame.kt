@@ -3,9 +3,7 @@ package racing.model
 import racing.util.NumberGenerator
 import racing.util.RandomNumberGenerator
 
-class RacingGame(
-    private val numberGenerator: RandomNumberGenerator = NumberGenerator()
-) {
+class RacingGame {
     private val cars = mutableListOf<Car>()
 
     fun getCars() = cars.toList()
@@ -15,10 +13,10 @@ class RacingGame(
         this.cars.addAll(cars)
     }
 
-    fun race(maxMoveCount: Int): List<List<Int>> {
+    fun race(maxMoveCount: Int, randomGenerator: RandomNumberGenerator = NumberGenerator()): List<List<Int>> {
         val result = mutableListOf<List<Int>>()
         repeat(maxMoveCount) {
-            moveCars(createRandomNumbers(cars.size))
+            moveCars(createRandomNumbers(cars.size, randomGenerator))
             result.add(getGameResultOneTurn())
         }
         return result
@@ -30,10 +28,10 @@ class RacingGame(
         }
     }
 
-    private fun createRandomNumbers(count: Int): List<Int> {
+    private fun createRandomNumbers(count: Int, randomGenerator: RandomNumberGenerator = NumberGenerator()): List<Int> {
         val result = mutableListOf<Int>()
         repeat(count) {
-            result.add(numberGenerator.generate())
+            result.add(randomGenerator.generate())
         }
         return result
     }
