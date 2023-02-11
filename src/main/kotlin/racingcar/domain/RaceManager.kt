@@ -9,7 +9,7 @@ class RaceManager(
 ) {
     fun race(carFactory: CarFactory, raceCount: Int): RaceResult {
         repeat(raceCount) { carFactory.moveCars(numberGenerator) }
-        return RaceResult(carFactory.carNames, carFactory.record)
+        return RaceResult(carFactory.carNames, carFactory.result)
     }
 
     fun getWinners(carFactory: CarFactory): List<String> {

@@ -22,6 +22,6 @@ class CarFactoryTest {
     fun `경기 후 기록이 저장된다`() {
         val carFactory = CarFactory(listOf("test1", "test2", "test3"))
         carFactory.moveCars(RandomNumberGenerator())
-        assertEquals(1, carFactory.record.size)
+        assertEquals(1, carFactory.result.size)
     }
 }
