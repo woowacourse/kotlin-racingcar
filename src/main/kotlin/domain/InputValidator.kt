@@ -1,10 +1,11 @@
 package domain
 
 import data.InputError
-import view.OutputView.EMPTY
-import view.OutputView.TOKENIZER
 
 object InputValidator {
+
+    private const val TOKENIZER = ","
+    private const val EMPTY = ""
 
     fun validateSuccessiveTokenizer(nameInput: String): List<String> {
         val names = nameInput.split(TOKENIZER)

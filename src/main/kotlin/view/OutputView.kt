@@ -8,8 +8,7 @@ object OutputView {
     private const val FINAL_WINNER = "최종 우승자: "
     private const val CAR_PATH = "%s : %s"
     private const val DASH = "-"
-    const val TOKENIZER = ","
-    const val EMPTY = ""
+    private const val TOKENIZER = ","
 
     fun printErrorMsg(msg: String) {
         println(msg)
