@@ -20,16 +20,20 @@ class CarsTest {
 
     @Test
     fun `자동차 경주 우승자들 확인`() {
-        val cars = Cars(inputCars, TestNumberGenerator())
-        repeat(tryNumber) { cars.move() }
+        val cars = Cars(listOf(Car("pobi"), Car("woni"), Car("gugu")), TestNumberGenerator())
+        repeat(tryNumber) {
+            cars.cars[0].move(4)
+            cars.cars[1].move(1)
+            cars.cars[2].move(6)
+        }
         assertThat(cars.findWinners()).isEqualTo(listOf("pobi", "gugu"))
     }
 
     class TestNumberGenerator : NumberGenerator {
-        val testNumber = listOf(4, 1, 6)
-        var position = 0
+        private val testNumber = listOf(4, 1, 6)
+        private var idx = 0
         override fun generate(): Int {
-            return testNumber[position++ % 3]
+            return testNumber.get(idx++)
         }
     }
 }
