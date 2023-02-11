@@ -1,6 +1,6 @@
 package view
 
-import data.Car
+import model.Car
 
 object OutputView {
 

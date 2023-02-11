@@ -1,10 +1,10 @@
 package controller
 
-import data.Car
-import data.CarRacingGameDataSource
 import domain.game.CarRacingGame
 import domain.generator.CarGenerator
 import domain.validator.ValidateUseCases
+import model.Car
+import model.CarRacingGameDataSource
 import view.InputView
 import view.OutputView
 

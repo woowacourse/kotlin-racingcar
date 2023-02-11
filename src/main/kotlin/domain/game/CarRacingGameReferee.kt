@@ -1,6 +1,6 @@
 package domain.game
 
-import data.Car
+import model.Car
 
 class CarRacingGameReferee {
 
