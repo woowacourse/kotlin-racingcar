@@ -1,7 +1,14 @@
 package racing.model
 
+import racing.validators.CarNameValidator
+
 class Car(private val name: String) {
     private var position = 0
+
+    init {
+        CarNameValidator.validateUserCarNameLength(name)
+        CarNameValidator.validateUserCarNameLength(name)
+    }
 
     fun getPosition() = position
 
