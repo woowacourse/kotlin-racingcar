@@ -1,7 +1,7 @@
 package data
 
-import domain.NumberGenerator
-import domain.RacingNumberGenerator
+import domain.generator.NumberGenerator
+import domain.generator.RacingNumberGenerator
 
 class Car(
     val name: String,
