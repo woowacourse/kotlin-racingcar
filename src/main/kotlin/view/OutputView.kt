@@ -31,18 +31,18 @@ class OutputView {
     }
 
     fun outputCarResult(car: Car) {
-        print(car.name + CAR_SEPERATE_MARK)
+        print(car.name + CAR_SEPARATE_MARK)
         repeat(car.position) { print(CAR_MOVE_MARK) }
         println()
     }
 
     fun outputWinners(winners: List<String>) {
-        println(Constants.OUTPUT_WINNER + winners.joinToString(separator = WINNERS_SEPERATE_MARK))
+        println(Constants.OUTPUT_WINNER + winners.joinToString(separator = WINNERS_SEPARATE_MARK))
     }
 
     companion object {
-        const val CAR_SEPERATE_MARK = " : "
+        const val CAR_SEPARATE_MARK = " : "
         const val CAR_MOVE_MARK = "-"
-        const val WINNERS_SEPERATE_MARK = ", "
+        const val WINNERS_SEPARATE_MARK = ", "
     }
 }
