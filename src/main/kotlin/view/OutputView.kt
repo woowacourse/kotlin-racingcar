@@ -4,7 +4,7 @@ import data.Car
 
 object OutputView {
 
-    private const val RESULT = "실행 결과\n"
+    private const val RESULT = "실행 결과"
     private const val FINAL_WINNER = "최종 우승자: "
     private const val CAR_PATH = "%s : %s"
     private const val DASH = "-"
@@ -16,8 +16,9 @@ object OutputView {
     }
 
     fun printWinner(winners: List<String>) {
-        println(FINAL_WINNER)
+        print(FINAL_WINNER)
         println(winners.joinToString("$TOKENIZER "))
+        println()
     }
 
     fun printPath(numberOfTry: Int, cars: List<Car>) {
@@ -28,5 +29,6 @@ object OutputView {
         cars.forEach { car ->
             println(CAR_PATH.format(car.name, DASH.repeat(car.position)))
         }
+        println()
     }
 }
