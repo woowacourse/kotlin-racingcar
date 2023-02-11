@@ -14,13 +14,15 @@ class RacingController(
     private lateinit var racingService: RacingService
 
     fun runRacing() {
-        racingService = RacingService(readCarNames())
-        val round = readRound()
-
-        runRounds(round)
+        initRacingService()
+        runRounds(readRound())
 
         val winners = getWinners()
         printWinners(winners)
+    }
+
+    private fun initRacingService() {
+        racingService = RacingService(readCarNames())
     }
 
     private fun readCarNames(): List<String> {
