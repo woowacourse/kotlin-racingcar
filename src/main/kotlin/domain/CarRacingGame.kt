@@ -1,4 +1,4 @@
-package domain.game
+package domain
 
 import data.Car
 

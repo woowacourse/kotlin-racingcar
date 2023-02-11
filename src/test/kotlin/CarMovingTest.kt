@@ -1,6 +1,6 @@
 import data.Car
 import data.Car.Companion.INITIAL_POSITION
-import domain.game.CarRacingGame
+import domain.CarRacingGame
 import domain.generator.NumberGenerator
 import domain.generator.RacingNumberGenerator.Companion.MINIMUM_NUMBER
 import domain.generator.RacingNumberGenerator.Companion.MINIMUM_NUMBER_TO_MOVE
