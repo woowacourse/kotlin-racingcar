@@ -1,6 +1,6 @@
 package racingcar.service
 
-import racingcar.model.Car
+import racingcar.model.car.Car
 import racingcar.repository.CarRepository
 import racingcar.repository.Repository
 

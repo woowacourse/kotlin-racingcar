@@ -1,6 +1,6 @@
 package racingcar.repository
 
-import racingcar.model.Car
+import racingcar.model.car.Car
 
 class CarRepository : Repository<Car> {
     private val cars = arrayListOf<Car>()
@@ -8,7 +8,7 @@ class CarRepository : Repository<Car> {
     override fun selectAll(): List<Car> = cars
 
     override fun insert(item: Car) {
-        require(cars.none { it.name == item.name }) { DUPLICATED_CAR_NAME_ERROR_MESSAGE }
+        require(cars.none { it.carName.name == item.carName.name }) { DUPLICATED_CAR_NAME_ERROR_MESSAGE }
         cars.add(item)
     }
 

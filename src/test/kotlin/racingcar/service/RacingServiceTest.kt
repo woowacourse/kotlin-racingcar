@@ -7,7 +7,7 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import racingcar.model.Car
+import racingcar.model.car.Car
 import java.util.stream.Stream
 import kotlin.test.assertEquals
 import kotlin.test.assertNotEquals
