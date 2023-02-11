@@ -1,4 +1,5 @@
 package controller
+import generator.RandomGenerator
 import model.Cars
 import util.Validator
 import view.InputView
@@ -62,7 +63,7 @@ class RaceGame {
     private fun getInputCarNames(cars: String?): Cars? {
         return runCatching {
             Validator().checkNames(cars)
-            Cars.mappingCars(cars!!)
+            Cars.mappingCars(cars!!, RandomGenerator())
         }.onFailure { outputView.outputErrorMessage(it.message!!) }
             .getOrNull()
     }
