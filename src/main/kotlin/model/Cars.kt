@@ -8,7 +8,7 @@ class Cars(cars: List<Car>, private val numberGenerator: NumberGenerator) {
         get() = field
 
     fun move() {
-        cars.forEach { it.move(numberGenerator.generateNumber()) }
+        cars.forEach { it.move(numberGenerator.generate()) }
     }
 
     fun findWinners(): List<String> {
