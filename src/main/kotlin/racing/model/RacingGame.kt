@@ -1,8 +1,11 @@
 package racing.model
 
 import racing.util.NumberGenerator
+import racing.util.RandomNumberGenerator
 
-class RacingGame {
+class RacingGame(
+    private val numberGenerator: RandomNumberGenerator = NumberGenerator()
+) {
     private val cars = mutableListOf<Car>()
 
     fun getCars() = cars.toList()
@@ -13,10 +16,10 @@ class RacingGame {
     }
 
     fun getWinners(): List<String> {
-        cars.sortBy { it.getPosition() }
         val result = mutableListOf<String>()
-        for (car in cars) {
-            if (car.getPosition() == cars.last().getPosition()) result.add(car.getName())
+        val winnerPosition = cars.maxOf { it.getPosition() }
+        cars.map {
+            if (it.getPosition() == winnerPosition) result.add(it.getName())
         }
         return result.toList()
     }
@@ -50,9 +53,5 @@ class RacingGame {
             result.add(numberGenerator.generate())
         }
         return result
-    }
-
-    companion object {
-        private val numberGenerator = NumberGenerator()
     }
 }
