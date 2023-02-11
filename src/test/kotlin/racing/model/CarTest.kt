@@ -15,10 +15,17 @@ class CarTest {
     }
 
     @Test
-    fun `랜덤 숫자가 4,5가 나왔을 떄 테스트`() {
+    fun `기준값이 4이상의 값이면 자동차가 한 칸 이동한다`() {
         car.move(4)
         car.move(5)
         assertThat(car.getPosition()).isEqualTo(2)
+    }
+
+    @Test
+    fun `기준값이 4미만의 값이면 자동차가 이동하지 않는다`() {
+        car.move(1)
+        car.move(2)
+        assertThat(car.getPosition()).isEqualTo(0)
     }
 
     @ParameterizedTest
