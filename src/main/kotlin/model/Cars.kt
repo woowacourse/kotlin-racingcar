@@ -1,14 +1,14 @@
 package model
 
-import generator.RandomGenerator
+import generator.NumberGenerator
 
-class Cars(cars: List<Car>) {
+class Cars(cars: List<Car>, private val numberGenerator: NumberGenerator) {
 
     var cars: List<Car> = cars
         get() = field
 
     fun move() {
-        cars.forEach { it.move(RandomGenerator().getRandomNumber()) }
+        cars.forEach { it.move(numberGenerator.generateNumber()) }
     }
 
     private fun findMaxPosition(): Int {
@@ -25,6 +25,6 @@ class Cars(cars: List<Car>) {
     }
 
     companion object {
-        fun mappingCars(input: String) = Cars(input.split(",").mapIndexed { _, name -> Car(name.trim()) })
+        fun mappingCars(input: String, numberGenerator: NumberGenerator) = Cars(input.split(",").mapIndexed { _, name -> Car(name.trim()) }, numberGenerator)
     }
 }
