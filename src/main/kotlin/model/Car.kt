@@ -1,6 +1,5 @@
 package model
 
-import util.Constants
 import util.Validator
 
 class Car(val name: String) {
@@ -12,6 +11,10 @@ class Car(val name: String) {
     }
 
     fun move(random: Int) {
-        if (random >= Constants.RANDOM_MOVE_LIMIT_NUM) position++
+        if (random >= RANDOM_MOVE_LIMIT_NUM) position++
+    }
+
+    companion object {
+        const val RANDOM_MOVE_LIMIT_NUM = 4
     }
 }
