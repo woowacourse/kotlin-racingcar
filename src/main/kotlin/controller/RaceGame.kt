@@ -15,10 +15,6 @@ class RaceGame {
         outputView.outputResult(cars)
     }
 
-    private fun equalMaxValue(cars: Cars): List<String> {
-        return cars.findWinners()
-    }
-
     fun run() {
         val cars = executeInputCarNames()
         val tryNumber = executeInputTryNumber()
@@ -32,7 +28,7 @@ class RaceGame {
     }
 
     private fun endGame(cars: Cars) {
-        outputView.outputWinners(equalMaxValue(cars))
+        outputView.outputWinners(cars.findWinners())
     }
 
     private fun executeInputTryNumber(): Int {
