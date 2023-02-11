@@ -6,7 +6,7 @@ class Car(val name: String) {
 
     init {
         require(name.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) {
-            throw IllegalArgumentException(CAR_NAME_LENGTH_OVER_BOUNDARY_ERROR_MESSAGE)
+            CAR_NAME_LENGTH_OVER_BOUNDARY_ERROR_MESSAGE
         }
     }
 
