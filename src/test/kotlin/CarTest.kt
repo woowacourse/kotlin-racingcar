@@ -22,6 +22,14 @@ class CarTest {
         }
     }
 
+    @ValueSource(strings = ["1ab", "@항아아!", "10", "~"])
+    @ParameterizedTest
+    fun `자동차 이름이 한글과 영어가 아닌 경우 예외 테스트`(name: String) {
+        assertThrows<IllegalArgumentException> {
+            Car(name)
+        }
+    }
+
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     @ParameterizedTest
     fun `4이상이면 자동차가 전진`(number: Int) {
