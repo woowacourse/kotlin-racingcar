@@ -15,7 +15,7 @@ class CarRacingGameController(
 
     fun play() {
         runCatching {
-            val carRacingGameDataSource = initGameDataSource()
+            val carRacingGameDataSource = initCarRacingGameDataSource()
             start(carRacingGameDataSource.cars, carRacingGameDataSource.numberOfTry)
             end(carRacingGameDataSource.cars)
         }.onFailure { exception ->
@@ -32,7 +32,7 @@ class CarRacingGameController(
     private fun initNumberOfTry(): Int =
         InputValidator.validateIsNumeric(InputView.inputNumberOfTry())
 
-    private fun initGameDataSource(): CarRacingGameDataSource {
+    private fun initCarRacingGameDataSource(): CarRacingGameDataSource {
         val cars = initCars()
         val numberOfTry = initNumberOfTry()
 
