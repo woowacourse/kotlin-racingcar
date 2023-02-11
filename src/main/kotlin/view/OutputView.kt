@@ -9,7 +9,7 @@ object OutputView {
     private const val CAR_PATH = "%s : %s"
     private const val DASH = "-"
     private const val INITIAL_NUMBER_OF_TRY = 0
-    private const val TOKENIZER = ","
+    private const val SEPARATOR = ","
 
     fun printErrorMsg(msg: String) {
         println(msg)
@@ -17,7 +17,7 @@ object OutputView {
 
     fun printWinner(winners: List<String>) {
         print(FINAL_WINNER)
-        println(winners.joinToString("$TOKENIZER "))
+        println(winners.joinToString("$SEPARATOR "))
         println()
     }
 
