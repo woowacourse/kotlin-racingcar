@@ -3,5 +3,7 @@ package racingcar.domain.numbergenerator
 class StubNumberGenerator(
     private val fakeNumbers: List<Int>,
 ) : NumberGenerator {
-    override fun generate(): Int = fakeNumbers.toMutableList().removeAt(0)
+
+    private val recivedFakeNumbers = fakeNumbers.toMutableList()
+    override fun generate(): Int = recivedFakeNumbers.removeAt(0)
 }
