@@ -14,7 +14,7 @@ class RacingCarTest {
     }
 
     @Test
-    fun `전진했을 때 toString 변화 테스트`() {
+    fun `toString 정상적으로 작동하는지 확인 테스트(2번 전진)`() {
         car.moveForward()
         car.moveForward()
         assertEquals(

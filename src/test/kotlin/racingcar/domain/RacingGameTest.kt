@@ -14,14 +14,14 @@ class RacingGameTest {
     val racingGame = RacingGame(inputView, outputView, generator)
 
     @Test
-    fun `전진하는 경우`() {
+    fun `숫자 4를 받았을때 전진하는지 확인하는 테스트(4부터 9까지 전진)`() {
         assertThat(
             racingGame.checkGoingForward(4),
         ).isTrue
     }
 
     @Test
-    fun `전진하지 않는 경우`() {
+    fun `숫자 3을 받았을때 전진하지 않는지 확인하는 테스트(0부터 3까지 전진하지 않음)`() {
         assertThat(
             racingGame.checkGoingForward(3),
         ).isFalse
