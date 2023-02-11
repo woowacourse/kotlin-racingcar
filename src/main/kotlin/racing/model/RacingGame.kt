@@ -10,9 +10,13 @@ class RacingGame(private val _cars: MutableList<Car>) {
         }
 
     fun getWinnerNames(): List<String> {
-        val maxPosition: Int = _cars.maxBy { car: Car -> car.position }.position
+        val maxPosition: Int = getMaxPosition()
         val winners: List<Car> = _cars.filter { car: Car -> car.position == maxPosition }
         return winners.map { car: Car -> car.name }
+    }
+
+    private fun getMaxPosition(): Int {
+        return _cars.maxBy { car: Car -> car.position }.position
     }
 
     fun moveCars(randomNumbers: List<Int>) {
