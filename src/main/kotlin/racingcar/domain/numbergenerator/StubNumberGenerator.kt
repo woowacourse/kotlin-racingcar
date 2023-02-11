@@ -1,7 +1,7 @@
 package racingcar.domain.numbergenerator
 
 class StubNumberGenerator(
-    private val fakeNumbers: MutableList<Int>,
+    private val fakeNumbers: List<Int>,
 ) : NumberGenerator {
-    override fun generate(): Int = fakeNumbers.removeAt(0)
+    override fun generate(): Int = fakeNumbers.toMutableList().removeAt(0)
 }
