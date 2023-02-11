@@ -8,7 +8,9 @@ class Car(val name: String) {
         if (checkMove(randomNumber)) position++
     }
 
-    private fun checkMove(randomNumber: Int) = randomNumber >= CAN_MOVE_MINIMUM
+    private fun checkMove(randomNumber: Int): Boolean {
+        return randomNumber >= CAN_MOVE_MINIMUM
+    }
 
     companion object {
         private const val CAN_MOVE_MINIMUM = 4
