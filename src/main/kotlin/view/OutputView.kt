@@ -19,8 +19,8 @@ class OutputView {
         println(Constants.OUTPUT_RESULT)
     }
 
-    fun outputErrorMessage(error: IllegalArgumentException) {
-        println(error.message)
+    fun outputErrorMessage(error: String) {
+        println(error)
     }
 
     fun outputResult(cars: Cars) {
@@ -31,12 +31,18 @@ class OutputView {
     }
 
     fun outputCarResult(car: Car) {
-        print(car.name + " : ")
-        repeat(car.position) { print("-") }
+        print(car.name + CAR_SEPERATE_MARK)
+        repeat(car.position) { print(CAR_MOVE_MARK) }
         println()
     }
 
     fun outputWinners(winners: List<String>) {
-        println(Constants.OUTPUT_WINNER + winners.joinToString(separator = ", "))
+        println(Constants.OUTPUT_WINNER + winners.joinToString(separator = WINNERS_SEPERATE_MARK))
+    }
+
+    companion object {
+        const val CAR_SEPERATE_MARK = " : "
+        const val CAR_MOVE_MARK = "-"
+        const val WINNERS_SEPERATE_MARK = ", "
     }
 }
