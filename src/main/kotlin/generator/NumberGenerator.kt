@@ -1,5 +1,5 @@
 package generator
 
 interface NumberGenerator {
-    fun generateNumber(): Int
+    fun generate(): Int
 }
