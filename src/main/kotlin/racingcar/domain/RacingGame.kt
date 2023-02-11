@@ -9,6 +9,7 @@ class RacingGame(
     private val inputView: InputView,
     private val outputView: OutputView,
     private val generator: NumberGenerator,
+    private val referee: Referee
 ) {
     fun runGame() {
         val names = getCarsName()
@@ -21,14 +22,7 @@ class RacingGame(
             playRound(cars)
         }
 
-        outputView.printWinner(getWinner(cars))
-    }
-
-    fun getWinner(cars: List<RacingCar>): List<String> {
-        val sortedCars = cars.sortedByDescending { it.movingState }
-        val maxState = sortedCars[0].movingState
-
-        return sortedCars.filter { it.movingState == maxState }.map { it.name }
+        outputView.printWinner(referee.getWinner(cars))
     }
 
     fun playRound(cars: MutableList<RacingCar>) {

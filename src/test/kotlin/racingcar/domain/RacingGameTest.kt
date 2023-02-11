@@ -11,7 +11,8 @@ class RacingGameTest {
     val inputView = InputView()
     val outputView = OutputView()
     val generator = StubNumberGenerator(mutableListOf(5, 3, 5))
-    val racingGame = RacingGame(inputView, outputView, generator)
+    val referee = Referee()
+    val racingGame = RacingGame(inputView, outputView, generator, referee)
 
     @Test
     fun `숫자 4를 받았을때 전진하는지 확인하는 테스트(4부터 9까지 전진)`() {
@@ -47,7 +48,7 @@ class RacingGameTest {
             RacingCar("three", 3),
         )
         assertThat(
-            racingGame.getWinner(cars),
+            referee.getWinner(cars),
         ).contains("one", "three").doesNotContain("two")
     }
 }
