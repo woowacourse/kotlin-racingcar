@@ -10,51 +10,54 @@ class RacingGameController(
     private val outputView: OutputView,
     private val racingCarGameService: RacingCarGameService
 ) {
-    private var carsInfo = listOf<Car>()
-    private var tryCount = 0
-
     fun run() {
-        getCarNames()
-        getTryCount()
-        playWholeRacing()
-        gerWinner()
+        val carsInfo = getCarNames()
+        val tryCount = getTryCount()
+        playWholeRound(tryCount, carsInfo)
+        printWinner(gerWinner(carsInfo))
     }
 
-    fun getCarNames() {
-        try {
+    fun getCarNames(): List<Car> {
+        return try {
             outputView.printCar()
             val carsName = racingCarGameService.splitCarNames(inputView.inputName())
-            carsInfo = racingCarGameService.initCarInfo(carsName)
+            racingCarGameService.initCarInfo(carsName)
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
             getCarNames()
         }
     }
 
-    fun getTryCount() {
-        try {
+    fun getTryCount(): Int {
+        return try {
             outputView.printTryCount()
-            tryCount = inputView.inputTryCount().toInt()
+            inputView.inputTryCount().toInt()
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
             getTryCount()
         }
     }
 
-    fun playRound() {
-        carsInfo = racingCarGameService.moveCars(carsInfo)
-        val roundResult = racingCarGameService.getRoundResult(carsInfo)
-        outputView.printRoundResult(roundResult)
+    fun playRound(carsInfo: List<Car>): String {
+        val carsInfo = racingCarGameService.moveCars(carsInfo)
+        return racingCarGameService.getRoundResult(carsInfo)
     }
 
-    fun playWholeRacing() {
+    fun printRoundResult(roundResultOutput: String) = outputView.printRoundResult(roundResultOutput)
+
+    fun playWholeRound(tryCount: Int, carsInfo: List<Car>) {
         outputView.printRunResultMessage()
-        for (round in 1..tryCount) playRound()
+        repeat(tryCount) {
+            printRoundResult(playRound(carsInfo))
+        }
     }
 
-    fun gerWinner() {
+    fun gerWinner(carsInfo: List<Car>): String {
         val winners = racingCarGameService.getWinners(carsInfo)
-        val winnersOutput = racingCarGameService.getWinnersOutput(winners)
+        return racingCarGameService.getWinnersOutput(winners)
+    }
+
+    fun printWinner(winnersOutput: String) {
         outputView.printWinner(winnersOutput)
     }
 }
