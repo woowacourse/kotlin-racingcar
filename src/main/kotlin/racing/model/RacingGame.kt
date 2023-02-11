@@ -38,13 +38,13 @@ class RacingGame {
         return result
     }
 
-    fun moveCars(randomNumbers: List<Int>) {
+    private fun moveCars(randomNumbers: List<Int>) { // 인자로 받을 필요없다
         for ((index, car) in cars.withIndex()) {
             car.move(randomNumbers[index])
         }
     }
 
-    fun createRandomNumbers(count: Int): List<Int> {
+    private fun createRandomNumbers(count: Int): List<Int> {
         val result = mutableListOf<Int>()
         repeat(count) {
             result.add(numberGenerator.generate())
