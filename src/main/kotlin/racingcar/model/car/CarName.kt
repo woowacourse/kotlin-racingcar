@@ -7,8 +7,6 @@ class CarName(val name: String) {
         }
     }
 
-    fun toDto() = CarNameDto(name)
-
     companion object {
         private const val MIN_CAR_NAME_LENGTH = 1
         private const val MAX_CAR_NAME_LENGTH = 5
@@ -17,5 +15,3 @@ class CarName(val name: String) {
             "자동차 이름 길이의 범위는 $MIN_CAR_NAME_LENGTH 이상 $MAX_CAR_NAME_LENGTH 이하입니다."
     }
 }
-
-class CarNameDto(val name: String)

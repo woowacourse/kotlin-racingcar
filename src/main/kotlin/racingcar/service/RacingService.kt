@@ -1,21 +1,20 @@
 package racingcar.service
 
-import racingcar.model.Round
-import racingcar.model.car.Car
-import racingcar.model.car.Cars
+import racingcar.model.car.CarsDto
+import racingcar.model.car.WinnersDto
+import racingcar.model.round.RoundDto
 
-class RacingService(carNames: List<String>) {
-    private val cars = Cars(carNames.map { Car(it) })
+class RacingService(_cars: CarsDto, _round: RoundDto) {
+    private val cars = _cars.toModel()
+    private val round = _round.toModel()
 
-    fun runAllRounds(round: Round, doEachRoundResult: (Cars) -> Unit) {
+    fun runAllRounds(doEachRoundResult: (CarsDto) -> Unit) {
         repeat(round.count) {
             doEachRoundResult(moveCarsRandomly())
         }
     }
 
-    private fun moveCarsRandomly(): Cars =
-        cars.moveAllRandomly()
+    private fun moveCarsRandomly(): CarsDto = cars.moveAllRandomly().toDto()
 
-    fun getWinners(): List<Car> =
-        cars.getWinners()
+    fun getWinners(): WinnersDto = cars.getWinners().toDto()
 }

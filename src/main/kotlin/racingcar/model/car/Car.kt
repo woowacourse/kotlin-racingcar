@@ -15,7 +15,7 @@ open class Car(name: String, _position: Int = 0) {
     open fun generateRandomProbability(): Int =
         (START_RANDOM_MOVEMENT_PROBABILITY..END_RANDOM_MOVEMENT_PROBABILITY).random()
 
-    fun toDto(): CarDto = CarDto(carName.toDto())
+    fun toDto(): CarDto = CarDto(carName.name)
 
     companion object {
         private const val MOVEMENT_PROBABILITY = 4
@@ -24,6 +24,9 @@ open class Car(name: String, _position: Int = 0) {
     }
 }
 
-class CarDto(val carName: CarNameDto, val position: Int = 0) {
+class CarDto(_carName: String, val position: Int = 0) {
+    var carName: CarName = CarName(_carName)
+        private set
+
     fun toModel(): Car = Car(carName.name, position)
 }

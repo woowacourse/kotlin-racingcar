@@ -1,18 +1,19 @@
 package racingcar.view
 
-import racingcar.model.car.Car
+import racingcar.model.car.CarsDto
+import racingcar.model.car.WinnersDto
 
 class OutputView {
     fun printMessage(message: String) = println(message)
 
-    fun printRoundResult(cars: List<Car>) {
+    fun printRoundResult(cars: CarsDto) {
         cars.forEach { car ->
             println("${car.carName.name} : ${getPositionAsDash(car.position)}")
         }
         println()
     }
 
-    fun printWinners(winners: List<Car>) {
+    fun printWinners(winners: WinnersDto) {
         println("$WINNER_NOTIFICATION_MESSAGE: ${winners.joinToString(", ") { it.carName.name }}")
     }
 
