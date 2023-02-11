@@ -5,24 +5,19 @@ import data.CarPath
 import data.PathState
 import data.generator.RacingNumberGenerator
 
-class CarRacingGame {
+class CarRacingGame(
+    private val racingNumberGenerator: RacingNumberGenerator = RacingNumberGenerator()
+) {
 
     fun startDriving(cars: List<Car>, numberOfTry: Int): List<CarPath> {
-        val carsPath = mutableListOf<CarPath>()
-
-        cars.forEach { car ->
-            carsPath.add(recordPath(car, numberOfTry))
-        }
-
-        return carsPath.toList()
+        return cars.map { recordPath(it, numberOfTry) }
     }
 
     private fun recordPath(car: Car, numberOfTry: Int): CarPath {
         val path = mutableListOf<PathState>()
 
         repeat(numberOfTry) {
-            val randomNumber = RacingNumberGenerator().generate()
-            path.add(car.move(randomNumber))
+            path.add(car.move(racingNumberGenerator.generate()))
         }
 
         return CarPath(car.name, path)
