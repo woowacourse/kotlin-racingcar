@@ -21,7 +21,7 @@ class RacingGame(val cars: List<Car>) {
         }
     }
 
-    fun createRandomNumbers(): List<Int> {
+    private fun createRandomNumbers(): List<Int> {
         val result = mutableListOf<Int>()
         repeat(cars.size) {
             result.add(numberGenerator.generate())
