@@ -11,17 +11,9 @@ class Cars(cars: List<Car>, private val numberGenerator: NumberGenerator) {
         cars.forEach { it.move(numberGenerator.generateNumber()) }
     }
 
-    private fun findMaxPosition(): Int {
-        return cars.maxByOrNull {
-            it.position
-        }!!.position
-    }
-
     fun findWinners(): List<String> {
-        val maxEqualCars = cars.filter {
-            it.position == findMaxPosition()
-        }.toList()
-        return maxEqualCars.map { it.name }
+        val maxPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == maxPosition }.map { it.name }
     }
 
     companion object {
