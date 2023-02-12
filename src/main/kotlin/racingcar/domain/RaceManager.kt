@@ -3,13 +3,14 @@ package racingcar.domain
 import racingcar.racingcar.domain.Cars
 import racingcar.racingcar.domain.numbergenerator.NumberGenerator
 import racingcar.racingcar.domain.raceresult.RaceResult
+import racingcar.racingcar.domain.raceresult.StepResult
 
 class RaceManager(
     private val numberGenerator: NumberGenerator,
 ) {
     fun race(cars: Cars, raceCount: Int): RaceResult {
         val carLocations = (1..raceCount).map { cars.move(numberGenerator) }
-        return RaceResult(cars.names, carLocations)
+        return RaceResult(cars.names, carLocations.map(::StepResult))
     }
 
     private fun Cars.move(numberGenerator: NumberGenerator): List<Int> {
