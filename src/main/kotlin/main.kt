@@ -1,4 +1,5 @@
 import common.ERROR_MESSAGE_FORMAT
+import domain.AdvanceCount
 import domain.Car
 import domain.GameCars
 import domain.RandomMovingStrategy
@@ -6,7 +7,7 @@ import view.InputView
 import view.OutputView
 
 private lateinit var gameCars: GameCars
-private var advanceCount = 0
+private lateinit var advanceCount: AdvanceCount
 
 fun main() {
     setUpGameManager()
@@ -35,8 +36,7 @@ private fun setUpAdvanceCount() {
     while (true) {
         runCatching {
             val count = InputView.readAdvanceCount()
-            require(count in 1..100) { ERROR_MESSAGE_FORMAT.format(ADVANCE_COUNT_ERROR) }
-            advanceCount = count
+            advanceCount = AdvanceCount(count)
         }
             .onSuccess { return }
             .onFailure { println(it.message) }
@@ -46,7 +46,7 @@ private fun setUpAdvanceCount() {
 private fun runGame() {
     OutputView.printMessage(GAME_RESULT_HEADER)
 
-    repeat(advanceCount) {
+    repeat(advanceCount.value) {
         gameCars.advanceAllCars()
         OutputView.printGameStatus(gameCars.cars)
     }
@@ -60,4 +60,3 @@ private fun printGameResult() {
 private const val CAR_NAMES_REQUEST_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
 private const val ADVANCE_COUNT_REQUEST_MESSAGE = "시도할 횟수는 몇 회인가요?"
 private const val GAME_RESULT_HEADER = "실행 결과"
-private const val ADVANCE_COUNT_ERROR = "전진 횟수는 최소 1회에서 최대 100회 사이여야 합니다."
