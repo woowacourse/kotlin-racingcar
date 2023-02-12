@@ -27,9 +27,7 @@ class Car(
     }
 
     private fun checkGo(number: Int): Boolean {
-        if (number in RANGE_LOWER_INCLUSIVE..RANGE_UPPER_INCLUSIVE)
-            return true
-        return false
+        return number in RANGE_LOWER_INCLUSIVE..RANGE_UPPER_INCLUSIVE
     }
 
     private fun go() {
