@@ -7,16 +7,15 @@ object TryCountValidation {
     }
 
     fun checkTryCountInteger(tryCount: String) {
-        try {
-            tryCount.toInt()
-        } catch (e: IllegalArgumentException) {
-            throw IllegalArgumentException(TRY_COUNT_INTEGER_ERROR_MESSAGE)
+        require(tryCount.chars().allMatch { Character.isDigit(it) }) {
+            TRY_COUNT_INTEGER_ERROR_MESSAGE
         }
     }
 
     fun checkTryCountPositive(tryCount: String) {
-        if (tryCount.toInt() < MINIMUM_TRY_COUNT)
-            throw IllegalArgumentException(TRY_COUNT_POSITIVE_ERROR_MESSAGE)
+        require(tryCount.toInt() >= MINIMUM_TRY_COUNT) {
+            TRY_COUNT_POSITIVE_ERROR_MESSAGE
+        }
     }
 
     private const val MINIMUM_TRY_COUNT = 1
