@@ -12,6 +12,8 @@ class Car(val name: String, private val movingStrategy: MovingStrategy) {
     fun moveAccordingToStrategy() {
         if (movingStrategy.isMovable()) advanceCount++
     }
+
+    override fun equals(other: Any?): Boolean = if (other is Car) this.name == other.name else false
 }
 
 private const val ERROR_MESSAGE_FORMAT = "[ERROR] %s"
