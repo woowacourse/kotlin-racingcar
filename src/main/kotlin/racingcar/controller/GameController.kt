@@ -1,6 +1,8 @@
 package racingcar.controller
 
+import racingcar.domain.Car
 import racingcar.domain.RaceManager
+import racingcar.racingcar.domain.RaceResultDto
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -12,20 +14,21 @@ class GameController(
 
     fun runGame() {
         initGame()
-        startGame()
-        endGame()
+        val result = startGame()
+        endGame(result.cars)
     }
 
     private fun initGame() {
         raceManager.setGame(input.inputCarNames(), input.inputRacingCount())
     }
 
-    private fun startGame() {
+    private fun startGame(): RaceResultDto {
         val result = raceManager.race()
         output.printRaceResult(result)
+        return result
     }
 
-    private fun endGame() {
-        output.printWinner(raceManager.getWinner())
+    private fun endGame(cars: List<Car>) {
+        output.printWinner(raceManager.getWinner(cars))
     }
 }

@@ -2,10 +2,7 @@ package racingcar.domain
 
 import racingcar.resources.ERROR_MESSAGE_PREFIX
 
-class Car(val name: String) {
-    var location = 0
-        private set
-
+class Car(val name: String, var location: Int = 0) {
     init {
         require(name.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH) { ERROR_NAME_LENGTH_RANGE }
     }

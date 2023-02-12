@@ -13,7 +13,7 @@ class RaceManager(
         repeat(raceCount) {
             nextStep(roundHistory)
         }
-        return RaceResultDto(cars.map { car -> car.name }, roundHistory)
+        return RaceResultDto(cars.map { car -> car.name }, roundHistory, cars)
     }
 
     private fun nextStep(roundHistory: MutableList<List<Int>>): MutableList<List<Int>> {
@@ -27,7 +27,7 @@ class RaceManager(
         this.raceCount = racingCount
     }
 
-    fun getWinner(): List<String> {
+    fun getWinner(cars: List<Car>): List<String> {
         val maxLocation = cars.maxOf { it.location }
         return cars.filter { car -> car.location == maxLocation }
             .map { it.name }

@@ -27,11 +27,10 @@ internal class RaceManagerTest {
 
     @Test
     fun `우승자 정상반환 확인`() {
+        val cars = listOf(Car("test1", 3), Car("test2", 5), Car("test3", 5))
         val raceManager = RaceManager(TestNumberGenerator(mutableListOf(1, 4, 9, 1, 4, 9)))
-        raceManager.setGame(listOf("test1", "test2", "test3"), 2)
-        raceManager.race()
-        assertEquals(raceManager.getWinner(), listOf("test2", "test3"))
-        assertNotEquals(raceManager.getWinner(), listOf("test3"))
+        assertEquals(raceManager.getWinner(cars), listOf("test2", "test3"))
+        assertNotEquals(raceManager.getWinner(cars), listOf("test3"))
     }
 
     class TestNumberGenerator(private val numbers: MutableList<Int>) : NumberGenerator {
