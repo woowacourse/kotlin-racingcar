@@ -1,16 +1,16 @@
 package controller
 
-import domain.Car
-import domain.Judgement
+import domain.Cars
+import domain.NumberGenerator
 import view.InputView
 import view.OutputView
 
 class Controller(
+    private val generator: NumberGenerator,
     private val inputView: InputView,
     private val outputView: OutputView
 ) {
-    private val cars = mutableListOf<Car>()
-    private val judgement = Judgement(cars)
+    private lateinit var cars: Cars
     private var time = 0
 
     fun run() {
@@ -33,8 +33,8 @@ class Controller(
 
     private fun setUpCars(): Boolean {
         return try {
-            val carsDTO = inputView.readCars()
-            carsDTO.getCars().map { car -> cars.add(car) }
+            val carNamesDTO = inputView.readCarNames()
+            cars = Cars(generator, carNamesDTO.getCarNames())
             true
         } catch (e: IllegalArgumentException) {
             outputView.printError(e.message ?: "")
@@ -61,13 +61,14 @@ class Controller(
     }
 
     private fun raceOneTime() {
-        cars.map { car ->
-            outputView.printRaceResult(car.race())
+        val raceOneTimeResults = cars.raceOneTime()
+        raceOneTimeResults.map { result ->
+            outputView.printRaceResult(result)
         }
     }
 
     private fun announceWinners() {
-        val winnersDTO = judgement.findWinners()
+        val winnersDTO = cars.findWinners()
         outputView.printWinners(winnersDTO)
     }
 }

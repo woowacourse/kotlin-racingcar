@@ -1,13 +1,13 @@
 package view
 
-import dto.CarsDTO
+import dto.CarNamesDTO
 import dto.RaceTimeDTO
 
 class InputView {
-    fun readCars(): CarsDTO {
+    fun readCarNames(): CarNamesDTO {
         println(GUIDE_CAR_NAME)
         val input = readUser()
-        return CarsDTO(input)
+        return CarNamesDTO(input)
     }
 
     fun readRaceTime(): RaceTimeDTO {

@@ -1,12 +1,7 @@
 package dto
 
-import domain.Car
-import domain.RandomNumberGenerator
-
-class CarsDTO(input: String) {
-    private var cars = mutableListOf<Car>()
+class CarNamesDTO(input: String) {
     private var names: List<String>
-    private val numberGenerator = RandomNumberGenerator()
 
     init {
         names = input.split(',')
@@ -17,16 +12,10 @@ class CarsDTO(input: String) {
             verifyNameLength(name)
         }
         verifyCarUniqueness()
-
-        makeCars()
     }
 
-    fun getCars(): List<Car> {
-        return cars
-    }
-
-    private fun makeCars() {
-        names.map { name -> cars.add(Car(numberGenerator, name)) }
+    fun getCarNames(): List<String> {
+        return names
     }
 
     private fun verifyCarCount() {
