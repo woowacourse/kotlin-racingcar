@@ -4,6 +4,10 @@ import generator.NumberGenerator
 
 class Cars(cars: List<Car>, private val numberGenerator: NumberGenerator) {
 
+    init {
+        require(cars.toSet().size == cars.size) { CAR_NAME_OVERLAP_ERROR_MESSAGE }
+    }
+
     var cars: List<Car> = cars.toList()
         get() = field
 
@@ -18,5 +22,6 @@ class Cars(cars: List<Car>, private val numberGenerator: NumberGenerator) {
 
     companion object {
         fun mappingCars(input: String, numberGenerator: NumberGenerator) = Cars(input.split(",").mapIndexed { _, name -> Car(name.trim()) }, numberGenerator)
+        const val CAR_NAME_OVERLAP_ERROR_MESSAGE = "자동차 이름이 중복되었습니다."
     }
 }
