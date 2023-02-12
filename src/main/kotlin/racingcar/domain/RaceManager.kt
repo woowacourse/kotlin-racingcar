@@ -7,19 +7,19 @@ class RaceManager(
 ) {
     private var cars: List<Car> = listOf()
     private var raceCount = 0
-    private var result = mutableListOf<List<Int>>()
 
     fun race(): RaceResultDto {
-        result = mutableListOf()
+        val roundHistory = mutableListOf<List<Int>>()
         repeat(raceCount) {
-            nextStep()
+            nextStep(roundHistory)
         }
-        return RaceResultDto(cars.map { car -> car.name }, result)
+        return RaceResultDto(cars.map { car -> car.name }, roundHistory)
     }
 
-    private fun nextStep() {
+    private fun nextStep(roundHistory: MutableList<List<Int>>): MutableList<List<Int>> {
         cars.forEach { it.move(numberGenerator.generateNumber(Car.MIN_BOUNDARY, Car.MAX_BOUNDARY)) }
-        result.add(cars.map { car -> car.location })
+        roundHistory.add(cars.map { car -> car.location })
+        return roundHistory
     }
 
     fun setGame(carNames: List<String>, racingCount: Int) {
