@@ -7,7 +7,7 @@ class RacingCarGameTest {
     private val racingCarGameService = RacingCarGameService()
 
     @Test
-    fun `가장 멀리간 자동차를 확인하는 테스트`() {
+    fun `가장 멀리간 자동차를 확인한다`() {
         val carA = Car("aa", 1)
         val carB = Car("bb", 3)
         val carC = Car("cc", 2)
@@ -18,7 +18,7 @@ class RacingCarGameTest {
     }
 
     @Test
-    fun `우승한 자동차를 정상적으로 출력하는지 테스트`() {
+    fun `우승한 자동차들을 출력한다`() {
         val carA = Car("aa", 1)
         val carB = Car("bb", 3)
         val carC = Car("cc", 2)
