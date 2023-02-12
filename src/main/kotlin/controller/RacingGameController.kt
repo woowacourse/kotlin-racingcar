@@ -42,20 +42,19 @@ class RacingGameController(
     fun playRound() {
         carsInfo = racingCarGameService.moveCars(carsInfo)
 
-        OutputView.printRoundResult(racingCarGameService.getRoundResult(carsInfo))
+        OutputView.printRoundResult(carsInfo)
     }
 
     fun playWholeRacing() {
         OutputView.printRunResultMessage()
-        repeat(tryCount - 1) {
+        repeat(tryCount) {
             playRound()
         }
     }
 
     fun outputWinner() {
         val winnerInfo = racingCarGameService.getMaxPositionCars(carsInfo)
-        val winnerNames = racingCarGameService.getWinners(winnerInfo)
-        OutputView.printWinner(winnerNames)
+        OutputView.printWinners(winnerInfo)
     }
 
     companion object {

@@ -18,14 +18,14 @@ class RacingCarGameTest {
     }
 
     @Test
-    fun `우승한 자동차들을 출력한다`() {
+    fun `가장 멀리간 자동차들을 확인한다`() {
         val carA = Car("aa", 1)
         val carB = Car("bb", 3)
         val carC = Car("cc", 2)
         val carD = Car("dd", 3)
 
         val cars = listOf(carA, carB, carC, carD)
-        val actual = racingCarGameService.getWinners(racingCarGameService.getMaxPositionCars(cars))
-        assertThat(actual).isEqualTo("최종 우승자: bb, dd")
+        val actual = racingCarGameService.getMaxPositionCars(cars)
+        assertThat(actual).isEqualTo(listOf(carB, carD))
     }
 }

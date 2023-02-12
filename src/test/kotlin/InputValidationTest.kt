@@ -1,8 +1,8 @@
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import validation.NameValidation
 import validation.NullValidation
 import validation.TryCountValidation
-import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
 class InputValidationTest {
 
