@@ -1,10 +1,8 @@
 package racingcar.racingcar.domain.raceresult
 
-class RaceResultMapper {
-    fun toRaceResultDto(raceResult: RaceResult): RaceResultDto {
-        return RaceResultDto(
-            names = raceResult.names,
-            result = raceResult.result,
-        )
-    }
+fun RaceResult.toDto(): RaceResultDto {
+    return RaceResultDto(
+        names = this.names,
+        result = this.result,
+    )
 }
