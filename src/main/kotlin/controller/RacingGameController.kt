@@ -59,6 +59,6 @@ class RacingGameController(
     }
 
     companion object {
-        const val DEFAULT_TRY_COUNT = 0
+        private const val DEFAULT_TRY_COUNT = 0
     }
 }

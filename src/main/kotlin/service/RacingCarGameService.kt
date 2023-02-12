@@ -46,8 +46,8 @@ class RacingCarGameService {
     }
 
     companion object {
-        const val DEFAULT_CAR_POSITION = 0
-        const val SUBSTRING_START_POSITION = 0
-        const val SUBSTRING_DELETE_COMMA_AND_SPACE = 2
+        private const val DEFAULT_CAR_POSITION = 0
+        private const val SUBSTRING_START_POSITION = 0
+        private const val SUBSTRING_DELETE_COMMA_AND_SPACE = 2
     }
 }
