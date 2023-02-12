@@ -5,7 +5,7 @@ import generator.NumberGenerator
 class Cars(cars: List<Car>, private val numberGenerator: NumberGenerator) {
 
     init {
-        require(cars.toSet().size == cars.size) { CAR_NAME_OVERLAP_ERROR_MESSAGE }
+        require(cars.map { it.name }.toSet().size == cars.size) { CAR_NAME_OVERLAP_ERROR_MESSAGE }
         require(cars.size in CARS_MIN_LIMIT_SIZE..CARS_MAX_LIMIT_SIZE) { CARS_SIZE_ERROR_MESSAGE }
     }
 
