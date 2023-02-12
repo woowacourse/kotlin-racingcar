@@ -1,6 +1,8 @@
 package domain
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -21,6 +23,17 @@ class CarTest {
         val car = Car("Tom")
         car.tryMove(TestNumberGenerator(number).generate())
         assertThat(car.moveCount).isEqualTo(INITIAL_MOVE_COUNT)
+    }
+
+    @Test
+    fun `자동차 이름이 5자를 초과하는 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> { Car("aaaaaaa") }
+    }
+
+    @ValueSource(strings = ["", "  "])
+    @ParameterizedTest
+    fun `자동차 이름이 비어있는 경우 예외가 발생한다`(name: String) {
+        assertThrows<IllegalArgumentException> { Car(name) }
     }
 
     companion object {
