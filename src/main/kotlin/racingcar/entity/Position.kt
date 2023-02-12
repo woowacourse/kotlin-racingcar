@@ -1,6 +1,6 @@
 package racingcar.entity
 
-class Position(private var position: Int) {
+data class Position(private var position: Int) {
     fun addPosition(value: Int) {
         position += value
     }
