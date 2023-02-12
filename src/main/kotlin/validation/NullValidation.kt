@@ -3,8 +3,9 @@ package validation
 object NullValidation {
 
     fun checkNull(input: String?): String {
-        if (input.isNullOrBlank())
-            throw IllegalArgumentException(INPUT_IS_EMPTY_ERROR_MESSAGE)
+        require(!input.isNullOrBlank()) {
+            INPUT_IS_EMPTY_ERROR_MESSAGE
+        }
         return input
     }
 
