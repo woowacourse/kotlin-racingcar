@@ -1,20 +1,25 @@
 package racingcar.domain
 
-import racingcar.racingcar.domain.CarFactory
+import racingcar.racingcar.domain.Cars
 import racingcar.racingcar.domain.numbergenerator.NumberGenerator
 import racingcar.racingcar.domain.raceresult.RaceResult
 
 class RaceManager(
     private val numberGenerator: NumberGenerator,
 ) {
-    fun race(carFactory: CarFactory, raceCount: Int): RaceResult {
-        repeat(raceCount) { carFactory.moveCars(numberGenerator) }
-        return RaceResult(carFactory.carNames, carFactory.result)
+    fun race(cars: Cars, raceCount: Int): RaceResult {
+        val carLocations = (1..raceCount).map { cars.move(numberGenerator) }
+        return RaceResult(cars.names, carLocations)
     }
 
-    fun getWinners(carFactory: CarFactory): List<String> {
-        return carFactory.cars
-            .filter { car -> car.location == carFactory.maxLocation }
+    private fun Cars.move(numberGenerator: NumberGenerator): List<Int> {
+        this.cars.forEach { car -> car.move(numberGenerator.generateNumber(Car.MIN_BOUNDARY, Car.MAX_BOUNDARY)) }
+        return this.locations
+    }
+
+    fun getWinners(cars: Cars): List<String> {
+        return cars.cars
+            .filter { car -> car.location == cars.maxLocation }
             .map { car -> car.name }
     }
 }
