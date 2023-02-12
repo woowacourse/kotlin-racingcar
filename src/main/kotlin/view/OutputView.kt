@@ -1,6 +1,6 @@
 package view
 
-import model.CarInfo
+import model.Car
 import util.Constants
 
 class OutputView {
@@ -26,9 +26,9 @@ class OutputView {
         println(error)
     }
 
-    fun outputResult(info: CarInfo) {
-        print(info.name + " : ")
-        repeat(info.position) {
+    fun outputResult(car: Car) {
+        print(car.name + " : ")
+        repeat(car.position) {
             print("-")
         }
         println()

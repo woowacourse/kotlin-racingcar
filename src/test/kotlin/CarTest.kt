@@ -6,10 +6,10 @@ import org.junit.jupiter.api.assertThrows
 class CarTest {
 
     @Test
-    fun getInfoTest() {
+    fun initTest() {
         val car = Car("dool")
-        assertThat(car.getInfo().name).isEqualTo("dool")
-        assertThat(car.getInfo().position).isEqualTo(0)
+        assertThat(car.name).isEqualTo("dool")
+        assertThat(car.position).isEqualTo(0)
     }
 
     @Test
@@ -23,13 +23,13 @@ class CarTest {
     fun moveTest() {
         val car = Car("dool")
         car.move(3)
-        assertThat(car.getInfo().position).isEqualTo(0)
+        assertThat(car.position).isEqualTo(0)
     }
 
     @Test
     fun dontMoveTest() {
         val car = Car("dool")
         car.move(4)
-        assertThat(car.getInfo().position).isEqualTo(1)
+        assertThat(car.position).isEqualTo(1)
     }
 }

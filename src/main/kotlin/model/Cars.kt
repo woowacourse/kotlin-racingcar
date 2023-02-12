@@ -2,20 +2,15 @@ package model
 
 import generator.RandomGenerator
 
-class Cars(private val cars: List<Car>) {
+class Cars(private val _cars: List<Car>) {
+    val cars: List<Car>
+        get() = _cars
+
     constructor(input: String) : this(input.split(",").mapIndexed { _, name -> Car(name.trim()) })
 
-    fun getCarInfos(): List<CarInfo> {
-        val carInfos = mutableListOf<CarInfo>()
-        repeat(cars.size) {
-            carInfos.add(cars[it].getInfo())
-        }
-        return carInfos
-    }
-
-    fun getCarInfo(index: Int): CarInfo = cars[index].getInfo()
-    fun getCarSize(): Int = cars.size
+    fun getCar(index: Int): Car = _cars[index]
+    fun getCarSize(): Int = _cars.size
     fun move(index: Int) {
-        cars[index].move(RandomGenerator().getRandomNumber())
+        _cars[index].move(RandomGenerator().getRandomNumber())
     }
 }

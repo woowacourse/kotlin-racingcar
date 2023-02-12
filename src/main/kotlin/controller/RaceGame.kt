@@ -20,7 +20,7 @@ class RaceGame(private val outputView: OutputView, private val inputView: InputV
     private fun tryMove(cars: Cars) {
         repeat(cars.getCarSize()) {
             cars.move(it)
-            outputView.outputResult(cars.getCarInfo(it))
+            outputView.outputResult(cars.getCar(it))
         }
         outputView.outputNextLine()
     }
