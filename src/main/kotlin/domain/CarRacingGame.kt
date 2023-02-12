@@ -9,9 +9,8 @@ class CarRacingGame(
     private val racingNumberGenerator: RacingNumberGenerator = RacingNumberGenerator()
 ) {
 
-    fun startDriving(cars: List<Car>, numberOfTry: Int): List<CarPath> {
-        return cars.map { recordPath(it, numberOfTry) }
-    }
+    fun startDriving(cars: List<Car>, numberOfTry: Int): List<CarPath> =
+        cars.map { recordPath(it, numberOfTry) }
 
     private fun recordPath(car: Car, numberOfTry: Int): CarPath {
         val path = mutableListOf<PathState>()
@@ -30,7 +29,5 @@ class CarRacingGame(
             .map { car -> car.name }
     }
 
-    private fun List<Car>.getMaxScore(): Int = this.maxOf {
-        it.position
-    }
+    private fun List<Car>.getMaxScore(): Int = this.maxOf { it.position }
 }
