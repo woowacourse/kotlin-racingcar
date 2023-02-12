@@ -8,7 +8,7 @@ class Car(val name: String, moveCount: Int = 0) {
 
     init {
         require(name.length <= MAX_NAME_LENGTH) { InputValidator.NAME_LENGTH_ERROR }
-        require(name.isNotEmpty()) { InputValidator.INVALID_NAME_ERROR }
+        require(name.trim().isNotEmpty()) { InputValidator.INVALID_NAME_ERROR }
     }
 
     private fun move() {
