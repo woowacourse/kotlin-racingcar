@@ -24,15 +24,11 @@ class GameController(
     }
 
     private fun startGame(raceInfo: RaceInfo) {
-        raceInfo.run {
-            val raceResult = raceManager.race(cars, racingCount)
-            output.printRaceResult(raceResult.toDto())
-        }
+        val raceResult = raceManager.race(raceInfo.cars, raceInfo.racingCount)
+        output.printRaceResult(raceResult.toDto())
     }
 
     private fun endGame(raceInfo: RaceInfo) {
-        raceInfo.run {
-            output.printWinner(raceManager.getWinners(cars))
-        }
+        output.printWinner(raceManager.getWinners(raceInfo.cars))
     }
 }
