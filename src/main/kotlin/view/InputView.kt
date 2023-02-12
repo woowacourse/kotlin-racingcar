@@ -1,16 +1,14 @@
 package view
 
-import dto.RaceTimeDTO
-
 class InputView {
     fun readCars(): List<String> {
         println(GUIDE_CAR_NAME)
         return readlnOrNull()?.split(',') ?: listOf()
     }
 
-    fun readRaceTime(): RaceTimeDTO {
+    fun readRaceTime(): Int {
         println(GUIDE_RACE_TIME)
-        return RaceTimeDTO(readln())
+        return requireNotNull(readln().toIntOrNull())
     }
 
     companion object {

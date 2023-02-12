@@ -3,6 +3,7 @@ package controller
 import domain.Car
 import domain.CarsFactory
 import domain.Judgement
+import domain.RaceTime
 import domain.RandomNumberGenerator
 import view.InputView
 import view.OutputView
@@ -14,7 +15,7 @@ class Controller(
 
     fun run() {
         val cars = setUpCars()
-        val raceTime = setUpRaceTime()
+        val raceTime = RaceTime(setUpRaceTime())
         race(cars, raceTime)
         announceWinners(cars)
     }
@@ -30,16 +31,16 @@ class Controller(
 
     private fun setUpRaceTime(): Int {
         return runCatching {
-            inputView.readRaceTime().getRaceTime()
+            inputView.readRaceTime()
         }.getOrElse { e ->
             outputView.printError(e.message ?: "")
             setUpRaceTime()
         }
     }
 
-    private fun race(cars: List<Car>, raceTime: Int) {
+    private fun race(cars: List<Car>, raceTime: RaceTime) {
         outputView.printExecutionResult()
-        repeat(raceTime) {
+        while (raceTime.reduceTime()) {
             raceOneTime(cars)
             outputView.printInterval()
         }
