@@ -1,17 +1,17 @@
 package view
 
-import dto.CarNamesDTO
-import dto.RaceTimeDTO
+import dto.CarNames
+import dto.RaceTime
 import utils.CarNamesValidator
 import utils.RaceTimeValidator
 
 class InputView {
-    fun readCarNames(): CarNamesDTO {
-        return CarNamesDTO(getValidCarNames())
+    fun readCarNames(): CarNames {
+        return CarNames(getValidCarNames())
     }
 
-    fun readRaceTime(): RaceTimeDTO {
-        return RaceTimeDTO(getValidRaceTime())
+    fun readRaceTime(): RaceTime {
+        return RaceTime(getValidRaceTime())
     }
 
     private fun readUser(): String {

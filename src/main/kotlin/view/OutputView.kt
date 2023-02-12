@@ -1,19 +1,19 @@
 package view
 
-import dto.CarMetadataDTO
-import dto.WinnersDTO
+import dto.CarMetadata
+import dto.Winners
 
 class OutputView {
     fun printExecutionResult() {
         println(EXECUTION_RESULT)
     }
 
-    fun printRaceResult(carMetadataDTO: CarMetadataDTO) {
-        println("${carMetadataDTO.name} : ${"-".repeat(carMetadataDTO.distance)}")
+    fun printRaceResult(carMetadata: CarMetadata) {
+        println("${carMetadata.name} : ${"-".repeat(carMetadata.distance)}")
     }
 
-    fun printWinners(winnersDTO: WinnersDTO) {
-        val winners = winnersDTO.winners
+    fun printWinners(winners: Winners) {
+        val winners = winners.names
         println("$FINAL_WINNER ${winners.joinToString(", ")}")
     }
 

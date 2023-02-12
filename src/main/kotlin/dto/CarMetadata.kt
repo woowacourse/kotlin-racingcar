@@ -1,6 +1,6 @@
 package dto
 
-class CarMetadataDTO(
+class CarMetadata(
     val distance: Int,
     val name: String
 )

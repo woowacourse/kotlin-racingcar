@@ -1,7 +1,7 @@
 package domain
 
-import dto.CarMetadataDTO
-import dto.WinnersDTO
+import dto.CarMetadata
+import dto.Winners
 
 class Cars(generator: NumberGenerator, names: List<String>) {
     private val cars = mutableListOf<Car>()
@@ -12,11 +12,11 @@ class Cars(generator: NumberGenerator, names: List<String>) {
         names.map { name -> cars.add(Car(generator, name)) }
     }
 
-    fun raceOneTime(): List<CarMetadataDTO> {
+    fun raceOneTime(): List<CarMetadata> {
         return cars.map { car -> car.race() }
     }
 
-    fun findWinners(): WinnersDTO {
+    fun findWinners(): Winners {
         val winnerDistance = findWinnerDistance()
         return getWinners(winnerDistance)
     }
@@ -35,10 +35,10 @@ class Cars(generator: NumberGenerator, names: List<String>) {
         return winnerDistance
     }
 
-    private fun getWinners(winnerDistance: Int): WinnersDTO {
+    private fun getWinners(winnerDistance: Int): Winners {
         val winners = mutableListOf<String>()
         cars.map { car -> winners.add(car.isWinner(winnerDistance)) }
-        return WinnersDTO(winners.filter { name -> name != "" })
+        return Winners(winners.filter { name -> name != "" })
     }
 
     companion object {
