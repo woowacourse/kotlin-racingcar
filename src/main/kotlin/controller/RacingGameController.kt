@@ -20,7 +20,8 @@ class RacingGameController(
     fun getCarNames(): List<Car> {
         return try {
             outputView.printCar()
-            val carsName = racingCarGameService.splitCarNames(inputView.inputName())
+            val input = inputView.inputName()
+            val carsName = racingCarGameService.splitCarNames(input.name)
             racingCarGameService.initCarInfo(carsName)
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
@@ -31,7 +32,8 @@ class RacingGameController(
     fun getTryCount(): Int {
         return try {
             outputView.printTryCount()
-            inputView.inputTryCount().toInt()
+            val input = inputView.inputTryCount()
+            input.tryCount.toInt()
         } catch (e: IllegalArgumentException) {
             e.printStackTrace()
             getTryCount()
