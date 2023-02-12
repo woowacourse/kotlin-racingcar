@@ -7,6 +7,7 @@ data class Name(private val name: String) {
     }
 
     override fun toString() = name
+
     companion object {
         const val MIN_CAR_NAME_LENGTH = 5
     }

@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.entity.Name
+import racingcar.model.AttemptCount
 import racingcar.model.RacingManager
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -23,10 +24,10 @@ class World {
         }
     }
 
-    private fun initAttemptCount(): Int {
+    private fun initAttemptCount(): AttemptCount {
         return try {
             OutputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
-            InputView.attemptCount()
+            AttemptCount(InputView.attemptCount())
         } catch (e: IllegalArgumentException) {
             println("[ERROR]: " + e.message)
             initAttemptCount()
