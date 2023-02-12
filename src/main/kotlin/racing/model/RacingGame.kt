@@ -13,7 +13,7 @@ class RacingGame {
         this.cars.addAll(cars)
     }
 
-    fun race(maxMoveCount: Int, randomGenerator: RandomNumberGenerator = NumberGenerator()): List<List<Int>> {
+    fun race(maxMoveCount: Int, randomGenerator: NumberGenerator = RandomNumberGenerator()): List<List<Int>> {
         val result = mutableListOf<List<Int>>()
         repeat(maxMoveCount) {
             moveCars(createRandomNumbers(cars.size, randomGenerator))
@@ -28,7 +28,7 @@ class RacingGame {
         }
     }
 
-    private fun createRandomNumbers(count: Int, randomGenerator: RandomNumberGenerator = NumberGenerator()): List<Int> {
+    private fun createRandomNumbers(count: Int, randomGenerator: NumberGenerator = RandomNumberGenerator()): List<Int> {
         val result = mutableListOf<Int>()
         repeat(count) {
             result.add(randomGenerator.generate())

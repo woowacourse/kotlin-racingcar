@@ -3,7 +3,7 @@ package racing.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import racing.util.RandomNumberGenerator
+import racing.util.NumberGenerator
 
 internal class RacingGameTest {
 
@@ -27,7 +27,7 @@ internal class RacingGameTest {
         assertThat(result).isEqualTo(listOf(listOf(1, 1, 1), listOf(2, 2, 2), listOf(3, 3, 3)))
     }
 
-    private val testGenerator = object : RandomNumberGenerator {
+    private val testGenerator = object : NumberGenerator {
         override fun generate(): Int {
             return 4
         }
