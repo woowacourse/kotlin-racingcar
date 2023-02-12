@@ -36,7 +36,7 @@ class RacingGameTest {
         }
         assertEquals(
             2,
-            car.getMovingState(),
+            car.movingState,
         )
     }
 
