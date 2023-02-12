@@ -1,132 +1,53 @@
 package racingcar.service
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
-import racingcar.model.car.Car
+import org.junit.jupiter.params.provider.MethodSource
+import org.mockito.Mockito
+import racingcar.model.car.CarDto
+import racingcar.model.car.CarsDto
+import racingcar.model.round.RoundDto
+import racingcar.utils.random.MovementProbabilityGenerator
+import racingcar.utils.random.RandomGenerator
 import java.util.stream.Stream
 
 internal class RacingServiceTest {
-
     private lateinit var racingService: RacingService
+    private lateinit var movementProbabilityGenerator: RandomGenerator
 
     @BeforeEach
     fun beforeEach() {
-        val carNames = listOf("부나", "우기", "핑구", "수달", "스캇", "써니")
-        this.racingService = RacingService(carNames)
+        val cars = CarsDto(
+            listOf("부나", "우기", "핑구", "수달", "스캇", "써니").map { CarDto(it) }
+        )
+
+        movementProbabilityGenerator = Mockito.mock(MovementProbabilityGenerator::class.java)
+        Mockito.`when`(movementProbabilityGenerator.generate()).thenReturn(ABSOLUTE_MOVE_PROBABILITY)
+
+        racingService = RacingService(cars, movementProbabilityGenerator)
     }
 
-    // @ParameterizedTest
-    // @MethodSource("provideCarsForHappyCase")
-    // fun `각 자동차가 moveCount만큼 이동한 경우, 우승자 산출시, expectedWinnersCount와 동일해야 한다`(
-    //     cars: List<Car>,
-    //     moveCounts: List<Int>,
-    //     expectedWinnersCount: Int
-    // ) {
-    //     racingService.insertCars(cars)
-    //     racingService.getAll().forEachIndexed { index, car ->
-    //         repeat(moveCounts[index]) { car.move(ABSOLUTE_MOVE_CONDITION) }
-    //     }
-    //
-    //     val realWinnersCount = racingService.getWinners().size
-    //
-    //     assertEquals(realWinnersCount, expectedWinnersCount)
-    // }
-    //
-    // @ParameterizedTest
-    // @MethodSource("provideCarsForExceptionCase")
-    // fun `각 자동차가 moveCount만큼 이동한 경우, 우승자 산출시 expectedWinnersCount와 다르면, IllegalArgumentException가 발생한다`(
-    //     cars: List<Car>,
-    //     moveCounts: List<Int>,
-    //     expectedWinnersCount: Int
-    // ) {
-    //     racingService.insertCars(cars)
-    //     racingService.getAll().forEachIndexed { index, car ->
-    //         repeat(moveCounts[index]) {
-    //             car.move(ABSOLUTE_MOVE_CONDITION)
-    //         }
-    //     }
-    //
-    //     val realWinnersCount = racingService.getWinners().size
-    //
-    //     assertNotEquals(realWinnersCount, expectedWinnersCount)
-    // }
+    @ParameterizedTest
+    @MethodSource("provideRounds")
+    fun `Round가 주어졌을 때, runAllRounds시, Round 횟수만큼 레이싱을 진행한다`(round: RoundDto) {
+        var actualRoundCount = 0
+        racingService.runAllRounds(round) {
+            ++actualRoundCount
+        }
+
+        assertEquals(round.count, actualRoundCount)
+    }
 
     companion object {
-        private const val ABSOLUTE_MOVE_CONDITION = 10
+        private const val ABSOLUTE_MOVE_PROBABILITY = 10
 
         @JvmStatic
-        fun provideCarsForHappyCase(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(
-                    listOf(
-                        Car("sooda"),
-                        Car("buna"),
-                        Car("sunny"),
-                    ),
-                    listOf(7, 6, 2),
-                    1
-                ),
-                Arguments.of(
-                    listOf(
-                        Car("sooda"),
-                        Car("buna"),
-                        Car("sunny"),
-                    ),
-                    listOf(7, 7, 7),
-                    3
-                ),
-                Arguments.of(
-                    listOf(
-                        Car("sooda"),
-                        Car("buna"),
-                        Car("sunny"),
-                    ),
-                    listOf(0, 0, 0),
-                    3
-                ),
-            )
-        }
-
-        @JvmStatic
-        fun provideCarsForExceptionCase(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(
-                    listOf(
-                        Car("sooda"),
-                        Car("buna"),
-                        Car("sunny"),
-                    ),
-                    listOf(7, 6, 2),
-                    2
-                ),
-                Arguments.of(
-                    listOf(
-                        Car("sooda"),
-                        Car("buna"),
-                        Car("sunny"),
-                    ),
-                    listOf(7, 2, 7),
-                    1
-                ),
-                Arguments.of(
-                    listOf(
-                        Car("sooda"),
-                        Car("buna"),
-                        Car("sunny"),
-                    ),
-                    listOf(0, 0, 0),
-                    0
-                ),
-                Arguments.of(
-                    listOf(
-                        Car("sooda"),
-                        Car("buna"),
-                        Car("sunny"),
-                    ),
-                    listOf(1, 2, 3),
-                    4
-                ),
-            )
-        }
+        fun provideRounds(): Stream<Arguments> = Stream.of(
+            Arguments.of(RoundDto(2)),
+            Arguments.of(RoundDto(5)),
+            Arguments.of(RoundDto(10)),
+        )
     }
 }
