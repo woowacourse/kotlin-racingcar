@@ -1,6 +1,6 @@
-package data
+package model
 
-import data.generator.NumberGenerator
+import model.generator.NumberGenerator
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test

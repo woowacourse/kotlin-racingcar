@@ -1,6 +1,6 @@
-package data.generator
+package model.generator
 
-import data.Car
+import model.Car
 
 class CarGenerator {
 

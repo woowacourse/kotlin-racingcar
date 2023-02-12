@@ -1,4 +1,4 @@
-package data
+package model
 
 enum class PathState(val state: String) {
     MOVE("-"),

@@ -1,4 +1,4 @@
-package data
+package model
 
 class Car(
     val name: String,

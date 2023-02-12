@@ -1,7 +1,7 @@
 package view
 
-import data.CarPath
-import data.PathState
+import model.CarPath
+import model.PathState
 
 object OutputView {
 

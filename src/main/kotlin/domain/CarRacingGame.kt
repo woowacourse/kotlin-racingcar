@@ -1,9 +1,9 @@
 package domain
 
-import data.Car
-import data.CarPath
-import data.PathState
-import data.generator.RacingNumberGenerator
+import model.Car
+import model.CarPath
+import model.PathState
+import model.generator.RacingNumberGenerator
 
 class CarRacingGame(
     private val racingNumberGenerator: RacingNumberGenerator = RacingNumberGenerator()
@@ -21,13 +21,4 @@ class CarRacingGame(
 
         return CarPath(car.name, path)
     }
-
-    fun decideWinner(cars: List<Car>): List<String> {
-        val maxScore = cars.getMaxScore()
-
-        return cars.filter { car -> car.position == maxScore }
-            .map { car -> car.name }
-    }
-
-    private fun List<Car>.getMaxScore(): Int = this.maxOf { it.position }
 }

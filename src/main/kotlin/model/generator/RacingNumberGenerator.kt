@@ -1,4 +1,4 @@
-package data.generator
+package model.generator
 
 class RacingNumberGenerator : NumberGenerator {
 
