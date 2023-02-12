@@ -14,27 +14,27 @@ class Controller(
 ) {
 
     fun run() {
-        val cars = setUpCars()
-        val raceTime = RaceTime(setUpRaceTime())
+        val cars = createCars()
+        val raceTime = RaceTime(getRaceTime())
         race(cars, raceTime)
         announceWinners(cars)
     }
 
-    private fun setUpCars(): List<Car> {
+    private fun createCars(): List<Car> {
         return runCatching {
-            CarsFactory(inputView.readCars()).makeCars(RandomNumberGenerator())
+            CarsFactory(inputView.readCarNames()).makeCars(RandomNumberGenerator())
         }.getOrElse { e ->
             outputView.printError(e.message ?: "")
-            setUpCars()
+            createCars()
         }
     }
 
-    private fun setUpRaceTime(): Int {
+    private fun getRaceTime(): Int {
         return runCatching {
             inputView.readRaceTime()
         }.getOrElse { e ->
             outputView.printError(e.message ?: "")
-            setUpRaceTime()
+            getRaceTime()
         }
     }
 

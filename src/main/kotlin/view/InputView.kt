@@ -1,7 +1,7 @@
 package view
 
 class InputView {
-    fun readCars(): List<String> {
+    fun readCarNames(): List<String> {
         println(GUIDE_CAR_NAME)
         return readlnOrNull()?.split(',') ?: listOf()
     }
