@@ -21,6 +21,13 @@ class CarNamesValidatorTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = ["pobi,woni,pobi"])
+    fun `자동차 이름에 중복이 있으면 에러가 발생한다`(input: String) {
+        val exception = assertThrows<IllegalArgumentException> { CarNamesValidator().validate(input) }
+        assertThat(exception.message).contains(CarNamesValidator.ERROR_CAR_UNIQUENESS)
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = ["Pobi,woni,jun", "pobi,woni ,jun", "pobi,woni, jun", "po bi,woni,jun", "pobi, "])
     fun `자동차 이름에 공백이 있거나 영문 소문자가 아니면 에러가 발생한다`(input: String) {
         val exception = assertThrows<IllegalArgumentException> { CarNamesValidator().validate(input) }
@@ -32,12 +39,5 @@ class CarNamesValidatorTest {
     fun `자동차 이름이 1글자 이상 5글자 이하가 아니면 에러가 발생한다`(input: String) {
         val exception = assertThrows<IllegalArgumentException> { CarNamesValidator().validate(input) }
         assertThat(exception.message).contains(CarNamesValidator.ERROR_NAME_LENGTH)
-    }
-
-    @ParameterizedTest
-    @ValueSource(strings = ["pobi,woni,pobi"])
-    fun `자동차 이름에 중복이 있으면 에러가 발생한다`(input: String) {
-        val exception = assertThrows<IllegalArgumentException> { CarNamesValidator().validate(input) }
-        assertThat(exception.message).contains(CarNamesValidator.ERROR_CAR_UNIQUENESS)
     }
 }

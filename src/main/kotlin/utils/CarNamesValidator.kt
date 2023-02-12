@@ -5,15 +5,19 @@ class CarNamesValidator : Validator {
         val names = input.split(',')
 
         verifyCarCount(names)
+        verifyCarUniqueness(names)
         names.map { name ->
             verifyName(name)
             verifyNameLength(name)
         }
-        verifyCarUniqueness(names)
     }
 
     private fun verifyCarCount(names: List<String>) {
         require(names.size in 2..20) { "$ERROR_CAR_COUNT\n잘못된 입력값 : ${names.joinToString(",")}" }
+    }
+
+    private fun verifyCarUniqueness(names: List<String>) {
+        require(names.size == names.distinct().size) { "$ERROR_CAR_UNIQUENESS\n잘못된 입력값 : ${names.joinToString(",")}" }
     }
 
     private fun verifyName(name: String) {
@@ -24,10 +28,6 @@ class CarNamesValidator : Validator {
 
     private fun verifyNameLength(name: String) {
         require(name.length in 1..5) { "$ERROR_NAME_LENGTH\n잘못된 입력값 : $name" }
-    }
-
-    private fun verifyCarUniqueness(names: List<String>) {
-        require(names.size == names.toSet().size) { "$ERROR_CAR_UNIQUENESS\n잘못된 입력값 : ${names.joinToString(",")}" }
     }
 
     companion object {

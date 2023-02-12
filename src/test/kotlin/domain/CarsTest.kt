@@ -3,6 +3,9 @@ package domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CarsTest {
     private lateinit var cars: Cars
@@ -18,6 +21,20 @@ class CarsTest {
     @BeforeEach
     fun setUp() {
         cars = Cars(generator, names)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", "pobi", "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u"])
+    fun `자동차 갯수가 2대 이상 20대 이하가 아니면 에러가 발생한다`(input: String) {
+        val exception = assertThrows<IllegalArgumentException> { Cars(generator, input.split(",")) }
+        assertThat(exception.message).contains(Cars.ERROR_CAR_COUNT)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["pobi,woni,pobi"])
+    fun `자동차 이름에 중복이 있으면 에러가 발생한다`(input: String) {
+        val exception = assertThrows<IllegalArgumentException> { Cars(generator, input.split(",")) }
+        assertThat(exception.message).contains(Cars.ERROR_CAR_UNIQUENESS)
     }
 
     @Test
