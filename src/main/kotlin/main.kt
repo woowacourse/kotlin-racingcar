@@ -1,45 +1,63 @@
+import common.ERROR_MESSAGE_FORMAT
 import domain.Car
-import domain.CarRacingGameManager
+import domain.GameCars
 import domain.RandomMovingStrategy
 import view.InputView
 import view.OutputView
 
+private lateinit var gameCars: GameCars
+private var advanceCount = 0
+
 fun main() {
-    val cars = askCarNames()
-
-    val advanceCount: Int = askAdvanceCount()
-
-    val gameManager = CarRacingGameManager(cars)
-
-    runGame(cars, advanceCount, gameManager)
-
-    printGameResult(gameManager)
+    setUpGameManager()
+    setUpAdvanceCount()
+    runGame()
+    printGameResult()
 }
 
-private fun askCarNames(): List<Car> {
+private fun setUpGameManager() {
     OutputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
-    val carNames: List<String> = InputView.readCarNames()
-    return carNames.map { Car(it, RandomMovingStrategy()) }
-}
 
-private fun askAdvanceCount(): Int {
-    OutputView.printMessage(ADVANCE_COUNT_REQUEST_MESSAGE)
-    return InputView.readAdvanceCount()
-}
-
-private fun runGame(cars: List<Car>, advanceCount: Int, gameManager: CarRacingGameManager) {
-    OutputView.printMessage(GAME_RESULT_HEADER)
-    repeat(advanceCount) {
-        gameManager.allCarsTryToMoveForward()
-        OutputView.printGameStatus(cars)
+    while (true) {
+        runCatching {
+            val carNames = InputView.readCarNames()
+            val cars = carNames.map { Car(it, RandomMovingStrategy()) }
+            gameCars = GameCars(cars)
+        }
+            .onSuccess { return }
+            .onFailure { println(it.message) }
     }
 }
 
-private fun printGameResult(gameManager: CarRacingGameManager) {
-    val winCars: List<Car> = gameManager.getWinCars()
+private fun setUpAdvanceCount() {
+    OutputView.printMessage(ADVANCE_COUNT_REQUEST_MESSAGE)
+
+    while (true) {
+        runCatching {
+            val count = InputView.readAdvanceCount()
+            require(count in 1..100) { ERROR_MESSAGE_FORMAT.format(ADVANCE_COUNT_ERROR) }
+            advanceCount = count
+        }
+            .onSuccess { return }
+            .onFailure { println(it.message) }
+    }
+}
+
+private fun runGame() {
+    OutputView.printMessage(GAME_RESULT_HEADER)
+
+    repeat(advanceCount) {
+        gameCars.advanceAllCars()
+        OutputView.printGameStatus(gameCars.cars)
+    }
+}
+
+private fun printGameResult() {
+    val winCars: List<Car> = gameCars.getMostAdvancedCars()
     OutputView.printGameResult(winCars)
 }
 
 private const val CAR_NAMES_REQUEST_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
 private const val ADVANCE_COUNT_REQUEST_MESSAGE = "시도할 횟수는 몇 회인가요?"
 private const val GAME_RESULT_HEADER = "실행 결과"
+private const val ADVANCE_COUNT_ERROR = "전진 횟수는 최소 1회에서 최대 100회 사이여야 합니다."
