@@ -14,6 +14,6 @@ class CarsTest {
     @Test
     fun `자동차 이름을 입력받아 자동차 이름을 저장한다`() {
         val cars = Cars(listOf("test1", "test2", "test3"))
-        assertEquals(listOf("test1", "test2", "test3"), cars.names)
+        assertEquals(listOf("test1", "test2", "test3"), cars.cars.map { it.name })
     }
 }
