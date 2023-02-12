@@ -14,7 +14,7 @@ internal class RaceManagerTest {
     fun `게임 결과가 정상적으로 반환된다`() {
         // given
         val raceManager = RaceManager(TestNumberGenerator(mutableListOf(1, 4, 9, 1, 4, 9)))
-        val cars = Cars(listOf("test1", "test2", "test3"))
+        val cars = Cars.create(listOf("test1", "test2", "test3"))
         // when
         val raceResult = raceManager.race(cars, 2)
         // then
@@ -33,8 +33,8 @@ internal class RaceManagerTest {
         val cars = Cars(
             listOf(
                 Car("test1", 0),
-                Car("test1", 2),
-                Car("test1", 2),
+                Car("test2", 2),
+                Car("test3", 2),
             ),
         )
         // when

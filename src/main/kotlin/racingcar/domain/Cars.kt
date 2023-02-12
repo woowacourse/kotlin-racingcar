@@ -2,11 +2,13 @@ package racingcar.racingcar.domain
 
 import racingcar.domain.Car
 
-class Cars(cars: List<Car>) {
-    var cars = cars
-        private set
+class Cars(private val cars: List<Car>) : List<Car> by cars {
     val maxLocation: Int
         get() = cars.maxOf { it.location }
 
-    constructor(names: List<String>) : this(names.map { Car(it) })
+    companion object {
+        fun create(carNames: List<String>): Cars {
+            return Cars(carNames.map { Car(it) })
+        }
+    }
 }

@@ -13,7 +13,7 @@ class GameController(
     private val output by lazy { OutputView() }
 
     fun runGame() {
-        val cars = Cars(input.inputCarNames())
+        val cars = Cars.create(input.inputCarNames())
         val racingCount = input.inputRacingCount()
         val raceResult = raceManager.race(cars, racingCount)
         output.printRaceResult(raceResult.toDto())

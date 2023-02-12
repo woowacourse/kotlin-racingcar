@@ -15,7 +15,7 @@ class RaceManager(
     }
 
     private fun Cars.move(numberGenerator: NumberGenerator): StepResult {
-        val racers = this.cars.map { car ->
+        val racers = this.map { car ->
             car.move(numberGenerator.generateNumber(Car.MIN_BOUNDARY, Car.MAX_BOUNDARY))
             RacerResult(car.name, car.location)
         }
@@ -23,7 +23,7 @@ class RaceManager(
     }
 
     fun getWinners(cars: Cars): List<String> {
-        return cars.cars
+        return cars
             .filter { car -> car.location == cars.maxLocation }
             .map { car -> car.name }
     }
