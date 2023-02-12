@@ -1,4 +1,4 @@
-package domaintest
+package domainTest.gameTest
 
 import domain.game.CarRacingGameReferee
 import org.assertj.core.api.Java6Assertions.assertThat

@@ -1,4 +1,4 @@
-package domaintest
+package domainTest.validatorTest
 
 import domain.validator.ValidateSuccessiveTokenizer
 import org.junit.jupiter.api.BeforeEach

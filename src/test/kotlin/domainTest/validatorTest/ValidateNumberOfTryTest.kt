@@ -1,4 +1,4 @@
-package domaintest
+package domainTest.validatorTest
 
 import domain.validator.ValidateNumberOfTry
 import org.junit.jupiter.api.BeforeEach

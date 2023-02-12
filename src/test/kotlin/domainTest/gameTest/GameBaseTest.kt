@@ -1,4 +1,4 @@
-package domaintest
+package domainTest.gameTest
 
 import domain.generator.CarGenerator
 import domain.generator.NumberGenerator
