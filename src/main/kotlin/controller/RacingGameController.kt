@@ -25,7 +25,7 @@ class RacingGameController(
     fun getCarNames(): Name {
         outputView.printCar()
         val input = inputView.inputName()
-        val carNames = kotlin.runCatching { checkCarNamesInput(input) }.getOrNull()
+        val carNames = runCatching { checkCarNamesInput(input) }.getOrNull()
         return carNames ?: getCarNames()
     }
 
@@ -49,7 +49,7 @@ class RacingGameController(
     fun getTryCount(): TryCount {
         outputView.printTryCount()
         val input = inputView.inputTryCount()
-        val tryCount = kotlin.runCatching { checkTryCountInput(input) }.getOrNull()
+        val tryCount = runCatching { checkTryCountInput(input) }.getOrNull()
         return tryCount ?: getTryCount()
     }
 
