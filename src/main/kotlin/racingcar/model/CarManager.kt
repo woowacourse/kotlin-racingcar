@@ -3,7 +3,6 @@ package racingcar.model
 import racingcar.entity.Car
 import racingcar.entity.Name
 import racingcar.misc.Util
-import racingcar.misc.Values
 
 class CarManager() {
     private lateinit var cars: MutableList<Car>
@@ -12,7 +11,7 @@ class CarManager() {
         for (name in names) {
             cars.add(Car(name))
         }
-        require(cars.size >= Values.MIN_CAR_COUNT) { "경주에는 자동차 2대 이상이 필요합니다." }
+        require(cars.size >= MIN_CAR_COUNT) { "경주에는 자동차 2대 이상이 필요합니다." }
     }
 
     fun determineWinner(): List<Car> {
@@ -27,13 +26,20 @@ class CarManager() {
     }
 
     fun step(index: Int, number: Int) {
-        require(number in Values.MIN_RANDOM_NUMBER..Values.MAX_RANDOM_NUMBER) { "생성된 임의 숫자는 0에서 9사이어야 합니다." }
-        if (number >= Values.WIN_NUMBER) {
+        require(number in MIN_RANDOM_NUMBER..MAX_RANDOM_NUMBER) { "생성된 임의 숫자는 0에서 9사이어야 합니다." }
+        if (number >= WIN_NUMBER) {
             cars[index].forward()
         }
     }
 
     fun makeAttemptLog(): String {
         return cars.joinToString("\n") { it.toString() + " : " + "-".repeat(it.position.toInt()) }
+    }
+
+    companion object {
+        const val WIN_NUMBER = 4
+        const val MIN_RANDOM_NUMBER = 0
+        const val MAX_RANDOM_NUMBER = 9
+        const val MIN_CAR_COUNT = 2
     }
 }
