@@ -13,8 +13,7 @@ class RacingCarController {
             cars.add(Car(it))
         }
         val maxMoveCount = InputView.inputCount()
-        val racingGame = RacingGame()
-        racingGame.initRacing(cars)
+        val racingGame = RacingGame(cars)
         startRacing(maxMoveCount, racingGame)
     }
 

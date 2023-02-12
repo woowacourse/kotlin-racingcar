@@ -3,15 +3,9 @@ package racing.model
 import racing.util.NumberGenerator
 import racing.util.RandomNumberGenerator
 
-class RacingGame {
-    private val cars = mutableListOf<Car>()
+class RacingGame(private val cars: List<Car>) {
 
     fun getCars() = cars.toList()
-
-    fun initRacing(cars: List<Car>) {
-        this.cars.clear()
-        this.cars.addAll(cars)
-    }
 
     fun race(maxMoveCount: Int, randomGenerator: NumberGenerator = RandomNumberGenerator()): List<List<Int>> {
         val result = mutableListOf<List<Int>>()
