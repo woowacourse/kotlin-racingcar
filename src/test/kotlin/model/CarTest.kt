@@ -24,14 +24,14 @@ class CarTest {
         assertEquals(CAR_NAME_BLANK_ERROR_MSG, exception.message)
     }
 
-    private fun setNumberListener(n: NumberGenerator): Int {
+    private fun setNumber(n: NumberGenerator): Int {
         return n.generate()
     }
 
     @Test
     fun `정지 테스트 `() {
         val car = Car("우기")
-        val condition = setNumberListener(object : NumberGenerator {
+        val condition = setNumber(object : NumberGenerator {
             override fun generate(): Int {
                 return STOP_NUMBER
             }
@@ -42,7 +42,7 @@ class CarTest {
     @Test
     fun `전진 테스트 `() {
         val car = Car("핑구")
-        val condition = setNumberListener(object : NumberGenerator {
+        val condition = setNumber(object : NumberGenerator {
             override fun generate(): Int {
                 return MOVE_NUMBER
             }
