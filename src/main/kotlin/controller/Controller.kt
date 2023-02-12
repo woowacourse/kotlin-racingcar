@@ -2,6 +2,7 @@ package controller
 
 import domain.Car
 import domain.RandomNumberGenerator
+import domain.Referee
 import view.InputView
 import view.OutputView
 
@@ -59,18 +60,8 @@ class Controller(
     }
 
     private fun finishGame(cars: List<Car>) {
-        val maxMoveCount = findMaxMoveCount(cars)
-        val winners = findWinnersBy(cars, maxMoveCount)
+        val referee = Referee()
+        val winners = referee.judgeWinners(cars)
         outputView.printWinners(winners)
-    }
-
-    private fun findMaxMoveCount(cars: List<Car>) = cars.maxOf { it.moveCount }
-
-    private fun findWinnersBy(cars: List<Car>, maxCount: Int): List<String> {
-        return cars.filter { car ->
-            car.moveCount == maxCount
-        }.map { winner ->
-            winner.name
-        }
     }
 }
