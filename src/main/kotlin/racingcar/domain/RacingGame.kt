@@ -26,9 +26,10 @@ class RacingGame(
 
     fun getWinner(cars: List<RacingCar>): List<String> {
         val sortedCars = cars.sortedByDescending { it.movingState }
-        val maxState = sortedCars[0].movingState
+        val maxState = sortedCars.maxOf { it.movingState }
 
-        return sortedCars.filter { it.movingState == maxState }.map { it.name }
+        return sortedCars.filter { car -> car.movingState == maxState }
+            .map { car -> car.name }
     }
 
     fun playRound(cars: MutableList<RacingCar>) {
