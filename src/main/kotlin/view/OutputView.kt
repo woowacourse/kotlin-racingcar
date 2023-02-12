@@ -4,10 +4,6 @@ import dto.CarMetadataDTO
 import dto.WinnersDTO
 
 class OutputView {
-    fun printError(message: String) {
-        println("$ERROR_HEADER $message")
-    }
-
     fun printExecutionResult() {
         println(EXECUTION_RESULT)
     }
@@ -26,7 +22,6 @@ class OutputView {
     }
 
     companion object {
-        const val ERROR_HEADER = "[ERROR]"
         const val EXECUTION_RESULT = "실행 결과"
         const val FINAL_WINNER = "최종 우승자:"
     }

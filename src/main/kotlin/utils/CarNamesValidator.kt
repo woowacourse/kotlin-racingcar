@@ -1,7 +1,7 @@
 package utils
 
-class CarNamesValidator : Validator<List<String>> {
-    override fun validate(input: String): List<String> {
+class CarNamesValidator : Validator {
+    override fun validate(input: String) {
         val names = input.split(',')
 
         verifyCarCount(names)
@@ -10,8 +10,6 @@ class CarNamesValidator : Validator<List<String>> {
             verifyNameLength(name)
         }
         verifyCarUniqueness(names)
-
-        return names
     }
 
     private fun verifyCarCount(names: List<String>) {

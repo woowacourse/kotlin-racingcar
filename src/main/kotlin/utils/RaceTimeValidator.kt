@@ -1,10 +1,9 @@
 package utils
 
-class RaceTimeValidator : Validator<Int> {
-    override fun validate(input: String): Int {
+class RaceTimeValidator : Validator {
+    override fun validate(input: String) {
         val time = verifyInteger(input)
         verifyRange(time)
-        return time
     }
 
     private fun verifyInteger(input: String): Int {
