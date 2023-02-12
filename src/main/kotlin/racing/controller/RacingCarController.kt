@@ -9,7 +9,7 @@ class RacingCarController {
 
     fun initRace() {
         val cars = mutableListOf<Car>()
-        InputView.inputCarNames().map {
+        InputView.inputCarNames().forEach {
             cars.add(Car(it))
         }
         val maxMoveCount = InputView.inputCount()
