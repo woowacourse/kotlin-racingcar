@@ -7,8 +7,6 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class World {
-    private val outputView = OutputView()
-    private val inputView = InputView()
     private val racingManager = RacingManager()
 
     init {
@@ -20,25 +18,25 @@ class World {
 
     private fun initCars() {
         Util.tryAndRerun {
-            outputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
-            racingManager.initCars(inputView.carNames().map { Name(it) })
+            OutputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
+            racingManager.initCars(InputView.carNames().map { Name(it) })
         }
     }
 
     private fun initAttemptCount() {
         Util.tryAndRerun {
-            outputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
-            racingManager.setAttemptCount(inputView.attemptCount())
+            OutputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
+            racingManager.setAttemptCount(InputView.attemptCount())
         }
     }
 
     private fun run() {
-        outputView.printLnMessage(OutputView.MSG_STEP_RESULT)
-        outputView.stepResult(racingManager.run())
+        OutputView.printLnMessage(OutputView.MSG_STEP_RESULT)
+        OutputView.stepResult(racingManager.run())
     }
 
     private fun quit() {
-        outputView.printMessage(OutputView.MSG_WINNER)
-        outputView.winner(racingManager.determineWinner())
+        OutputView.printMessage(OutputView.MSG_WINNER)
+        OutputView.winner(racingManager.determineWinner())
     }
 }
