@@ -64,7 +64,7 @@ internal class GameCarsTest {
 
         gameCars.advanceAllCars()
 
-        assertThat(cars.map { it.advanceCount }).isEqualTo(listOf(1, 1, 1))
+        assertThat(cars.map { it.advancedCount }).isEqualTo(listOf(1, 1, 1))
     }
 
     private fun getCars(): List<Car> = listOf(

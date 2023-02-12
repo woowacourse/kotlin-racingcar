@@ -8,11 +8,11 @@ class Car(val name: String, private val movingStrategy: MovingStrategy) {
         require(name.matches(Regex("[a-zA-Z가-힣]{1,5}"))) { ERROR_MESSAGE_FORMAT.format(CAR_NAME_REGEX_ERROR) }
     }
 
-    var advanceCount: Int = 0
+    var advancedCount: Int = 0
         private set
 
     fun moveAccordingToStrategy() {
-        if (movingStrategy.isMovable()) advanceCount++
+        if (movingStrategy.isMovable()) advancedCount++
     }
 
     override fun equals(other: Any?): Boolean = if (other is Car) this.name == other.name else false

@@ -12,8 +12,8 @@ class GameCars(val cars: List<Car>) {
     fun advanceAllCars() = cars.forEach { it.moveAccordingToStrategy() }
 
     fun getMostAdvancedCars(): List<Car> {
-        val maxAdvancedCount: Int = cars.maxOf { it.advanceCount }
-        return cars.filter { it.advanceCount == maxAdvancedCount }
+        val maxAdvancedCount: Int = cars.maxOf { it.advancedCount }
+        return cars.filter { it.advancedCount == maxAdvancedCount }
     }
 }
 

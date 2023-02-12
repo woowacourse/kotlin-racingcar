@@ -16,6 +16,6 @@ object OutputView {
         println(GAME_RESULT_FORMAT.format(winCars.joinToString(", ") { it.name }))
 }
 
-private fun Car.getAdvancedStatusBar() = "-".repeat(this.advanceCount)
+private fun Car.getAdvancedStatusBar() = "-".repeat(this.advancedCount)
 
 private const val GAME_RESULT_FORMAT = "최종 우승자: %s"
