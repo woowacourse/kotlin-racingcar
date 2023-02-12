@@ -4,6 +4,7 @@ import model.Car
 
 object OutputView {
 
+    fun printMessage(message: String) = println(message)
     fun printCar() = println(INPUT_CAR_NAMES_MESSAGE)
     fun printTryCount() = println(INPUT_TRY_COUNT_MESSAGE)
     fun printRunResultMessage() = println("\n$RUN_RESULT_MESSAGE")
