@@ -14,7 +14,7 @@ class Car(
 
     private fun validateCarName() {
         require(name.length in NAME_LOWER_LENGTH..NAME_UPPER_LENGTH) { ERROR_NAME_LENGTH }
-        name.forEach { require(it.code in NAME_LOWER_LETTER..NAME_UPPER_LETTER) { ERROR_NAME } }
+        name.forEach { require(it.isLowerCase()) { ERROR_NAME } }
     }
 
     fun race() {
@@ -35,9 +35,6 @@ class Car(
     companion object {
         const val NAME_LOWER_LENGTH = 1
         const val NAME_UPPER_LENGTH = 5
-
-        const val NAME_LOWER_LETTER = 97
-        const val NAME_UPPER_LETTER = 122
 
         const val RANGE_LOWER_INCLUSIVE = 4
 

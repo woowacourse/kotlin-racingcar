@@ -7,7 +7,7 @@ class RaceTime(private var time: Int) {
     }
 
     private fun validateRange() {
-        require(time in 1..10) { ERROR_NOT_IN_RANGE }
+        require(time in LOWER_RACE_TIME..UPPER_RACE_TIME) { ERROR_NOT_IN_RANGE }
     }
 
     fun reduceTime(): Boolean {
@@ -19,6 +19,9 @@ class RaceTime(private var time: Int) {
     }
 
     companion object {
+        const val LOWER_RACE_TIME = 1
+        const val UPPER_RACE_TIME = 10
+
         const val ERROR_NOT_IN_RANGE = "시도 횟수는 1이상 10 이하여야 합니다."
     }
 }
