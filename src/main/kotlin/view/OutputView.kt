@@ -9,11 +9,11 @@ class OutputView {
     }
 
     fun printRaceResult(carMetadataDTO: CarMetadataDTO) {
-        println("${carMetadataDTO.getName()} : ${"-".repeat(carMetadataDTO.getDistance())}")
+        println("${carMetadataDTO.name} : ${"-".repeat(carMetadataDTO.distance)}")
     }
 
     fun printWinners(winnersDTO: WinnersDTO) {
-        val winners = winnersDTO.getWinners()
+        val winners = winnersDTO.winners
         println("$FINAL_WINNER ${winners.joinToString(", ")}")
     }
 

@@ -26,12 +26,12 @@ class Controller(
     }
 
     private fun setUpCars() {
-        val carNames = inputView.readCarNames().getCarNames()
+        val carNames = inputView.readCarNames().names
         cars = Cars(generator, carNames)
     }
 
     private fun setUpRaceTime() {
-        time = inputView.readRaceTime().getRaceTime()
+        time = inputView.readRaceTime().time
     }
 
     private fun race() {
