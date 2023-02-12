@@ -6,7 +6,7 @@ import racingcar.constant.ERROR_WRONG_NUMBER
 import racingcar.domain.Validator
 import kotlin.reflect.KFunction1
 
-class InputView {
+object InputView {
     fun getCarsName(printInfo: () -> Unit): List<String> {
         return runCatching {
             printInfo()

@@ -6,8 +6,6 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingGame(
-    private val inputView: InputView,
-    private val outputView: OutputView,
     private val generator: NumberGenerator,
     private val referee: Referee,
 ) {
@@ -17,19 +15,19 @@ class RacingGame(
         val cars = mutableListOf<RacingCar>()
         names.forEach { cars.add(RacingCar(it)) }
 
-        outputView.printResult()
+        OutputView.printResult()
         for (i in 0 until roundCount) {
             playRound(cars)
         }
 
-        outputView.printWinner(referee.getWinner(cars))
+        OutputView.printWinner(referee.getWinner(cars))
     }
 
     fun playRound(cars: MutableList<RacingCar>) {
         cars.forEach {
             play(it)
         }
-        outputView.printEachRound(cars)
+        OutputView.printEachRound(cars)
     }
 
     fun play(car: RacingCar) {
@@ -39,11 +37,11 @@ class RacingGame(
     }
 
     fun getCarsName(): List<String> {
-        return inputView.getCarsName { outputView.printGettingCarsName() }
+        return InputView.getCarsName { OutputView.printGettingCarsName() }
     }
 
     fun getRoundCount(): Int {
-        return inputView.getRoundCount { outputView.printGettingRoundCount() }
+        return InputView.getRoundCount { OutputView.printGettingRoundCount() }
     }
 
     fun checkGoingForward(randomNumber: Int): Boolean = randomNumber >= STANDARD_OF_MOVING
