@@ -5,7 +5,7 @@ import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class RefereeTest : BaseTest() {
+class RefereeTest : GameBaseTest() {
     lateinit var carRacingGameReferee: CarRacingGameReferee
 
     @BeforeEach

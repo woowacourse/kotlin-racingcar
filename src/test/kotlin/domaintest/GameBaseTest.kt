@@ -3,7 +3,7 @@ package domaintest
 import domain.generator.CarGenerator
 import domain.generator.NumberGenerator
 
-open class BaseTest {
+open class GameBaseTest {
 
     protected val carGenerator = CarGenerator()
 

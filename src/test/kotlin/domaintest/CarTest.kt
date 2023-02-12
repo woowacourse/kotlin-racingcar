@@ -11,7 +11,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import java.util.stream.Stream
 
 @TestInstance(TestInstance.Lifecycle.PER_CLASS)
-class CarTest : BaseTest() {
+class CarTest : GameBaseTest() {
 
     @ParameterizedTest
     @MethodSource("generateInValidCarName")
