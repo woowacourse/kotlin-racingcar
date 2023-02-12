@@ -56,10 +56,7 @@ internal class CarsTest {
     @ValueSource(ints = [4, 5, 6, 7, 8, 9, 10])
     fun `이동 확률이 4이상 10이하일 때, moveAllRandomly시, 모든 자동차의 position이 1씩 증가한다`(condition: Int) {
         `when`(
-            movementProbabilityGenerator.generate(
-                START_RANDOM_MOVEMENT_PROBABILITY,
-                END_RANDOM_MOVEMENT_PROBABILITY
-            )
+            movementProbabilityGenerator.generate()
         )
             .thenReturn(condition)
 
@@ -74,10 +71,7 @@ internal class CarsTest {
     @ValueSource(ints = [-1, 0, 1, 2, 3])
     fun `이동 확률이 4미만일 때, moveAllRandomly시, 모든 자동차의 position이 증가하지 않는다`(condition: Int) {
         `when`(
-            movementProbabilityGenerator.generate(
-                START_RANDOM_MOVEMENT_PROBABILITY,
-                END_RANDOM_MOVEMENT_PROBABILITY
-            )
+            movementProbabilityGenerator.generate()
         )
             .thenReturn(condition)
 
@@ -97,8 +91,6 @@ internal class CarsTest {
     }
 
     companion object {
-        private const val START_RANDOM_MOVEMENT_PROBABILITY = 1
-        private const val END_RANDOM_MOVEMENT_PROBABILITY = 10
         private const val ONE_STEP = 1
 
         @JvmStatic
