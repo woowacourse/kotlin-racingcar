@@ -59,6 +59,12 @@
 - 랜덤 숫자 생성해서 전진 여부 판단
 - 전진한다.
 
+### Referee
+
+- 우승자를 판단한다.
+    - moveCount 최댓값(maxMoveCount)을 구한다.
+    - moveCount가 maxMoveCount와 일치하는 자동차 이름을 구한다.
+
 ### CarNumberGenerator
 
 숫자를 생성하는 인터페이스
