@@ -13,6 +13,10 @@ object RacingGame {
         _cars.addAll(carNames.map { name: String -> Car(name) })
     }
 
+    fun removeAllCars(){
+        _cars.clear()
+    }
+
     fun moveCars() {
         _cars.forEach { car: Car -> car.move(createRandomNumber()) }
     }
