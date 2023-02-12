@@ -10,8 +10,8 @@ object NameValidation {
     }
 
     fun checkNameRange(carName: String) {
-        if (carName.isEmpty() || carName.length > MAXIMUM_CAR_NAME_LENGTH) {
-            throw IllegalArgumentException(NAME_RANGE_ERROR_MASSAGE)
+        require(carName.isNotEmpty() && carName.length <= MAXIMUM_CAR_NAME_LENGTH) {
+            NAME_RANGE_ERROR_MASSAGE
         }
     }
 
@@ -20,8 +20,9 @@ object NameValidation {
     }
 
     fun checkCarNameEnglishNumber(carName: String) {
-        if (!Regex("^[a-zA-Z0-9]*\$").matches(carName))
-            throw IllegalArgumentException(NAME_IS_ONLY_ENGLISH_AND_NUMBER)
+        require(Regex("^[a-zA-Z0-9]*\$").matches(carName)) {
+            NAME_IS_ONLY_ENGLISH_AND_NUMBER
+        }
     }
 
     private const val MAXIMUM_CAR_NAME_LENGTH = 5
