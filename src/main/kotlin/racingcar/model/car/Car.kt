@@ -20,7 +20,7 @@ open class Car(name: String, _position: Int = 0) {
 }
 
 class CarDto(_carName: String, val position: Int = 0) {
-    var carName: CarName = CarName(_carName)
+    var carName: CarName = CarName(_carName.trim())
         private set
 
     fun toModel(): Car = Car(carName.name, position)
