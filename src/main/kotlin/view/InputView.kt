@@ -15,7 +15,7 @@ object InputView {
     fun readAdvanceCount(): Int {
         while (true) {
             val count = readln()
-            kotlin.runCatching { InputValidator.validateAdvanceCount(count)}
+            kotlin.runCatching { InputValidator.validateAdvanceCount(count) }
                 .onSuccess { return count.toInt() }
                 .onFailure { println(it.message) }
         }
