@@ -23,7 +23,7 @@ class InputView {
         return names
     }
 
-    fun checkNameLength(value: List<String>) {
+    private fun checkNameLength(value: List<String>) {
         value.forEach {
             require(it.isNotBlank()) { ERROR_NULL_OR_BLANK }
             require(InputValueValidator.isNameLengthInRange(it)) { ERROR_NAME_LENGTH }

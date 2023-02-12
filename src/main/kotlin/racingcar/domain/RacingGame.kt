@@ -28,11 +28,12 @@ class RacingGame(
         val sortedCars = cars.sortedByDescending { it.movingState }
         val maxState = sortedCars.maxOf { it.movingState }
 
-        return sortedCars.filter { car -> car.movingState == maxState }
+        return sortedCars
+            .filter { car -> car.movingState == maxState }
             .map { car -> car.name }
     }
 
-    fun playRound(cars: MutableList<RacingCar>) {
+    private fun playRound(cars: MutableList<RacingCar>) {
         cars.forEach {
             play(it)
         }
@@ -45,11 +46,11 @@ class RacingGame(
         }
     }
 
-    fun getCarsName(): List<String> {
+    private fun getCarsName(): List<String> {
         return inputView.getCarsName { outputView.printGettingCarsName() }
     }
 
-    fun getRoundCount(): Int {
+    private fun getRoundCount(): Int {
         return inputView.getRoundCount { outputView.printGettingRoundCount() }
     }
 
