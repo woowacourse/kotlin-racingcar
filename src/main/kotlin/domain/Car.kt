@@ -14,6 +14,7 @@ class Car(val name: String, private val movingStrategy: MovingStrategy) {
     }
 
     override fun equals(other: Any?): Boolean = if (other is Car) this.name == other.name else false
+    override fun hashCode(): Int = name.hashCode()
 }
 
 private const val ERROR_MESSAGE_FORMAT = "[ERROR] %s"
