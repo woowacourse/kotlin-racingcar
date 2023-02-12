@@ -18,7 +18,7 @@ class RacingGameController(
         val carNames = getCarNames().name
         val carsInfo = getCarsInfo(carNames)
         val tryCount = getTryCount().tryCount.toInt()
-        playWholeRound(tryCount, carsInfo)
+        printRoundResult(playWholeRound(tryCount, carsInfo))
         printWinner(gerWinner(carsInfo))
     }
 
@@ -72,11 +72,14 @@ class RacingGameController(
 
     fun printRoundResult(roundResultOutput: String) = outputView.printRoundResult(roundResultOutput)
 
-    fun playWholeRound(tryCount: Int, carsInfo: List<Car>) {
+    fun playWholeRound(tryCount: Int, carsInfo: List<Car>): String {
         outputView.printRunResultMessage()
+        var roundResult = ""
         repeat(tryCount) {
-            printRoundResult(playRound(carsInfo))
+            roundResult += playRound(carsInfo)
+            roundResult += "\n"
         }
+        return roundResult
     }
 
     fun gerWinner(carsInfo: List<Car>): List<String> {
