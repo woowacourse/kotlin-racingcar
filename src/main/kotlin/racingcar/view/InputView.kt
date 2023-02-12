@@ -1,17 +1,18 @@
 package racingcar.view
 
+import racingcar.constant.ERROR_INPUT_HANDLER
 import racingcar.constant.ERROR_NAME_LENGTH
 import racingcar.constant.ERROR_WRONG_NUMBER
 import racingcar.domain.Validator
+import kotlin.reflect.KFunction1
 
 class InputView {
     fun getCarsName(printInfo: () -> Unit): List<String> {
-        return try {
+        return runCatching {
             printInfo()
             getVerifiedCarsName()
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
-            getCarsName(printInfo)
+        }.getOrElse { error ->
+            inputErrorHandler(error, ::getCarsName, printInfo) as List<String>
         }
     }
 
@@ -36,12 +37,11 @@ class InputView {
     }
 
     fun getRoundCount(printInfo: () -> Unit): Int {
-        return try {
+        return runCatching {
             printInfo()
             getVerifiedRoundCount()
-        } catch (e: IllegalArgumentException) {
-            println(e.message)
-            getRoundCount(printInfo)
+        }.getOrElse { error ->
+            inputErrorHandler(error, ::getRoundCount, printInfo) as Int
         }
     }
 
@@ -55,5 +55,25 @@ class InputView {
         }
 
         return input.toInt()
+    }
+
+    private fun inputErrorHandler(
+        error: Throwable,
+        repeatFunction: KFunction1<() -> Unit, Any>,
+        printInfo: () -> Unit,
+    ): Any {
+        return when (error) {
+            is IllegalArgumentException -> inputIllegalArgumentExceptionHandler(error, repeatFunction, printInfo)
+            else -> throw IllegalStateException(ERROR_INPUT_HANDLER)
+        }
+    }
+
+    private fun inputIllegalArgumentExceptionHandler(
+        error: Throwable,
+        repeatFunction: KFunction1<() -> Unit, Any>,
+        printInfo: () -> Unit,
+    ): Any {
+        println(error.message)
+        return repeatFunction(printInfo)
     }
 }

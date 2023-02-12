@@ -9,7 +9,7 @@ class RacingGame(
     private val inputView: InputView,
     private val outputView: OutputView,
     private val generator: NumberGenerator,
-    private val referee: Referee
+    private val referee: Referee,
 ) {
     fun runGame() {
         val names = getCarsName()
