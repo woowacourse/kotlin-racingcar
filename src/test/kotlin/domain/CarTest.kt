@@ -37,6 +37,16 @@ internal class CarTest {
         override fun isMovable(): Boolean = true
     }
 
+    @Test
+    fun `equals 메소드를 실행하면 비교 대상이 Car 클래스이고 같은 이름을 가지고 있다면 참을 반환한다`() {
+        val car1 = Car("pobi", RandomMovingStrategy())
+        val car2 = Car("pobi", OnlyAdvanceMovingStrategy())
+
+        val result = car1.equals(car2)
+
+        assertThat(result).isTrue
+    }
+
     companion object {
         private const val ERROR_MESSAGE = "[ERROR]"
     }
