@@ -24,7 +24,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["pobi", "woni", "jun"])
-    fun `자동차 이름에 오류가 없으면 에러가 발생하지 않는다`(input: String) {
+    fun `자동차 이름은 1글자 이상 5글자 이하의 영문 소문자로 되어 있다`(input: String) {
         Assertions.assertDoesNotThrow { Car(numberGenerator, input, 0) }
     }
 

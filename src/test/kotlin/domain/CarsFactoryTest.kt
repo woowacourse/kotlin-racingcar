@@ -8,7 +8,7 @@ import org.junit.jupiter.api.assertThrows
 class CarsFactoryTest {
 
     @Test
-    fun `자동차 공장에 문제가 없다면 오류가 발생하지 않는다`() {
+    fun `자동차 개수가 1 이상 20대 이하이고 중복이 없다면 에러가 발생하지 않는다`() {
         val names = listOf("pobi", "woni", "jun")
         assertDoesNotThrow { CarsFactory(names) }
     }
