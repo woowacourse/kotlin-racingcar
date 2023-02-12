@@ -14,18 +14,24 @@ class GameController(
     private var cars: List<Car> = emptyList()
     private var tryCount: Int = 0
 
-    fun standByPhase() {
+    fun runGame() {
+        standByPhase()
+        playingPhase()
+        endPhase()
+    }
+
+    private fun standByPhase() {
         val driver = Driver(RandomNumberGenerator())
         cars = getValidCar(driver)
         tryCount = getValidTryCount()
     }
 
-    fun playingPhase() {
+    private fun playingPhase() {
         outputView.printResultMessage()
         playRace()
     }
 
-    fun endPhase() {
+    private fun endPhase() {
         val winnersResult = Referee.judgeWinner(cars)
         outputView.printWinner(winnersResult)
     }
