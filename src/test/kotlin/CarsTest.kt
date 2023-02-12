@@ -19,6 +19,13 @@ class CarsTest {
     }
 
     @Test
+    fun `입력된 자동차의 수가 2대 이상 20대 이하가 아닌 경우 예외 테스트`() {
+        assertThrows<IllegalArgumentException> {
+            Cars.mappingCars("pobi", RandomNumberGenerator())
+        }
+    }
+
+    @Test
     fun `자동차 이름들 ','로 구분되어 생성되었는지 확인`() {
         val mappingCars = Cars.mappingCars("pobi,woni,gugu", RandomNumberGenerator())
         assertThat(mappingCars.cars[0].name).isEqualTo(inputCars[0].name)
