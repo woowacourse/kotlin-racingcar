@@ -7,8 +7,7 @@ class Car(val name: String) {
         private set
 
     init {
-        require(name.length <= 5) { "$PREFIX 자동차 이름은 5글자까지 가능합니다." }
-        require(name.isNotEmpty()) { "$PREFIX 자동차 이름은 빈값이 될 수 없습니다." }
+        require(name.length <= MAX_CAR_NAME_LENGTH) { "$PREFIX $name 자동차 이름은 ${MAX_CAR_NAME_LENGTH}글자까지 가능합니다." }
     }
 
     fun move(randomNumber: Int) {
@@ -21,5 +20,6 @@ class Car(val name: String) {
 
     companion object {
         private const val CAN_MOVE_MINIMUM = 4
+        private const val MAX_CAR_NAME_LENGTH = 5
     }
 }
