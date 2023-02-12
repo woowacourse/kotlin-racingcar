@@ -8,10 +8,9 @@ object RacingGame {
     val cars: List<Car>
         get() = _cars
 
-    fun getWinnerNames(): List<String> {
-        val maxPosition: Int = getMaxPosition()
-        val winners: List<Car> = cars.filter { car: Car -> car.position == maxPosition }
-        return winners.map { car: Car -> car.name }
+
+    fun registerCars(carNames: List<String>) {
+        _cars.addAll(carNames.map { name: String -> Car(name) })
     }
 
     fun moveCars() {
