@@ -6,14 +6,14 @@ import racingcar.racingcar.domain.raceresult.StepResultDto
 class OutputView {
     fun printRaceResult(raceResultDto: RaceResultDto) {
         println(RESULT_PREFIX)
-        raceResultDto.result.forEach { locations ->
-            printCarsState(raceResultDto.names, locations)
+        raceResultDto.result.forEach { stepResultDto ->
+            printCarsState(stepResultDto)
         }
     }
 
-    private fun printCarsState(names: List<String>, stepResultDto: StepResultDto) {
-        stepResultDto.locations.forEachIndexed { i, locations ->
-            printCarState(names[i], locations)
+    private fun printCarsState(stepResultDto: StepResultDto) {
+        stepResultDto.racers.forEach { racerResultDto ->
+            printCarState(racerResultDto.name, racerResultDto.location)
         }
         println()
     }

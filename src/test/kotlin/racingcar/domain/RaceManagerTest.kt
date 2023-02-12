@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.Test
 import racingcar.racingcar.domain.Cars
 import racingcar.racingcar.domain.numbergenerator.NumberGenerator
-import racingcar.racingcar.domain.raceresult.StepResult
+import racingcar.racingcar.domain.raceresult.RacerResult
 
 internal class RaceManagerTest {
 
@@ -14,7 +14,12 @@ internal class RaceManagerTest {
         val raceManager = RaceManager(TestNumberGenerator(mutableListOf(1, 4, 9, 1, 4, 9)))
         val cars = Cars(listOf("test1", "test2", "test3"))
         val raceResult = raceManager.race(cars, 2)
-        assertEquals(listOf(StepResult(listOf(0, 1, 1)), StepResult(listOf(0, 2, 2))), raceResult.result)
+        assertEquals(raceResult.result[0].racers[0], RacerResult("test1", 0))
+        assertEquals(raceResult.result[0].racers[1], RacerResult("test2", 1))
+        assertEquals(raceResult.result[0].racers[2], RacerResult("test3", 1))
+        assertEquals(raceResult.result[1].racers[0], RacerResult("test1", 0))
+        assertEquals(raceResult.result[1].racers[1], RacerResult("test2", 2))
+        assertEquals(raceResult.result[1].racers[2], RacerResult("test3", 2))
     }
 
     @Test
