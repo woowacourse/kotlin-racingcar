@@ -15,7 +15,7 @@ class CarRacingGameController(
 ) {
 
     private val carRacingGameDataSource: CarRacingGameDataSource by lazy {
-        initCarRacingGameDataSource()
+        CarRacingGameDataSource(initCars(), initNumberOfTry())
     }
 
     fun play() {
@@ -35,13 +35,6 @@ class CarRacingGameController(
 
     private fun initNumberOfTry(): Int =
         validateUseCases.validateNumberOfTry(InputView.inputNumberOfTry())
-
-    private fun initCarRacingGameDataSource(): CarRacingGameDataSource {
-        val cars = initCars()
-        val numberOfTry = initNumberOfTry()
-
-        return CarRacingGameDataSource(cars, numberOfTry)
-    }
 
     private fun start(cars: List<Car>, numberOfTry: Int) {
         repeat(numberOfTry) { count ->
