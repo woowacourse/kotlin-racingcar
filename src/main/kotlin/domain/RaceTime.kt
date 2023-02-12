@@ -6,16 +6,16 @@ class RaceTime(private var time: Int) {
         validateRange()
     }
 
+    private fun validateRange() {
+        require(time in 1..10) { ERROR_NOT_IN_RANGE }
+    }
+
     fun reduceTime(): Boolean {
         if (time <= 0) {
             return false
         }
         time--
         return true
-    }
-
-    private fun validateRange() {
-        require(time in 1..10) { ERROR_NOT_IN_RANGE }
     }
 
     companion object {

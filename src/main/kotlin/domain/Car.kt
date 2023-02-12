@@ -12,6 +12,11 @@ class Car(
         validateCarName()
     }
 
+    private fun validateCarName() {
+        require(name.length in NAME_LOWER_LENGTH..NAME_UPPER_LENGTH) { ERROR_NAME_LENGTH }
+        name.forEach { require(it.code in NAME_LOWER_LETTER..NAME_UPPER_LETTER) { ERROR_NAME } }
+    }
+
     fun race() {
         val number = generator.generate()
         if (checkGo(number)) go()
@@ -25,11 +30,6 @@ class Car(
 
     private fun go() {
         distance++
-    }
-
-    private fun validateCarName() {
-        require(name.length in NAME_LOWER_LENGTH..NAME_UPPER_LENGTH) { ERROR_NAME_LENGTH }
-        name.forEach { require(it.code in NAME_LOWER_LETTER..NAME_UPPER_LETTER) { ERROR_NAME } }
     }
 
     companion object {

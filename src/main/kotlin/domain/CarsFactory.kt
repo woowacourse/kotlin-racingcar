@@ -7,16 +7,16 @@ class CarsFactory(private val names: List<String>) {
         validateCarUniqueness()
     }
 
-    fun makeCars(numberGenerator: RandomNumberGenerator): List<Car> {
-        return names.map { name -> Car(numberGenerator, name) }
-    }
-
     private fun validateCarCount() {
         require(names.size in 2..20) { ERROR_CAR_COUNT }
     }
 
     private fun validateCarUniqueness() {
         require(names.size == names.toSet().size) { ERROR_CAR_UNIQUENESS }
+    }
+
+    fun makeCars(numberGenerator: RandomNumberGenerator): List<Car> {
+        return names.map { name -> Car(numberGenerator, name) }
     }
 
     companion object {
