@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.model.car
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
@@ -8,14 +8,13 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import org.mockito.Mockito.spy
-import racingcar.model.car.Car
 
 class CarTest {
 
     private lateinit var mockCar: Car
 
     @BeforeEach
-    fun beforeEach() {
+    fun setUp() {
         mockCar = spy(Car("buna"))
     }
 
