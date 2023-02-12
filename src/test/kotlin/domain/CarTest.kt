@@ -2,6 +2,8 @@ package domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -12,6 +14,20 @@ class CarTest {
     @BeforeEach
     fun initCar() {
         car = Car("Tom", INITIAL_MOVE_COUNT)
+    }
+
+    @Test
+    fun `이름이 5자를 넘으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Car("aaaaaa")
+        }
+    }
+
+    @Test
+    fun `이름이 비어있으면 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> {
+            Car(" ")
+        }
     }
 
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
