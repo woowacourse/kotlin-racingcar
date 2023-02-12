@@ -1,4 +1,3 @@
-import common.ERROR_MESSAGE_FORMAT
 import domain.AdvanceCount
 import domain.Car
 import domain.GameCars
@@ -10,13 +9,13 @@ private lateinit var gameCars: GameCars
 private lateinit var advanceCount: AdvanceCount
 
 fun main() {
-    setUpGameManager()
+    setUpGameCars()
     setUpAdvanceCount()
     runGame()
     printGameResult()
 }
 
-private fun setUpGameManager() {
+private fun setUpGameCars() {
     OutputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
 
     while (true) {
