@@ -21,11 +21,10 @@ class Controller(
         outputView.printCarNamesPrompt()
         while (true) {
             kotlin.runCatching {
-                inputView.readCarNames()
-            }.onSuccess { names ->
-                return names.map { name ->
-                    Car(name)
-                }
+                val carNames = inputView.readCarNames()
+                carNames.map { Car(it) }
+            }.onSuccess { cars ->
+                return cars
             }.onFailure { e ->
                 println(e.message.toString())
             }

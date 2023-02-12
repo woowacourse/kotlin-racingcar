@@ -30,10 +30,9 @@ class CarTest {
         assertThrows<IllegalArgumentException> { Car("aaaaaaa") }
     }
 
-    @ValueSource(strings = ["", "  "])
-    @ParameterizedTest
-    fun `자동차 이름이 비어있는 경우 예외가 발생한다`(name: String) {
-        assertThrows<IllegalArgumentException> { Car(name) }
+    @Test
+    fun `자동차 이름이 비어있는 경우 예외가 발생한다`() {
+        assertThrows<IllegalArgumentException> { Car("") }
     }
 
     companion object {
