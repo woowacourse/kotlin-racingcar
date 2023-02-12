@@ -15,6 +15,6 @@ class Round(val count: Int) {
     }
 }
 
-class RoundDto(private val count: Int) {
+class RoundDto(val count: Int) {
     fun toModel(): Round = Round(count)
 }
