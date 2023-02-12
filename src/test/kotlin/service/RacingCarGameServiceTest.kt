@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test
 
 class RacingCarGameServiceTest {
 
-    private val racingCarGameService = RacingCarGameService()
+    private val racingCarGameService = RacingCarGameService(RandomNumberGenerator())
     private val carA = Car("aa", 0)
     private val carB = Car("bb", 0)
     private val carC = Car("cc", 0)

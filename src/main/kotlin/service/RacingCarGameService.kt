@@ -2,7 +2,7 @@ package service
 
 import model.Car
 
-class RacingCarGameService {
+class RacingCarGameService(private val numberGenerator: NumberGenerator) {
 
     fun splitCarNames(carNames: String): List<String> = carNames.split(",")
 
@@ -17,9 +17,9 @@ class RacingCarGameService {
 
     fun moveCars(carsInfo: List<Car>): List<Car> {
         carsInfo.forEach { car ->
-            car.moveForward(car.isPossibleMove(RandomNumberGenerator().generate()))
+            val condition = numberGenerator.generate()
+            car.moveForward(car.isPossibleMove(condition))
         }
-
         return carsInfo
     }
 

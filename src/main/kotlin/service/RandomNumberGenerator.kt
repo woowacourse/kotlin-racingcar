@@ -2,9 +2,9 @@ package service
 
 import kotlin.random.Random
 
-class RandomNumberGenerator {
+class RandomNumberGenerator : NumberGenerator {
 
-    fun generate(): Int = Random.nextInt(MINIMUM_RANDOM_NUMBER, MAXIMUM_RANDOM_NUMBER)
+    override fun generate(): Int = Random.nextInt(MINIMUM_RANDOM_NUMBER, MAXIMUM_RANDOM_NUMBER)
 
     companion object {
         const val MINIMUM_RANDOM_NUMBER = 1
