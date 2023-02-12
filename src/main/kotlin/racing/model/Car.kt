@@ -3,14 +3,13 @@ package racing.model
 import racing.validators.CarNameValidator
 
 class Car(private val name: String) {
-    private var position = 0
+    var position = 0
+        private set
 
     init {
         CarNameValidator.validateUserCarNameLength(name)
         CarNameValidator.validateUserCarNameLength(name)
     }
-
-    fun getPosition() = position
 
     fun getName() = name
 

@@ -33,16 +33,16 @@ class RacingGame(private val cars: List<Car>) {
     private fun getGameResultOneTurn(): List<Int> {
         val result = mutableListOf<Int>()
         cars.forEach {
-            result.add(it.getPosition())
+            result.add(it.position)
         }
         return result
     }
 
     fun getWinners(): List<String> {
         val result = mutableListOf<String>()
-        val winnerPosition = cars.maxOf { it.getPosition() }
+        val winnerPosition = cars.maxOf { it.position }
         cars.forEach {
-            if (it.getPosition() == winnerPosition) result.add(it.getName())
+            if (it.position == winnerPosition) result.add(it.getName())
         }
         return result.toList()
     }
