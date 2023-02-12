@@ -33,7 +33,7 @@ class CarManager() {
         }
     }
 
-    override fun toString(): String {
-        return cars.joinToString("\n") { it.toString() }
+    fun makeAttemptLog(): String {
+        return cars.joinToString("\n") { it.toString() + " : " + "-".repeat(it.position.toInt()) }
     }
 }

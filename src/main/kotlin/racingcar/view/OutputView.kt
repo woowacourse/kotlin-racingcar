@@ -22,6 +22,6 @@ object OutputView {
     }
 
     fun winner(winners: List<Car>) {
-        println(winners.joinToString(", ") { it.getName().toString() })
+        println(winners.joinToString(", ") { it.name.toString() })
     }
 }

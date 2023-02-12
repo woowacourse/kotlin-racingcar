@@ -8,9 +8,7 @@ class Name(private val name: String) {
         require(name.length <= Values.MIN_CAR_NAME_LENGTH) { "차 이름은 5글자 이하여야 합니다." }
     }
 
-    override fun toString(): String {
-        return name
-    }
+    override fun toString() = name
 
     override fun equals(other: Any?): Boolean {
         return this.name == other.toString()

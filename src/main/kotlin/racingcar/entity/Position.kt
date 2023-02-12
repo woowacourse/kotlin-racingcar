@@ -9,7 +9,5 @@ class Position(private var position: Int) {
         return this.position >= position.position
     }
 
-    override fun toString(): String {
-        return "-".repeat(position)
-    }
+    fun toInt() = position
 }

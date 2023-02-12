@@ -1,8 +1,6 @@
 package racingcar.entity
 
-class Car(private var name: Name) {
-    private var position = Position(0)
-
+class Car(val name: Name, var position: Position = Position(0)) {
     fun forward() {
         position.addPosition(1)
     }
@@ -11,9 +9,7 @@ class Car(private var name: Name) {
         return position.compareTo(car.position)
     }
 
-    override fun toString() = "$name : $position"
+    override fun toString() = name.toString()
 
     override fun equals(other: Any?) = this.position == (other as Car).position && this.name == other.name
-
-    fun getName() = name
 }
