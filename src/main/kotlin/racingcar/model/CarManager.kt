@@ -2,7 +2,6 @@ package racingcar.model
 
 import racingcar.entity.Car
 import racingcar.entity.Name
-import racingcar.misc.Util
 
 class CarManager() {
     private lateinit var cars: MutableList<Car>
@@ -21,7 +20,7 @@ class CarManager() {
 
     fun attempt() {
         for (i in 0 until cars.size) {
-            step(i, Util.generateRandom())
+            step(i, RandomNumber.generate())
         }
     }
 
