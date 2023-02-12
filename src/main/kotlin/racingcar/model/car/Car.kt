@@ -6,21 +6,16 @@ open class Car(name: String, _position: Int = 0) {
     var position: Int = _position
         private set
 
-    fun moveRandomly() {
-        if (generateRandomProbability() >= MOVEMENT_PROBABILITY) {
+    fun moveRandomly(moveCondition: Int) {
+        if (moveCondition >= MOVEMENT_PROBABILITY) {
             ++position
         }
     }
-
-    open fun generateRandomProbability(): Int =
-        (START_RANDOM_MOVEMENT_PROBABILITY..END_RANDOM_MOVEMENT_PROBABILITY).random()
 
     fun toDto(): CarDto = CarDto(carName.name)
 
     companion object {
         private const val MOVEMENT_PROBABILITY = 4
-        private const val START_RANDOM_MOVEMENT_PROBABILITY = 1
-        private const val END_RANDOM_MOVEMENT_PROBABILITY = 10
     }
 }
 
