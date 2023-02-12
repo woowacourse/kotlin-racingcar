@@ -1,7 +1,7 @@
 package domain
 
-import data.ComparisonResult
 import dto.CarMetadataDTO
+import kotlin.math.max
 
 class Car(
     private val generator: NumberGenerator,
@@ -12,18 +12,18 @@ class Car(
     fun race(): CarMetadataDTO {
         val number = generator.generate()
         if (checkGo(number)) go()
-        return CarMetadataDTO(ComparisonResult.NONE, distance, name)
+        return CarMetadataDTO(distance, name)
     }
 
-    fun compare(winnerDistance: Int): CarMetadataDTO {
-        val difference = distance - winnerDistance
-        val comparisonResult = when {
-            difference > 0 -> ComparisonResult.WIN
-            difference < 0 -> ComparisonResult.LOSE
-            else -> ComparisonResult.DRAW
-        }
+    fun compareDistance(winnerDistance: Int): Int {
+        return max(winnerDistance, distance)
+    }
 
-        return CarMetadataDTO(comparisonResult, distance, name)
+    fun isWinner(winnerDistance: Int): String {
+        if (winnerDistance == distance) {
+            return name
+        }
+        return ""
     }
 
     private fun checkGo(number: Int): Boolean {
