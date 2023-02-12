@@ -8,14 +8,12 @@ import racingcar.utils.random.RandomGenerator
 
 class RacingService(
     _cars: CarsDto,
-    _round: RoundDto,
     private val movementProbabilityGenerator: RandomGenerator = MovementProbabilityGenerator()
 ) {
     private val cars = _cars.toModel()
-    private val round = _round.toModel()
 
-    fun runAllRounds(doEachRoundResult: (CarsDto) -> Unit) {
-        repeat(round.count) {
+    fun runAllRounds(round: RoundDto, doEachRoundResult: (CarsDto) -> Unit) {
+        repeat(round.toModel().count) {
             doEachRoundResult(moveCarsRandomly())
         }
     }

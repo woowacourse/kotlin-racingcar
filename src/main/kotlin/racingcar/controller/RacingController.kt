@@ -15,14 +15,15 @@ class RacingController(
 
     fun runRacing() {
         initRacingService()
-        runRounds()
+        val round = readRound()
+        runRounds(round)
 
         val winners = getWinners()
         printWinners(winners)
     }
 
     private fun initRacingService() {
-        racingService = RacingService(readCarNames(), readRound())
+        racingService = RacingService(readCarNames())
     }
 
     private fun readCarNames(): CarsDto {
@@ -41,9 +42,9 @@ class RacingController(
 
     private fun printWinners(winners: WinnersDto) = outputView.printWinners(winners)
 
-    private fun runRounds() {
+    private fun runRounds(round: RoundDto) {
         printRoundCountRequestMessage()
-        racingService.runAllRounds { eachRoundCars ->
+        racingService.runAllRounds(round) { eachRoundCars ->
             printRoundResult(eachRoundCars)
         }
     }
