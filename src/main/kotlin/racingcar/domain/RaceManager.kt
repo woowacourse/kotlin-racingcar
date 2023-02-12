@@ -17,15 +17,16 @@ class RaceManager(
     }
 
     fun race(): RaceResultDto {
-        val roundHistory = mutableListOf<List<Int>>()
+        var roundHistory = mutableListOf<List<Int>>()
         repeat(raceCount) {
-            nextStep(roundHistory)
+            roundHistory = nextStep()
         }
         return RaceResultDto(cars.map { car -> car.name }, roundHistory)
     }
 
-    private fun nextStep(roundHistory: MutableList<List<Int>>): MutableList<List<Int>> {
+    private fun nextStep(): MutableList<List<Int>> {
         cars.forEach { it.move(numberGenerator.generateNumber(Car.MIN_BOUNDARY, Car.MAX_BOUNDARY)) }
+        val roundHistory = mutableListOf<List<Int>>()
         roundHistory.add(cars.map { car -> car.location })
         return roundHistory
     }
