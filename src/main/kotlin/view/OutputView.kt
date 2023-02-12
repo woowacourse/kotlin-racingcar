@@ -5,7 +5,14 @@ class OutputView {
     fun printCar() = println(INPUT_CAR_NAMES_MESSAGE)
     fun printTryCount() = println(INPUT_TRY_COUNT_MESSAGE)
     fun printRoundResult(roundResult: String) = println(roundResult)
-    fun printWinner(winner: String) = println(winner)
+    fun printWinner(winners: List<String>) {
+        var output = "최종 우승자: "
+        winners.forEach { name ->
+            output += "$name, "
+        }
+        println(output.substring(0, output.length - 2))
+    }
+
     fun printRunResultMessage() = println("\n$RUN_RESULT_MESSAGE")
 
     companion object {

@@ -23,7 +23,7 @@ class RacingCarGameService {
         return carsInfo
     }
 
-    fun getWinners(carsInfo: List<Car>): List<Car> {
+    fun getWinnersInfo(carsInfo: List<Car>): List<Car> {
         val maxCarInfo = carsInfo.maxWith(Car::compareTo)
         return carsInfo.filter { maxCarInfo.isSamePosition(it) }
     }
@@ -36,12 +36,12 @@ class RacingCarGameService {
         return roundResult
     }
 
-    fun getWinnersOutput(carsInfo: List<Car>): String {
-        var winners = "최종 우승자: "
+    fun getWinnerNames(carsInfo: List<Car>): List<String> {
+        var winnerNames = mutableListOf<String>()
 
         carsInfo.forEach { car ->
-            winners += "${car.name}, "
+            winnerNames.add(car.name)
         }
-        return winners.substring(0, winners.length - 2)
+        return winnerNames
     }
 }
