@@ -18,7 +18,7 @@ class OutputView {
 
     fun printEachRound(cars: List<RacingCar>) {
         cars.forEach { car ->
-            "${car.name} : ${STATE_UNIT.repeat(car.movingState)}"
+            println("${car.name} : ${STATE_UNIT.repeat(car.movingState)}")
         }
         println()
     }
