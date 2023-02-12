@@ -20,22 +20,20 @@ class Controller(
     }
 
     private fun setUpCars(): List<Car> {
-        while (true) {
-            try {
-                return CarsFactory(inputView.readCars()).makeCars(RandomNumberGenerator())
-            } catch (e: IllegalArgumentException) {
-                outputView.printError(e.message ?: "")
-            }
+        return runCatching {
+            CarsFactory(inputView.readCars()).makeCars(RandomNumberGenerator())
+        }.getOrElse { e ->
+            outputView.printError(e.message ?: "")
+            setUpCars()
         }
     }
 
     private fun setUpRaceTime(): Int {
-        while (true) {
-            try {
-                return inputView.readRaceTime().getRaceTime()
-            } catch (e: IllegalArgumentException) {
-                outputView.printError(e.message ?: "")
-            }
+        return runCatching {
+            inputView.readRaceTime().getRaceTime()
+        }.getOrElse { e ->
+            outputView.printError(e.message ?: "")
+            setUpRaceTime()
         }
     }
 
