@@ -1,23 +1,21 @@
 package validation
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 
 class TryCountValidationTest {
 
     private val tryCountValidation = TryCountValidation()
 
     @Test
-    fun `시도 횟수가 정수가 아닐 시 예외를 발생한다`() {
-        assertThrows<IllegalArgumentException> {
-            tryCountValidation.checkTryCountInteger("다섯번")
-        }
+    fun `시도 횟수가 정수가 아닐 시 false를 반환한다`() {
+        val actual = tryCountValidation.isTryCountInteger("하하")
+        assertThat(actual).isEqualTo(false)
     }
 
     @Test
-    fun `시도 횟수가 양수가 아닐 시 예외를 발생한다`() {
-        assertThrows<IllegalArgumentException> {
-            tryCountValidation.checkTryCountPositive("0")
-        }
+    fun `시도 횟수가 양수가 아닐 시 false를 반환한다`() {
+        val actual = tryCountValidation.isTryCountPositive("0")
+        assertThat(actual).isEqualTo(false)
     }
 }

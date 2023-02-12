@@ -1,5 +1,6 @@
 package validation
 
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class NameValidationTest {
@@ -7,23 +8,20 @@ class NameValidationTest {
     private val nameValidation = NameValidation()
 
     @Test
-    fun `이름이 5자 초과 시 예외를 발생한다`() {
-        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
-            nameValidation.checkNameRange("avante")
-        }
+    fun `이름이 5자 초과 시 true를 반환한다`() {
+        val actual = nameValidation.isNameLengthExceed("aaabbb")
+        assertThat(actual).isEqualTo(true)
     }
 
     @Test
-    fun `이름에 한글이 들어갈 시 예외를 발생한다`() {
-        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
-            nameValidation.checkCarNameEnglishNumber("케이")
-        }
+    fun `이름에 한글이 들어갈 시 false를 반환한다`() {
+        val actual = nameValidation.isCarNameEnglishNumber("케이")
+        assertThat(actual).isEqualTo(false)
     }
 
     @Test
-    fun `이름에 특수부호가 들어갈 시 예외를 발생한다`() {
-        org.junit.jupiter.api.assertThrows<IllegalArgumentException> {
-            nameValidation.checkCarNameEnglishNumber("k''")
-        }
+    fun `이름에 특수부호가 들어갈 시 false를 반환한다`() {
+        val actual = nameValidation.isCarNameEnglishNumber("..")
+        assertThat(actual).isEqualTo(false)
     }
 }

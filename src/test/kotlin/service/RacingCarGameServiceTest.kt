@@ -30,8 +30,8 @@ class RacingCarGameServiceTest {
         carD.moveForward(true)
 
         val carsInfo = listOf(carA, carB, carC, carD)
-        val actual = racingCarGameService.getWinners(carsInfo)
-        val expect = listOf(carA, carB)
+        val actual = racingCarGameService.getWinnersInfo(carsInfo)
+        val expect = listOf<Car>(carA, carB)
         assertThat(actual).isEqualTo(expect)
     }
 
@@ -47,16 +47,16 @@ class RacingCarGameServiceTest {
     }
 
     @Test
-    @DisplayName("우승자의 이름이 aa,bb 라면 최종우승자: aa,bb 로 출력한다.")
+    @DisplayName("우승자의 이름이 bb,cc 라면 [bb,cc] 리스트로 반환한다. ")
     fun getWinnersOutput() {
         repeat(5) { carA.moveForward(true) }
         repeat(6) { carB.moveForward(true) }
         repeat(6) { carC.moveForward(true) }
         repeat(4) { carD.moveForward(true) }
         val carsInfo = listOf(carA, carB, carC, carD)
-        val winners = racingCarGameService.getWinners(carsInfo)
-        val actual = racingCarGameService.getWinnersOutput(winners)
-        val expect = "최종 우승자: bb, cc"
+        val winners = racingCarGameService.getWinnersInfo(carsInfo)
+        val actual = racingCarGameService.getWinnerNames(winners)
+        val expect = listOf<String>("bb", "cc")
         assertThat(actual).isEqualTo(expect)
     }
 }
