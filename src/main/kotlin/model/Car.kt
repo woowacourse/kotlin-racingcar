@@ -1,10 +1,8 @@
 package model
 
-import domain.generator.NumberGenerator
-
 class Car(
     val name: String,
-    private val racingNumberGenerator: NumberGenerator
+    private val racingNumberGenerator: () -> Int
 ) {
     var position = INITIAL_POSITION
         private set
@@ -16,7 +14,7 @@ class Car(
     }
 
     fun move() {
-        if (racingNumberGenerator.generate() >= MINIMUM_NUMBER_TO_MOVE) {
+        if (racingNumberGenerator() >= MINIMUM_NUMBER_TO_MOVE) {
             position++
         }
     }
