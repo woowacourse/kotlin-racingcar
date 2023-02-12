@@ -2,18 +2,22 @@ package view
 
 import dto.CarNamesDTO
 import dto.RaceTimeDTO
+import utils.CarNamesValidator
+import utils.RaceTimeValidator
 
 class InputView {
     fun readCarNames(): CarNamesDTO {
         println(GUIDE_CAR_NAME)
         val input = readUser()
-        return CarNamesDTO(input)
+        val validator = CarNamesValidator()
+        return CarNamesDTO(validator.validate(input))
     }
 
     fun readRaceTime(): RaceTimeDTO {
         println(GUIDE_RACE_TIME)
         val input = readUser()
-        return RaceTimeDTO(input)
+        val validator = RaceTimeValidator()
+        return RaceTimeDTO(validator.validate(input))
     }
 
     private fun readUser(): String {
