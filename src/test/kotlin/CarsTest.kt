@@ -4,11 +4,19 @@ import model.Car
 import model.Cars
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 
 class CarsTest {
 
     private val inputCars = listOf(Car("pobi"), Car("woni"), Car("gugu"))
     private val tryNumber = 3
+
+    @Test
+    fun `자동차 이름이 중복된 경우 예외 테스트`() {
+        assertThrows<IllegalArgumentException> {
+            Cars.mappingCars("pobi, woni, pobi", RandomNumberGenerator())
+        }
+    }
 
     @Test
     fun `자동차 이름들 ','로 구분되어 생성되었는지 확인`() {
