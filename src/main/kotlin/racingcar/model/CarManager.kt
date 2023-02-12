@@ -2,6 +2,7 @@ package racingcar.model
 
 import racingcar.entity.Car
 import racingcar.entity.Name
+import racingcar.view.OutputView
 
 class CarManager(names: List<Name>) {
     private val cars = mutableListOf<Car>()
@@ -31,7 +32,7 @@ class CarManager(names: List<Name>) {
     }
 
     fun makeAttemptLog(): String {
-        return cars.joinToString("\n") { it.toString() + " : " + "-".repeat(it.position.toInt()) }
+        return OutputView.makeLog(cars)
     }
 
     companion object {

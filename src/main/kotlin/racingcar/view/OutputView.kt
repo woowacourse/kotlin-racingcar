@@ -21,6 +21,10 @@ object OutputView {
         println()
     }
 
+    fun makeLog(cars: List<Car>): String {
+        return cars.joinToString("\n") { it.toString() + " : " + "-".repeat(it.position.toInt()) }
+    }
+
     fun winner(winners: List<Car>) {
         println(winners.joinToString(", ") { it.name.toString() })
     }
