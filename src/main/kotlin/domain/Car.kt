@@ -1,24 +1,21 @@
 package domain
 
-import dto.RaceResultDTO
-
 class Car(
     private val generator: NumberGenerator,
     val name: String,
-    private var distance: Int = 0
+    startDistance: Int = 0
 ) {
+    var distance = startDistance
+        private set
 
     init {
         validateCarName()
     }
 
-    fun race(): RaceResultDTO {
+    fun race() {
         val number = generator.generate()
         if (checkGo(number)) go()
-        return RaceResultDTO(distance, name)
     }
-
-    fun getDistance() = distance
 
     private fun checkGo(number: Int): Boolean {
         if (number >= RANGE_LOWER_INCLUSIVE)

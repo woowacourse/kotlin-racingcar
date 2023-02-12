@@ -49,7 +49,8 @@ class Controller(
 
     private fun raceOneTime(cars: List<Car>) {
         cars.forEach { car ->
-            outputView.printRaceResult(car.race())
+            car.race()
+            outputView.printRaceResult(car.name, car.distance)
         }
     }
 

@@ -16,7 +16,10 @@ class CarTest {
         val name = "pobi"
         val car = Car(generator, name)
         val distances = listOf(0, 1, 1, 2, 3, 3)
-        distances.map { distance -> assertThat(car.race().distance).isEqualTo(distance) }
+        distances.map { distance ->
+            car.race()
+            assertThat(car.distance).isEqualTo(distance)
+        }
     }
 
     @ParameterizedTest
