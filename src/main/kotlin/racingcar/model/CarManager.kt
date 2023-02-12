@@ -3,14 +3,13 @@ package racingcar.model
 import racingcar.entity.Car
 import racingcar.entity.Name
 
-class CarManager() {
-    private lateinit var cars: MutableList<Car>
-    fun init(names: List<Name>) {
-        cars = mutableListOf()
+class CarManager(names: List<Name>) {
+    private val cars = mutableListOf<Car>()
+
+    init {
         for (name in names) {
             cars.add(Car(name))
         }
-        require(cars.size >= MIN_CAR_COUNT) { "경주에는 자동차 2대 이상이 필요합니다." }
     }
 
     fun determineWinner(): List<Car> {

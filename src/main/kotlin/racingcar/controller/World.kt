@@ -1,32 +1,35 @@
 package racingcar.controller
 
 import racingcar.entity.Name
-import racingcar.misc.Util
 import racingcar.model.RacingManager
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class World {
-    private val racingManager = RacingManager()
+    private val racingManager = RacingManager(initCars(), initAttemptCount())
 
     init {
-        initCars()
-        initAttemptCount()
         run()
         quit()
     }
 
-    private fun initCars() {
-        Util.tryAndRerun {
+    private fun initCars(): List<Name> {
+        return try {
             OutputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
-            racingManager.initCars(InputView.carNames().map { Name(it) })
+            InputView.carNames().map { Name(it) }
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR]: " + e.message)
+            initCars()
         }
     }
 
-    private fun initAttemptCount() {
-        Util.tryAndRerun {
+    private fun initAttemptCount(): Int {
+        return try {
             OutputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
-            racingManager.setAttemptCount(InputView.attemptCount())
+            InputView.attemptCount()
+        } catch (e: IllegalArgumentException) {
+            println("[ERROR]: " + e.message)
+            initAttemptCount()
         }
     }
 

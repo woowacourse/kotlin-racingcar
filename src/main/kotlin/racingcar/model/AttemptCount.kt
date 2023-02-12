@@ -1,8 +1,7 @@
 package racingcar.model
 
-class AttemptCount constructor(private val attemptCount: Int) {
+class AttemptCount constructor(val attemptCount: Int) {
     init {
-
         require(attemptCount >= MIN_ATTEMPT_COUNT) { "1번 이상 시도해아 합니다." }
     }
 
