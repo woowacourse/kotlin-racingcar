@@ -1,7 +1,11 @@
 package controller
 
 import model.Car
+import model.Name
+import model.TryCount
 import service.RacingCarGameService
+import validation.NameValidationResult
+import validation.TryCountValidationResult
 import view.InputView
 import view.OutputView
 
@@ -11,33 +15,52 @@ class RacingGameController(
     private val racingCarGameService: RacingCarGameService
 ) {
     fun run() {
-        val carsInfo = getCarNames()
-        val tryCount = getTryCount()
+        val carNames = getCarNames().name
+        val carsInfo = getCarsInfo(carNames)
+        val tryCount = getTryCount().tryCount.toInt()
         playWholeRound(tryCount, carsInfo)
         printWinner(gerWinner(carsInfo))
     }
 
-    fun getCarNames(): List<Car> {
-        return try {
-            outputView.printCar()
-            val input = inputView.inputName()
-            val carsName = racingCarGameService.splitCarNames(input.name)
-            racingCarGameService.initCarInfo(carsName)
-        } catch (e: IllegalArgumentException) {
-            e.printStackTrace()
-            getCarNames()
+    fun getCarNames(): Name {
+        outputView.printCar()
+        val input = inputView.inputName()
+        return checkCarNamesInput(input) ?: return getCarNames()
+    }
+
+    fun checkCarNamesInput(result: NameValidationResult): Name? {
+        return when (result) {
+            is NameValidationResult.Failure -> printNameErrorMessage(result.errorMessage)
+            is NameValidationResult.Success -> result.name
         }
     }
 
-    fun getTryCount(): Int {
-        return try {
-            outputView.printTryCount()
-            val input = inputView.inputTryCount()
-            input.tryCount.toInt()
-        } catch (e: IllegalArgumentException) {
-            e.printStackTrace()
-            getTryCount()
+    fun printNameErrorMessage(errorMessage: String): Name? {
+        println(errorMessage)
+        return null
+    }
+
+    fun getCarsInfo(carNames: String): List<Car> {
+        val carNamesSplit = racingCarGameService.splitCarNames(carNames)
+        return racingCarGameService.initCarInfo(carNamesSplit)
+    }
+
+    fun getTryCount(): TryCount {
+        outputView.printTryCount()
+        val input = inputView.inputTryCount()
+        return checkTryCountInput(input) ?: return getTryCount()
+    }
+
+    fun checkTryCountInput(result: TryCountValidationResult): TryCount? {
+        return when (result) {
+            is TryCountValidationResult.Failure -> printTryCountErrorMessage(result.errorMessage)
+            is TryCountValidationResult.Success -> result.tryCount
         }
+    }
+
+    fun printTryCountErrorMessage(errorMessage: String): TryCount? {
+        println(errorMessage)
+        return null
     }
 
     fun playRound(carsInfo: List<Car>): String {
@@ -54,12 +77,12 @@ class RacingGameController(
         }
     }
 
-    fun gerWinner(carsInfo: List<Car>): String {
-        val winners = racingCarGameService.getWinners(carsInfo)
-        return racingCarGameService.getWinnersOutput(winners)
+    fun gerWinner(carsInfo: List<Car>): List<String> {
+        val winnersInfo = racingCarGameService.getWinnersInfo(carsInfo)
+        return racingCarGameService.getWinnerNames(winnersInfo)
     }
 
-    fun printWinner(winnersOutput: String) {
-        outputView.printWinner(winnersOutput)
+    fun printWinner(winners: List<String>) {
+        outputView.printWinner(winners)
     }
 }

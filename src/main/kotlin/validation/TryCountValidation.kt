@@ -1,11 +1,13 @@
 package validation
 
+import model.TryCount
+
 class TryCountValidation {
-    fun checkTryCount(tryCount: String?): ValidationResult {
-        if (tryCount.isNullOrBlank()) return ValidationResult.Failure(INPUT_IS_EMPTY_ERROR_MESSAGE)
-        if (!isTryCountInteger(tryCount)) return ValidationResult.Failure(TRY_COUNT_INTEGER_ERROR_MESSAGE)
-        if (!isTryCountPositive(tryCount)) return ValidationResult.Failure(TRY_COUNT_POSITIVE_ERROR_MESSAGE)
-        return ValidationResult.Success(tryCount)
+    fun checkTryCount(tryCount: String?): TryCountValidationResult {
+        if (tryCount.isNullOrBlank()) return TryCountValidationResult.Failure(INPUT_IS_EMPTY_ERROR_MESSAGE)
+        if (!isTryCountInteger(tryCount)) return TryCountValidationResult.Failure(TRY_COUNT_INTEGER_ERROR_MESSAGE)
+        if (!isTryCountPositive(tryCount)) return TryCountValidationResult.Failure(TRY_COUNT_POSITIVE_ERROR_MESSAGE)
+        return TryCountValidationResult.Success(TryCount(tryCount))
     }
 
     fun isTryCountInteger(tryCount: String): Boolean {
@@ -13,7 +15,7 @@ class TryCountValidation {
         return true
     }
 
-    fun isTryCountPositive(tryCount: String) = tryCount.toInt() < MINIMUM_POSITIVE_NUMBER
+    fun isTryCountPositive(tryCount: String) = tryCount.toInt() >= MINIMUM_POSITIVE_NUMBER
 
     companion object {
         const val MINIMUM_POSITIVE_NUMBER = 1
