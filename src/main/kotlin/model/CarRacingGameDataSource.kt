@@ -1,4 +1,4 @@
-package data
+package model
 
 data class CarRacingGameDataSource(
     val cars: List<Car>,
