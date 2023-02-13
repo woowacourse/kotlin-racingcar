@@ -34,6 +34,17 @@ class CarsTest {
     }
 
     @Test
+    fun `자동차 경주 우승자가 없는 경우 확인`() {
+        val cars = Cars(listOf(Car("pobi"), Car("woni"), Car("gugu")), TestNumberGenerator())
+        repeat(tryNumber) {
+            cars.cars[0].move(0)
+            cars.cars[1].move(0)
+            cars.cars[2].move(0)
+        }
+        assertThat(cars.findWinners()).isEqualTo(null)
+    }
+
+    @Test
     fun `자동차 경주 우승자들 확인`() {
         val cars = Cars(listOf(Car("pobi"), Car("woni"), Car("gugu")), TestNumberGenerator())
         repeat(tryNumber) {
