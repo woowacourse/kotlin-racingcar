@@ -2,12 +2,12 @@ package racingcar.domain
 
 class RacingCar(
     val name: String,
-    private var _movingState: Int = 0,
+    movingState: Int = 0,
 ) {
-    val movingState: Int
-        get() = _movingState
+    var movingState = movingState
+        private set
 
     fun moveForward() {
-        _movingState += 1
+        movingState += 1
     }
 }
