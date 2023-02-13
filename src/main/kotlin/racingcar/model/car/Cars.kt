@@ -18,12 +18,15 @@ class Cars(_cars: List<Car>) : List<Car> by _cars {
     }
 
     fun moveAll(carMoveCondition: CarMoveCondition): Cars = this.onEach { car ->
-        if (carMoveCondition() >= MOVE_CONDITION) {
+        if (isSatisfyCondition(carMoveCondition)) {
             car.move(OneStep)
         } else {
             car.move(ZeroStep)
         }
     }
+
+    private fun isSatisfyCondition(carMoveCondition: CarMoveCondition) =
+        carMoveCondition() >= MOVE_CONDITION
 
     fun getWinners(): Winners {
         val winnerStandard = this.maxBy { it.position }
