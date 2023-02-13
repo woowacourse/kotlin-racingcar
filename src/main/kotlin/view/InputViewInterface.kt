@@ -1,9 +1,9 @@
 package view
 
-import validation.NameValidationResult
-import validation.TryCountValidationResult
+import model.Name
+import model.TryCount
 
 interface InputViewInterface {
-    fun inputName(): NameValidationResult
-    fun inputTryCount(): TryCountValidationResult
+    fun inputName(): Name
+    fun inputTryCount(): TryCount
 }
