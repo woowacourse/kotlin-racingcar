@@ -59,7 +59,7 @@ class GameController() {
 
     private fun moveAllCar() {
         cars.forEach {
-            it.decideCarMovement()
+            it.move()
         }
     }
 
