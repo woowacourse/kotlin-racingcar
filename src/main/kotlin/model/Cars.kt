@@ -16,8 +16,9 @@ class Cars(cars: List<Car>, private val numberGenerator: NumberGenerator) {
         cars.forEach { it.move(numberGenerator.generate()) }
     }
 
-    fun findWinners(): List<String> {
+    fun findWinners(): List<String>? {
         val maxPosition = cars.maxOf { it.position }
+        if (maxPosition == 0) return null
         return cars.filter { it.position == maxPosition }.map { it.name }
     }
 
