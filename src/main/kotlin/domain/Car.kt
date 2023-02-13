@@ -1,6 +1,6 @@
 package domain
 
-import dto.CarMetadata
+import dto.RaceResult
 import kotlin.math.max
 
 class Car(
@@ -13,10 +13,10 @@ class Car(
         verifyNameLength(name)
     }
 
-    fun race(): CarMetadata {
+    fun race(): RaceResult {
         val number = generator.generate()
         if (checkGo(number)) go()
-        return CarMetadata(distance, name)
+        return RaceResult(distance, name)
     }
 
     fun compareDistance(winnerDistance: Int): Int {

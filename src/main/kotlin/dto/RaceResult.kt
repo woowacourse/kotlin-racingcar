@@ -1,6 +1,6 @@
 package dto
 
-class CarMetadata(
+class RaceResult(
     val distance: Int,
     val name: String
 )

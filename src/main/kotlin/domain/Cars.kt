@@ -1,6 +1,6 @@
 package domain
 
-import dto.CarMetadata
+import dto.RaceResult
 import dto.Winners
 
 class Cars(generator: NumberGenerator, names: List<String>) {
@@ -12,7 +12,7 @@ class Cars(generator: NumberGenerator, names: List<String>) {
         names.forEach { name -> cars.add(Car(generator, name)) }
     }
 
-    fun raceOneTime(): List<CarMetadata> {
+    fun raceOneTime(): List<RaceResult> {
         return cars.map { car -> car.race() }
     }
 
