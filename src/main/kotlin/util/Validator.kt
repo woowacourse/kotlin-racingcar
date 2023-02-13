@@ -25,7 +25,7 @@ class Validator {
     }
 
     private fun checkNameSize(name: String) {
-        require(name.length < 5) { INPUT_NAME_SIZE_ERROR_MESSAGE }
+        require(name.length < CAR_NAME_LIMIT_SIZE) { INPUT_NAME_SIZE_ERROR_MESSAGE }
     }
 
     private fun checkNameEmpty(name: String) {
@@ -45,7 +45,7 @@ class Validator {
     }
 
     private fun checkTryNumberLimit(number: String?) {
-        require(number!!.toInt() in 1..100) { INPUT_TRY_NUMBER_LIMIT_ERROR_MESSAGE }
+        require(number!!.toInt() in TRY_NUMBER_MIN_SIZE..TRY_NUMBER_MAX_SIZE) { INPUT_TRY_NUMBER_LIMIT_ERROR_MESSAGE }
     }
 
     companion object {
@@ -55,5 +55,8 @@ class Validator {
         const val INPUT_TRY_NUMBER_RIGHT_ERROR_MESSAGE = "시도할 횟수가 올바르게 입력되지 않았습니다."
         const val INPUT_NAME_RIGHT_ERROR_MESSAGE = "자동차 이름은 한글과 영어만 가능합니다."
         const val INPUT_TRY_NUMBER_LIMIT_ERROR_MESSAGE = "시도할 횟수가 1번 이상 100번 이하여야 합니다."
+        const val CAR_NAME_LIMIT_SIZE = 5
+        const val TRY_NUMBER_MIN_SIZE = 1
+        const val TRY_NUMBER_MAX_SIZE = 100
     }
 }
