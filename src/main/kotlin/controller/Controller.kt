@@ -15,7 +15,7 @@ class Controller(
 
     fun run() {
         val cars = createCars()
-        val raceTime = RaceTime(getRaceTime())
+        val raceTime = getRaceTime()
         race(cars, raceTime)
         announceWinners(cars)
     }
@@ -29,9 +29,9 @@ class Controller(
         }
     }
 
-    private fun getRaceTime(): Int {
+    private fun getRaceTime(): RaceTime {
         return runCatching {
-            inputView.readRaceTime()
+            RaceTime(inputView.readRaceTime())
         }.getOrElse { e ->
             outputView.printError(e.message ?: "")
             getRaceTime()
