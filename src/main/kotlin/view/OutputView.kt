@@ -1,23 +1,19 @@
 package view
 
-import dto.CarMetadataDTO
-import dto.WinnersDTO
+import dto.RaceResult
+import dto.Winners
 
 class OutputView {
-    fun printError(message: String) {
-        println("$ERROR_HEADER $message")
-    }
-
     fun printExecutionResult() {
         println(EXECUTION_RESULT)
     }
 
-    fun printRaceResult(carMetadataDTO: CarMetadataDTO) {
-        println("${carMetadataDTO.getName()} : ${"-".repeat(carMetadataDTO.getDistance())}")
+    fun printRaceResult(raceResult: RaceResult) {
+        println("${raceResult.name} : ${"-".repeat(raceResult.distance)}")
     }
 
-    fun printWinners(winnersDTO: WinnersDTO) {
-        val winners = winnersDTO.getWinners()
+    fun printWinners(winners: Winners) {
+        val winners = winners.names
         println("$FINAL_WINNER ${winners.joinToString(", ")}")
     }
 
@@ -26,7 +22,6 @@ class OutputView {
     }
 
     companion object {
-        const val ERROR_HEADER = "[ERROR]"
         const val EXECUTION_RESULT = "실행 결과"
         const val FINAL_WINNER = "최종 우승자:"
     }
