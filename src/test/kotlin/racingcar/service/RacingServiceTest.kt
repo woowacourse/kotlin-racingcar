@@ -20,7 +20,14 @@ internal class RacingServiceTest {
         this.racingService = RacingService()
     }
 
-    // todo isMove test
+    @ParameterizedTest
+    @ValueSource(ints = [9, 6, 4])
+    fun `발행된 전진 확률이 4~9일 때 isMove 메서드가 true를 반환합니다`(moveProbability: Int) {
+        assertEquals(
+            racingService.isMove(moveProbability),
+            true
+        )
+    }
 
     @ParameterizedTest
     @ValueSource(strings = ["buna", "sooda"])
