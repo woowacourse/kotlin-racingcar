@@ -1,5 +1,6 @@
 package domain
 
+import common.ERROR_MESSAGE_FORMAT
 import org.assertj.core.api.Assertions.*
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
@@ -21,7 +22,7 @@ internal class GameCarsTest {
             @MethodSource("getIllegalSizeCars")
             fun `예외 메세지를 포함한 IllegalArgumentException을 던진다`(cars: Set<Car>) {
                 assertThatIllegalArgumentException().isThrownBy { GameCars(cars) }
-                    .withMessageContaining(ERROR_MESSAGE)
+                    .withMessageContaining(ERROR_MESSAGE_FORMAT.format("자동차는 최소 2대에서 최대 20대 사이여야 합니다."))
             }
 
             private fun getIllegalSizeCars() = listOf(
@@ -84,9 +85,5 @@ internal class GameCarsTest {
 
     private class OnlyAdvanceMovingStrategy() : MovingStrategy {
         override fun isMovable(): Boolean = true
-    }
-
-    companion object {
-        private const val ERROR_MESSAGE = "[ERROR]"
     }
 }

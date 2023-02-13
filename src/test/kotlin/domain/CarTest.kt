@@ -1,5 +1,6 @@
 package domain
 
+import common.ERROR_MESSAGE_FORMAT
 import org.assertj.core.api.Assertions
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatCode
@@ -13,7 +14,7 @@ internal class CarTest {
     @ValueSource(strings = ["", "po bi", "pobi1", "pobi!", "thomas"])
     fun `자동차의 이름이 1에서 5자의 영어 또는 한글로 이루어져 있지 않다면 예외 메세지를 포함한 IllegalArgumentException을 던진다`(name: String) {
         Assertions.assertThatIllegalArgumentException().isThrownBy { Car(name, RandomMovingStrategy()) }
-            .withMessageContaining(ERROR_MESSAGE)
+            .withMessageContaining(ERROR_MESSAGE_FORMAT.format("자동차의 이름은 한글 혹은 영어로 공백이 없어야 하며 최소 1글자에서 최대 5글자까지 가능합니다."))
     }
 
     @Test
@@ -44,9 +45,5 @@ internal class CarTest {
         val result = car1.equals(car2)
 
         assertThat(result).isTrue
-    }
-
-    companion object {
-        private const val ERROR_MESSAGE = "[ERROR]"
     }
 }
