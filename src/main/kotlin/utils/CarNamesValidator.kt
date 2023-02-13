@@ -22,7 +22,7 @@ class CarNamesValidator : Validator {
 
     private fun verifyName(name: String) {
         name.forEach {
-            require(it.code in 97..122) { "$ERROR_NAME\n잘못된 입력값 : $name" }
+            require(it.isLowerCase()) { "$ERROR_NAME\n잘못된 입력값 : $name" }
         }
     }
 

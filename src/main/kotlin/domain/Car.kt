@@ -34,7 +34,7 @@ class Car(
 
     private fun verifyName(name: String) {
         name.forEach {
-            require(it.code in 97..122) { "$ERROR_NAME\n잘못된 자동차 이름 : $name" }
+            require(it.isLowerCase()) { "$ERROR_NAME\n잘못된 자동차 이름 : $name" }
         }
     }
 
