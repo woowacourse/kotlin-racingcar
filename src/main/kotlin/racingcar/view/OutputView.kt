@@ -1,6 +1,5 @@
 package racingcar.view
 
-import racingcar.constant.STATE_UNIT
 import racingcar.domain.RacingCar
 
 class OutputView {
@@ -33,5 +32,7 @@ class OutputView {
 
         private const val OUTPUT_RESULT = "\n실행 결과"
         private const val OUTPUT_WINNER = "최종 우승자: "
+
+        private const val STATE_UNIT = "-"
     }
 }

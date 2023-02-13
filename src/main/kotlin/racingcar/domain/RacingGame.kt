@@ -1,6 +1,5 @@
 package racingcar.domain
 
-import racingcar.constant.STANDARD_OF_MOVING
 import racingcar.domain.numbergenerator.NumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -55,4 +54,8 @@ class RacingGame(
     }
 
     fun checkGoingForward(randomNumber: Int): Boolean = randomNumber >= STANDARD_OF_MOVING
+
+    companion object {
+        private const val STANDARD_OF_MOVING = 4
+    }
 }
