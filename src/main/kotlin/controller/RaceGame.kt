@@ -2,6 +2,7 @@ package controller
 
 import generator.RandomGenerator
 import model.Cars
+import util.Constants
 import util.WinnersFinder
 import view.InputView
 import view.OutputView
@@ -10,9 +11,9 @@ class RaceGame(private val outputView: OutputView, private val inputView: InputV
 
     fun run() {
         outputView.outputCarNames()
-        val cars = Cars(inputView.inputCarNames())
+        val cars = Cars(inputCarNames())
         outputView.outputTryNumber()
-        val tryNumber = inputView.inputTryNumber().toInt()
+        val tryNumber = inputTryNumber().toInt()
         outputView.outputResults()
         repeat(tryNumber) {
             tryMove(cars)
@@ -26,5 +27,23 @@ class RaceGame(private val outputView: OutputView, private val inputView: InputV
             outputView.outputResult(cars.getCar(it))
         }
         outputView.outputNextLine()
+    }
+
+    private fun inputCarNames(): String {
+        var input = inputView.inputCarNames()
+        while (input.isNullOrBlank() || input.contains("[ERROR]")) {
+            outputView.outputErrorMessage(input ?: Constants.INPUT_IS_NULL)
+            input = inputView.inputCarNames()
+        }
+        return input
+    }
+
+    private fun inputTryNumber(): String {
+        var input = inputView.inputTryNumber()
+        while (input.isNullOrBlank() || input.contains("[ERROR]")) {
+            outputView.outputErrorMessage(input ?: Constants.INPUT_IS_NULL)
+            input = inputView.inputTryNumber()
+        }
+        return input
     }
 }

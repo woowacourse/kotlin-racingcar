@@ -1,7 +1,5 @@
 package util
 
-import view.OutputView
-
 class Validator {
 
     fun checkNames(names: String?) {
@@ -24,31 +22,26 @@ class Validator {
     }
 
     private fun checkNameNull(name: String?) {
-        require(name != null) { OutputView().outputErrorMessage(Constants.INPUT_NAME_NULL_ERROR_MESSAGE) }
+        require(name != null) { Constants.INPUT_NAME_NULL_ERROR_MESSAGE }
     }
 
     private fun checkNameSize(name: String) {
-        require(name.length < 5) { OutputView().outputErrorMessage(Constants.INPUT_NAME_SIZE_ERROR_MESSAGE) }
+        require(name.length < 5) { Constants.INPUT_NAME_SIZE_ERROR_MESSAGE }
     }
 
     private fun checkNameEmpty(name: String) {
-        require(name != "") { OutputView().outputErrorMessage(Constants.INPUT_NAME_NULL_ERROR_MESSAGE) }
+        require(name != "") { Constants.INPUT_NAME_NULL_ERROR_MESSAGE }
     }
 
     private fun checkNameRight(name: String) {
-        require(name.contains("^[a-zA-Z가-힣]*$".toRegex())) { OutputView().outputErrorMessage(Constants.INPUT_NAME_RIGHT_ERROR_MESSAGE) }
+        require(name.contains("^[a-zA-Z가-힣]*$".toRegex())) { Constants.INPUT_NAME_RIGHT_ERROR_MESSAGE }
     }
 
     private fun checkTryNumberNull(number: String?) {
-        require(number != null) { OutputView().outputErrorMessage(Constants.INPUT_TRY_NUMBER_NULL_ERROR_MESSAGE) }
+        require(number != null) { Constants.INPUT_TRY_NUMBER_NULL_ERROR_MESSAGE }
     }
 
     private fun checkTryNumberIsRight(number: String) {
-        require(
-            number.isNotEmpty() && number.chars().allMatch { Character.isDigit(it) }) {
-            OutputView().outputErrorMessage(
-                Constants.INPUT_TRY_NUMBER_RIGHT_ERROR_MESSAGE
-            )
-        }
+        require(number.isNotEmpty() && number.chars().allMatch { Character.isDigit(it) }) { Constants.INPUT_TRY_NUMBER_RIGHT_ERROR_MESSAGE }
     }
 }

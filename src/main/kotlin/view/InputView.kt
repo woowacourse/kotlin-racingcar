@@ -3,23 +3,23 @@ package view
 import util.Validator
 
 class InputView {
-    fun inputCarNames(): String {
-        val input = readlnOrNull()
+    fun inputCarNames(): String? {
+        var input = readlnOrNull()
         runCatching {
             Validator().checkNames(input)
         }.onFailure {
-            return inputCarNames()
-        }.getOrNull()
-        return input ?: inputCarNames()
+            input = it.message
+        }
+        return input
     }
 
-    fun inputTryNumber(): String {
-        val input = readlnOrNull()
+    fun inputTryNumber(): String? {
+        var input = readlnOrNull()
         runCatching {
             Validator().checkTryNumber(input)
         }.onFailure {
-            return inputTryNumber()
-        }.getOrNull()
-        return input ?: inputTryNumber()
+            input = it.message
+        }
+        return input
     }
 }
