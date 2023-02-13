@@ -37,7 +37,7 @@ class Cars(generator: NumberGenerator, names: List<String>) {
 
     private fun getWinners(winnerDistance: Int): Winners {
         val winners = mutableListOf<String>()
-        cars.forEach { car -> winners.add(car.isWinner(winnerDistance)) }
+        cars.forEach { car -> winners.add(car.getWinnerName(winnerDistance)) }
         return Winners(winners.filter { name -> name != "" })
     }
 
