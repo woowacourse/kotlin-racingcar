@@ -33,3 +33,4 @@
 - [x] DriverDecision enum class 위치를 util에서 domain 패키지로 변경
 - [x] 테스트 코드 분기처리 삭제 후 테스트 2개로 분리
 - [x] 테스트 케이스 네이밍 변경
+- [x] CarFactory 클래스를 따로 분류해서 GameController의 역할을 줄임
