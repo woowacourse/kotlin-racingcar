@@ -5,12 +5,10 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import org.mockito.Mockito
 import racingcar.dto.car.CarDto
 import racingcar.dto.car.CarsDto
 import racingcar.dto.round.RoundDto
 import racingcar.utils.random.MovementProbabilityGenerator
-import racingcar.utils.random.MovementProbabilityGenerator.Companion.START_RANDOM_MOVEMENT_PROBABILITY
 import racingcar.utils.random.NumberGenerator
 import java.util.stream.Stream
 
@@ -24,9 +22,7 @@ internal class RacingServiceTest {
             listOf("부나", "우기", "핑구", "수달", "스캇", "써니").map { CarDto(it) }
         )
 
-        movementProbabilityGenerator = Mockito.mock(MovementProbabilityGenerator::class.java)
-        Mockito.`when`(movementProbabilityGenerator.generate()).thenReturn(ABSOLUTE_MOVE_PROBABILITY)
-
+        movementProbabilityGenerator = MovementProbabilityGenerator.FakeForSuccess()
         racingService = RacingService(cars, movementProbabilityGenerator)
     }
 
@@ -42,8 +38,6 @@ internal class RacingServiceTest {
     }
 
     companion object {
-        private const val ABSOLUTE_MOVE_PROBABILITY = START_RANDOM_MOVEMENT_PROBABILITY
-
         @JvmStatic
         fun provideRounds(): Stream<Arguments> = Stream.of(
             Arguments.of(RoundDto(2)),

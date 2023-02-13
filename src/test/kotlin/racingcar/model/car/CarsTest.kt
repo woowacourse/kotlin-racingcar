@@ -3,37 +3,33 @@ package racingcar.model.car
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.BeforeEach
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import org.junit.jupiter.params.provider.ValueSource
-import org.mockito.Mockito.mock
-import org.mockito.Mockito.spy
-import org.mockito.Mockito.`when`
 import racingcar.utils.random.MovementProbabilityGenerator
 import racingcar.utils.random.NumberGenerator
 import java.util.stream.Stream
 
 internal class CarsTest {
-    private lateinit var carsMock: Cars
-    private lateinit var twoWinnersCarsMock: Cars
-    private lateinit var movementProbabilityGenerator: NumberGenerator
+    private lateinit var cars: Cars
+    private lateinit var movementFailureProbabilityGenerator: NumberGenerator
+    private lateinit var movementSuccessiveProbabilityGenerator: NumberGenerator
 
     @BeforeEach
     fun setUp() {
-        carsMock = spy(
-            Cars(
-                listOf(
-                    Car("buna"),
-                    Car("sooda"),
-                    Car("sunny")
-                )
+        cars = Cars(
+            listOf(
+                Car("buna"),
+                Car("sooda"),
+                Car("sunny")
             )
         )
 
-        movementProbabilityGenerator = mock(MovementProbabilityGenerator::class.java)
+        movementFailureProbabilityGenerator = MovementProbabilityGenerator.FakeForFailed()
+        movementSuccessiveProbabilityGenerator = MovementProbabilityGenerator.FakeForSuccess()
     }
 
     @ParameterizedTest
@@ -52,32 +48,20 @@ internal class CarsTest {
         }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [4, 5, 6, 7, 8, 9, 10])
-    fun `이동 확률이 4이상 10이하일 때, moveAllRandomly시, 모든 자동차의 position이 1씩 증가한다`(condition: Int) {
-        `when`(
-            movementProbabilityGenerator.generate()
-        )
-            .thenReturn(condition)
+    @Test
+    fun `이동을 성공하는 확률이 주어졌을 때, moveAllRandomly시, 모든 자동차의 position이 1씩 증가한다`() {
+        cars.moveAllRandomly(movementSuccessiveProbabilityGenerator)
 
-        carsMock.moveAllRandomly(movementProbabilityGenerator)
-
-        carsMock.forEach { car ->
+        cars.forEach { car ->
             assertEquals(ONE_STEP, car.position)
         }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [-1, 0, 1, 2, 3])
-    fun `이동 확률이 4미만일 때, moveAllRandomly시, 모든 자동차의 position이 증가하지 않는다`(condition: Int) {
-        `when`(
-            movementProbabilityGenerator.generate()
-        )
-            .thenReturn(condition)
+    @Test
+    fun `이동을 실패하는 확률이 주어졌을 때, moveAllRandomly시, 모든 자동차의 position이 증가하지 않는다`() {
+        cars.moveAllRandomly(movementFailureProbabilityGenerator)
 
-        carsMock.moveAllRandomly(movementProbabilityGenerator)
-
-        carsMock.forEach { car ->
+        cars.forEach { car ->
             assertNotEquals(ONE_STEP, car.position)
         }
     }
