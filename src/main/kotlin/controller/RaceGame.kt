@@ -9,9 +9,9 @@ class RaceGame(private val outputView: OutputView, private val inputView: InputV
 
     fun run() {
         outputView.outputCarNames()
-        val cars = executeInputCarNames()
+        val cars = Cars(inputView.inputCarNames())
         outputView.outputTryNumber()
-        val tryNumber = executeInputTryNumber()
+        val tryNumber = inputView.inputTryNumber().toInt()
         outputView.outputResults()
         repeat(tryNumber) {
             tryMove(cars)
@@ -26,7 +26,4 @@ class RaceGame(private val outputView: OutputView, private val inputView: InputV
         }
         outputView.outputNextLine()
     }
-
-    private fun executeInputTryNumber(): Int = inputView.inputTryNumber().toInt()
-    private fun executeInputCarNames(): Cars = Cars(inputView.inputCarNames())
 }
