@@ -1,9 +1,9 @@
 package racingcar.entity
 
-data class Car(val name: Name, val position: Position = Position(DEFAULT_POSITION)) {
+data class Car(val name: Name, var position: Position = Position(DEFAULT_POSITION)) {
     fun forward(number: Int) {
         if (number >= WIN_NUMBER)
-            position.addPosition(FORWARD_LENGTH)
+            position = Position(position.value + FORWARD_LENGTH)
     }
 
     fun compareByPosition(car: Car): Boolean {
