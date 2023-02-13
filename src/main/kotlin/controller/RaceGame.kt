@@ -2,7 +2,7 @@ package controller
 
 import generator.RandomGenerator
 import model.Cars
-import util.CarsHelper
+import util.WinnersFinder
 import view.InputView
 import view.OutputView
 
@@ -17,7 +17,7 @@ class RaceGame(private val outputView: OutputView, private val inputView: InputV
         repeat(tryNumber) {
             tryMove(cars)
         }
-        outputView.outputWinners(CarsHelper.findWinners(cars))
+        outputView.outputWinners(WinnersFinder.findWinners(cars))
     }
 
     private fun tryMove(cars: Cars) {
