@@ -17,8 +17,8 @@ class RaceTime(private var time: Int) {
     }
 
     companion object {
-        const val LOWER_RACE_TIME = 1
-        const val UPPER_RACE_TIME = 10
+        private const val LOWER_RACE_TIME = 1
+        private const val UPPER_RACE_TIME = 10
 
         const val ERROR_NOT_IN_RANGE = "시도 횟수는 1이상 10 이하여야 합니다."
     }

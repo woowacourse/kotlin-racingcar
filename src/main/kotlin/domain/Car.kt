@@ -33,10 +33,10 @@ class Car(
     }
 
     companion object {
-        const val NAME_LOWER_LENGTH = 1
-        const val NAME_UPPER_LENGTH = 5
+        private const val NAME_LOWER_LENGTH = 1
+        private const val NAME_UPPER_LENGTH = 5
 
-        const val RANGE_LOWER_INCLUSIVE = 4
+        private const val RANGE_LOWER_INCLUSIVE = 4
 
         const val ERROR_NAME_LENGTH = "자동차 이름은 1글자 이상 5글자 이하여야 합니다."
         const val ERROR_NAME = "자동차 이름은 공백이 없는 영문 소문자여야 합니다."
