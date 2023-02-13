@@ -10,12 +10,10 @@ class RaceTime(private var time: Int) {
         require(time in LOWER_RACE_TIME..UPPER_RACE_TIME) { ERROR_NOT_IN_RANGE }
     }
 
-    fun reduceTime(): Boolean {
-        if (time <= 0) {
-            return false
+    fun repeatTimes(func: () -> Unit) {
+        repeat(time) {
+            func()
         }
-        time--
-        return true
     }
 
     companion object {

@@ -40,7 +40,7 @@ class Controller(
 
     private fun race(cars: List<Car>, raceTime: RaceTime) {
         outputView.printExecutionResult()
-        while (raceTime.reduceTime()) {
+        raceTime.repeatTimes {
             raceOneTime(cars)
             outputView.printInterval()
         }
