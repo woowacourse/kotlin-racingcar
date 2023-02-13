@@ -1,7 +1,5 @@
 package model
 
-import generator.RandomGenerator
-
 class Cars(cars: List<Car>) {
     private val _cars: List<Car> = cars
     val cars: List<Car> get() = _cars
@@ -10,7 +8,7 @@ class Cars(cars: List<Car>) {
 
     fun getCar(index: Int): Car = _cars[index]
     fun getCarSize(): Int = _cars.size
-    fun move(index: Int) {
-        _cars[index].move(RandomGenerator().getRandomNumber())
+    fun move(index: Int, condition: Int) {
+        _cars[index].move(condition)
     }
 }

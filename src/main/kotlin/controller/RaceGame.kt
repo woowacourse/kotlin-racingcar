@@ -1,5 +1,6 @@
 package controller
 
+import generator.RandomGenerator
 import model.Cars
 import util.CarsHelper
 import view.InputView
@@ -21,7 +22,7 @@ class RaceGame(private val outputView: OutputView, private val inputView: InputV
 
     private fun tryMove(cars: Cars) {
         repeat(cars.getCarSize()) {
-            cars.move(it)
+            cars.move(it, RandomGenerator().getRandomNumber())
             outputView.outputResult(cars.getCar(it))
         }
         outputView.outputNextLine()
