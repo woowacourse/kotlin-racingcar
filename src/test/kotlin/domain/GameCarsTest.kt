@@ -66,7 +66,8 @@ internal class GameCarsTest {
 
         val winCars = gameCars.getMostAdvancedCars()
 
-        assertThat(winCars.map { it.name }).isEqualTo(listOf("tom", "tony"))
+        val expectedWinCars = listOf(Car("tom", RandomMovingStrategy()), Car("tony", RandomMovingStrategy()))
+        assertThat(winCars).isEqualTo(expectedWinCars)
     }
 
     private fun getAdvancedCars(): Set<Car> {
