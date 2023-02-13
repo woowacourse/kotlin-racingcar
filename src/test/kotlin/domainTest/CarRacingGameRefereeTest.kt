@@ -1,11 +1,11 @@
-package domainTest.gameTest
+package domainTest
 
 import domain.game.CarRacingGameReferee
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class RefereeTest : GameBaseTest() {
+class CarRacingGameRefereeTest : GameBaseTest() {
     lateinit var carRacingGameReferee: CarRacingGameReferee
 
     @BeforeEach

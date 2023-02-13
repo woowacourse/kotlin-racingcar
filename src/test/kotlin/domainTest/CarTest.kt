@@ -1,4 +1,4 @@
-package domainTest.gameTest
+package domainTest
 
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.Test
