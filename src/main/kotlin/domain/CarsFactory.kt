@@ -15,7 +15,7 @@ class CarsFactory(private val names: List<String>) {
         require(names.size == names.toSet().size) { ERROR_CAR_UNIQUENESS }
     }
 
-    fun makeCars(numberGenerator: RandomNumberGenerator): List<Car> {
+    fun makeCars(numberGenerator: NumberGenerator): List<Car> {
         return names.map { name -> Car(numberGenerator, name) }
     }
 
