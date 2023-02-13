@@ -36,10 +36,11 @@ class RacingController(
         }
     }
 
-    private fun createCars(carNames: List<String>) =
-        carNames.map { carName ->
+    private fun createCars(carNames: List<String>): List<Car> {
+        return carNames.map { carName ->
             racingService.createCar(carName)
         }
+    }
 
     private fun getWinners(cars: List<Car>): List<Car> = racingService.getWinners(cars)
 }
