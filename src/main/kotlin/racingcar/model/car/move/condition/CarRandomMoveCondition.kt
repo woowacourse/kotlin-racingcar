@@ -1,15 +1,15 @@
 package racingcar.model.car.move.condition
 
 class CarRandomMoveCondition : CarMoveCondition {
-    override fun generate(): Int =
+    override operator fun invoke(): Int =
         (START_RANDOM_MOVEMENT_PROBABILITY..END_RANDOM_MOVEMENT_PROBABILITY).random()
 
     class FakeForSuccess : CarMoveCondition {
-        override fun generate(): Int = SUCCESS_NUMBER
+        override operator fun invoke(): Int = SUCCESS_NUMBER
     }
 
     class FakeForFailed : CarMoveCondition {
-        override fun generate(): Int = FAIL_NUMBER
+        override operator fun invoke(): Int = FAIL_NUMBER
     }
 
     companion object {
