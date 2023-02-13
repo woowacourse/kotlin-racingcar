@@ -5,8 +5,7 @@ import racingcar.racingcar.domain.RaceResultDto
 class RaceManager(
     private val numberGenerator: NumberGenerator,
 ) {
-    private var _cars = MutableList(0) { Car("") }
-    private var cars: List<Car> = _cars
+    private var cars = MutableList(0) { Car("") }
     private var raceCount = 0
     private var result = mutableListOf<List<Int>>()
 
@@ -24,7 +23,7 @@ class RaceManager(
     }
 
     fun setGame(carNames: List<String>, racingCount: Int) {
-        this.cars = carNames.map { Car(it) }
+        this.cars = carNames.map { Car(it) }.toMutableList()
         this.raceCount = racingCount
     }
 

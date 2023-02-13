@@ -1,12 +1,14 @@
 package racingcar.view
 
-class InputView {
-    fun inputCarNames(): List<String> {
+import racingcar.racingcar.view.InputInterface
+
+class InputView : InputInterface {
+    override fun inputCarNames(): List<String> {
         println(CAR_NAMES)
         return readlnOrNull()?.split(',') ?: List(0) { "" }
     }
 
-    fun inputRacingCount(): Int {
+    override fun inputRacingCount(): Int {
         println(TRY_COUNT)
         return readlnOrNull()?.toIntOrNull() ?: 0
     }
