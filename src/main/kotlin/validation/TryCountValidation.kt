@@ -1,7 +1,18 @@
 package validation
 
+import view.OutputView
+
 object TryCountValidation {
-    fun checkTryCount(tryCount: String) {
+    fun validateTryCount(input: String): Boolean = try {
+        NullOrBlankValidation.checkNullOrBlank(input)
+        checkTryCount(input)
+        true
+    } catch (e: IllegalArgumentException) {
+        OutputView.printMessage(e.message!!)
+        false
+    }
+
+    private fun checkTryCount(tryCount: String) {
         checkTryCountInteger(tryCount)
         checkTryCountPositive(tryCount)
     }

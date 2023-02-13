@@ -1,24 +1,29 @@
 package view
 
 import validation.NameValidation
-import validation.NullValidation
 import validation.TryCountValidation
 
 object InputView {
 
     fun inputName(): String {
-        OutputView.printCar()
-        val input = readLine()
-        val carNames = NullValidation.checkNull(input)
-        NameValidation.checkNames(carNames)
-        return carNames
+        var input = ""
+        var isValidate = false
+        while (!isValidate) {
+            OutputView.printCar()
+            input = readln()
+            isValidate = NameValidation.validateCarName(input)
+        }
+        return input
     }
 
     fun inputTryCount(): String {
-        OutputView.printTryCount()
-        val input = readLine()
-        val tryCount = NullValidation.checkNull(input)
-        TryCountValidation.checkTryCount(tryCount)
-        return tryCount
+        var input = ""
+        var isValidate = false
+        while (!isValidate) {
+            OutputView.printTryCount()
+            input = readln()
+            isValidate = TryCountValidation.validateTryCount(input)
+        }
+        return input
     }
 }

@@ -12,22 +12,18 @@ class RacingGameController(
 ) {
 
     fun run() {
-        try {
-            inputCarNames()
-            inputTryCount()
-            playWholeRacing()
-            outputWinner()
-        } catch (e: IllegalArgumentException) {
-            OutputView.printMessage(e.message!!)
-        }
+        initCarNames()
+        initTryCount()
+        playWholeRacing()
+        outputWinner()
     }
 
-    private fun inputCarNames() {
+    private fun initCarNames() {
         val carsName = racingCarGameService.splitCarNames(InputView.inputName())
         carsInfo = racingCarGameService.initCarsInfo(carsName)
     }
 
-    private fun inputTryCount() {
+    private fun initTryCount() {
         tryCount = InputView.inputTryCount().toInt()
     }
 

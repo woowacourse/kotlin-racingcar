@@ -1,8 +1,19 @@
 package validation
 
+import view.OutputView
+
 object NameValidation {
 
-    fun checkNames(carNames: String) {
+    fun validateCarName(input: String): Boolean = try {
+        NullOrBlankValidation.checkNullOrBlank(input)
+        checkNames(input)
+        true
+    } catch (e: IllegalArgumentException) {
+        OutputView.printMessage(e.message!!)
+        false
+    }
+
+    private fun checkNames(carNames: String) {
         splitCarNames(carNames).forEach { name ->
             checkNameRange(name)
             checkCarNameEnglishNumber(name)
