@@ -7,7 +7,7 @@ class OutputView {
 
     fun printRoundResult(cars: List<Car>) {
         cars.forEach { car ->
-            println("$car : ${car.getPositionAsDash()}")
+            println("${car.name} : ${car.getPositionAsDash()}")
         }
         println()
     }

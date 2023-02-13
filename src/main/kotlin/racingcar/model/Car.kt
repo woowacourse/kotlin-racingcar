@@ -5,7 +5,7 @@ import racingcar.utils.MIN_CAR_NAME_LENGTH
 import racingcar.utils.RacingRuleValidator
 
 class Car(
-    private val name: String,
+    val name: String,
     private var position: Int = 0
 ) : Comparable<Car> {
 
@@ -23,8 +23,6 @@ class Car(
 
         return false
     }
-
-    override fun toString() = name
 
     override fun hashCode(): Int {
         var result = name.hashCode()
