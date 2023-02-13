@@ -3,18 +3,6 @@ package exception
 import domain.Car
 
 class InputValidator {
-    fun checkCarName(input: String): List<String> {
-        val names = input.split(",").map { it.trim() }
-        names.forEach { name ->
-            checkCarNameLength(name)
-            checkInvalidateCarName(name)
-        }
-        return names
-    }
-
-    private fun checkCarNameLength(name: String) = require(name.length <= Car.MAX_NAME_LENGTH) { NAME_LENGTH_ERROR }
-
-    private fun checkInvalidateCarName(name: String) = require(name.isNotEmpty()) { INVALID_NAME_ERROR }
 
     fun checkRoundCount(input: String): Int {
         val num = input.toIntOrNull() ?: throw IllegalArgumentException(NOT_NUMBER_ERROR)

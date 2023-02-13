@@ -1,6 +1,7 @@
 package controller
 
 import domain.Car
+import domain.Judgment
 import domain.RandomNumberGenerator
 import view.InputView
 import view.OutputView
@@ -8,7 +9,8 @@ import view.OutputView
 class Controller(
     private val inputView: InputView,
     private val outputView: OutputView,
-    private val generator: RandomNumberGenerator
+    private val generator: RandomNumberGenerator,
+    private val judgment: Judgment
 ) {
     fun start() {
         val cars = initializeCars()
@@ -18,29 +20,21 @@ class Controller(
 
     private fun initializeCars(): List<Car> {
         outputView.printCarNamesPrompt()
-        while (true) {
-            kotlin.runCatching {
-                inputView.readCarNames()
-            }.onSuccess { names ->
-                return names.map { name ->
-                    Car(name)
-                }
-            }.onFailure { e ->
-                println(e.message.toString())
-            }
+        return kotlin.runCatching {
+            inputView.readCarNames().map { name -> Car(name) }
+        }.getOrElse {
+            println(it.message.toString())
+            initializeCars()
         }
     }
 
     private fun initializeRoundCount(): Int {
         outputView.printRoundCountPrompt()
-        while (true) {
-            kotlin.runCatching {
-                inputView.readRoundCount()
-            }.onSuccess { roundCount ->
-                return roundCount
-            }.onFailure { e ->
-                println(e.message.toString())
-            }
+        return kotlin.runCatching {
+            inputView.readRoundCount()
+        }.getOrElse {
+            println(it.message.toString())
+            initializeRoundCount()
         }
     }
 
@@ -59,17 +53,6 @@ class Controller(
     }
 
     private fun finishGame(cars: List<Car>) {
-        outputView.printWinners(findWinners(cars))
-    }
-
-    fun findWinners(cars: List<Car>): List<String> {
-        val maxCount = cars.maxOfOrNull { car ->
-            car.moveCount
-        }
-        return cars.filter { car ->
-            car.moveCount == maxCount
-        }.map { winner ->
-            winner.name
-        }
+        outputView.printWinners(judgment.findWinners(cars))
     }
 }
