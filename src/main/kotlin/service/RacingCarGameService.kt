@@ -25,10 +25,10 @@ class RacingCarGameService {
 
     fun getMaxPositionCarNames(carsInfo: List<Car>): List<String> {
         val maxCarInfo = carsInfo.maxWith(Car::compareTo)
-        return carsInfo.filter { maxCarInfo.isSamePosition(it) }.map {
-            car ->
-            car.name
-        }
+        return carsInfo.filter { maxCarInfo.isSamePosition(it) }
+            .map { car ->
+                car.name
+            }
     }
 
     companion object {
