@@ -26,7 +26,7 @@ class Car(
     }
 
     fun getWinnerName(winnerDistance: Int): String {
-        if (isWinner(winnerDistance)) {
+        if (isSameDistance(winnerDistance)) {
             return name
         }
         return ""
@@ -54,7 +54,7 @@ class Car(
         return distance > winnerDistance
     }
 
-    private fun isWinner(winnerDistance: Int): Boolean {
+    private fun isSameDistance(winnerDistance: Int): Boolean {
         return winnerDistance == distance
     }
 
