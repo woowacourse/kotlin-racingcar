@@ -3,10 +3,11 @@ package domain
 import model.Car
 import model.CarPath
 import model.PathState
+import model.generator.NumberGenerator
 import model.generator.RacingNumberGenerator
 
 class CarRacingGame(
-    private val racingNumberGenerator: RacingNumberGenerator = RacingNumberGenerator()
+    private val racingNumberGenerator: NumberGenerator = RacingNumberGenerator()
 ) {
 
     fun startDriving(cars: List<Car>, numberOfTry: Int): List<CarPath> =

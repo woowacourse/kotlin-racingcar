@@ -20,6 +20,7 @@ class InputRefinementTest {
     @Test
     fun initNumberOfTryTest() {
         val input = initializer.initNumberOfTry(NUMBER_OF_TRY_STRING)
+
         assertThat(input).isEqualTo(NUMBER_OF_TRY_INT)
     }
 

@@ -11,6 +11,7 @@ class RefereeTest {
     @Test
     fun `우승자 정하기`() {
         val cars = listOf(Car(NAME1, WINNER_POSITION), Car(NAME2, LOSER_POSITION))
+
         val winner = referee.decideWinner(cars)
         val result = listOf(NAME1)
 
@@ -20,6 +21,7 @@ class RefereeTest {
     @Test
     fun `우승자가 여러 명일 경우`() {
         val cars = listOf(Car(NAME1, WINNER_POSITION), Car(NAME2, WINNER_POSITION))
+
         val winner = referee.decideWinner(cars)
         val result = listOf(NAME1, NAME2)
 
