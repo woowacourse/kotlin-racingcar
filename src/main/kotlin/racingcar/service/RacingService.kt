@@ -1,7 +1,7 @@
 package racingcar.service
 
 import racingcar.dto.car.CarsDto
-import racingcar.model.car.WinnersDto
+import racingcar.dto.car.WinnersDto
 import racingcar.model.round.RoundDto
 import racingcar.utils.mapper.toDto
 import racingcar.utils.mapper.toModel

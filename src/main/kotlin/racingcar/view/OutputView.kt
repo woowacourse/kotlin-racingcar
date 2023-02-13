@@ -1,7 +1,7 @@
 package racingcar.view
 
 import racingcar.dto.car.CarsDto
-import racingcar.model.car.WinnersDto
+import racingcar.dto.car.WinnersDto
 
 class OutputView {
     fun printMessage(message: String) = println(message)
