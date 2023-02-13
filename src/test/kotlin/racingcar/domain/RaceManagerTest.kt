@@ -30,6 +30,13 @@ internal class RaceManagerTest {
         assertNotEquals(raceManager.getWinner(raceManager.cars), listOf("test3"))
     }
 
+    @Test
+    fun `RaceResultDto 정상 반환 확인`() {
+        val raceManager = RaceManager(TestNumberGenerator(mutableListOf(1, 4, 3, 5, 4, 2)), listOf("test1", "test2", "test3"), 2)
+        val raceResultDto = raceManager.race()
+        assertEquals(listOf(listOf(1, 2, 0)), raceResultDto.result)
+    }
+
     class TestNumberGenerator(private val numbers: MutableList<Int>) : NumberGenerator {
         override fun generateNumber(minNumber: Int, maxNumber: Int): Int {
             return numbers.removeAt(0)
