@@ -1,14 +1,12 @@
 package racingcar.model.car
 
-open class Car(name: String, _position: Int = 0) {
-    var carName: CarName = CarName(name)
-        private set
-    var position: Int = _position
-        private set
+class Car(name: String, private var _position: Int = 0) {
+    val carName: CarName = CarName(name)
+    val position: Int get() = _position
 
     fun moveRandomly(moveCondition: Int) {
         if (moveCondition >= MOVEMENT_PROBABILITY) {
-            ++position
+            ++_position
         }
     }
 
@@ -20,8 +18,7 @@ open class Car(name: String, _position: Int = 0) {
 }
 
 class CarDto(_carName: String, val position: Int = 0) {
-    var carName: CarName = CarName(_carName.trim())
-        private set
+    val carName: CarName = CarName(_carName.trim())
 
     fun toModel(): Car = Car(carName.name, position)
 }
