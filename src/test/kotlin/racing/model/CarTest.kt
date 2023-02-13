@@ -3,6 +3,7 @@ package racing.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 
@@ -45,5 +46,19 @@ class CarTest {
     @Test
     fun `getName() 정상적으로 작동하는지 테스트`() {
         assertThat(car.getName()).isEqualTo("woni")
+    }
+
+    @Test
+    fun `차 이름이 5글자가 넘으면 exception 발생`() {
+        assertThrows<IllegalArgumentException> {
+            Car("aaaaaa")
+        }
+    }
+
+    @Test
+    fun `차 이름이 블랭크면 exception 발생`() {
+        assertThrows<IllegalArgumentException> {
+            Car("")
+        }
     }
 }
