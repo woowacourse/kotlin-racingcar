@@ -6,6 +6,8 @@ data class Name(val name: String) {
         require(name.length <= MIN_CAR_NAME_LENGTH) { "차 이름은 5글자 이하여야 합니다." }
     }
 
+    override fun toString(): String = name
+
     companion object {
         const val MIN_CAR_NAME_LENGTH = 5
     }
