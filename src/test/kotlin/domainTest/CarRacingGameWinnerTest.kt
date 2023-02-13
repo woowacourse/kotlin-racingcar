@@ -5,12 +5,12 @@ import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class CarRacingGameWinnerTest : GameBaseTest() {
-    lateinit var carRacingGameReferee: CarRacingGameWinner
+class CarRacingGameWinnerTest : BaseForTest() {
+    lateinit var carRacingGameWinner: CarRacingGameWinner
 
     @BeforeEach
     private fun setUp() {
-        carRacingGameReferee = CarRacingGameWinner()
+        carRacingGameWinner = CarRacingGameWinner()
     }
 
     @Test
@@ -19,7 +19,7 @@ class CarRacingGameWinnerTest : GameBaseTest() {
         stopCars.first().move()
 
         assertThat(
-            carRacingGameReferee.judgeWinners(
+            carRacingGameWinner.judgeWinners(
                 listOf(
                     movingCars.first(),
                     stopCars.first()
@@ -35,7 +35,7 @@ class CarRacingGameWinnerTest : GameBaseTest() {
         }
 
         assertThat(
-            carRacingGameReferee.judgeWinners(movingCars)
+            carRacingGameWinner.judgeWinners(movingCars)
         ).isEqualTo(
             movingCars.map { movingCar ->
                 movingCar.name

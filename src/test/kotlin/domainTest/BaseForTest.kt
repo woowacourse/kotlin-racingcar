@@ -2,7 +2,7 @@ package domainTest
 
 import domain.generator.CarGenerator
 
-open class GameBaseTest {
+open class BaseForTest {
 
     protected val carGenerator = CarGenerator()
 
