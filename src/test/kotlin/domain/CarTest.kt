@@ -26,21 +26,21 @@ internal class CarTest {
 
     @Test
     fun `moveAccordingToStrategy 메소드를 실행하면 전략대로 움직인다`() {
-        val car = Car("pobi", OnlyAdvanceMovingStrategy())
+        val car = Car("pobi", object : MovingStrategy {
+            override fun isMovable(): Boolean = true
+        })
 
         car.moveAccordingToStrategy()
 
         assertThat(car.advancedCount).isEqualTo(1)
     }
 
-    private class OnlyAdvanceMovingStrategy : MovingStrategy {
-        override fun isMovable(): Boolean = true
-    }
-
     @Test
     fun `equals 메소드를 실행하면 비교 대상이 Car 클래스이고 같은 이름을 가지고 있다면 참을 반환한다`() {
         val car1 = Car("pobi", RandomMovingStrategy())
-        val car2 = Car("pobi", OnlyAdvanceMovingStrategy())
+        val car2 = Car("pobi", object : MovingStrategy {
+            override fun isMovable(): Boolean = true
+        })
 
         val result = car1.equals(car2)
 
