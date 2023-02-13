@@ -34,9 +34,9 @@ class OutputView {
         println()
     }
 
-    fun outputWinners(winners: List<String>?) {
+    fun outputWinners(winners: List<String>) {
         when {
-            winners == null -> println(OUTPUT_NO_EXIST_WINNER)
+            winners.size == 0 -> println(OUTPUT_NO_EXIST_WINNER)
             else -> println(OUTPUT_WINNER + winners.joinToString(separator = WINNERS_SEPARATE_MARK))
         }
     }
