@@ -3,17 +3,25 @@ package racingcar.view
 import racingcar.entity.Car
 
 object OutputView {
-    const val MSG_INPUT_CAR_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
-    const val MSG_INPUT_ATTEMPT_COUNT = "시도할 횟수는 몇 회인가요?"
-    const val MSG_STEP_RESULT = "실행 결과"
-    const val MSG_WINNER = "최종 우승자: "
+    private const val MSG_INPUT_CAR_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
+    private const val MSG_INPUT_ATTEMPT_COUNT = "시도할 횟수는 몇 회인가요?"
+    private const val MSG_STEP_RESULT = "실행 결과"
+    private const val MSG_WINNER = "최종 우승자: "
 
-    fun printLnMessage(message: String) {
-        println(message)
+    fun requestCarName() {
+        println(MSG_INPUT_CAR_NAME)
     }
 
-    fun printMessage(message: String) {
-        print(message)
+    fun requestAttemptCount() {
+        println(MSG_INPUT_ATTEMPT_COUNT)
+    }
+
+    fun printStepResult() {
+        println(MSG_STEP_RESULT)
+    }
+
+    fun printWinners() {
+        print(MSG_WINNER)
     }
 
     fun stepResult(result: String) {

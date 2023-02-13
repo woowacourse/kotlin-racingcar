@@ -16,7 +16,7 @@ class World {
 
     private fun initCars(): List<Name> {
         return try {
-            OutputView.printLnMessage(OutputView.MSG_INPUT_CAR_NAME)
+            OutputView.requestCarName()
             InputView.carNames().map { Name(it) }
         } catch (e: IllegalArgumentException) {
             println("[ERROR]: " + e.message)
@@ -26,7 +26,7 @@ class World {
 
     private fun initAttemptCount(): AttemptCount {
         return try {
-            OutputView.printLnMessage(OutputView.MSG_INPUT_ATTEMPT_COUNT)
+            OutputView.requestAttemptCount()
             AttemptCount(InputView.attemptCount())
         } catch (e: IllegalArgumentException) {
             println("[ERROR]: " + e.message)
@@ -35,12 +35,12 @@ class World {
     }
 
     private fun run() {
-        OutputView.printLnMessage(OutputView.MSG_STEP_RESULT)
+        OutputView.printStepResult()
         OutputView.stepResult(racingManager.run())
     }
 
     private fun quit() {
-        OutputView.printMessage(OutputView.MSG_WINNER)
+        OutputView.printWinners()
         OutputView.winner(racingManager.determineWinner())
     }
 }
