@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.ListAssert
 import org.junit.jupiter.api.Test
 import racingcar.domain.NumberGenerator
 import racingcar.domain.RaceManager
@@ -11,8 +12,13 @@ import racingcar.racingcar.view.OutputInterface
 class GameControllerTest {
     @Test
     fun `runGame 함수를 통한 최종 우승자 정상 출력 확인`() {
+        val testWinner: (List<String>) -> ListAssert<String> = { names -> assertThat(listOf("test3")).isEqualTo(names) }
         val gameController =
-            GameController(RaceManager(TestNumberGenerator(mutableListOf(1, 2, 4))), TestInputViewInterface(), TestOutputViewInterface())
+            GameController(
+                RaceManager(TestNumberGenerator(mutableListOf(1, 2, 4))),
+                TestInputViewInterface(),
+                TestOutputViewInterface(testWinner)
+            )
         gameController.runGame()
     }
 
@@ -32,7 +38,9 @@ class GameControllerTest {
         }
     }
 
-    class TestOutputViewInterface : OutputInterface {
+    class TestOutputViewInterface(
+        val testWinner: (List<String>) -> ListAssert<String>,
+    ) : OutputInterface {
         override fun printRaceResult(raceResultDto: RaceResultDto) {
         }
 
@@ -43,7 +51,7 @@ class GameControllerTest {
         }
 
         override fun printWinner(names: List<String>) {
-            assertThat(names).isEqualTo(listOf("test3"))
+            testWinner(names)
         }
     }
 }
