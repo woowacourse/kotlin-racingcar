@@ -1,16 +1,16 @@
 package domainTest
 
-import domain.game.CarRacingGameReferee
+import domain.game.CarRacingGameWinner
 import org.assertj.core.api.Java6Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
-class CarRacingGameRefereeTest : GameBaseTest() {
-    lateinit var carRacingGameReferee: CarRacingGameReferee
+class CarRacingGameWinnerTest : GameBaseTest() {
+    lateinit var carRacingGameReferee: CarRacingGameWinner
 
     @BeforeEach
     private fun setUp() {
-        carRacingGameReferee = CarRacingGameReferee()
+        carRacingGameReferee = CarRacingGameWinner()
     }
 
     @Test

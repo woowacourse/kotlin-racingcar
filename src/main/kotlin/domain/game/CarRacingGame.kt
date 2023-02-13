@@ -3,7 +3,7 @@ package domain.game
 import model.Car
 
 class CarRacingGame(
-    private val referee: CarRacingGameReferee = CarRacingGameReferee()
+    private val referee: CarRacingGameWinner = CarRacingGameWinner()
 ) {
 
     fun moveCarsOneCycle(cars: List<Car>) = cars.forEach { car ->

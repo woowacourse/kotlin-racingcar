@@ -2,7 +2,7 @@ package domain.game
 
 import model.Car
 
-class CarRacingGameReferee {
+class CarRacingGameWinner {
 
     fun judgeWinners(cars: List<Car>): List<String> {
         val farthestDistance = cars.calcFarthestDistance()
