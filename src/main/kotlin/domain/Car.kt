@@ -9,7 +9,7 @@ class Car(val carName: String, private val driver: Driver) {
         require(carName.length in RANGE) { NAME_CONVENTION_ERROR_MESSAGE }
     }
 
-    fun decideCarMovement() {
+    fun move() {
         val decision = driver.decideMovement()
         distance += decision.distance
     }

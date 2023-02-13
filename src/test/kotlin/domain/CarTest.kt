@@ -14,7 +14,7 @@ internal class CarTest {
     fun `차 주행 테스트`(randNum: Int, expectedDistance: String) {
         val car = TestCarFactory.makeCar("세훈", randNum)
 
-        car.decideCarMovement()
+        car.move()
 
         assertThat(car.distance).isEqualTo(expectedDistance)
     }
