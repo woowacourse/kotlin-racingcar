@@ -41,7 +41,7 @@ class CarsTest {
             cars.cars[1].move(0)
             cars.cars[2].move(0)
         }
-        assertThat(cars.findWinners()).isEqualTo(null)
+        assertThat(cars.findWinners().size).isEqualTo(0)
     }
 
     @Test
