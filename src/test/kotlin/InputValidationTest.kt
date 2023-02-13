@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import validation.NameValidation
-import validation.NullValidation
+import validation.NullOrBlankValidation
 import validation.TryCountValidation
 
 class InputValidationTest {
@@ -9,7 +9,7 @@ class InputValidationTest {
     @Test
     fun `공백 입력 시 예외를 발생한다`() {
         assertThrows<IllegalArgumentException> {
-            NullValidation.checkNull("")
+            NullOrBlankValidation.checkNullOrBlank("")
         }
     }
 

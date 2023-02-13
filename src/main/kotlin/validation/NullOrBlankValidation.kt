@@ -1,8 +1,8 @@
 package validation
 
-object NullValidation {
+object NullOrBlankValidation {
 
-    fun checkNull(input: String?): String {
+    fun checkNullOrBlank(input: String?): String {
         require(!input.isNullOrBlank()) {
             INPUT_IS_EMPTY_ERROR_MESSAGE
         }
