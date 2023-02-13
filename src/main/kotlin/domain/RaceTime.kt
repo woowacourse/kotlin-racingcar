@@ -1,6 +1,6 @@
 package domain
 
-class RaceTime(private var time: Int) {
+class RaceTime(private val time: Int) {
 
     init {
         validateRange()
