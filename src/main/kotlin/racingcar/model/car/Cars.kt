@@ -18,10 +18,10 @@ class Cars(_cars: List<Car>) : List<Car> by _cars {
     }
 
     fun moveAll(carMoveCondition: CarMoveCondition): Cars = this.onEach { car ->
-        if (carMoveCondition.generate() >= MOVE_CONDITION) {
-            car.move(OneStep())
+        if (carMoveCondition() >= MOVE_CONDITION) {
+            car.move(OneStep)
         } else {
-            car.move(ZeroStep())
+            car.move(ZeroStep)
         }
     }
 
