@@ -1,7 +1,5 @@
 package domain
 
-import util.DriverDecision
-
 class Driver(private val numberGenerator: NumberGenerator) {
 
     fun decideMovement(): DriverDecision {
