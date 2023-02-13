@@ -1,7 +1,5 @@
 package racing.model
 
-private const val PREFIX = "[Error]"
-
 class Car(val name: String) {
     var position = 0
         private set
@@ -19,6 +17,7 @@ class Car(val name: String) {
     }
 
     companion object {
+        private const val PREFIX = "[Error]"
         private const val CAN_MOVE_MINIMUM = 4
         private const val MAX_CAR_NAME_LENGTH = 5
     }
