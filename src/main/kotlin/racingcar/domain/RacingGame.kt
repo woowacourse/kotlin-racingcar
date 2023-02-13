@@ -12,18 +12,17 @@ class RacingGame(
     fun runGame() {
         val names = getCarsName()
         val roundCount = getRoundCount()
-        val cars = mutableListOf<RacingCar>()
-        names.forEach { cars.add(RacingCar(it)) }
+        val cars = Cars(names)
 
         OutputView.printResult()
         for (i in 0 until roundCount) {
-            playRound(cars)
+            playRound(cars.value)
         }
 
-        OutputView.printWinner(referee.getWinner(cars))
+        OutputView.printWinner(referee.getWinner(cars.value))
     }
 
-    fun playRound(cars: MutableList<RacingCar>) {
+    fun playRound(cars: List<RacingCar>) {
         cars.forEach {
             play(it)
         }
