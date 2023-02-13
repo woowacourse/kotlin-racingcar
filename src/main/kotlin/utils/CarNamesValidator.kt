@@ -6,7 +6,7 @@ class CarNamesValidator : Validator {
 
         verifyCarCount(names)
         verifyCarUniqueness(names)
-        names.map { name ->
+        names.forEach { name ->
             verifyName(name)
             verifyNameLength(name)
         }
@@ -21,7 +21,7 @@ class CarNamesValidator : Validator {
     }
 
     private fun verifyName(name: String) {
-        name.map {
+        name.forEach {
             require(it.code in 97..122) { "$ERROR_NAME\n잘못된 입력값 : $name" }
         }
     }

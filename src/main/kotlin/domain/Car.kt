@@ -31,7 +31,7 @@ class Car(
     }
 
     private fun verifyName(name: String) {
-        name.map {
+        name.forEach {
             require(it.code in 97..122) { "$ERROR_NAME\n잘못된 자동차 이름 : $name" }
         }
     }

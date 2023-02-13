@@ -9,7 +9,7 @@ class Cars(generator: NumberGenerator, names: List<String>) {
     init {
         verifyCarCount(names)
         verifyCarUniqueness(names)
-        names.map { name -> cars.add(Car(generator, name)) }
+        names.forEach { name -> cars.add(Car(generator, name)) }
     }
 
     fun raceOneTime(): List<CarMetadata> {
@@ -31,13 +31,13 @@ class Cars(generator: NumberGenerator, names: List<String>) {
 
     private fun findWinnerDistance(): Int {
         var winnerDistance = 0
-        cars.map { car -> winnerDistance = car.compareDistance(winnerDistance) }
+        cars.forEach { car -> winnerDistance = car.compareDistance(winnerDistance) }
         return winnerDistance
     }
 
     private fun getWinners(winnerDistance: Int): Winners {
         val winners = mutableListOf<String>()
-        cars.map { car -> winners.add(car.isWinner(winnerDistance)) }
+        cars.forEach { car -> winners.add(car.isWinner(winnerDistance)) }
         return Winners(winners.filter { name -> name != "" })
     }
 

@@ -41,8 +41,8 @@ class CarsTest {
     fun `1회 경주`() {
         val expected = listOf(0, 1, 0, 1, 1)
         val results = cars.raceOneTime()
-        results.mapIndexed { index, result ->
-            assertThat(result.getDistance()).isEqualTo(expected[index])
+        results.forEachIndexed { index, result ->
+            assertThat(result.distance).isEqualTo(expected[index])
         }
     }
 
@@ -51,6 +51,6 @@ class CarsTest {
         for (t in 0 until 2) {
             cars.raceOneTime()
         }
-        assertThat(cars.findWinners().getWinners()).containsExactly("ver", "glo")
+        assertThat(cars.findWinners().names).containsExactly("ver", "glo")
     }
 }

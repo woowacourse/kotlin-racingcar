@@ -44,7 +44,7 @@ class Controller(
 
     private fun raceOneTime() {
         val raceOneTimeResults = cars.raceOneTime()
-        raceOneTimeResults.map { result ->
+        raceOneTimeResults.forEach { result ->
             outputView.printRaceResult(result)
         }
     }
