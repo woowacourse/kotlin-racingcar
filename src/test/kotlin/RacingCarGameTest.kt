@@ -13,7 +13,7 @@ class RacingCarGameTest {
         val carC = Car("cc", 2)
 
         val cars = listOf(carA, carB, carC)
-        val actual = racingCarGameService.getMaxPositionCars(cars)
+        val actual = racingCarGameService.getMaxPositionCarNames(cars)
         assertThat(actual).isEqualTo(listOf(carB))
     }
 
@@ -25,7 +25,7 @@ class RacingCarGameTest {
         val carD = Car("dd", 3)
 
         val cars = listOf(carA, carB, carC, carD)
-        val actual = racingCarGameService.getMaxPositionCars(cars)
+        val actual = racingCarGameService.getMaxPositionCarNames(cars)
         assertThat(actual).isEqualTo(listOf(carB, carD))
     }
 }

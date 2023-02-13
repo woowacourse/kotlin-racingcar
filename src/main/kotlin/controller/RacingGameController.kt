@@ -41,8 +41,8 @@ class RacingGameController(
     }
 
     private fun outputWinner() {
-        val winnerInfo = racingCarGameService.getMaxPositionCars(carsInfo)
-        OutputView.printWinners(winnerInfo)
+        val winnerNames = racingCarGameService.getMaxPositionCarNames(carsInfo)
+        OutputView.printWinners(winnerNames)
     }
 
     companion object {
