@@ -7,6 +7,8 @@ object OutputView {
 
     private const val FINAL_WINNER = "최종 우승자: "
     private const val SEPARATOR = ", "
+    private const val MOVE_MARK = "-"
+    private const val STOP_MARK = ""
 
     fun printMsg(msg: String) {
         println(msg)
@@ -28,10 +30,16 @@ object OutputView {
         var pathMarks = ""
 
         this.forEach { pathState ->
-            pathMarks += pathState.state
+            pathMarks += pathState.changeToMark()
         }
 
         return pathMarks
+    }
+
+    private fun PathState.changeToMark(): String {
+        if (this == PathState.MOVE)
+            return MOVE_MARK
+        return STOP_MARK
     }
 
     private fun CarPath.subPath(number: Int) = this.path.subList(0, number + 1)
