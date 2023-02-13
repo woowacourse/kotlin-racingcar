@@ -6,7 +6,7 @@ import org.junit.jupiter.api.assertThrows
 class CarTest {
 
     @Test
-    fun initTest() {
+    fun checkCarCreateTest() {
         val car = Car("dool")
         assertThat(car.name).isEqualTo("dool")
         assertThat(car.position).isEqualTo(0)
