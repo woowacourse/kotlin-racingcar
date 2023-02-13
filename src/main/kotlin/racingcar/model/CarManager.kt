@@ -26,7 +26,7 @@ class CarManager(names: List<Name>) {
     }
 
     fun makeAttemptLog(): String {
-        return OutputView.makeLog(cars)
+        return OutputView.makeLogs(cars)
     }
 
     companion object {

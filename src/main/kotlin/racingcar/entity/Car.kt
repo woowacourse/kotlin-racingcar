@@ -8,6 +8,4 @@ data class Car(val name: Name, var position: Position = Position(0)) {
     fun compareTo(car: Car): Boolean {
         return position.compareTo(car.position)
     }
-
-    override fun toString() = name.toString()
 }
