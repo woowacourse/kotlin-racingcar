@@ -40,7 +40,7 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["buna", "sooda"])
-    fun `자동차의 이름이 규칙을 따를 때 객체를 생성합니다`(carName: String) {
+    fun `자동차 이름의 글자 수가 1~5자에 해당 할 때 객체를 생성합니다`(carName: String) {
         assertDoesNotThrow {
             racingService.createCar(carName)
         }
@@ -48,7 +48,7 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["soooodal", "buuuuuuuna", ""])
-    fun `자동차의 이름이 규칙을 따르지 않을 때 객체 생성에 에러가 발생합니다`(carName: String) {
+    fun `자동차 이름의 글자 수가 1~5자에 해당 하지 않을 때 객체 생성에 에러가 발생합니다`(carName: String) {
         assertThrows<IllegalArgumentException> {
             racingService.createCar(carName)
         }
@@ -56,7 +56,7 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @MethodSource("provideCarsForHappyCase")
-    fun `각 자동차의 전진 횟수에 따른 산출된 우승자 리스트가 일치합니다`(cars: List<Car>, expectedWinnersCount: Int) {
+    fun `각 자동차의 전진 횟수에 따라 산출된 우승자 리스트가 일치합니다`(cars: List<Car>, expectedWinnersCount: Int) {
         val realWinnersCount = racingService.getWinners(cars).size
         assertEquals(realWinnersCount, expectedWinnersCount)
     }

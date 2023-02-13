@@ -37,7 +37,7 @@ internal class RacingRuleValidatorTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["1", Int.MAX_VALUE.toString(), "5", "6"])
-    fun `시도 횟수가 1 ~ 2,147,483,647인 숫자일 때 예외가 발생하지 않는다`(input: String) {
+    fun `시도 횟수가 1 ~ 2,147,483,647인 숫자일 때 예외가 발생하지 않습니다`(input: String) {
         assertDoesNotThrow {
             require(racingRuleValidator.isValidateRoundCountBoundary(input.toInt()))
         }
