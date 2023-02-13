@@ -2,8 +2,8 @@ package racingcar.domain
 
 import racingcar.resources.ERROR_MESSAGE_PREFIX
 
-class Car(val name: String) {
-    var location = 0
+class Car(val name: String, location: Int = 0) {
+    var location = location
         private set
 
     init {

@@ -3,7 +3,7 @@ package racingcar.view
 class InputView {
     fun inputCarNames(): List<String> {
         println(CAR_NAMES)
-        return readlnOrNull()?.split(',') ?: List(0) { "" }
+        return readlnOrNull()?.split(',') ?: emptyList()
     }
 
     fun inputRacingCount(): Int {

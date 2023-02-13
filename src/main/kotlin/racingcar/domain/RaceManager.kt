@@ -1,36 +1,30 @@
 package racingcar.domain
 
-import racingcar.racingcar.domain.RaceResultDto
+import racingcar.racingcar.domain.Cars
+import racingcar.racingcar.domain.numbergenerator.NumberGenerator
+import racingcar.racingcar.domain.raceresult.RaceResult
+import racingcar.racingcar.domain.raceresult.RacerResult
+import racingcar.racingcar.domain.raceresult.StepResult
 
 class RaceManager(
     private val numberGenerator: NumberGenerator,
 ) {
-    private var _cars = MutableList(0) { Car("") }
-    private var cars: List<Car> = _cars
-    private var raceCount = 0
-    private var result = mutableListOf<List<Int>>()
+    fun race(cars: Cars, raceCount: Int): RaceResult {
+        val stepResults = (1..raceCount).map { cars.move(numberGenerator) }
+        return RaceResult(stepResults)
+    }
 
-    fun race(): RaceResultDto {
-        result = mutableListOf()
-        repeat(raceCount) {
-            nextStep()
+    private fun Cars.move(numberGenerator: NumberGenerator): StepResult {
+        val racers = this.map { car ->
+            car.move(numberGenerator.generateNumber(Car.MIN_BOUNDARY, Car.MAX_BOUNDARY))
+            RacerResult(car.name, car.location)
         }
-        return RaceResultDto(cars.map { car -> car.name }, result)
+        return StepResult(racers)
     }
 
-    private fun nextStep() {
-        cars.forEach { it.move(numberGenerator.generateNumber(Car.MIN_BOUNDARY, Car.MAX_BOUNDARY)) }
-        result.add(cars.map { car -> car.location })
-    }
-
-    fun setGame(carNames: List<String>, racingCount: Int) {
-        this.cars = carNames.map { Car(it) }
-        this.raceCount = racingCount
-    }
-
-    fun getWinner(): List<String> {
-        val maxLocation = cars.maxOf { it.location }
-        return cars.filter { car -> car.location == maxLocation }
-            .map { it.name }
+    fun getWinners(cars: Cars): List<String> {
+        return cars
+            .filter { car -> car.location == cars.maxLocation }
+            .map { car -> car.name }
     }
 }

@@ -1,6 +1,8 @@
 package racingcar.controller
 
 import racingcar.domain.RaceManager
+import racingcar.racingcar.domain.Cars
+import racingcar.racingcar.domain.raceresult.toDto
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -11,21 +13,10 @@ class GameController(
     private val output by lazy { OutputView() }
 
     fun runGame() {
-        initGame()
-        startGame()
-        endGame()
-    }
-
-    private fun initGame() {
-        raceManager.setGame(input.inputCarNames(), input.inputRacingCount())
-    }
-
-    private fun startGame() {
-        val result = raceManager.race()
-        output.printRaceResult(result)
-    }
-
-    private fun endGame() {
-        output.printWinner(raceManager.getWinner())
+        val cars = Cars.create(input.inputCarNames())
+        val racingCount = input.inputRacingCount()
+        val raceResult = raceManager.race(cars, racingCount)
+        output.printRaceResult(raceResult.toDto())
+        output.printWinner(raceManager.getWinners(cars))
     }
 }

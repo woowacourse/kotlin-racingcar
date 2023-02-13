@@ -1,18 +1,19 @@
 package racingcar.view
 
-import racingcar.racingcar.domain.RaceResultDto
+import racingcar.racingcar.domain.raceresult.RaceResultDto
+import racingcar.racingcar.domain.raceresult.StepResultDto
 
 class OutputView {
     fun printRaceResult(raceResultDto: RaceResultDto) {
         println(RESULT_PREFIX)
-        raceResultDto.result.forEach { locations ->
-            printCarsState(raceResultDto.names, locations)
+        raceResultDto.result.forEach { stepResultDto ->
+            printCarsState(stepResultDto)
         }
     }
 
-    private fun printCarsState(names: List<String>, locations: List<Int>) {
-        locations.forEachIndexed { i, _ ->
-            printCarState(names[i], locations[i])
+    private fun printCarsState(stepResultDto: StepResultDto) {
+        stepResultDto.racers.forEach { racerResultDto ->
+            printCarState(racerResultDto.name, racerResultDto.location)
         }
         println()
     }
