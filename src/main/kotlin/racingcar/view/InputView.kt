@@ -4,7 +4,7 @@ import racingcar.constant.ERROR_NAME_LENGTH
 import racingcar.constant.ERROR_NULL_OR_BLANK
 import racingcar.constant.ERROR_WRONG_NUMBER
 import racingcar.domain.validator.InputValidator
-import racingcar.domain.validator.NumberValidator
+import racingcar.domain.validator.NumberValidator.isNumber
 
 class InputView {
     fun getCarsName(printInfo: () -> Unit): List<String> {
@@ -43,7 +43,7 @@ class InputView {
 
     private fun getVerifiedRoundCount(): Int {
         val input = getNotNullValue()
-        require(NumberValidator.isNumber(input)) { ERROR_WRONG_NUMBER }
+        require(input.isNumber()) { ERROR_WRONG_NUMBER }
         return input.toInt()
     }
 
