@@ -10,7 +10,6 @@ import org.junit.jupiter.params.provider.ValueSource
 import racingcar.model.Car
 import java.util.stream.Stream
 import kotlin.test.assertEquals
-import kotlin.test.assertNotEquals
 
 internal class RacingServiceTest {
 
@@ -21,9 +20,11 @@ internal class RacingServiceTest {
         this.racingService = RacingService()
     }
 
+    // todo isMove test
+
     @ParameterizedTest
     @ValueSource(strings = ["buna", "sooda"])
-    fun `자동차 객체 생성 정상 테스트`(carName: String) {
+    fun `자동차의 이름이 규칙을 따를 때 객체를 생성합니다`(carName: String) {
         assertDoesNotThrow {
             racingService.createCar(carName)
         }
@@ -31,7 +32,7 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["soooodal", "buuuuuuuna", ""])
-    fun `자동차 객체 생성 예외 테스트`(carName: String) {
+    fun `자동차의 이름이 규칙을 따르지 않을 때 객체 생성에 에러가 발생합니다`(carName: String) {
         assertThrows<IllegalArgumentException> {
             racingService.createCar(carName)
         }
@@ -39,16 +40,9 @@ internal class RacingServiceTest {
 
     @ParameterizedTest
     @MethodSource("provideCarsForHappyCase")
-    fun `최종 우승자 산출 정상 테스트`(cars: List<Car>, expectedWinnersCount: Int) {
+    fun `각 자동차의 전진 횟수에 따른 산출된 우승자 리스트가 일치합니다`(cars: List<Car>, expectedWinnersCount: Int) {
         val realWinnersCount = racingService.getWinners(cars).size
         assertEquals(realWinnersCount, expectedWinnersCount)
-    }
-
-    @ParameterizedTest
-    @MethodSource("provideCarsForExceptionCase")
-    fun `최종 우승자 산출 예외 테스트`(cars: List<Car>, expectedWinnersCount: Int) {
-        val realWinnersCount = racingService.getWinners(cars).size
-        assertNotEquals(realWinnersCount, expectedWinnersCount)
     }
 
     companion object {
@@ -78,44 +72,6 @@ internal class RacingServiceTest {
                         Car("sunny", 0),
                     ),
                     3
-                ),
-            )
-        }
-
-        @JvmStatic
-        fun provideCarsForExceptionCase(): Stream<Arguments> {
-            return Stream.of(
-                Arguments.of(
-                    listOf(
-                        Car("sooda", 7),
-                        Car("buna", 6),
-                        Car("sunny", 2),
-                    ),
-                    2
-                ),
-                Arguments.of(
-                    listOf(
-                        Car("sooda", 7),
-                        Car("buna", 2),
-                        Car("sunny", 7),
-                    ),
-                    1
-                ),
-                Arguments.of(
-                    listOf(
-                        Car("sooda", 0),
-                        Car("buna", 0),
-                        Car("sunny", 0),
-                    ),
-                    0
-                ),
-                Arguments.of(
-                    listOf(
-                        Car("sooda", 1),
-                        Car("buna", 2),
-                        Car("sunny", 3),
-                    ),
-                    4
                 ),
             )
         }

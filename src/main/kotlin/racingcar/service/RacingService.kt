@@ -8,11 +8,11 @@ class RacingService {
     fun createCar(carName: String) = Car(carName)
 
     fun moveRandomly(car: Car) {
-        car.move(isMove())
+        car.move(isMove(pickRandomMoveProbability()))
     }
 
-    fun isMove(): Boolean {
-        return pickRandomMoveProbability() >= MOVEMENT_PROBABILITY
+    fun isMove(moveProbability: Int): Boolean {
+        return moveProbability >= MOVEMENT_PROBABILITY
     }
 
     private fun pickRandomMoveProbability(): Int {

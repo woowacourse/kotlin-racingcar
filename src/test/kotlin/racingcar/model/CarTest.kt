@@ -2,7 +2,8 @@ package racingcar.model
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
 
@@ -13,16 +14,16 @@ class CarTest {
         car = Car("otter")
     }
 
-    @Test
-    fun `움직임 정상 테스트`() {
-        val moveCount = 5
-
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 2, 3])
+    fun `자동차가 전진한 횟수 만큼 "-"가 표현됩니다`(moveCount: Int) {
         repeat(moveCount) {
             car.move(true)
         }
 
-        assertEquals("-".repeat(moveCount), car.getPositionAsDash())
+        assertEquals(
+            "-".repeat(moveCount),
+            car.getPositionAsDash()
+        )
     }
-
-    // todo Car move test 추가
 }
