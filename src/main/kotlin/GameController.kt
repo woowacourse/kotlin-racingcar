@@ -7,10 +7,7 @@ import view.OutputView
 
 private const val EXCEPTION_NULL = "[ERROR] exception 메시지가 null입니다."
 
-class GameController(
-    private val inputView: InputView,
-    private val outputView: OutputView,
-) {
+class GameController() {
     private var cars: List<Car> = emptyList()
     private var tryCount: Int = 0
 
@@ -27,20 +24,20 @@ class GameController(
     }
 
     private fun playingPhase() {
-        outputView.printResultMessage()
+        OutputView.printResultMessage()
         playRace()
     }
 
     private fun endPhase() {
         val winnersResult = Referee.judgeWinner(cars)
-        outputView.printWinner(winnersResult)
+        OutputView.printWinner(winnersResult)
     }
 
     private fun getValidTryCount(): Int {
         return try {
             enterTryCount()
         } catch (e: IllegalArgumentException) {
-            outputView.printErrorMessage(e.message ?: EXCEPTION_NULL)
+            OutputView.printErrorMessage(e.message ?: EXCEPTION_NULL)
             getValidTryCount()
         }
     }
@@ -50,7 +47,7 @@ class GameController(
             val carNames = enterCarName()
             carNames.map { Car(it, driver) }
         } catch (e: IllegalArgumentException) {
-            outputView.printErrorMessage(e.message ?: EXCEPTION_NULL)
+            OutputView.printErrorMessage(e.message ?: EXCEPTION_NULL)
             getValidCar(driver)
         }
     }
@@ -58,7 +55,7 @@ class GameController(
     private fun playRace() {
         repeat(tryCount) {
             moveAllCar()
-            outputView.printResult(cars)
+            OutputView.printResult(cars)
         }
     }
 
@@ -69,13 +66,13 @@ class GameController(
     }
 
     private fun enterTryCount(): Int {
-        outputView.printEnterTryCount()
-        tryCount = inputView.enterTryCount()
+        OutputView.printEnterTryCount()
+        tryCount = InputView.enterTryCount()
         return tryCount
     }
 
     private fun enterCarName(): List<String> {
-        outputView.printEnterCarName()
-        return inputView.enterCarName()
+        OutputView.printEnterCarName()
+        return InputView.enterCarName()
     }
 }

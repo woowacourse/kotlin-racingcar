@@ -9,7 +9,7 @@ private const val COLON = " : "
 private const val WINNER = "최종 우승자: "
 private const val SEPARATOR = ", "
 
-class OutputView {
+object OutputView {
     fun printEnterCarName() {
         println(ENTER_CAR_NAME)
     }
