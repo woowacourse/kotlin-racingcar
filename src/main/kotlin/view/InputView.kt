@@ -4,7 +4,7 @@ import common.ERROR_MESSAGE_FORMAT
 
 object InputView {
 
-    fun readCarNames(): List<String> = readln().split(",").map{ it.trim() }
+    fun readCarNames(): List<String> = readln().split(",").map { it.trim() }
 
     fun readAdvanceCount(): Int {
         while (true) {

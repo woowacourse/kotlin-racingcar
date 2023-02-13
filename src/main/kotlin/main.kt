@@ -21,7 +21,7 @@ private fun setUpGameCars() {
     while (true) {
         runCatching {
             val carNames = InputView.readCarNames()
-            val cars = carNames.map { Car(it, RandomMovingStrategy()) }
+            val cars = carNames.map { Car(it, RandomMovingStrategy()) }.toSet()
             gameCars = GameCars(cars)
         }
             .onSuccess { return }
@@ -47,7 +47,7 @@ private fun runGame() {
 
     repeat(advanceCount.value) {
         gameCars.advanceAllCars()
-        OutputView.printGameStatus(gameCars.cars)
+        OutputView.printGameStatus(gameCars.cars.toList())
     }
 }
 
