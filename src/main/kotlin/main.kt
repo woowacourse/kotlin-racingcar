@@ -1,48 +1,29 @@
 import domain.AdvanceCount
 import domain.Car
 import domain.GameCars
-import domain.RandomMovingStrategy
 import view.InputView
 import view.OutputView
 
-private lateinit var gameCars: GameCars
-private lateinit var advanceCount: AdvanceCount
-
 fun main() {
-    setUpGameCars()
-    setUpAdvanceCount()
-    runGame()
-    printGameResult()
+    val gameCars = getGameCars()
+    val advanceCount = getAdvanceCount()
+    runGame(gameCars, advanceCount)
+    printGameResult(gameCars)
 }
 
-private fun setUpGameCars() {
+private fun getGameCars(): GameCars {
     OutputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
 
-    while (true) {
-        runCatching {
-            val carNames = InputView.readCarNames()
-            val cars = carNames.map { Car(it, RandomMovingStrategy()) }.toSet()
-            gameCars = GameCars(cars)
-        }
-            .onSuccess { return }
-            .onFailure { println(it.message) }
-    }
+    return InputView.getGameCars()
 }
 
-private fun setUpAdvanceCount() {
+private fun getAdvanceCount(): AdvanceCount {
     OutputView.printMessage(ADVANCE_COUNT_REQUEST_MESSAGE)
 
-    while (true) {
-        runCatching {
-            val count = InputView.readAdvanceCount()
-            advanceCount = AdvanceCount(count)
-        }
-            .onSuccess { return }
-            .onFailure { println(it.message) }
-    }
+    return InputView.getAdvanceCount()
 }
 
-private fun runGame() {
+private fun runGame(gameCars: GameCars, advanceCount: AdvanceCount) {
     OutputView.printMessage(GAME_RESULT_HEADER)
 
     repeat(advanceCount.value) {
@@ -51,7 +32,7 @@ private fun runGame() {
     }
 }
 
-private fun printGameResult() {
+private fun printGameResult(gameCars: GameCars) {
     val winCars: List<Car> = gameCars.getMostAdvancedCars()
     OutputView.printGameResult(winCars)
 }
