@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class CarTest {
 
-    lateinit var car: Car
+    private lateinit var car: Car
 
     @BeforeEach
     fun beforeEach() {
@@ -18,9 +18,11 @@ class CarTest {
         val moveCount = 5
 
         repeat(moveCount) {
-            car.move()
+            car.move(true)
         }
 
         assertEquals("-".repeat(moveCount), car.getPositionAsDash())
     }
+
+    // todo Car move test 추가
 }

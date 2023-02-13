@@ -32,7 +32,13 @@ class Car(
         return result
     }
 
-    fun move() = ++position
+    fun move(isMove: Boolean) {
+        if (isMove) setPosition(position + 1)
+    }
+
+    private fun setPosition(newPosition: Int) {
+        position = newPosition
+    }
 
     fun getPositionAsDash() = STRAIGHT_GAUGE.repeat(position)
 

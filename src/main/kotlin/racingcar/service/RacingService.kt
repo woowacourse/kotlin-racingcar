@@ -8,17 +8,15 @@ class RacingService {
     fun createCar(carName: String) = Car(carName)
 
     fun moveRandomly(car: Car) {
-        if (isMove()) {
-            car.move()
-        }
+        car.move(isMove())
     }
 
-    private fun isMove(): Boolean {
-        val random = Random.pickInRange(START_RANDOM_MOVEMENT_PROBABILITY, END_RANDOM_MOVEMENT_PROBABILITY)
-        if (random < MOVEMENT_PROBABILITY) {
-            return false
-        }
-        return true
+    fun isMove(): Boolean {
+        return pickRandomMoveProbability() >= MOVEMENT_PROBABILITY
+    }
+
+    private fun pickRandomMoveProbability(): Int {
+        return Random.pickInRange(START_RANDOM_MOVEMENT_PROBABILITY, END_RANDOM_MOVEMENT_PROBABILITY)
     }
 
     fun getWinners(cars: List<Car>): List<Car> {
