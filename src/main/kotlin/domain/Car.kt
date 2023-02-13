@@ -5,11 +5,9 @@ import exception.InputValidator
 class Car(_name: String, moveCount: Int = 0) {
     var moveCount = moveCount
         private set
-    var name: String
-        private set
+    val name = _name.trim()
 
     init {
-        name = _name.trim()
         require(name.length <= MAX_NAME_LENGTH) { InputValidator.NAME_LENGTH_ERROR }
         require(name.isNotEmpty()) { InputValidator.INVALID_NAME_ERROR }
     }
