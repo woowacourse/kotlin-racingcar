@@ -1,7 +1,6 @@
 package domain
 
 import dto.RaceResult
-import kotlin.math.max
 
 class Car(
     private val generator: NumberGenerator,
@@ -20,7 +19,10 @@ class Car(
     }
 
     fun compareDistance(winnerDistance: Int): Int {
-        return max(winnerDistance, distance)
+        if (isLongerDistance(winnerDistance)) {
+            return distance
+        }
+        return winnerDistance
     }
 
     fun isWinner(winnerDistance: Int): String {
@@ -46,6 +48,10 @@ class Car(
 
     private fun go() {
         distance++
+    }
+
+    private fun isLongerDistance(winnerDistance: Int): Boolean {
+        return distance > winnerDistance
     }
 
     companion object {
