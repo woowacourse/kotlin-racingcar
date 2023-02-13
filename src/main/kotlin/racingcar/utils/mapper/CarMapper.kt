@@ -5,4 +5,4 @@ import racingcar.model.car.Car
 
 fun CarDto.toModel(): Car = Car(carName.value, position)
 
-fun Car.toDto(): CarDto = CarDto(carName.value)
+fun Car.toDto(): CarDto = CarDto(carName.value, position)
