@@ -6,6 +6,7 @@ import racingcar.utils.RacingRuleValidator
 
 class Car(
     val name: String,
+    private val name: String,
     private var position: Int = 0
 ) : Comparable<Car> {
 
@@ -24,6 +25,8 @@ class Car(
         return false
     }
 
+    override fun toString() = name
+
     override fun hashCode(): Int {
         var result = name.hashCode()
         result = 31 * result + position
@@ -37,6 +40,7 @@ class Car(
     private fun setPosition(newPosition: Int) {
         position = newPosition
     }
+    fun move() = ++position
 
     fun getPositionAsDash() = STRAIGHT_GAUGE.repeat(position)
 
