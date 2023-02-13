@@ -11,5 +11,4 @@ object Referee {
     private fun findWinners(maxDistance: Int, cars: List<Car>) =
         cars.filter { it.distance.length == maxDistance }.map { it.carName }
 
-
 }
