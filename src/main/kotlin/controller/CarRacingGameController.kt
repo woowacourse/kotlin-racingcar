@@ -26,12 +26,12 @@ class CarRacingGameController(
     }
 
     private fun initCars(): List<Car> {
-        val names = InputView.inputCarNames().hasSuccessiveTokenizer()
+        val names = validateSuccessiveTokenizer(InputView.inputCarNames())
 
         return carGenerator.generateCars(names)
     }
 
-    private fun initNumberOfTry(): Int = InputView.inputNumberOfTry().isNumericNumberOfTry()
+    private fun initNumberOfTry(): Int = validateNumericNumberOfTry(InputView.inputNumberOfTry())
 
     private fun start(cars: List<Car>, numberOfTry: Int) {
         repeat(numberOfTry) { count ->
@@ -46,22 +46,22 @@ class CarRacingGameController(
         OutputView.printWinner(winners)
     }
 
-    private fun String.hasSuccessiveTokenizer(): List<String> {
-        val names = this.split(TOKENIZER)
+    fun validateSuccessiveTokenizer(names: String): List<String> {
+        val carNames = names.split(TOKENIZER)
 
-        require(names.hasEmptyString()) {
+        require(carNames.hasEmptyString()) {
             SUCCESSIVE_TOKENIZER_ERROR
         }
 
-        return names
+        return carNames
     }
 
-    private fun String.isNumericNumberOfTry(): Int {
-        require(this.isNumeric()) {
+    fun validateNumericNumberOfTry(numberOfTry: String): Int {
+        require(numberOfTry.isNumeric()) {
             NUMERIC_ERROR
         }
 
-        return this.toInt()
+        return numberOfTry.toInt()
     }
 
     private fun String.isNumeric(): Boolean = this.chars().allMatch { Character.isDigit(it) }
