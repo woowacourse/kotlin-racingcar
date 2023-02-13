@@ -9,31 +9,55 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class CarsTest {
     private lateinit var cars: Cars
-    private val generator = object : NumberGenerator {
-        private val numbers = mutableListOf(2, 5, 3, 9, 6, 4, 1, 3, 7, 8)
-
-        override fun generate(): Int {
-            return numbers.removeAt(0)
-        }
-    }
     private val names = listOf("pobi", "woni", "jun", "ver", "glo")
 
     @BeforeEach
     fun setUp() {
-        cars = Cars(generator, names)
+        cars = Cars(
+            object : NumberGenerator {
+                private val numbers = mutableListOf(2, 5, 3, 9, 6, 4, 1, 3, 7, 8)
+
+                override fun generate(): Int {
+                    return numbers.removeAt(0)
+                }
+            },
+            names,
+        )
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["", "pobi", "a,b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u"])
     fun `자동차 갯수가 2대 이상 20대 이하가 아니면 에러가 발생한다`(input: String) {
-        val exception = assertThrows<IllegalArgumentException> { Cars(generator, input.split(",")) }
+        val exception = assertThrows<IllegalArgumentException> {
+            Cars(
+                object : NumberGenerator {
+                    private val numbers = mutableListOf(2, 5, 3, 9, 6, 4, 1, 3, 7, 8)
+
+                    override fun generate(): Int {
+                        return numbers.removeAt(0)
+                    }
+                },
+                input.split(","),
+            )
+        }
         assertThat(exception.message).contains(Cars.ERROR_CAR_COUNT)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["pobi,woni,pobi"])
     fun `자동차 이름에 중복이 있으면 에러가 발생한다`(input: String) {
-        val exception = assertThrows<IllegalArgumentException> { Cars(generator, input.split(",")) }
+        val exception = assertThrows<IllegalArgumentException> {
+            Cars(
+                object : NumberGenerator {
+                    private val numbers = mutableListOf(2, 5, 3, 9, 6, 4, 1, 3, 7, 8)
+
+                    override fun generate(): Int {
+                        return numbers.removeAt(0)
+                    }
+                },
+                input.split(","),
+            )
+        }
         assertThat(exception.message).contains(Cars.ERROR_CAR_UNIQUENESS)
     }
 
