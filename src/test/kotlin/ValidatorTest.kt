@@ -21,4 +21,12 @@ class ValidatorTest {
             validator.checkTryNumber(input)
         }
     }
+
+    @ValueSource(strings = ["0", "101"])
+    @ParameterizedTest
+    fun `입력된 시도하는 숫자가 1이상 100이하가 아닌 경우 예외 테스트`(input: String) {
+        assertThrows<IllegalArgumentException> {
+            validator.checkTryNumber(input)
+        }
+    }
 }
