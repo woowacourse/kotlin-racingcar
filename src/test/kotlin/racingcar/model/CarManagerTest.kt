@@ -11,9 +11,7 @@ class CarManagerTest {
     @Test
     fun `CarManager를 생성 할 때 cars의 size가 1이하면 IllegalArgumentException 예외 발생`() {
         assertThrows<IllegalArgumentException> {
-            val names = listOf("test1")
-            val positions = listOf(Position(3))
-            val cars = names.mapIndexed { idx, name -> Car(Name(name), positions[idx]) }
+            val cars = listOf(Car(Name("test1")))
             val sequentialNumberGenerator = SequentialNumberGenerator(listOf())
 
             CarManager(sequentialNumberGenerator, cars)
