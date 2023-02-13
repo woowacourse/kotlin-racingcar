@@ -6,7 +6,6 @@ import racingcar.utils.RacingRuleValidator
 
 class Car(
     val name: String,
-    private val name: String,
     private var position: Int = 0
 ) : Comparable<Car> {
 

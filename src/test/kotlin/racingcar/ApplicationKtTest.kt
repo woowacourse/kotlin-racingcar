@@ -13,7 +13,6 @@ internal class ApplicationKtTest {
     @ParameterizedTest
     @MethodSource("provideInputNormalCases")
     fun `자동차의 이름과 시도 횟수가 게임의 규칙에 따라 입력 되었을 때 게임을 실행합니다`(carNames: String, roundCount: String) {
-    fun `기능 정상 테스트`(carNames: String, roundCount: String) {
         setInput(carNames, roundCount)
         assertDoesNotThrow {
             main()
@@ -23,7 +22,6 @@ internal class ApplicationKtTest {
     @ParameterizedTest
     @MethodSource("provideInputExceptionCases")
     fun `자동차의 이름과 시도 횟수가 게임의 규칙에 따라 입력 되지 않았을 때 에러가 발생합니다`(carNames: String, roundCount: String) {
-    fun `기능 예외 테스트`(carNames: String, roundCount: String) {
         setInput(carNames, roundCount)
         assertThrows<IllegalArgumentException> {
             main()
