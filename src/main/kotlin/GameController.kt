@@ -1,14 +1,12 @@
-import domain.Car
-import domain.Driver
+import domain.CarFactory
 import domain.Referee
-import domain.numbergenerator.RandomNumberGenerator
 import view.InputView
 import view.OutputView
 
 private const val EXCEPTION_NULL = "[ERROR] exception 메시지가 null입니다."
 
 class GameController() {
-    private var cars: List<Car> = emptyList()
+    private lateinit var carFactory: CarFactory
     private var tryCount: Int = 0
 
     fun runGame() {
@@ -18,8 +16,7 @@ class GameController() {
     }
 
     private fun standByPhase() {
-        val driver = Driver(RandomNumberGenerator())
-        cars = getValidCar(driver)
+        makeCars()
         tryCount = getValidTryCount()
     }
 
@@ -29,7 +26,7 @@ class GameController() {
     }
 
     private fun endPhase() {
-        val winnersResult = Referee.judgeWinner(cars)
+        val winnersResult = Referee.judgeWinner(carFactory.cars)
         OutputView.printWinner(winnersResult)
     }
 
@@ -42,26 +39,19 @@ class GameController() {
         }
     }
 
-    private fun getValidCar(driver: Driver): List<Car> {
+    private fun makeCars() {
         return try {
-            val carNames = enterCarName()
-            carNames.map { Car(it, driver) }
+            carFactory = CarFactory(enterCarName())
         } catch (e: IllegalArgumentException) {
             OutputView.printErrorMessage(e.message ?: EXCEPTION_NULL)
-            getValidCar(driver)
+            makeCars()
         }
     }
 
     private fun playRace() {
         repeat(tryCount) {
-            moveAllCar()
-            OutputView.printResult(cars)
-        }
-    }
-
-    private fun moveAllCar() {
-        cars.forEach {
-            it.move()
+            carFactory.moveCars()
+            OutputView.printResult(carFactory.cars)
         }
     }
 
