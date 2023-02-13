@@ -30,7 +30,7 @@ class Controller(
 
     private fun initializeRoundCount(): Int {
         outputView.printRoundCountPrompt()
-        return kotlin.runCatching {
+        return runCatching {
             inputView.readRoundCount()
         }.getOrElse { error ->
             println(error.message.toString())
