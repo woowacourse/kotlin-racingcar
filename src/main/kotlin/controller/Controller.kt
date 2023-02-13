@@ -36,7 +36,7 @@ class Controller(
 
     private fun race() {
         outputView.printExecutionResult()
-        for (t in 0 until time) {
+        repeat(time) {
             raceOneTime()
             outputView.printInterval()
         }
