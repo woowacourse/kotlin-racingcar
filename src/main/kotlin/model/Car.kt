@@ -9,10 +9,10 @@ class Car(
 
     init {
         require(name.length <= CAR_NAME_MAX) {
-            CAR_NAME_NUMBER_ERROR_MSG
+            "$CAR_NAME_NUMBER_ERROR_MSG $name 은 5자를 초과합니다."
         }
         require(name.isNotBlank()) {
-            CAR_NAME_BLANK_ERROR_MSG
+            "$CAR_NAME_BLANK_ERROR_MSG $name 은 공백입니다."
         }
     }
 
@@ -28,8 +28,8 @@ class Car(
     companion object {
         const val CAR_START_POSITION = 0
         const val CAR_NAME_MAX = 5
-        const val CAR_NAME_NUMBER_ERROR_MSG = "[ERROR] 이름이 5자를 초과했습니다. 자동차 이름은 5자를 초과할 수 없습니다."
-        const val CAR_NAME_BLANK_ERROR_MSG = "[ERROR] 이름이 공백입니다. 자동차 이름은 공백이 될 수 없습니다."
+        const val CAR_NAME_NUMBER_ERROR_MSG = "[ERROR] 자동차 이름은 5자를 초과할 수 없습니다."
+        const val CAR_NAME_BLANK_ERROR_MSG = "[ERROR] 자동차 이름은 공백이 될 수 없습니다."
         const val MOVE_LEAST_NUMBER = 4
     }
 }

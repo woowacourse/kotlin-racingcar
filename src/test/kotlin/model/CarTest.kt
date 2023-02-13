@@ -14,7 +14,7 @@ class CarTest {
     fun `5자 초과의 자동차 이름 확인하기`(name: String) {
         val exception: Throwable = assertThrows<IllegalArgumentException> { Car(name) }
 
-        assertThat(CAR_NAME_NUMBER_ERROR_MSG).isEqualTo(exception.message)
+        assertThat("$CAR_NAME_NUMBER_ERROR_MSG $name 은 5자를 초과합니다.").isEqualTo(exception.message)
     }
 
     @ParameterizedTest
@@ -22,7 +22,7 @@ class CarTest {
     fun `공백의 자동차 이름 확인하기`(name: String) {
         val exception: Throwable = assertThrows<IllegalArgumentException> { Car(name) }
 
-        assertThat(CAR_NAME_BLANK_ERROR_MSG).isEqualTo(exception.message)
+        assertThat("$CAR_NAME_BLANK_ERROR_MSG $name 은 공백입니다.").isEqualTo(exception.message)
     }
 
     private fun setNumber(n: NumberGenerator): Int {
