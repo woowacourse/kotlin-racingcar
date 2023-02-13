@@ -31,7 +31,7 @@ object OutputView {
     }
 
     fun makeLogs(cars: List<Car>): String {
-        return cars.joinToString("\n") { it.name.toString() + " : " + makePositionLog(it.position) }
+        return cars.joinToString("\n") { it.name.toString() + " : " + makePositionLog(it.getPosition()) }
     }
 
     private fun makePositionLog(position: Position): String {
