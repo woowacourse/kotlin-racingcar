@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.car.CarDto
+import racingcar.dto.car.CarDto
 import racingcar.model.car.CarsDto
 import racingcar.model.round.RoundDto
 import racingcar.utils.removeBlank

@@ -1,5 +1,8 @@
 package racingcar.model.car
 
+import racingcar.dto.car.CarDto
+import racingcar.utils.mapper.toDto
+import racingcar.utils.mapper.toModel
 import racingcar.utils.random.RandomGenerator
 
 class Cars(_cars: List<Car>) : List<Car> by _cars {
