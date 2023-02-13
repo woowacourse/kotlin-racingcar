@@ -1,3 +1,1 @@
-fun main() {
-    GameController().startGame()
-}
+fun main() = GameController().startGame()
