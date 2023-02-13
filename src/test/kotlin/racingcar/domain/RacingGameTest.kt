@@ -4,15 +4,11 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import racingcar.domain.numbergenerator.StubNumberGenerator
-import racingcar.view.InputView
-import racingcar.view.OutputView
 
 class RacingGameTest {
-    val inputView = InputView()
-    val outputView = OutputView()
-    val generator = StubNumberGenerator(mutableListOf(5, 3, 5))
-    val referee = Referee()
-    val racingGame = RacingGame(inputView, outputView, generator, referee)
+    private val generator = StubNumberGenerator(mutableListOf(5, 3, 5))
+    private val referee = Referee()
+    private val racingGame = RacingGame(generator, referee)
 
     @Test
     fun `숫자 4를 받았을때 전진하는지 확인하는 테스트(4부터 9까지 전진)`() {
@@ -29,7 +25,7 @@ class RacingGameTest {
     }
 
     @Test
-    fun `값에 따라 전진 여부 테스트`() {
+    fun `play 함수 2회 전진 1회 정지 경우의수 검증`() {
         val car = RacingCar("name")
         for (i in 0..2) {
             racingGame.play(car)
@@ -41,7 +37,7 @@ class RacingGameTest {
     }
 
     @Test
-    fun `우승자 찾기 테스트`() {
+    fun `우승자 찾기`() {
         val cars = listOf(
             RacingCar("one", 3),
             RacingCar("two", 2),
