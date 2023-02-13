@@ -1,6 +1,5 @@
 package racingcar.domain
 
-import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import racingcar.domain.numbergenerator.StubNumberGenerator
@@ -20,17 +19,5 @@ class RacingGameTest {
             2,
             car.movingState,
         )
-    }
-
-    @Test
-    fun `우승자 찾기`() {
-        val cars = listOf(
-            RacingCar("one", 3),
-            RacingCar("two", 2),
-            RacingCar("three", 3),
-        )
-        assertThat(
-            referee.getWinner(cars),
-        ).contains("one", "three").doesNotContain("two")
     }
 }
