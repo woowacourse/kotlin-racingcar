@@ -1,6 +1,7 @@
 package racing.model
 
-import org.assertj.core.api.Assertions.*
+import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatIllegalArgumentException
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -10,7 +11,9 @@ class CarTest {
 
     @Test
     fun `차 이름이 5글자가 넘으면 exception 발생`() {
-        assertThatIllegalArgumentException().isThrownBy { Car("aaaaaa") }.withMessageContaining("$ERROR_MESSAGE aaaaaa")
+        assertThatIllegalArgumentException()
+            .isThrownBy { Car("aaaaaa") }
+            .withMessageContaining("$ERROR_MESSAGE aaaaaa 자동차 이름은 5글자까지 가능합니다.")
     }
 
     @ParameterizedTest
@@ -28,13 +31,13 @@ class CarTest {
     }
 
     @Test
-    fun `두번 이동 했을 때의 position은 2`(){
+    fun `두번 이동 했을 때의 position은 2`() {
         car.move(PROGRESS)
         car.move(PROGRESS)
         assertThat(car.position).isEqualTo(2)
     }
 
-    companion object{
+    companion object {
         private const val ERROR_MESSAGE = "[Error]"
         private const val PROGRESS = 9
     }
