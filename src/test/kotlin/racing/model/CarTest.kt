@@ -49,14 +49,14 @@ class CarTest {
     }
 
     @Test
-    fun `차 이름이 5글자가 넘으면 exception 발생`() {
+    fun `차 이름은 최대 5글자이다`() {
         assertThrows<IllegalArgumentException> {
             Car("aaaaaa")
         }
     }
 
     @Test
-    fun `차 이름이 블랭크면 exception 발생`() {
+    fun `자동차의 이름은 비어있을 수 없다`() {
         assertThrows<IllegalArgumentException> {
             Car("")
         }
