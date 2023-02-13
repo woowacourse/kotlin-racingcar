@@ -4,7 +4,7 @@ import racingcar.entity.Car
 import racingcar.entity.Name
 import racingcar.view.OutputView
 
-class CarManager(names: List<Name>) {
+class CarManager(names: List<Name>, private val numberGenerator: NumberGenerator) {
     private val cars = names.map { Car(it) }
 
     fun determineWinner(): List<Car> {
@@ -12,17 +12,11 @@ class CarManager(names: List<Name>) {
         return sortedCars.filter { it.compareTo(sortedCars[0]) }.reversed()
     }
 
-    fun attempt() {
-        for (i in cars.indices) {
-            step(i, RandomNumber.generate())
+    fun attempt(): List<Car> {
+        cars.forEach {
+            it.forward(numberGenerator.generate())
         }
-    }
-
-    fun step(index: Int, number: Int) {
-        require(number in MIN_RANDOM_NUMBER..MAX_RANDOM_NUMBER) { "생성된 임의 숫자는 0에서 9사이어야 합니다." }
-        if (number >= WIN_NUMBER) {
-            cars[index].forward()
-        }
+        return cars
     }
 
     fun makeAttemptLog(): String {

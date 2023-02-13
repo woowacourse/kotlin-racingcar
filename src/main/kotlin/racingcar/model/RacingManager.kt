@@ -3,7 +3,7 @@ package racingcar.model
 import racingcar.entity.Name
 
 class RacingManager(names: List<Name>, private val attemptCount: AttemptCount) {
-    private val carManager = CarManager(names)
+    private val carManager = CarManager(names, RandomNumber)
 
     fun determineWinner() = carManager.determineWinner()
 
@@ -23,8 +23,4 @@ class RacingManager(names: List<Name>, private val attemptCount: AttemptCount) {
     }
 
     fun makeAttemptLog() = carManager.toString()
-
-    fun step(index: Int, number: Int) {
-        carManager.step(index, number)
-    }
 }
