@@ -1,8 +1,7 @@
 package model
 
 import model.generator.NumberGenerator
-import org.assertj.core.api.Assertions
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -14,14 +13,16 @@ class CarTest {
     @ValueSource(strings = ["우아한테크코스", "배달의 민족", "만세만세만만세"])
     fun `5자 초과의 자동차 이름 확인하기`(name: String) {
         val exception: Throwable = assertThrows<IllegalArgumentException> { Car(name) }
-        assertEquals(CAR_NAME_NUMBER_ERROR_MSG, exception.message)
+
+        assertThat(CAR_NAME_NUMBER_ERROR_MSG).isEqualTo(exception.message)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "\n"])
     fun `공백의 자동차 이름 확인하기`(name: String) {
         val exception: Throwable = assertThrows<IllegalArgumentException> { Car(name) }
-        assertEquals(CAR_NAME_BLANK_ERROR_MSG, exception.message)
+
+        assertThat(CAR_NAME_BLANK_ERROR_MSG).isEqualTo(exception.message)
     }
 
     private fun setNumber(n: NumberGenerator): Int {
@@ -36,7 +37,7 @@ class CarTest {
                 return STOP_NUMBER
             }
         })
-        Assertions.assertThat(car.move(condition)).isEqualTo(PathState.STOP)
+        assertThat(car.move(condition)).isEqualTo(PathState.STOP)
     }
 
     @Test
@@ -47,7 +48,7 @@ class CarTest {
                 return MOVE_NUMBER
             }
         })
-        Assertions.assertThat(car.move(condition)).isEqualTo(PathState.MOVE)
+        assertThat(car.move(condition)).isEqualTo(PathState.MOVE)
     }
 
     companion object {

@@ -13,6 +13,7 @@ class RefereeTest {
         val cars = listOf(Car(NAME1, WINNER_POSITION), Car(NAME2, LOSER_POSITION))
         val winner = referee.decideWinner(cars)
         val result = listOf(NAME1)
+
         assertThat(winner).isEqualTo(result)
     }
 
@@ -21,6 +22,7 @@ class RefereeTest {
         val cars = listOf(Car(NAME1, WINNER_POSITION), Car(NAME2, WINNER_POSITION))
         val winner = referee.decideWinner(cars)
         val result = listOf(NAME1, NAME2)
+
         assertThat(winner).isEqualTo(result)
     }
 

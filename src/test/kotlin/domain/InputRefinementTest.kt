@@ -1,26 +1,26 @@
 package domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 
-class InitializationTest {
+class InputRefinementTest {
 
     private val initializer = InputRefinement()
 
     @Test
     fun initCarsTest() {
         val names = listOf(NAME1, NAME2)
-        val input = names.joinToString(",")
+        val input = "$NAME1,$NAME2"
         val cars = initializer.initCars(input)
-        repeat(names.size) {
-            assertTrue(cars[it].name == names[it])
-        }
+
+        val carsName = cars.map { car -> car.name }
+        assertThat(names).isEqualTo(carsName)
     }
 
     @Test
     fun initNumberOfTryTest() {
-        assertThat(initializer.initNumberOfTry(NUMBER_OF_TRY_STRING)).isEqualTo(NUMBER_OF_TRY_INT)
+        val input = initializer.initNumberOfTry(NUMBER_OF_TRY_STRING)
+        assertThat(input).isEqualTo(NUMBER_OF_TRY_INT)
     }
 
     companion object {
