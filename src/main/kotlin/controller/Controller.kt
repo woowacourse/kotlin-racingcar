@@ -20,27 +20,21 @@ class Controller(
 
     private fun initializeCars(): List<Car> {
         outputView.printCarNamesPrompt()
-        while (true) {
-            kotlin.runCatching {
-                inputView.readCarNames().map { name -> Car(name) }
-            }.onSuccess { cars ->
-                return cars
-            }.onFailure { e ->
-                println(e.message.toString())
-            }
+        return kotlin.runCatching {
+            inputView.readCarNames().map { name -> Car(name) }
+        }.getOrElse {
+            println(it.message.toString())
+            initializeCars()
         }
     }
 
     private fun initializeRoundCount(): Int {
         outputView.printRoundCountPrompt()
-        while (true) {
-            kotlin.runCatching {
-                inputView.readRoundCount()
-            }.onSuccess { roundCount ->
-                return roundCount
-            }.onFailure { e ->
-                println(e.message.toString())
-            }
+        return kotlin.runCatching {
+            inputView.readRoundCount()
+        }.getOrElse {
+            println(it.message.toString())
+            initializeRoundCount()
         }
     }
 
