@@ -1,6 +1,6 @@
 package racingcar.controller
 
-import racingcar.model.car.CarsDto
+import racingcar.dto.car.CarsDto
 import racingcar.model.car.WinnersDto
 import racingcar.model.round.RoundDto
 import racingcar.service.RacingService

@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.car.CarsDto
+import racingcar.dto.car.CarsDto
 import racingcar.model.car.WinnersDto
 
 class OutputView {

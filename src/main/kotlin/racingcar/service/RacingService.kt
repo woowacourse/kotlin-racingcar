@@ -1,8 +1,10 @@
 package racingcar.service
 
-import racingcar.model.car.CarsDto
+import racingcar.dto.car.CarsDto
 import racingcar.model.car.WinnersDto
 import racingcar.model.round.RoundDto
+import racingcar.utils.mapper.toDto
+import racingcar.utils.mapper.toModel
 import racingcar.utils.random.MovementProbabilityGenerator
 import racingcar.utils.random.RandomGenerator
 
