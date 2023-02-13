@@ -13,13 +13,13 @@ import org.mockito.Mockito.mock
 import org.mockito.Mockito.spy
 import org.mockito.Mockito.`when`
 import racingcar.utils.random.MovementProbabilityGenerator
-import racingcar.utils.random.RandomGenerator
+import racingcar.utils.random.NumberGenerator
 import java.util.stream.Stream
 
 internal class CarsTest {
     private lateinit var carsMock: Cars
     private lateinit var twoWinnersCarsMock: Cars
-    private lateinit var movementProbabilityGenerator: RandomGenerator
+    private lateinit var movementProbabilityGenerator: NumberGenerator
 
     @BeforeEach
     fun setUp() {

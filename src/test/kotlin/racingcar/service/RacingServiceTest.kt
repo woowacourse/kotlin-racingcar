@@ -11,12 +11,12 @@ import racingcar.dto.car.CarsDto
 import racingcar.dto.round.RoundDto
 import racingcar.utils.random.MovementProbabilityGenerator
 import racingcar.utils.random.MovementProbabilityGenerator.Companion.START_RANDOM_MOVEMENT_PROBABILITY
-import racingcar.utils.random.RandomGenerator
+import racingcar.utils.random.NumberGenerator
 import java.util.stream.Stream
 
 internal class RacingServiceTest {
     private lateinit var racingService: RacingService
-    private lateinit var movementProbabilityGenerator: RandomGenerator
+    private lateinit var movementProbabilityGenerator: NumberGenerator
 
     @BeforeEach
     fun beforeEach() {

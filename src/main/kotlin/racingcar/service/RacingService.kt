@@ -6,11 +6,11 @@ import racingcar.dto.round.RoundDto
 import racingcar.utils.mapper.toDto
 import racingcar.utils.mapper.toModel
 import racingcar.utils.random.MovementProbabilityGenerator
-import racingcar.utils.random.RandomGenerator
+import racingcar.utils.random.NumberGenerator
 
 class RacingService(
     _cars: CarsDto,
-    private val movementProbabilityGenerator: RandomGenerator = MovementProbabilityGenerator()
+    private val movementProbabilityGenerator: NumberGenerator = MovementProbabilityGenerator()
 ) {
     private val cars = _cars.toModel()
 

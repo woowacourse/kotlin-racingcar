@@ -1,6 +1,6 @@
 package racingcar.model.car
 
-import racingcar.utils.random.RandomGenerator
+import racingcar.utils.random.NumberGenerator
 
 class Cars(_cars: List<Car>) : List<Car> by _cars {
     init {
@@ -15,7 +15,7 @@ class Cars(_cars: List<Car>) : List<Car> by _cars {
         }
     }
 
-    fun moveAllRandomly(movementProbabilityGenerator: RandomGenerator): Cars = this.onEach { car ->
+    fun moveAllRandomly(movementProbabilityGenerator: NumberGenerator): Cars = this.onEach { car ->
         val moveProbability = movementProbabilityGenerator.generate()
         car.moveRandomly(moveProbability)
     }
