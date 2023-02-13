@@ -4,12 +4,13 @@ import racingcar.model.Car
 import racingcar.service.RacingService
 
 class RacingController(
+    private val inputController: InputController = InputController(),
     private val viewController: ViewController = ViewController(),
     private val racingService: RacingService = RacingService(),
 ) {
     fun runRacing() {
-        val cars = createCars(viewController.readCarNames())
-        val roundCount = viewController.readRoundCount()
+        val cars = createCars(inputController.readCarNames())
+        val roundCount = inputController.readRoundCount()
 
         runRounds(roundCount, cars)
 

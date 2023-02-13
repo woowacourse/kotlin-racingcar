@@ -4,8 +4,6 @@ import racingcar.model.Car
 import racingcar.utils.MAX_ROUND_COUNT
 import racingcar.utils.MIN_ROUND_COUNT
 import racingcar.utils.RacingRuleValidator
-import racingcar.utils.TEXT_IN_LINE_DELIMITER
-import racingcar.utils.TextUtils.removeTextsBlank
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -16,25 +14,25 @@ class ViewController(
 
     private val racingRule = RacingRuleValidator()
 
-    fun readCarNames(): List<String> {
-        outputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
-        val input = inputView.readCarNames()
-        val carNames = removeTextsBlank(input.split(TEXT_IN_LINE_DELIMITER))
-
-        require(racingRule.isValidateNotDuplicatedCarNames(carNames)) { DUPLICATED_CAR_NAME_ERROR_MESSAGE }
-
-        return carNames
-    }
-
-    fun readRoundCount(): Int {
-        outputView.printMessage(ROUND_COUNT_REQUEST_MESSAGE)
-        val input = inputView.readRoundCount()
-
-        require(input.toIntOrNull() != null) { NOT_INTEGER_TYPE_ERROR_MESSAGE }
-        require(racingRule.isValidateRoundCountBoundary(input.toInt())) { ROUND_COUNT_BOUNDARY_ERROR_MESSAGE }
-
-        return input.toInt()
-    }
+    // fun readCarNames(): List<String> {
+    //     outputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
+    //     val input = inputView.readCarNames()
+    //     val carNames = removeTextsBlank(input.split(TEXT_IN_LINE_DELIMITER))
+    //
+    //     require(racingRule.isValidateNotDuplicatedCarNames(carNames)) { DUPLICATED_CAR_NAME_ERROR_MESSAGE }
+    //
+    //     return carNames
+    // }
+    //
+    // fun readRoundCount(): Int {
+    //     outputView.printMessage(ROUND_COUNT_REQUEST_MESSAGE)
+    //     val input = inputView.readRoundCount()
+    //
+    //     require(input.toIntOrNull() != null) { NOT_INTEGER_TYPE_ERROR_MESSAGE }
+    //     require(racingRule.isValidateRoundCountBoundary(input.toInt())) { ROUND_COUNT_BOUNDARY_ERROR_MESSAGE }
+    //
+    //     return input.toInt()
+    // }
 
     fun printRunResult() {
         outputView.printMessage(ROUNDS_RESULT_NOTIFICATION_MESSAGE)
