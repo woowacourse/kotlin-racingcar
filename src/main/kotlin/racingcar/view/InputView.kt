@@ -3,7 +3,8 @@ package racingcar.view
 import racingcar.constant.ERROR_NAME_LENGTH
 import racingcar.constant.ERROR_NULL_OR_BLANK
 import racingcar.constant.ERROR_WRONG_NUMBER
-import racingcar.domain.InputValueValidator
+import racingcar.domain.validator.InputValidator
+import racingcar.domain.validator.NumberValidator
 
 class InputView {
     fun getCarsName(printInfo: () -> Unit): List<String> {
@@ -26,7 +27,7 @@ class InputView {
     private fun checkNameLength(value: List<String>) {
         value.forEach {
             require(it.isNotBlank()) { ERROR_NULL_OR_BLANK }
-            require(InputValueValidator.isNameLengthInRange(it)) { ERROR_NAME_LENGTH }
+            require(InputValidator.isNameLengthInRange(it)) { ERROR_NAME_LENGTH }
         }
     }
 
@@ -42,7 +43,7 @@ class InputView {
 
     private fun getVerifiedRoundCount(): Int {
         val input = getNotNullValue()
-        require(InputValueValidator.isNumber(input)) { ERROR_WRONG_NUMBER }
+        require(NumberValidator.isNumber(input)) { ERROR_WRONG_NUMBER }
         return input.toInt()
     }
 
