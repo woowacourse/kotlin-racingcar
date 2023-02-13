@@ -5,7 +5,7 @@ import racingcar.service.RacingService
 
 class RacingController(
     private val inputController: InputController = InputController(),
-    private val viewController: ViewController = ViewController(),
+    private val outputController: OutputController = OutputController(),
     private val racingService: RacingService = RacingService(),
 ) {
     fun runRacing() {
@@ -15,11 +15,11 @@ class RacingController(
         runRounds(roundCount, cars)
 
         val winners = getWinners(cars)
-        viewController.printWinners(winners)
+        outputController.printWinners(winners)
     }
 
     private fun runRounds(roundCount: Int, cars: List<Car>) {
-        viewController.printRunResult()
+        outputController.printRunResult()
         repeat(roundCount) {
             runRound(cars)
         }
@@ -27,7 +27,7 @@ class RacingController(
 
     private fun runRound(cars: List<Car>) {
         moveCarsRandomly(cars)
-        viewController.printRoundResult(cars)
+        outputController.printRoundResult(cars)
     }
 
     private fun moveCarsRandomly(cars: List<Car>) {

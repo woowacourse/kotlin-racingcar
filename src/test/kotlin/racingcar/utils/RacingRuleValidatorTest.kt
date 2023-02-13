@@ -5,17 +5,14 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.controller.ViewController
 
 internal class RacingRuleValidatorTest {
 
     private lateinit var racingRuleValidator: RacingRuleValidator
-    private lateinit var viewController: ViewController
 
     @BeforeEach
     fun beforeEach() {
         this.racingRuleValidator = RacingRuleValidator()
-        viewController = ViewController()
     }
 
     @ParameterizedTest
