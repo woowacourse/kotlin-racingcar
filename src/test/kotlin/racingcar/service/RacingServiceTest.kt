@@ -10,6 +10,7 @@ import racingcar.model.car.CarDto
 import racingcar.model.car.CarsDto
 import racingcar.model.round.RoundDto
 import racingcar.utils.random.MovementProbabilityGenerator
+import racingcar.utils.random.MovementProbabilityGenerator.Companion.START_RANDOM_MOVEMENT_PROBABILITY
 import racingcar.utils.random.RandomGenerator
 import java.util.stream.Stream
 
@@ -41,7 +42,7 @@ internal class RacingServiceTest {
     }
 
     companion object {
-        private const val ABSOLUTE_MOVE_PROBABILITY = 10
+        private const val ABSOLUTE_MOVE_PROBABILITY = START_RANDOM_MOVEMENT_PROBABILITY
 
         @JvmStatic
         fun provideRounds(): Stream<Arguments> = Stream.of(

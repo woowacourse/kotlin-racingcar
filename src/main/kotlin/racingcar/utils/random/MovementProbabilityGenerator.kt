@@ -5,7 +5,7 @@ class MovementProbabilityGenerator : RandomGenerator {
         (START_RANDOM_MOVEMENT_PROBABILITY..END_RANDOM_MOVEMENT_PROBABILITY).random()
 
     companion object {
-        private const val START_RANDOM_MOVEMENT_PROBABILITY = 1
-        private const val END_RANDOM_MOVEMENT_PROBABILITY = 10
+        const val START_RANDOM_MOVEMENT_PROBABILITY = 0
+        const val END_RANDOM_MOVEMENT_PROBABILITY = 9
     }
 }
