@@ -15,10 +15,13 @@ class CarRacingGame(
     private fun recordPath(car: Car, numberOfTry: Int): CarPath {
         val path = mutableListOf<PathState>()
 
-        repeat(numberOfTry) {
-            path.add(car.move(racingNumberGenerator.generate()))
-        }
+        return CarPath(car.name, path.add(numberOfTry, car))
+    }
 
-        return CarPath(car.name, path)
+    private fun MutableList<PathState>.add(repeatNumber: Int, car: Car): List<PathState> {
+        repeat(repeatNumber) {
+            this.add(car.move(racingNumberGenerator.generate()))
+        }
+        return this
     }
 }
