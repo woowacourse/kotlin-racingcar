@@ -5,9 +5,13 @@ sealed class MoveStep {
 }
 
 object ZeroStep : MoveStep() {
-    override fun move(): Int = 0
+    private const val ZERO_STEP = 0
+
+    override fun move(): Int = ZERO_STEP
 }
 
 object OneStep : MoveStep() {
-    override fun move(): Int = 1
+    private const val ONE_STEP = 1
+
+    override fun move(): Int = ONE_STEP
 }
