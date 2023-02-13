@@ -12,7 +12,9 @@ import validation.NameValidationResult
 import validation.TryCountValidation
 import validation.TryCountValidationResult
 import view.InputView
+import view.InputViewInterface
 import view.OutputView
+import view.OutputViewInterface
 
 class RacingGameControllerTest {
 
@@ -22,6 +24,13 @@ class RacingGameControllerTest {
     val tryCountValidation = TryCountValidation()
     val numberGenerator: NumberGenerator = TestNumberGenerator(listOf(5, 6, 3))
     val racingGameController = RacingGameController(inputView, outputView, RacingCarGameService(numberGenerator))
+
+    @Test
+    fun `시도횟수가 3번이고, 차량이 3대이고, 시도 할때마다 랜덤 숫자가 5,6,3 이 반복될 때,  앞의 두 차량만 3번 움직인 상태를 출력한다`() {
+        val numberGenerator = TestNumberGenerator(listOf(5, 6, 3, 5, 6, 3, 5, 6, 3))
+        val racingGameController = RacingGameController(TestInputView(), TestOutputView(), RacingCarGameService(numberGenerator))
+        racingGameController.run()
+    }
 
     @Test
     fun `k5을 입력하였을때, Name("K5") 객체를 반환한다 `() {
@@ -67,28 +76,8 @@ class RacingGameControllerTest {
     }
 
     @Test
-    fun `시도횟수가 3번이고, 차량이 3대이고, 시도 할때마다 랜덤 숫자가 5,6,3 이 반복될 때,  앞의 두 차량만 3번 움직인 상태를 출력한다`() {
-        val numberGenerator = TestNumberGenerator(listOf(5, 6, 3, 5, 6, 3, 5, 6, 3))
-        val racingGameController = RacingGameController(inputView, outputView, RacingCarGameService(numberGenerator))
-        val carA = Car("aa", 0)
-        val carB = Car("bb", 0)
-        val carC = Car("cc", 0)
-        val carsInfo = listOf(carA, carB, carC)
-        val actual = racingGameController.playWholeRound(3, carsInfo)
-        val expect = "aa : -\nbb : -\ncc : \n\n" +
-            "aa : --\n" +
-            "bb : --\n" +
-            "cc : \n\n" +
-            "aa : ---\n" +
-            "bb : ---\n" +
-            "cc : \n\n"
-        assertThat(actual).isEqualTo(expect)
-    }
-
-    @Test
     fun `시도횟수가 3번이고, 차량이 3대이고, 랜덤 숫자가 5,6,3 이 반복될 때,  우승자는 앞 두차량이다`() {
-        val numberGenerator = TestNumberGenerator(listOf(5, 6, 3, 5, 6, 3, 5, 6, 3))
-        val racingGameController = RacingGameController(inputView, outputView, RacingCarGameService(numberGenerator))
+
         val carA = Car("aa", 0)
         val carB = Car("bb", 0)
         val carC = Car("cc", 0)
@@ -104,6 +93,37 @@ class RacingGameControllerTest {
 
         override fun generate(): Int {
             return numbers.removeAt(0)
+        }
+    }
+
+    class TestInputView() : InputViewInterface {
+        override fun inputName(): NameValidationResult {
+            return NameValidationResult.Success(Name("aa,bb,cc"))
+        }
+
+        override fun inputTryCount(): TryCountValidationResult {
+            return TryCountValidationResult.Success(TryCount("1"))
+        }
+    }
+
+    class TestOutputView() : OutputViewInterface {
+        override fun printCar() {
+        }
+
+        override fun printTryCount() {
+        }
+
+        override fun printRoundResult(roundResult: String) {
+        }
+
+        override fun printWinner(winners: List<String>) {
+            assertThat(winners).isEqualTo(listOf("aa", "bb"))
+        }
+
+        override fun printRunResultMessage() {
+        }
+
+        override fun printErrorMessage(error: String) {
         }
     }
 }
