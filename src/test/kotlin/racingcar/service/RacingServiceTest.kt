@@ -30,6 +30,15 @@ internal class RacingServiceTest {
     }
 
     @ParameterizedTest
+    @ValueSource(ints = [0, 1, 3])
+    fun `발행된 전진 확률이 0~3일 때 isMove 메서드가 false를 반환합니다`(moveProbability: Int) {
+        assertEquals(
+            racingService.isMove(moveProbability),
+            false
+        )
+    }
+
+    @ParameterizedTest
     @ValueSource(strings = ["buna", "sooda"])
     fun `자동차의 이름이 규칙을 따를 때 객체를 생성합니다`(carName: String) {
         assertDoesNotThrow {
