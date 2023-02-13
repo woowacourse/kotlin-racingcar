@@ -6,12 +6,12 @@ import model.TryCount
 import service.RacingCarGameService
 import validation.NameValidationResult
 import validation.TryCountValidationResult
-import view.InputView
-import view.OutputView
+import view.InputViewInterface
+import view.OutputViewInterface
 
 class RacingGameController(
-    private val inputView: InputView,
-    private val outputView: OutputView,
+    private val inputView: InputViewInterface,
+    private val outputView: OutputViewInterface,
     private val racingCarGameService: RacingCarGameService
 ) {
     fun run() {
