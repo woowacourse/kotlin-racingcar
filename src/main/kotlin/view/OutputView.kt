@@ -7,7 +7,6 @@ object OutputView {
     private const val INPUT_TRY_COUNT_MESSAGE = "시도할 횟수는 몇 회인가요?"
     private const val RUN_RESULT_MESSAGE = "실행 결과"
     private const val FINAL_WINNERS = "최종 우승자"
-    fun printMessage(message: String) = println(message)
     fun printCar() = println(INPUT_CAR_NAMES_MESSAGE)
     fun printTryCount() = println(INPUT_TRY_COUNT_MESSAGE)
     fun printRunResultMessage() = println("\n$RUN_RESULT_MESSAGE")

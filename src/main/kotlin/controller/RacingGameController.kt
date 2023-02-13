@@ -2,6 +2,8 @@ package controller
 
 import model.Car
 import service.RacingCarGameService
+import validation.NameValidation
+import validation.TryCountValidation
 import view.InputView
 import view.OutputView
 
@@ -19,12 +21,17 @@ class RacingGameController(
     }
 
     private fun initCarNames() {
-        val carsName = racingCarGameService.splitCarNames(InputView.inputName())
+        val input = InputView.inputName()
+        NameValidation.validate(input)
+
+        val carsName = racingCarGameService.splitCarNames(input)
         carsInfo = racingCarGameService.initCarsInfo(carsName)
     }
 
     private fun initTryCount() {
-        tryCount = InputView.inputTryCount().toInt()
+        val input = InputView.inputTryCount()
+        TryCountValidation.validate(input)
+        tryCount = input.toInt()
     }
 
     private fun playRound() {
