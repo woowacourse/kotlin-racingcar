@@ -14,7 +14,3 @@ class Round(val count: Int) {
             "라운드 횟수의 범위는 $MIN_ROUND_COUNT 이상 $MAX_ROUND_COUNT 이하입니다."
     }
 }
-
-class RoundDto(val count: Int) {
-    fun toModel(): Round = Round(count)
-}

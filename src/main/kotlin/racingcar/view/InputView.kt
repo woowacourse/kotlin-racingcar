@@ -2,7 +2,7 @@ package racingcar.view
 
 import racingcar.dto.car.CarDto
 import racingcar.dto.car.CarsDto
-import racingcar.model.round.RoundDto
+import racingcar.dto.round.RoundDto
 import racingcar.utils.removeBlank
 
 class InputView {

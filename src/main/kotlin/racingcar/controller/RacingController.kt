@@ -2,7 +2,7 @@ package racingcar.controller
 
 import racingcar.dto.car.CarsDto
 import racingcar.dto.car.WinnersDto
-import racingcar.model.round.RoundDto
+import racingcar.dto.round.RoundDto
 import racingcar.service.RacingService
 import racingcar.view.InputView
 import racingcar.view.OutputView

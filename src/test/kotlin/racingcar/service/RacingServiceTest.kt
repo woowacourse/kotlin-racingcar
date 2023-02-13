@@ -8,7 +8,7 @@ import org.junit.jupiter.params.provider.MethodSource
 import org.mockito.Mockito
 import racingcar.dto.car.CarDto
 import racingcar.dto.car.CarsDto
-import racingcar.model.round.RoundDto
+import racingcar.dto.round.RoundDto
 import racingcar.utils.random.MovementProbabilityGenerator
 import racingcar.utils.random.MovementProbabilityGenerator.Companion.START_RANDOM_MOVEMENT_PROBABILITY
 import racingcar.utils.random.RandomGenerator
