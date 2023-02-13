@@ -5,13 +5,7 @@ import racingcar.entity.Name
 import racingcar.view.OutputView
 
 class CarManager(names: List<Name>) {
-    private val cars = mutableListOf<Car>()
-
-    init {
-        for (name in names) {
-            cars.add(Car(name))
-        }
-    }
+    private val cars = names.map { Car(it) }
 
     fun determineWinner(): List<Car> {
         val sortedCars = cars.sortedWith { car, car2 -> if (car.compareTo(car2)) -1 else 1 }
@@ -19,7 +13,7 @@ class CarManager(names: List<Name>) {
     }
 
     fun attempt() {
-        for (i in 0 until cars.size) {
+        for (i in cars.indices) {
             step(i, RandomNumber.generate())
         }
     }
