@@ -53,8 +53,7 @@ class Controller(
     }
 
     private fun finishGame(cars: List<Car>) {
-        val referee = Referee()
-        val winners = referee.judgeWinners(cars)
+        val winners = Referee.judgeWinners(cars)
         outputView.printWinners(winners)
     }
 }

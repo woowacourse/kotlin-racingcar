@@ -1,6 +1,6 @@
 package domain
 
-class Referee {
+object Referee {
     fun judgeWinners(cars: List<Car>): List<String> {
         val maxMoveCount = findMaxMoveCount(cars)
         return findWinnersBy(cars, maxMoveCount)
