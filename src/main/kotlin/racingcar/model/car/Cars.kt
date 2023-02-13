@@ -8,7 +8,7 @@ class Cars(_cars: List<Car>) : List<Car> by _cars {
     }
 
     private fun validateExistDuplicatedCarName() {
-        val nonDuplicatedCarsForName = this.distinctBy { it.carName.name }
+        val nonDuplicatedCarsForName = this.distinctBy { it.carName.value }
 
         require(this.size == nonDuplicatedCarsForName.size) {
             DUPLICATED_CAR_NAME_ERROR_MESSAGE

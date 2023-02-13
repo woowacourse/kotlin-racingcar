@@ -1,10 +1,10 @@
 package racingcar.model.car
 
-class CarName(private var _name: String) {
-    val name: String get() = _name.trim()
+class CarName(private var _value: String) {
+    val value: String get() = _value.trim()
 
     init {
-        require(name.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) {
+        require(value.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) {
             CAR_NAME_LENGTH_OVER_BOUNDARY_ERROR_MESSAGE
         }
     }

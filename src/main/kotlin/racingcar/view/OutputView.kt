@@ -8,13 +8,13 @@ class OutputView {
 
     fun printRoundResult(cars: CarsDto) {
         cars.forEach { car ->
-            println("${car.carName.name} : ${getPositionAsDash(car.position)}")
+            println("${car.carName.value} : ${getPositionAsDash(car.position)}")
         }
         println()
     }
 
     fun printWinners(winners: WinnersDto) {
-        println("$WINNER_NOTIFICATION_MESSAGE: ${winners.joinToString(", ") { it.carName.name }}")
+        println("$WINNER_NOTIFICATION_MESSAGE: ${winners.joinToString(", ") { it.carName.value }}")
     }
 
     private fun getPositionAsDash(position: Int): String = DASH.repeat(position)
