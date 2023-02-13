@@ -6,7 +6,7 @@ class Car(val name: String, private val movingStrategy: MovingStrategy) {
 
     init {
         require(name.matches(carNameRegex)) {
-            ERROR_MESSAGE_FORMAT.format(CAR_NAME_REGEX_ERROR).plus("\n${ILLEGAL_INPUT_NAME_FORMAT.format(name)}")
+            ERROR_MESSAGE_FORMAT.format(CAR_NAME_REGEX_ERROR).plus("\n${ILLEGAL_INPUT_VALUE_FORMAT.format(name)}")
         }
     }
 
@@ -26,4 +26,4 @@ class Car(val name: String, private val movingStrategy: MovingStrategy) {
 }
 
 private const val CAR_NAME_REGEX_ERROR = "자동차의 이름은 한글 혹은 영어로 공백이 없어야 하며 최소 1글자에서 최대 5글자까지 가능합니다."
-private const val ILLEGAL_INPUT_NAME_FORMAT = "잘못된 사용자의 입력: %s"
+private const val ILLEGAL_INPUT_VALUE_FORMAT = "잘못된 사용자의 입력: %s"
