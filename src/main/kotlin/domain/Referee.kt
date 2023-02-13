@@ -4,7 +4,6 @@ object Referee {
 
     fun judgeWinner(cars: List<Car>): List<String> {
         val maxDistance = cars.maxOf { it.distance.length }
-        findWinners(maxDistance, cars)
 
         return findWinners(maxDistance, cars)
     }
