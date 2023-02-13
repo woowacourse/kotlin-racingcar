@@ -1,7 +1,7 @@
 package controller
 
 import domain.CarRacingGame
-import domain.Initialize
+import domain.InputRefinement
 import domain.Referee
 import model.Car
 import model.CarPath
@@ -11,7 +11,7 @@ import view.OutputView
 
 class RacingCarController(
     private val carRacingGame: CarRacingGame = CarRacingGame(),
-    private val initializer: Initialize = Initialize()
+    private val initializer: InputRefinement = InputRefinement()
 ) {
 
     fun startGame() {

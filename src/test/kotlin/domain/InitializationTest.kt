@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 
 class InitializationTest {
 
-    private val initializer = Initialize()
+    private val initializer = InputRefinement()
 
     @Test
     fun initCarsTest() {

@@ -3,7 +3,7 @@ package domain
 import model.Car
 import model.generator.CarGenerator
 
-class Initialize(
+class InputRefinement(
     private val carGenerator: CarGenerator = CarGenerator()
 ) {
 

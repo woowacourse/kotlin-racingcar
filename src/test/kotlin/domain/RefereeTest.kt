@@ -11,13 +11,17 @@ class RefereeTest {
     @Test
     fun `우승자 정하기`() {
         val cars = listOf(Car(NAME1, WINNER_POSITION), Car(NAME2, LOSER_POSITION))
-        assertThat(referee.decideWinner(cars)).isEqualTo(listOf(NAME1))
+        val winner = referee.decideWinner(cars)
+        val result = listOf(NAME1)
+        assertThat(winner).isEqualTo(result)
     }
 
     @Test
     fun `우승자가 여러 명일 경우`() {
         val cars = listOf(Car(NAME1, WINNER_POSITION), Car(NAME2, WINNER_POSITION))
-        assertThat(referee.decideWinner(cars)).isEqualTo(listOf(NAME1, NAME2))
+        val winner = referee.decideWinner(cars)
+        val result = listOf(NAME1, NAME2)
+        assertThat(winner).isEqualTo(result)
     }
 
     companion object {
