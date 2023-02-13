@@ -4,34 +4,26 @@ import racing.util.RandomNumberGenerator
 
 object RacingGame {
 
-    private val _cars: MutableList<Car> = mutableListOf()
-    val cars: List<Car>
-        get() = _cars
+    private val randomNumberGenerator = RandomNumberGenerator()
 
-
-    fun registerCars(carNames: List<String>) {
-        _cars.addAll(carNames.map { name: String -> Car(name) })
+    fun getCars(carNames: List<String>): List<Car> {
+        return carNames.map { name: String -> Car(name) }
     }
 
-    fun removeAllCars(){
-        _cars.clear()
-    }
-
-    fun moveCars() {
-        _cars.forEach { car: Car -> car.move(createRandomNumber()) }
+    fun moveCars(cars: List<Car>) {
+        cars.forEach { car: Car -> car.move(createRandomNumber()) }
     }
 
     private fun createRandomNumber(): Int {
-        val randomNumberGenerator = RandomNumberGenerator()
         return randomNumberGenerator.generate()
     }
 
-    fun getWinnerNames(): List<String> {
-        val maxPosition: Int = getMaxPosition()
-        return _cars.filter { car: Car -> car.position == maxPosition }.map { car: Car -> car.name }
+    fun getWinnerNames(cars: List<Car>): List<String> {
+        val maxPosition: Int = getMaxPosition(cars)
+        return cars.filter { car: Car -> car.position == maxPosition }.map { car: Car -> car.name }
     }
 
-    private fun getMaxPosition(): Int {
-        return _cars.maxOf { car: Car -> car.position }
+    private fun getMaxPosition(cars: List<Car>): Int {
+        return cars.maxOf { car: Car -> car.position }
     }
 }

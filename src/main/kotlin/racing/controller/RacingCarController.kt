@@ -1,5 +1,6 @@
 package racing.controller
 
+import racing.model.Car
 import racing.model.RacingGame
 import racing.view.InputView
 import racing.view.OutputView
@@ -7,14 +8,11 @@ import racing.view.UI
 
 class RacingCarController {
 
-    init {
-        val carNames = getCarNames()
-        RacingGame.registerCars(carNames)
-    }
-
     fun startRace() {
+        val carNames = getCarNames()
+        val cars: List<Car> = RacingGame.getCars(carNames)
         val moveTimes = getMoveTimes()
-        printResult(moveTimes)
+        printResult(cars, moveTimes)
     }
 
     private fun getCarNames(): List<String> {
@@ -27,12 +25,12 @@ class RacingCarController {
         return InputView.inputCount()
     }
 
-    private fun printResult(moveTimes: Int) {
+    private fun printResult(cars: List<Car>, moveTimes: Int) {
         UI.printResult()
         repeat(moveTimes) {
-            RacingGame.moveCars()
-            OutputView.printCurrentPosition(RacingGame.cars)
+            RacingGame.moveCars(cars)
+            OutputView.printCurrentPosition(cars)
         }
-        OutputView.printWinners(RacingGame.getWinnerNames())
+        OutputView.printWinners(RacingGame.getWinnerNames(cars))
     }
 }
