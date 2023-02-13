@@ -9,14 +9,14 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
-import racingcar.utils.random.MovementProbabilityGenerator
-import racingcar.utils.random.NumberGenerator
+import racingcar.model.car.move.condition.CarMoveCondition
+import racingcar.model.car.move.condition.CarRandomMoveCondition
 import java.util.stream.Stream
 
 internal class CarsTest {
     private lateinit var cars: Cars
-    private lateinit var movementFailureProbabilityGenerator: NumberGenerator
-    private lateinit var movementSuccessiveProbabilityGenerator: NumberGenerator
+    private lateinit var carRandomMoveFailureCondition: CarMoveCondition
+    private lateinit var carRandomMoveSuccessiveCondition: CarMoveCondition
 
     @BeforeEach
     fun setUp() {
@@ -28,8 +28,8 @@ internal class CarsTest {
             )
         )
 
-        movementFailureProbabilityGenerator = MovementProbabilityGenerator.FakeForFailed()
-        movementSuccessiveProbabilityGenerator = MovementProbabilityGenerator.FakeForSuccess()
+        carRandomMoveFailureCondition = CarRandomMoveCondition.FakeForFailed()
+        carRandomMoveSuccessiveCondition = CarRandomMoveCondition.FakeForSuccess()
     }
 
     @ParameterizedTest
@@ -50,7 +50,7 @@ internal class CarsTest {
 
     @Test
     fun `이동을 성공하는 확률이 주어졌을 때, moveAllRandomly시, 모든 자동차의 position이 1씩 증가한다`() {
-        cars.moveAllRandomly(movementSuccessiveProbabilityGenerator)
+        cars.moveAll(carRandomMoveSuccessiveCondition)
 
         cars.forEach { car ->
             assertEquals(ONE_STEP, car.position)
@@ -59,7 +59,7 @@ internal class CarsTest {
 
     @Test
     fun `이동을 실패하는 확률이 주어졌을 때, moveAllRandomly시, 모든 자동차의 position이 증가하지 않는다`() {
-        cars.moveAllRandomly(movementFailureProbabilityGenerator)
+        cars.moveAll(carRandomMoveFailureCondition)
 
         cars.forEach { car ->
             assertNotEquals(ONE_STEP, car.position)

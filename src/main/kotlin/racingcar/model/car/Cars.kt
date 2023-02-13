@@ -1,6 +1,8 @@
 package racingcar.model.car
 
-import racingcar.utils.random.NumberGenerator
+import racingcar.model.car.move.condition.CarMoveCondition
+import racingcar.model.car.move.step.OneStep
+import racingcar.model.car.move.step.ZeroStep
 
 class Cars(_cars: List<Car>) : List<Car> by _cars {
     init {
@@ -15,9 +17,12 @@ class Cars(_cars: List<Car>) : List<Car> by _cars {
         }
     }
 
-    fun moveAllRandomly(movementProbabilityGenerator: NumberGenerator): Cars = this.onEach { car ->
-        val moveProbability = movementProbabilityGenerator.generate()
-        car.moveRandomly(moveProbability)
+    fun moveAll(carMoveCondition: CarMoveCondition): Cars = this.onEach { car ->
+        if (carMoveCondition.generate() >= MOVE_CONDITION) {
+            car.move(OneStep())
+        } else {
+            car.move(ZeroStep())
+        }
     }
 
     fun getWinners(): Winners {
@@ -28,5 +33,6 @@ class Cars(_cars: List<Car>) : List<Car> by _cars {
     companion object {
         private const val DUPLICATED_CAR_NAME_ERROR_MESSAGE =
             "중복된 자동차 이름이 존재합니다."
+        private const val MOVE_CONDITION = 4
     }
 }

@@ -1,7 +1,5 @@
 package racingcar.model.car
 
-import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertNotEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
@@ -33,20 +31,20 @@ class CarTest {
         }
     }
 
-    @ParameterizedTest
-    @ValueSource(ints = [4, 5, 6, 7, 8, 9, 10])
-    fun `4이상 10이하일 때, Car의 move 호출시, position이 증가한다`(condition: Int) {
-        car.moveRandomly(condition)
-
-        assertEquals(ONE_STEP, car.position)
-    }
-
-    @ParameterizedTest
-    @ValueSource(ints = [1, 2, 3])
-    fun `4미만일 때, Car의 move 호출시, position이 증가하지 않는다`(condition: Int) {
-        car.moveRandomly(condition)
-        assertNotEquals(ONE_STEP, car.position)
-    }
+    // @ParameterizedTest
+    // @ValueSource(ints = [4, 5, 6, 7, 8, 9, 10])
+    // fun `4이상 10이하일 때, Car의 move 호출시, position이 증가한다`(condition: Int) {
+    //     car.move(condition)
+    //
+    //     assertEquals(ONE_STEP, car.position)
+    // }
+    //
+    // @ParameterizedTest
+    // @ValueSource(ints = [1, 2, 3])
+    // fun `4미만일 때, Car의 move 호출시, position이 증가하지 않는다`(condition: Int) {
+    //     car.move(condition)
+    //     assertNotEquals(ONE_STEP, car.position)
+    // }
 
     companion object {
         private const val ONE_STEP = 1
