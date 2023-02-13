@@ -18,7 +18,7 @@ class RacingCarGameTest {
     }
 
     @Test
-    fun `가장 멀리간 자동차들을 확인한다`() {
+    fun `공동 우승한 자동차들을 확인한다`() {
         val carA = Car("aa", 1)
         val carB = Car("bb", 3)
         val carC = Car("cc", 2)
