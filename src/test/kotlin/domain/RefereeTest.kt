@@ -8,7 +8,7 @@ class RefereeTest {
     private val referee = Referee()
 
     @Test
-    fun `우승자를 판단한다`() {
+    fun `자동차들 중 가장 먼 거리에 있는 자동차가 우승자다`() {
         val car1 = Car("car1", 1)
         val car2 = Car("car2", 5)
         val car3 = Car("car3", 3)

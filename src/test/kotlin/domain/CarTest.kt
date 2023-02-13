@@ -26,12 +26,12 @@ class CarTest {
     }
 
     @Test
-    fun `자동차 이름이 5자를 초과하는 경우 예외가 발생한다`() {
+    fun `자동차 이름은 5자 이하의 길이를 가진다`() {
         assertThrows<IllegalArgumentException> { Car("aaaaaaa") }
     }
 
     @Test
-    fun `자동차 이름이 비어있는 경우 예외가 발생한다`() {
+    fun `자동차 이름은 비어있을 수 없다`() {
         assertThrows<IllegalArgumentException> { Car("") }
     }
 
