@@ -31,13 +31,13 @@ class RacingGameController(
 
     fun checkCarNamesInput(result: NameValidationResult): Name? {
         return when (result) {
-            is NameValidationResult.Failure -> printNameErrorMessage(result.errorMessage)
+            is NameValidationResult.Failure -> returnNullNameWithErrorMessage(result.errorMessage)
             is NameValidationResult.Success -> result.name
         }
     }
 
-    fun printNameErrorMessage(errorMessage: String): Name? {
-        println(errorMessage)
+    fun returnNullNameWithErrorMessage(errorMessage: String): Name? {
+        outputView.printErrorMessage(errorMessage)
         return null
     }
 

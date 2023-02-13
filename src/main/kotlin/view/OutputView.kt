@@ -14,6 +14,7 @@ class OutputView {
     }
 
     fun printRunResultMessage() = println("\n$RUN_RESULT_MESSAGE")
+    fun printErrorMessage(error: String) = println(error)
 
     companion object {
         const val INPUT_CAR_NAMES_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
