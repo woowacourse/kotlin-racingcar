@@ -2,15 +2,13 @@ package model
 
 import util.Validator
 
-class Car(private val _name: String, private var _position: Int = 0) {
+class Car(val name: String, position: Int = 0) {
 
-    val name: String
-        get() = _name
-    val position: Int
-        get() = _position
+    private var _position: Int = position
+    val position: Int get() = _position
 
     init {
-        Validator().checkName(_name)
+        Validator().checkName(name)
     }
 
     fun move(condition: Int) {

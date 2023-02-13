@@ -2,9 +2,9 @@ package model
 
 import generator.RandomGenerator
 
-class Cars(private val _cars: List<Car>) {
-    val cars: List<Car>
-        get() = _cars
+class Cars(cars: List<Car>) {
+    private val _cars: List<Car> = cars
+    val cars: List<Car> get() = _cars
 
     constructor(input: String) : this(input.split(",").mapIndexed { _, name -> Car(name.trim()) })
 
