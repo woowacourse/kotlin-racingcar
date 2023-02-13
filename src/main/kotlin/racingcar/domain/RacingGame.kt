@@ -1,6 +1,5 @@
 package racingcar.domain
 
-import racingcar.constant.STANDARD_OF_MOVING
 import racingcar.domain.numbergenerator.NumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -25,13 +24,15 @@ class RacingGame(
     }
 
     fun getWinner(cars: List<RacingCar>): List<String> {
-        val sortedCars = cars.sortedByDescending { it.getMovingState() }
-        val maxState = sortedCars[0].getMovingState()
+        val sortedCars = cars.sortedByDescending { it.movingState }
+        val maxState = sortedCars.maxOf { it.movingState }
 
-        return sortedCars.filter { it.getMovingState() == maxState }.map { it.getName() }
+        return sortedCars
+            .filter { car -> car.movingState == maxState }
+            .map { car -> car.name }
     }
 
-    fun playRound(cars: MutableList<RacingCar>) {
+    private fun playRound(cars: MutableList<RacingCar>) {
         cars.forEach {
             play(it)
         }
@@ -44,13 +45,17 @@ class RacingGame(
         }
     }
 
-    fun getCarsName(): List<String> {
+    private fun getCarsName(): List<String> {
         return inputView.getCarsName { outputView.printGettingCarsName() }
     }
 
-    fun getRoundCount(): Int {
+    private fun getRoundCount(): Int {
         return inputView.getRoundCount { outputView.printGettingRoundCount() }
     }
 
     fun checkGoingForward(randomNumber: Int): Boolean = randomNumber >= STANDARD_OF_MOVING
+
+    companion object {
+        private const val STANDARD_OF_MOVING = 4
+    }
 }
