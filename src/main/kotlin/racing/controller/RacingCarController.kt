@@ -2,27 +2,24 @@ package racing.controller
 
 import racing.model.Car
 import racing.model.RacingGame
+import racing.util.RandomNumberGenerator
 import racing.view.InputView
 import racing.view.OutputView
 import racing.view.UI
 
 class RacingCarController {
 
-    private val racingGame: RacingGame
-
-    init {
-        val cars = getCars()
-        racingGame = RacingGame(cars)
-    }
+    private val randomNumberGenerator = RandomNumberGenerator()
 
     fun startRace() {
-        val moveTimes = getMoveTimes()
-        printResult(moveTimes)
+        val cars: List<Car> = getCars()
+        val moveTimes: Int = getMoveTimes()
+        printResult(cars, moveTimes)
     }
 
     private fun getCars(): List<Car> {
         UI.printRequestCarNames()
-        return InputView.inputCarNames().map { Car(it) }
+        return InputView.inputCarNames()
     }
 
     private fun getMoveTimes(): Int {
@@ -30,12 +27,12 @@ class RacingCarController {
         return InputView.inputCount()
     }
 
-    private fun printResult(moveTimes: Int) {
+    private fun printResult(cars: List<Car>, moveTimes: Int) {
         UI.printResult()
         repeat(moveTimes) {
-            racingGame.moveCars()
-            OutputView.printCurrentPosition(racingGame.cars)
+            val movedCars = RacingGame.moveCars(cars, randomNumberGenerator)
+            OutputView.printCurrentPosition(movedCars)
         }
-        OutputView.printWinners(racingGame.getWinnerNames())
+        OutputView.printWinners(RacingGame.getWinnerNames(cars))
     }
 }
