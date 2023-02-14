@@ -3,13 +3,13 @@ package validation
 import model.Name
 
 class NameValidation {
-    fun checkNames(carNames: String?): NameValidationResult {
-        if (carNames.isNullOrBlank()) return NameValidationResult.Failure(INPUT_IS_EMPTY_ERROR_MESSAGE)
+    fun checkNames(carNames: String?): Result<Name> {
+        if (carNames.isNullOrBlank()) return Result.failure(IllegalArgumentException(INPUT_IS_EMPTY_ERROR_MESSAGE))
         splitCarNames(carNames).forEach { name ->
-            if (isNameLengthExceed(name)) return NameValidationResult.Failure(NAME_RANGE_ERROR_MASSAGE)
-            if (!isCarNameEnglishNumber(name)) return NameValidationResult.Failure(NAME_IS_ONLY_ENGLISH_AND_NUMBER)
+            if (isNameLengthExceed(name)) return Result.failure(IllegalArgumentException(NAME_RANGE_ERROR_MASSAGE))
+            if (!isCarNameEnglishNumber(name)) return Result.failure(IllegalArgumentException(NAME_IS_ONLY_ENGLISH_AND_NUMBER))
         }
-        return NameValidationResult.Success(Name(carNames))
+        return Result.success(Name(carNames))
     }
 
     fun isNameLengthExceed(carName: String) = carName.length > MAXIMUM_NAME_LENGTH

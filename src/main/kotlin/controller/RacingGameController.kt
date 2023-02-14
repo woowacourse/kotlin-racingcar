@@ -4,14 +4,16 @@ import model.Car
 import model.Name
 import model.TryCount
 import service.RacingCarGameService
-import validation.NameValidationResult
-import validation.TryCountValidationResult
-import view.InputView
-import view.OutputView
+import validation.NameValidation
+import validation.TryCountValidation
+import view.InputViewInterface
+import view.OutputViewInterface
 
 class RacingGameController(
-    private val inputView: InputView,
-    private val outputView: OutputView,
+    private val nameValidation: NameValidation,
+    private val tryCountValidation: TryCountValidation,
+    private val inputView: InputViewInterface,
+    private val outputView: OutputViewInterface,
     private val racingCarGameService: RacingCarGameService
 ) {
     fun run() {
@@ -22,57 +24,43 @@ class RacingGameController(
         printWinner(gerWinner(carsInfo))
     }
 
-    fun getCarNames(): Name {
-        outputView.printCar()
-        val input = inputView.inputName()
-        val carNames = kotlin.runCatching { checkCarNamesInput(input) }.getOrNull()
-        return carNames ?: getCarNames()
-    }
-
-    fun checkCarNamesInput(result: NameValidationResult): Name? {
-        return when (result) {
-            is NameValidationResult.Failure -> printNameErrorMessage(result.errorMessage)
-            is NameValidationResult.Success -> result.name
+    private fun getCarNames(): Name {
+        val name = inputView.inputName()
+        nameValidation.checkNames(name).onSuccess { name ->
+            return name
+        }.onFailure { error ->
+            outputView.printErrorMessage(error.message)
+            return getCarNames()
+        }.also { result ->
+            return result.getOrThrow()
         }
     }
 
-    fun printNameErrorMessage(errorMessage: String): Name? {
-        println(errorMessage)
-        return null
-    }
-
-    fun getCarsInfo(carNames: String): List<Car> {
+    private fun getCarsInfo(carNames: String): List<Car> {
         val carNamesSplit = racingCarGameService.splitCarNames(carNames)
         return racingCarGameService.initCarInfo(carNamesSplit)
     }
 
-    fun getTryCount(): TryCount {
-        outputView.printTryCount()
-        val input = inputView.inputTryCount()
-        val tryCount = kotlin.runCatching { checkTryCountInput(input) }.getOrNull()
-        return tryCount ?: getTryCount()
-    }
-
-    fun checkTryCountInput(result: TryCountValidationResult): TryCount? {
-        return when (result) {
-            is TryCountValidationResult.Failure -> printTryCountErrorMessage(result.errorMessage)
-            is TryCountValidationResult.Success -> result.tryCount
+    private fun getTryCount(): TryCount {
+        val tryCount = inputView.inputTryCount()
+        tryCountValidation.checkTryCount(tryCount).onSuccess { tryCount ->
+            return tryCount
+        }.onFailure { error ->
+            outputView.printErrorMessage(error.message)
+            return getTryCount()
+        }.also { result ->
+            return result.getOrThrow()
         }
     }
 
-    fun printTryCountErrorMessage(errorMessage: String): TryCount? {
-        println(errorMessage)
-        return null
-    }
-
-    fun playRound(carsInfo: List<Car>): String {
+    private fun playRound(carsInfo: List<Car>): String {
         val carsInfo = racingCarGameService.moveCars(carsInfo)
         return racingCarGameService.getRoundResult(carsInfo)
     }
 
-    fun printRoundResult(roundResultOutput: String) = outputView.printRoundResult(roundResultOutput)
+    private fun printRoundResult(roundResultOutput: String) = outputView.printRoundResult(roundResultOutput)
 
-    fun playWholeRound(tryCount: Int, carsInfo: List<Car>): String {
+    private fun playWholeRound(tryCount: Int, carsInfo: List<Car>): String {
         outputView.printRunResultMessage()
         var roundResult = ""
         repeat(tryCount) {
@@ -82,12 +70,12 @@ class RacingGameController(
         return roundResult
     }
 
-    fun gerWinner(carsInfo: List<Car>): List<String> {
+    private fun gerWinner(carsInfo: List<Car>): List<String> {
         val winnersInfo = racingCarGameService.getWinnersInfo(carsInfo)
         return racingCarGameService.getWinnerNames(winnersInfo)
     }
 
-    fun printWinner(winners: List<String>) {
+    private fun printWinner(winners: List<String>) {
         outputView.printWinner(winners)
     }
 }
