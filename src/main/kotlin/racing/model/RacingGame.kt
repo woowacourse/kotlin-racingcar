@@ -27,11 +27,7 @@ class RacingGame(private val cars: List<Car>) {
     }
 
     private fun getGameResultOneTurn(): List<Int> {
-        val result = mutableListOf<Int>()
-        cars.forEach {
-            result.add(it.position)
-        }
-        return result
+        return cars.map { it.position }
     }
 
     fun getWinners(): List<String> {
