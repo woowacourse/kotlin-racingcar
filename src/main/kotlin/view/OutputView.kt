@@ -1,7 +1,5 @@
 package view
 
-import dto.RaceResultDTO
-
 class OutputView {
     fun printError(message: String) {
         println("$ERROR_HEADER $message")
@@ -11,8 +9,8 @@ class OutputView {
         println(EXECUTION_RESULT)
     }
 
-    fun printRaceResult(carMetadataDTO: RaceResultDTO) {
-        println("${carMetadataDTO.name} : ${"-".repeat(carMetadataDTO.distance)}")
+    fun printRaceResult(name: String, distance: Int) {
+        println("$name : ${"-".repeat(distance)}")
     }
 
     fun printWinners(winners: List<String>) {

@@ -3,6 +3,7 @@ package controller
 import domain.Car
 import domain.CarsFactory
 import domain.Judgement
+import domain.RaceTime
 import domain.RandomNumberGenerator
 import view.InputView
 import view.OutputView
@@ -13,35 +14,33 @@ class Controller(
 ) {
 
     fun run() {
-        val cars = setUpCars()
-        val raceTime = setUpRaceTime()
+        val cars = createCars()
+        val raceTime = getRaceTime()
         race(cars, raceTime)
         announceWinners(cars)
     }
 
-    private fun setUpCars(): List<Car> {
-        while (true) {
-            try {
-                return CarsFactory(inputView.readCars()).makeCars(RandomNumberGenerator())
-            } catch (e: IllegalArgumentException) {
-                outputView.printError(e.message ?: "")
-            }
+    private fun createCars(): List<Car> {
+        return runCatching {
+            CarsFactory(inputView.readCarNames()).makeCars(RandomNumberGenerator())
+        }.getOrElse { e ->
+            outputView.printError(e.message ?: "")
+            createCars()
         }
     }
 
-    private fun setUpRaceTime(): Int {
-        while (true) {
-            try {
-                return inputView.readRaceTime().getRaceTime()
-            } catch (e: IllegalArgumentException) {
-                outputView.printError(e.message ?: "")
-            }
+    private fun getRaceTime(): RaceTime {
+        return runCatching {
+            RaceTime(inputView.readRaceTime())
+        }.getOrElse { e ->
+            outputView.printError(e.message ?: "")
+            getRaceTime()
         }
     }
 
-    private fun race(cars: List<Car>, raceTime: Int) {
+    private fun race(cars: List<Car>, raceTime: RaceTime) {
         outputView.printExecutionResult()
-        repeat(raceTime) {
+        raceTime.repeatTimes {
             raceOneTime(cars)
             outputView.printInterval()
         }
@@ -49,7 +48,8 @@ class Controller(
 
     private fun raceOneTime(cars: List<Car>) {
         cars.forEach { car ->
-            outputView.printRaceResult(car.race())
+            car.race()
+            outputView.printRaceResult(car.name, car.distance)
         }
     }
 

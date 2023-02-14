@@ -16,25 +16,28 @@ class CarTest {
         val name = "pobi"
         val car = Car(generator, name)
         val distances = listOf(0, 1, 1, 2, 3, 3)
-        distances.map { distance -> assertThat(car.race().distance).isEqualTo(distance) }
+        distances.map { distance ->
+            car.race()
+            assertThat(car.distance).isEqualTo(distance)
+        }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["pobi", "woni", "jun"])
-    fun `자동차 이름에 오류가 없으면 에러가 발생하지 않는다`(input: String) {
+    fun `자동차 이름은 1글자 이상 5글자 이하의 영문 소문자로 되어 있다`(input: String) {
         Assertions.assertDoesNotThrow { Car(numberGenerator, input, 0) }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["Pobi", " jun", "po bi", "   "])
-    fun `자동차 이름에 공백이 있거나 영문 소문자가 아니면 에러가 발생한다`(input: String) {
+    fun `자동차 이름은 영문 소문자를 제외한 공백이나 대문자로 지을 수 없다`(input: String) {
         val exception = assertThrows<IllegalArgumentException> { Car(numberGenerator, input, 0) }
         assertThat(exception.message).isEqualTo(Car.ERROR_NAME)
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["woniii", ""])
-    fun `자동차 이름이 1글자 이상 5글자 이하가 아니면 에러가 발생한다`(input: String) {
+    fun `자동차 이름은 글자가 없거나 6글자 이상일 수 없다`(input: String) {
         val exception = assertThrows<IllegalArgumentException> { Car(numberGenerator, input, 0) }
         assertThat(exception.message).isEqualTo(Car.ERROR_NAME_LENGTH)
     }
