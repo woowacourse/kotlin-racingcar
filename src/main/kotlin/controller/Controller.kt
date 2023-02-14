@@ -2,6 +2,7 @@ package controller
 
 import domain.Car
 import domain.RandomNumberGenerator
+import domain.Referee
 import view.InputView
 import view.OutputView
 
@@ -18,29 +19,22 @@ class Controller(
 
     private fun initializeCars(): List<Car> {
         outputView.printCarNamesPrompt()
-        while (true) {
-            kotlin.runCatching {
-                inputView.readCarNames()
-            }.onSuccess { names ->
-                return names.map { name ->
-                    Car(name)
-                }
-            }.onFailure { e ->
-                println(e.message.toString())
-            }
+        return runCatching {
+            val carNames = inputView.readCarNames()
+            carNames.map { Car(it) }
+        }.getOrElse { error ->
+            println(error.message.toString())
+            initializeCars()
         }
     }
 
     private fun initializeRoundCount(): Int {
         outputView.printRoundCountPrompt()
-        while (true) {
-            kotlin.runCatching {
-                inputView.readRoundCount()
-            }.onSuccess { roundCount ->
-                return roundCount
-            }.onFailure { e ->
-                println(e.message.toString())
-            }
+        return runCatching {
+            inputView.readRoundCount()
+        }.getOrElse { error ->
+            println(error.message.toString())
+            initializeRoundCount()
         }
     }
 
@@ -59,17 +53,7 @@ class Controller(
     }
 
     private fun finishGame(cars: List<Car>) {
-        outputView.printWinners(findWinners(cars))
-    }
-
-    fun findWinners(cars: List<Car>): List<String> {
-        val maxCount = cars.maxOfOrNull { car ->
-            car.moveCount
-        }
-        return cars.filter { car ->
-            car.moveCount == maxCount
-        }.map { winner ->
-            winner.name
-        }
+        val winners = Referee.judgeWinners(cars)
+        outputView.printWinners(winners)
     }
 }

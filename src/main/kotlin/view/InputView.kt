@@ -8,7 +8,7 @@ class InputView(
 
     fun readCarNames(): List<String> {
         val input = readln()
-        return validator.checkCarName(input)
+        return input.split(",").map { it.trim() }
     }
 
     fun readRoundCount(): Int {
