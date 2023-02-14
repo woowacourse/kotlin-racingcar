@@ -31,7 +31,7 @@ internal class RaceManagerTest {
     }
 
     @Test
-    fun `RaceResultDto 정상 반환 확인`() {
+    fun `2라운드를 실행하는 레이스의 경우, 레이스 결과 반환시, 2라운드의 히스토리가 반환되어야한다`() {
         val raceManager = RaceManager(TestNumberGenerator(mutableListOf(1, 4, 3, 5, 4, 2)), listOf("test1", "test2", "test3"), 2)
         val raceResultDto = raceManager.race()
         assertEquals(listOf(listOf(1, 2, 0)), raceResultDto.result)
