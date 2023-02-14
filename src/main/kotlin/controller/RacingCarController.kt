@@ -1,23 +1,24 @@
 package controller
 
 import domain.CarRacingGame
-import domain.InputRefinement
+import domain.InputValidator.validateIsNumeric
 import domain.Referee
 import model.Car
 import model.CarPath
+import model.generator.CarGenerator
 import view.InputView.inputCarNames
 import view.InputView.inputNumberOfTry
 import view.OutputView
 
 class RacingCarController(
     private val carRacingGame: CarRacingGame = CarRacingGame(),
-    private val initializer: InputRefinement = InputRefinement()
+    private val carGenerator: CarGenerator = CarGenerator()
 ) {
 
     fun startGame() {
         try {
-            val cars = initializer.initCars(inputCarNames())
-            val numberOfTry = initializer.initNumberOfTry(inputNumberOfTry())
+            val cars = initCars(inputCarNames())
+            val numberOfTry = validateIsNumeric(inputNumberOfTry())
             val carsPath = carRacingGame.startDriving(cars, numberOfTry)
 
             showPath(carsPath)
@@ -25,6 +26,12 @@ class RacingCarController(
         } catch (e: IllegalArgumentException) {
             OutputView.printMsg(e.message!!)
         }
+    }
+
+    private fun initCars(input: String): List<Car> {
+        val names = input.split(SEPARATOR)
+
+        return carGenerator.generateCars(names)
     }
 
     private fun List<Car>.showWinner() =
@@ -40,6 +47,7 @@ class RacingCarController(
     }
 
     companion object {
+        const val SEPARATOR = ','
         const val RESULT = "실행 결과\n"
     }
 }
