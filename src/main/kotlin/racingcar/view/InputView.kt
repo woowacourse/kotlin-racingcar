@@ -1,17 +1,25 @@
 package racingcar.view
 
+import racingcar.dto.car.CarDto
+import racingcar.dto.car.CarsDto
+import racingcar.dto.round.RoundDto
 import racingcar.utils.removeBlank
 
 class InputView {
-    fun readCarNames(): List<String> = readln()
-        .split(CAR_NAME_DELIMITER)
-        .removeBlank()
+    fun readCarNames(): CarsDto = CarsDto(
+        readln()
+            .split(CAR_NAME_DELIMITER)
+            .removeBlank()
+            .map { carName ->
+                CarDto(carName)
+            }
+    )
 
-    fun readNumber(): Int {
+    fun readRound(): RoundDto {
         val number = readln().toIntOrNull()
         requireNotNull(number) { NOT_NUMERIC_ERROR_MESSAGE }
 
-        return number
+        return RoundDto(number)
     }
 
     companion object {

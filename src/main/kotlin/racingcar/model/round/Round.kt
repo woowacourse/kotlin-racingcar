@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.model.round
 
 class Round(val count: Int) {
     init {

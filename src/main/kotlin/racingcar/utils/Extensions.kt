@@ -1,3 +1,4 @@
 package racingcar.utils
 
-fun List<String>.removeBlank() = map { it.trim() }
+fun List<String>.removeBlank(): List<String> =
+    this.map { it.trim() }

@@ -1,38 +1,27 @@
 package racingcar.service
 
-import racingcar.model.Car
-import racingcar.repository.CarRepository
-import racingcar.repository.Repository
+import racingcar.dto.car.CarsDto
+import racingcar.dto.car.WinnersDto
+import racingcar.dto.round.RoundDto
+import racingcar.model.car.move.condition.CarMoveCondition
+import racingcar.model.car.move.condition.CarRandomMoveCondition
+import racingcar.utils.mapper.toDto
+import racingcar.utils.mapper.toModel
 
 class RacingService(
-    private val carRepository: Repository<Car> = CarRepository()
+    _cars: CarsDto,
+    private val carMoveCondition: CarMoveCondition = CarRandomMoveCondition()
 ) {
-    fun getAll(): List<Car> = carRepository.selectAll()
+    private val cars = _cars.toModel()
 
-    fun insertCars(cars: List<Car>) {
-        cars.forEach { insertCar(it) }
+    fun runAllRounds(round: RoundDto, doEachRoundResult: (CarsDto) -> Unit) {
+        repeat(round.toModel().count) {
+            doEachRoundResult(moveCars())
+        }
     }
 
-    private fun insertCar(car: Car) = carRepository.insert(car)
+    private fun moveCars(): CarsDto =
+        cars.moveAll(carMoveCondition).toDto()
 
-    fun createCars(names: List<String>): List<Car> =
-        names.map { Car(it) }
-
-    fun moveRandomly(car: Car) {
-        car.move(getRandomProbability())
-    }
-
-    private fun getRandomProbability(): Int =
-        (START_RANDOM_MOVEMENT_PROBABILITY..END_RANDOM_MOVEMENT_PROBABILITY).random()
-
-    fun getWinners(): List<Car> {
-        val cars = getAll()
-        val winnerStandard = cars.maxBy { it.position }
-        return cars.filter { it.position == winnerStandard.position }
-    }
-
-    companion object {
-        private const val START_RANDOM_MOVEMENT_PROBABILITY = 1
-        private const val END_RANDOM_MOVEMENT_PROBABILITY = 10
-    }
+    fun getWinners(): WinnersDto = cars.getWinners().toDto()
 }

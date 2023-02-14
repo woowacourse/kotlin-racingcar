@@ -1,7 +1,8 @@
 package racingcar.controller
 
-import racingcar.model.Car
-import racingcar.model.Round
+import racingcar.dto.car.CarsDto
+import racingcar.dto.car.WinnersDto
+import racingcar.dto.round.RoundDto
 import racingcar.service.RacingService
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -9,55 +10,46 @@ import racingcar.view.OutputView
 class RacingController(
     private val inputView: InputView = InputView(),
     private val outputView: OutputView = OutputView(),
-    private val racingService: RacingService = RacingService(),
 ) {
+    private lateinit var racingService: RacingService
+
     fun runRacing() {
-        val cars = racingService.createCars(readCarNames())
-        racingService.insertCars(cars)
-
+        initRacingService()
         val round = readRound()
-
-        runRounds(round.count, cars)
+        runRounds(round)
 
         val winners = getWinners()
         printWinners(winners)
     }
 
-    private fun readCarNames(): List<String> {
+    private fun initRacingService() {
+        racingService = RacingService(readCarNames())
+    }
+
+    private fun readCarNames(): CarsDto {
         outputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
         return inputView.readCarNames()
     }
 
-    private fun readRound(): Round {
+    private fun readRound(): RoundDto {
         outputView.printMessage(ROUND_COUNT_REQUEST_MESSAGE)
-        return Round(inputView.readNumber())
+        return inputView.readRound()
     }
 
     private fun printRoundCountRequestMessage() = outputView.printMessage(ROUNDS_RESULT_NOTIFICATION_MESSAGE)
 
-    private fun printRoundResult(cars: List<Car>) = outputView.printRoundResult(cars)
+    private fun printRoundResult(cars: CarsDto) = outputView.printRoundResult(cars)
 
-    private fun printWinners(winners: List<Car>) = outputView.printWinners(winners)
+    private fun printWinners(winners: WinnersDto) = outputView.printWinners(winners)
 
-    private fun runRounds(roundCount: Int, cars: List<Car>) {
+    private fun runRounds(round: RoundDto) {
         printRoundCountRequestMessage()
-        repeat(roundCount) {
-            runRound(cars)
+        racingService.runAllRounds(round) { eachRoundCars ->
+            printRoundResult(eachRoundCars)
         }
     }
 
-    private fun runRound(cars: List<Car>) {
-        moveCarsRandomly(cars)
-        printRoundResult(cars)
-    }
-
-    private fun moveCarsRandomly(cars: List<Car>) {
-        cars.forEach { car ->
-            racingService.moveRandomly(car)
-        }
-    }
-
-    private fun getWinners(): List<Car> = racingService.getWinners()
+    private fun getWinners(): WinnersDto = racingService.getWinners()
 
     companion object {
         private const val CAR_NAMES_REQUEST_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."

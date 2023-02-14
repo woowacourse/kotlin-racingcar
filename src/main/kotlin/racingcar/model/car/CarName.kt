@@ -1,0 +1,19 @@
+package racingcar.model.car
+
+class CarName(private var _value: String) {
+    val value: String get() = _value.trim()
+
+    init {
+        require(value.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) {
+            CAR_NAME_LENGTH_OVER_BOUNDARY_ERROR_MESSAGE
+        }
+    }
+
+    companion object {
+        private const val MIN_CAR_NAME_LENGTH = 1
+        private const val MAX_CAR_NAME_LENGTH = 5
+
+        private const val CAR_NAME_LENGTH_OVER_BOUNDARY_ERROR_MESSAGE =
+            "자동차 이름 길이의 범위는 $MIN_CAR_NAME_LENGTH 이상 $MAX_CAR_NAME_LENGTH 이하입니다."
+    }
+}
