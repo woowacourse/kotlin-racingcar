@@ -7,7 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource
 
 class CarTest {
 
-    @DisplayName("차의 현재 상태를 잘 출력하는지 확인하는 테스트")
+    @DisplayName("각각의 자동차의 현재 이름과 위치를 잘 출력하는지 확인")
     @CsvSource("testCar1,3,testCar1 : ---", "testCar2,2,testCar2 : --")
     @ParameterizedTest
     fun testCarPresentStatus(name: String, position: Int, expected: String) {

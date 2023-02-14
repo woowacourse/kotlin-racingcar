@@ -24,7 +24,7 @@ class Car(val name: String, private var position: Int) : Comparable<Car> {
     }
 
     companion object {
-        const val MOVE_POSITION = 1
-        const val MOVE_CONDITION = 4
+        private const val MOVE_POSITION = 1
+        private const val MOVE_CONDITION = 4
     }
 }

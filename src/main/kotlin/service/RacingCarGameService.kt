@@ -23,31 +23,15 @@ class RacingCarGameService {
         return carsInfo
     }
 
-    fun getMaxPositionCars(carsInfo: List<Car>): List<Car> {
+    fun getMaxPositionCarNames(carsInfo: List<Car>): List<String> {
         val maxCarInfo = carsInfo.maxWith(Car::compareTo)
         return carsInfo.filter { maxCarInfo.isSamePosition(it) }
-    }
-
-    fun getRoundResult(carsInfo: List<Car>): String {
-        var roundResult = ""
-        carsInfo.forEach { car ->
-            roundResult += "${car.getPresentStatus()}\n"
-        }
-        return roundResult
-    }
-
-    fun getWinners(carsInfo: List<Car>): String {
-        var winners = "최종 우승자: "
-
-        carsInfo.forEach { car ->
-            winners += "${car.name}, "
-        }
-        return winners.substring(SUBSTRING_START_POSITION, winners.length - SUBSTRING_DELETE_COMMA_AND_SPACE)
+            .map { car ->
+                car.name
+            }
     }
 
     companion object {
-        const val DEFAULT_CAR_POSITION = 0
-        const val SUBSTRING_START_POSITION = 0
-        const val SUBSTRING_DELETE_COMMA_AND_SPACE = 2
+        private const val DEFAULT_CAR_POSITION = 0
     }
 }

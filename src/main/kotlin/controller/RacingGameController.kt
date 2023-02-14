@@ -2,6 +2,8 @@ package controller
 
 import model.Car
 import service.RacingCarGameService
+import validation.NameValidation
+import validation.TryCountValidation
 import view.InputView
 import view.OutputView
 
@@ -12,53 +14,45 @@ class RacingGameController(
 ) {
 
     fun run() {
-        inputCarNames()
-        inputTryCount()
+        initCarNames()
+        initTryCount()
         playWholeRacing()
         outputWinner()
     }
 
-    fun inputCarNames() {
-        try {
-            OutputView.printCar()
-            val carsName = racingCarGameService.splitCarNames(InputView.inputName())
-            carsInfo = racingCarGameService.initCarsInfo(carsName)
-        } catch (e: IllegalArgumentException) {
-            e.printStackTrace()
-            inputCarNames()
-        }
+    private fun initCarNames() {
+        val input = InputView.inputName()
+        NameValidation.validate(input)
+
+        val carsName = racingCarGameService.splitCarNames(input)
+        carsInfo = racingCarGameService.initCarsInfo(carsName)
     }
 
-    fun inputTryCount() {
-        try {
-            OutputView.printTryCount()
-            tryCount = InputView.inputTryCount().toInt()
-        } catch (e: IllegalArgumentException) {
-            e.printStackTrace()
-            inputTryCount()
-        }
+    private fun initTryCount() {
+        val input = InputView.inputTryCount()
+        TryCountValidation.validate(input)
+        tryCount = input.toInt()
     }
 
-    fun playRound() {
+    private fun playRound() {
         carsInfo = racingCarGameService.moveCars(carsInfo)
 
-        OutputView.printRoundResult(racingCarGameService.getRoundResult(carsInfo))
+        OutputView.printRoundResult(carsInfo)
     }
 
-    fun playWholeRacing() {
+    private fun playWholeRacing() {
         OutputView.printRunResultMessage()
-        repeat(tryCount - 1) {
+        repeat(tryCount) {
             playRound()
         }
     }
 
-    fun outputWinner() {
-        val winnerInfo = racingCarGameService.getMaxPositionCars(carsInfo)
-        val winnerNames = racingCarGameService.getWinners(winnerInfo)
-        OutputView.printWinner(winnerNames)
+    private fun outputWinner() {
+        val winnerNames = racingCarGameService.getMaxPositionCarNames(carsInfo)
+        OutputView.printWinners(winnerNames)
     }
 
     companion object {
-        const val DEFAULT_TRY_COUNT = 0
+        private const val DEFAULT_TRY_COUNT = 0
     }
 }
