@@ -17,7 +17,7 @@ class RacingCarTest {
 
     @ValueSource(ints = [1, 5, 7, 3])
     @ParameterizedTest
-    fun `toString 출력 양식에 맞게 변환되는지 확인 `(input: Int) {
+    fun `toString 이동한 거리만큼 "-"의 반복으로 출력 `(input: Int) {
         for (moveCount in 1..input) {
             car.moveForward()
         }
