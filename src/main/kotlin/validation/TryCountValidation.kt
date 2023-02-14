@@ -3,11 +3,11 @@ package validation
 import model.TryCount
 
 class TryCountValidation {
-    fun checkTryCount(tryCount: String?): TryCountValidationResult {
-        if (tryCount.isNullOrBlank()) return TryCountValidationResult.Failure(INPUT_IS_EMPTY_ERROR_MESSAGE)
-        if (!isTryCountInteger(tryCount)) return TryCountValidationResult.Failure(TRY_COUNT_INTEGER_ERROR_MESSAGE)
-        if (!isTryCountPositive(tryCount)) return TryCountValidationResult.Failure(TRY_COUNT_POSITIVE_ERROR_MESSAGE)
-        return TryCountValidationResult.Success(TryCount(tryCount))
+    fun checkTryCount(tryCount: String?): Result<TryCount> {
+        if (tryCount.isNullOrBlank()) return Result.failure(IllegalArgumentException(INPUT_IS_EMPTY_ERROR_MESSAGE))
+        if (!isTryCountInteger(tryCount)) return Result.failure(IllegalArgumentException(TRY_COUNT_INTEGER_ERROR_MESSAGE))
+        if (!isTryCountPositive(tryCount)) return Result.failure(IllegalArgumentException(TRY_COUNT_POSITIVE_ERROR_MESSAGE))
+        return Result.success(TryCount(tryCount))
     }
 
     fun isTryCountInteger(tryCount: String): Boolean {

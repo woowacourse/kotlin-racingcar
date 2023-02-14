@@ -3,9 +3,7 @@ package view
 import model.Name
 import model.TryCount
 import validation.NameValidation
-import validation.NameValidationResult
 import validation.TryCountValidation
-import validation.TryCountValidationResult
 
 class InputView : InputViewInterface {
     private val nameValidation = NameValidation()
@@ -14,9 +12,10 @@ class InputView : InputViewInterface {
     override fun inputName(): Name {
         println(INPUT_CAR_NAMES_MESSAGE)
         val input = readlnOrNull()
-        when (val result = nameValidation.checkNames(input)) {
-            is NameValidationResult.Success -> return result.name
-            is NameValidationResult.Failure -> println(result.errorMessage)
+        runCatching { nameValidation.checkNames(input) }.onSuccess { value ->
+            value.getOrNull()
+        }.onFailure { value ->
+            println(value.message)
         }
         return inputName()
     }
@@ -24,9 +23,10 @@ class InputView : InputViewInterface {
     override fun inputTryCount(): TryCount {
         println(INPUT_TRY_COUNT_MESSAGE)
         val input = readlnOrNull()
-        when (val result = tryCountValidation.checkTryCount(input)) {
-            is TryCountValidationResult.Success -> return result.tryCount
-            is TryCountValidationResult.Failure -> println(result.errorMessage)
+        runCatching { tryCountValidation.checkTryCount(input) }.onSuccess { result ->
+            result.getOrNull()
+        }.onFailure { error ->
+            println(error.message)
         }
         return inputTryCount()
     }
