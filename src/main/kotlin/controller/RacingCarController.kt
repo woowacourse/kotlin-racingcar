@@ -20,7 +20,7 @@ class RacingCarController(
             val numberOfTry = initializer.initNumberOfTry(inputNumberOfTry())
             val carsPath = carRacingGame.startDriving(cars, numberOfTry)
 
-            showPath(carsPath, numberOfTry)
+            showPath(carsPath)
             cars.showWinner()
         } catch (e: IllegalArgumentException) {
             OutputView.printMsg(e.message!!)
@@ -30,8 +30,9 @@ class RacingCarController(
     private fun List<Car>.showWinner() =
         OutputView.printWinner(Referee().decideWinner(this))
 
-    private fun showPath(carsPath: List<CarPath>, numberOfTry: Int) {
+    private fun showPath(carsPath: List<CarPath>) {
         OutputView.printMsg(RESULT)
+        val numberOfTry = carsPath[0].path.size
 
         repeat(numberOfTry) { number ->
             OutputView.printResult(carsPath, number)
