@@ -1,19 +1,21 @@
 package racingcar.entity
 
-class Car(private var name: Name) {
-    private var position = Position(0)
+data class Car(val name: Name) {
+    private var position: Position = Position(0)
 
-    fun forward() {
-        position.addPosition(1)
+    fun forward(number: Int) {
+        if (number >= FORWARD_BOUND) {
+            position.addPosition(1)
+        }
     }
 
     fun compareTo(car: Car): Boolean {
         return position.compareTo(car.position)
     }
 
-    override fun toString() = "$name : $position"
+    fun getPosition() = position
 
-    override fun equals(other: Any?) = this.position == (other as Car).position && this.name == other.name
-
-    fun getName() = name
+    companion object {
+        const val FORWARD_BOUND = 4
+    }
 }

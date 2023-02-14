@@ -7,9 +7,19 @@ import racingcar.entity.Name
 
 class CarManagerTest {
     @Test
+    fun `랜덤한 값 테스트`() {
+        val numberGenerator = RandomNumberTest(listOf(1, 3, 5))
+        val carManager = CarManager(listOf(Name("test1"), Name("test2"), Name("test3")), numberGenerator)
+
+        carManager.attempt()
+
+        val winners = carManager.determineWinner()
+        Assertions.assertThat(winners[0].name.toString()).isEqualTo("test3")
+    }
+
+    @Test
     fun `우승자 결정 테스트`() {
-        val carManager = CarManager()
-        carManager.init(mutableListOf(Name("test1"), Name("test2"), Name("test3")))
+        val carManager = CarManager(listOf(Name("test1"), Name("test2"), Name("test3")), RandomNumber)
 
         carManager.step(0, 3)
         carManager.step(1, 1)
@@ -19,22 +29,13 @@ class CarManagerTest {
         carManager.step(2, 6)
 
         val winners = carManager.determineWinner()
-        Assertions.assertThat(winners[0].getName()).isEqualTo(Name("test3"))
-    }
-
-    @Test
-    fun `자동차 초기화 예외 테스트`() {
-        assertThrows<IllegalArgumentException> {
-            val carManager = CarManager()
-            carManager.init(listOf(Name("test1")))
-        }
+        Assertions.assertThat(winners[0].name.toString()).isEqualTo("test3")
     }
 
     @Test
     fun `자동차 전진 예외 테스트`() {
         assertThrows<IllegalArgumentException> {
-            val carManager = CarManager()
-            carManager.init(mutableListOf(Name("test1"), Name("test2"), Name("test3")))
+            val carManager = CarManager(listOf(Name("test1"), Name("test2"), Name("test3")))
             carManager.step(0, 10)
         }
     }
