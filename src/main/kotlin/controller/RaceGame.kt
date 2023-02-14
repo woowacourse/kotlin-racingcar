@@ -12,8 +12,8 @@ class RaceGame(private val outputView: OutputView, private val inputView: InputV
     fun run() {
         outputView.outputCarNames()
         val cars = Cars(inputCarNames())
-        outputView.outputTryNumber()
-        val tryNumber = inputTryNumber().toInt()
+        outputView.outputNumber()
+        val tryNumber = inputNumber().toInt()
         outputView.outputResults()
         repeat(tryNumber) {
             tryMove(cars)
@@ -38,11 +38,11 @@ class RaceGame(private val outputView: OutputView, private val inputView: InputV
         return input
     }
 
-    private fun inputTryNumber(): String {
-        var input = inputView.inputTryNumber()
+    private fun inputNumber(): String {
+        var input = inputView.inputNumber()
         while (input.isNullOrBlank() || input.contains("[ERROR]")) {
             outputView.outputErrorMessage(input ?: Constants.INPUT_IS_NULL)
-            input = inputView.inputTryNumber()
+            input = inputView.inputNumber()
         }
         return input
     }

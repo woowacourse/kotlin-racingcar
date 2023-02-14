@@ -9,8 +9,8 @@ class OutputView {
         println(Constants.INPUT_CAR_NAME)
     }
 
-    fun outputTryNumber() {
-        println(Constants.INPUT_TRY_NUMBER)
+    fun outputNumber() {
+        println(Constants.INPUT_NUMBER)
     }
 
     fun outputResults() {

@@ -13,7 +13,7 @@ class InputView {
         return input
     }
 
-    fun inputTryNumber(): String? {
+    fun inputNumber(): String? {
         var input = readlnOrNull()
         runCatching {
             Validator().checkTryNumber(input)
