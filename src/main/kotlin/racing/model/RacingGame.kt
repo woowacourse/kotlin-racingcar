@@ -7,23 +7,23 @@ class RacingGame(private val cars: List<Car>) {
 
     fun getCars() = cars.toList()
 
-    fun race(maxMoveCount: Int, randomGenerator: NumberGenerator = RandomNumberGenerator()): List<List<Int>> {
+    fun race(maxMoveCount: Int, numberGenerator: NumberGenerator = RandomNumberGenerator()): List<List<Int>> {
         val result = mutableListOf<List<Int>>()
         repeat(maxMoveCount) {
-            moveCars(randomGenerator)
+            moveCars(numberGenerator)
             result.add(getGameResultOneTurn())
         }
         return result
     }
 
-    private fun moveCars(randomGenerator: NumberGenerator = RandomNumberGenerator()) {
+    private fun moveCars(numberGenerator: NumberGenerator = RandomNumberGenerator()) {
         cars.forEach {
-            it.move(createRandomNumber(randomGenerator))
+            it.move(createRandomNumber(numberGenerator))
         }
     }
 
-    private fun createRandomNumber(randomGenerator: NumberGenerator = RandomNumberGenerator()): Int {
-        return randomGenerator.generate()
+    private fun createRandomNumber(numberGenerator: NumberGenerator = RandomNumberGenerator()): Int {
+        return numberGenerator.generate()
     }
 
     private fun getGameResultOneTurn(): List<Int> {
