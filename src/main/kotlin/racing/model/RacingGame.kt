@@ -1,26 +1,18 @@
 package racing.model
 
-import racing.util.RandomNumberGenerator
+import racing.util.NumberGenerator
 
 object RacingGame {
 
-    private val randomNumberGenerator = RandomNumberGenerator()
-
-    fun getCars(carNames: List<String>): List<Car> {
-        return carNames.map { name: String -> Car(name) }
-    }
-
-    fun moveCars(cars: List<Car>) {
-        cars.forEach { car: Car -> car.move(createRandomNumber()) }
-    }
-
-    private fun createRandomNumber(): Int {
-        return randomNumberGenerator.generate()
+    fun moveCars(cars: List<Car>, randomNumberGenerator: NumberGenerator): List<Car> {
+        cars.forEach { car: Car -> car.move(randomNumberGenerator.generate()) }
+        return cars
     }
 
     fun getWinnerNames(cars: List<Car>): List<String> {
         val maxPosition: Int = getMaxPosition(cars)
-        return cars.filter { car: Car -> car.position == maxPosition }.map { car: Car -> car.name }
+        return cars.filter { car: Car -> car.position == maxPosition }
+            .map { car: Car -> car.name }
     }
 
     private fun getMaxPosition(cars: List<Car>): Int {
