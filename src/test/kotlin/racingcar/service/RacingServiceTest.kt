@@ -9,7 +9,7 @@ import racingcar.dto.car.CarDto
 import racingcar.dto.car.CarsDto
 import racingcar.dto.round.RoundDto
 import racingcar.model.car.move.condition.CarMoveCondition
-import racingcar.model.car.move.condition.CarRandomMoveCondition
+import racingcar.model.car.move.condition.FakeCarRandomMoveCondition
 import java.util.stream.Stream
 
 internal class RacingServiceTest {
@@ -22,7 +22,7 @@ internal class RacingServiceTest {
             listOf("부나", "우기", "핑구", "수달", "스캇", "써니").map { CarDto(it) }
         )
 
-        carMoveCondition = CarRandomMoveCondition.FakeForSuccess()
+        carMoveCondition = FakeCarRandomMoveCondition.FakeForSuccess()
         racingService = RacingService(cars, carMoveCondition)
     }
 

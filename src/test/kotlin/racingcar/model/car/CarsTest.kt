@@ -10,7 +10,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import racingcar.model.car.move.condition.CarMoveCondition
-import racingcar.model.car.move.condition.CarRandomMoveCondition
+import racingcar.model.car.move.condition.FakeCarRandomMoveCondition
 import java.util.stream.Stream
 
 internal class CarsTest {
@@ -28,8 +28,8 @@ internal class CarsTest {
             )
         )
 
-        carRandomMoveFailureCondition = CarRandomMoveCondition.FakeForFailed()
-        carRandomMoveSuccessiveCondition = CarRandomMoveCondition.FakeForSuccess()
+        carRandomMoveFailureCondition = FakeCarRandomMoveCondition.FakeForFailed()
+        carRandomMoveSuccessiveCondition = FakeCarRandomMoveCondition.FakeForSuccess()
     }
 
     @ParameterizedTest
