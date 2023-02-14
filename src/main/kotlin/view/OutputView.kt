@@ -36,10 +36,9 @@ object OutputView {
         return pathMarks
     }
 
-    private fun PathState.changeToMark(): String {
-        if (this == PathState.MOVE)
-            return MOVE_MARK
-        return STOP_MARK
+    private fun PathState.changeToMark(): String = when (this) {
+        PathState.MOVE -> MOVE_MARK
+        PathState.STOP -> STOP_MARK
     }
 
     private fun CarPath.subPath(number: Int) = this.path.subList(0, number + 1)
