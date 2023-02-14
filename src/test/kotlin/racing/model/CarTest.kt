@@ -17,16 +17,16 @@ class CarTest {
 
     @Test
     fun `기준값이 4이상의 값이면 자동차가 한 칸 이동한다`() {
+        car = Car("ban",2)
         car.move(4)
-        car.move(5)
-        assertThat(car.position).isEqualTo(2)
+        assertThat(car.position).isEqualTo(3)
     }
 
     @Test
     fun `기준값이 4미만의 값이면 자동차가 이동하지 않는다`() {
+        car = Car("son",4)
         car.move(1)
-        car.move(2)
-        assertThat(car.position).isEqualTo(0)
+        assertThat(car.position).isEqualTo(4)
     }
 
     @ParameterizedTest
