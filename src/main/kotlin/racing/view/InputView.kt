@@ -1,12 +1,14 @@
 package racing.view
 
+import racing.model.Car
+
 private const val PREFIX = "[Error]"
 
 object InputView {
-    fun inputCarNames(): List<String> {
+    fun inputCarNames(): List<Car> {
         val userInput = readlnOrNull()
         validateCarNames(userInput)
-        return userInput!!.split(",")
+        return userInput!!.split(",").map { Car(it) }
     }
 
     private fun validateCarNames(userInput: String?) {
