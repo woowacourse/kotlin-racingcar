@@ -11,25 +11,20 @@ class CarRacingGameTest {
 
     private val carRacingGame = CarRacingGame(object : NumberGenerator {
         override fun generate(): Int {
-            return MOVE_NUMBER
+            return 5
         }
     })
 
     @Test
     fun startDrivingTest() {
-        val cars = listOf(Car(NAME1), Car(NAME2))
+        val cars = listOf(Car("핑구"), Car("우기"))
 
-        val carsPath = carRacingGame.startDriving(cars, NUMBER_OF_TRY)
-        val result = listOf(CarPath(NAME1, MOVE_PATH), CarPath(NAME2, MOVE_PATH))
+        val carsPath = carRacingGame.startDriving(cars, 3)
+        val result = listOf(
+            CarPath("핑구", listOf(PathState.MOVE, PathState.MOVE, PathState.MOVE)),
+            CarPath("우기", listOf(PathState.MOVE, PathState.MOVE, PathState.MOVE))
+        )
 
         assertThat(carsPath).isEqualTo(result)
-    }
-
-    companion object {
-        const val MOVE_NUMBER = 5
-        const val NAME1 = "핑구"
-        const val NAME2 = "우기"
-        const val NUMBER_OF_TRY = 3
-        val MOVE_PATH = listOf(PathState.MOVE, PathState.MOVE, PathState.MOVE)
     }
 }

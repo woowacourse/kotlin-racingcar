@@ -34,7 +34,7 @@ class CarTest {
         val car = Car("우기")
         val condition = setNumber(object : NumberGenerator {
             override fun generate(): Int {
-                return STOP_NUMBER
+                return 0
             }
         })
         assertThat(car.move(condition)).isEqualTo(PathState.STOP)
@@ -45,7 +45,7 @@ class CarTest {
         val car = Car("핑구")
         val condition = setNumber(object : NumberGenerator {
             override fun generate(): Int {
-                return MOVE_NUMBER
+                return 4
             }
         })
         assertThat(car.move(condition)).isEqualTo(PathState.MOVE)
@@ -54,7 +54,5 @@ class CarTest {
     companion object {
         const val CAR_NAME_NUMBER_ERROR_MSG = "[ERROR] 자동차 이름은 5자를 초과할 수 없습니다."
         const val CAR_NAME_BLANK_ERROR_MSG = "[ERROR] 자동차 이름은 공백이 될 수 없습니다."
-        const val MOVE_NUMBER = 4
-        const val STOP_NUMBER = 0
     }
 }
