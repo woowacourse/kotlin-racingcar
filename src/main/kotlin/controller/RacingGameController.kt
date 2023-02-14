@@ -4,10 +4,14 @@ import model.Car
 import model.Name
 import model.TryCount
 import service.RacingCarGameService
+import validation.NameValidation
+import validation.TryCountValidation
 import view.InputViewInterface
 import view.OutputViewInterface
 
 class RacingGameController(
+    private val nameValidation: NameValidation,
+    private val tryCountValidation: TryCountValidation,
     private val inputView: InputViewInterface,
     private val outputView: OutputViewInterface,
     private val racingCarGameService: RacingCarGameService
@@ -21,7 +25,15 @@ class RacingGameController(
     }
 
     private fun getCarNames(): Name {
-        return inputView.inputName()
+        val name = inputView.inputName()
+        nameValidation.checkNames(name).onSuccess { name ->
+            return name
+        }.onFailure { error ->
+            outputView.printErrorMessage(error.message)
+            return getCarNames()
+        }.also { result ->
+            return result.getOrThrow()
+        }
     }
 
     private fun getCarsInfo(carNames: String): List<Car> {
@@ -30,7 +42,15 @@ class RacingGameController(
     }
 
     private fun getTryCount(): TryCount {
-        return inputView.inputTryCount()
+        val tryCount = inputView.inputTryCount()
+        tryCountValidation.checkTryCount(tryCount).onSuccess { tryCount ->
+            return tryCount
+        }.onFailure { error ->
+            outputView.printErrorMessage(error.message)
+            return getTryCount()
+        }.also { result ->
+            return result.getOrThrow()
+        }
     }
 
     private fun playRound(carsInfo: List<Car>): String {

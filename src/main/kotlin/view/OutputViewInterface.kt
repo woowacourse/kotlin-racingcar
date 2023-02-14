@@ -5,5 +5,5 @@ interface OutputViewInterface {
     fun printWinner(winners: List<String>)
 
     fun printRunResultMessage()
-    fun printErrorMessage(error: String)
+    fun printErrorMessage(error: String?)
 }

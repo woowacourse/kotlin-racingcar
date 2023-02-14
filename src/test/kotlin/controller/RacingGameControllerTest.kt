@@ -1,11 +1,11 @@
 package controller
 
-import model.Name
-import model.TryCount
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import service.NumberGenerator
 import service.RacingCarGameService
+import validation.NameValidation
+import validation.TryCountValidation
 import view.InputViewInterface
 import view.OutputViewInterface
 
@@ -17,6 +17,8 @@ class RacingGameControllerTest {
         val expect = listOf("aa", "bb")
         val racingGameController =
             RacingGameController(
+                NameValidation(),
+                TryCountValidation(),
                 TestInputView(),
                 TestOutputView { assertThat(it).isEqualTo(expect) },
                 RacingCarGameService(numberGenerator)
@@ -33,12 +35,12 @@ class RacingGameControllerTest {
     }
 
     class TestInputView() : InputViewInterface {
-        override fun inputName(): Name {
-            return Name("aa,bb,cc")
+        override fun inputName(): String? {
+            return "aa,bb,cc"
         }
 
-        override fun inputTryCount(): TryCount {
-            return TryCount("3")
+        override fun inputTryCount(): String? {
+            return "3"
         }
     }
 
@@ -64,7 +66,7 @@ class RacingGameControllerTest {
         override fun printRunResultMessage() {
         }
 
-        override fun printErrorMessage(error: String) {
+        override fun printErrorMessage(error: String?) {
         }
     }
 }

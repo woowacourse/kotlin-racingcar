@@ -1,7 +1,5 @@
 package view
 
-import model.Name
-import model.TryCount
 import validation.NameValidation
 import validation.TryCountValidation
 
@@ -9,30 +7,30 @@ class InputView : InputViewInterface {
     private val nameValidation = NameValidation()
     private val tryCountValidation = TryCountValidation()
 
-    override fun inputName(): Name {
+    override fun inputName(): String? {
         println(INPUT_CAR_NAMES_MESSAGE)
-        val input = readlnOrNull()
-        nameValidation.checkNames(input).onSuccess { name ->
-            return name
-        }.onFailure { error ->
-            println(error.message)
-            return inputName()
-        }.also { result ->
-            return result.getOrThrow()
-        }
+        return readlnOrNull()
+        // nameValidation.checkNames(input).onSuccess { name ->
+        //     return name
+        // }.onFailure { error ->
+        //     println(error.message)
+        //     return inputName()
+        // }.also { result ->
+        //     return result.getOrThrow()
+        // }
     }
 
-    override fun inputTryCount(): TryCount {
+    override fun inputTryCount(): String? {
         println(INPUT_TRY_COUNT_MESSAGE)
-        val input = readlnOrNull()
-        tryCountValidation.checkTryCount(input).onSuccess { tryCount ->
-            return tryCount
-        }.onFailure { error ->
-            println(error.message)
-            return inputTryCount()
-        }.also { result ->
-            return result.getOrThrow()
-        }
+        return readlnOrNull()
+        // tryCountValidation.checkTryCount(input).onSuccess { tryCount ->
+        //     return tryCount
+        // }.onFailure { error ->
+        //     println(error.message)
+        //     return inputTryCount()
+        // }.also { result ->
+        //     return result.getOrThrow()
+        // }
     }
 
     companion object {

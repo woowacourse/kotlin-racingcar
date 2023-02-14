@@ -11,7 +11,7 @@ class OutputView : OutputViewInterface {
     }
 
     override fun printRunResultMessage() = println("\n$RUN_RESULT_MESSAGE")
-    override fun printErrorMessage(error: String) = println(error)
+    override fun printErrorMessage(error: String?) = println(error)
 
     companion object {
         const val RUN_RESULT_MESSAGE = "실행 결과"
