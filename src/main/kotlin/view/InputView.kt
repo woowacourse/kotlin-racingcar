@@ -12,23 +12,27 @@ class InputView : InputViewInterface {
     override fun inputName(): Name {
         println(INPUT_CAR_NAMES_MESSAGE)
         val input = readlnOrNull()
-        runCatching { nameValidation.checkNames(input) }.onSuccess { value ->
-            value.getOrNull()
-        }.onFailure { value ->
-            println(value.message)
+        nameValidation.checkNames(input).onSuccess { name ->
+            return name
+        }.onFailure { error ->
+            println(error.message)
+            return inputName()
+        }.also { result ->
+            return result.getOrThrow()
         }
-        return inputName()
     }
 
     override fun inputTryCount(): TryCount {
         println(INPUT_TRY_COUNT_MESSAGE)
         val input = readlnOrNull()
-        runCatching { tryCountValidation.checkTryCount(input) }.onSuccess { result ->
-            result.getOrNull()
+        tryCountValidation.checkTryCount(input).onSuccess { tryCount ->
+            return tryCount
         }.onFailure { error ->
             println(error.message)
+            return inputTryCount()
+        }.also { result ->
+            return result.getOrThrow()
         }
-        return inputTryCount()
     }
 
     companion object {
