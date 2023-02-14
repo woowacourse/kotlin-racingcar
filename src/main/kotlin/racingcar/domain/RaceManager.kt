@@ -1,34 +1,32 @@
 package racingcar.domain
 
-import racingcar.racingcar.domain.RaceResultDto
-
 class RaceManager(
     private val numberGenerator: NumberGenerator,
+    carNames: List<String>,
+    racingCount: Int,
 ) {
-    private var _cars = MutableList(0) { Car("") }
-    private var cars: List<Car> = _cars
+    var cars: List<Car> = listOf()
+        private set
     private var raceCount = 0
-    private var result = mutableListOf<List<Int>>()
 
-    fun race(): RaceResultDto {
-        result = mutableListOf()
+    init {
+        cars = carNames.map { Car(it) }
+        this.raceCount = racingCount
+    }
+
+    fun race(): List<Car> {
+        var roundHistory = listOf<Int>()
         repeat(raceCount) {
             nextStep()
         }
-        return RaceResultDto(cars.map { car -> car.name }, result)
+        return cars
     }
 
     private fun nextStep() {
         cars.forEach { it.move(numberGenerator.generateNumber(Car.MIN_BOUNDARY, Car.MAX_BOUNDARY)) }
-        result.add(cars.map { car -> car.location })
     }
 
-    fun setGame(carNames: List<String>, racingCount: Int) {
-        this.cars = carNames.map { Car(it) }
-        this.raceCount = racingCount
-    }
-
-    fun getWinner(): List<String> {
+    fun getWinner(cars: List<Car>): List<String> {
         val maxLocation = cars.maxOf { it.location }
         return cars.filter { car -> car.location == maxLocation }
             .map { it.name }

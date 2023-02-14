@@ -1,12 +1,14 @@
 package racingcar.view
 
-import racingcar.racingcar.domain.RaceResultDto
+import racingcar.domain.Car
 
 class OutputView {
-    fun printRaceResult(raceResultDto: RaceResultDto) {
+    fun printRaceResult(cars: List<Car>) {
         println(RESULT_PREFIX)
-        raceResultDto.result.forEach { locations ->
-            printCarsState(raceResultDto.names, locations)
+        var names = cars.map { car -> car.name }.toList()
+        var locations = cars.map { car -> car.location }.toList()
+        cars.forEach { car ->
+            printCarsState(names, locations)
         }
     }
 
