@@ -27,8 +27,8 @@ class RacingService {
     }
 
     companion object {
-        const val START_RANDOM_MOVEMENT_PROBABILITY = 0
-        const val END_RANDOM_MOVEMENT_PROBABILITY = 9
-        const val MOVEMENT_PROBABILITY = 4
+        private const val START_RANDOM_MOVEMENT_PROBABILITY = 0
+        private const val END_RANDOM_MOVEMENT_PROBABILITY = 9
+        private const val MOVEMENT_PROBABILITY = 4
     }
 }

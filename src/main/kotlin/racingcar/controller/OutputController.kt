@@ -17,7 +17,7 @@ class OutputController(
     }
 
     companion object {
-        const val ROUNDS_RESULT_NOTIFICATION_MESSAGE = "\n실행 결과"
-        const val WINNER_NOTIFICATION_MESSAGE = "최종 우승자"
+        private const val ROUNDS_RESULT_NOTIFICATION_MESSAGE = "\n실행 결과"
+        private const val WINNER_NOTIFICATION_MESSAGE = "최종 우승자"
     }
 }
