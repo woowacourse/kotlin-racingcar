@@ -9,7 +9,7 @@ class CarsTest {
     fun mappingCarsTest() {
         val carNames = listOf("pobi", "dool", "woni")
         repeat(cars.getCarSize()) {
-            assertThat(cars.getCarInfo(it).name).isEqualTo(carNames[it])
+            assertThat(cars.getCar(it).name).isEqualTo(carNames[it])
         }
     }
 

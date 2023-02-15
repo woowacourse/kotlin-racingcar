@@ -18,7 +18,7 @@ class Validator {
 
     fun checkTryNumber(name: String?) {
         checkTryNumberNull(name)
-        checkTryNumberIsRight(name)
+        checkTryNumberIsRight(name ?: "")
     }
 
     private fun checkNameNull(name: String?) {
@@ -41,11 +41,7 @@ class Validator {
         require(number != null) { Constants.INPUT_TRY_NUMBER_NULL_ERROR_MESSAGE }
     }
 
-    private fun checkTryNumberIsRight(number: String?) {
-        try {
-            number!!.toInt()
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(Constants.INPUT_TRY_NUMBER_RIGHT_ERROR_MESSAGE)
-        }
+    private fun checkTryNumberIsRight(number: String) {
+        require(number.isNotEmpty() && number.chars().allMatch { Character.isDigit(it) }) { Constants.INPUT_TRY_NUMBER_RIGHT_ERROR_MESSAGE }
     }
 }
