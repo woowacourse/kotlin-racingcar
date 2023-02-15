@@ -21,8 +21,8 @@ internal class RacingServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [9, 6, 4])
-    fun `발행된 전진 확률이 4~9일 때 isMove 메서드가 true를 반환합니다`(moveProbability: Int) {
+    @ValueSource(ints = [9, 4])
+    fun `발행된 전진 확률이 4이상, 9이하일 때 isMove 메서드가 true를 반환합니다`(moveProbability: Int) {
         assertEquals(
             racingService.isMove(moveProbability),
             true
@@ -30,8 +30,8 @@ internal class RacingServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(ints = [0, 1, 3])
-    fun `발행된 전진 확률이 0~3일 때 isMove 메서드가 false를 반환합니다`(moveProbability: Int) {
+    @ValueSource(ints = [0, 3])
+    fun `발행된 전진 확률이 0이상, 3이하일 때 isMove 메서드가 false를 반환합니다`(moveProbability: Int) {
         assertEquals(
             racingService.isMove(moveProbability),
             false
@@ -39,16 +39,16 @@ internal class RacingServiceTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["buna", "sooda"])
-    fun `자동차 이름의 글자 수가 1~5자에 해당 할 때 객체를 생성합니다`(carName: String) {
+    @ValueSource(strings = ["b", "otter"])
+    fun `자동차 이름의 글자 수가 1이상, 5이하일 때 에러가 발생하지 않습니다`(carName: String) {
         assertDoesNotThrow {
             racingService.createCar(carName)
         }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["soooodal", "buuuuuuuna", ""])
-    fun `자동차 이름의 글자 수가 1~5자에 해당 하지 않을 때 객체 생성에 에러가 발생합니다`(carName: String) {
+    @ValueSource(strings = ["soodal", ""])
+    fun `자동차 이름의 글자 수가 1이상, 5이하가 아닐 때 에러가 발생합니다`(carName: String) {
         assertThrows<IllegalArgumentException> {
             racingService.createCar(carName)
         }
