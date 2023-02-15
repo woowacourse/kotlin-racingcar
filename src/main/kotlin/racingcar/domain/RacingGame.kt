@@ -12,7 +12,7 @@ class RacingGame(
     fun runGame() {
         val names = getCarsName()
         val roundCount = getRoundCount()
-        val cars = Cars(names)
+        val cars = Cars.from(names)
 
         OutputView.printResult()
         for (i in 0 until roundCount) {
