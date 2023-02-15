@@ -25,6 +25,17 @@ class Car(
         return PathState.STOP
     }
 
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        other as Car
+        if (name != other.name) return false
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return name.hashCode()
+    }
+
     companion object {
         const val CAR_START_POSITION = 0
         const val CAR_NAME_MAX = 5

@@ -25,29 +25,21 @@ class CarTest {
         assertThat("$CAR_NAME_BLANK_ERROR_MSG $name 은 공백입니다.").isEqualTo(exception.message)
     }
 
-    private fun setNumber(n: NumberGenerator): Int {
-        return n.generate()
+    private fun setNumber(generator: NumberGenerator): Int {
+        return generator.generate()
     }
 
     @Test
     fun `정지 테스트 `() {
         val car = Car("우기")
-        val condition = setNumber(object : NumberGenerator {
-            override fun generate(): Int {
-                return 0
-            }
-        })
+        val condition = setNumber { 0 }
         assertThat(car.move(condition)).isEqualTo(PathState.STOP)
     }
 
     @Test
     fun `전진 테스트 `() {
         val car = Car("핑구")
-        val condition = setNumber(object : NumberGenerator {
-            override fun generate(): Int {
-                return 4
-            }
-        })
+        val condition = setNumber { 4 }
         assertThat(car.move(condition)).isEqualTo(PathState.MOVE)
     }
 

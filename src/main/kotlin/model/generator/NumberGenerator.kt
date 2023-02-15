@@ -1,5 +1,5 @@
 package model.generator
 
-interface NumberGenerator {
+fun interface NumberGenerator {
     fun generate(): Int
 }
