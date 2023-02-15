@@ -1,5 +1,8 @@
 package racingcar.domain
 
+import racingcar.constant.ERROR_INPUT_HANDLER
+import racingcar.constant.ERROR_NAME_LENGTH
+import racingcar.constant.ERROR_WRONG_NUMBER
 import racingcar.domain.MovingDiscriminator.checkGoingForward
 import racingcar.domain.numbergenerator.NumberGenerator
 import racingcar.view.InputView
@@ -36,10 +39,65 @@ class RacingGame(
     }
 
     fun getCarsName(): List<String> {
-        return InputView.getCarsName { OutputView.printGettingCarsName() }
+        return runCatching {
+            getVerifiedCarsName(InputView.getCarsName { OutputView.printGettingCarsName() })
+        }.getOrElse { error ->
+            inputErrorHandler(error, ::getCarsName) as List<String>
+        }
+    }
+
+    private fun getVerifiedCarsName(input: String): List<String> {
+        val names: List<String>
+
+        if (!input.isNullOrBlank()) {
+            names = input.split(",").map { it.trim() }
+            checkNameLength(names)
+        } else {
+            throw IllegalArgumentException(ERROR_NAME_LENGTH)
+        }
+
+        return names
+    }
+
+    fun checkNameLength(value: List<String>) {
+        value.forEach {
+            require(Validator.isNameLengthInRange(it)) { ERROR_NAME_LENGTH }
+        }
     }
 
     fun getRoundCount(): Int {
-        return InputView.getRoundCount { OutputView.printGettingRoundCount() }
+        return runCatching {
+            getVerifiedRoundCount(InputView.getRoundCount { OutputView.printGettingRoundCount() })
+        }.getOrElse { error ->
+            inputErrorHandler(error, ::getRoundCount) as Int
+        }
+    }
+
+    private fun getVerifiedRoundCount(input: String): Int {
+        if (!input.isNullOrBlank()) {
+            require(Validator.isNumber(input)) { ERROR_WRONG_NUMBER }
+        } else {
+            throw IllegalArgumentException(ERROR_WRONG_NUMBER)
+        }
+
+        return input.toInt()
+    }
+
+    private fun inputErrorHandler(
+        error: Throwable,
+        repeatFunction: () -> Any,
+    ): Any {
+        return when (error) {
+            is IllegalArgumentException -> inputIllegalArgumentExceptionHandler(error, repeatFunction)
+            else -> throw IllegalStateException(ERROR_INPUT_HANDLER)
+        }
+    }
+
+    private fun inputIllegalArgumentExceptionHandler(
+        error: Throwable,
+        repeatFunction: () -> Any,
+    ): Any {
+        println(error.message)
+        return repeatFunction()
     }
 }
