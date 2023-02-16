@@ -1,4 +1,4 @@
-package data
+package model
 
 data class CarPath(
     val carName: String,
