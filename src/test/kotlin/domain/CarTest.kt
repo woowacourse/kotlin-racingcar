@@ -22,7 +22,7 @@ internal class CarTest {
 
     @ValueSource(strings = ["", "실패실패실패"])
     @ParameterizedTest
-    fun `차 이름이 1~5 범위 밖인 경우`(carName: String) {
+    fun `차 이름이 1~5 범위 밖인 경우 Car 클래스 생성 실패`(carName: String) {
         // given
         // when
         val carException = runCatching { TestCarFactory.makeCar(carName, 5) }.exceptionOrNull()
@@ -33,7 +33,7 @@ internal class CarTest {
 
     @ValueSource(strings = ["성", "공성공성공"])
     @ParameterizedTest
-    fun `차 이름이 1~5 범위 안인 경우`(carName: String) {
+    fun `차 이름이 1~5 범위 안인 경우 Car 클래스 생성 성공`(carName: String) {
         // when
         val car = TestCarFactory.makeCar(carName, 5)
         // then
