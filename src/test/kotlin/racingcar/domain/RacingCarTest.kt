@@ -2,7 +2,9 @@ package racingcar.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
+import racingcar.constant.STATE_UNIT
 
 class RacingCarTest {
 
@@ -13,12 +15,14 @@ class RacingCarTest {
         car = RacingCar("name")
     }
 
-    @Test
-    fun `toString 정상적으로 작동하는지 확인 테스트(2번 전진)`() {
-        car.moveForward()
-        car.moveForward()
+    @ValueSource(ints = [1, 5, 7, 3])
+    @ParameterizedTest
+    fun `toString 이동한 거리만큼 "-"의 반복으로 출력 `(input: Int) {
+        for (moveCount in 1..input) {
+            car.moveForward()
+        }
         assertEquals(
-            "name : --",
+            "name : ${STATE_UNIT.repeat(input)}",
             car.toString(),
         )
     }
