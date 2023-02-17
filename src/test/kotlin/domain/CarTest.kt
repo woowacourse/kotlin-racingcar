@@ -25,7 +25,7 @@ internal class CarTest {
     fun `차 이름이 1~5 범위 밖인 경우`(carName: String) {
         // given
         // when
-        val carException = kotlin.runCatching { TestCarFactory.makeCar(carName, 5) }.exceptionOrNull()
+        val carException = runCatching { TestCarFactory.makeCar(carName, 5) }.exceptionOrNull()
         // then
         assertThat(carException).isInstanceOf(Exception::class.java)
         assertThat(carException).hasMessage(Car.NAME_CONVENTION_ERROR_MESSAGE)
