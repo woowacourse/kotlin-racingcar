@@ -41,19 +41,20 @@ class RacingGame(
     fun getCarsName(): List<String> {
         return runCatching {
             getVerifiedCarsName(InputView.getCarsName { OutputView.printGettingCarsName() })
+                ?: throw IllegalArgumentException(ERROR_NAME_LENGTH)
         }.getOrElse { error ->
             inputErrorHandler(error, ::getCarsName) as List<String>
         }
     }
 
-    private fun getVerifiedCarsName(input: String): List<String> {
+    private fun getVerifiedCarsName(input: String): List<String>? {
         val names: List<String>
 
-        if (!input.isNullOrBlank()) {
+        if (input.isNotBlank()) {
             names = input.split(",").map { it.trim() }
             checkNameLength(names)
         } else {
-            throw IllegalArgumentException(ERROR_NAME_LENGTH)
+            return null
         }
 
         return names
@@ -68,16 +69,19 @@ class RacingGame(
     fun getRoundCount(): Int {
         return runCatching {
             getVerifiedRoundCount(InputView.getRoundCount { OutputView.printGettingRoundCount() })
+                ?: throw IllegalStateException(
+                    ERROR_WRONG_NUMBER,
+                )
         }.getOrElse { error ->
             inputErrorHandler(error, ::getRoundCount) as Int
         }
     }
 
-    private fun getVerifiedRoundCount(input: String): Int {
-        if (!input.isNullOrBlank()) {
+    private fun getVerifiedRoundCount(input: String): Int? {
+        if (input.isNotBlank()) {
             require(Validator.isNumber(input)) { ERROR_WRONG_NUMBER }
         } else {
-            throw IllegalArgumentException(ERROR_WRONG_NUMBER)
+            return null
         }
 
         return input.toInt()
