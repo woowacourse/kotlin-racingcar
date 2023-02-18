@@ -5,7 +5,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.CarName
 import racingcar.domain.Car
 import java.util.stream.Stream
 import kotlin.test.assertEquals
@@ -50,25 +49,25 @@ internal class RacingServiceTest {
             return Stream.of(
                 Arguments.of(
                     listOf(
-                        Car(CarName("sooda"), 7),
-                        Car(CarName("buna"), 6),
-                        Car(CarName("sunny"), 2),
+                        Car("sooda", 7),
+                        Car("buna", 6),
+                        Car("sunny", 2),
                     ),
                     1
                 ),
                 Arguments.of(
                     listOf(
-                        Car(CarName("sooda"), 7),
-                        Car(CarName("buna"), 7),
-                        Car(CarName("sunny"), 7),
+                        Car("sooda", 7),
+                        Car("buna", 7),
+                        Car("sunny", 7),
                     ),
                     3
                 ),
                 Arguments.of(
                     listOf(
-                        Car(CarName("sooda"), 0),
-                        Car(CarName("buna"), 0),
-                        Car(CarName("sunny"), 0),
+                        Car("sooda", 0),
+                        Car("buna", 0),
+                        Car("sunny", 0),
                     ),
                     3
                 ),

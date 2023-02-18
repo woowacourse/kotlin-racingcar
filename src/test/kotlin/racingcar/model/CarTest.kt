@@ -5,7 +5,6 @@ import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.domain.Car
-import racingcar.domain.CarName
 
 class CarTest {
 
@@ -13,7 +12,7 @@ class CarTest {
 
     @BeforeEach
     fun beforeEach() {
-        car = Car(CarName("otter"))
+        car = Car("otter")
     }
 
     @ParameterizedTest
