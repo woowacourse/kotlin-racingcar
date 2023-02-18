@@ -1,18 +1,11 @@
 package racingcar.model
 
-import racingcar.utils.MAX_CAR_NAME_LENGTH
-import racingcar.utils.MIN_CAR_NAME_LENGTH
-import racingcar.utils.RacingRuleValidator
+import racingcar.domain.CarName
 
 class Car(
-    val name: String,
+    val name: CarName,
     private var position: Int = 0
 ) : Comparable<Car> {
-
-    init {
-        val validator = RacingRuleValidator()
-        require(validator.isValidateCarNameLength(name)) { CAR_NAME_BOUNDARY_ERROR_MESSAGE }
-    }
 
     override fun compareTo(other: Car) = this.position - other.position
 
@@ -24,13 +17,15 @@ class Car(
         return false
     }
 
-    override fun toString() = name
-
     override fun hashCode(): Int {
         var result = name.hashCode()
         result = 31 * result + position
         return result
     }
+
+    override fun toString() = name.toString()
+
+    fun getPositionAsDash() = STRAIGHT_GAUGE.repeat(position)
 
     fun move(isMove: Boolean) {
         if (isMove) setPosition(position + 1)
@@ -40,14 +35,7 @@ class Car(
         position = newPosition
     }
 
-    fun move() = ++position
-
-    fun getPositionAsDash() = STRAIGHT_GAUGE.repeat(position)
-
     companion object {
         private const val STRAIGHT_GAUGE = "-"
-
-        private const val CAR_NAME_BOUNDARY_ERROR_MESSAGE =
-            "자동차 이름의 길이는 $MIN_CAR_NAME_LENGTH 이상 $MAX_CAR_NAME_LENGTH 이하로 부탁이요~"
     }
 }

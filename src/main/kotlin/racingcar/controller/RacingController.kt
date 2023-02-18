@@ -1,5 +1,6 @@
 package racingcar.controller
 
+import racingcar.domain.CarName
 import racingcar.model.Car
 import racingcar.service.RacingService
 
@@ -39,7 +40,7 @@ class RacingController(
 
     private fun createCars(carNames: List<String>): List<Car> {
         return carNames.map { carName ->
-            racingService.createCar(carName)
+            Car(CarName(carName))
         }
     }
 

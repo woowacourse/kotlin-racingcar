@@ -5,10 +5,6 @@ import racingcar.utils.Random
 
 class RacingService {
 
-    fun createCar(carName: String): Car {
-        return Car(carName)
-    }
-
     fun moveRandomly(car: Car) {
         car.move(isMove(pickRandomMoveProbability()))
     }
