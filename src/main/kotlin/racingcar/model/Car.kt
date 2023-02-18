@@ -27,13 +27,7 @@ class Car(
 
     fun getPositionAsDash() = STRAIGHT_GAUGE.repeat(position)
 
-    fun move(isMove: Boolean) {
-        if (isMove) setPosition(position + 1)
-    }
-
-    private fun setPosition(newPosition: Int) {
-        position = newPosition
-    }
+    fun takeOneStepForward() = ++position
 
     companion object {
         private const val STRAIGHT_GAUGE = "-"

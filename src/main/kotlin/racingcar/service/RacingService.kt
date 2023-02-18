@@ -6,7 +6,7 @@ import racingcar.utils.Random
 class RacingService {
 
     fun moveRandomly(car: Car) {
-        car.move(isMove(pickRandomMoveProbability()))
+        if (isMove(pickRandomMoveProbability())) car.takeOneStepForward()
     }
 
     fun isMove(moveProbability: Int): Boolean {

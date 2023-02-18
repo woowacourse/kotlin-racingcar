@@ -19,7 +19,7 @@ class CarTest {
     @ValueSource(ints = [0, 1, 2, 3])
     fun `자동차가 전진한 횟수 만큼 "-"가 표현됩니다`(moveCount: Int) {
         repeat(moveCount) {
-            car.move(true)
+            car.takeOneStepForward()
         }
 
         assertEquals(
