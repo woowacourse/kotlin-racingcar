@@ -1,6 +1,6 @@
 package racingcar.controller
 
-import racingcar.model.Car
+import racingcar.domain.Car
 import racingcar.utils.MAX_ROUND_COUNT
 import racingcar.utils.MIN_ROUND_COUNT
 import racingcar.utils.RacingRuleValidator

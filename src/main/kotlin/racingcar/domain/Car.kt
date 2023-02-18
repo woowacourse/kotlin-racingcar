@@ -1,6 +1,4 @@
-package racingcar.model
-
-import racingcar.domain.CarName
+package racingcar.domain
 
 class Car(
     val name: CarName,

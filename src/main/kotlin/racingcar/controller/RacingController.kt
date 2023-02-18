@@ -1,7 +1,7 @@
 package racingcar.controller
 
 import racingcar.domain.CarName
-import racingcar.model.Car
+import racingcar.domain.Car
 import racingcar.service.RacingService
 
 class RacingController(

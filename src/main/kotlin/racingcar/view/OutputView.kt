@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.Car
+import racingcar.domain.Car
 
 class OutputView {
     fun printMessage(message: String) = println(message)

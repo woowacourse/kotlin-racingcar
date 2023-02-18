@@ -1,6 +1,6 @@
 package racingcar.service
 
-import racingcar.model.Car
+import racingcar.domain.Car
 import racingcar.utils.Random
 
 class RacingService {
