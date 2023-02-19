@@ -2,7 +2,6 @@ package racingcar.domain
 
 import racingcar.utils.MAX_CAR_NAME_LENGTH
 import racingcar.utils.MIN_CAR_NAME_LENGTH
-import racingcar.utils.RacingRuleValidator
 
 class Car(
     val name: String,
@@ -10,8 +9,7 @@ class Car(
 ) : Comparable<Car> {
 
     init {
-        val validator = RacingRuleValidator()
-        require(validator.isValidateCarNameLength(name)) { CAR_NAME_BOUNDARY_ERROR_MESSAGE }
+        require(checkNameLength()) { CAR_NAME_BOUNDARY_ERROR_MESSAGE }
     }
 
     override fun compareTo(other: Car) = this.position - other.position
@@ -36,6 +34,8 @@ class Car(
     fun getPositionAsDash() = STRAIGHT_GAUGE.repeat(position)
 
     fun takeOneStepForward() = ++position
+
+    private fun checkNameLength(): Boolean = name.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH
 
     companion object {
         private const val CAR_NAME_BOUNDARY_ERROR_MESSAGE =
