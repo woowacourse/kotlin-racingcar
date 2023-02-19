@@ -31,6 +31,8 @@ class Car(
 
     override fun toString() = name
 
+    fun getPosition() = position
+
     fun getPositionAsDash() = STRAIGHT_GAUGE.repeat(position)
 
     fun takeOneStepForward() = ++position
