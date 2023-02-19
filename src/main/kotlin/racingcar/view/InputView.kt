@@ -2,9 +2,7 @@ package racingcar.view
 
 import racingcar.domain.Car
 import racingcar.domain.Cars
-import racingcar.utils.MAX_ROUND_COUNT
-import racingcar.utils.MIN_ROUND_COUNT
-import racingcar.utils.RacingRuleValidator
+import racingcar.domain.TryCount
 import racingcar.utils.TEXT_IN_LINE_DELIMITER
 
 class InputView() {
@@ -15,15 +13,13 @@ class InputView() {
         return Cars(carNames.map { Car(it) })
     }
 
-    fun readRoundCount(): Int {
+    fun readRoundCount(): TryCount {
         println(REQUEST_MESSAGE_ROUND_COUNT)
         val input = readln()
-        val racingRule = RacingRuleValidator()
 
         require(input.toIntOrNull() != null) { ERROR_MESSAGE_NOT_INTEGER_TYPE }
-        require(racingRule.isValidateRoundCountBoundary(input.toInt())) { ERROR_MESSAGE_ROUND_COUNT_BOUNDARY }
 
-        return input.toInt()
+        return TryCount(input.toInt())
     }
 
     private fun readCarNames(): List<String> {
@@ -38,6 +34,5 @@ class InputView() {
         private const val REQUEST_MESSAGE_ROUND_COUNT = "시도할 횟수는 몇 회인가요?"
 
         private const val ERROR_MESSAGE_NOT_INTEGER_TYPE = "시도 횟수는 숫자 형태로 부탁이요~"
-        private const val ERROR_MESSAGE_ROUND_COUNT_BOUNDARY = "시도 횟수는 $MIN_ROUND_COUNT 이상 $MAX_ROUND_COUNT 이하로 부탁이요~"
     }
 }
