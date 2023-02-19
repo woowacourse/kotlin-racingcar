@@ -1,10 +1,11 @@
 package racingcar.controller
 
+import racingcar.domain.Car
+import racingcar.domain.Cars
 import racingcar.utils.MAX_ROUND_COUNT
 import racingcar.utils.MIN_ROUND_COUNT
 import racingcar.utils.RacingRuleValidator
 import racingcar.utils.TEXT_IN_LINE_DELIMITER
-import racingcar.utils.TextUtils
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -14,14 +15,14 @@ class InputController(
     private val racingRule: RacingRuleValidator = RacingRuleValidator()
 ) {
 
-    fun readCarNames(): List<String> {
+    fun readCars(): Cars {
         outputView.printMessage(CAR_NAMES_REQUEST_MESSAGE)
         val input = inputView.readCarNames()
-        val carNames = TextUtils.removeTextsBlank(input.split(TEXT_IN_LINE_DELIMITER))
+        val cars: List<Car> = input
+            .split(TEXT_IN_LINE_DELIMITER)
+            .map { Car(it.trim()) }
 
-        require(racingRule.isValidateNotDuplicatedCarNames(carNames)) { DUPLICATED_CAR_NAME_ERROR_MESSAGE }
-
-        return carNames
+        return Cars(cars)
     }
 
     fun readRoundCount(): Int {
@@ -38,7 +39,6 @@ class InputController(
         private const val CAR_NAMES_REQUEST_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
         private const val ROUND_COUNT_REQUEST_MESSAGE = "시도할 횟수는 몇 회인가요?"
 
-        private const val DUPLICATED_CAR_NAME_ERROR_MESSAGE = "자동차 이름 중복 빼주세요~"
         private const val NOT_INTEGER_TYPE_ERROR_MESSAGE = "시도 횟수는 숫자 형태로 부탁이요~"
         private const val ROUND_COUNT_BOUNDARY_ERROR_MESSAGE = "시도 횟수는 $MIN_ROUND_COUNT 이상 $MAX_ROUND_COUNT 이하로 부탁이요~"
     }

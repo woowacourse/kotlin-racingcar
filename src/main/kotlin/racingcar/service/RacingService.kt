@@ -17,11 +17,6 @@ class RacingService {
         return Random.pickInRange(START_RANDOM_MOVEMENT_PROBABILITY, END_RANDOM_MOVEMENT_PROBABILITY)
     }
 
-    fun getWinners(cars: List<Car>): List<Car> {
-        val winnerStandard = cars.max()
-        return cars.filter { it == winnerStandard }
-    }
-
     companion object {
         private const val START_RANDOM_MOVEMENT_PROBABILITY = 0
         private const val END_RANDOM_MOVEMENT_PROBABILITY = 9

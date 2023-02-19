@@ -17,9 +17,10 @@ class Car(
     override fun compareTo(other: Car) = this.position - other.position
 
     override fun equals(other: Any?): Boolean {
-        if (other is Car) {
-            return this.position == other.position
-        }
+        other as Car
+
+        if (this.name == other.name) return true
+        if (this.position == other.position) return true
 
         return false
     }
