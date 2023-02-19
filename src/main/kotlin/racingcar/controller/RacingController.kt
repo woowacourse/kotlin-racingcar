@@ -1,15 +1,16 @@
 package racingcar.controller
 
 import racingcar.domain.Cars
+import racingcar.view.InputView
 
 class RacingController(
-    private val inputController: InputController = InputController(),
+    private val inputView: InputView = InputView(),
     private val outputController: OutputController = OutputController(),
 ) {
 
     fun runRacing() {
-        val cars = inputController.readCars()
-        val roundCount = inputController.readRoundCount()
+        val cars = inputView.readCars()
+        val roundCount = inputView.readRoundCount()
 
         runRounds(roundCount, cars)
 
