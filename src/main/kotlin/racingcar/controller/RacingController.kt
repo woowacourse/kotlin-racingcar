@@ -2,10 +2,11 @@ package racingcar.controller
 
 import racingcar.domain.Cars
 import racingcar.view.InputView
+import racingcar.view.OutputView
 
 class RacingController(
     private val inputView: InputView = InputView(),
-    private val outputController: OutputController = OutputController(),
+    private val outView: OutputView = OutputView(),
 ) {
 
     fun runRacing() {
@@ -15,11 +16,11 @@ class RacingController(
         runRounds(roundCount, cars)
 
         val winners = cars.getWinners()
-        outputController.printWinners(winners.cars)
+        outView.printWinners(winners.cars)
     }
 
     private fun runRounds(roundCount: Int, cars: Cars) {
-        outputController.printRunResult()
+        outView.printRunResult()
         repeat(roundCount) {
             runRound(cars)
         }
@@ -27,6 +28,6 @@ class RacingController(
 
     private fun runRound(cars: Cars) {
         cars.moveCarsRandomly()
-        outputController.printRoundResult(cars.cars)
+        outView.printRoundResult(cars)
     }
 }
