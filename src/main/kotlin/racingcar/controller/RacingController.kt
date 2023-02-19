@@ -1,44 +1,33 @@
 package racingcar.controller
 
-import racingcar.model.Car
-import racingcar.service.RacingService
+import racingcar.domain.Cars
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 class RacingController(
-    private val viewController: ViewController = ViewController(),
-    private val racingService: RacingService = RacingService(),
+    private val inputView: InputView = InputView(),
+    private val outputView: OutputView = OutputView(),
 ) {
+
     fun runRacing() {
-        val cars = createCars(viewController.readCarNames())
-        val roundCount = viewController.readRoundCount()
+        val cars = inputView.readCars()
+        val roundCount = inputView.readRoundCount()
 
-        runRounds(roundCount, cars)
+        runRounds(roundCount.number, cars)
 
-        val winners = getWinners(cars)
-        viewController.printWinners(winners)
+        val winners = cars.getWinners()
+        outputView.printWinners(winners.cars)
     }
 
-    private fun runRounds(roundCount: Int, cars: List<Car>) {
-        viewController.printRunResult()
+    private fun runRounds(roundCount: Int, cars: Cars) {
+        outputView.printRunResult()
         repeat(roundCount) {
             runRound(cars)
         }
     }
 
-    private fun runRound(cars: List<Car>) {
-        moveCarsRandomly(cars)
-        viewController.printRoundResult(cars)
+    private fun runRound(cars: Cars) {
+        cars.moveCarsRandomly()
+        outputView.printRoundResult(cars)
     }
-
-    private fun moveCarsRandomly(cars: List<Car>) {
-        cars.forEach { car ->
-            racingService.moveRandomly(car)
-        }
-    }
-
-    private fun createCars(carNames: List<String>) =
-        carNames.map { carName ->
-            racingService.createCar(carName)
-        }
-
-    private fun getWinners(cars: List<Car>): List<Car> = racingService.getWinners(cars)
 }
