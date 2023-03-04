@@ -8,12 +8,12 @@ class Car(val name: String) {
 
     init {
         require(name.isNotBlank()) { "이름은 공백일 수 없습니다." }
-        require(name.length <= NAME_MIN_LENGTH) { "이름은 공백일 수 없습니다." }
+        require(name.length <= NAME_MIN_LENGTH) { "자동차 이름의 길이는 1~5자여야 합니다." }
     }
 
     fun move() {
         if (RandomUtil.getRandomNumber(BOUND) >= MOVE_STRATEGY) {
-            position++;
+            position++
         }
     }
 

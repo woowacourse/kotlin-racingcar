@@ -2,7 +2,7 @@ package domain
 
 class Cars(names: List<String>) {
 
-    private val value: List<Car>
+    val value: List<Car>
 
     init {
         value = names.map { Car(it) }
@@ -10,7 +10,7 @@ class Cars(names: List<String>) {
 
     fun moveAll() {
         for (car in value) {
-            car.move();
+            car.move()
         }
     }
 }
