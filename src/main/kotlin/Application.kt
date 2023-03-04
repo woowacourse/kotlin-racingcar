@@ -12,7 +12,7 @@ fun main() {
         OutputView.printRaceResult(cars)
     }
 
-//    OutputView.printWinner()
+    OutputView.printWinner(cars.findWinners())
 }
 
 

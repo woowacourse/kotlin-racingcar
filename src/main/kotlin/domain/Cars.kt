@@ -13,4 +13,9 @@ class Cars(names: List<String>) {
             car.move()
         }
     }
+
+    fun findWinners(): List<Car> {
+        val winnerPosition = value.maxOf { it.position }
+        return value.filter { it.position == winnerPosition }
+    }
 }
