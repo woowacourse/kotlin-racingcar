@@ -1,6 +1,6 @@
 package domain
 
-import java.util.*
+import java.util.Random
 
 private const val EXCLUSIVE_UPPER_BOUND = 10
 
