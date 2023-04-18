@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Cars(private val cars: List<Car>) {
+class Cars(val cars: List<Car>) {
 
     fun moveAll(numberGenerator: NumberGenerator) {
         for (car in cars) {
