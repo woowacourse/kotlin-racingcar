@@ -1,10 +1,10 @@
 package domain
 
-class Name(val name: String) {
+class Name(val value: String) {
 
     init {
-        validateLength(name)
-        validateBlank(name)
+        validateLength(value)
+        validateBlank(value)
     }
 
     private fun validateLength(name: String) {
