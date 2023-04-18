@@ -2,7 +2,7 @@ package domain
 
 private const val MOVE_CONDITION = 4
 
-class Car(val name: Name, private var position: Position) {
+class Car(val name: Name, var position: Position) {
 
     fun move(numberGenerator: NumberGenerator) {
         if (numberGenerator.generate() >= MOVE_CONDITION) {
@@ -10,7 +10,7 @@ class Car(val name: Name, private var position: Position) {
         }
     }
 
-    fun isSamePosition(position: Position): Boolean {
-        return this.position == position
+    fun isSamePosition(position: Int): Boolean {
+        return this.position.value == position
     }
 }
