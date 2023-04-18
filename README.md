@@ -22,3 +22,6 @@
 ### Position
 - [x] 0보다 작을 수 없다.
 - [x] 값 증가
+
+### RandomNumberGenerator
+- [x] 0~9 사이의 난수를 반환한다. 
