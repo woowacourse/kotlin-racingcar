@@ -29,3 +29,7 @@
 
 ### RandomNumberGenerator
 - [x] 0~9 사이의 난수를 반환한다. 
+
+### Cars
+- [x] 우승자를 반환한다.
+- [x] 모든 Car들에게 움직임을 요청한다.
