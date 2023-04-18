@@ -1,9 +1,9 @@
 package domain
 
-class Position(val position: Int) {
+class Position(val value: Int) {
 
     init {
-        validateNegative(position)
+        validateNegative(value)
     }
 
     private fun validateNegative(position: Int) {
@@ -13,7 +13,7 @@ class Position(val position: Int) {
     }
 
     fun increase(): Position {
-        return Position(this.position + 1)
+        return Position(this.value + 1)
     }
 
     override fun equals(other: Any?): Boolean {
@@ -22,12 +22,12 @@ class Position(val position: Int) {
 
         other as Position
 
-        if (position != other.position) return false
+        if (value != other.value) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        return position
+        return value
     }
 }
