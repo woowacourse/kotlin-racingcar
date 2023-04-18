@@ -8,7 +8,7 @@ class Car(val name: String, var position: Int) {
     constructor(name: String) : this(name, 0)
 
     fun move(number: Int) {
-        if (number > 4) {
+        if (number >= 4) {
             position++
         }
     }
