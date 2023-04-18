@@ -1,5 +1,7 @@
 package domain
 
+private const val MAX_LENGTH = 5
+
 class Name(val value: String) {
 
     init {
@@ -8,8 +10,8 @@ class Name(val value: String) {
     }
 
     private fun validateLength(name: String) {
-        if (name.length > 5) {
-            throw IllegalArgumentException("자동차 이름은 5글자를 넘을 수 없습니다.")
+        if (name.length > MAX_LENGTH) {
+            throw IllegalArgumentException("자동차 이름은 " + MAX_LENGTH + "글자를 넘을 수 없습니다.")
         }
     }
 
