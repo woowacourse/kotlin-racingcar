@@ -11,9 +11,8 @@ class InputView {
         return input?.split(",")
     }
 
-    fun readTryCount(): String? {
-        println("시도회수를 입력해주세요")
-        return readLine()
+    fun readTryCount(): Int? {
+        println("시도 횟수를 입력해주세요")
+        return readLine()?.toInt()
     }
-
 }
