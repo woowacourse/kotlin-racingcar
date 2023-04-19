@@ -17,4 +17,8 @@ class OutputView {
     fun printWinners(cars: Cars) {
         println("최종 우승자: ${cars.getWinner().joinToString(", ") { it.name }}")
     }
+
+    fun printErrorMessage(e: String?) {
+        println(e)
+    }
 }
