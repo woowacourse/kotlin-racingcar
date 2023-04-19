@@ -34,12 +34,19 @@ class RacingGameController(private val inputView: InputView, private val outputV
     }
 
     private fun createCars(): Cars {
-        val readCarNames: List<String> = inputView.readCarNames()
-
-        return Cars(readCarNames.map { Car(Name(it), RandomNumberGenerator()) }.toList())
+        return repeatInput { Cars(inputView.readCarNames().map { Car(Name(it), RandomNumberGenerator()) }.toList()) }
     }
 
     private fun createCount(): Count {
-        return Count(inputView.readTryCount())
+        return repeatInput { Count(inputView.readTryCount()) }
+    }
+
+    private fun <T> repeatInput(input: () -> T): T {
+        return try {
+            input()
+        } catch (e: IllegalArgumentException) {
+            outputView.printErrorMessage(e.message)
+            repeatInput(input)
+        }
     }
 }
