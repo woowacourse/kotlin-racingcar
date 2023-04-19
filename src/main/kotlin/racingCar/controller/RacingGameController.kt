@@ -1,6 +1,10 @@
 package racingCar.controller
 
-import racingCar.domain.*
+import racingCar.domain.Car
+import racingCar.domain.Cars
+import racingCar.domain.Count
+import racingCar.domain.Name
+import racingCar.domain.RandomNumberGenerator
 import racingCar.view.InputView
 import racingCar.view.OutputView
 
