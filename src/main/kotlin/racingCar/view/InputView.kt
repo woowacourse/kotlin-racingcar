@@ -8,7 +8,7 @@ class InputView {
     }
 
     private fun splitCarNames(input: String?): List<String>? {
-        return input?.split(",")
+        return input?.replace(" ", "")?.split(",")
     }
 
     fun readTryCount(): Int {
