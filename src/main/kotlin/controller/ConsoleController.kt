@@ -1,9 +1,11 @@
 package controller
 
-import domain.*
+import domain.Cars
+import domain.NumberGenerator
+import domain.RandomNumberGenerator
+import domain.TrialCount
 import view.InputView
 import view.OutputView
-import java.lang.IllegalArgumentException
 import java.util.function.Supplier
 
 class ConsoleController(private val inputView: InputView, private val outputView: OutputView) {
