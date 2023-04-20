@@ -2,8 +2,8 @@ package racingcar.domain
 
 class Car(name: String, position: Int = 0) {
 
-    private val name: String
-    private var position: Int
+    val name: String
+    var position: Int
 
     init {
         this.name = name.trim().also {
@@ -15,16 +15,8 @@ class Car(name: String, position: Int = 0) {
     }
 
     fun move(power: Int) {
-        if (power >= 4) {
+        if (4 <= power && power <= 9) {
             this.position++
         }
-    }
-
-    fun getName(): String {
-        return this.name
-    }
-
-    fun getPosition(): Int {
-        return this.position
     }
 }

@@ -4,7 +4,7 @@ import racingcar.domain.strategy.NumberGenerator
 
 class Cars(cars: List<Car>) {
 
-    private val cars: List<Car>
+    val cars: List<Car>
 
     init {
         this.cars = cars
@@ -22,11 +22,7 @@ class Cars(cars: List<Car>) {
     }
 
     fun getWinners(): List<Car> {
-        val fastestCar: Car = cars.maxBy { it.getPosition() }
-        return cars.filter { it.getPosition() == fastestCar.getPosition() }
-    }
-
-    fun getCars(): List<Car> {
-        return cars.toMutableList()
+        val fastestCar: Car = cars.maxBy { it.position }
+        return cars.filter { it.position == fastestCar.position }
     }
 }

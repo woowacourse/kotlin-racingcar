@@ -26,11 +26,11 @@ class RacingGameController(inputView: InputView, outputView: OutputView, numberG
 
         while (!racingGame.isEnd()) {
             racingGame.play(numberGenerator)
-            outputView.printCarsPosition(toCarDtos(racingGame.getCars()))
+            outputView.printCarsPosition(toCarDtos(racingGame.cars.cars))
         }
 
         outputView.printWinners(toCarDtos(racingGame.getWinners()))
     }
 
-    private fun toCarDtos(cars: List<Car>) = cars.map { CarDto(it.getName(), it.getPosition()) }
+    private fun toCarDtos(cars: List<Car>) = cars.map { CarDto(it.name, it.position) }
 }

@@ -4,8 +4,9 @@ import racingcar.domain.strategy.NumberGenerator
 
 class RacingGame(cars: Cars, trialCount: Int) {
 
-    private val cars: Cars
-    private var trialCount: Int
+    val cars: Cars
+    var trialCount: Int
+        private set
 
     init {
         this.cars = cars
@@ -33,9 +34,5 @@ class RacingGame(cars: Cars, trialCount: Int) {
 
     fun getWinners(): List<Car> {
         return cars.getWinners()
-    }
-
-    fun getCars(): List<Car> {
-        return cars.getCars()
     }
 }
