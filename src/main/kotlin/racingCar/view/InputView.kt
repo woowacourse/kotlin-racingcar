@@ -4,15 +4,17 @@ class InputView {
 
     fun readCarNames(): List<String> {
         println("자동차 이름을 입력해주세요")
-        return splitCarNames(readLine()) ?: throw IllegalArgumentException("이름을 입력하세요")
+        val input = readLine() ?: throw IllegalArgumentException("이름을 입력하세요")
+        return splitCarNames(input)
     }
 
-    private fun splitCarNames(input: String?): List<String>? {
-        return input?.replace(" ", "")?.split(",")
+    private fun splitCarNames(input: String): List<String> {
+        return input.replace(" ", "").split(",")
     }
 
     fun readTryCount(): Int {
         println("시도 횟수를 입력해주세요")
-        return readLine()?.toInt() ?: throw IllegalArgumentException("숫자를 입력하세요")
+        val input = readLine() ?: throw IllegalArgumentException("시도 횟수를 입력해주세요")
+        return input.toInt()
     }
 }

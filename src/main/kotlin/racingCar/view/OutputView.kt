@@ -9,7 +9,7 @@ class OutputView {
         println("실행 결과")
     }
 
-    fun printScoreBoard(cars: Cars) {
+    fun printCurrentCarPosition(cars: Cars) {
         cars.cars.forEach { car: Car -> println("${car.name.name} : ${"-".repeat(car.position)}") }
         println()
     }

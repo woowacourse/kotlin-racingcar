@@ -8,10 +8,10 @@ class Cars(val cars: List<Car>) {
 
     fun getWinner(): List<Name> {
         val maxPosition = getMaxPosition()
-        return cars.filter { it.position == maxPosition }.map { it.name }.toList()
+        return cars.filter { it.position == maxPosition }.map { it.name }
     }
 
     private fun getMaxPosition(): Int {
-        return cars.maxBy(Car::position).position
+        return cars.maxOf(Car::position)
     }
 }

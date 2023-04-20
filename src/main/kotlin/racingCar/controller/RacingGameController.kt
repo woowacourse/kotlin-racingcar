@@ -23,7 +23,7 @@ class RacingGameController(private val inputView: InputView, private val outputV
         while (count.isOpportunity()) {
             cars.moveAll()
             count.deduct()
-            outputView.printScoreBoard(cars)
+            outputView.printCurrentCarPosition(cars)
         }
 
         finish(cars)
