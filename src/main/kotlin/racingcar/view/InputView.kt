@@ -9,6 +9,15 @@ class InputView {
 
     fun sendRound(): Int {
         println("시도할 횟수는 몇 회인가요?")
-        return readln().toInt()
+        return runCatching {
+            readln().toInt()
+        }.onFailure {
+            when (it) {
+                is NumberFormatException -> println("숫자를 입력해주세요")
+                else -> throw it
+            }
+        }.getOrElse {
+            sendRound()
+        }
     }
 }
