@@ -1,8 +1,9 @@
 package domain
 
-private const val MIN_VALUE = 1
-
 class TrialCount(val value: Int) {
+    companion object {
+        private const val MIN_VALUE = 1
+    }
 
     init {
         validateLessThanMinimumValue(value)

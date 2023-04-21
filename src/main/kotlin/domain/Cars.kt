@@ -1,8 +1,9 @@
 package domain
 
-private const val MIN_SIZE = 2
-
 class Cars(names: List<String>) {
+    companion object {
+        private const val MIN_SIZE = 2
+    }
 
     val cars: List<Car>
 

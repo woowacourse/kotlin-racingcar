@@ -10,6 +10,10 @@ import java.util.function.Supplier
 
 class ConsoleController(private val inputView: InputView, private val outputView: OutputView) {
 
+    companion object {
+        val trialCountRange = { trialCount: Int -> 1..trialCount }
+    }
+
     fun run() {
         val cars = repeatUntilReturnValue { Cars(inputView.readCarNames()) }
         val trialCount = repeatUntilReturnValue { TrialCount(inputView.readTrialCount()) }
@@ -21,7 +25,7 @@ class ConsoleController(private val inputView: InputView, private val outputView
     }
 
     private fun playGame(cars: Cars, trialCount: TrialCount, numberGenerator: NumberGenerator) {
-        for (count in 1..trialCount.value) {
+        for (count in trialCountRange(trialCount.value)) {
             cars.moveCars(numberGenerator)
             outputView.printRoundResult(cars.cars)
         }

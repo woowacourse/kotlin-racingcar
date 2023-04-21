@@ -1,8 +1,9 @@
 package domain
 
-private const val MAX_LENGTH = 5
-
 class Name(val value: String) {
+    companion object {
+        private const val MAX_LENGTH = 5
+    }
 
     init {
         validateLength(value)
