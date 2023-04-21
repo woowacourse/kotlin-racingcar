@@ -15,7 +15,7 @@ class Cars(
         return cars.filter { it.isSamePosition(maxPosition) }
     }
 
-    private fun findMaxPosition(): Int? {
+    private fun findMaxPosition(): Position? {
         return cars.maxOfOrNull { it.position }
     }
 }

@@ -3,17 +3,17 @@ package racingcar.domain
 class Car(
     val name: Name
 ) {
-    var position: Int = 0
+    var position: Position = Position()
         private set
 
     fun move(number: Int) {
         if (number >= 4) {
-            position++
+            position = position.increase()
         }
     }
 
-    fun isSamePosition(otherPosition: Int): Boolean {
-        return position == otherPosition
+    fun isSamePosition(other: Position): Boolean {
+        return position == other
     }
 
     companion object {
