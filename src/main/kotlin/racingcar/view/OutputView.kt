@@ -10,7 +10,7 @@ class OutputView {
 
     fun printRoundResult(cars: List<Car>) {
         for (car in cars) {
-            println("${car.name} : ${printPosition(car)}")
+            println("${car.name.value} : ${printPosition(car)}")
         }
         println()
     }
