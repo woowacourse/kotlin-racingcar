@@ -18,16 +18,12 @@ class Cars(names: List<String>) {
     }
 
     private fun validateSize(names: List<String>) {
-        if (names.size < MIN_SIZE) {
-            throw IllegalArgumentException("자동차는 최소 " + MIN_SIZE + "대입니다")
-        }
+        require(names.size >= MIN_SIZE) { "자동차는 최소 $MIN_SIZE 대입니다" }
     }
 
     private fun validateNameDuplication(names: List<String>) {
         val nonDuplicateNames = HashSet<String>(names)
-        if (nonDuplicateNames.size != names.size) {
-            throw IllegalArgumentException("중복되는 이름이 존재합니다")
-        }
+        require(nonDuplicateNames.size == names.size) { "중복되는 이름이 존재합니다" }
     }
 
     fun findWinners(): List<Car> {

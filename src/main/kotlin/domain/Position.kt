@@ -9,9 +9,7 @@ class Position(val value: Int) {
     }
 
     private fun validateNegative(position: Int) {
-        if (position < MIN_VALUE) {
-            throw IllegalArgumentException("자동차의 위치는 " + MIN_VALUE + "보다 작을 수 없습니다.")
-        }
+        require(position >= MIN_VALUE) { "자동차의 위치는 $MIN_VALUE 보다 작을 수 없습니다." }
     }
 
     fun increase(): Position {
