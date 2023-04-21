@@ -1,8 +1,9 @@
 package domain
 
-private const val MIN_VALUE = 0
-
-class Position(val value: Int) {
+data class Position(val value: Int) {
+    companion object {
+        private const val MIN_VALUE = 0
+    }
 
     init {
         validateNegative(value)
@@ -14,20 +15,5 @@ class Position(val value: Int) {
 
     fun increase(): Position {
         return Position(this.value + 1)
-    }
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as Position
-
-        if (value != other.value) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        return value
     }
 }
