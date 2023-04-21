@@ -18,6 +18,6 @@ class OutputView {
     private fun printPosition(car: Car) = "-".repeat(car.position)
 
     fun printWinners(cars: List<Car>) {
-        println("최종 우승자: ${cars.joinToString(",") { it.name }}")
+        println("최종 우승자: ${cars.joinToString(",") { it.name.value }}")
     }
 }

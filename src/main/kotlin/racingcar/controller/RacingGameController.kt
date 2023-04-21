@@ -11,7 +11,7 @@ class RacingGameController(private val inputView: InputView, private val outputV
 
     fun run() {
         val carNames = inputView.sendCarName()
-        val rowCars = carNames.map { Car(it) }
+        val rowCars = carNames.map { Car.from(it) }
         val cars = Cars(rowCars)
         val round = inputView.sendRound()
         val racingGame = RacingGame(cars, round, RandomNumberGenerator())

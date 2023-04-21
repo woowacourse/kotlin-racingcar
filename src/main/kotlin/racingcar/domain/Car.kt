@@ -1,14 +1,10 @@
 package racingcar.domain
 
 class Car(
-    val name: String
+    val name: Name
 ) {
     var position: Int = 0
         private set
-
-    init {
-        require(name.length <= 5) { "이름은 5자 이하만 가능합니다" }
-    }
 
     fun move(number: Int) {
         if (number >= 4) {
@@ -18,5 +14,11 @@ class Car(
 
     fun isSamePosition(otherPosition: Int): Boolean {
         return position == otherPosition
+    }
+
+    companion object {
+        fun from(name: String): Car {
+            return Car(Name(name))
+        }
     }
 }
