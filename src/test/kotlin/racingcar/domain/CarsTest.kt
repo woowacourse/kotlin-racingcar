@@ -6,9 +6,11 @@ import org.junit.jupiter.api.Test
 class CarsTest {
 
     @Test
-    fun `포지션이 가장 높은 자동차들을 반환한다`() {
-        val 하티 = Car("하티", 5)
-        val cars = Cars(listOf(하티, Car("박스터", 1)))
+    fun `우승한 자동차들을 반환한다`() {
+        val 하티 = Car("하티")
+        val cars = Cars(listOf(하티, Car("박스터")))
+
+        cars.moveAll(TestNumberGenerator(mutableListOf(10, 0)))
 
         val actual = cars.findWinningCars()
 

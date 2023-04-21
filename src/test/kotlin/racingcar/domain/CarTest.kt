@@ -29,4 +29,3 @@ class CarTest {
         assertThat(car.position).isEqualTo(0)
     }
 }
-
