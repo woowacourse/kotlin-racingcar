@@ -8,5 +8,3 @@ import racingcar.view.OutputView
 fun main() {
     RacingGameController(InputView(), OutputView(), RandomNumberGenerator()).run()
 }
-
-

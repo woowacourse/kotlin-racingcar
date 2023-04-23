@@ -15,5 +15,4 @@ class InputView {
         val input: String = readln()
         return input.toInt()
     }
-
 }

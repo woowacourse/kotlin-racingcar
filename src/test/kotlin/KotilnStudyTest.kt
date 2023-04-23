@@ -4,6 +4,5 @@ class KotilnStudyTest {
 
     @Test
     fun test() {
-
     }
 }
