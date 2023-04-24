@@ -1,7 +1,6 @@
 package view
 
 import domain.Car
-import java.lang.IllegalArgumentException
 
 class OutputView {
 
@@ -30,8 +29,8 @@ class OutputView {
         println("최종 우승자: " + winnerNames.joinToString(", "))
     }
 
-    fun printErrorMessage(e: IllegalArgumentException) {
-        println(e.message)
+    fun printErrorMessage(errorMessage: String) {
+        println(errorMessage)
         println()
     }
 }

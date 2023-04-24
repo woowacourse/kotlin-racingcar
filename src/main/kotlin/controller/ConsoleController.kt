@@ -32,10 +32,10 @@ class ConsoleController(private val inputView: InputView, private val outputView
     }
 
     private fun <T> repeatUntilReturnValue(supplier: Supplier<T>): T {
-        return try {
+        return kotlin.runCatching {
             supplier.get()
-        } catch (e: IllegalArgumentException) {
-            outputView.printErrorMessage(e)
+        }.getOrElse {
+            outputView.printErrorMessage(it.message ?: "예기치 못한 예외가 발생했습니다.")
             repeatUntilReturnValue(supplier)
         }
     }
