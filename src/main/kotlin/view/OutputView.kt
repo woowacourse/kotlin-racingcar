@@ -2,8 +2,7 @@ package view
 
 import domain.Car
 
-class OutputView {
-
+object OutputView {
     fun printRoundResultHeader() {
         println()
         println("실행 결과")

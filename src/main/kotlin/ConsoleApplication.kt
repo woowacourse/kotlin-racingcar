@@ -1,8 +1,6 @@
 import controller.ConsoleController
-import view.InputView
-import view.OutputView
 
 fun main() {
-    val controller = ConsoleController(InputView(), OutputView())
+    val controller = ConsoleController()
     controller.run()
 }

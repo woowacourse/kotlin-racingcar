@@ -8,26 +8,26 @@ import view.InputView
 import view.OutputView
 import java.util.function.Supplier
 
-class ConsoleController(private val inputView: InputView, private val outputView: OutputView) {
+class ConsoleController {
 
     companion object {
         val trialCountRange = { trialCount: Int -> 1..trialCount }
     }
 
     fun run() {
-        val cars = repeatUntilReturnValue { Cars(inputView.readCarNames()) }
-        val trialCount = repeatUntilReturnValue { TrialCount(inputView.readTrialCount()) }
+        val cars = repeatUntilReturnValue { Cars(InputView.readCarNames()) }
+        val trialCount = repeatUntilReturnValue { TrialCount(InputView.readTrialCount()) }
 
-        outputView.printRoundResultHeader()
+        OutputView.printRoundResultHeader()
         playGame(cars, trialCount, RandomNumberGenerator())
 
-        outputView.printGameResult(cars.findWinners())
+        OutputView.printGameResult(cars.findWinners())
     }
 
     private fun playGame(cars: Cars, trialCount: TrialCount, numberGenerator: NumberGenerator) {
         for (count in trialCountRange(trialCount.value)) {
             cars.moveCars(numberGenerator)
-            outputView.printRoundResult(cars.cars)
+            OutputView.printRoundResult(cars.cars)
         }
     }
 
@@ -35,7 +35,7 @@ class ConsoleController(private val inputView: InputView, private val outputView
         return kotlin.runCatching {
             supplier.get()
         }.getOrElse {
-            outputView.printErrorMessage(it.message ?: "예기치 못한 예외가 발생했습니다.")
+            OutputView.printErrorMessage(it.message ?: "예기치 못한 예외가 발생했습니다.")
             repeatUntilReturnValue(supplier)
         }
     }
