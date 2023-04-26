@@ -13,6 +13,15 @@ class InputView {
         println("시도할 횟수는 몇 회인가요?")
 
         val input: String = readln()
+        validateNumberFormat(input)
         return input.toInt()
+    }
+
+    private fun validateNumberFormat(input: String) {
+        require(isNumberFormat(input)) { "시도 횟수는 숫자여야합니다." }
+    }
+
+    private fun isNumberFormat(input: String): Boolean {
+        return input.all { char -> char.isDigit() }
     }
 }

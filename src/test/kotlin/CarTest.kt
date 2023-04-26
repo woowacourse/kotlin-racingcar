@@ -23,7 +23,7 @@ class CarTest {
     fun 이름길이가_1미만_5초과면_예외_발생(name: String) {
         assertThrows<IllegalArgumentException> {
             Car(name)
-        }.shouldHaveMessage("이름의 길이는 0 이상 5 이하입니다")
+        }.shouldHaveMessage("이름의 길이는 1 이상 5 이하입니다")
     }
 
     @ParameterizedTest(name = "이름이 {0}면 생성 가능")

@@ -10,13 +10,6 @@ class Cars(cars: List<Car>) {
         this.cars = cars
     }
 
-    companion object {
-
-        fun from(carNames: List<String>): Cars {
-            return Cars(carNames.map { Car(it) })
-        }
-    }
-
     fun moveAll(numberGenerator: NumberGenerator) {
         cars.forEach { it.move(numberGenerator.generate()) }
     }
@@ -24,5 +17,11 @@ class Cars(cars: List<Car>) {
     fun getWinners(): List<Car> {
         val fastestCar: Car = cars.maxBy { it.position }
         return cars.filter { it.position == fastestCar.position }
+    }
+
+    companion object {
+        fun from(carNames: List<String>): Cars {
+            return Cars(carNames.map { Car(it) })
+        }
     }
 }

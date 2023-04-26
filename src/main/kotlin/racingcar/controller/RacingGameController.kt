@@ -7,17 +7,7 @@ import racingcar.view.CarDto
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class RacingGameController(inputView: InputView, outputView: OutputView, numberGenerator: NumberGenerator) {
-
-    private val inputView: InputView
-    private val outputView: OutputView
-    private val numberGenerator: NumberGenerator
-
-    init {
-        this.inputView = inputView
-        this.outputView = outputView
-        this.numberGenerator = numberGenerator
-    }
+class RacingGameController(private val inputView: InputView, private val outputView: OutputView, private val numberGenerator: NumberGenerator) {
 
     fun run() {
         val carNames: List<String> = inputView.readCarNames()
