@@ -42,11 +42,10 @@ class RacingGameController(private val inputView: InputView, private val outputV
     }
 
     private fun <T> repeatInput(input: () -> T): T {
-        return try {
-            input()
-        } catch (e: IllegalArgumentException) {
-            outputView.printErrorMessage(e.message)
-            repeatInput(input)
-        }
+        return runCatching { input() }
+            .getOrElse { e ->
+                outputView.printErrorMessage(e.message)
+                repeatInput(input)
+            }
     }
 }

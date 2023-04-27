@@ -11,5 +11,9 @@ class Car(val name: Name, private val numberGenerator: NumberGenerator) {
         }
     }
 
-    private fun isMovable() = numberGenerator.generate() >= 4
+    private fun isMovable() = numberGenerator.generate() >= threshold
+
+    companion object {
+        private const val threshold: Int = 4
+    }
 }
