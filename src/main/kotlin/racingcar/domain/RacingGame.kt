@@ -4,16 +4,10 @@ import racingcar.domain.strategy.NumberGenerator
 
 private const val MINIMUM_TRIAL_COUNT = 1
 
-class RacingGame(cars: Cars, trialCount: Int) {
-
-    val cars: Cars
-    var trialCount: Int
-        private set
+class RacingGame(val cars: Cars, private var trialCount: Int) {
 
     init {
-        this.cars = cars
         require(trialCount >= MINIMUM_TRIAL_COUNT) { "시도 횟수는 1 이상이어야 합니다" }
-        this.trialCount = trialCount
     }
 
     fun play(numberGenerator: NumberGenerator) {

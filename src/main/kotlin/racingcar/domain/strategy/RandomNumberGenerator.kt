@@ -3,6 +3,6 @@ package racingcar.domain.strategy
 class RandomNumberGenerator : NumberGenerator {
 
     override fun generate(): Int {
-        return (0..9).random()
+        return (MINIMUM_NUMBER..MAXIMUM_NUMBER).random()
     }
 }
