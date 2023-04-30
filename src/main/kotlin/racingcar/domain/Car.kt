@@ -12,7 +12,7 @@ class Car(name: String, var position: Int = 0) {
 
     init {
         val refined = name.trim()
-        require(refined.length in 1..5) { "이름의 길이는 1 이상 5 이하입니다" }
+        require(refined.length in MINIMUM_NAME_LENGTH..MAXIMUM_NAME_LENGTH) { "이름의 길이는 1 이상 5 이하입니다" }
         this.name = refined
         require(position >= 0) { "위치값은 0 이상이어야 합니다" }
     }
