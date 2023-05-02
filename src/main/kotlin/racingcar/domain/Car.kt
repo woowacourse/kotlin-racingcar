@@ -13,16 +13,6 @@ class Car(val name: String, private var position: Int = 0) {
         require(position >= 0) { "위치값은 0 이상이어야 합니다" }
     }
 
-    companion object {
-        fun from(name: String): Car {
-            return Car(name.trim())
-        }
-
-        fun of(name: String, position: Int): Car {
-            return Car(name.trim(), position)
-        }
-    }
-
     fun move(power: Int) {
         if (power in MINIMUM_POWER_TO_MOVE..MAXIMUM_POWER_TO_MOVE) {
             position++
@@ -31,5 +21,15 @@ class Car(val name: String, private var position: Int = 0) {
 
     fun getPosition(): Int {
         return position
+    }
+
+    companion object {
+        fun from(name: String): Car {
+            return Car(name.trim())
+        }
+
+        fun of(name: String, position: Int): Car {
+            return Car(name.trim(), position)
+        }
     }
 }
