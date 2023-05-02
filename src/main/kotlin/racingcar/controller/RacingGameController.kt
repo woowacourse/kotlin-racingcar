@@ -22,5 +22,5 @@ class RacingGameController(private val inputView: InputView, private val outputV
         outputView.printWinners(toCarDtos(racingGame.getWinners()))
     }
 
-    private fun toCarDtos(cars: List<Car>) = cars.map { CarDto(it.name, it.position) }
+    private fun toCarDtos(cars: List<Car>) = cars.map { CarDto(it.name, it.getPosition()) }
 }

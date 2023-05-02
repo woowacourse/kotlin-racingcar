@@ -15,7 +15,7 @@ class CarsTest {
 
         cars.moveAll(AlwaysMovedGenerator())
 
-        assertThat(cars.cars).allMatch({ car -> car.position == 1 })
+        assertThat(cars.cars).allMatch({ car -> car.getPosition() == 1 })
     }
 
     @DisplayName("숫자가 이동 가능 범위 안에 있지않으면 정지한다")
@@ -25,16 +25,16 @@ class CarsTest {
 
         cars.moveAll(NeverMovedGenerator())
 
-        assertThat(cars.cars).allMatch({ car -> car.position == 0 })
+        assertThat(cars.cars).allMatch { car -> car.getPosition() == 0 }
     }
 
     @DisplayName("승자를 구할 수 있다")
     @Test
     fun getWinners1() {
-        val car1 = Car("test1", 1)
-        val car2 = Car("test2", 1)
-        val car3 = Car("test3", 3)
-        val car4 = Car("test4", 3)
+        val car1 = Car.of("test1", 1)
+        val car2 = Car.of("test2", 1)
+        val car3 = Car.of("test3", 3)
+        val car4 = Car.of("test4", 3)
         val cars = Cars(listOf(car1, car2, car3, car4))
 
         val winners = cars.getWinners()
