@@ -17,4 +17,12 @@ class VariablesTest {
 
         assertThat(sandwhich).isEqualTo(popcorn);
     }
+
+    @Test
+    fun int_자료형_선언() {
+        val number: Int;
+        number = 3;
+
+        assertThat(number).isEqualTo(3);
+    }
 }
