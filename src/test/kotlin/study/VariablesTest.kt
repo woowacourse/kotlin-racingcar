@@ -3,7 +3,7 @@ package study
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
-class ValVar차이 {
+class VariablesTest {
 
     @Test
     fun val_var_차이() {
