@@ -1,6 +1,7 @@
 package domain
 
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 
@@ -12,6 +13,14 @@ class CarTest {
         val car = Car("Benz")
 
         assertThat(car).isNotNull()
+    }
+
+    @DisplayName("차 이름은 5글자를 초과 할 수 없다.")
+    @Test
+    fun validate_name_over() {
+        assertThatThrownBy {
+            Car("5글자 이상")
+        }
     }
 
     @DisplayName("4이상일 경우 차량이 전진 할 수 있다.")
@@ -33,4 +42,5 @@ class CarTest {
 
         assertThat(car.distance).isEqualTo(0)
     }
+
 }

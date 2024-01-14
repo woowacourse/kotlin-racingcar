@@ -4,10 +4,10 @@ import kotlin.random.Random
 
 class RandomNumberFactory {
     companion object {
-        private const val fromNumber: Int = 0
-        private const val untilNumber: Int = 9
+        private const val FROM_NUMBER: Int = 0
+        private const val UNTIL_NUMBER: Int = 9
         fun create(): Int {
-            return Random.nextInt(fromNumber, untilNumber)
+            return Random.nextInt(FROM_NUMBER, UNTIL_NUMBER)
         }
     }
 
