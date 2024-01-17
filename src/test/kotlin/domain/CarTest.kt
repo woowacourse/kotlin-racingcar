@@ -1,5 +1,7 @@
 package domain
 
+import io.kotest.assertions.throwables.shouldThrow
+import io.kotest.matchers.shouldBe
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.DisplayName
@@ -18,9 +20,10 @@ class CarTest {
     @DisplayName("차 이름은 5글자를 초과 할 수 없다.")
     @Test
     fun validate_name_over() {
-        assertThatThrownBy {
-            Car("5글자 이상")
+        val error = shouldThrow<IllegalArgumentException> {
+            Car("5글자이상됩니다.")
         }
+        error.message shouldBe "차 이름은 5글자를 초과 할 수 없다."
     }
 
     @DisplayName("4이상일 경우 차량이 전진 할 수 있다.")
