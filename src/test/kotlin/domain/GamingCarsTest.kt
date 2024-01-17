@@ -8,7 +8,7 @@ class GamingCarsTest {
 
     @DisplayName("게임할 차량들 생성 검증")
     @Test
-    fun gaming_car_test() {
+    fun gamingCarTest() {
         val gamingCars = GamingCars(listOf(Car("Benz"), Car("포르쉐"), Car("람보르기")))
 
         gamingCars shouldNotBe null

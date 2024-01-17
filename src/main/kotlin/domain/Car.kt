@@ -1,14 +1,11 @@
 package domain
 
-class Car(name: String) {
+class Car(name: String, var distance: Int = 0) {
 
     companion object {
         private const val LIMIT_NAME_LENGTH_NUMBER = 5
         private const val FORWARD_STANDARD_NUMBER = 4
     }
-
-    var distance: Int = 0
-        private set
 
     init {
         if (name.length >= LIMIT_NAME_LENGTH_NUMBER) {
