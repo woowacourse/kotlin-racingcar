@@ -1,6 +1,6 @@
 package domain
 
-class Car(val name: String) {
+class Car(name: String) {
 
     companion object {
         private const val LIMIT_NAME_LENGTH_NUMBER = 5
