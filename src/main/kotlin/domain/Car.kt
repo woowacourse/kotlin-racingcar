@@ -4,6 +4,7 @@ class Car(val name: String) {
 
     companion object {
         private const val LIMIT_NAME_LENGTH_NUMBER = 5
+        private const val FORWARD_STANDARD_NUMBER = 4
     }
 
     var distance: Int = 0
@@ -16,7 +17,7 @@ class Car(val name: String) {
     }
 
     fun movingForward(forwardNumber: Int) {
-        if (forwardNumber >= 4) {
+        if (forwardNumber >= FORWARD_STANDARD_NUMBER) {
             distance++
         }
         return

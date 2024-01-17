@@ -29,7 +29,7 @@ class CarTest {
     @DisplayName("4이상일 경우 차량이 전진 할 수 있다.")
     @Test
     fun car_movingForward() {
-        var car = Car("Benz")
+        val car = Car("Benz")
 
         car.movingForward(4)
 
@@ -39,7 +39,7 @@ class CarTest {
     @DisplayName("4 이하 인 경우 차량은 전진 할 수 없다.")
     @Test
     fun car_notMoving() {
-        var car = Car("Benz")
+        val car = Car("Benz")
 
         car.movingForward(3)
 
