@@ -1,6 +1,6 @@
 package domain
 
-class Car(name: String, var distance: Int = 0) {
+class Car(val name: String, var distance: Int = 0) {
 
     companion object {
         private const val LIMIT_NAME_LENGTH_NUMBER = 5
@@ -18,6 +18,24 @@ class Car(name: String, var distance: Int = 0) {
             distance++
         }
         return
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Car
+
+        if (name != other.name) return false
+        if (distance != other.distance) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + distance
+        return result
     }
 
 

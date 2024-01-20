@@ -1,7 +1,5 @@
 package util
 
-import kotlin.random.Random
-
 class RandomNumberFactory {
     companion object {
         private const val FROM_NUMBER: Int = 0
