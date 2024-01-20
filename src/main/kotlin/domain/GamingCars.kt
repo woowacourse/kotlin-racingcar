@@ -5,8 +5,8 @@ import util.RandomNumberFactory
 class GamingCars(val cars: List<Car>) {
 
     fun movingForward() {
-        cars.forEach {
-            it.movingForward(RandomNumberFactory.create())
+        cars.forEach { car: Car ->
+            car.movingForward(RandomNumberFactory.create())
         }
     }
 

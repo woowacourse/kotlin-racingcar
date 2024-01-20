@@ -1,3 +1,6 @@
+import controller.GameController
+
 fun main() {
-    print("Hello, world");
+    val gameController = GameController();
+    gameController.gaming()
 }

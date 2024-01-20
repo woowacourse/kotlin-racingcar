@@ -8,7 +8,7 @@ class Car(val name: String, var distance: Int = 0) {
     }
 
     init {
-        if (name.length >= LIMIT_NAME_LENGTH_NUMBER) {
+        if (name.length > LIMIT_NAME_LENGTH_NUMBER) {
             throw IllegalArgumentException("차 이름은 5글자를 초과 할 수 없다.")
         }
     }
