@@ -9,4 +9,11 @@ class InputView {
         Validation.carsName(carsName)
         return carsName.split(",")
     }
+
+    fun readAttemptCount(): Int {
+        println("시도할 횟수는 몇 회인가요?")
+        val attemptCount = readln()
+        Validation.attemptCount(attemptCount)
+        return attemptCount.toInt()
+    }
 }
