@@ -22,4 +22,11 @@ class InputView {
         private const val CAR_NAME_SPLITTER = ","
         private const val ATTEMPT_COUNT_READ_COMMENT = "시도할 횟수는 몇 회인가요?"
     }
+
+    fun readAttemptCount(): Int {
+        println("시도할 횟수는 몇 회인가요?")
+        val attemptCount = readln()
+        Validation.attemptCount(attemptCount)
+        return attemptCount.toInt()
+    }
 }
