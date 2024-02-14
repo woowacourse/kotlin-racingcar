@@ -11,7 +11,8 @@ object Constants {
     const val INVALID_TRIAL_NUM_RANGE_EXCEPTION = "1보다 큰 수를 입력해주세요."
 
     const val TRIAL_RESULT_MESSAGE = "\n실행 결과"
-    const val FINAL_WINNERS = "최종 우승자: "
     const val CURRENT_POSITION_TEMPLATE = "%s : %s"
     const val PROGRESS_BAR = "-"
+    const val FINAL_WINNERS = "최종 우승자: %s"
+    const val WINNERS_SEPARATOR = ", "
 }
