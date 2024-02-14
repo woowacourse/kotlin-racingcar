@@ -28,5 +28,5 @@ object InputValidator {
     private const val NAME_SEPARATOR = ","
     private const val MINIMUM_NAME_THRESHOLD = 2
     private const val MAXIMUM_NAME_LENGTH_THRESHOLD = 5
-    private const val MINIMUM_TRIAL_NUM_THRESHOLD = 5
+    private const val MINIMUM_TRIAL_NUM_THRESHOLD = 1
 }
