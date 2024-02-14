@@ -8,11 +8,12 @@ import racingcar.view.OutputView
 import kotlin.random.Random
 
 class GameController {
+
     val inputView = InputView()
     val outputView = OutputView()
     val validationUtil = ValidationUtil()
     val winnerService = WinnerService()
-    
+
     fun start() {
         //  사용자 입력 및 검증
         val carNames = getCarNames()
@@ -20,7 +21,7 @@ class GameController {
 
         // 레이싱 게임 실행
         val cars: List<Car> = carNames.map { Car(it) }
-        playRacingGame(cars,tryCounts)
+        playRacingGame(cars, tryCounts)
 
         // 결과 출력
         val winners = winnerService.findWinners(cars)
@@ -52,7 +53,7 @@ class GameController {
         }
     }
 
-    fun playRacingGame(cars : List<Car>, tryCounts: Int) {
+    fun playRacingGame(cars: List<Car>, tryCounts: Int) {
         outputView.printResultMessage()
         repeat(tryCounts) {
             cars.forEach {
