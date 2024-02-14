@@ -1,4 +1,5 @@
 object InputView {
-    fun inputCars(names: String = readln()) = names.split(",")
-    fun inputTrialCount(count: String = readln()) = count.toInt()
+    fun inputCarNames(input: String = readln()): List<String> = input.split(",")
+
+    fun inputTrialCount(input: String = readln()): Int = input.toInt()
 }
