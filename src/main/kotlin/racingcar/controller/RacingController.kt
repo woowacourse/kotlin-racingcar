@@ -8,20 +8,28 @@ import racingcar.view.OutputView
 object RacingController {
     private val manager = MoveManager()
     private lateinit var currentRacingStatus: List<Car>
-    fun start() {
+    fun start() = with(OutputView) {
+        val names = getValidNames()
+        val trialNum = getValidTrial()
+
+        initializeCars(names)
+        printTrialResultMessage()
+        repeat(trialNum) { play() }
+        printFinalWinners(getWinners())
+    }
+
+    private fun getValidNames(): List<String> {
         OutputView.printInputCarNamesMessage()
-        val names = InputView.readNames()
+        return InputView.readNames()
+    }
 
+    private fun getValidTrial(): Int {
         OutputView.printInputTrialNumMessage()
-        val trialNum = InputView.readTrialNum()
+        return InputView.readTrialNum()
+    }
 
+    private fun initializeCars(names: List<String>) {
         currentRacingStatus = names.map { Car(it) }
-
-        OutputView.printTrialResultMessage()
-        repeat(trialNum) {
-            play()
-        }
-        OutputView.printFinalWinners(getWinners())
     }
 
     private fun play() {
