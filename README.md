@@ -4,9 +4,9 @@
 
 ### Car
 
-- [ ] 전진 조건에 따라 1 씩 move, 혹은 stop 한다.
+- [x] 전진 조건에 따라 1 씩 move, 혹은 stop 한다.
 - [x] 자동차 이름이 올바르지 않을 경우 예외 발생 (`IllegalArgumentException`)
-- [ ] 위치값을 갖고 있다.
+- [x] 위치값을 갖고 있다.
 
 ### RacingGame
 - [ ] 각 Car 들을 시도 횟수 만큼 전진/멈춤 시킨다.
@@ -18,7 +18,7 @@
 이에 대한 구현
 
 - [x] RandomNumberGenerator: 0 ~ 9 중 무작위 숫자(전진 혹은 멈춤)를 리턴한다
-- [ ] ExplicitNumberGenerator : 직접 지정하는 숫자를 리턴한다 (테스트용)
+- [x] ExplicitNumberGenerator : 직접 지정하는 숫자를 리턴한다 (테스트용)
 
 ### TryCount
 
