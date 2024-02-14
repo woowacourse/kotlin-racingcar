@@ -13,4 +13,14 @@ class ExceptionHandling {
             true
         }
     }
+    fun nameFormat(names: String): Boolean{
+        val regex = Regex("^[a-zA-Z가-힣,]+\$")
+        return try{
+            require(regex.matches(names))
+            false
+        } catch(ex: IllegalArgumentException){
+            println(Messages.NAME_FORMAT_ERROR)
+            true
+        }
+    }
 }
