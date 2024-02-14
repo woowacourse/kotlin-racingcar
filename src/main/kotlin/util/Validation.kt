@@ -3,7 +3,10 @@ package util
 object Validation {
     fun carsName(carsName: String) {
         checkSplitter(carsName)
-        for (carName in carsName.split(",")) {
+
+        val splittedCarsName = carsName.split(",")
+        checkNameDuplication(splittedCarsName)
+        for (carName in splittedCarsName) {
             checkNameLength(carName)
         }
     }
@@ -20,6 +23,12 @@ object Validation {
 
     private fun checkNameLength(carName: String) {
         require(carName.length <= 5) { "[ERROR] 자동차 이름은 5자 이하여야 합니다." }
+    }
+
+    private fun checkNameDuplication(carsName: List<String>) {
+        require(carsName.size == carsName.toSet().size) {
+            "[ERROR] 자동차 이름은 중복될 수 없습니다."
+        }
     }
 
     private fun checkIsNum(attemptCount: String) {
