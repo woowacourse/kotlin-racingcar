@@ -2,9 +2,13 @@ package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.*
+import racingcar.constants.Constants.DUPLICATED_NAME_EXCEPTION
+import racingcar.constants.Constants.INVALID_NAME_SIZE_EXCEPTION
+import racingcar.constants.Constants.INVALID_NUM_OF_CARS_EXCEPTION
+import racingcar.utils.InputValidator
 
-@DisplayName("InputViewTest 클래스")
-class InputViewTest {
+@DisplayName("InputValidatorTest 클래스")
+class InputValidatorTest {
     @Nested
     inner class `자동차 이름 유효성 메소드 getValidatedNames 테스트` {
         @Test
@@ -12,7 +16,7 @@ class InputViewTest {
             val input = "bingt,k ,@@,123 ,우테코"
 
             // list of String
-            val actualOutput: List<String> = InputView.getValidatedNames(input)
+            val actualOutput: List<String> = InputValidator.getValidatedNames(input)
             val expectedOutput: List<String> = listOf(
                 "bingt", "k", "@@", "123", "우테코"
             )
@@ -23,7 +27,7 @@ class InputViewTest {
         fun `Empty인 문자열을 입력했을 때, 예외를 발생시킴`() {
             try {
                 val input = ",,,,"
-                val actualOutput = InputView.getValidatedNames(input)
+                val actualOutput = InputValidator.getValidatedNames(input)
             } catch (e: IllegalArgumentException) {
                 Assertions.assertEquals(INVALID_NAME_SIZE_EXCEPTION, e.message)
             }
@@ -33,7 +37,7 @@ class InputViewTest {
         fun `Blank인 문자열을 입력했을 때, 예외를 발생시킴`() {
             try {
                 val input = ", ,  ,   "
-                val actualOutput = InputView.getValidatedNames(input)
+                val actualOutput = InputValidator.getValidatedNames(input)
             } catch (e: IllegalArgumentException) {
                 Assertions.assertEquals(INVALID_NAME_SIZE_EXCEPTION, e.message)
             }
@@ -44,7 +48,7 @@ class InputViewTest {
             testExceptions(
                 input = "kkm,kkm,kkm",
                 exceptionMessage = DUPLICATED_NAME_EXCEPTION,
-                getValidatedInput = InputView::getValidatedNames
+                getValidatedInput = InputValidator::getValidatedNames
             )
         }
 
@@ -53,7 +57,7 @@ class InputViewTest {
             testExceptions(
                 input = "kkm",
                 exceptionMessage = INVALID_NUM_OF_CARS_EXCEPTION,
-                getValidatedInput = InputView::getValidatedNames
+                getValidatedInput = InputValidator::getValidatedNames
             )
         }
     }
@@ -63,7 +67,7 @@ class InputViewTest {
         @Test
         fun `정상적으로 입력하여 정수를 반환`() {
             val input = "5"
-            val actualOutput: Int = InputView.getValidatedTrialNum(input)
+            val actualOutput: Int = InputValidator.getValidatedTrialNum(input)
             val expectedOutput = 5
             assertThat(actualOutput).isEqualTo(expectedOutput)
         }
@@ -73,7 +77,7 @@ class InputViewTest {
             testExceptions(
                 input = "안녕하세요",
                 exceptionMessage = INVALID_TRIAL_NUM_TYPE_EXCEPTION,
-                getValidatedInput = InputView::getValidatedTrialNum
+                getValidatedInput = InputValidator::getValidatedTrialNum
             )
         }
 
@@ -82,7 +86,7 @@ class InputViewTest {
             testExceptions(
                 input = "2147483648",
                 exceptionMessage = INVALID_TRIAL_NUM_TYPE_EXCEPTION,
-                getValidatedInput = InputView::getValidatedTrialNum
+                getValidatedInput = InputValidator::getValidatedTrialNum
             )
         }
 
@@ -91,7 +95,7 @@ class InputViewTest {
             testExceptions(
                 input = "1.5",
                 exceptionMessage = INVALID_TRIAL_NUM_TYPE_EXCEPTION,
-                getValidatedInput = InputView::getValidatedTrialNum
+                getValidatedInput = InputValidator::getValidatedTrialNum
             )
         }
 
@@ -100,7 +104,7 @@ class InputViewTest {
             testExceptions(
                 input = "0",
                 exceptionMessage = INVALID_TRIAL_NUM_RANGE_EXCEPTION,
-                getValidatedInput = InputView::getValidatedTrialNum
+                getValidatedInput = InputValidator::getValidatedTrialNum
             )
         }
 
@@ -109,7 +113,7 @@ class InputViewTest {
             testExceptions(
                 input = "-5",
                 exceptionMessage = INVALID_TRIAL_NUM_RANGE_EXCEPTION,
-                getValidatedInput = InputView::getValidatedTrialNum
+                getValidatedInput = InputValidator::getValidatedTrialNum
             )
         }
     }
