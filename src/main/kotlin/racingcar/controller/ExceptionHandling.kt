@@ -32,4 +32,13 @@ class ExceptionHandling {
             true
         }
     }
+    fun duplicatedCarName(carNames: List<String>): Boolean{
+        return try{
+            require(carNames.size == carNames.toSet().size)
+            false
+        } catch(ex: IllegalArgumentException){
+            println(Messages.DUPLICATED_CAR_NAME_ERROR)
+            true
+        }
+    }
 }
