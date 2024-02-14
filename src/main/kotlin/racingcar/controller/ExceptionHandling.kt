@@ -23,4 +23,13 @@ class ExceptionHandling {
             true
         }
     }
+    fun limitNumberOfCars(numberOfCars: Int): Boolean{
+        return try{
+            require(numberOfCars in 1..100)
+            false
+        } catch(ex: IllegalArgumentException){
+            println(Messages.NUMBER_OF_CAR_ERROR)
+            true
+        }
+    }
 }
