@@ -9,10 +9,10 @@ import kotlin.random.Random
 
 class GameController {
 
-    val inputView = InputView()
-    val outputView = OutputView()
-    val validationUtil = ValidationUtil()
-    val winnerService = WinnerService()
+    private val inputView = InputView()
+    private val outputView = OutputView()
+    private val validationUtil = ValidationUtil()
+    private val winnerService = WinnerService()
 
     fun start() {
         //  사용자 입력 및 검증
@@ -29,7 +29,7 @@ class GameController {
     }
 
 
-    fun getCarNames(): List<String> {
+    private fun getCarNames(): List<String> {
         while (true) {
             try {
                 val carNames = inputView.readCarNames()
@@ -41,7 +41,7 @@ class GameController {
         }
     }
 
-    fun getTryCounts(): Int {
+    private fun getTryCounts(): Int {
         while (true) {
             try {
                 val tryCounts = inputView.readTryCounts()
@@ -53,7 +53,7 @@ class GameController {
         }
     }
 
-    fun playRacingGame(cars: List<Car>, tryCounts: Int) {
+    private fun playRacingGame(cars: List<Car>, tryCounts: Int) {
         outputView.printResultMessage()
         repeat(tryCounts) {
             cars.forEach {
