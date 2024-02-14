@@ -15,8 +15,6 @@ object OutputView {
 
     fun printTrialResultMessage() = println(TRIAL_RESULT_MESSAGE)
 
-    fun printFinalWinnersMessage() = println(FINAL_WINNERS)
-
     fun printCurrentPosition(
         name: String,
         position: Int
