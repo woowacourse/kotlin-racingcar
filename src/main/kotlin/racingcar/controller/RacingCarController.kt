@@ -10,7 +10,7 @@ class RacingCarController(
     private val outputView: OutputView
 ) {
 
-    lateinit var racingCarGame: RacingCarGame
+    private lateinit var racingCarGame: RacingCarGame
 
     fun run() {
         val carNames = inputView.getCarNames()
@@ -18,17 +18,21 @@ class RacingCarController(
             Car(name)
         }
         val round = inputView.getRoundCount()
-        startRound(cars, round)
-
-
+        racingCarGame = RacingCarGame(cars)
+        startRound(round)
+        getWinner()
     }
 
-    fun startRound(cars: List<Car>, round: Int) {
-        racingCarGame = RacingCarGame(cars)
+    private fun startRound(round: Int) {
         outputView.printResultTitle()
         repeat(round) {
             val result = racingCarGame.race()
             outputView.printRoundResult(result)
         }
+    }
+
+    private fun getWinner() {
+        val winners = racingCarGame.findWinners()
+        outputView.printWinners(winners)
     }
 }
