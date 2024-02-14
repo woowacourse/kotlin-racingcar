@@ -6,4 +6,8 @@ class Car(val name: String, private var forwardCount: Int = 0) {
             forwardCount++
         }
     }
+
+    fun getForwardCount(): Int {
+        return forwardCount
+    }
 }
