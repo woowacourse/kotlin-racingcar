@@ -3,10 +3,12 @@ package racingcar.controller
 import racingcar.domain.Car
 import racingcar.util.ValidationUtil
 import racingcar.view.InputView
+import racingcar.view.OutputView
 import kotlin.random.Random
 
 class GameController {
     val inputView = InputView()
+    val outputView = OutputView()
     val validationUtil = ValidationUtil()
     fun start() {
         //  사용자 입력 및 검증
@@ -15,11 +17,13 @@ class GameController {
 
         // 레이싱 게임 실행
         val cars: List<Car> = carNames.map { Car(it) }
+        outputView.printResultMessage()
         repeat(tryCounts) {
             cars.forEach {
                 val randomNumber = Random.nextInt(10)
                 if (randomNumber >= 4) it.move()
             }
+            outputView.printRoundResult(cars)
         }
     }
 
