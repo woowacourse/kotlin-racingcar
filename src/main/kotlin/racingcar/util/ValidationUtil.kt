@@ -8,4 +8,9 @@ class ValidationUtil {
         require(splitCarNames.size == splitCarNames.toSet().size) { "ERROR : 자동차의 이름은 중복될 수 없습니다." }
     }
 
+    fun validateTryCounts(tryCounts: String?) {
+        require(tryCounts != null) { "ERROR : 시도할 횟수를 입력해주세요." }
+        require(tryCounts.toIntOrNull()?.let { it > 0 } == true) { "ERROR : 시도할 횟수는 자연수여야합니다." }
+    }
+
 }
