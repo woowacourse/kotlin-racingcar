@@ -1,8 +1,5 @@
 package racingcar.controller
 
-class CommaSeparatedListBuilder(
-    private val carNamesText: String,
-) {
-
-    fun commaSeparatedListBuild() = carNamesText.split(",")
+class CommaSeparatedListBuilder() {
+    fun commaSeparatedListBuild(carNamesText: String,) = carNamesText.split(",")
 }
