@@ -20,8 +20,7 @@ class GameController {
         outputView.printResultMessage()
         repeat(tryCounts) {
             cars.forEach {
-                val randomNumber = Random.nextInt(10)
-                if (randomNumber >= 4) it.move()
+                it.move()
             }
             outputView.printRoundResult(cars)
         }
