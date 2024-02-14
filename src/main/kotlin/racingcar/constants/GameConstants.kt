@@ -13,4 +13,7 @@ object GameConstants {
     private const val MAX_COUNT = 1000
     val COUNT_RANGE = MIN_COUNT..MAX_COUNT
 
+    const val MAX_RANDOM_NUMBER = 9
+    const val FORWARD_FLAG_NUMBER = 4
+
 }
