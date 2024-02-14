@@ -1,9 +1,9 @@
 package racingcar.controller
 
 import racingcar.domain.Car
-import racingcar.domain.RacingGame
 import racingcar.util.ValidationUtil
 import racingcar.view.InputView
+import kotlin.random.Random
 
 class GameController {
     val inputView = InputView()
@@ -15,10 +15,14 @@ class GameController {
 
         // 레이싱 게임 실행
         val cars: List<Car> = carNames.map { Car(it) }
-        val racingGame = RacingGame(cars, tryCounts)
-        racingGame.start()
-
+        repeat(tryCounts) {
+            cars.forEach {
+                val randomNumber = Random.nextInt(10)
+                if (randomNumber >= 4) it.move()
+            }
+        }
     }
+
 
     fun getCarNames(): List<String> {
         while (true) {
