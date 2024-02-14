@@ -1,17 +1,8 @@
 package racingcar.model
 
-class RacingCarGame(
-    private val cars: List<Car>,
-    private val round: Int
-) {
+class RacingCarGame(private val cars: List<Car>) {
 
-    fun race(): List<Car> {
-        repeat(round) {
-            cars.map { car -> move(car) }
-        }
-
-        return cars
-    }
+    fun race(): List<Car> = cars.map { car -> move(car) }
 
     private fun move(car: Car): Car {
         val randomNumber = getRandomNumber()
@@ -29,6 +20,5 @@ class RacingCarGame(
         const val MAX_MOVE_NUMBER = 9
 
         const val STEP = 1
-
     }
 }
