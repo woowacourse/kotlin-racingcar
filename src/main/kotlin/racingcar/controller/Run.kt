@@ -11,21 +11,34 @@ class Run {
     private val outputView = OutputView()
     private val moveOrStay = MoveOrStay()
     private val finalWinner = FinalWinner()
+    private val exceptionHandling = ExceptionHandling()
 
     fun run() {
         outputView.printEnterCarNames()
-        val carNames = inputView.askCarNames()
-        val commaSeparatedListBuilder = CommaSeparatedListBuilder(carNames)
-        val nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild()
-        val numberOfCars = nameOfCars.size
+        var carNames = inputView.askCarNames()
         val cars: MutableList<Car> = mutableListOf()
+        val commaSeparatedListBuilder = CommaSeparatedListBuilder()
+        var nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild(carNames)
+        val numberOfCars = nameOfCars.size
 
         repeat(numberOfCars) {
             cars.add(Car(nameOfCars[it]))
         }
 
+        while (exceptionHandling.nameFormat(carNames) || exceptionHandling.limitNumberOfCars(
+                numberOfCars
+            ) || exceptionHandling.duplicatedCarName(nameOfCars)
+        ) {
+            carNames = inputView.askCarNames()
+            nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild(carNames)
+        }
+
         outputView.enterNumberOfAttempts()
-        val numberOfAttempts = inputView.askNumberOfAttempts()
+        var numberOfAttempts = inputView.askNumberOfAttempts()
+
+        while (exceptionHandling.limitNumberOfAttempts(numberOfAttempts)) {
+            numberOfAttempts = inputView.askNumberOfAttempts()
+        }
 
         outputView.printExecutionResults()
 
@@ -34,7 +47,7 @@ class Run {
         repeat(numberOfAttempts) {
             val randomNumbers = randomNumberGenerator.putRandomNumbers()
             cars.forEachIndexed { index, car ->
-                if(moveOrStay.decideMovement(randomNumbers[index])){
+                if (moveOrStay.decideMovement(randomNumbers[index])) {
                     car.position += Messages.DASH
                 }
             }
