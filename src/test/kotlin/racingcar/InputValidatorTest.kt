@@ -5,6 +5,8 @@ import org.junit.jupiter.api.*
 import racingcar.constants.Constants.DUPLICATED_NAME_EXCEPTION
 import racingcar.constants.Constants.INVALID_NAME_SIZE_EXCEPTION
 import racingcar.constants.Constants.INVALID_NUM_OF_CARS_EXCEPTION
+import racingcar.constants.Constants.INVALID_TRIAL_NUM_RANGE_EXCEPTION
+import racingcar.constants.Constants.INVALID_TRIAL_NUM_TYPE_EXCEPTION
 import racingcar.utils.InputValidator
 
 @DisplayName("InputValidatorTest 클래스")
