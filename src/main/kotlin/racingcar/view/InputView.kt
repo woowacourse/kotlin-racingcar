@@ -10,6 +10,11 @@ class InputView {
         return br.readLine().split(",")
     }
 
+    fun inputNumberOfRound(): String {
+        println(Message.NUMBER_OF_ROUND)
+        return br.readLine()
+    }
+
     companion object {
         val br = BufferedReader(InputStreamReader(System.`in`))
     }

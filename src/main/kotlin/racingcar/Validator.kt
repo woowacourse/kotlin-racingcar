@@ -13,6 +13,12 @@ class Validator {
         }
     }
 
+    fun validateNumberOfRound(numberOfRound: String) {
+        validateNumberOfRoundFormat(numberOfRound)
+        validateNumberOfRoundRange(numberOfRound)
+
+    }
+
     private fun validateNumberOfCar(carNames: List<String>) {
         require(carNames.isEmpty()) {
             Exception.INVALID_NUMBER_OF_CAR.getMessage()
@@ -34,6 +40,18 @@ class Validator {
     private fun validateCarNameLength(carName: String) {
         require(carName.length in Constant.MIN_CAR_NAME_LENGTH..Constant.MAX_CAR_NAME_LENGTH) {
             Exception.INVALID_CAR_NAME_LENGTH.getMessage()
+        }
+    }
+
+    private fun validateNumberOfRoundFormat(numberOfRound: String) {
+        requireNotNull(numberOfRound.toIntOrNull()) {
+            Exception.INVALID_NUMBER_OF_ROUND_FORMAT.getMessage()
+        }
+    }
+
+    private fun validateNumberOfRoundRange(numberOfRound: String) {
+        require(numberOfRound.toInt() >= Constant.MIN_NUMBER_OF_ROUND) {
+            Exception.INVALID_NUMBER_OF_ROUND_RANGE.getMessage()
         }
     }
 }

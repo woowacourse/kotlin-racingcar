@@ -8,27 +8,36 @@ class CarController(
     private val inputView: InputView,
     private val validator: Validator
 ) {
-    private var cars: List<Car> = emptyList()
-
     fun run() {
-        registerCarNames()
+        val cars = registerCars()
+        val numberOfRound = registerRound()
     }
 
-    private fun registerCarNames() {
-        while (cars.isEmpty()) {
-            try {
-                val carNames = inputView.inputCarNames()
-                validator.validateCarNames(carNames)
-                registerCars(carNames)
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
+    private fun registerCars(): List<Car> {
+        val carNames = inputView.inputCarNames()
+        return try {
+            validator.validateCarNames(carNames)
+            makeCars(carNames)
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            registerCars()
         }
     }
 
-    private fun registerCars(carNames: List<String>) {
-        cars = carNames.map { name ->
+    private fun makeCars(carNames: List<String>): List<Car> {
+        return carNames.map { name ->
             Car(name = name)
+        }
+    }
+
+    private fun registerRound(): Int {
+        val numberOfRound = inputView.inputNumberOfRound()
+        return try {
+            validator.validateNumberOfRound(numberOfRound)
+            numberOfRound.toInt()
+        } catch (e: IllegalArgumentException) {
+            println(e.message)
+            registerRound()
         }
     }
 }
