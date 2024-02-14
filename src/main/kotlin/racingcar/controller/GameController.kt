@@ -39,7 +39,7 @@ class GameController {
                 validationUtil.validateCarNames(carNames)
                 return carNames!!.split(",")
             } catch (e: IllegalArgumentException) {
-//                outputView 활용하여 에러메세지 출력
+                outputView.printErrorMessage(e.message!!)
             }
         }
     }
@@ -51,7 +51,7 @@ class GameController {
                 validationUtil.validateTryCounts(tryCounts)
                 return tryCounts!!.toInt()
             } catch (e: IllegalArgumentException) {
-//                outputView 활용하여 에러메세지 출력
+                outputView.printErrorMessage(e.message!!)
             }
         }
     }
