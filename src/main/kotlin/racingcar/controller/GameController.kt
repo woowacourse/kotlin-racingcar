@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.domain.Car
+import racingcar.service.WinnerService
 import racingcar.util.ValidationUtil
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -10,6 +11,8 @@ class GameController {
     val inputView = InputView()
     val outputView = OutputView()
     val validationUtil = ValidationUtil()
+    val winnerService = WinnerService()
+    
     fun start() {
         //  사용자 입력 및 검증
         val carNames = getCarNames()
@@ -20,8 +23,7 @@ class GameController {
         playRacingGame(cars,tryCounts)
 
         // 결과 출력
-        val maxPosition = cars.maxOfOrNull { it.position }
-        val winners = cars.filter { it.position == maxPosition }.map { it.name }
+        val winners = winnerService.findWinners(cars)
         outputView.printWinners(winners)
     }
 
