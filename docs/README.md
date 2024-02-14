@@ -18,8 +18,9 @@
 ### Car
 - name
 - distance
-- stop or advance (function)
-    - random (0 ~ 9, >= 4)
+- moveOrStop(score: Int) (function)
+  - score (0..4) : stop
+  - score (<= 5) : go
 
 ### 
 
