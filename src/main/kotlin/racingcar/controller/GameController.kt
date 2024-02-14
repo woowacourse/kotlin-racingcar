@@ -25,6 +25,11 @@ class GameController {
             }
             outputView.printRoundResult(cars)
         }
+
+        // 결과 출력
+        val maxPosition = cars.maxOfOrNull { it.position }
+        val winners = cars.filter { it.position == maxPosition }.map { it.name }
+        outputView.printWinners(winners)
     }
 
 
