@@ -11,5 +11,7 @@ class RacingCarController(private val inputView: InputView) {
         val cars = carNames.map { name ->
             Car(name)
         }
+        val round = inputView.getRoundCount()
+        val game = RacingCarGame(cars, round)
     }
 }
