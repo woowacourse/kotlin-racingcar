@@ -17,13 +17,7 @@ class GameController {
 
         // 레이싱 게임 실행
         val cars: List<Car> = carNames.map { Car(it) }
-        outputView.printResultMessage()
-        repeat(tryCounts) {
-            cars.forEach {
-                it.move()
-            }
-            outputView.printRoundResult(cars)
-        }
+        playRacingGame(cars,tryCounts)
 
         // 결과 출력
         val maxPosition = cars.maxOfOrNull { it.position }
@@ -56,5 +50,13 @@ class GameController {
         }
     }
 
-
+    fun playRacingGame(cars : List<Car>, tryCounts: Int) {
+        outputView.printResultMessage()
+        repeat(tryCounts) {
+            cars.forEach {
+                it.move()
+            }
+            outputView.printRoundResult(cars)
+        }
+    }
 }
