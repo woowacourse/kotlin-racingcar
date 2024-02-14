@@ -15,7 +15,7 @@ class ValidationTest {
     }
 
     @ParameterizedTest(name = "이름이 {0}이면 생성 불가능")
-    @ValueSource(strings = ["가은", "가나다라마바,가은"])
+    @ValueSource(strings = ["가은", "가나다라마바,가은","가은,가은,나은"])
     fun `유효하지 않은 자동차 이름 입력 테스트`(carsName: String) {
         assertThrows<IllegalArgumentException> {
             Validation.carsName(carsName)
