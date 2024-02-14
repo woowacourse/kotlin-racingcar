@@ -17,7 +17,7 @@
 
 이에 대한 구현
 
-- [ ] RandomNumberGenerator: 0 ~ 9 중 무작위 숫자(전진 혹은 멈춤)를 리턴한다
+- [x] RandomNumberGenerator: 0 ~ 9 중 무작위 숫자(전진 혹은 멈춤)를 리턴한다
 - [ ] MoveNumberGenerator : 무조건 전진하는 숫자를 리턴한다
 - [ ] StopNumberGenerator: 무조건 멈추는 숫자를 리턴한다
 
