@@ -1,5 +1,7 @@
 package racingcar
 
-fun main(){
+import racingcar.controller.run
 
+fun main() {
+    run()
 }
