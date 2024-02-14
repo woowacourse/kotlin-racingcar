@@ -1,6 +1,7 @@
 package racingcar.view.output
 
 import racingcar.constants.OutputConstants
+import racingcar.model.Car
 
 class OutputView {
     fun printInputCarNamesMessage() {
@@ -9,5 +10,11 @@ class OutputView {
 
     fun printInputTryCountMessage() {
         print(OutputConstants.INPUT_TRY_COUNT_MESSAGE)
+    }
+
+    fun printProcessStep(cars: List<Car>) {
+        cars.forEach { car ->
+            println(car)
+        }
     }
 }

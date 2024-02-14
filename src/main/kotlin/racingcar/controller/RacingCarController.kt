@@ -14,7 +14,10 @@ class RacingCarController(
 
     fun run() {
         val forwardService = ForwardService()
-        forwardService.process(cars, tryCount)
+        tryCount.forEach {
+            forwardService.processStep(cars)
+            outputView.printProcessStep(cars)
+        }
     }
 
     private fun inputCarNames() = retryWhileNoException {
