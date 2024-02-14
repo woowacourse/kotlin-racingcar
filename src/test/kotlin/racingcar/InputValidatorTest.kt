@@ -17,7 +17,6 @@ class InputValidatorTest {
         fun `정상적으로 입력하여 문자열의 리스트를 반환`() {
             val input = "bingt,k ,@@,123 ,우테코"
 
-            // list of String
             val actualOutput: List<String> = InputValidator.getValidatedNames(input)
             val expectedOutput: List<String> = listOf(
                 "bingt", "k", "@@", "123", "우테코"
