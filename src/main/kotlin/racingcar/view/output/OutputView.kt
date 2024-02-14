@@ -1,6 +1,5 @@
 package racingcar.view.output
 
-import racingcar.constants.ErrorConstants
 import racingcar.constants.OutputConstants
 
 class OutputView {
