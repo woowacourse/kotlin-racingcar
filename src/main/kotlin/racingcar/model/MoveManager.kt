@@ -9,6 +9,6 @@ class MoveManager {
     companion object {
         private const val MINIMUM_RANDOM_SELECTION_NUM = 0
         private const val MAXIMUM_RANDOM_SELECTION_NUM = 10
-        private const val STOP_THRESHOLD = 4
+        private const val STOP_THRESHOLD = 3
     }
 }
