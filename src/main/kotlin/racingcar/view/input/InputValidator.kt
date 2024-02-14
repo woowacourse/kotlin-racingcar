@@ -25,4 +25,16 @@ class InputValidator {
 
     private fun validateCarNamesDuplication(carNames: List<String>?) =
         carNames?.size == carNames?.distinct()?.size
+
+    fun validateCount(inputCount: String?) {
+        require(validateEmpty(inputCount) || validateCountRange(inputCount)) {
+            ErrorConstants.INVALID_INPUT_ERROR_MESSAGE
+        }
+    }
+
+    private fun validateEmpty(inputCount: String?) = inputCount.isNullOrEmpty()
+
+    private fun validateCountRange(inputCount: String?) =
+        inputCount?.toInt() in GameConstants.COUNT_RANGE
+
 }
