@@ -13,5 +13,12 @@ class CarsManager(private val randomNumber: RandomNumber) {
         cars.forEach { it.moveForward(isMove()) }
     }
 
+    fun getWinners(): List<String> {
+        val maxForwardCount = getMaxForwardCount()
+        return cars.filter { it.getForwardCount() == maxForwardCount }.map { it.name }
+    }
+
+    private fun getMaxForwardCount() = cars.map { it.getForwardCount() }.max()
+
     private fun isMove(): Boolean = randomNumber.generate() >= 4
 }
