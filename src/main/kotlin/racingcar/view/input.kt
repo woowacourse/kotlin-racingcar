@@ -6,6 +6,9 @@ fun inputCarName(): String {
     return carNames
 }
 
-fun inputTryCnt() {
+fun inputTryCnt(): Int {
     println("시도할 횟수는 몇 회인가요?")
+    // todo 숫자검증
+    val count = readLine()!!.toInt()
+    return count
 }
