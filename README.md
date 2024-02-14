@@ -5,7 +5,7 @@
 ### Car
 
 - [ ] 전진 조건에 따라 1 씩 move, 혹은 stop 한다.
-- [ ] 자동차 이름이 올바르지 않을 경우 예외 발생 (`IllegalArgumentException`)
+- [x] 자동차 이름이 올바르지 않을 경우 예외 발생 (`IllegalArgumentException`)
 - [ ] 위치값을 갖고 있다.
 
 ### RacingGame
