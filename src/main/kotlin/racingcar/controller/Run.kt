@@ -10,6 +10,7 @@ class Run {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val moveOrStay = MoveOrStay()
+    private val finalWinner = FinalWinner()
 
     fun run() {
         outputView.printEnterCarNames()
@@ -36,14 +37,14 @@ class Run {
                 if(moveOrStay.decideMovement(randomNumbers[index])){
                     car.position += Messages.DASH
                 }
-
             }
             cars.forEach {
                 println("${it.name}: ${it.position}")
             }
             println()
         }
-
         outputView.printLastWinner()
+        val finalWinners = finalWinner.decideWinner(cars)
+        print(finalWinners.joinToString(", "))
     }
 }
