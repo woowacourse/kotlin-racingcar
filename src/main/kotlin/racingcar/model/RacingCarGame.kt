@@ -2,15 +2,12 @@ package racingcar.model
 
 class RacingCarGame(private val cars: List<Car>) {
 
-    fun race(): List<Car> = cars.map { car -> move(car) }
+    fun race(): List<Car> = List(cars.size) { index -> move(index, getRandomNumber()) }
 
-    private fun move(car: Car): Car {
-        val randomNumber = getRandomNumber()
-        if (canRacingCarMove(randomNumber)) car.move(STEP)
-        return car
+    fun move(index: Int, randomNumber: Int): Car {
+        if (randomNumber >= MOVE_NUMBER) cars[index].move(STEP)
+        return cars[index]
     }
-
-    private fun canRacingCarMove(randomNumber: Int): Boolean = randomNumber >= MOVE_NUMBER
 
     private fun getRandomNumber(): Int = (MIN_MOVE_NUMBER..MAX_MOVE_NUMBER).random()
 
