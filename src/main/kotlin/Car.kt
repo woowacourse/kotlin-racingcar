@@ -9,17 +9,17 @@ data class Car(
         }
     }
 
-    fun moveOrStop(amount: Int) {
-        if (amount <= UPPER_BOUND) return
-        distance++
+    fun moveOrStop(score: Int) {
+        if (score in UNDER_BOUND..UPPER_BOUND) distance++
     }
 
     override fun compareTo(other: Car) = (distance - other.distance)
 
-    override fun toString(): String = "$name : ${"-".repeat(distance)}"
+    override fun toString(): String = "$name : ${DISTANCE_UNIT.repeat(distance)}"
 
     companion object {
-        private const val UPPER_BOUND = 4
+        private const val DISTANCE_UNIT = "-"
+        private const val UNDER_BOUND = 5
+        private const val UPPER_BOUND = 9
     }
 }
-
