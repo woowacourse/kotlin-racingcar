@@ -4,9 +4,7 @@ import kotlin.random.Random
 import kotlin.random.nextInt
 
 
-class RandomNumberGenerator(
-    private val numberOfCars: Int,
-) {
+class RandomNumberGenerator(private val numberOfCars: Int) {
 
     fun putRandomNumbers(): List<Int> {
         val randomNumbers: MutableList<Int> = mutableListOf()
