@@ -103,6 +103,18 @@ class Race {
         }
     }
 
+    fun getWinners(cars: List<Car>): List<String> {
+        val maxPosition = cars.maxOfOrNull { it.position }
+        var winners = mutableListOf<String>()
+        cars.forEach { car ->
+            if (car.position == maxPosition) {
+                winners.add(car.name)
+            }
+        }
+
+        return winners
+    }
+
     companion object {
         const val ERROR_MESSAGE = "잘못된 입력입니다."
     }
