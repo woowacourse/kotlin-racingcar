@@ -32,16 +32,14 @@ fun findWinnerNames(cars: List<Car>): List<String> {
 
 private fun winnerJudge(
     car: Car,
-    maxNum: Int,
+    tmp: Int,
     winners: MutableList<String>
 ): Int {
-    var tmp = maxNum
-    var num = Math.max(car.position.length, tmp)
+    val len = car.position.length
+    var num = Math.max(len, tmp)
     if (tmp < num) {
-        tmp = num
         winners.clear()
         winners.add(car.name)
-    }
-    else if (tmp==num) winners.add(car.name)
-    return tmp
+    } else if (tmp == len) winners.add(car.name)
+    return num
 }

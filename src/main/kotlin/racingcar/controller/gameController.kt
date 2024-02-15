@@ -18,7 +18,7 @@ fun run() {
     }
 
     printRunMenu()
-    for (i in 0..count) move(cars)
+    for (i in 1..count) move(cars)
 
     val winners = findWinnerNames(cars)
     printWinners(winners)
