@@ -15,16 +15,26 @@
 ### 입출력
 - InputView/OutputView 에서 담당한다.
 
-### Car
+### RaceCar
+레이싱차의 상태나 동작은 Car 에서 관리한다.
 - name
 - distance
 - moveOrStop(score: Int) (function)
   - score (0..4) : stop
   - score (<= 5) : go
 
-### 
+### RaceCars
+- 가장 선두에 있는 차 그룹을 찾는다
+- RaceCar 들을 moveOrStop 한다
 
-###
+### NumberGenerator
+- 숫자 생성기
+
+### RaceCarGameController
+- InputView 에서 전달 받은 차 이름으로 cars 를 생성
+- cars 와 NumberGenerator 로 raceCarGame 을 생성
+- InputView 에서 전달 받은 trialCount 만큼 raceCarGame 을 시행하다.
+- raceCarGame 의 winners 를 찾는다
 
 # 출력 요구 사항
 위 요구 사항에 따라 3대의 자동차가 5번 움직였을 경우 프로그램을 실행한 결과는 다음과 같다.
