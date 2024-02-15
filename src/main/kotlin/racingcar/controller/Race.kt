@@ -8,7 +8,7 @@ class Race {
     private val outputView = OutputView()
     private val inputView = InputView()
     private lateinit var cars: List<Car>
-    private var roundNumber: Int = 0
+    private var roundNumber: Int = INITIAL_ROUND_NUMBER
 
     fun start() {
         cars = getCars()
@@ -23,7 +23,7 @@ class Race {
 
         while (true) {
             try {
-                names = inputView.readCarNames().split(",")
+                names = inputView.readCarNames().split(COMMA)
                 validateNames(names)
                 names.forEach { name ->
                     Car(name)
@@ -39,8 +39,8 @@ class Race {
 
     fun validateNames(names: List<String>) {
         require(names.isNotEmpty()) { ERROR_MESSAGE }
-        require(names.size > 1) { ERROR_MESSAGE }
-        require(names.size < 21) { ERROR_MESSAGE }
+        require(names.size >= MIN_NAMES_SIZE) { ERROR_MESSAGE }
+        require(names.size <= MAX_NAMES_SIZE) { ERROR_MESSAGE }
         require(names.distinct().size == names.size) { ERROR_MESSAGE }
     }
 
@@ -78,7 +78,7 @@ class Race {
         require(roundNumberInput.isNotEmpty()) { ERROR_MESSAGE }
 
         val roundNumber = roundNumberInput.toInt()
-        require(roundNumber > 0) { ERROR_MESSAGE }
+        require(roundNumber >= MIN_ROUND_NUMBER) { ERROR_MESSAGE }
 
         return roundNumber
     }
@@ -124,5 +124,12 @@ class Race {
 
     companion object {
         const val ERROR_MESSAGE = "잘못된 입력입니다."
+
+        const val COMMA = ","
+
+        const val MIN_NAMES_SIZE = 2
+        const val MAX_NAMES_SIZE = 20
+        const val MIN_ROUND_NUMBER = 1
+        const val INITIAL_ROUND_NUMBER = 0
     }
 }
