@@ -8,9 +8,10 @@ class RacingGame(
 
     fun racingCars(randomNumbers: List<Int>) {
         cars.forEachIndexed { index, car ->
-            if (judgeMoveStop(randomNumbers[index])) {
-                car.moveCar()
-            }
+            racingCar(
+                randomNumber = randomNumbers[index],
+                car = car
+            )
         }
     }
 
@@ -29,5 +30,14 @@ class RacingGame(
 
     private fun judgeMoveStop(randomNumber: Int): Boolean {
         return randomNumber >= Constant.STANDARD_RANDOM_NUMBER
+    }
+
+    private fun racingCar(
+        randomNumber: Int,
+        car: Car
+    ) {
+        if (judgeMoveStop(randomNumber)) {
+            car.moveCar()
+        }
     }
 }

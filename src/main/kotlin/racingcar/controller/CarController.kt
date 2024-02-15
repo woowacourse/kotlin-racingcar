@@ -58,7 +58,7 @@ class CarController(
         racingGame = RacingGame(cars = cars)
         outputView.outputStartGame()
         repeat(numberOfRound) {
-            val randomNumbers = cars.map { car -> car.makeRandomNumber() }
+            val randomNumbers = makeCarRandomNumber(cars = cars)
             racingGame.racingCars(randomNumbers = randomNumbers)
             outputView.outputRoundResults(cars = cars)
         }
@@ -71,5 +71,11 @@ class CarController(
                 winner.getName()
             }
         outputView.outputWinners(winners)
+    }
+
+    private fun makeCarRandomNumber(cars: List<Car>): List<Int> {
+        return cars.map { car ->
+            car.makeRandomNumber()
+        }
     }
 }
