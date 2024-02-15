@@ -22,7 +22,7 @@
 
 ### TryCount
 
-- [ ] 시도횟수가 올바르지 않는 경우 예외 발생 (`IllegalArgumentException`)
+- [x] 시도횟수가 올바르지 않는 경우 예외 발생 (`IllegalArgumentException`)
 
 ### InputView
 
