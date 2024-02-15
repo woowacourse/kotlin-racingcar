@@ -6,6 +6,7 @@ import racingcar.view.printProgress
 const val START_RANGE = 0
 const val END_RANGE = 9
 const val TARGET_NUM = 4
+
 fun move(cars: MutableList<Car>) {
     for (car in cars) {
         val randomNum = rand()
