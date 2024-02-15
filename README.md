@@ -8,10 +8,14 @@
 - [x] 자동차 이름이 올바르지 않을 경우 예외 발생 (`IllegalArgumentException`)
 - [x] 위치값을 갖고 있다.
 
+### Cars
+
+- [ ] 게임에 출전하는 모든 차를 갖고 있다.
+- [ ] Car 이름에 중복이 있으면 예외 발생 (`IllegalArgumentException`)
+
 ### RacingGame
-- [ ] 각 Car 들을 시도 횟수 만큼 전진/멈춤 시킨다.
-- [ ] 각 Car 이름에 중복이 있으면 예외 발생 (`IllegalArgumentException`)
-- [ ] 게임에 출전할 Car 들을 갖고 있다.
+
+- [ ] Cars 을 시도 횟수 만큼 전진/멈춤 시킨다.
 
 ### NumberGenerator 인터페이스
 
