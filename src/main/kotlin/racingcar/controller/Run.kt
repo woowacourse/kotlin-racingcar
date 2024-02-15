@@ -57,6 +57,6 @@ class Run {
         }
         outputView.printLastWinner()
         val finalWinners = finalWinner.decideWinner(cars)
-        print(finalWinners.joinToString(", "))
+        print(finalWinners.joinToString(Settings.FINAL_WINNER_PRINT_SEPARATOR))
     }
 }
