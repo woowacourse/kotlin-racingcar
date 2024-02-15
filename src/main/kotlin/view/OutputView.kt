@@ -22,7 +22,9 @@ class OutputView {
             it.position == maxPosition
         }
 
-        println("$HEADER_WINNERS ${winners.joinToString(",")} ")
+        println("$HEADER_WINNERS " +
+                "${winners.joinToString(",") { it.name }} "
+        )
     }
 
     companion object {
