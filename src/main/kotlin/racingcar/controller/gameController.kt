@@ -6,6 +6,7 @@ import racingcar.model.move
 import racingcar.view.inputCarName
 import racingcar.view.inputTryCnt
 import racingcar.view.printProgress
+import racingcar.view.printWinners
 
 
 fun run() {
@@ -19,4 +20,5 @@ fun run() {
 
     val winners = findWinnerNames(cars)
     printProgress(cars)
+    printWinners(winners)
 }

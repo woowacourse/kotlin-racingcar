@@ -8,3 +8,7 @@ fun printProgress(cars : List<Car>) {
         println("${car.name} : ${car.position}")
     }
 }
+
+fun printWinners(winners:List<String>){
+    print("최종 우승자 : ${winners.joinToString(", ")}")
+}
