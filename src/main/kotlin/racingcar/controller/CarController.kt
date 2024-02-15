@@ -2,15 +2,22 @@ package racingcar.controller
 
 import racingcar.Validator
 import racingcar.model.Car
+import racingcar.model.RacingGame
 import racingcar.view.InputView
 
 class CarController(
     private val inputView: InputView,
     private val validator: Validator
 ) {
+    private lateinit var racingGame: RacingGame
+
     fun run() {
         val cars = registerCars()
         val numberOfRound = registerRound()
+        startRacingGame(
+            cars = cars,
+            numberOfRound = numberOfRound
+        )
     }
 
     private fun registerCars(): List<Car> {
@@ -39,5 +46,16 @@ class CarController(
             println(e.message)
             registerRound()
         }
+    }
+
+    private fun startRacingGame(
+        cars: List<Car>,
+        numberOfRound: Int
+    ) {
+        racingGame = RacingGame(
+            cars = cars,
+            numberOfRound = numberOfRound
+        )
+        racingGame.runRacingGame()
     }
 }
