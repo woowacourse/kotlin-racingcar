@@ -10,8 +10,8 @@
 
 ### Cars
 
-- [ ] 게임에 출전하는 모든 차를 갖고 있다.
-- [ ] Car 이름에 중복이 있으면 예외 발생 (`IllegalArgumentException`)
+- [x] 게임에 출전하는 모든 차를 갖고 있다.
+- [x] Car 이름에 중복이 있으면 예외 발생 (`IllegalArgumentException`)
 
 ### RacingGame
 
