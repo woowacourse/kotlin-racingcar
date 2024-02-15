@@ -1,24 +1,19 @@
 package racingcar.view
 
-import racingcar.utils.Exceptions
+import racingcar.utils.checkCarNames
+import racingcar.utils.checkRoundCnt
 
 
 class InputView {
 
-    fun getCarNames(): List<String>{
+    fun getCarNames(): List<String> {
         println(MESSAGE_CAR_NAME)
-        val carName = readln()
-        Exceptions.checkCarNames(carName)
-
-        return carName.trim().split(",")
+        return readln().trim().split(",").also { it.checkCarNames() }
     }
 
-    fun getRoundCount(): Int{
+    fun getRoundCount(): Int {
         println(MESSAGE_ROUND_COUNT)
-        val round = readln()
-        Exceptions.checkRoundCnt(round)
-
-        return round.toInt()
+        return readln().checkRoundCnt()
     }
 
     companion object {
