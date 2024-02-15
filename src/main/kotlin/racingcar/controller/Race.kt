@@ -115,6 +115,11 @@ class Race {
         return winners
     }
 
+    fun showWinners() {
+        val winners = getWinners(cars)
+        outputView.printWinner(winners)
+    }
+
     companion object {
         const val ERROR_MESSAGE = "잘못된 입력입니다."
     }
