@@ -64,6 +64,11 @@ class CarController(
     }
 
     private fun endRacingGame() {
-        racingGame.judgeWinners()
+        val winners = racingGame
+            .judgeWinners()
+            .map { winner ->
+                winner.getName()
+            }
+        outputView.outputWinners(winners)
     }
 }
