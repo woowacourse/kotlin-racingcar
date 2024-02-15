@@ -17,14 +17,16 @@ class RacingGameTest {
         val racingGame = RacingGame(cars = cars)
         racingGame.racingCars(randomNumbers)
         val expectCarSteps = listOf(0, 1, 1)
+
         val actualCarSteps = cars.map { car ->
             car.getStep()
         }
+
         assertThat(expectCarSteps).isEqualTo(actualCarSteps)
     }
 
     @Test
-    fun `올바르지 않은 레이싱 게임 진행 테스트`() {
+    fun `올바르지 않은 자동차 전진 판단 테스트`() {
         val cars = listOf(
             Car("pobi"),
             Car("woni"),
@@ -34,9 +36,11 @@ class RacingGameTest {
         val racingGame = RacingGame(cars = cars)
         racingGame.racingCars(randomNumbers)
         val expectCarSteps = listOf(1, 0, 0)
+
         val actualCarSteps = cars.map { car ->
             car.getStep()
         }
+
         assertThat(expectCarSteps).isNotEqualTo(actualCarSteps)
     }
 
@@ -49,11 +53,13 @@ class RacingGameTest {
         )
         val racingGame = RacingGame(cars)
         val expectWinners = listOf("pobi", "jun")
+
         val actualWinners = racingGame
             .judgeWinners()
             .map { car ->
                 car.getName()
             }
+
         assertThat(expectWinners).isEqualTo(actualWinners)
     }
 
@@ -66,11 +72,13 @@ class RacingGameTest {
         )
         val racingGame = RacingGame(cars)
         val expectWinners = listOf("woni")
+
         val actualWinners = racingGame
             .judgeWinners()
             .map { car ->
                 car.getName()
             }
+
         assertThat(expectWinners).isNotEqualTo(actualWinners)
     }
 }
