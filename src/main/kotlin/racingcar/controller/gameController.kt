@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.model.Car
+import racingcar.model.findWinnerNames
 import racingcar.model.move
 import racingcar.view.inputCarName
 import racingcar.view.inputTryCnt
@@ -14,4 +15,6 @@ fun run() {
         cars.add(Car(carName))
     }
     for (i in 0..count) move(cars)
+
+    findWinnerNames(cars)
 }
