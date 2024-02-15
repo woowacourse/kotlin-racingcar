@@ -7,11 +7,13 @@ class InputValidator {
     fun validateCarNames(inputCarNames: String?) {
         val carNames = splitCarNames(inputCarNames)
         carNames?.forEach {
-            require(validateEmpty(it) && validateCarNameLength(it) && validateCarNameRegex(it)) {
+            require(validateCarNameLength(it) && validateCarNameRegex(it)) {
                 ErrorConstants.INVALID_INPUT_ERROR_MESSAGE
             }
         }
-        require(validateCarNamesDuplication(carNames)) { ErrorConstants.INVALID_INPUT_ERROR_MESSAGE }
+        require(validateEmpty(inputCarNames) && validateCarNamesDuplication(carNames)) {
+            ErrorConstants.INVALID_INPUT_ERROR_MESSAGE
+        }
     }
 
     private fun splitCarNames(inputCarNames: String?) =
@@ -20,21 +22,25 @@ class InputValidator {
     private fun validateEmpty(input: String?) = !input.isNullOrEmpty()
 
     private fun validateCarNameLength(carName: String) =
-        carName.length !in GameConstants.CAR_NAME_RANGE
+        carName.length in GameConstants.CAR_NAME_RANGE
 
     private fun validateCarNameRegex(carName: String) =
-        !Regex(GameConstants.CAR_NAME_REGEX).matches(carName)
+        Regex(GameConstants.CAR_NAME_REGEX).matches(carName)
 
     private fun validateCarNamesDuplication(carNames: List<String>?) =
-        carNames?.size != carNames?.distinct()?.size
+        carNames?.size == carNames?.distinct()?.size
 
     fun validateTryCount(inputTryCount: String?) {
-        require(validateTryCountRange(inputTryCount)) {
+        require(
+            validateEmpty(inputTryCount) && validateTryCountType(inputTryCount) && validateTryCountRange(inputTryCount)
+        ) {
             ErrorConstants.INVALID_INPUT_ERROR_MESSAGE
         }
     }
 
-    private fun validateTryCountRange(inputTryCount: String?) =
-        inputTryCount?.toInt() !in GameConstants.TRY_COUNT_RANGE
+    private fun validateTryCountType(inputTryCount: String?) =
+        inputTryCount?.toIntOrNull() != null
 
+    private fun validateTryCountRange(inputTryCount: String?) =
+        inputTryCount?.toInt() in GameConstants.TRY_COUNT_RANGE
 }
