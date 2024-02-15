@@ -18,6 +18,8 @@ class Cars private constructor(val cars: List<Car>) {
 
 fun String.validateCars(): List<String> {
     val carNames = this.split(",")
-    require(carNames.size == carNames.toSet().size) { "중복된 이름이 존재합니다." }
+    require(carNames.size == carNames.toSet().size) { EXCEPTION_DUPLICATED_NAME }
     return carNames
 }
+
+const val EXCEPTION_DUPLICATED_NAME = "중복된 이름이 존재합니다."
