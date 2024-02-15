@@ -15,6 +15,19 @@ class RacingGame(
         }
     }
 
+    fun judgeWinners(): List<Car> {
+        val maxStep = findMaxStep()
+        return cars.filter { car ->
+            car.getStep() == maxStep
+        }
+    }
+
+    private fun findMaxStep(): Int {
+        return cars.maxOf { car ->
+            car.getStep()
+        }
+    }
+
     private fun makeRandomNumber(): Int {
         return Random.nextInt(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER)
     }
