@@ -32,7 +32,7 @@ class GameController {
         return runCatching {
             val carNames = inputView.readCarNames()
             validationUtil.validateCarNames(carNames)
-            carNames!!.split(",")
+            carNames.split(",")
         }.getOrElse { e ->
             if (e is IllegalArgumentException) {
                 outputView.printErrorMessage(e.message!!)
@@ -46,7 +46,7 @@ class GameController {
         return runCatching {
             val roundCounts = inputView.readRoundCounts()
             validationUtil.validateRoundCounts(roundCounts)
-            roundCounts!!.toInt()
+            roundCounts.toInt()
         }.getOrElse { e ->
             if (e is IllegalArgumentException) {
                 outputView.printErrorMessage(e.message!!)
