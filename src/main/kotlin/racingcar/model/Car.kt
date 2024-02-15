@@ -4,9 +4,9 @@ import kotlin.random.Random
 
 data class Car(val name: String, var position: Int = INITIAL_POSITION) {
     init {
-        require(name.isNotEmpty()) { ERROR_MESSAGE }
-        require(name.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH) { ERROR_MESSAGE }
-        require(!name.contains(SPACE)) { ERROR_MESSAGE }
+        require(name.isNotEmpty()) { ERROR_CAR_NAME_BLANK }
+        require(name.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH) { ERROR_CAR_NAME_OUT_OF_RANGE }
+        require(!name.contains(SPACE)) { ERROR_CAR_NAME_CONTAINS_SPACE }
     }
 
     fun getRandomNumber(): Int = Random.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
@@ -17,6 +17,9 @@ data class Car(val name: String, var position: Int = INITIAL_POSITION) {
 
     companion object {
         const val ERROR_MESSAGE = "잘못된 입력입니다."
+        const val ERROR_CAR_NAME_BLANK = "[Error] 자동차 이름은 공란일 수 없습니다."
+        const val ERROR_CAR_NAME_OUT_OF_RANGE = "[Error] 자동차 이름은 1자 이상 5자 이내여야 합니다."
+        const val ERROR_CAR_NAME_CONTAINS_SPACE = "[Error] 이름에 공백이 없어야 합니다."
 
         const val SPACE = " "
 
