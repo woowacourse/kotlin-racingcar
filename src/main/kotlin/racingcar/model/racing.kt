@@ -39,7 +39,9 @@ private fun winnerJudge(
     var num = Math.max(car.position.length, tmp)
     if (tmp < num) {
         tmp = num
+        winners.clear()
         winners.add(car.name)
     }
+    else if (tmp==num) winners.add(car.name)
     return tmp
 }
