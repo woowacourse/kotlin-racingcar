@@ -1,6 +1,8 @@
 package model
 
-class CarsManager(private val randomNumber: RandomNumber) {
+import util.NumberGenerator
+
+class CarsManager(private val randomNumber: NumberGenerator) {
 
     lateinit var cars: List<Car>
         private set
