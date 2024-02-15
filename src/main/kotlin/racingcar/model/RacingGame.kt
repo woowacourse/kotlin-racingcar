@@ -1,15 +1,14 @@
 package racingcar.model
 
 import racingcar.util.Constant
-import kotlin.random.Random
 
 class RacingGame(
     private val cars: List<Car>
 ) {
 
-    fun racingCars() {
-        cars.forEach { car ->
-            if (judgeMoveStop(makeRandomNumber())) {
+    fun racingCars(randomNumbers: List<Int>) {
+        cars.forEachIndexed { index, car ->
+            if (judgeMoveStop(randomNumbers[index])) {
                 car.moveCar()
             }
         }
@@ -26,10 +25,6 @@ class RacingGame(
         return cars.maxOf { car ->
             car.getStep()
         }
-    }
-
-    private fun makeRandomNumber(): Int {
-        return Random.nextInt(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER)
     }
 
     private fun judgeMoveStop(randomNumber: Int): Boolean {

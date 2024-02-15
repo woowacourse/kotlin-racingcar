@@ -58,7 +58,8 @@ class CarController(
         racingGame = RacingGame(cars = cars)
         outputView.outputStartGame()
         repeat(numberOfRound) {
-            racingGame.racingCars()
+            val randomNumbers = cars.map { car -> car.makeRandomNumber() }
+            racingGame.racingCars(randomNumbers = randomNumbers)
             outputView.outputRoundResults(cars = cars)
         }
     }
