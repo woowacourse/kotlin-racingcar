@@ -1,6 +1,6 @@
 data class RaceCars(
     private val cars: List<RaceCar>,
-    private val numberGenerator: NumberGenerator
+    private val numberGenerator: NumberGenerator,
 ) {
     init {
         require(cars.distinct().size == cars.size) { "차는 중복될 수 없습니다." }
