@@ -16,4 +16,8 @@ class CarTest {
     companion object {
         val isMoveExample = listOf(true, false, true)
     }
+
+    companion object {
+        val isMoveExample = listOf(true, false, true)
+    }
 }
