@@ -29,12 +29,12 @@ class InputValidator {
         carNames?.size != carNames?.distinct()?.size
 
     fun validateTryCount(inputTryCount: String?) {
-        require(validateEmpty(inputTryCount) && validateCountRange(inputTryCount)) {
+        require(validateTryCountRange(inputTryCount)) {
             ErrorConstants.INVALID_INPUT_ERROR_MESSAGE
         }
     }
 
-    private fun validateCountRange(inputTryCount: String?) =
-        inputTryCount?.toInt() !in GameConstants.COUNT_RANGE
+    private fun validateTryCountRange(inputTryCount: String?) =
+        inputTryCount?.toInt() !in GameConstants.TRY_COUNT_RANGE
 
 }
