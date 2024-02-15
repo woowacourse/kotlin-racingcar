@@ -9,7 +9,7 @@ import racingcar.view.OutputView
 object RacingController {
     private val manager = MoveManager()
     private val numberGenerator = RandomNumberGenerator()
-    private lateinit var currentRacingStatus: List<Car>
+    private lateinit var currentRacingStatus: MutableList<Car>
     fun start() = with(OutputView) {
         val names = getValidNames()
         val trialNum = getValidTrial()
@@ -31,12 +31,12 @@ object RacingController {
     }
 
     private fun initializeCars(names: List<String>) {
-        currentRacingStatus = names.map { Car(it) }
+        currentRacingStatus = names.map { Car(it) }.toMutableList()
     }
 
     private fun play() {
         currentRacingStatus.map { car ->
-            if (manager.isMoveAble(numberGenerator.getRandomNumber())) car.position++
+            if (manager.isMoveAble(numberGenerator.getRandomNumber())) car.move()
             OutputView.printCurrentPosition(car.name, car.position)
         }
         println()
