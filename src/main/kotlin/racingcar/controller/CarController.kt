@@ -16,11 +16,10 @@ class CarController(
     fun run() {
         val cars = registerCars()
         val numberOfRound = registerRound()
-        startRacingGame(
+        progressRacingGame(
             cars = cars,
             numberOfRound = numberOfRound
         )
-        outputView.outputRoundResults(cars = cars)
     }
 
     private fun registerCars(): List<Car> {
@@ -51,14 +50,15 @@ class CarController(
         }
     }
 
-    private fun startRacingGame(
+    private fun progressRacingGame(
         cars: List<Car>,
         numberOfRound: Int
     ) {
-        racingGame = RacingGame(
-            cars = cars,
-            numberOfRound = numberOfRound
-        )
-        racingGame.runRacingGame()
+        racingGame = RacingGame(cars = cars)
+        outputView.outputStartGame()
+        repeat(numberOfRound) {
+            racingGame.racingCars()
+            outputView.outputRoundResults(cars = cars)
+        }
     }
 }

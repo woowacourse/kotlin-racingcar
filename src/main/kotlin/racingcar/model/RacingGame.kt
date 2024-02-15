@@ -4,17 +4,10 @@ import racingcar.util.Constant
 import kotlin.random.Random
 
 class RacingGame(
-    private val cars: List<Car>,
-    private val numberOfRound: Int
+    private val cars: List<Car>
 ) {
 
-    fun runRacingGame() {
-        repeat(numberOfRound) {
-            racingCars()
-        }
-    }
-
-    private fun racingCars() {
+    fun racingCars() {
         cars.forEach { car ->
             if (judgeMoveStop(makeRandomNumber())) {
                 car.moveCar()
