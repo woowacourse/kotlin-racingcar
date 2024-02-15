@@ -1,5 +1,6 @@
 package racingcar
 
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.NullSource
@@ -9,6 +10,7 @@ import racingcar.view.input.InputValidator
 class ExceptionTest {
     private val inputValidator = InputValidator()
 
+    /** 자동차 이름 입력 Test */
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = ["", " ", ",,,"])
@@ -43,6 +45,15 @@ class ExceptionTest {
     }
 
     @ParameterizedTest
+    @ValueSource(strings = ["a,b,c", "olive", "pobi,woni,jun"])
+    fun `자동차 이름을 올바르게 입력하면 예외가 발생하지 않는다`(inputCarNames: String) {
+        assertDoesNotThrow {
+            inputValidator.validateCarNames(inputCarNames)
+        }
+    }
+
+    /** 시도할 횟수 입력 Test */
+    @ParameterizedTest
     @NullSource
     @ValueSource(strings = ["", " "])
     fun `시도할 횟수를 입력하지 않는 경우 예외가 발생한다`(inputTryCount: String?) {
@@ -63,6 +74,14 @@ class ExceptionTest {
     @ValueSource(strings = ["-1", "0", "1001", "210000"])
     fun `시도할 횟수가 1보다 작거나 1000보다 큰 경우 예외가 발생한다`(inputTryCount: String) {
         assertThrows<IllegalArgumentException> {
+            inputValidator.validateTryCount(inputTryCount)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1", "100", "1000"])
+    fun `시도할 횟수를 올바르게 입력하면 예외가 발생하지 않는다`(inputTryCount: String) {
+        assertDoesNotThrow {
             inputValidator.validateTryCount(inputTryCount)
         }
     }
