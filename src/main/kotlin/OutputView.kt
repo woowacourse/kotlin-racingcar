@@ -3,12 +3,9 @@ object OutputView {
 
     fun outputTrialCountRequest() = println("시도할 횟수는 몇 회인가요?")
 
-    fun outputRaceResult(result: String) {
-        println("실행 결과")
-        println(result)
-    }
+    fun outputRaceResultTitle() = println("실행 결과")
 
-    fun outputWinner(winner: String) {
-        print("최종 우승자: $winner")
-    }
+    fun outputCarStatus(status: String) = println(status)
+
+    fun outputWinners(winner: String) = print(winner)
 }
