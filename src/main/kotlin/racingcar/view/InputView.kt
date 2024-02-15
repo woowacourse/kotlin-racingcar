@@ -8,7 +8,7 @@ class InputView {
 
     fun getCarNames(): List<String> {
         println(MESSAGE_CAR_NAME)
-        return readln().trim().split(",").also { it.checkCarNames() }
+        return readln().split(",").map { it.trim() }.also { it.checkCarNames() }
     }
 
     fun getRoundCount(): Int {

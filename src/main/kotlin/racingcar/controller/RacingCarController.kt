@@ -18,7 +18,7 @@ class RacingCarController(
         playGame()
     }
 
-    private fun createRacingCar(): List<Car> = inputView.getCarNames().map { name -> Car(name.trim()) }
+    private fun createRacingCar(): List<Car> = inputView.getCarNames().map { name -> Car(name) }
 
     private fun playGame() {
         val round = inputView.getRoundCount()
