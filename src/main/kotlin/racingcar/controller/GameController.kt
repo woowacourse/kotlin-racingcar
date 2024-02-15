@@ -5,7 +5,6 @@ import racingcar.service.WinnerService
 import racingcar.util.ValidationUtil
 import racingcar.view.InputView
 import racingcar.view.OutputView
-import kotlin.random.Random
 
 class GameController {
 
@@ -17,11 +16,11 @@ class GameController {
     fun start() {
         //  사용자 입력 및 검증
         val carNames = getCarNames()
-        val tryCounts = getTryCounts()
+        val roundCounts = getRoundCounts()
 
         // 레이싱 게임 실행
         val cars: List<Car> = carNames.map { Car(it) }
-        playRacingGame(cars, tryCounts)
+        playRacingGame(cars, roundCounts)
 
         // 결과 출력
         val winners = winnerService.findWinners(cars)
@@ -41,21 +40,21 @@ class GameController {
         }
     }
 
-    private fun getTryCounts(): Int {
+    private fun getRoundCounts(): Int {
         while (true) {
             try {
-                val tryCounts = inputView.readTryCounts()
-                validationUtil.validateTryCounts(tryCounts)
-                return tryCounts!!.toInt()
+                val roundCounts = inputView.readRoundCounts()
+                validationUtil.validateRoundCounts(roundCounts)
+                return roundCounts!!.toInt()
             } catch (e: IllegalArgumentException) {
                 outputView.printErrorMessage(e.message!!)
             }
         }
     }
 
-    private fun playRacingGame(cars: List<Car>, tryCounts: Int) {
+    private fun playRacingGame(cars: List<Car>, roundCounts: Int) {
         outputView.printResultMessage()
-        repeat(tryCounts) {
+        repeat(roundCounts) {
             cars.forEach {
                 it.move()
             }
