@@ -10,6 +10,11 @@ class Race {
     private lateinit var cars: List<Car>
     private var roundNumber: Int = 0
 
+    fun start() {
+        cars = getCars()
+        roundNumber = getRoundNumber()
+    }
+
     fun getNames(): List<String> {
         outputView.printCarNamesGuide()
         lateinit var names: List<String>
@@ -82,6 +87,16 @@ class Race {
             return true
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException(ERROR_MESSAGE)
+        }
+    }
+
+    fun showResult(roundNumber: Int) {
+        outputView.printResultHeader()
+
+        repeat(roundNumber) {
+            cars.forEach { car ->
+                car.move()
+            }
         }
     }
 
