@@ -6,6 +6,7 @@ import racingcar.view.OutputView
 class Race {
     private val outputView = OutputView()
     private val inputView = InputView()
+    private var roundNumber: Int = 0
 
     fun getNames(): List<String> {
         outputView.printCarNamesGuide()
@@ -42,6 +43,7 @@ class Race {
             try {
                 val roundNumberInput = inputView.readRoundNumber()
 
+                roundNumber = getValidRoundNumber(roundNumberInput)
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)
@@ -49,6 +51,25 @@ class Race {
         }
 
         return roundNumber
+    }
+
+    fun getValidRoundNumber(roundNumberInput: String): Int {
+        require(checkRoundNumber(roundNumberInput)) { ERROR_MESSAGE }
+        require(roundNumberInput.isNotEmpty()) { ERROR_MESSAGE }
+
+        val roundNumber = roundNumberInput.toInt()
+        require(roundNumber > 0) { ERROR_MESSAGE }
+
+        return roundNumber
+    }
+
+    fun checkRoundNumber(roundNumber: String): Boolean {
+        try {
+            roundNumber.toInt()
+            return true
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException(ERROR_MESSAGE)
+        }
     }
 
     companion object {
