@@ -13,6 +13,8 @@ class Race {
     fun start() {
         cars = getCars()
         roundNumber = getRoundNumber()
+        showResult(roundNumber)
+        showWinners()
     }
 
     fun getNames(): List<String> {
