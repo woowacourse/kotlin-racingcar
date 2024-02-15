@@ -1,7 +1,7 @@
 package racingcar.controller
 
 import racingcar.model.Car
-import racingcar.model.Messages
+import racingcar.model.Settings
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -47,7 +47,7 @@ class Run {
             val randomNumbers = randomNumberGenerator.putRandomNumbers()
             cars.forEachIndexed { index, car ->
                 if (moveOrStay.decideMovement(randomNumbers[index])) {
-                    car.position += Messages.DASH
+                    car.position += Settings.PROGRESS
                 }
             }
             cars.forEach {
