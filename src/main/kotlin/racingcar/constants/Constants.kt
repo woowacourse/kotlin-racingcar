@@ -15,4 +15,7 @@ object Constants {
     const val PROGRESS_BAR = "-"
     const val FINAL_WINNERS = "최종 우승자: %s"
     const val WINNERS_SEPARATOR = ", "
+
+    const val MINIMUM_RANDOM_SELECTION_NUM = 0
+    const val MAXIMUM_RANDOM_SELECTION_NUM = 10
 }
