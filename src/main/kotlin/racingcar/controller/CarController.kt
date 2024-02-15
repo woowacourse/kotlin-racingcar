@@ -4,9 +4,11 @@ import racingcar.Validator
 import racingcar.model.Car
 import racingcar.model.RacingGame
 import racingcar.view.InputView
+import racingcar.view.OutputView
 
 class CarController(
     private val inputView: InputView,
+    private val outputView: OutputView,
     private val validator: Validator
 ) {
     private lateinit var racingGame: RacingGame
@@ -18,6 +20,7 @@ class CarController(
             cars = cars,
             numberOfRound = numberOfRound
         )
+        outputView.outputRoundResults(cars = cars)
     }
 
     private fun registerCars(): List<Car> {

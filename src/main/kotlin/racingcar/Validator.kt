@@ -20,7 +20,7 @@ class Validator {
     }
 
     private fun validateNumberOfCar(carNames: List<String>) {
-        require(carNames.isEmpty()) {
+        require(carNames.isNotEmpty()) {
             Exception.INVALID_NUMBER_OF_CAR.getMessage()
         }
     }

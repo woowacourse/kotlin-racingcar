@@ -7,4 +7,8 @@ class Car(
     fun moveCar() {
         step += 1
     }
+
+    fun getName(): String = name
+
+    fun getStep(): Int = step
 }
