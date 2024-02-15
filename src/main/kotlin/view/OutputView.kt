@@ -9,7 +9,7 @@ class OutputView {
     }
 
     fun printRoundResult(cars: List<Car>) {
-        cars.forEach { printCarResult(it) }
+        cars.forEach { printCarResult(it) }.also { println() }
     }
 
     fun printWinners(winners: List<String>) {
