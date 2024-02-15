@@ -6,7 +6,6 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class Run {
-
     private val inputView = InputView()
     private val outputView = OutputView()
     private val moveOrStay = MoveOrStay()
@@ -25,9 +24,9 @@ class Run {
             cars.add(Car(nameOfCars[it]))
         }
 
-        while (exceptionHandling.nameFormat(carNames) || exceptionHandling.limitNumberOfCars(
+        while (!(exceptionHandling.nameFormat(carNames) && exceptionHandling.limitNumberOfCars(
                 numberOfCars
-            ) || exceptionHandling.duplicatedCarName(nameOfCars)
+            ) && exceptionHandling.duplicatedCarName(nameOfCars))
         ) {
             carNames = inputView.askCarNames()
             nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild(carNames)
@@ -36,7 +35,7 @@ class Run {
         outputView.enterNumberOfAttempts()
         var numberOfAttempts = inputView.askNumberOfAttempts()
 
-        while (exceptionHandling.limitNumberOfAttempts(numberOfAttempts)) {
+        while (!exceptionHandling.limitNumberOfAttempts(numberOfAttempts)) {
             numberOfAttempts = inputView.askNumberOfAttempts()
         }
 
