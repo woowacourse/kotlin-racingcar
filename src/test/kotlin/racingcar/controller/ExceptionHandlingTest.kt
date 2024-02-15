@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class ExceptionHandlingTest {
-    lateinit var exceptionHandling: ExceptionHandling
+    private lateinit var exceptionHandling: ExceptionHandling
 
     @BeforeEach
     fun setup() {
