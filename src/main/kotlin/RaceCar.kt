@@ -1,6 +1,6 @@
-data class Car(
+data class RaceCar(
     val name: String,
-) : Comparable<Car> {
+) : Comparable<RaceCar> {
     private var distance: Int = 0
 
     init {
@@ -13,7 +13,7 @@ data class Car(
         if (score in UNDER_BOUND..UPPER_BOUND) distance++
     }
 
-    override fun compareTo(other: Car) = (distance - other.distance)
+    override fun compareTo(other: RaceCar) = (distance - other.distance)
 
     override fun toString(): String = "$name : ${DISTANCE_UNIT.repeat(distance)}"
 
