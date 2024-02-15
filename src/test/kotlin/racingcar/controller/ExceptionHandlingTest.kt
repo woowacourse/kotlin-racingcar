@@ -28,7 +28,6 @@ class ExceptionHandlingTest {
         val result = exceptionHandling.limitNumberOfCars(input)
         assertThat(result).isFalse()
     }
-
     @Test
     fun `자동차 이름의 중복이 없을 때 true를 반환하는지`() {
         val result = exceptionHandling.duplicatedCarName(listOf("alsong", "haeum"))
@@ -38,6 +37,19 @@ class ExceptionHandlingTest {
     @Test
     fun `자동차 이름의 중복이 있을 때 false를 반환하는지`() {
         val result = exceptionHandling.duplicatedCarName(listOf("alsong", "haeum", "alsong"))
+        assertThat(result).isFalse()
+    }
+    @ParameterizedTest
+    @ValueSource(ints = [1, 5, 10, 20, 100, 1000, 10000])
+    fun `시도 횟수가 1 ~ 10000일 때 true를 반환하는지`(input: Int) {
+        val result = exceptionHandling.limitNumberOfAttempts(input)
+        assertThat(result).isTrue()
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [-1, 0, 10001, 20000, 100_000])
+    fun `시도 횟수가 1 ~ 10000이 아닐 때 false를 반환하는지`(input: Int) {
+        val result = exceptionHandling.limitNumberOfAttempts(input)
         assertThat(result).isFalse()
     }
 }
