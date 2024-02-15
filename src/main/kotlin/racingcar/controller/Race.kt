@@ -91,12 +91,15 @@ class Race {
     }
 
     fun showResult(roundNumber: Int) {
+        outputView.printNewLine()
         outputView.printResultHeader()
 
         repeat(roundNumber) {
             cars.forEach { car ->
                 car.move()
+                outputView.printRaceResult(car.name, car.position)
             }
+            outputView.printNewLine()
         }
     }
 
