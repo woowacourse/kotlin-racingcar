@@ -1,7 +1,5 @@
 package racingcar.model
 
-import kotlin.math.max
-
 val START_RANGE = 0
 val END_RANGE = 9
 val TARGET_NUM = 4
