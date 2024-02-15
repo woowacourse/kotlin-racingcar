@@ -1,12 +1,13 @@
 package racingcar.controller
 
 import racingcar.model.Messages
+import racingcar.model.Ranges
 
 class ExceptionHandling {
 
     fun limitNumberOfAttempts(numberOfAttempts: Int): Boolean{
         return try{
-            require(numberOfAttempts in 1..10000)
+            require(numberOfAttempts in Ranges.numberOfAttempts)
             true
         } catch(ex: IllegalArgumentException){
             println(Messages.NUMBER_OF_ATTEMPTS_ERROR)
@@ -14,7 +15,7 @@ class ExceptionHandling {
         }
     }
     fun nameFormat(names: String): Boolean{
-        val regex = Regex("^[a-zA-Z가-힣,]+\$")
+        val regex = Regex(Ranges.carNamingFormat)
         return try{
             require(regex.matches(names))
             true
@@ -25,7 +26,7 @@ class ExceptionHandling {
     }
     fun limitNumberOfCars(numberOfCars: Int): Boolean{
         return try{
-            require(numberOfCars in 1..100)
+            require(numberOfCars in Ranges.numberOfCars)
             true
         } catch(ex: IllegalArgumentException){
             println(Messages.NUMBER_OF_CAR_ERROR)
