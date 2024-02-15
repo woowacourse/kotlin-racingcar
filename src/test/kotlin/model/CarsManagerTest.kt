@@ -22,10 +22,7 @@ class CarsManagerTest {
 
         @JvmStatic
         fun provideRandomNumberExample() = listOf(
-            Arguments.of(2, 0),
-            Arguments.of(3, 0),
-            Arguments.of(4, 1),
-            Arguments.of(5, 1)
+            Arguments.of(2, 0), Arguments.of(3, 0), Arguments.of(4, 1), Arguments.of(5, 1)
         )
     }
 
