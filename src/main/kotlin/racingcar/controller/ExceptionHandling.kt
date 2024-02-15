@@ -7,38 +7,38 @@ class ExceptionHandling {
     fun limitNumberOfAttempts(numberOfAttempts: Int): Boolean{
         return try{
             require(numberOfAttempts in 1..10000)
-            false
+            true
         } catch(ex: IllegalArgumentException){
             println(Messages.NUMBER_OF_ATTEMPTS_ERROR)
-            true
+            false
         }
     }
     fun nameFormat(names: String): Boolean{
         val regex = Regex("^[a-zA-Z가-힣,]+\$")
         return try{
             require(regex.matches(names))
-            false
+            true
         } catch(ex: IllegalArgumentException){
             println(Messages.NAME_FORMAT_ERROR)
-            true
+            false
         }
     }
     fun limitNumberOfCars(numberOfCars: Int): Boolean{
         return try{
             require(numberOfCars in 1..100)
-            false
+            true
         } catch(ex: IllegalArgumentException){
             println(Messages.NUMBER_OF_CAR_ERROR)
-            true
+            false
         }
     }
     fun duplicatedCarName(carNames: List<String>): Boolean{
         return try{
             require(carNames.size == carNames.toSet().size)
-            false
+            true
         } catch(ex: IllegalArgumentException){
             println(Messages.DUPLICATED_CAR_NAME_ERROR)
-            true
+            false
         }
     }
 }
