@@ -1,4 +1,0 @@
-package study
-
-class InputTest {
-}
