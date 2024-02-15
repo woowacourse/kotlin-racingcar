@@ -17,7 +17,7 @@ class Race {
         showWinners()
     }
 
-    fun getNames(): List<String> {
+    private fun getNames(): List<String> {
         outputView.printCarNamesGuide()
         lateinit var names: List<String>
 
@@ -44,7 +44,7 @@ class Race {
         require(names.distinct().size == names.size) { ERROR_NAME_DUPLICATION }
     }
 
-    fun getCars(): List<Car> {
+    private fun getCars(): List<Car> {
         val names = getNames()
         val cars = mutableListOf<Car>()
 
@@ -55,7 +55,7 @@ class Race {
         return cars
     }
 
-    fun getRoundNumber(): Int {
+    private fun getRoundNumber(): Int {
         outputView.printRoundNumberGuide()
         var roundNumber: Int
 
@@ -92,7 +92,7 @@ class Race {
         }
     }
 
-    fun showResult(roundNumber: Int) {
+    private fun showResult(roundNumber: Int) {
         outputView.printNewLine()
         outputView.printResultHeader()
 
@@ -102,7 +102,7 @@ class Race {
         }
     }
 
-    fun showRaceStatus() {
+    private fun showRaceStatus() {
         cars.forEach { car ->
             car.move()
             outputView.printRaceResult(car.name, car.position)
@@ -118,7 +118,7 @@ class Race {
         return winners
     }
 
-    fun judgeWinners(
+    private fun judgeWinners(
         car: Car,
         winners: MutableList<String>,
     ) {
@@ -129,7 +129,7 @@ class Race {
         }
     }
 
-    fun showWinners() {
+    private fun showWinners() {
         val winners = getWinners(cars)
         outputView.printWinner(winners)
     }
