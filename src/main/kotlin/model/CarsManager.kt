@@ -22,5 +22,9 @@ class CarsManager(private val randomNumber: NumberGenerator) {
 
     private fun getMaxForwardCount() = cars.maxOfOrNull { it.getForwardCount() }
 
-    private fun isMove(): Boolean = randomNumber.generate() >= 4
+    private fun isMove(): Boolean = randomNumber.generate() >= FORWARD_STANDARD_NUMBER
+
+    companion object {
+        private const val FORWARD_STANDARD_NUMBER = 4
+    }
 }
