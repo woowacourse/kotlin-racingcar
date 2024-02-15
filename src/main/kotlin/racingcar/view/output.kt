@@ -7,6 +7,7 @@ fun printProgress(cars : List<Car>) {
     for(car in cars){
         println("${car.name} : ${car.position}")
     }
+    println()
 }
 
 fun printWinners(winners:List<String>){

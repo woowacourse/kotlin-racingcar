@@ -1,15 +1,16 @@
 package racingcar.model
 
+import racingcar.view.printProgress
+
 val START_RANGE = 0
 val END_RANGE = 9
 val TARGET_NUM = 4
 fun move(cars: MutableList<Car>) {
-    val randomNum = rand()
-
     for (car in cars) {
+        val randomNum = rand()
         car.position += goOrStop(randomNum)
     }
-
+    printProgress(cars)
 }
 
 fun rand() = (START_RANGE..END_RANGE).random()
