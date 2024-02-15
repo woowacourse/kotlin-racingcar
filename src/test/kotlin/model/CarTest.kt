@@ -8,10 +8,12 @@ class CarTest {
     @Test
     fun `전진 기능 테스트`() {
         val car = Car("서기")
-        car.moveForward(true)
-        car.moveForward(false)
-        car.moveForward(true)
+        isMoveExample.forEach { car.moveForward(it) }
 
         assertThat(car.getForwardCount()).isEqualTo(2)
+    }
+
+    companion object {
+        val isMoveExample = listOf(true, false, true)
     }
 }
