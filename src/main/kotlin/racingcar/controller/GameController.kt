@@ -29,26 +29,24 @@ class GameController {
 
 
     private fun getCarNames(): List<String> {
-        while (true) {
-            try {
-                val carNames = inputView.readCarNames()
-                validationUtil.validateCarNames(carNames)
-                return carNames!!.split(",")
-            } catch (e: IllegalArgumentException) {
-                outputView.printErrorMessage(e.message!!)
-            }
+        return try {
+            val carNames = inputView.readCarNames()
+            validationUtil.validateCarNames(carNames)
+            carNames!!.split(",")
+        } catch (e: IllegalArgumentException) {
+            outputView.printErrorMessage(e.message!!)
+            getCarNames()
         }
     }
 
     private fun getRoundCounts(): Int {
-        while (true) {
-            try {
-                val roundCounts = inputView.readRoundCounts()
-                validationUtil.validateRoundCounts(roundCounts)
-                return roundCounts!!.toInt()
-            } catch (e: IllegalArgumentException) {
-                outputView.printErrorMessage(e.message!!)
-            }
+        return try {
+            val roundCounts = inputView.readRoundCounts()
+            validationUtil.validateRoundCounts(roundCounts)
+            roundCounts!!.toInt()
+        } catch (e: IllegalArgumentException) {
+            outputView.printErrorMessage(e.message!!)
+            getRoundCounts()
         }
     }
 
