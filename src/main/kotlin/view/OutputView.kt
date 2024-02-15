@@ -5,7 +5,7 @@ import model.Car
 class OutputView {
 
     fun printResultComment() {
-        println("\n실행결과")
+        println(RESULT_COMMENT)
     }
 
     fun printRoundResult(cars: List<Car>) {
@@ -13,10 +13,16 @@ class OutputView {
     }
 
     fun printWinners(winners: List<String>) {
-        println("최종 우승자: ${winners.joinToString()}")
+        println(getWinnersComment(winners))
     }
 
     private fun printCarResult(car: Car) {
-        println("${car.name} : ${"-".repeat(car.getForwardCount())}")
+        println(getRoundResult(car))
+    }
+
+    companion object {
+        private const val RESULT_COMMENT = "\n실행결과"
+        private fun getWinnersComment(winners: List<String>) = "최종 우승자: ${winners.joinToString()}"
+        private fun getRoundResult(car: Car) = "${car.name} : ${"-".repeat(car.getForwardCount())}"
     }
 }
