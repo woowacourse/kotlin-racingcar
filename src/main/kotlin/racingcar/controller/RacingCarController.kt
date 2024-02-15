@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.service.ForwardService
+import racingcar.service.WinnerService
 import racingcar.utils.retryWhileNoException
 import racingcar.view.input.InputView
 import racingcar.view.output.OutputView
@@ -18,6 +19,9 @@ class RacingCarController(
             forwardService.processStep(cars)
             outputView.printProcessStep(cars)
         }
+        
+        val winnerService = WinnerService()
+        val winners = winnerService.getWinners(cars)
     }
 
     private fun inputCarNames() = retryWhileNoException {
