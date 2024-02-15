@@ -14,20 +14,20 @@ class RacingCarController(
 
     fun run() {
         val cars = createRacingCar()
-        val round = inputView.getRoundCount()
         racingCarGame = RacingCarGame(cars)
-        startRound(round)
-        getWinner()
+        playGame()
     }
 
     private fun createRacingCar(): List<Car> = inputView.getCarNames().map { name -> Car(name) }
 
-    private fun startRound(round: Int) {
+    private fun playGame() {
+        val round = inputView.getRoundCount()
         outputView.printResultTitle()
         repeat(round) {
             val result = racingCarGame.race()
             outputView.printRoundResult(result)
         }
+        getWinner()
     }
 
     private fun getWinner() {
