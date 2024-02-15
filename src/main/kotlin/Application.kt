@@ -7,6 +7,6 @@ fun main() {
     RacingGame(
         InputView(),
         OutputView(),
-        RandomNumberGenerator()
+        RandomNumberGenerator
     ).start()
 }

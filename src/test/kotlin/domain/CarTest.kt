@@ -11,7 +11,7 @@ class CarTest {
     @ValueSource(strings = ["", " ", "\n", "    "])
     fun `자동차 이름은 공백을 허용하지 않는다`(input: String) {
         assertThatThrownBy {
-            Car(input, RandomNumberGenerator())
+            Car(input, RandomNumberGenerator)
         }.isExactlyInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("자동차 이름은 공백을 허용하지 않습니다")
     }
@@ -20,7 +20,7 @@ class CarTest {
     @ValueSource(strings = ["shimji", "pangtae", "abcdefggeg"])
     fun `자동차 이름은 5자 이하여야 한다`(input: String) {
         assertThatThrownBy {
-            Car(input, RandomNumberGenerator())
+            Car(input, RandomNumberGenerator)
         }.isExactlyInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("자동차 이름은 다섯글자 이하여야 합니다")
     }
