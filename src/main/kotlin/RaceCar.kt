@@ -9,7 +9,7 @@ data class RaceCar(
         }
     }
 
-    fun moveOrStop(score: Int) : Boolean {
+    fun moveOrStop(score: Int): Boolean {
         if (score in UNDER_BOUND..UPPER_BOUND) {
             distance++
             return true
