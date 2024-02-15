@@ -16,7 +16,7 @@
 
 ### RacingGame
 
-- [ ] Cars 을 시도 횟수 만큼 전진/멈춤 시킨다.
+- [x] Cars 을 시도 횟수 만큼 전진/멈춤 시킨다.
 
 ### NumberGenerator 인터페이스
 
