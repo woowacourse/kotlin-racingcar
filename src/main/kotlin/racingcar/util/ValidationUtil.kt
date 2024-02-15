@@ -10,5 +10,4 @@ class ValidationUtil {
     fun validateRoundCounts(roundCounts: String) {
         require(roundCounts.toIntOrNull()?.let { it > 0 } == true) { "ERROR : 시도할 횟수는 자연수여야합니다." }
     }
-
 }
