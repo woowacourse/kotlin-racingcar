@@ -7,8 +7,9 @@ class Car(private val name: String) : Comparable<Car> {
         forwardCount++
     }
 
-    override fun toString() =
-        "$name : ${FORWARD_SYMBOL.repeat(forwardCount)}"
+    override fun toString() = name
+
+    fun getStepState() = "$name : ${FORWARD_SYMBOL.repeat(forwardCount)}"
 
     override fun compareTo(other: Car) =
         other.forwardCount.compareTo(this.forwardCount)

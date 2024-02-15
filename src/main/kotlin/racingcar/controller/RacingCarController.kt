@@ -22,6 +22,7 @@ class RacingCarController(
         
         val winnerService = WinnerService()
         val winners = winnerService.getWinners(cars)
+        outputView.printWinners(winners)
     }
 
     private fun inputCarNames() = retryWhileNoException {
