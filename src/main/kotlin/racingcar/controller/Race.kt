@@ -1,11 +1,13 @@
 package racingcar.controller
 
+import racingcar.model.Car
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class Race {
     private val outputView = OutputView()
     private val inputView = InputView()
+    private lateinit var cars: List<Car>
     private var roundNumber: Int = 0
 
     fun getNames(): List<String> {
@@ -33,6 +35,17 @@ class Race {
         require(names.size > 1) { ERROR_MESSAGE }
         require(names.size < 21) { ERROR_MESSAGE }
         require(names.distinct().size == names.size) { ERROR_MESSAGE }
+    }
+
+    fun getCars(): List<Car> {
+        val names = getNames()
+        val cars = mutableListOf<Car>()
+
+        names.forEach { name ->
+            cars.add(Car(name))
+        }
+
+        return cars
     }
 
     fun getRoundNumber(): Int {
