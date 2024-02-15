@@ -11,8 +11,9 @@ class RandomNumberGeneratorTest {
     fun setup() {
         randomNumberGenerator = RandomNumberGenerator(3)
     }
+
     @RepeatedTest(100)
-    fun `랜덤넘버 리스트의 요소가 전부 0 ~ 9 인지`(){
+    fun `랜덤넘버 리스트의 요소가 전부 0 ~ 9 인지`() {
         val result = randomNumberGenerator.putRandomNumbers()
         assertThat(result).allMatch { it in 0..9 }
     }

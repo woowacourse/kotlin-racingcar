@@ -22,9 +22,9 @@ class Run {
 
         initCars(numberOfCars, cars, nameOfCars)
 
-        while (!(exceptionHandling.nameFormat(carNames) && exceptionHandling.limitNumberOfCars(
-                numberOfCars
-            ) && exceptionHandling.duplicatedCarName(nameOfCars))
+        while (!exceptionHandling.nameFormat(carNames) &&
+            exceptionHandling.limitNumberOfCars(numberOfCars) &&
+            exceptionHandling.duplicatedCarName(nameOfCars)
         ) {
             carNames = inputView.askCarNames()
             nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild(carNames)
@@ -56,7 +56,7 @@ class Run {
     private fun initCars(
         numberOfCars: Int,
         cars: MutableList<Car>,
-        nameOfCars: List<String>
+        nameOfCars: List<String>,
     ) {
         repeat(numberOfCars) {
             cars.add(Car(nameOfCars[it]))
@@ -65,7 +65,7 @@ class Run {
 
     private fun progressCarPosition(
         randomNumberGenerator: RandomNumberGenerator,
-        cars: MutableList<Car>
+        cars: MutableList<Car>,
     ) {
         val randomNumbers = randomNumberGenerator.putRandomNumbers()
         cars.forEachIndexed { index, car ->

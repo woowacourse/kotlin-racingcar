@@ -15,17 +15,15 @@ class FinalWinnerTest {
 
     @Test
     fun `최종 우승자 판정이 제대로 이루어지는지`() {
-        val result = finalWinner.decideWinner(
-            listOf(Car("a", "---"), Car("b", "--"))
-        )
+        val result = finalWinner.decideWinner(listOf(Car("a", "---"), Car("b", "--")))
+
         assertThat(result).isEqualTo(listOf("a"))
     }
 
     @Test
     fun `최종 우승자가 두명일 경우 우승자 판정이 제대로 이루어지는지`() {
-        val result = finalWinner.decideWinner(
-            listOf(Car("a", "---"), Car("b", "---"))
-        )
+        val result = finalWinner.decideWinner(listOf(Car("a", "---"), Car("b", "---")))
+
         assertThat(result).isEqualTo(listOf("a", "b"))
     }
 }
