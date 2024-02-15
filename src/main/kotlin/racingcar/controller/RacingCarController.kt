@@ -14,12 +14,14 @@ class RacingCarController(
     private val tryCount = inputTryCount()
 
     fun run() {
+        outputView.printProcessStepMessage()
+
         val forwardService = ForwardService()
         tryCount.forEach {
             forwardService.processStep(cars)
             outputView.printProcessStep(cars)
         }
-        
+
         val winnerService = WinnerService()
         val winners = winnerService.getWinners(cars)
         outputView.printWinners(winners)

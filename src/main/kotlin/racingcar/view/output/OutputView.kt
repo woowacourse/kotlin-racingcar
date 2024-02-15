@@ -6,20 +6,26 @@ import racingcar.model.Car
 
 class OutputView {
     fun printInputCarNamesMessage() {
-        print(OutputConstants.INPUT_CAR_NAMES_MESSAGE)
+        println(OutputConstants.INPUT_CAR_NAMES_MESSAGE)
     }
 
     fun printInputTryCountMessage() {
-        print(OutputConstants.INPUT_TRY_COUNT_MESSAGE)
+        println(OutputConstants.INPUT_TRY_COUNT_MESSAGE)
+    }
+
+    fun printProcessStepMessage() {
+        println()
+        println(OutputConstants.PROCESS_STEP_MESSAGE)
     }
 
     fun printProcessStep(cars: List<Car>) {
         cars.forEach { car ->
             println(car.getStepState())
         }
+        println()
     }
 
     fun printWinners(winners: List<Car>) {
-        print(OutputConstants.WINNERS_MESSAGE + winners.joinToString(GameConstants.SPLIT_DELIMITER))
+        print(OutputConstants.WINNERS_MESSAGE + winners.joinToString(OutputConstants.WINNERS_DELIMITER))
     }
 }
