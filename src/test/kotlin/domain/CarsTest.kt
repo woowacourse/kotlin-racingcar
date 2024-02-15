@@ -3,6 +3,7 @@ package domain
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
+import kotlin.test.assertTrue
 
 class CarsTest {
     @Test
@@ -19,4 +20,19 @@ class CarsTest {
             Cars.from("aa,bb,cc", RandomNumberGenerator())
         }
     }
+
+    @Test
+    fun `한 번의 전진 결과를 확인`() {
+        val cars = Cars.from("aa,bb,cc", ExplicitNumberGenerator(4))
+        cars.startPhase()
+        assertTrue { cars.cars.all { it.position == 1 } }
+    }
+
+    @Test
+    fun `한 번의 멈춤 결과를 확인`() {
+        val cars = Cars.from("aa,bb,cc", ExplicitNumberGenerator(3))
+        cars.startPhase()
+        assertTrue { cars.cars.all { it.position == 0 } }
+    }
+
 }

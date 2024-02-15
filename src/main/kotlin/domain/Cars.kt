@@ -1,6 +1,13 @@
 package domain
 
 class Cars private constructor(val cars: List<Car>) {
+
+    fun startPhase() {
+        cars.forEach {
+            it.moveIfPossible()
+        }
+    }
+
     companion object {
         fun from(input: String, numberGenerator: NumberGenerator) =
             input.validateCars()
