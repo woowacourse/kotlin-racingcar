@@ -8,7 +8,7 @@ fun main() {
     val carController = CarController(
         inputView = InputView(),
         outputView = OutputView(),
-        validator = Validator()
+        inputValidator = InputValidator()
     )
     carController.run()
 }

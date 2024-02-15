@@ -1,6 +1,6 @@
 package racingcar.controller
 
-import racingcar.Validator
+import racingcar.InputValidator
 import racingcar.model.Car
 import racingcar.model.RacingGame
 import racingcar.view.InputView
@@ -9,7 +9,7 @@ import racingcar.view.OutputView
 class CarController(
     private val inputView: InputView,
     private val outputView: OutputView,
-    private val validator: Validator
+    private val inputValidator: InputValidator
 ) {
     private lateinit var racingGame: RacingGame
 
@@ -26,7 +26,7 @@ class CarController(
     private fun registerCars(): List<Car> {
         val carNames = inputView.inputCarNames()
         return try {
-            validator.validateCarNames(carNames)
+            inputValidator.validateCarNames(carNames)
             makeCars(carNames)
         } catch (e: IllegalArgumentException) {
             println(e.message)
@@ -43,7 +43,7 @@ class CarController(
     private fun registerRound(): Int {
         val numberOfRound = inputView.inputNumberOfRound()
         return try {
-            validator.validateNumberOfRound(numberOfRound)
+            inputValidator.validateNumberOfRound(numberOfRound)
             numberOfRound.toInt()
         } catch (e: IllegalArgumentException) {
             println(e.message)
