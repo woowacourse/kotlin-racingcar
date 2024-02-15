@@ -97,24 +97,36 @@ class Race {
         outputView.printResultHeader()
 
         repeat(roundNumber) {
-            cars.forEach { car ->
-                car.move()
-                outputView.printRaceResult(car.name, car.position)
-            }
+            showRaceStatus()
             outputView.printNewLine()
         }
     }
 
-    fun getWinners(cars: List<Car>): List<String> {
-        val maxPosition = cars.maxOfOrNull { it.position }
-        var winners = mutableListOf<String>()
+    fun showRaceStatus() {
         cars.forEach { car ->
-            if (car.position == maxPosition) {
-                winners.add(car.name)
-            }
+            car.move()
+            outputView.printRaceResult(car.name, car.position)
         }
+    }
 
+    fun getWinners(cars: List<Car>): List<String> {
+        val winners = mutableListOf<String>()
+
+        cars.forEach { car ->
+            judgeWinners(car, winners)
+        }
         return winners
+    }
+
+    fun judgeWinners(
+        car: Car,
+        winners: MutableList<String>,
+    ) {
+        val maxPosition = cars.maxOfOrNull { it.position }
+
+        if (car.position == maxPosition) {
+            winners.add(car.name)
+        }
     }
 
     fun showWinners() {
