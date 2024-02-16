@@ -1,4 +1,5 @@
 import controller.RacingGame
+import domain.MoveStrategyUsingNumber
 import domain.RandomNumberGenerator
 import view.InputView
 import view.OutputView
@@ -8,5 +9,6 @@ fun main() {
         InputView(),
         OutputView(),
         RandomNumberGenerator,
+        MoveStrategyUsingNumber(RandomNumberGenerator),
     ).start()
 }

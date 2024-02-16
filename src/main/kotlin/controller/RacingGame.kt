@@ -1,6 +1,7 @@
 package controller
 
 import domain.Cars
+import domain.MoveStrategy
 import domain.NumberGenerator
 import domain.TryCount
 import view.InputView
@@ -10,6 +11,7 @@ class RacingGame(
     private val inputView: InputView,
     private val outputView: OutputView,
     private val numberGenerator: NumberGenerator,
+    private val moveStrategy: MoveStrategy,
 ) {
     fun start() {
         val cars = readCars()
@@ -28,8 +30,7 @@ class RacingGame(
     ) {
         outputView.printResultHeader()
         repeat(tryCount.count) {
-            // TODO: 교체해야 함
-//            cars.startPhase()
+            cars.startPhaseWith(moveStrategy)
             outputView.printPhase(cars)
         }
         outputView.printWinner(cars)
