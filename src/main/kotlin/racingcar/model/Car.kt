@@ -2,7 +2,11 @@ package racingcar.model
 
 data class Car(
     val name: String,
-    var position: Int = 0
+    val position: Int = 0
 ) {
-    fun move() = position++
+    fun getMoveStepResult(): Car = copy(position = position + MOVE_STEP)
+
+    companion object {
+        private const val MOVE_STEP = 1
+    }
 }
