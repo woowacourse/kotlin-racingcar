@@ -36,7 +36,7 @@ class RaceCarGameController {
     private fun RaceCars.startRace() {
         OutputView.outputRaceResultTitle()
         repeat(trialCount) {
-            moveOrStop()
+            move()
             OutputView.outputCarStatus(toString())
         }
     }

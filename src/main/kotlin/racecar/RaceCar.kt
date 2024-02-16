@@ -2,7 +2,7 @@ class RaceCar(
     val name: String,
     startPoint: Int = DEFAULT_START_POSITION,
     private val moveStrategy: MoveStrategy = defaultMoveStrategy,
-) : Comparable<RaceCar> {
+) {
 
     var position: Int = startPoint
         private set
@@ -18,8 +18,9 @@ class RaceCar(
         position += moveStrategy.move(score)
     }
 
-    override fun compareTo(other: RaceCar) = (position - other.position)
+    fun comparePosition(other: RaceCar) = (position - other.position)
 
+    fun samePosition(other: RaceCar) = (position == other.position)
     override fun toString(): String = "$name : ${DISTANCE_UNIT.repeat(position)}"
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

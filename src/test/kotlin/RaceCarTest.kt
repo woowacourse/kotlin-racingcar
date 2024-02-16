@@ -81,4 +81,13 @@ class RaceCarTest {
         //then
         assertThat(actualPosition).isEqualTo(expectedPosition)
     }
+
+    @Test
+    fun `자동차의 position을 비교할 수 있다`() {
+        // given
+        val raceCar1 = RaceCar("foo", 2)
+        val raceCar2 = RaceCar("bar", 3)
+        // then
+        assertThat(raceCar1.comparePosition(raceCar2)).isEqualTo(-1)
+    }
 }

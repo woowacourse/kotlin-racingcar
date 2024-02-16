@@ -1,4 +1,4 @@
-data class RaceCars(
+class RaceCars(
     private val cars: List<RaceCar>,
     private val numberGenerator: NumberGenerator,
 ) {
@@ -9,14 +9,14 @@ data class RaceCars(
 
     fun findHeadGroup(): List<RaceCar> =
         with(cars) {
-            val winnerCar = maxOf { it }
-            val winnerCars = filter { it.compareTo(winnerCar) == 0 }
+            val winnerCar = maxWith { c1, c2 -> c1.comparePosition(c2) }
+            val winnerCars = filter { it.samePosition(winnerCar) }
             return winnerCars
         }
 
-    fun moveOrStop() {
+    fun move() {
         cars.forEach {
-            it.moveOrStop(numberGenerator.generate())
+            it.move(numberGenerator.generate())
         }
     }
 
