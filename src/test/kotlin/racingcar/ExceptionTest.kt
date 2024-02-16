@@ -22,7 +22,7 @@ class ExceptionTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["aaaaaa", "abcdefghig", "abcdefghig,abc"])
-    fun `자동차 이름이 다섯 글자가 넘는 경우 예외가 발생한다`(inputCarNames: String) {
+    fun `자동차 이름이 최대 길이를 넘는 경우 예외가 발생한다`(inputCarNames: String) {
         assertThrows<IllegalArgumentException> {
             inputValidator.validateCarNames(inputCarNames)
         }
@@ -72,7 +72,7 @@ class ExceptionTest {
 
     @ParameterizedTest
     @ValueSource(strings = ["-1", "0", "1001", "210000"])
-    fun `시도할 횟수가 1보다 작거나 1000보다 큰 경우 예외가 발생한다`(inputTryCount: String) {
+    fun `시도할 횟수가 제한 범위를 벗어나는 경우 예외가 발생한다`(inputTryCount: String) {
         assertThrows<IllegalArgumentException> {
             inputValidator.validateTryCount(inputTryCount)
         }
@@ -85,5 +85,4 @@ class ExceptionTest {
             inputValidator.validateTryCount(inputTryCount)
         }
     }
-
 }

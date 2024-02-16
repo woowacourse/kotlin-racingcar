@@ -13,7 +13,7 @@ class ServiceTest {
 
     /** RandomGenerator Test */
     @Test
-    fun `생성한 랜덤값의 범위가 0부터 9인지 확인한다`() {
+    fun `생성한 랜덤값이 제한 범위에 포함되는지 확인한다`() {
         val randomGenerator = RandomGenerator()
         assertThat(randomGenerator.generate())
             .isGreaterThanOrEqualTo(0)
@@ -22,7 +22,7 @@ class ServiceTest {
 
     /** ForwardService Test */
     @Test
-    fun `4 이상일 경우 전진하는지 확인한다`() {
+    fun `랜덤 숫자가 전진 기준과 같거나 큰 경우 전진하는지 확인한다`() {
         // given
         val car1 = Car("olive")
         val car2 = Car("chae").apply { forward() }
@@ -35,7 +35,7 @@ class ServiceTest {
     }
 
     @Test
-    fun `4 미만일 경우 전진하는지 확인한다`() {
+    fun `랜덤 숫자가 전진 기준보다 작은 경우 전진하지 않는지 확인한다`() {
         // given
         val car1 = Car("olive")
         val car2 = Car("chae")
