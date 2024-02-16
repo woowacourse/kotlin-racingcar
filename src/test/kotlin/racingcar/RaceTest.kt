@@ -1,6 +1,7 @@
 package racingcar
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -10,6 +11,7 @@ import racingcar.controller.Race
 class RaceTest {
     private val race = Race()
 
+    @DisplayName("자동차를 입력하지 않았을 때")
     @Test
     fun inputNone() {
         val exception =
@@ -23,6 +25,7 @@ class RaceTest {
         )
     }
 
+    @DisplayName("자동차 수가 두 대 미만일 때")
     @Test
     fun inputLessThanTwo() {
         val names = listOf("lisa")
@@ -37,6 +40,7 @@ class RaceTest {
         )
     }
 
+    @DisplayName("자동차 수가 20대 초과일 때")
     @Test
     fun inputGreaterThanTwenty() {
         val names =
@@ -55,6 +59,7 @@ class RaceTest {
         )
     }
 
+    @DisplayName("중복된 자동차 이름이 있을 때")
     @Test
     fun inputDuplicatedName() {
         val names = listOf("crong", "crong")
@@ -69,6 +74,7 @@ class RaceTest {
         )
     }
 
+    @DisplayName("시도 횟수가 int 범위를 초과했을 때")
     @Test
     fun exceedIntRangeRoundNumber() {
         val exception =
@@ -81,6 +87,7 @@ class RaceTest {
         )
     }
 
+    @DisplayName("시도 횟수에 숫자가 아닌 다른 문자를 입력 했을 때")
     @ParameterizedTest
     @ValueSource(strings = ["a", "가", "ab", "가나", "?"])
     fun inputLetterForRoundNumber(roundNumber: String) {
@@ -94,6 +101,7 @@ class RaceTest {
         )
     }
 
+    @DisplayName("시도 횟수를 입력하지 않았을 때")
     @Test
     fun inputEmptyRoundNumber() {
         val exception =
@@ -106,6 +114,7 @@ class RaceTest {
         )
     }
 
+    @DisplayName("시도 횟수가 0 이하 일 때")
     @ParameterizedTest
     @ValueSource(strings = ["0", "-1"])
     fun inputLessThanOneRoundNumber(roundNumber: String) {
