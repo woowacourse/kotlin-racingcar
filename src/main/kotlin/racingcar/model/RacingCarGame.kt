@@ -1,17 +1,17 @@
 package racingcar.model
 
+import racingcar.utils.NumberGenerator.getRandomNumber
+
 class RacingCarGame(private val cars: List<Car>) {
     fun race(): List<Car> = List(cars.size) { index -> move(index, getRandomNumber()) }
 
     fun move(
         index: Int,
-        randomNumber: Int,
+        number: Int,
     ): Car {
-        if (randomNumber >= MOVE_NUMBER) cars[index].move(STEP)
+        if (number >= MOVE_NUMBER) cars[index].move(MOVEMENT_STEP)
         return cars[index]
     }
-
-    private fun getRandomNumber(): Int = (MIN_MOVE_NUMBER..MAX_MOVE_NUMBER).random()
 
     fun findWinners(): List<Car> {
         val maxDistance = cars.maxOf { it.distance }
@@ -25,6 +25,6 @@ class RacingCarGame(private val cars: List<Car>) {
         const val MIN_MOVE_NUMBER = 0
         const val MAX_MOVE_NUMBER = 9
 
-        const val STEP = 1
+        const val MOVEMENT_STEP = 1
     }
 }
