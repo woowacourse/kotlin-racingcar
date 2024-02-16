@@ -49,7 +49,7 @@ class Race {
                 cars = makeCars()
                 break
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                outputView.printErrorMessage(e.message)
             }
         }
     }
@@ -65,7 +65,7 @@ class Race {
                 roundNumber = getValidRoundNumber(roundNumberInput)
                 break
             } catch (e: IllegalArgumentException) {
-                println(e.message)
+                outputView.printErrorMessage(e.message)
             }
         }
     }
