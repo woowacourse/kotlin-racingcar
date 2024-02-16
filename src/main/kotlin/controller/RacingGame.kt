@@ -3,7 +3,6 @@ package controller
 import domain.Cars
 import domain.NumberGenerator
 import domain.TryCount
-import domain.Winners
 import view.InputView
 import view.OutputView
 
@@ -33,7 +32,7 @@ class RacingGame(
     }
 
     private fun getWinners(cars: Cars) {
-        val winners = Winners(cars.cars)
+        val winners = cars.getWinners()
         outputView.printResultHeader()
         outputView.printWinner(winners)
     }
