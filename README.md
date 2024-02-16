@@ -4,9 +4,9 @@
 
 ### Car
 
-- [x] 전진 조건에 따라 1 씩 move, 혹은 stop 한다.
+- [ ] 자동차가 한 칸 전진한다.
 - [x] 자동차 이름이 올바르지 않을 경우 예외 발생 (`IllegalArgumentException`)
-- [x] 위치값을 갖고 있다.
+- [x] 위치값을 갖고 있다. 
 
 ### Cars
 
@@ -24,6 +24,13 @@
 
 - [x] RandomNumberGenerator: 0 ~ 9 중 무작위 숫자(전진 혹은 멈춤)를 리턴한다
 - [x] ExplicitNumberGenerator : 직접 지정하는 숫자를 리턴한다 (테스트용)
+
+### MoveStrategy 인터페이스
+- [ ] move 메서드를 가진다. 이것의 조건에 따라 자동차를 움직이게 한다.
+
+### MoveStrategyUsingNumber
+- [ ] 한 자리 숫자를 이동의 조건으로 한다.
+- 만약 한자리 숫자가 4 이상이면 자동차를 움직이게 한다.
 
 ### TryCount
 
