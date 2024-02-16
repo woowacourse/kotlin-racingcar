@@ -5,9 +5,9 @@ import org.junit.jupiter.api.assertThrows
 
 class RaceCarTest {
     @Test
-    fun `자동차 이름은 5자를 초과할 수 없다`() {
-        assertThrows<IllegalArgumentException>("자동차 이름은 5자를 초과할 수 없다.") {
-            RaceCar("foobar")
+    fun `자동차 이름은 whiteSpace 를 포함할 수 없다`() {
+        assertThrows<IllegalArgumentException>("빈 문자열을 포함할 수 없습니다.") {
+            RaceCar(" obar")
         }
     }
 

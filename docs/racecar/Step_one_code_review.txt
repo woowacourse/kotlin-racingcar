@@ -4,7 +4,7 @@
 
 ## domain 쪽
 
-- [ ] : 이름 사이의 띄어쓰기를 제거
+- [x] : 이름 사이의 띄어쓰기를 제거
 - [ ] : RacingCar move 방식 동적으로 세팅할 수 있도록 수정
 - [x] : RacingCar 생성자에 position 을 받을 수 있도록 수정
 - [ ] : RacingCars class 로 변경
