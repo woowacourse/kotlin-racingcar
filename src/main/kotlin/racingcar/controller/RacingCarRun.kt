@@ -63,11 +63,9 @@ class RacingCarRun {
         val randomNumberGenerator = RandomNumberGenerator()
 
         repeat(numberOfAttempts) {
-            val randomNumbers = randomNumberGenerator.putRandomNumbers()
-            cars.forEachIndexed { index, car ->
-                if (moveOrStay.decideMovement(randomNumbers[index])) {
-                    car.position += Settings.PROGRESS
-                }
+            cars.forEach { car ->
+                val randomNumber = randomNumberGenerator.generateRandomNumber()
+                car.moveCar(randomNumber)
             }
             cars.forEach {
                 println("${it.name}: ${it.position}")
