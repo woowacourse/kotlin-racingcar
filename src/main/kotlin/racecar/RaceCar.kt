@@ -1,7 +1,7 @@
 data class RaceCar(
     val name: String,
 ) : Comparable<RaceCar> {
-    private var distance: Int = 0
+    private var position: Int = 0
 
     init {
         require(name.length <= 5) {
@@ -11,15 +11,15 @@ data class RaceCar(
 
     fun moveOrStop(score: Int): Boolean {
         if (score in UNDER_BOUND..UPPER_BOUND) {
-            distance++
+            position++
             return true
         }
         return false
     }
 
-    override fun compareTo(other: RaceCar) = (distance - other.distance)
+    override fun compareTo(other: RaceCar) = (position - other.position)
 
-    override fun toString(): String = "$name : ${DISTANCE_UNIT.repeat(distance)}"
+    override fun toString(): String = "$name : ${DISTANCE_UNIT.repeat(position)}"
 
     companion object {
         private const val DISTANCE_UNIT = "-"
