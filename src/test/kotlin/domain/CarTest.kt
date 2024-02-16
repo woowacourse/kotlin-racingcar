@@ -2,6 +2,7 @@ package domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -41,6 +42,16 @@ class CarTest {
         val car = Car("shim", ExplicitNumberGenerator(input))
         // when
         car.moveIfPossible()
+        assertThat(car.position == 1)
+    }
+
+    @Test
+    fun `자동차가 1칸 움직인다`() {
+        // given
+        val car = Car("sh1m", RandomNumberGenerator)
+        // when
+        car.move()
+        // then
         assertThat(car.position == 1)
     }
 }

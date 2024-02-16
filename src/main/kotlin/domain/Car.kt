@@ -13,6 +13,10 @@ data class Car(val name: String, val numberGenerator: NumberGenerator) {
         if (canMove()) position++
     }
 
+    fun move() {
+        position++
+    }
+
     private fun canMove(): Boolean = numberGenerator.generate() >= MOVE_LOWER_BOUND
 
     companion object {
