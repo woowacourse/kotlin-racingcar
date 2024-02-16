@@ -1,3 +1,5 @@
+package racecar
+
 class RaceCar(
     val name: String,
     startPoint: Int = DEFAULT_START_POSITION,

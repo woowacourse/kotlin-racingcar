@@ -1,7 +1,5 @@
 package racecar
 
-import RaceCarGameInputView
-
 class KernelRaceCarGameInputView : RaceCarGameInputView {
     override fun inputCarNames(): List<String> {
         return readln().split(DELIMITER).map { it.trim() }

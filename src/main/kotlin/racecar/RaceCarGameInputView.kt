@@ -1,3 +1,5 @@
+package racecar
+
 interface RaceCarGameInputView {
     fun inputCarNames(): List<String>
 

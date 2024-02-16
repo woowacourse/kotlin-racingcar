@@ -1,6 +1,5 @@
-import racecar.KernelRaceCarGameInputView
-import racecar.KernelRaceCarGameOutputView
-import racecar.RaceCarGameOutputView
+package racecar
+
 import kotlin.random.Random
 
 class RaceCarGame(

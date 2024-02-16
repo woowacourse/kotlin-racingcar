@@ -1,3 +1,5 @@
+package racecar
+
 class RaceCars(
     val cars: List<RaceCar>,
     private val scoreGenerator: ScoreGenerator,
