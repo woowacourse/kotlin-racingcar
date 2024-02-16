@@ -1,6 +1,7 @@
 package view
 
 import domain.Cars
+import domain.Winners
 
 class OutputView {
 
@@ -13,17 +14,10 @@ class OutputView {
         println()
     }
 
-    fun printWinner(cars: Cars) {
-        val maxPosition = cars.cars.maxOf {
-            it.position
-        }
-
-        val winners = cars.cars.filter {
-            it.position == maxPosition
-        }
-
-        println("$HEADER_WINNERS " +
-                "${winners.joinToString(",") { it.name }} "
+    fun printWinner(winners: Winners) {
+        println(
+            "$HEADER_WINNERS " +
+                    "${winners.winners.joinToString(",") { it.name }} "
         )
     }
 

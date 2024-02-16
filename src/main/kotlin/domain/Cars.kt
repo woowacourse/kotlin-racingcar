@@ -8,6 +8,18 @@ class Cars private constructor(val cars: List<Car>) {
         }
     }
 
+    fun getWinners(): Winners {
+        val maxPosition = cars.maxOf {
+            it.position
+        }
+
+        val winners = cars.filter {
+            it.position == maxPosition
+        }
+
+        return Winners(winners)
+    }
+
     companion object {
         fun from(input: String, numberGenerator: NumberGenerator) =
             input.validateCars()
