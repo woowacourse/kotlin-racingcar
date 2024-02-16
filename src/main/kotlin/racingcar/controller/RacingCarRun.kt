@@ -5,7 +5,7 @@ import racingcar.model.Settings
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class Run {
+class RacingCarRun {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val moveOrStay = MoveOrStay()
@@ -13,13 +13,16 @@ class Run {
     private val exceptionHandling = ExceptionHandling()
 
     fun run() {
-        outputView.printEnterCarNames()
-        var carNames = inputView.askCarNames()
+        inputView.printEnterCarNames()
         val cars: MutableList<Car> = mutableListOf()
         val commaSeparatedListBuilder = CommaSeparatedListBuilder()
+
+        var carNames = inputView.askCarNames()
         var nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild(carNames)
         var numberOfCars = nameOfCars.size
-
+        repeat(numberOfCars) {
+            cars.add(Car(nameOfCars[it]))
+        }
         while (!exceptionHandling.nameFormat(carNames) ||
             !exceptionHandling.limitNumberOfCars(numberOfCars) ||
             !exceptionHandling.duplicatedCarName(nameOfCars)
@@ -27,7 +30,6 @@ class Run {
             carNames = inputView.askCarNames()
             nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild(carNames)
             numberOfCars = nameOfCars.size
-
             cars.clear()
             repeat(numberOfCars) {
                 cars.add(Car(nameOfCars[it]))
