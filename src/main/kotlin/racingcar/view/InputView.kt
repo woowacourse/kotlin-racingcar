@@ -1,11 +1,7 @@
 package racingcar.view
 
 class InputView {
-    fun askCarNames(): String {
-        return readln()
-    }
+    fun askCarNames(): String = readln()
 
-    fun askNumberOfAttempts(): Int {
-        return readln().toInt()
-    }
+    fun askNumberOfAttempts(): Int = readln().toInt()
 }
