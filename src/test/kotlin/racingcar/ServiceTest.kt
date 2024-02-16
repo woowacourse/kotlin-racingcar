@@ -15,9 +15,11 @@ class ServiceTest {
     @Test
     fun `생성한 랜덤값이 제한 범위에 포함되는지 확인한다`() {
         val randomGenerator = RandomGenerator()
-        assertThat(randomGenerator.generate())
-            .isGreaterThanOrEqualTo(0)
-            .isLessThanOrEqualTo(9)
+        repeat(100) {
+            assertThat(randomGenerator.generate())
+                .isGreaterThanOrEqualTo(0)
+                .isLessThanOrEqualTo(9)
+        }
     }
 
     /** ForwardService Test */
