@@ -17,10 +17,10 @@ class CarsManager(private val randomNumber: NumberGenerator) {
 
     fun getWinners(): List<String> {
         val maxForwardCount = getMaxForwardCount()
-        return cars.filter { it.getForwardCount() == maxForwardCount }.map { it.name }
+        return cars.filter { it.forwardCount == maxForwardCount }.map { it.name }
     }
 
-    private fun getMaxForwardCount() = cars.maxOfOrNull { it.getForwardCount() }
+    private fun getMaxForwardCount() = cars.maxOfOrNull { it.forwardCount }
 
     private fun isMove(): Boolean = randomNumber.generate() >= FORWARD_STANDARD_NUMBER
 

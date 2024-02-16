@@ -10,7 +10,7 @@ class CarTest {
         val car = Car("서기")
         isMoveExample.forEach { car.moveForward(it) }
 
-        assertThat(car.getForwardCount()).isEqualTo(2)
+        assertThat(car.forwardCount).isEqualTo(2)
     }
 
     companion object {
