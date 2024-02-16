@@ -15,22 +15,34 @@ class RacingCarGameTest {
     }
 
     @Test
-    fun `자동차 이동 로직 테스트 - 성공`() {
+    fun `무작위 값이 4 이상일 경우 - 해당 자동차 한 칸 전진`() {
         racingCarGame.move(0, 4)
         assertThat(cars[0].distance).isEqualTo(1)
     }
 
     @Test
-    fun `자동차 이동 로직 테스트 - 이동 멈춤`() {
+    fun `무작위 값이 4 미만일 경우 - 해당 자동차는 움직이지 않는다`() {
         racingCarGame.move(0, 3)
         assertThat(cars[0].distance).isEqualTo(0)
     }
 
     @Test
-    fun `자동차 우승 찾기 테스트 - 예니 1등`() {
+    fun `자동차 우승자가 한 명일 경우 - 예니 1등`() {
         racingCarGame.move(1, 4)
         racingCarGame.move(1, 4)
 
         assertThat(racingCarGame.findWinners().first().name).isEqualTo("yenny")
+    }
+
+    @Test
+    fun `자동차 우승자가 여러 명일 경우 (2명) - 예니,에디 1등`() {
+        racingCarGame.move(0, 5)
+        racingCarGame.move(0, 5)
+        racingCarGame.move(1, 4)
+        racingCarGame.move(1, 4)
+
+        val result = racingCarGame.findWinners()
+        assertThat(result.size).isEqualTo(2)
+        assertThat(result.map { it.name }).isEqualTo(listOf("eddy", "yenny"))
     }
 }
