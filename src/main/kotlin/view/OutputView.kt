@@ -3,7 +3,6 @@ package view
 import domain.Cars
 
 class OutputView {
-
     fun printResultHeader() = println(HEADER_RESULT)
 
     fun printPhase(cars: Cars) {
@@ -14,16 +13,19 @@ class OutputView {
     }
 
     fun printWinner(cars: Cars) {
-        val maxPosition = cars.cars.maxOf {
-            it.position
-        }
+        val maxPosition =
+            cars.cars.maxOf {
+                it.position
+            }
 
-        val winners = cars.cars.filter {
-            it.position == maxPosition
-        }
+        val winners =
+            cars.cars.filter {
+                it.position == maxPosition
+            }
 
-        println("$HEADER_WINNERS " +
-                "${winners.joinToString(",") { it.name }} "
+        println(
+            "$HEADER_WINNERS " +
+                "${winners.joinToString(",") { it.name }} ",
         )
     }
 
