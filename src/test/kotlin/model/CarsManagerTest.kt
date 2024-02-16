@@ -15,7 +15,7 @@ class CarsManagerTest {
         val carsManager = CarsManager { randomNumber }
         carsManager.create(listOf("가나,다라,마바,사"))
         carsManager.move()
-        assertThat(carsManager.cars.all { it.getForwardCount() == forwardCount }).isTrue
+        assertThat(carsManager.cars.all { it.forwardCount == forwardCount }).isTrue
 
     }
 

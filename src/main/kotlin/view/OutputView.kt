@@ -23,6 +23,6 @@ class OutputView {
     companion object {
         private const val RESULT_COMMENT = "\n실행결과"
         private fun getWinnersComment(winners: List<String>) = "최종 우승자: ${winners.joinToString()}"
-        private fun getRoundResult(car: Car) = "${car.name} : ${"-".repeat(car.getForwardCount())}"
+        private fun getRoundResult(car: Car) = "${car.name} : ${"-".repeat(car.forwardCount)}"
     }
 }
