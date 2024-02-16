@@ -1,6 +1,9 @@
 import kotlin.random.Random
 
-class RaceCarGameController {
+class RaceCarGameController(
+    private val inputView: InputView = InputView(),
+    private val outputView: OutputView = OutputView(),
+) {
     private lateinit var cars: RaceCars
     private var trialCount: Int = 0
 
@@ -11,17 +14,17 @@ class RaceCarGameController {
     }
 
     private fun initRaceCars() {
-        OutputView.outputCarNamesRequest()
+        outputView.outputCarNamesRequest()
         cars =
             RaceCars.from(
-                carNames = InputView.inputCarNames(),
+                carNames = inputView.inputCarNames(),
                 numberGenerator = { Random.nextInt(10) },
             )
     }
 
     private fun initTrialCount() {
-        OutputView.outputTrialCountRequest()
-        trialCount = InputView.inputTrialCount()
+        outputView.outputTrialCountRequest()
+        trialCount = inputView.inputTrialCount()
     }
 
     private fun startRaceGame() {
@@ -30,14 +33,14 @@ class RaceCarGameController {
                 startRace()
                 findHeadGroup()
             }
-        OutputView.outputWinners(winners.formatToWinners())
+        outputView.outputWinners(winners.formatToWinners())
     }
 
     private fun RaceCars.startRace() {
-        OutputView.outputRaceResultTitle()
+        outputView.outputRaceResultTitle()
         repeat(trialCount) {
             move()
-            OutputView.outputCarStatus(toString())
+            outputView.outputCarStatus(toString())
         }
     }
 
