@@ -1,5 +1,5 @@
 class RaceCars(
-    private val cars: List<RaceCar>,
+    val cars: List<RaceCar>,
     private val numberGenerator: NumberGenerator,
 ) {
     init {
