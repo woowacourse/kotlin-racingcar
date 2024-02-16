@@ -11,16 +11,27 @@ class RacingController(
 ) {
 
     fun run() {
-        val carsName = inputView.readCarsName()
-        val attemptCount = inputView.readAttemptCount()
+        val (attemptCount, carsManager) = raceInitialize()
+        racePlay(attemptCount, carsManager)
+        raceResult(carsManager)
+    }
 
-        val carsManager = CarsManager(carsName, RandomNumber())
+    private fun racePlay(attemptCount: Int, carsManager: CarsManager) {
         outputView.printResultComment()
         repeat(attemptCount) {
             carsManager.move()
             outputView.printRoundResult(carsManager.cars)
         }
+    }
 
+    private fun raceInitialize(): Pair<Int, CarsManager> {
+        val carsName = inputView.readCarsName()
+        val attemptCount = inputView.readAttemptCount()
+        val carsManager = CarsManager(carsName, RandomNumber())
+        return Pair(attemptCount, carsManager)
+    }
+
+    private fun raceResult(carsManager: CarsManager) {
         outputView.printWinners(carsManager.getWinners())
     }
 }
