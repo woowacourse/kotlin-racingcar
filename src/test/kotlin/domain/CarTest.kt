@@ -25,6 +25,7 @@ class CarTest {
             .hasMessage("자동차 이름은 다섯글자 이하여야 합니다")
     }
 
+    // TODO: 제거해야 함
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
     fun `0 부터 3 사이이면 자동차가 움직이지 않는다`(input: Int) {
