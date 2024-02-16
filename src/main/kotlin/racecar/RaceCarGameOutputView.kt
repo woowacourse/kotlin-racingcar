@@ -2,7 +2,6 @@ package racecar
 
 import RaceCar
 
-
 interface RaceCarGameOutputView {
     fun outputCarNamesRequest()
 

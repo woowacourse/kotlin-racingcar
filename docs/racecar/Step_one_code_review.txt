@@ -16,5 +16,6 @@
 
 ## View
 
-- [ ] : class 로 변경
-- [ ] : 기존 Domain 에서 처리한 UI 로직 UI로 옮기기
+- [x] : class 로 변경
+- [x] : 기존 Domain 에서 처리한 UI 로직(format) UI로 옮기기
+- [x] : InputView, OutputView -> KernelRaceCarGameInputView, KernelRaceCarGameOutputView 로 변경 (Terminal 용 view)
