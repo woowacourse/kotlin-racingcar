@@ -5,6 +5,7 @@ import racingcar.service.WinnerService
 import racingcar.util.ValidationUtil
 import racingcar.view.InputView
 import racingcar.view.OutputView
+import kotlin.random.Random
 
 class GameController {
 
@@ -59,7 +60,8 @@ class GameController {
         outputView.printResultMessage()
         repeat(roundCounts) {
             cars.forEach {
-                it.move()
+                val randomNumber = Random.nextInt(10)
+                it.move(randomNumber)
             }
             outputView.printRoundResult(cars)
         }
