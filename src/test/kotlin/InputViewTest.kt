@@ -4,8 +4,9 @@ import org.junit.jupiter.api.assertThrows
 class InputViewTest {
     @Test
     fun `입력값은 모두 숫자여야한다`() {
+        val inputView = InputView()
         assertThrows<IllegalArgumentException>("입력값은 모두 양수여야한다") {
-            InputView.inputTrialCount("-1")
+            inputView.inputTrialCount("-1")
         }
     }
 }
