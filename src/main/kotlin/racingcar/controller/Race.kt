@@ -11,31 +11,18 @@ class Race {
     private var roundNumber: Int = INITIAL_ROUND_NUMBER
 
     fun start() {
-        cars = getCars()
+        showCarNamesGuide()
+        getCars()
         roundNumber = getRoundNumber()
         showResult(roundNumber)
         showWinners()
     }
 
-    private fun getNames(): List<String> {
-        outputView.printCarNamesGuide()
-        lateinit var names: List<String>
+    private fun showCarNamesGuide() = outputView.printCarNamesGuide()
 
-        while (true) {
-            try {
-                names = inputView.readCarNames().split(COMMA)
-                validateNames(names)
-                names.forEach { name ->
-                    Car(name)
-                }
-                break
-            } catch (e: IllegalArgumentException) {
-                println(e.message)
-            }
-        }
+    private fun getNames(): String = inputView.readCarNames()
 
-        return names
-    }
+    private fun splitNames(): List<String> = getNames().split(COMMA)
 
     fun validateNames(names: List<String>) {
         require(names.isNotEmpty()) { ERROR_REQUEST_INPUT }
@@ -44,15 +31,26 @@ class Race {
         require(names.distinct().size == names.size) { ERROR_NAME_DUPLICATION }
     }
 
-    private fun getCars(): List<Car> {
-        val names = getNames()
+    private fun makeCars(): List<Car> {
+        val names = splitNames()
         val cars = mutableListOf<Car>()
 
+        validateNames(names)
         names.forEach { name ->
             cars.add(Car(name))
         }
-
         return cars
+    }
+
+    private fun getCars() {
+        while (true) {
+            try {
+                cars = makeCars()
+                break
+            } catch (e: IllegalArgumentException) {
+                println(e.message)
+            }
+        }
     }
 
     private fun getRoundNumber(): Int {
