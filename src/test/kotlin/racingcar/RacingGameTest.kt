@@ -7,22 +7,16 @@ import racingcar.model.RacingGame
 
 class RacingGameTest {
     @Test
-    fun `올바른 레이싱 게임 진행 테스트`() {
+    fun `올바른 자동차 전진 판단 테스트`() {
         val cars = listOf(
             Car("pobi"),
             Car("woni"),
             Car("jun"),
         )
-        val randomNumbers = listOf(0, 4, 9)
         val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomNumbers)
-        val expectCarSteps = listOf(0, 1, 1)
+        racingGame.racingCars()
 
-        val actualCarSteps = cars.map { car ->
-            car.getStep()
-        }
-
-        assertThat(expectCarSteps).isEqualTo(actualCarSteps)
+        assertThat(cars.all { car -> car.position in 0..1 }).isTrue
     }
 
     @Test
@@ -32,53 +26,67 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val randomNumbers = listOf(0, 4, 9)
         val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomNumbers)
-        val expectCarSteps = listOf(1, 0, 0)
+        racingGame.racingCars()
 
-        val actualCarSteps = cars.map { car ->
-            car.getStep()
-        }
-
-        assertThat(expectCarSteps).isNotEqualTo(actualCarSteps)
+        assertThat(cars.all { car -> car.position !in 0..1 }).isFalse
     }
 
     @Test
     fun `올바른 최종 우승자 판단 테스트`() {
+        val carOfPobi = Car("pobi")
+        val carOfWoni = Car("woni")
+        val carOfJun = Car("jun")
         val cars = listOf(
-            Car("pobi", 5),
-            Car("woni", 4),
-            Car("jun", 5),
+            carOfPobi,
+            carOfWoni,
+            carOfJun,
         )
         val racingGame = RacingGame(cars)
+        repeat(5) {
+            carOfPobi.moveCar()
+            carOfJun.moveCar()
+        }
+        repeat(4) {
+            carOfWoni.moveCar()
+        }
         val expectWinners = listOf("pobi", "jun")
 
         val actualWinners = racingGame
             .judgeWinners()
             .map { car ->
-                car.getName()
+                car.name
             }
 
-        assertThat(expectWinners).isEqualTo(actualWinners)
+        assertThat(actualWinners).isEqualTo(expectWinners)
     }
 
     @Test
     fun `올바르지 최종 않은 우승자 판단 테스트`() {
+        val carOfPobi = Car("pobi")
+        val carOfWoni = Car("woni")
+        val carOfJun = Car("jun")
         val cars = listOf(
-            Car("pobi", 5),
-            Car("woni", 4),
-            Car("jun", 5),
+            carOfPobi,
+            carOfWoni,
+            carOfJun,
         )
         val racingGame = RacingGame(cars)
+        repeat(5) {
+            carOfPobi.moveCar()
+            carOfJun.moveCar()
+        }
+        repeat(4) {
+            carOfWoni.moveCar()
+        }
         val expectWinners = listOf("woni")
 
         val actualWinners = racingGame
             .judgeWinners()
             .map { car ->
-                car.getName()
+                car.name
             }
 
-        assertThat(expectWinners).isNotEqualTo(actualWinners)
+        assertThat(actualWinners).isNotEqualTo(expectWinners)
     }
 }
