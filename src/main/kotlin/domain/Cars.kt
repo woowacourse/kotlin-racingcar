@@ -1,13 +1,6 @@
 package domain
 
 class Cars private constructor(val cars: List<Car>) {
-    fun startPhase() {
-        cars.forEach {
-            // TODO: 제거해야 함
-            it.moveIfPossible()
-        }
-    }
-
     fun startPhaseWith(moveStrategy: MoveStrategy) {
         cars.forEach {
             moveStrategy.move(it)

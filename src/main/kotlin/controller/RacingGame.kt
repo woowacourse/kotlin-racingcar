@@ -28,7 +28,8 @@ class RacingGame(
     ) {
         outputView.printResultHeader()
         repeat(tryCount.count) {
-            cars.startPhase()
+            // TODO: 교체해야 함
+//            cars.startPhase()
             outputView.printPhase(cars)
         }
         outputView.printWinner(cars)

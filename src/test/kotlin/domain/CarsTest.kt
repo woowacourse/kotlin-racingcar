@@ -22,20 +22,6 @@ class CarsTest {
     }
 
     @Test
-    fun `한 번의 전진 결과를 확인`() {
-        val cars = Cars.from("aa,bb,cc", ExplicitNumberGenerator(4))
-        cars.startPhase()
-        assertTrue { cars.cars.all { it.position == 1 } }
-    }
-
-    @Test
-    fun `한 번의 멈춤 결과를 확인`() {
-        val cars = Cars.from("aa,bb,cc", ExplicitNumberGenerator(3))
-        cars.startPhase()
-        assertTrue { cars.cars.all { it.position == 0 } }
-    }
-
-    @Test
     fun `전진 전략이 참일 때 자동차가 전진한다`() {
         val cars = Cars.from("aa,bb,cc", ExplicitNumberGenerator(4))
         cars.startPhaseWith(MoveStrategyIsAlways(true))

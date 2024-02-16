@@ -12,7 +12,6 @@
 
 - [x] 게임에 출전하는 모든 차를 갖고 있다.
 - [x] Car 이름에 중복이 있으면 예외 발생 (`IllegalArgumentException`)
-- [x] 경주 한 턴(phase)을 실행한다.
 - [x] 경주 한 턴(phase)을 시작한다. 이 때 이동 전략을 전달받아서 전략에 따라 자동차들을 이동시킨다.
 
 ### RacingGame
