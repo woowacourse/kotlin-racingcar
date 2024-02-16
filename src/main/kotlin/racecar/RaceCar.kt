@@ -1,7 +1,11 @@
-data class RaceCar(
+class RaceCar(
     val name: String,
-    private var position: Int = DEFAULT_START_POSITION,
+    startPoint: Int = DEFAULT_START_POSITION,
+    private val moveStrategy: MoveStrategy = defaultMoveStrategy,
 ) : Comparable<RaceCar> {
+
+    var position: Int = startPoint
+        private set
 
     init {
         require(name.any { it.isWhitespace() }.not()) { "빈 문자열을 포함할 수 없습니다." }
@@ -10,19 +14,23 @@ data class RaceCar(
         }
     }
 
-    fun moveOrStop(score: Int): Boolean {
-        if (score in UNDER_BOUND..UPPER_BOUND) {
-            position++
-            return true
-        }
-        return false
+    fun move(score: Int) {
+        position += moveStrategy.move(score)
     }
 
     override fun compareTo(other: RaceCar) = (position - other.position)
 
     override fun toString(): String = "$name : ${DISTANCE_UNIT.repeat(position)}"
 
+    fun interface MoveStrategy {
+        fun move(score: Int): Int
+    }
+
     companion object {
+        private val defaultMoveStrategy =
+            MoveStrategy { if (it in UNDER_BOUND..UPPER_BOUND) DEFAULT_OFFSET else STOP }
+        private const val DEFAULT_OFFSET = 1
+        private const val STOP = 0
         private const val DEFAULT_START_POSITION = 0
         private const val DISTANCE_UNIT = "-"
         private const val UNDER_BOUND = 5
