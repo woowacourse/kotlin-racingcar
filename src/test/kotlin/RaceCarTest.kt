@@ -1,5 +1,4 @@
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
+import org.junit.jupiter.api.Assertions.*
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -18,8 +17,9 @@ class RaceCarTest {
     fun `score가 5 ~ 9 범위 밖일 때 멈춘다`(score: Int) {
         // given
         val raceCar = RaceCar("foo")
+        raceCar.moveOrStop(score)
         // then
-        assertFalse(raceCar.moveOrStop(score))
+        assertEquals(raceCar.toString(), "foo : ")
     }
 
     @ParameterizedTest
@@ -27,7 +27,8 @@ class RaceCarTest {
     fun `score가 5 ~ 9 범위 안일 때 전진한다`(score: Int) {
         // given
         val raceCar = RaceCar("foo")
+        raceCar.moveOrStop(score)
         // then
-        assertTrue(raceCar.moveOrStop(score))
+        assertEquals(raceCar.toString(), "foo : -")
     }
 }

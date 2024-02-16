@@ -14,12 +14,10 @@ data class RaceCar(
         distance = initialDistance
     }
 
-    fun moveOrStop(score: Int): Boolean {
+    fun moveOrStop(score: Int) {
         if (score in UNDER_BOUND..UPPER_BOUND) {
             distance++
-            return true
         }
-        return false
     }
 
     override fun compareTo(other: RaceCar) = (distance - other.distance)
