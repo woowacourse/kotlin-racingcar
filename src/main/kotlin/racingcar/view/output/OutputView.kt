@@ -19,10 +19,13 @@ class OutputView {
 
     fun printProcessStep(cars: List<Car>) {
         cars.forEach { car ->
-            println(car.getStepState())
+            printCarStepState(car)
         }
         lineBreak()
     }
+
+    private fun printCarStepState(car: Car) =
+        println("$car : ${"-".repeat(car.forwardCount)}")
 
     fun printWinners(winners: List<Car>) {
         print(OutputConstants.WINNERS_MESSAGE + winners.joinToString(OutputConstants.WINNERS_DELIMITER))
