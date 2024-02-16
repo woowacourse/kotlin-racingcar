@@ -8,7 +8,7 @@ class InputView {
         val carName = readln()
         InputExceptions.checkCarNames(carName)
 
-        return carName.trim().split(",")
+        return carName.trim().split(",").map { it.trim() }
     }
 
     fun getRoundCount(): Int {
