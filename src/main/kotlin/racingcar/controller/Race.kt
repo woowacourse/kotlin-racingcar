@@ -13,7 +13,8 @@ class Race {
     fun start() {
         showCarNamesGuide()
         getCars()
-        roundNumber = getRoundNumber()
+        showRoundNumberGuide()
+        getRoundNumber()
         showResult(roundNumber)
         showWinners()
     }
@@ -53,22 +54,20 @@ class Race {
         }
     }
 
-    private fun getRoundNumber(): Int {
-        outputView.printRoundNumberGuide()
-        var roundNumber: Int
+    private fun showRoundNumberGuide() = outputView.printRoundNumberGuide()
 
+    private fun getRoundNumberInput() = inputView.readRoundNumber()
+
+    private fun getRoundNumber() {
         while (true) {
             try {
-                val roundNumberInput = inputView.readRoundNumber()
-
+                val roundNumberInput = getRoundNumberInput()
                 roundNumber = getValidRoundNumber(roundNumberInput)
                 break
             } catch (e: IllegalArgumentException) {
                 println(e.message)
             }
         }
-
-        return roundNumber
     }
 
     fun getValidRoundNumber(roundNumberInput: String): Int {
