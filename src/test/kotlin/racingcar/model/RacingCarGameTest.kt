@@ -31,7 +31,8 @@ class RacingCarGameTest {
         racingCarGame.move(1, 4)
         racingCarGame.move(1, 4)
 
-        assertThat(racingCarGame.findWinners().first().name).isEqualTo("yenny")
+        val expected = listOf(Car("yenny", 2))
+        assertThat(racingCarGame.findWinners()).isEqualTo(expected)
     }
 
     @Test
@@ -41,8 +42,9 @@ class RacingCarGameTest {
         racingCarGame.move(1, 4)
         racingCarGame.move(1, 4)
 
-        val result = racingCarGame.findWinners()
-        assertThat(result.size).isEqualTo(2)
-        assertThat(result.map { it.name }).isEqualTo(listOf("eddy", "yenny"))
+        val actual = racingCarGame.findWinners()
+        val expected = listOf(Car("eddy", 2), Car("yenny", 2))
+        assertThat(actual.size).isEqualTo(2)
+        assertThat(actual).isEqualTo(expected)
     }
 }
