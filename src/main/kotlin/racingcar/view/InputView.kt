@@ -5,6 +5,8 @@ import java.io.BufferedReader
 import java.io.InputStreamReader
 
 object InputView {
+    private val br = BufferedReader(InputStreamReader(System.`in`))
+
     fun inputCarNames(): List<String> {
         println(Message.REGISTER_CAR_NAMES)
         return br.readLine().split(INPUT_SEPARATOR)
@@ -15,6 +17,5 @@ object InputView {
         return br.readLine()
     }
 
-    private val br = BufferedReader(InputStreamReader(System.`in`))
     private const val INPUT_SEPARATOR = ","
 }

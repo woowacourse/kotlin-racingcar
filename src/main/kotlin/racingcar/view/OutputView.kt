@@ -4,7 +4,6 @@ import racingcar.model.Car
 import racingcar.util.Message
 
 object OutputView {
-
     fun outputStartGame() {
         println()
         println(Message.RESULT_START)
@@ -12,7 +11,7 @@ object OutputView {
 
     fun outputRoundResults(cars: List<Car>) {
         cars.forEach { car ->
-            println(Message.ROUND_RESULT.format(car.getName(), PROGRESS_BAR.repeat(car.getStep())))
+            println(Message.ROUND_RESULT.format(car.name, PROGRESS_BAR.repeat(car.position)))
         }
         println()
     }
