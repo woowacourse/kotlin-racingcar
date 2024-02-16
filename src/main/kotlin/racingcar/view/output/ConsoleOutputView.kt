@@ -7,14 +7,10 @@ class ConsoleOutputView : OutputView {
         println(ENTER_NUMBER_OF_ATTEMPTS)
     }
 
-    override fun printExecutionResults(
-        attempts: Int,
-        intermediateResults: List<String>,
-    ) {
-        println("$LINE_BREAK$EXECUTION_RESULTS")
-        repeat(attempts) {
-            println(intermediateResults.joinToString(separator = INTERMEDIATE_RESULT_DELIMITERS, postfix = LINE_BREAK))
-        }
+    override fun printExecutionResult() = println("$LINE_BREAK$EXECUTION_RESULTS")
+
+    override fun printProgress(intermediateResults: List<String>) {
+        println(intermediateResults.joinToString(separator = INTERMEDIATE_RESULT_DELIMITERS, postfix = LINE_BREAK))
     }
 
     override fun printLastWinner(winners: List<String>) = print("$LINE_BREAK$LAST_WINNER ${winners.joinToString(LAST_WINNERS_SEPARATOR)}")
