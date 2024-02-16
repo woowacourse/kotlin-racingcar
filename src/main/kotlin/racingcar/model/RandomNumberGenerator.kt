@@ -1,4 +1,4 @@
-package racingcar.controller
+package racingcar.model
 
 import kotlin.random.Random
 import kotlin.random.nextInt
