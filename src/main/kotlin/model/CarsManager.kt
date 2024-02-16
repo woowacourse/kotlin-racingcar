@@ -2,12 +2,12 @@ package model
 
 import util.NumberGenerator
 
-class CarsManager(private val randomNumber: NumberGenerator) {
+class CarsManager(carsName: List<String>, private val randomNumber: NumberGenerator) {
 
-    lateinit var cars: List<Car>
+    var cars: List<Car>
         private set
 
-    fun create(carsName: List<String>) {
+    init {
         cars = carsName.map { Car(it) }
     }
 
