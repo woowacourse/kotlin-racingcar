@@ -1,6 +1,6 @@
 class RaceCars(
     val cars: List<RaceCar>,
-    private val numberGenerator: NumberGenerator,
+    private val scoreGenerator: ScoreGenerator,
 ) {
     init {
         require(cars.distinct().size == cars.size) { "차는 중복될 수 없습니다." }
@@ -16,7 +16,7 @@ class RaceCars(
 
     fun move() {
         cars.forEach {
-            it.move(numberGenerator.generate())
+            it.move(scoreGenerator.generate())
         }
     }
 
@@ -32,23 +32,23 @@ class RaceCars(
         other as RaceCars
 
         if (cars != other.cars) return false
-        if (numberGenerator.generate() != other.numberGenerator.generate()) return false
+        if (scoreGenerator.generate() != other.scoreGenerator.generate()) return false
 
         return true
     }
 
     override fun hashCode(): Int {
         var result = cars.hashCode()
-        result = 31 * result + numberGenerator.generate().hashCode()
+        result = 31 * result + scoreGenerator.generate().hashCode()
         return result
     }
 
     companion object {
         fun from(
             carNames: List<String>,
-            numberGenerator: NumberGenerator,
+            scoreGenerator: ScoreGenerator,
         ): RaceCars {
-            return RaceCars(carNames.map { RaceCar(it) }, numberGenerator)
+            return RaceCars(carNames.map { RaceCar(it) }, scoreGenerator)
         }
     }
 }

@@ -6,7 +6,7 @@ import kotlin.random.Random
 class RaceCarGame(
     private val inputView: RaceCarGameInputView = KernelRaceCarGameInputView(),
     private val outputView: RaceCarGameOutputView = KernelRaceCarGameOutputView(),
-    private val numberGenerator: NumberGenerator = NumberGenerator { Random.nextInt(10) },
+    private val scoreGenerator: ScoreGenerator = ScoreGenerator { Random.nextInt(10) },
 ) {
     fun start() {
         val cars: RaceCars = initRaceCars()
@@ -18,7 +18,7 @@ class RaceCarGame(
         outputView.outputCarNamesRequest()
         return RaceCars.from(
             carNames = inputView.inputCarNames(),
-            numberGenerator = numberGenerator,
+            scoreGenerator = scoreGenerator,
         )
     }
 
