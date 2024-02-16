@@ -5,6 +5,15 @@ import org.junit.jupiter.api.assertThrows
 
 class RaceCarTest {
     @Test
+    fun `자동차 이름과 position이 같으면 같은 자동차이다`() {
+        // given
+        val raceCar1 = RaceCar("foo", 2)
+        val raceCar2 = RaceCar("foo", 2)
+        // then
+        assertThat(raceCar1).isEqualTo(raceCar2)
+    }
+
+    @Test
     fun `자동차 이름은 whiteSpace 를 포함할 수 없다`() {
         assertThrows<IllegalArgumentException>("빈 문자열을 포함할 수 없습니다.") {
             RaceCar(" obar")
