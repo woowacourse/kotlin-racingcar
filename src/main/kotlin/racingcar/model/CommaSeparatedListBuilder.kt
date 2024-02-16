@@ -1,5 +1,5 @@
-package racingcar.controller
+package racingcar.model
 
-class CommaSeparatedListBuilder() {
+class CommaSeparatedListBuilder {
     fun commaSeparatedListBuild(carNamesText: String) = carNamesText.split(Regex("\\s*,\\s*")).map { it.trim() }
 }
