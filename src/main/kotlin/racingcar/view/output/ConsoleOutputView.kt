@@ -1,13 +1,13 @@
-package racingcar.view
+package racingcar.view.output
 
-class OutputView {
-    fun enterCarNames() = println(ENTER_CAR_NAMES)
+class ConsoleOutputView : OutputView {
+    override fun enterCarNames() = println(ENTER_CAR_NAMES)
 
-    fun enterNumberOfAttempts() {
+    override fun enterNumberOfAttempts() {
         println(ENTER_NUMBER_OF_ATTEMPTS)
     }
 
-    fun printExecutionResults(
+    override fun printExecutionResults(
         attempts: Int,
         intermediateResults: List<String>,
     ) {
@@ -17,7 +17,7 @@ class OutputView {
         }
     }
 
-    fun printLastWinner(winners: List<String>) = print("$LINE_BREAK$LAST_WINNER ${winners.joinToString(LAST_WINNERS_SEPARATOR)}")
+    override fun printLastWinner(winners: List<String>) = print("$LINE_BREAK$LAST_WINNER ${winners.joinToString(LAST_WINNERS_SEPARATOR)}")
 
     companion object {
         private const val ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
