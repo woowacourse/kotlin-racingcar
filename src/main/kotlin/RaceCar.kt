@@ -1,12 +1,17 @@
 data class RaceCar(
     val name: String,
 ) : Comparable<RaceCar> {
+
     private var distance: Int = 0
 
     init {
         require(name.length <= 5) {
             "자동차 이름은 5자를 초과할 수 없다."
         }
+    }
+
+    constructor(name: String, initialDistance: Int) : this(name) {
+        distance = initialDistance
     }
 
     fun moveOrStop(score: Int): Boolean {

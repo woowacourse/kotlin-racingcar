@@ -1,4 +1,4 @@
-data class RaceCars(
+class RaceCars(
     private val cars: List<RaceCar>,
     private val numberGenerator: NumberGenerator,
 ) {
@@ -22,24 +22,6 @@ data class RaceCars(
     override fun toString() = StringBuilder()
         .apply { cars.forEach { append("$it\n") } }
         .toString()
-
-    override fun equals(other: Any?): Boolean {
-        if (this === other) return true
-        if (javaClass != other?.javaClass) return false
-
-        other as RaceCars
-
-        if (cars != other.cars) return false
-        if (numberGenerator.generate() != other.numberGenerator.generate()) return false
-
-        return true
-    }
-
-    override fun hashCode(): Int {
-        var result = cars.hashCode()
-        result = 31 * result + numberGenerator.generate().hashCode()
-        return result
-    }
 
     companion object {
         fun from(carNames: List<String>, numberGenerator: NumberGenerator): RaceCars {

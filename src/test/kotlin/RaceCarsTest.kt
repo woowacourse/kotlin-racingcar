@@ -30,9 +30,10 @@ class RaceCarsTest {
     @Test
     fun `가장 선두 주자에 있는 차들을 찾을 수 있다`() {
         // given
-        val headCar = RaceCar("foo").apply { moveOrStop(5) }
-        val headCar2 = RaceCar("bar").apply { moveOrStop(6) }
-        val car = RaceCar("june").apply { moveOrStop(4) }
+        val headCar = RaceCar("foo", 1)
+        val headCar2 = RaceCar("bar", 1)
+        val car = RaceCar("june", 0)
+
         val raceCars = RaceCars(listOf(headCar, headCar2, car), { 2 })
         val expectedHeadGroup = listOf(headCar, headCar2)
         // when
