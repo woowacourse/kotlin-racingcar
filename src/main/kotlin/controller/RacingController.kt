@@ -13,8 +13,7 @@ class RacingController(
         val carsName = inputView.readCarsName()
         val attemptCount = inputView.readAttemptCount()
 
-        val carsManager = CarsManager(RandomNumber())
-        carsManager.create(carsName)
+        val carsManager = CarsManager(carsName, RandomNumber())
         outputView.printResultComment()
         repeat(attemptCount) {
             carsManager.move()
