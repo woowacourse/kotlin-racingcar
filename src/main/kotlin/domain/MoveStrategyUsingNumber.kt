@@ -1,8 +1,8 @@
 package domain
 
-class MoveStrategyUsingNumber(private val generatedNumber: Int) : MoveStrategy {
+class MoveStrategyUsingNumber(private val numberGenerator: NumberGenerator) : MoveStrategy {
     override fun move(car: Car) {
-        if (generatedNumber >= MOVE_LOWER_BOUND) {
+        if (numberGenerator.generate() >= MOVE_LOWER_BOUND) {
             car.move()
         }
     }
