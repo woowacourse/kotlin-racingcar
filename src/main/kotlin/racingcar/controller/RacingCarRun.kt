@@ -23,25 +23,44 @@ class RacingCarRun {
         repeat(numberOfCars) {
             cars.add(Car(nameOfCars[it]))
         }
-        while (!exceptionHandling.nameFormat(carNames) ||
-            !exceptionHandling.limitNumberOfCars(numberOfCars) ||
-            !exceptionHandling.duplicatedCarName(nameOfCars)
-        ) {
-            carNames = inputView.askCarNames()
-            nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild(carNames)
-            numberOfCars = nameOfCars.size
-            cars.clear()
-            repeat(numberOfCars) {
-                cars.add(Car(nameOfCars[it]))
+        while (true) {
+            try {
+                inputView.duplicatedCarName(nameOfCars)
+                inputView.nameFormat(carNames)
+                inputView.limitNumberOfCars(numberOfCars)
+                break
+            } catch (e: IllegalArgumentException) {
+                if (nameOfCars.size != nameOfCars.toSet().size) {
+                    println(DUPLICATED_CAR_NAME_ERROR)
+                }
+                if (numberOfCars !in 1..100) {
+                    println(NUMBER_OF_CAR_ERROR)
+                }
+                if (!Regex("^[a-zA-Z가-힣,]+\$").matches(carNames)){
+                    println(NAME_FORMAT_ERROR)
+                }
+                carNames = inputView.askCarNames()
+                nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild(carNames)
+                numberOfCars = nameOfCars.size
+                cars.clear()
+                repeat(numberOfCars) {
+                    cars.add(Car(nameOfCars[it]))
+                }
             }
         }
-        outputView.enterNumberOfAttempts()
+        inputView.enterNumberOfAttempts()
         var numberOfAttempts = inputView.askNumberOfAttempts()
-        while (!exceptionHandling.limitNumberOfAttempts(numberOfAttempts)) {
-            numberOfAttempts = inputView.askNumberOfAttempts()
+        while (true) {
+            try {
+                inputView.limitNumberOfAttempts(numberOfAttempts)
+                break
+            } catch (ex: IllegalArgumentException) {
+                numberOfAttempts = inputView.askNumberOfAttempts()
+                println(NUMBER_OF_ATTEMPTS_ERROR)
+            }
         }
-        outputView.printExecutionResults()
-        val randomNumberGenerator = RandomNumberGenerator(numberOfCars)
+        inputView.printExecutionResults()
+        val randomNumberGenerator = RandomNumberGenerator()
 
         repeat(numberOfAttempts) {
             val randomNumbers = randomNumberGenerator.putRandomNumbers()
