@@ -12,7 +12,7 @@ object Validation {
     private const val MINIMUM_ATTEMPT_COUNT = 1
     private const val ATTEMPT_COUNT_RANGE_ERROR_MESSAGE = "[ERROR] 시도 횟수는 양수여야 합니다."
 
-    fun carsName(carsName: String) {
+    fun checkCarsName(carsName: String) {
         checkSplitter(carsName)
 
         val splittedCarsName = carsName.split(CAR_NAME_SPLITTER)
@@ -22,7 +22,7 @@ object Validation {
         }
     }
 
-    fun attemptCount(attemptCount: String) {
+    fun checkAttemptCount(attemptCount: String) {
         checkIsNum(attemptCount)
         checkIsPositiveNum(attemptCount.toInt())
     }

@@ -6,14 +6,14 @@ class InputView {
     fun readCarsName(): List<String> {
         println(CAR_NAME_READ_COMMENT)
         val carsName = readln()
-        Validation.carsName(carsName)
+        Validation.checkCarsName(carsName)
         return carsName.split(CAR_NAME_SPLITTER)
     }
 
     fun readAttemptCount(): Int {
         println(ATTEMPT_COUNT_READ_COMMENT)
         val attemptCount = readln()
-        Validation.attemptCount(attemptCount)
+        Validation.checkAttemptCount(attemptCount)
         return attemptCount.toInt()
     }
 
