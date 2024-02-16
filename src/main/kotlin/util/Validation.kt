@@ -33,7 +33,7 @@ object Validation {
     }
 
     private fun checkNameLength(carName: String) {
-        require( carName.length in CAR_NAME_MIN_LENGTH.. CAR_NAME_MAX_LENGTH) { CAR_NAME_LENGTH_ERROR_MESSAGE }
+        require(carName.length in CAR_NAME_MIN_LENGTH..CAR_NAME_MAX_LENGTH) { CAR_NAME_LENGTH_ERROR_MESSAGE }
     }
 
     private fun checkNameDuplication(carsName: List<String>) {

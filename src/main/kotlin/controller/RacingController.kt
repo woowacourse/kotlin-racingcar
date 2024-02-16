@@ -6,8 +6,7 @@ import view.InputView
 import view.OutputView
 
 class RacingController(
-    private val inputView: InputView = InputView(),
-    private val outputView: OutputView = OutputView()
+    private val inputView: InputView = InputView(), private val outputView: OutputView = OutputView()
 ) {
 
     fun run() {
