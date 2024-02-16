@@ -13,18 +13,13 @@ class RaceCarGame(
         startRaceGame(cars, trialCount)
     }
 
-    private fun initRaceCars(): RaceCars {
-        outputView.outputCarNamesRequest()
-        return RaceCars(
+    private fun initRaceCars() =
+        RaceCars(
             carNames = inputView.inputCarNames(),
             scoreGenerator = scoreGenerator,
         )
-    }
 
-    private fun initTrialCount(): Int {
-        outputView.outputTrialCountRequest()
-        return inputView.inputTrialCount()
-    }
+    private fun initTrialCount(): Int = inputView.inputTrialCount()
 
     private fun startRaceGame(
         cars: RaceCars,
