@@ -1,6 +1,6 @@
 package racingcar.model
 
-class Cars(
+class CarHandler(
     private val cars: List<Car>,
     private val randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator(),
 ) {
@@ -9,10 +9,10 @@ class Cars(
         require(cars.size in MINIMUM_NUMBER_OF_CAR..MAXIMUM_NUMBER_OF_CAR) { DUPLICATE_CAR_NAME_ERROR_MESSAGE }
     }
 
-    fun proceed(attempts: Int) {
-        repeat(attempts) {
+    fun proceed() {
+        cars.forEach { car ->
             val number = randomNumberGenerator.make()
-            cars.forEach { car -> car.move(number) }
+            car.move(number)
         }
     }
 
