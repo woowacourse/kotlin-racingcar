@@ -1,9 +1,6 @@
-package racingcar
+package racingcar.util
 
-import racingcar.util.Constant
-import racingcar.util.InputException
-
-class InputValidator {
+object InputValidator {
     fun validateCarNames(carNames: List<String>) {
         validateNumberOfCar(carNames)
         validateCarNamesDuplicate(carNames)

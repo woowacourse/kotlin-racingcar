@@ -9,5 +9,4 @@ enum class InputException(private val message: String) {
     INVALID_NUMBER_OF_ROUND_RANGE("시도할 횟수는 1회 이상의 숫자여야 한다.");
 
     fun getMessage() = "[ERROR] $message"
-
 }
