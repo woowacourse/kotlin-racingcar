@@ -1,22 +1,20 @@
 package racingcar.view
 
-import racingcar.utils.Exceptions
-
+import racingcar.utils.InputExceptions
 
 class InputView {
-
-    fun getCarNames(): List<String>{
+    fun getCarNames(): List<String> {
         println(MESSAGE_CAR_NAME)
         val carName = readln()
-        Exceptions.checkCarNames(carName)
+        InputExceptions.checkCarNames(carName)
 
         return carName.trim().split(",")
     }
 
-    fun getRoundCount(): Int{
+    fun getRoundCount(): Int {
         println(MESSAGE_ROUND_COUNT)
         val round = readln()
-        Exceptions.checkRoundCnt(round)
+        InputExceptions.checkRoundCnt(round)
 
         return round.toInt()
     }

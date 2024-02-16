@@ -7,16 +7,16 @@ import racingcar.view.OutputView
 
 class RacingCarController(
     private val inputView: InputView,
-    private val outputView: OutputView
+    private val outputView: OutputView,
 ) {
-
     private lateinit var racingCarGame: RacingCarGame
 
     fun run() {
         val carNames = inputView.getCarNames()
-        val cars = carNames.map { name ->
-            Car(name)
-        }
+        val cars =
+            carNames.map { name ->
+                Car(name)
+            }
         val round = inputView.getRoundCount()
         racingCarGame = RacingCarGame(cars)
         startRound(round)
