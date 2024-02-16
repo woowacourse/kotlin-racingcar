@@ -21,8 +21,9 @@ class CarRacing(
     private fun getCars(): List<Car> {
         outputView.enterCarNames()
         val carNames = inputView.askCarNames()
+        val cars = carNames.map { carName -> Car(carName) }
 
-        return carNames.map { carName -> Car(carName) }
+        return cars
     }
 
     private fun race(cars: List<Car>) {
