@@ -1,16 +1,12 @@
 package racingcar.controller
 
-import racingcar.model.Car
-import racingcar.model.Settings
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingCarRun {
     private val inputView = InputView()
     private val outputView = OutputView()
-    private val moveOrStay = MoveOrStay()
     private val finalWinner = FinalWinner()
-    private val exceptionHandling = ExceptionHandling()
 
     fun run() {
         inputView.printEnterCarNames()
