@@ -20,11 +20,9 @@ class MoveManagerTest {
         assertThat(moveManager.isMoveAble(num)).isFalse()
     }
 
-
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
-    fun `전진을 위한 최솟값보다 크거나 같은 값이 뽑힌 경우 true 반환`() {
-        val num = 4
+    fun `전진을 위한 최솟값보다 크거나 같은 값이 뽑힌 경우 true 반환`(num: Int) {
         assertThat(moveManager.isMoveAble(num)).isTrue()
     }
 }

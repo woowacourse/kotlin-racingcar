@@ -15,7 +15,7 @@ class RandomNumberGeneratorTest {
     }
 
     @RepeatedTest(value = 100)
-    fun `선택된 랜덤 숫자가 0에서 9 사이에 있는지의 여부 테스트`() {
+    fun `선택된 랜덤 숫자가 허용 범위 내에 있는지의 여부 테스트`() {
         val randomNumber = randomNumberGenerator.getRandomNumber()
         assertThat(randomNumber).isBetween(MINIMUM_RANDOM_SELECTION_NUM, MAXIMUM_RANDOM_SELECTION_NUM - 1)
     }
