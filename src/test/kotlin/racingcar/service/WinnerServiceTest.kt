@@ -2,6 +2,7 @@ package racingcar.service
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.Assertions.assertTrue
+import racingcar.constant.MoveConstant
 import racingcar.domain.Car
 
 class WinnerServiceTest {
@@ -13,12 +14,13 @@ class WinnerServiceTest {
             Car("car1"),
             Car("car2")
         )
-        cars[0].move(9)
-        cars[0].move(9)
-        cars[0].move(9)
-        cars[0].move(9)
-        cars[1].move(9)
-        cars[1].move(9)
+        repeat(3) {
+            cars[0].move(MoveConstant.FORWARD_NUMBER)
+
+        }
+        repeat(2) {
+            cars[1].move(MoveConstant.FORWARD_NUMBER)
+        }
 
         val winnerService = WinnerService()
         val winners = winnerService.findWinners(cars)
