@@ -46,7 +46,7 @@ class RaceCars(
     }
 
     companion object {
-        fun from(
+        operator fun invoke(
             carNames: List<String>,
             scoreGenerator: ScoreGenerator,
         ): RaceCars {

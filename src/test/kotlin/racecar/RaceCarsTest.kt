@@ -24,7 +24,7 @@ class RaceCarsTest {
         // given
         val expectedRaceCars = RaceCars(listOf(RaceCar("foo"), RaceCar("bar")), { 1 })
         // when
-        val actualRaceCars = RaceCars.from(listOf("foo", "bar"), { 1 })
+        val actualRaceCars = RaceCars(listOf("foo", "bar"), { 1 })
         // then
         assertThat(actualRaceCars).isEqualTo(expectedRaceCars)
     }

@@ -15,7 +15,7 @@ class RaceCarGame(
 
     private fun initRaceCars(): RaceCars {
         outputView.outputCarNamesRequest()
-        return RaceCars.from(
+        return RaceCars(
             carNames = inputView.inputCarNames(),
             scoreGenerator = scoreGenerator,
         )
