@@ -1,37 +1,40 @@
 import kotlin.random.Random
 
 class RaceCarGameController {
-    private lateinit var cars: RaceCars
-    private var trialCount: Int = 0
+
+    private val cars: RaceCars by lazy {
+        RaceCars.from(
+            carNames = InputView.inputCarNames(),
+            numberGenerator = { Random.nextInt(10) },
+        )
+    }
+    private val trialCount: Int by lazy {
+        InputView.inputTrialCount()
+    }
+    private val winners: List<RaceCar> by lazy {
+        cars.run {
+            startRace()
+            findHeadGroup()
+        }
+    }
 
     fun run() {
         initRaceCars()
         initTrialCount()
-        startRaceGame()
+        getWinners()
     }
 
     private fun initRaceCars() {
         OutputView.outputCarNamesRequest()
-        cars =
-            RaceCars.from(
-                carNames = InputView.inputCarNames(),
-                numberGenerator = { Random.nextInt(10) },
-            )
+        cars
     }
 
     private fun initTrialCount() {
         OutputView.outputTrialCountRequest()
-        trialCount = InputView.inputTrialCount()
+        trialCount
     }
 
-    private fun startRaceGame() {
-        val winners =
-            cars.run {
-                startRace()
-                findHeadGroup()
-            }
-        OutputView.outputWinners(winners.formatToWinners())
-    }
+    private fun getWinners() = OutputView.outputWinners(winners.formatToWinners())
 
     private fun RaceCars.startRace() {
         OutputView.outputRaceResultTitle()
