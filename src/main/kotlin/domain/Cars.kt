@@ -7,6 +7,12 @@ class Cars private constructor(val cars: List<Car>) {
         }
     }
 
+    fun startPhaseWith(moveStrategy: MoveStrategy) {
+        cars.forEach {
+            moveStrategy.move(it)
+        }
+    }
+
     companion object {
         fun from(
             input: String,

@@ -6,13 +6,14 @@
 
 - [ ] 자동차가 한 칸 전진한다.
 - [x] 자동차 이름이 올바르지 않을 경우 예외 발생 (`IllegalArgumentException`)
-- [x] 위치값을 갖고 있다. 
+- [x] 위치값을 갖고 있다.
 
 ### Cars
 
 - [x] 게임에 출전하는 모든 차를 갖고 있다.
 - [x] Car 이름에 중복이 있으면 예외 발생 (`IllegalArgumentException`)
-- [x] 경주 한 턴(phase)을 실행한다. 
+- [x] 경주 한 턴(phase)을 실행한다.
+- [x] 경주 한 턴(phase)을 시작한다. 이 때 이동 전략을 전달받아서 전략에 따라 자동차들을 이동시킨다.
 
 ### RacingGame
 
@@ -26,10 +27,12 @@
 - [x] ExplicitNumberGenerator : 직접 지정하는 숫자를 리턴한다 (테스트용)
 
 ### MoveStrategy 인터페이스
-- [ ] move 메서드를 가진다. 이것의 조건에 따라 자동차를 움직이게 한다.
+
+- [x] move 메서드를 가진다. 이것의 조건에 따라 자동차를 움직이게 한다.
 
 ### MoveStrategyUsingNumber
-- [ ] 한 자리 숫자를 이동의 조건으로 한다.
+
+- [x] 한 자리 숫자를 이동의 조건으로 한다.
 - 만약 한자리 숫자가 4 이상이면 자동차를 움직이게 한다.
 
 ### TryCount
