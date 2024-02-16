@@ -8,7 +8,6 @@ fun main() {
     RacingGame(
         InputView(),
         OutputView(),
-        RandomNumberGenerator,
         MoveStrategyUsingNumber(RandomNumberGenerator),
     ).start()
 }

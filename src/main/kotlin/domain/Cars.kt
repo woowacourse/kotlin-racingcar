@@ -8,12 +8,10 @@ class Cars private constructor(val cars: List<Car>) {
     }
 
     companion object {
-        fun from(
-            input: String,
-            numberGenerator: NumberGenerator,
-        ) = input.validateCars()
-            .map { Car(it, numberGenerator) }
-            .run { Cars(this) }
+        fun from(input: String) =
+            input.validateCars()
+                .map { Car(it) }
+                .run { Cars(this) }
     }
 }
 

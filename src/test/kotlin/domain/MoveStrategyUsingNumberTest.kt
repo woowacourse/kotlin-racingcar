@@ -11,7 +11,7 @@ class MoveStrategyUsingNumberTest {
 
     @BeforeEach
     fun setUp() {
-        car = Car("pobi", RandomNumberGenerator)
+        car = Car("sh1m")
     }
 
     @ParameterizedTest

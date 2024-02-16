@@ -2,7 +2,6 @@ package controller
 
 import domain.Cars
 import domain.MoveStrategy
-import domain.NumberGenerator
 import domain.TryCount
 import view.InputView
 import view.OutputView
@@ -10,7 +9,6 @@ import view.OutputView
 class RacingGame(
     private val inputView: InputView,
     private val outputView: OutputView,
-    private val numberGenerator: NumberGenerator,
     private val moveStrategy: MoveStrategy,
 ) {
     fun start() {
@@ -20,7 +18,7 @@ class RacingGame(
         race(cars, tryCount)
     }
 
-    private fun readCars(): Cars = Cars.from(inputView.readCars(), numberGenerator)
+    private fun readCars(): Cars = Cars.from(inputView.readCars())
 
     private fun readTryCount(): TryCount = TryCount.from(inputView.readTryCount())
 

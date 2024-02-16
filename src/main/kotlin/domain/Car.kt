@@ -1,6 +1,6 @@
 package domain
 
-data class Car(val name: String, val numberGenerator: NumberGenerator) {
+data class Car(val name: String) {
     var position: Int = 0
         private set
 
