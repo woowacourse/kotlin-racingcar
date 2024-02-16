@@ -1,6 +1,5 @@
 package racingcar.view.output
 
-import racingcar.constants.GameConstants
 import racingcar.constants.OutputConstants
 import racingcar.model.Car
 
@@ -14,7 +13,7 @@ class OutputView {
     }
 
     fun printProcessStepMessage() {
-        println()
+        lineBreak()
         println(OutputConstants.PROCESS_STEP_MESSAGE)
     }
 
@@ -22,10 +21,12 @@ class OutputView {
         cars.forEach { car ->
             println(car.getStepState())
         }
-        println()
+        lineBreak()
     }
 
     fun printWinners(winners: List<Car>) {
         print(OutputConstants.WINNERS_MESSAGE + winners.joinToString(OutputConstants.WINNERS_DELIMITER))
     }
+
+    private fun lineBreak() = println()
 }
