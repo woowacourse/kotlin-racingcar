@@ -111,23 +111,25 @@ class Race {
 
     fun getWinners(cars: List<Car>): List<String> {
         val winners = mutableListOf<String>()
+        val maxPosition = getMaxPosition(cars)
 
         cars.forEach { car ->
-            judgeWinners(car, winners)
+            judgeWinners(car, maxPosition, winners)
         }
         return winners
     }
 
     private fun judgeWinners(
         car: Car,
+        maxPosition: Int,
         winners: MutableList<String>,
     ) {
-        val maxPosition = cars.maxOfOrNull { it.position }
-
         if (car.position == maxPosition) {
             winners.add(car.name)
         }
     }
+
+    private fun getMaxPosition(cars: List<Car>): Int = cars.maxOfOrNull { it.position }!!
 
     private fun showWinners() {
         val winners = getWinners(cars)
