@@ -7,16 +7,18 @@ import view.OutputView
 
 class RacingController(
     private val inputView: InputView = InputView(),
-    private val outputView: OutputView = OutputView()
+    private val outputView: OutputView = OutputView(),
 ) {
-
     fun run() {
         val (attemptCount, carsManager) = raceInitialize()
         racePlay(attemptCount, carsManager)
         raceResult(carsManager)
     }
 
-    private fun racePlay(attemptCount: Int, carsManager: CarsManager) {
+    private fun racePlay(
+        attemptCount: Int,
+        carsManager: CarsManager,
+    ) {
         outputView.printResultComment()
         repeat(attemptCount) {
             carsManager.move()

@@ -1,7 +1,6 @@
 package util
 
 object Validation {
-
     private const val CAR_NAME_SPLITTER = ","
     private const val SPLITTER_ERROR_MESSAGE = "[ERROR] 자동차 이름은 쉼표(,)를 기준으로 구분해주세요."
     private const val CAR_NAME_LENGTH_ERROR_MESSAGE = "[ERROR] 자동차 이름은 5자 이하여야 합니다."
@@ -27,13 +26,12 @@ object Validation {
         checkIsPositiveNum(attemptCount.toInt())
     }
 
-
     private fun checkSplitter(carsName: String) {
         require(carsName.contains(CAR_NAME_SPLITTER)) { SPLITTER_ERROR_MESSAGE }
     }
 
     private fun checkNameLength(carName: String) {
-        require( carName.length in CAR_NAME_MIN_LENGTH.. CAR_NAME_MAX_LENGTH) { CAR_NAME_LENGTH_ERROR_MESSAGE }
+        require(carName.length in CAR_NAME_MIN_LENGTH..CAR_NAME_MAX_LENGTH) { CAR_NAME_LENGTH_ERROR_MESSAGE }
     }
 
     private fun checkNameDuplication(carsName: List<String>) {
