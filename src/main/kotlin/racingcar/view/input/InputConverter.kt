@@ -6,8 +6,9 @@ import racingcar.model.TryCount
 
 object InputConverter {
     fun convertCars(inputCarNames: String) =
-        inputCarNames.split(GameConstants.SPLIT_DELIMITER).map { Car(it) }
+        inputCarNames
+            .split(GameConstants.SPLIT_DELIMITER)
+            .map { Car(it) }
 
-    fun convertTryCount(inputTryCount: String) =
-        TryCount(inputTryCount.toInt())
+    fun convertTryCount(inputTryCount: String) = TryCount(inputTryCount.toInt())
 }

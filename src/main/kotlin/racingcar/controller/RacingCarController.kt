@@ -9,20 +9,22 @@ import racingcar.view.output.OutputView
 
 class RacingCarController(
     private val inputView: InputView,
-    private val outputView: OutputView
+    private val outputView: OutputView,
 ) {
     private val cars = inputCarNames()
     private val tryCount = inputTryCount()
 
-    private fun inputCarNames() = retryWhileNoException {
-        outputView.printInputCarNamesMessage()
-        inputView.readCarNames()
-    }
+    private fun inputCarNames() =
+        retryWhileNoException {
+            outputView.printInputCarNamesMessage()
+            inputView.readCarNames()
+        }
 
-    private fun inputTryCount() = retryWhileNoException {
-        outputView.printInputTryCountMessage()
-        inputView.readTryCount()
-    }
+    private fun inputTryCount() =
+        retryWhileNoException {
+            outputView.printInputTryCountMessage()
+            inputView.readTryCount()
+        }
 
     fun run() {
         outputView.printProcessStepMessage()

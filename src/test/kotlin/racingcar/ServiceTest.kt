@@ -51,10 +51,11 @@ class ServiceTest {
     @Test
     fun `단독 우승자를 확인한다`() {
         // given
-        val cars = listOf(
-            Car("olive"),
-            Car("chae").apply { forward() }
-        )
+        val cars =
+            listOf(
+                Car("olive"),
+                Car("chae").apply { forward() },
+            )
 
         // when
         val winners = winnerService.getWinners(cars)
@@ -66,10 +67,11 @@ class ServiceTest {
     @Test
     fun `공동 우승자를 확인한다`() {
         // given
-        val cars = listOf(
-            Car("olive").apply { forward() },
-            Car("chae").apply { forward() }
-        )
+        val cars =
+            listOf(
+                Car("olive").apply { forward() },
+                Car("chae").apply { forward() },
+            )
 
         // when
         val winners = winnerService.getWinners(cars)
