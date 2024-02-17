@@ -3,7 +3,6 @@ package model
 import util.NumberGenerator
 
 class CarsManager(carsName: List<String>, private val randomNumber: NumberGenerator) {
-
     var cars: List<Car>
         private set
 

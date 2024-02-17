@@ -5,9 +5,7 @@ import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-
 class ValidationTest {
-
     @ParameterizedTest(name = "이름이 {0}면 생성 가능")
     @ValueSource(strings = ["가은,나은,다은", "가나다라마,바사아자차,카타파,하"])
     fun `유효한 자동차 이름 입력 테스트`(carsName: String) {
