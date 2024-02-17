@@ -1,7 +1,6 @@
 package view
 
 class InputView {
-
     fun readCars(): String {
         println(HEADER_READ_CARS)
         return readlnOrNull() ?: throw IllegalArgumentException(INPUT_IS_NULL)

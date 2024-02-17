@@ -4,7 +4,6 @@ import domain.Cars
 import domain.Winners
 
 class OutputView {
-
     fun printResultHeader() = println(HEADER_RESULT)
 
     fun printPhase(cars: Cars) {
@@ -16,8 +15,7 @@ class OutputView {
 
     fun printWinner(winners: Winners) {
         println(
-            "$HEADER_WINNERS " +
-                    "${winners.winners.joinToString(",") { it.name }} "
+            "$HEADER_WINNERS " + "${winners.winners.joinToString(",") { it.name }} ",
         )
     }
 

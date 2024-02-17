@@ -1,9 +1,9 @@
 package domain
 
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
-import kotlin.test.assertTrue
 
 class CarsTest {
     @Test
@@ -34,5 +34,4 @@ class CarsTest {
         cars.startPhase()
         assertTrue { cars.cars.all { it.position == 0 } }
     }
-
 }

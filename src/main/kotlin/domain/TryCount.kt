@@ -1,7 +1,6 @@
 package domain
 
 class TryCount private constructor(val count: Int) {
-
     companion object {
         fun from(input: String) =
             validateCount(input)

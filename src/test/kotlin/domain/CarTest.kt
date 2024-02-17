@@ -6,7 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
-
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "\n", "    "])
     fun `자동차 이름은 공백을 허용하지 않는다`(input: String) {
@@ -44,5 +43,4 @@ class CarTest {
         car.moveIfPossible()
         assertThat(car.position == 1)
     }
-    
 }
