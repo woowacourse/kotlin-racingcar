@@ -6,20 +6,19 @@ import view.InputView
 import view.OutputView
 
 class RacingController(
-    private val inputView: InputView = InputView(), private val outputView: OutputView = OutputView()
 ) {
 
     fun run() {
-        val carsName = inputView.readCarsName()
-        val attemptCount = inputView.readAttemptCount()
+        val carsName = InputView.readCarsName()
+        val attemptCount = InputView.readAttemptCount()
 
         val carsManager = CarsManager(carsName, RandomNumber())
-        outputView.printResultComment()
+        OutputView.printResultComment()
         repeat(attemptCount) {
             carsManager.move()
-            outputView.printRoundResult(carsManager.cars)
+            OutputView.printRoundResult(carsManager.cars)
         }
 
-        outputView.printWinners(carsManager.getWinners())
+        OutputView.printWinners(carsManager.getWinners())
     }
 }
