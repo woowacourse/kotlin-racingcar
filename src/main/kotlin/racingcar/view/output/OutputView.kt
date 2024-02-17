@@ -20,7 +20,7 @@ class OutputView {
 
     fun printProcessStep(cars: List<Car>) {
         cars.forEach { car ->
-            println(car.getStepState())
+            println("$car : ${OutputConstants.FORWARD_SYMBOL.repeat(car.position)}")
         }
         println()
     }

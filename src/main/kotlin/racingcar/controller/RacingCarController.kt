@@ -1,7 +1,6 @@
 package racingcar.controller
 
-import racingcar.service.ForwardService
-import racingcar.service.RandomGenerator
+import racingcar.service.RacingService
 import racingcar.service.WinnerService
 import racingcar.utils.retryWhileNoException
 import racingcar.view.input.InputView
@@ -25,25 +24,22 @@ class RacingCarController(
     }
 
     fun run() {
-        outputView.printProcessStepMessage()
-
-        tryCount.forEach {
-            processStep()
-        }
-
-        val winnerService = WinnerService()
-        val winners = winnerService.getWinners(cars)
-        outputView.printWinners(winners)
+        processStep()
+        getWinner()
     }
 
     private fun processStep() {
-        val forwardService = ForwardService()
-        val randomGenerator = RandomGenerator()
-
-        cars.forEach { car ->
-            val randomNumber = randomGenerator.generate()
-            forwardService.tryForwardCar(car, randomNumber)
+        outputView.printProcessStepMessage()
+        val racingService = RacingService()
+        repeat(tryCount.count) {
+            val currentCars = racingService.startRace(cars)
+            outputView.printProcessStep(currentCars)
         }
-        outputView.printProcessStep(cars)
+    }
+
+    private fun getWinner() {
+        val winnerService = WinnerService()
+        val winners = winnerService.getWinners(cars)
+        outputView.printWinners(winners)
     }
 }
