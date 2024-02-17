@@ -2,7 +2,6 @@ package racingcar.model
 
 import racingcar.view.printProgress
 
-
 const val START_RANGE = 0
 const val END_RANGE = 9
 const val TARGET_NUM = 4
@@ -36,13 +35,15 @@ fun findWinnerNames(cars: List<Car>): List<String> {
 private fun winnerJudge(
     car: Car,
     tmp: Int,
-    winners: MutableList<String>
+    winners: MutableList<String>,
 ): Int {
     val len = car.position
     var num = Math.max(len, tmp)
     if (tmp < num) {
         winners.clear()
         winners.add(car.name)
-    } else if (tmp == len) winners.add(car.name)
+    } else if (tmp == len) {
+        winners.add(car.name)
+    }
     return num
 }

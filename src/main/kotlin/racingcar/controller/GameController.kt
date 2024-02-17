@@ -3,7 +3,10 @@ package racingcar.controller
 import racingcar.model.Car
 import racingcar.model.findWinnerNames
 import racingcar.model.racingCars
-import racingcar.view.*
+import racingcar.view.inputCar
+import racingcar.view.inputTry
+import racingcar.view.printRunMenu
+import racingcar.view.printWinners
 
 fun game() {
     val carNames = inputCarName()
@@ -30,9 +33,15 @@ fun inputTryCnt(): Int {
     return count
 }
 
-fun run(count: Int, cars: MutableList<Car>) {
+fun run(
+    count: Int,
+    cars: MutableList<Car>,
+) {
     printRunMenu()
-    for (i in 1..count) racingCars(cars)
+
+    for (i in 1..count) {
+        racingCars(cars)
+    }
 
     val winners = findWinnerNames(cars)
     printWinners(winners)
