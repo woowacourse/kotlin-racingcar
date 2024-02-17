@@ -1,13 +1,13 @@
 package racingcar.controller
 
 import racingcar.model.Car
-import racingcar.model.MoveManager
+import racingcar.model.MovementDecisionMaker
 import racingcar.model.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 object RacingController {
-    private val manager = MoveManager()
+    private val movementDecisionMaker = MovementDecisionMaker()
     private val numberGenerator = RandomNumberGenerator()
     private lateinit var currentRacingStatus: List<Car>
     fun start() = with(OutputView) {
@@ -36,7 +36,7 @@ object RacingController {
 
     private fun play() {
         currentRacingStatus = currentRacingStatus.map {
-            it.takeIf { manager.isMoveAble(numberGenerator.getRandomNumber()) }?.getMoveStepResult() ?: it
+            it.takeIf { movementDecisionMaker.isMoveAble(numberGenerator.getRandomNumber()) }?.getMoveStepResult() ?: it
         }
 
         currentRacingStatus.forEachIndexed { index, car ->

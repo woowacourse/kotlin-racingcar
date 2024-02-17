@@ -1,6 +1,6 @@
 package racingcar.model
 
-class MoveManager {
+class MovementDecisionMaker {
     fun isMoveAble(num: Int): Boolean = num > STOP_THRESHOLD
 
     companion object {

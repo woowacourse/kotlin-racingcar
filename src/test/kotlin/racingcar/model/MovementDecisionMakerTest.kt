@@ -2,16 +2,15 @@ package racingcar.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class MoveManagerTest {
-    private lateinit var moveManager: MoveManager
+class MovementDecisionMakerTest {
+    private lateinit var moveManager: MovementDecisionMaker
 
     @BeforeEach
     fun setup() {
-        moveManager = MoveManager()
+        moveManager = MovementDecisionMaker()
     }
 
     @ParameterizedTest
