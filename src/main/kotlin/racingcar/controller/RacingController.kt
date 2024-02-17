@@ -1,15 +1,12 @@
 package racingcar.controller
 
 import racingcar.model.Car
-import racingcar.model.MovementDecisionMaker
-import racingcar.model.RandomNumberGenerator
+import racingcar.model.RacingStatusManager
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 object RacingController {
-    private val movementDecisionMaker = MovementDecisionMaker()
-    private val numberGenerator = RandomNumberGenerator()
-    private lateinit var currentRacingStatus: List<Car>
+    private lateinit var racingStatusManager: RacingStatusManager
 
     fun start() = with(OutputView) {
         val names = getValidNames()
@@ -34,21 +31,17 @@ object RacingController {
     }
 
     private fun initializeCars(names: List<String>) {
-        currentRacingStatus = names.map { Car(it) }
+        racingStatusManager = RacingStatusManager(cars = names.map { Car(it) })
     }
 
     private fun play() {
-        setRacingResult()
-        showCurrentRacingStatus()
-    }
-
-    private fun setRacingResult() {
-        currentRacingStatus = currentRacingStatus.map {
-            it.takeIf { movementDecisionMaker.isMoveAble(numberGenerator.getRandomNumber()) }?.getMoveStepResult() ?: it
+        racingStatusManager.also { statusManager ->
+            statusManager.setRacingResult()
+            showCurrentRacingStatus(statusManager.currentRacingStatus)
         }
     }
 
-    private fun showCurrentRacingStatus() {
+    private fun showCurrentRacingStatus(currentRacingStatus: List<Car>) {
         currentRacingStatus.forEach { car ->
             OutputView.apply {
                 printCurrentPosition(car.name, car.position)
@@ -58,7 +51,9 @@ object RacingController {
     }
 
     private fun getWinners(): List<String> {
+        val currentRacingStatus = racingStatusManager.currentRacingStatus
         val maxPosition = currentRacingStatus.maxBy { it.position }.position
+
         return currentRacingStatus.filter { it.position == maxPosition }.map { it.name }
     }
 }

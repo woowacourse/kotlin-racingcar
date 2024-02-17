@@ -16,12 +16,12 @@ class MovementDecisionMakerTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
     fun `정지 최댓값보다 작거나 같은 뽑힌 경우 false 반환`(num: Int) {
-        assertThat(moveManager.isMoveAble(num)).isFalse()
+        assertThat(moveManager.isMovable(num)).isFalse()
     }
 
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `전진을 위한 최솟값보다 크거나 같은 값이 뽑힌 경우 true 반환`(num: Int) {
-        assertThat(moveManager.isMoveAble(num)).isTrue()
+        assertThat(moveManager.isMovable(num)).isTrue()
     }
 }
