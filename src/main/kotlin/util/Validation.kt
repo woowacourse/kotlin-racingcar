@@ -32,11 +32,11 @@ object Validation {
         require(carsName.contains(CAR_NAME_SPLITTER)) { SPLITTER_ERROR_MESSAGE }
     }
 
-    private fun checkNameLength(carName: String) {
+    fun checkNameLength(carName: String) {
         require(carName.length in CAR_NAME_MIN_LENGTH..CAR_NAME_MAX_LENGTH) { CAR_NAME_LENGTH_ERROR_MESSAGE }
     }
 
-    private fun checkNameDuplication(carsName: List<String>) {
+    fun checkNameDuplication(carsName: List<String>) {
         require(carsName.size == carsName.toSet().size) {
             CAR_NAME_DUPLICATE_ERROR_MESSAGE
         }
