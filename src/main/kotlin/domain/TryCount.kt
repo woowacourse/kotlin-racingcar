@@ -2,6 +2,9 @@ package domain
 
 class TryCount private constructor(val count: Int) {
     companion object {
+        private const val EXCEPTION_TRY_COUNT_IS_NOT_INT = "시도 횟수는 정수여야 합니다"
+        private const val EXCEPTION_INVALID_TRY_COUNT_RANGE = "시도 횟수는 0보다 큰 수여야 합니다"
+
         fun from(input: String) =
             validateCount(input)
                 .run { TryCount(this) }
@@ -14,6 +17,3 @@ class TryCount private constructor(val count: Int) {
         }
     }
 }
-
-private const val EXCEPTION_TRY_COUNT_IS_NOT_INT = "시도 횟수는 정수여야 합니다"
-private const val EXCEPTION_INVALID_TRY_COUNT_RANGE = "시도 횟수는 0보다 큰 수여야 합니다"
