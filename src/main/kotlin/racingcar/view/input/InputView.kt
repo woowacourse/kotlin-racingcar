@@ -8,7 +8,7 @@ class InputView {
         val inputCarNames = readlnOrNull()
         InputValidator.validateCarNames(inputCarNames)
 
-        return InputConverter.convertCars(inputCarNames)!!
+        return InputConverter.convertCars(inputCarNames!!)
     }
 
     fun readTryCount(): TryCount {

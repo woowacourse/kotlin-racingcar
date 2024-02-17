@@ -5,21 +5,20 @@ import racingcar.constants.GameConstants
 
 object InputValidator {
     fun validateCarNames(inputCarNames: String?) {
+        require(!inputCarNames.isNullOrEmpty())
         val carNames = splitCarNames(inputCarNames)
-        carNames?.forEach {
-            require(validateCarNameLength(it) && validateCarNameRegex(it)) {
+        carNames.forEach { carName ->
+            require(validateCarNameLength(carName) && validateCarNameRegex(carName)) {
                 ErrorConstants.INVALID_INPUT_ERROR_MESSAGE
             }
         }
-        require(validateEmpty(inputCarNames) && validateCarNamesDuplication(carNames)) {
+        require(validateCarNamesDuplication(carNames)) {
             ErrorConstants.INVALID_INPUT_ERROR_MESSAGE
         }
     }
 
-    private fun splitCarNames(inputCarNames: String?) =
-        inputCarNames?.split(GameConstants.SPLIT_DELIMITER)
-
-    private fun validateEmpty(input: String?) = !input.isNullOrEmpty()
+    private fun splitCarNames(inputCarNames: String) =
+        inputCarNames.split(GameConstants.SPLIT_DELIMITER)
 
     private fun validateCarNameLength(carName: String) =
         carName.length in GameConstants.CAR_NAME_RANGE
@@ -27,20 +26,19 @@ object InputValidator {
     private fun validateCarNameRegex(carName: String) =
         Regex(GameConstants.CAR_NAME_REGEX).matches(carName)
 
-    private fun validateCarNamesDuplication(carNames: List<String>?) =
-        carNames?.size == carNames?.distinct()?.size
+    private fun validateCarNamesDuplication(carNames: List<String>) =
+        carNames.size == carNames.distinct().size
 
     fun validateTryCount(inputTryCount: String?) {
-        require(
-            validateEmpty(inputTryCount) && validateTryCountType(inputTryCount) && validateTryCountRange(inputTryCount)
-        ) {
+        require(!inputTryCount.isNullOrEmpty())
+        require(validateTryCountType(inputTryCount) && validateTryCountRange(inputTryCount)) {
             ErrorConstants.INVALID_INPUT_ERROR_MESSAGE
         }
     }
 
-    private fun validateTryCountType(inputTryCount: String?) =
-        inputTryCount?.toIntOrNull() != null
+    private fun validateTryCountType(inputTryCount: String) =
+        inputTryCount.toIntOrNull() != null
 
-    private fun validateTryCountRange(inputTryCount: String?) =
-        inputTryCount?.toInt() in GameConstants.TRY_COUNT_RANGE
+    private fun validateTryCountRange(inputTryCount: String) =
+        inputTryCount.toInt() in GameConstants.TRY_COUNT_RANGE
 }
