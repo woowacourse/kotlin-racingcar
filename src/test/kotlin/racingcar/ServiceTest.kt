@@ -35,16 +35,16 @@ class ServiceTest {
     }
 
     @Test
-    fun `4 미만일 경우 전진하는지 확인한다`() {
+    fun `4 미만일 경우 전진하지 않는지 확인한다`() {
         // given
-        val car1 = Car("olive")
-        val car2 = Car("chae")
+        val car = Car("olive")
+        val initialPosition = car.position
 
         // when
-        forwardService.tryForwardCar(car1, 0)
+        forwardService.tryForwardCar(car, 0)
 
         // then
-        assertThat(car1.compareTo(car2)).isEqualTo(0)
+        assertThat(car.position).isEqualTo(initialPosition)
     }
 
     /** WinnerService Test */
