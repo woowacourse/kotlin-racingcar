@@ -8,7 +8,7 @@ class TryCount private constructor(val count: Int) {
     }
 }
 
-fun String.isValidCount(): Int {
+private fun String.isValidCount(): Int {
     val count = this.toIntOrNull()
     requireNotNull(count) { EXCEPTION_TRY_COUNT_IS_NOT_INT }
     require(count > 0) { EXCEPTION_INVALID_TRY_COUNT_RANGE }

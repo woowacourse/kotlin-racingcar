@@ -15,7 +15,7 @@ class Cars private constructor(val cars: List<Car>) {
     }
 }
 
-fun String.validateCars(): List<String> {
+private fun String.validateCars(): List<String> {
     val carNames = this.split(",")
     require(carNames.size == carNames.toSet().size) { EXCEPTION_DUPLICATED_NAME }
     return carNames
