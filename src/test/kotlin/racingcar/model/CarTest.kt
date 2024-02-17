@@ -5,16 +5,26 @@ import org.junit.jupiter.api.Test
 
 class CarTest {
     @Test
-    fun `자동차 이동 테스트 - 성공`() {
+    fun `자동차가 있을 때, 한칸 이동시키면, 자동차의 거리는 1이 된다`() {
+        // given
         val myCar = Car("eddy")
+
+        // when
         myCar.move(1)
+
+        // then
         assertThat(myCar.distance).isEqualTo(1)
     }
 
     @Test
-    fun `자동차 이동 테스트 - 실패`() {
+    fun `자동차가 있을 때, 0칸 이동시키면, 자동차의 거리는 변화지 않는다`() {
+        // given
         val myCar = Car("eddy")
-        myCar.move(1)
-        assertThat(myCar.distance).isNotEqualTo(0)
+
+        // when
+        myCar.move(0)
+
+        // then
+        assertThat(myCar.distance).isEqualTo(0)
     }
 }
