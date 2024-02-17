@@ -3,6 +3,7 @@ package racingcar.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import racingcar.random.RacingCarRandomNumber
 
 class RacingCarGameTest {
     private lateinit var racingCarGame: RacingCarGame
@@ -11,7 +12,7 @@ class RacingCarGameTest {
     @BeforeEach
     fun setUp() {
         cars = listOf(Car("eddy"), Car("yenny"), Car("hodu"), Car("leo"))
-        racingCarGame = RacingCarGame(cars)
+        racingCarGame = RacingCarGame(cars, RacingCarRandomNumber)
     }
 
     @Test

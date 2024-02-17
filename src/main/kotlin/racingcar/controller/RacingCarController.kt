@@ -2,6 +2,7 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.RacingCarGame
+import racingcar.random.RacingCarRandomNumber
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -10,7 +11,7 @@ class RacingCarController(private val inputView: InputView, private val outputVi
 
     fun run() {
         val cars = createRacingCar()
-        racingCarGame = RacingCarGame(cars)
+        racingCarGame = RacingCarGame(cars, RacingCarRandomNumber)
         playGame()
     }
 

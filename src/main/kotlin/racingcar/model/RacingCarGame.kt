@@ -1,9 +1,13 @@
 package racingcar.model
 
-import racingcar.utils.RandomNumber.getRandomNumber
+import racingcar.random.RandomNumberGenerator
 
-class RacingCarGame(private val cars: List<Car>) {
-    fun race(): List<Car> = List(cars.size) { index -> move(index, getRandomNumber(MIN_MOVE_NUMBER, MAX_MOVE_NUMBER)) }
+class RacingCarGame(private val cars: List<Car>, private val randomNumberGenerator: RandomNumberGenerator) {
+    fun race(): List<Car> {
+        return List(cars.size) { index ->
+            move(index, randomNumberGenerator.getRandomNumber(MIN_MOVE_NUMBER, MAX_MOVE_NUMBER))
+        }
+    }
 
     fun move(
         index: Int,
