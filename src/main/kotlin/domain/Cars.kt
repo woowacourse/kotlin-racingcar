@@ -22,16 +22,16 @@ class Cars private constructor(val cars: List<Car>) {
 
     companion object {
         fun from(input: String, numberGenerator: NumberGenerator) =
-            input.validateCars()
+            validateForm(input)
                 .map { Car(it, numberGenerator) }
                 .run { Cars(this) }
-    }
-}
 
-private fun String.validateCars(): List<String> {
-    val carNames = this.split(",")
-    require(carNames.size == carNames.toSet().size) { EXCEPTION_DUPLICATED_NAME }
-    return carNames
+        private fun validateForm(input: String): List<String> {
+            val carNames = input.split(",")
+            require(carNames.size == carNames.toSet().size) { EXCEPTION_DUPLICATED_NAME }
+            return carNames
+        }
+    }
 }
 
 private const val EXCEPTION_DUPLICATED_NAME = "중복된 이름이 존재합니다."
