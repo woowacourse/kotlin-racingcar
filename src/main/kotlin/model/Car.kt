@@ -1,6 +1,12 @@
 package model
 
+import util.Validation
+
 class Car(val name: String) {
+
+    init {
+        Validation.checkNameLength(name)
+    }
 
     var forwardCount = DEFAULT_FORWARD_COUNT
         private set

@@ -1,6 +1,7 @@
 package model
 
 import util.NumberGenerator
+import util.Validation
 
 class CarsManager(carsName: List<String>, private val randomNumber: NumberGenerator) {
 
@@ -9,6 +10,7 @@ class CarsManager(carsName: List<String>, private val randomNumber: NumberGenera
 
     init {
         cars = carsName.map { Car(it) }
+        Validation.checkNameDuplication(carsName)
     }
 
     fun move() {
