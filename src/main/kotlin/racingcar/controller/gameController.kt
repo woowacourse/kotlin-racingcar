@@ -24,12 +24,7 @@ fun game() {
 }
 
 fun inputCarName(): MutableList<String> {
-    inputCar()
-    val read = readLine().toString()
-    var carNames = read.split(",").map { it.trim() }
-    for (name in carNames) {
-        require(name.length <= 5)
-    }
+    val carNames = inputCar()
     return carNames.toMutableList()
 }
 
