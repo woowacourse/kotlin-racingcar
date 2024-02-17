@@ -27,11 +27,6 @@ object Validation {
         checkIsPositiveNum(attemptCount.toInt())
     }
 
-
-    private fun checkSplitter(carsName: String) {
-        require(carsName.contains(CAR_NAME_SPLITTER)) { SPLITTER_ERROR_MESSAGE }
-    }
-
     fun checkNameLength(carName: String) {
         require(carName.length in CAR_NAME_MIN_LENGTH..CAR_NAME_MAX_LENGTH) { CAR_NAME_LENGTH_ERROR_MESSAGE }
     }
@@ -40,6 +35,10 @@ object Validation {
         require(carsName.size == carsName.toSet().size) {
             CAR_NAME_DUPLICATE_ERROR_MESSAGE
         }
+    }
+
+    private fun checkSplitter(carsName: String) {
+        require(carsName.contains(CAR_NAME_SPLITTER)) { SPLITTER_ERROR_MESSAGE }
     }
 
     private fun checkIsNum(attemptCount: String) {
