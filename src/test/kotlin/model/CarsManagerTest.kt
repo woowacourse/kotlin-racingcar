@@ -11,7 +11,7 @@ class CarsManagerTest {
 
     @ParameterizedTest
     @MethodSource("provideRandomNumberExample")
-    fun `한 라운드에 따른 자동차 테스트`(randomNumber: Int, forwardCount: Int) {
+    fun `한 라운드에서, Car 객체의 moveForward 메서드가 모두 동작했는지 검증 테스트`(randomNumber: Int, forwardCount: Int) {
         val carsManager = CarsManager(listOf("가나,다라,마바,사")) { randomNumber }
         carsManager.move()
         assertThat(carsManager.cars.all { it.forwardCount == forwardCount }).isTrue
