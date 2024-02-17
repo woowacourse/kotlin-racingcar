@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test
 class CarTest {
 
     @Test
-    fun `전진 기능 테스트`() {
+    fun `moveForward 메서드 인자값에 따른 car 위치 정보 테스트`() {
         val car = Car("서기")
         isMoveExample.forEach { car.moveForward(it) }
 
