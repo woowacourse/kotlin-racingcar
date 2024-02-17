@@ -25,3 +25,21 @@
 - [x] Integer 범위를 초과할 경우
 - [x] 입력값이 공백일 때
 
+
+### 수정해야 할 사항 (Need to be fixed)
+- [ ] RaceTest ERROR FIX
+  - Due to change of companion object of Race class.
+- [ ] WinnerTest ERROR FIX
+  - Two functions are referencing different scope.
+  - getWinners function is using parameter to access "cars".
+  - judgeWinners function is using class memeber variable to access "cars".
+- [ ] Seperate Validation class
+  - To validate the input data globally, it seems seperating validation class reasonable.
+- [ ] Function block lines reduction needed.
+  - All function block lines should be less than 15.
+- [ ] Make private if there is no access from outside.
+- [ ] `assertEquals` -> `assertThat` modify.
+- [ ] Erase unnecessary companion objects.
+  - As Validation class already use the constants, some constants became unnecessary.
+- [ ] Depth Reduction needed.
+  - All depth should be 1.
