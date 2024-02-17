@@ -3,18 +3,14 @@ package racingcar.utils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class InputExceptionUtilsTest {
-    @Test
-    fun `자동차 이름을 5글자 초과로 설정 - 에러 발생`() {
-        val input = "woowahan,tech,course"
+    @ParameterizedTest
+    @ValueSource(strings = ["", " ", ",", ",,"])
+    fun `자동차 이름을 빈 칸으로 입력했을 경우 - 에러 발생`(input: String) {
         assertThrows<IllegalArgumentException> { InputExceptionUtils.checkCarNames(input) }
-    }
-
-    @Test
-    fun `자동차 이름을 5글자 이하로 설정 - 정상 작동`() {
-        val input = "yenny,eddy,hodu,leo"
-        assertDoesNotThrow { InputExceptionUtils.checkCarNames(input) }
     }
 
     @Test
@@ -23,9 +19,9 @@ class InputExceptionUtilsTest {
         assertThrows<IllegalArgumentException> { InputExceptionUtils.checkRoundCnt(input) }
     }
 
-    @Test
-    fun `시도 횟수로 0 이하 값 입력 - 에러 발생`() {
-        val input = "-1"
+    @ParameterizedTest
+    @ValueSource(strings = ["0", "-1", "-10"])
+    fun `시도 횟수로 0 이하 값 입력 - 에러 발생`(input: String) {
         assertThrows<IllegalArgumentException> { InputExceptionUtils.checkRoundCnt(input) }
     }
 
