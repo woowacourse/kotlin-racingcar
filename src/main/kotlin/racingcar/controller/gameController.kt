@@ -6,24 +6,17 @@ import racingcar.model.racingCars
 import racingcar.view.*
 
 fun game() {
-    var carNames: MutableList<String>
-    try {
-        carNames = inputCarName()
-    } catch (e: Exception) {
-        println("[ERROR] 자동차 이름은 5글자를 초과할 수 없습니다.")
-        carNames = inputCarName()
-    }
-    val count = inputTryCnt()
+    val carNames = inputCarName()
     var cars = mutableListOf<Car>()
-    for (carName in carNames) {
-        cars.add(Car(carName))
-    }
+    val count = inputTryCnt()
+
+    carNames.split(",").forEach { cars.add(Car(it)) }
     run(count, cars)
 }
 
-fun inputCarName(): MutableList<String> {
+fun inputCarName(): String {
     val carNames = inputCar()
-    return carNames.toMutableList()
+    return carNames
 }
 
 fun inputTryCnt(): Int {
