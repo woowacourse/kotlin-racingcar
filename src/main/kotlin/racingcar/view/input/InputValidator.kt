@@ -3,7 +3,7 @@ package racingcar.view.input
 import racingcar.constants.ErrorConstants
 import racingcar.constants.GameConstants
 
-class InputValidator {
+object InputValidator {
     fun validateCarNames(inputCarNames: String?) {
         val carNames = splitCarNames(inputCarNames)
         carNames?.forEach {

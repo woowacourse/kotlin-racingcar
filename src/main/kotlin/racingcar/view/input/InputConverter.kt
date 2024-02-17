@@ -4,7 +4,7 @@ import racingcar.constants.GameConstants
 import racingcar.model.Car
 import racingcar.model.TryCount
 
-class InputConverter {
+object InputConverter {
     fun convertCars(inputCarNames: String?) =
         inputCarNames?.split(GameConstants.SPLIT_DELIMITER)?.map { Car(it) }
 
