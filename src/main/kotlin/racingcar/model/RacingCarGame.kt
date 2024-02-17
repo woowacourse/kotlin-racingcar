@@ -1,8 +1,9 @@
 package racingcar.model
 
-class RacingCarGame(private val cars: List<Car>) {
+import racingcar.utils.RandomNumber.getRandomNumber
 
-    fun race(): List<Car> = List(cars.size) { index -> move(index, getRandomNumber()) }
+class RacingCarGame(private val cars: List<Car>) {
+    fun race(): List<Car> = List(cars.size) { index -> move(index, getRandomNumber(MIN_MOVE_NUMBER, MAX_MOVE_NUMBER)) }
 
     fun move(
         index: Int,
@@ -11,8 +12,6 @@ class RacingCarGame(private val cars: List<Car>) {
         if (randomNumber >= MOVE_NUMBER) cars[index].move(STEP)
         return cars[index]
     }
-
-    private fun getRandomNumber(): Int = (MIN_MOVE_NUMBER..MAX_MOVE_NUMBER).random()
 
     fun findWinners(): List<Car> {
         val maxDistance = cars.maxOf { it.distance }
