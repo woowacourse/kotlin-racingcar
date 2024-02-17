@@ -1,6 +1,6 @@
 package racingcar
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -17,10 +17,7 @@ class RaceTest {
                 race.validateNames(emptyList())
             }
 
-        assertEquals(
-            ERROR_REQUEST_INPUT,
-            exception.message,
-        )
+        assertThat(exception.message.equals(ERROR_REQUEST_INPUT))
     }
 
     @Test
@@ -31,10 +28,7 @@ class RaceTest {
                 race.validateNames(names)
             }
 
-        assertEquals(
-            ERROR_CAR_LESS_THAN_TWO,
-            exception.message,
-        )
+        assertThat(exception.message.equals(ERROR_CAR_LESS_THAN_TWO))
     }
 
     @Test
@@ -49,10 +43,7 @@ class RaceTest {
                 race.validateNames(names)
             }
 
-        assertEquals(
-            ERROR_CAR_GREATER_THAN_TWENTY,
-            exception.message,
-        )
+        assertThat(exception.message.equals(ERROR_CAR_GREATER_THAN_TWENTY))
     }
 
     @Test
@@ -63,22 +54,17 @@ class RaceTest {
                 race.validateNames(names)
             }
 
-        assertEquals(
-            ERROR_NAME_DUPLICATION,
-            exception.message,
-        )
+        assertThat(exception.message.equals(ERROR_NAME_DUPLICATION))
     }
 
     @Test
     fun exceedIntRangeRoundNumber() {
         val exception =
             assertThrows<IllegalArgumentException> {
-                race.checkRoundNumber("35035810684041351035")
+                race.getValidRoundNumber("35035810684041351035")
             }
-        assertEquals(
-            ERROR_INPUT_NUMBER_ONLY,
-            exception.message,
-        )
+
+        assertThat(exception.message.equals(ERROR_INPUT_NUMBER_ONLY))
     }
 
     @ParameterizedTest
@@ -86,24 +72,20 @@ class RaceTest {
     fun inputLetterForRoundNumber(roundNumber: String) {
         val exception =
             assertThrows<IllegalArgumentException> {
-                race.checkRoundNumber(roundNumber)
+                race.getValidRoundNumber(roundNumber)
             }
-        assertEquals(
-            ERROR_INPUT_NUMBER_ONLY,
-            exception.message,
-        )
+
+        assertThat(exception.message.equals(ERROR_INPUT_NUMBER_ONLY))
     }
 
     @Test
     fun inputEmptyRoundNumber() {
         val exception =
             assertThrows<IllegalArgumentException> {
-                race.checkRoundNumber("")
+                race.getValidRoundNumber("")
             }
-        assertEquals(
-            ERROR_INPUT_NUMBER_ONLY,
-            exception.message,
-        )
+
+        assertThat(exception.message.equals(ERROR_INPUT_NUMBER_ONLY))
     }
 
     @ParameterizedTest
@@ -113,10 +95,8 @@ class RaceTest {
             assertThrows<IllegalArgumentException> {
                 race.getValidRoundNumber(roundNumber)
             }
-        assertEquals(
-            ERROR_ROUND_LESS_THAN_ONE,
-            exception.message,
-        )
+
+        assertThat(exception.message.equals(ERROR_ROUND_LESS_THAN_ONE))
     }
 
     companion object {
