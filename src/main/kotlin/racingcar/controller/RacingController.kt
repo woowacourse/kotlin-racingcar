@@ -10,13 +10,16 @@ object RacingController {
     private val movementDecisionMaker = MovementDecisionMaker()
     private val numberGenerator = RandomNumberGenerator()
     private lateinit var currentRacingStatus: List<Car>
+
     fun start() = with(OutputView) {
         val names = getValidNames()
         val trialNum = getValidTrial()
 
         initializeCars(names)
+
         printTrialResultMessage()
         repeat(trialNum) { play() }
+
         printFinalWinners(getWinners())
     }
 
@@ -35,14 +38,21 @@ object RacingController {
     }
 
     private fun play() {
+        setRacingResult()
+        showCurrentRacingStatus()
+    }
+
+    private fun setRacingResult() {
         currentRacingStatus = currentRacingStatus.map {
             it.takeIf { movementDecisionMaker.isMoveAble(numberGenerator.getRandomNumber()) }?.getMoveStepResult() ?: it
         }
+    }
 
-        currentRacingStatus.forEachIndexed { index, car ->
+    private fun showCurrentRacingStatus() {
+        currentRacingStatus.forEach { car ->
             OutputView.apply {
                 printCurrentPosition(car.name, car.position)
-                if (index == currentRacingStatus.size - 1) printEmptyLine()
+                if (car == currentRacingStatus.last()) printEmptyLine()
             }
         }
     }
