@@ -1,12 +1,11 @@
 package racingcar.model
 
+import racingcar.validator.Validation
 import kotlin.random.Random
 
 data class Car(val name: String, var position: Int = INITIAL_POSITION) {
     init {
-        require(name.isNotEmpty()) { ERROR_CAR_NAME_BLANK }
-        require(name.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH) { ERROR_CAR_NAME_OUT_OF_RANGE }
-        require(!name.contains(SPACE)) { ERROR_CAR_NAME_CONTAINS_SPACE }
+        Validation().carName(name)
     }
 
     private fun getRandomNumber(): Int = Random.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
