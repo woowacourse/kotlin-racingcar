@@ -1,6 +1,6 @@
 package racingcar.model
 
-class Car(private val name: String) : Comparable<Car> {
+class Car(private val name: String) {
     var forwardCount = 0
         private set
 
@@ -9,7 +9,4 @@ class Car(private val name: String) : Comparable<Car> {
     }
 
     override fun toString() = name
-
-    override fun compareTo(other: Car) =
-        other.forwardCount.compareTo(this.forwardCount)
 }
