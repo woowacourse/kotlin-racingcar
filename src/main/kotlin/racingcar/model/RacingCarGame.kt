@@ -4,7 +4,10 @@ class RacingCarGame(private val cars: List<Car>) {
 
     fun race(): List<Car> = List(cars.size) { index -> move(index, getRandomNumber()) }
 
-    fun move(index: Int, randomNumber: Int): Car {
+    fun move(
+        index: Int,
+        randomNumber: Int,
+    ): Car {
         if (randomNumber >= MOVE_NUMBER) cars[index].move(STEP)
         return cars[index]
     }
@@ -13,9 +16,7 @@ class RacingCarGame(private val cars: List<Car>) {
 
     fun findWinners(): List<Car> {
         val maxDistance = cars.maxOf { it.distance }
-        return cars.filter { car ->
-            car.distance == maxDistance
-        }
+        return cars.filter { car -> car.distance == maxDistance }
     }
 
     companion object {

@@ -5,11 +5,7 @@ import racingcar.model.RacingCarGame
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class RacingCarController(
-    private val inputView: InputView,
-    private val outputView: OutputView
-) {
-
+class RacingCarController(private val inputView: InputView, private val outputView: OutputView) {
     private lateinit var racingCarGame: RacingCarGame
 
     fun run() {
