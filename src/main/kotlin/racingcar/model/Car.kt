@@ -3,7 +3,7 @@ package racingcar.model
 import racingcar.validator.Validation
 import kotlin.random.Random
 
-data class Car(val name: String, var position: Int = INITIAL_POSITION) {
+class Car(val name: String, var position: Int = INITIAL_POSITION) {
     init {
         Validation().carName(name)
     }

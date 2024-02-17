@@ -41,5 +41,6 @@
 - [x] `assertEquals` -> `assertThat` modify.
 - [x] Erase unnecessary companion objects.
   - As Validation class already use the constants, some constants became unnecessary.
+- [x] Make Car Data class to (just) class.
 - [ ] Depth Reduction needed.
   - All depth should be 1.
