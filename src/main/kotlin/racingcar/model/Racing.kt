@@ -38,10 +38,12 @@ private fun winnerJudge(
     winners: MutableList<String>,
 ): Int {
     val len = car.position
-    var num = Math.max(len, tmp)
+    val num = len.coerceAtLeast(tmp)
     if (tmp < num) {
-        winners.clear()
-        winners.add(car.name)
+        winners.apply {
+            clear()
+            add(car.name)
+        }
     } else if (tmp == len) {
         winners.add(car.name)
     }
