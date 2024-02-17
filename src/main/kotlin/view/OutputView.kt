@@ -20,7 +20,7 @@ class OutputView {
     }
 
     companion object {
-        const val HEADER_RESULT = "실행 결과"
-        const val HEADER_WINNERS = "최종 우승자 :"
+        private const val HEADER_RESULT = "실행 결과"
+        private const val HEADER_WINNERS = "최종 우승자 :"
     }
 }
