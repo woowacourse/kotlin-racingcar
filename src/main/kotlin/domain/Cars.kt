@@ -22,6 +22,8 @@ class Cars private constructor(val cars: List<Car>) {
     }
 
     companion object {
+        private const val EXCEPTION_DUPLICATED_NAME = "중복된 이름이 존재합니다."
+
         fun from(
             input: String,
             numberGenerator: NumberGenerator,
@@ -36,5 +38,3 @@ class Cars private constructor(val cars: List<Car>) {
         }
     }
 }
-
-private const val EXCEPTION_DUPLICATED_NAME = "중복된 이름이 존재합니다."
