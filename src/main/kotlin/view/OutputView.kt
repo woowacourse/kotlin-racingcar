@@ -7,7 +7,7 @@ class OutputView {
 
     fun printPhase(cars: Cars) {
         cars.cars.forEach {
-            println("${it.name} :" + "-".repeat(it.position))
+            println("${it.name} :" + MOVEMENT_INDICATOR.repeat(it.position))
         }
         println()
     }
@@ -32,6 +32,7 @@ class OutputView {
     fun showExceptionMessage(e: Throwable) = println(e.message)
 
     companion object {
+        private const val MOVEMENT_INDICATOR = "-"
         private const val HEADER_RESULT = "실행 결과"
         private const val HEADER_WINNERS = "최종 우승자 :"
     }
