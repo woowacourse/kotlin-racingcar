@@ -6,4 +6,5 @@ object OutputConstants {
     const val PROCESS_STEP_MESSAGE = "실행 결과"
     const val WINNERS_MESSAGE = "최종 우승자 : "
     const val WINNERS_DELIMITER = ", "
+    const val CAR_FORWARD = "-"
 }

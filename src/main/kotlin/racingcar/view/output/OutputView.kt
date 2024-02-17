@@ -25,7 +25,7 @@ class OutputView {
     }
 
     private fun printCarStepState(car: Car) =
-        println("$car : ${"-".repeat(car.forwardCount)}")
+        println("$car : ${OutputConstants.CAR_FORWARD.repeat(car.forwardCount)}")
 
     fun printWinners(winners: List<Car>) {
         print(OutputConstants.WINNERS_MESSAGE + winners.joinToString(OutputConstants.WINNERS_DELIMITER))
