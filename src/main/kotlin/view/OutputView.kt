@@ -29,6 +29,8 @@ class OutputView {
         )
     }
 
+    fun showExceptionMessage(e: Throwable) = println(e.message)
+
     companion object {
         private const val HEADER_RESULT = "실행 결과"
         private const val HEADER_WINNERS = "최종 우승자 :"
