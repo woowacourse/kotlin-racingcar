@@ -3,9 +3,7 @@ package racingcar.view
 import racingcar.utils.checkCarNames
 import racingcar.utils.checkRoundCnt
 
-
 class InputView {
-
     fun getCarNames(): List<String> {
         println(MESSAGE_CAR_NAME)
         return readln().split(",").map { it.trim() }.also { it.checkCarNames() }

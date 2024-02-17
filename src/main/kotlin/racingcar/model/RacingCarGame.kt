@@ -1,21 +1,25 @@
 package racingcar.model
 
-class RacingCarGame(private val cars: List<Car>) {
+import racingcar.random.RandomNumberGenerator
 
-    fun race(): List<Car> = List(cars.size) { index -> move(index, getRandomNumber()) }
+class RacingCarGame(private val cars: List<Car>, private val randomNumberGenerator: RandomNumberGenerator) {
+    fun race(): List<Car> {
+        return List(cars.size) { index ->
+            move(index, randomNumberGenerator.getRandomNumber(MIN_MOVE_NUMBER, MAX_MOVE_NUMBER))
+        }
+    }
 
-    fun move(index: Int, randomNumber: Int): Car {
+    fun move(
+        index: Int,
+        randomNumber: Int,
+    ): Car {
         if (randomNumber >= MOVE_NUMBER) cars[index].move(STEP)
         return cars[index]
     }
 
-    private fun getRandomNumber(): Int = (MIN_MOVE_NUMBER..MAX_MOVE_NUMBER).random()
-
     fun findWinners(): List<Car> {
         val maxDistance = cars.maxOf { it.distance }
-        return cars.filter { car ->
-            car.distance == maxDistance
-        }
+        return cars.filter { car -> car.distance == maxDistance }
     }
 
     companion object {
