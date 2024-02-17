@@ -15,5 +15,5 @@ fun String.isValidCount(): Int {
     return count
 }
 
-const val EXCEPTION_TRY_COUNT_IS_NOT_INT = "시도 횟수는 정수여야 합니다"
-const val EXCEPTION_INVALID_TRY_COUNT_RANGE = "시도 횟수는 0보다 큰 수여야 합니다"
+private const val EXCEPTION_TRY_COUNT_IS_NOT_INT = "시도 횟수는 정수여야 합니다"
+private const val EXCEPTION_INVALID_TRY_COUNT_RANGE = "시도 횟수는 0보다 큰 수여야 합니다"
