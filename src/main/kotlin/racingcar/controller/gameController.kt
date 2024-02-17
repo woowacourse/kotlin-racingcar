@@ -4,8 +4,6 @@ import racingcar.model.Car
 import racingcar.model.findWinnerNames
 import racingcar.model.racingCars
 import racingcar.view.*
-import java.nio.file.Files.move
-
 
 fun game() {
     var carNames: MutableList<String>
@@ -29,12 +27,11 @@ fun inputCarName(): MutableList<String> {
 }
 
 fun inputTryCnt(): Int {
-    inputTry()
     var count = 0
     try {
-        count = readLine()!!.toInt()
-    } catch (e: NumberFormatException) {
-        println("숫자만 입력 해주세요")
+        count = inputTry()
+    } catch (e: Exception) {
+        println(e)
         count = inputTryCnt()
     }
     return count

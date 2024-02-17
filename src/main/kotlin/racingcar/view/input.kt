@@ -11,6 +11,13 @@ fun inputCar(): List<String> {
     return carNames
 }
 
-fun inputTry() {
+fun inputTry(): Int {
     println("시도할 횟수는 몇 회인가요?")
+    val read = readLine().toString()
+
+    return try {
+        read.toInt()
+    } catch (e: NumberFormatException) {
+        throw IllegalArgumentException("숫자만 입력해주세요.")
+    }
 }
