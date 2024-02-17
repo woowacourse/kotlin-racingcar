@@ -3,12 +3,10 @@ package racingcar
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.model.Car
-import racingcar.service.ForwardService
 import racingcar.service.RandomGenerator
 import racingcar.service.WinnerService
 
 class ServiceTest {
-    private val forwardService = ForwardService()
     private val winnerService = WinnerService()
 
     /** RandomGenerator Test */
@@ -28,7 +26,7 @@ class ServiceTest {
         val initialPosition = car.position
 
         // when
-        forwardService.tryForwardCar(car, 4)
+        car.tryForward(4)
 
         // then
         assertThat(car.position).isEqualTo(initialPosition + 1)
@@ -41,7 +39,7 @@ class ServiceTest {
         val initialPosition = car.position
 
         // when
-        forwardService.tryForwardCar(car, 0)
+        car.tryForward(0)
 
         // then
         assertThat(car.position).isEqualTo(initialPosition)
@@ -78,4 +76,8 @@ class ServiceTest {
         assertThat(winners.map { it.toString() })
             .contains("olive", "chae")
     }
+
+    /** RacingService Test */
+    @Test
+    fun
 }
