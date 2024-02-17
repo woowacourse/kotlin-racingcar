@@ -26,27 +26,25 @@ class ServiceTest {
     @Test
     fun `랜덤 숫자가 전진 기준과 같거나 큰 경우 전진하는지 확인한다`() {
         // given
-        val car1 = Car("olive")
-        val car2 = Car("chae").apply { forward() }
+        val car = Car("olive")
 
         // when
-        forwardService.tryForwardCar(car1, 4)
+        forwardService.tryForwardCar(car, 4)
 
         // then
-        assertThat(car1.compareTo(car2)).isEqualTo(0)
+        assertThat(car.forwardCount).isEqualTo(1)
     }
 
     @Test
     fun `랜덤 숫자가 전진 기준보다 작은 경우 전진하지 않는지 확인한다`() {
         // given
-        val car1 = Car("olive")
-        val car2 = Car("chae")
+        val car = Car("olive")
 
         // when
-        forwardService.tryForwardCar(car1, 0)
+        forwardService.tryForwardCar(car, 0)
 
         // then
-        assertThat(car1.compareTo(car2)).isEqualTo(0)
+        assertThat(car.forwardCount).isEqualTo(0)
     }
 
     /** WinnerService Test */
