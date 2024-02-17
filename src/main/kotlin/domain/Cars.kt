@@ -7,6 +7,25 @@ class Cars private constructor(val cars: List<Car>) {
         }
     }
 
+    override fun toString(): String {
+        return "Cars(cars=$cars)"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Cars
+
+        if (cars != other.cars) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return cars.hashCode()
+    }
+
     companion object {
         fun from(input: String) =
             input.validateCars()
@@ -21,4 +40,4 @@ private fun String.validateCars(): List<String> {
     return carNames
 }
 
-const val EXCEPTION_DUPLICATED_NAME = "중복된 이름이 존재합니다."
+private const val EXCEPTION_DUPLICATED_NAME = "중복된 이름이 존재합니다."
