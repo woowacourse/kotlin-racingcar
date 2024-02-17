@@ -1,13 +1,25 @@
 package racingcar
 
+import io.mockk.every
+import io.mockk.mockk
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import racingcar.constants.GameConstants
 import racingcar.model.Car
+import racingcar.service.RacingService
 import racingcar.service.RandomGenerator
 import racingcar.service.WinnerService
 
 class ServiceTest {
     private val winnerService = WinnerService()
+    private lateinit var racingService: RacingService
+    private val randomGenerator = mockk<RandomGenerator>()
+
+    @BeforeEach
+    fun setUp() {
+        racingService = RacingService(randomGenerator)
+    }
 
     /** RandomGenerator Test */
     @Test
@@ -18,31 +30,31 @@ class ServiceTest {
             .isLessThanOrEqualTo(9)
     }
 
-    /** ForwardService Test */
+    /** RacingService Test */
     @Test
-    fun `4 이상일 경우 전진하는지 확인한다`() {
+    fun `랜덤 값이 전진 조건을 충족할 때 자동차가 전진한다`() {
         // given
-        val car = Car("olive")
-        val initialPosition = car.position
+        val cars = listOf(Car("Olive"))
+        every { randomGenerator.generate() } returns GameConstants.FORWARD_FLAG_NUMBER
 
         // when
-        car.tryForward(4)
+        val resultCars = racingService.startRace(cars)
 
         // then
-        assertThat(car.position).isEqualTo(initialPosition + 1)
+        assertThat(resultCars.first().position).isEqualTo(1)
     }
 
     @Test
-    fun `4 미만일 경우 전진하지 않는지 확인한다`() {
+    fun `랜덤 값이 전진 조건을 충족하지 않을 때 자동차가 전진하지 않는다`() {
         // given
-        val car = Car("olive")
-        val initialPosition = car.position
+        val cars = listOf(Car("Olive"))
+        every { randomGenerator.generate() } returns GameConstants.FORWARD_FLAG_NUMBER - 1
 
         // when
-        car.tryForward(0)
+        val resultCars = racingService.startRace(cars)
 
         // then
-        assertThat(car.position).isEqualTo(initialPosition)
+        assertThat(resultCars.first().position).isEqualTo(0)
     }
 
     /** WinnerService Test */
@@ -76,8 +88,4 @@ class ServiceTest {
         assertThat(winners.map { it.toString() })
             .contains("olive", "chae")
     }
-
-    /** RacingService Test */
-    @Test
-    fun
 }
