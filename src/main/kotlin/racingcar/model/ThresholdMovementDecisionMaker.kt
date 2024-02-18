@@ -1,9 +1,7 @@
 package racingcar.model
 
+import racingcar.constants.Constants.STOP_THRESHOLD
+
 class ThresholdMovementDecisionMaker : MovementDecisionMaker {
     override fun isMovable(num: Int): Boolean = num > STOP_THRESHOLD
-
-    companion object {
-        private const val STOP_THRESHOLD = 3
-    }
 }
