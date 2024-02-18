@@ -12,15 +12,6 @@ class Cars(
         require(names.distinct().size == names.size) { ERROR_NAME_DUPLICATION }
     }
 
-    fun makeCars(names: List<String>): List<Car> {
-        val cars = mutableListOf<Car>()
-
-        names.forEach { name ->
-            cars.add(Car(name))
-        }
-        return cars
-    }
-
     companion object {
         const val ERROR_CAR_LESS_THAN_TWO = "[Error] 자동차 이름은 2대 이상 입력해 주세요."
         const val ERROR_CAR_GREATER_THAN_TWENTY = "[Error] 자동차 이름은 20대 이하로 입력해 주세요."

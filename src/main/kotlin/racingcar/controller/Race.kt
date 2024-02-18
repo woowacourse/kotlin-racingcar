@@ -1,7 +1,6 @@
 package racingcar.controller
 
 import racingcar.model.Car
-import racingcar.model.Cars
 import racingcar.model.Winner
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -11,6 +10,7 @@ class Race {
     private val inputView = InputView()
 
     private val winner = Winner()
+    private var names = listOf<String>()
 
     private lateinit var cars: List<Car>
     private var roundNumber: Int = INITIAL_ROUND_NUMBER
@@ -29,16 +29,23 @@ class Race {
     private fun getNames() = inputView.readCarNames()
 
     private fun getCars(): List<Car> {
-        var names: List<String>
-
         while (true) {
             try {
                 names = getNames()
-                cars = Cars(names).makeCars(names)
+                cars = makeCars()
                 break
             } catch (e: IllegalArgumentException) {
                 outputView.printErrorMessage(e.message)
             }
+        }
+        return cars
+    }
+
+    private fun makeCars(): List<Car> {
+        val cars = mutableListOf<Car>()
+
+        names.forEach { name ->
+            cars.add(Car(name))
         }
         return cars
     }
