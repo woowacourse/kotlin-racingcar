@@ -65,7 +65,7 @@ class RaceManager {
         }
     }
 
-    private fun getWinners(cars: List<Car>): List<String> {
+    fun getWinners(cars: List<Car>): List<String> {
         val winners = mutableListOf<String>()
         val maxPosition = getMaxPosition(cars)
 
