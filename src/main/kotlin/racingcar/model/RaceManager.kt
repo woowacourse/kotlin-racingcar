@@ -48,6 +48,50 @@ class RaceManager {
         return roundNumber.toInt()
     }
 
+    fun showResult(roundNumber: Int) {
+        outputView.printNewLine()
+        outputView.printResultHeader()
+
+        repeat(roundNumber) {
+            showRaceStatus()
+            outputView.printNewLine()
+        }
+    }
+
+    private fun showRaceStatus() {
+        cars.forEach { car ->
+            car.move()
+            outputView.printRaceResult(car.name, car.position)
+        }
+    }
+
+    private fun getWinners(cars: List<Car>): List<String> {
+        val winners = mutableListOf<String>()
+        val maxPosition = getMaxPosition(cars)
+
+        cars.forEach { car ->
+            judgeWinners(car, maxPosition, winners)
+        }
+        return winners
+    }
+
+    private fun judgeWinners(
+        car: Car,
+        maxPosition: Int,
+        winners: MutableList<String>,
+    ) {
+        if (car.position == maxPosition) {
+            winners.add(car.name)
+        }
+    }
+
+    private fun getMaxPosition(cars: List<Car>) = cars.maxOfOrNull { it.position } ?: 0
+
+    fun showWinners() {
+        val winners = getWinners(cars)
+        outputView.printWinner(winners)
+    }
+
     companion object {
         const val COMMA = ","
     }
