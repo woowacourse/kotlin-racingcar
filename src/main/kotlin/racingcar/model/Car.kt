@@ -1,7 +1,5 @@
 package racingcar.model
 
-import racingcar.utils.RandomNumber
-
 data class Car(val name: String, var position: Int = INITIAL_POSITION) {
     init {
         require(name.isNotEmpty()) { ERROR_CAR_NAME_BLANK }
