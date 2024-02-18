@@ -18,11 +18,16 @@ class RacingCarRun {
         val nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild(carNames)
         val numberOfCars = nameOfCars.size
         repeat(numberOfCars) { cars.add(Car(nameOfCars[it])) }
-        reinputAndOrganizeCarNames(nameOfCars, carNames, numberOfCars, commaSeparatedListBuilder, cars)
-        handleCarRaceIO(cars)
+        reInputAndOrganizeCarNames(nameOfCars, carNames, numberOfCars, commaSeparatedListBuilder, cars)
+
+        val numberOfAttempts = inputNumberOfAttempts()
+        inputView.printExecutionResults()
+        val randomNumberGenerator = RandomNumberGenerator()
+        printEachCarsPosition(numberOfAttempts, cars, randomNumberGenerator)
+        printFinalWinner(cars)
     }
 
-    private fun reinputAndOrganizeCarNames(
+    private fun reInputAndOrganizeCarNames(
         nameOfCars: List<String>,
         carNames: String,
         numberOfCars: Int,
@@ -57,16 +62,16 @@ class RacingCarRun {
         inputView.limitNumberOfCars(numberOfCars)
     }
 
-    private fun handleCarRaceIO(cars: MutableList<Car>) {
-        inputView.enterNumberOfAttempts()
-        val numberOfAttempts = validateNumberOfAttempts()
-        inputView.printExecutionResults()
-        val randomNumberGenerator = RandomNumberGenerator()
-
-        printEachCarsPosition(numberOfAttempts, cars, randomNumberGenerator)
+    private fun printFinalWinner(cars: MutableList<Car>) {
         inputView.printLastWinner()
         val finalWinners = finalWinner.decideWinner(cars)
         outputView.printFinalWinners(finalWinners)
+    }
+
+    private fun inputNumberOfAttempts(): Int {
+        inputView.enterNumberOfAttempts()
+        val numberOfAttempts = validateNumberOfAttempts()
+        return numberOfAttempts
     }
 
     private fun printEachErrorMessages(
