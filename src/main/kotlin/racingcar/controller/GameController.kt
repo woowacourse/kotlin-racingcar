@@ -8,8 +8,6 @@ import racingcar.view.OutputView
 
 class GameController {
 
-    private val winnerService = WinnerService()
-
     fun start() {
         //  사용자 입력 및 검증
         val carNames = getCarNames()
@@ -20,7 +18,7 @@ class GameController {
         playRacingGame(cars, roundCounts)
 
         // 결과 출력
-        val winners = winnerService.findWinners(cars)
+        val winners = WinnerService.findWinners(cars)
         OutputView.printWinners(winners)
     }
 
