@@ -43,10 +43,17 @@ class RacingGameTest {
     @Test
     fun `올바른 최종 우승자 판단 테스트`() {
         val cars = listOf(
-            Car("pobi", 5),
-            Car("woni", 4),
-            Car("jun", 5),
+            Car("pobi"),
+            Car("woni"),
+            Car("jun")
         )
+        cars.filter { car ->
+            car.getName() == "pobi" || car.getName() == "jun"
+        }.forEach { car ->
+            repeat(5) {
+                car.moveCar()
+            }
+        }
         val racingGame = RacingGame(cars)
         val expectWinners = listOf("pobi", "jun")
         val actualWinners = racingGame
@@ -60,10 +67,17 @@ class RacingGameTest {
     @Test
     fun `올바르지 최종 않은 우승자 판단 테스트`() {
         val cars = listOf(
-            Car("pobi", 5),
-            Car("woni", 4),
-            Car("jun", 5),
+            Car("pobi"),
+            Car("woni"),
+            Car("jun"),
         )
+        cars.filter { car ->
+            car.getName() == "pobi" || car.getName() == "jun"
+        }.forEach { car ->
+            repeat(5) {
+                car.moveCar()
+            }
+        }
         val racingGame = RacingGame(cars)
         val expectWinners = listOf("woni")
         val actualWinners = racingGame
