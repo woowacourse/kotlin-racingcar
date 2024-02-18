@@ -1,4 +1,4 @@
-package racingcar.controller
+package racingcar.model
 
 class RandomNumberGenerator {
     fun generateRandomNumber(): Int = randomNumber.random()

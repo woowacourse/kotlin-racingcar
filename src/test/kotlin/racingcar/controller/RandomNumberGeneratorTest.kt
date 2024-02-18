@@ -3,6 +3,7 @@ package racingcar.controller
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.RepeatedTest
+import racingcar.model.RandomNumberGenerator
 
 class RandomNumberGeneratorTest {
     private lateinit var randomNumberGenerator: RandomNumberGenerator

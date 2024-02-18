@@ -1,6 +1,4 @@
-package racingcar.controller
-
-import racingcar.model.Car
+package racingcar.model
 
 class FinalWinner {
     fun decideWinner(cars: List<Car>): List<String> {
