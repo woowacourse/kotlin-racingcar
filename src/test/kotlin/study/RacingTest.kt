@@ -42,5 +42,6 @@ class RacingTest() {
 
         assertEquals(0, car.position)
     }
+
 }
 
