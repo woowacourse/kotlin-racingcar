@@ -8,7 +8,6 @@ import racingcar.view.OutputView
 
 class GameController {
 
-    private val outputView = OutputView()
     private val validationUtil = ValidationUtil()
     private val winnerService = WinnerService()
 
@@ -23,7 +22,7 @@ class GameController {
 
         // 결과 출력
         val winners = winnerService.findWinners(cars)
-        outputView.printWinners(winners)
+        OutputView.printWinners(winners)
     }
 
 
@@ -34,7 +33,7 @@ class GameController {
                 validationUtil.validateCarNames(carNames)
                 return carNames!!.split(",")
             } catch (e: IllegalArgumentException) {
-                outputView.printErrorMessage(e.message!!)
+                OutputView.printErrorMessage(e.message!!)
             }
         }
     }
@@ -46,18 +45,18 @@ class GameController {
                 validationUtil.validateRoundCounts(roundCounts)
                 return roundCounts!!.toInt()
             } catch (e: IllegalArgumentException) {
-                outputView.printErrorMessage(e.message!!)
+                OutputView.printErrorMessage(e.message!!)
             }
         }
     }
 
     private fun playRacingGame(cars: List<Car>, roundCounts: Int) {
-        outputView.printResultMessage()
+        OutputView.printResultMessage()
         repeat(roundCounts) {
             cars.forEach {
                 it.move()
             }
-            outputView.printRoundResult(cars)
+            OutputView.printRoundResult(cars)
         }
     }
 }
