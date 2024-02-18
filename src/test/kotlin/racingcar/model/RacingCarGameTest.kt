@@ -3,6 +3,7 @@ package racingcar.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import racingcar.utils.NumberGenerator
 
 class RacingCarGameTest {
     private lateinit var racingCarGame: RacingCarGame
@@ -14,10 +15,18 @@ class RacingCarGameTest {
         racingCarGame = RacingCarGame(cars)
     }
 
+    object TestNumberGenerator : NumberGenerator {
+        private val numbers = mutableListOf(2, 3, 4, 5)
+
+        override fun generateNumber(
+            start: Int,
+            end: Int,
+        ): Int = numbers.removeAt(0)
+    }
+
     @Test
     fun `자동차 경주 한 라운드 실행 - hodu, leo만 한 칸 전진`() {
-        val numbers = mutableListOf(2, 3, 4, 5)
-        val result = racingCarGame.race { numbers.removeAt(0) }
+        val result = racingCarGame.race(TestNumberGenerator)
         val expected = listOf(Car("eddy"), Car("yenny"), Car("hodu", 1), Car("leo", 1))
         assertThat(result).isEqualTo(expected)
     }
