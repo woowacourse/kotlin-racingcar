@@ -8,9 +8,10 @@ object ForwardService {
 
     fun tryForwardCar(
         car: Car,
-        randomNumber: Int,
+        forwardNumberGenerator: ForwardNumberGenerator,
     ) {
-        if (isForward(randomNumber)) {
+        val forwardNumber = forwardNumberGenerator.generate()
+        if (isForward(forwardNumber)) {
             car.forward()
         }
     }
