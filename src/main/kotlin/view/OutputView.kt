@@ -3,7 +3,10 @@ package view
 import domain.Cars
 import domain.Winners
 
-class OutputView {
+object OutputView {
+    private const val HEADER_RESULT = "실행 결과"
+    private const val HEADER_WINNERS = "최종 우승자 :"
+
     fun printResultHeader() = println(HEADER_RESULT)
 
     fun printPhase(cars: Cars) {
@@ -17,10 +20,5 @@ class OutputView {
         println(
             "$HEADER_WINNERS " + "${winners.winners.joinToString(",") { it.name }} ",
         )
-    }
-
-    companion object {
-        private const val HEADER_RESULT = "실행 결과"
-        private const val HEADER_WINNERS = "최종 우승자 :"
     }
 }

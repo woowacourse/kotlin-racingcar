@@ -7,7 +7,6 @@ import view.InputView
 import view.OutputView
 
 class RacingGame(
-    private val outputView: OutputView,
     private val numberGenerator: NumberGenerator,
 ) {
     fun start() {
@@ -28,12 +27,12 @@ class RacingGame(
     ) {
         repeat(tryCount.count) {
             cars.startPhase()
-            outputView.printPhase(cars)
+            OutputView.printPhase(cars)
         }
     }
 
     private fun getWinners(cars: Cars) {
-        outputView.printResultHeader()
-        outputView.printWinner(cars.getWinners())
+        OutputView.printResultHeader()
+        OutputView.printWinner(cars.getWinners())
     }
 }
