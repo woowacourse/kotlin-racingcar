@@ -9,6 +9,9 @@ import racingcar.constants.Constants.TRIAL_RESULT_MESSAGE
 import racingcar.constants.Constants.WINNERS_SEPARATOR
 
 object OutputView {
+
+    fun printNewLine() = println()
+
     fun printInputCarNamesMessage() = println(INPUT_CAR_NAMES_MESSAGE)
 
     fun printInputTrialNumMessage() = println(INPUT_TRIAL_NUM_MESSAGE)
