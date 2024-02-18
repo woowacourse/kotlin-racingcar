@@ -1,6 +1,6 @@
 package controller
 
-import model.CarsManager
+import model.Racing
 import model.RandomNumber
 import view.InputView
 import view.OutputView
@@ -11,13 +11,13 @@ class RacingController {
         val carsName = InputView.readCarsName()
         val attemptCount = InputView.readAttemptCount()
 
-        val carsManager = CarsManager(carsName, RandomNumber())
+        val racing = Racing(carsName, RandomNumber())
         OutputView.printResultComment()
         repeat(attemptCount) {
-            carsManager.move()
-            OutputView.printRoundResult(carsManager.cars)
+            racing.move()
+            OutputView.printRoundResult(racing.cars)
         }
 
-        OutputView.printWinners(carsManager.getWinners())
+        OutputView.printWinners(racing.getWinners())
     }
 }

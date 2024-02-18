@@ -3,7 +3,7 @@ package model
 import util.NumberGenerator
 import util.Validation
 
-class CarsManager(carsName: List<String>, private val randomNumber: NumberGenerator) {
+class Racing(carsName: List<String>, private val randomNumber: NumberGenerator) {
 
     var cars: List<Car>
         private set
