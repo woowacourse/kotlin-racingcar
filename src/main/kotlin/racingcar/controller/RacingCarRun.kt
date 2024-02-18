@@ -10,6 +10,7 @@ class RacingCarRun {
     private val inputView = InputView()
     private val outputView = OutputView()
     private lateinit var carNamesList: List<String>
+    private var numberOfAttempts: Int = 0
 
     fun run() {
         while (true) {
@@ -27,7 +28,15 @@ class RacingCarRun {
             car.add(Car(carName))
         }
 
-        val numberOfAttempts = inputNumberOfAttempts()
+        while(true){
+            try{
+                numberOfAttempts = inputView.askNumberOfAttempts()
+                break
+            } catch(e: IllegalArgumentException){
+                println(NUMBER_OF_ATTEMPTS_ERROR)
+            }
+        }
+
         inputView.printExecutionResults()
         printEachCarsPosition(numberOfAttempts, car, RandomNumberGenerator)
         printFinalWinner(car)
@@ -39,11 +48,6 @@ class RacingCarRun {
         outputView.printFinalWinners(finalWinners)
     }
 
-    private fun inputNumberOfAttempts(): Int {
-        inputView.enterNumberOfAttempts()
-        val numberOfAttempts = validateNumberOfAttempts()
-        return numberOfAttempts
-    }
 
     private fun printEachCarsPosition(
         numberOfAttempts: Int,
@@ -62,19 +66,6 @@ class RacingCarRun {
         }
     }
 
-    private fun validateNumberOfAttempts(): Int {
-        var numberOfAttempts = inputView.askNumberOfAttempts()
-        while (true) {
-            try {
-                inputView.limitNumberOfAttempts(numberOfAttempts)
-                break
-            } catch (ex: IllegalArgumentException) {
-                numberOfAttempts = inputView.askNumberOfAttempts()
-                println(NUMBER_OF_ATTEMPTS_ERROR)
-            }
-        }
-        return numberOfAttempts
-    }
 
     companion object {
         const val NUMBER_OF_ATTEMPTS_ERROR = "시도 횟수는 1 ~ 10000여야 합니다."

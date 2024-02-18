@@ -2,7 +2,6 @@ package racingcar.view
 
 
 class InputView {
-    fun enterNumberOfAttempts() = println(ENTER_NUMBER_OF_ATTEMPTS)
     fun printExecutionResults() = println(EXECUTION_RESULTS)
     fun printLastWinner() = print(LAST_WINNER)
     fun askCarNames(): List<String> {
@@ -17,9 +16,13 @@ class InputView {
         return carNamesList
     }
 
-    fun askNumberOfAttempts(): Int = readln().toInt()
-    fun limitNumberOfAttempts(numberOfAttempts: Int) {
+    fun askNumberOfAttempts(): Int {
+        println(ENTER_NUMBER_OF_ATTEMPTS)
+        val numberOfAttempts = readln().toInt()
+
         require(numberOfAttempts in 1..10000)
+
+        return numberOfAttempts
     }
 
     companion object {
