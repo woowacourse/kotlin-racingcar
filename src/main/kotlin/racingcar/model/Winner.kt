@@ -1,15 +1,15 @@
 package racingcar.model
 
 class Winner {
-    fun judgeWinners(
+    fun judge(
         car: Car,
         maxPosition: Int,
     ): String? {
-        var winners: String? = null
+        var winner: String? = null
 
         if (car.position == maxPosition) {
-            winners = car.name
+            winner = car.name
         }
-        return winners
+        return winner
     }
 }

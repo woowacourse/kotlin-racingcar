@@ -83,7 +83,7 @@ class Race {
         val maxPosition = getMaxPosition(cars)
 
         cars.forEach { car ->
-            val winner = winner.judgeWinners(car, maxPosition)
+            val winner = winner.judge(car, maxPosition)
             if (winner != null) {
                 winners.add(winner)
             }
