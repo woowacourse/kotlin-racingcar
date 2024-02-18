@@ -1,7 +1,10 @@
 package racingcar.model
 
+import racingcar.utils.NumberGenerator
+
 class RacingCarGame(private val cars: List<Car>) {
-    fun race(getNumber: () -> Int): List<Car> = List(cars.size) { index -> move(index, getNumber()) }
+    fun race(numberGenerator: NumberGenerator): List<Car> =
+        List(cars.size) { index -> move(index, numberGenerator.generateNumber(MIN_MOVE_NUMBER, MAX_MOVE_NUMBER)) }
 
     fun move(
         index: Int,
