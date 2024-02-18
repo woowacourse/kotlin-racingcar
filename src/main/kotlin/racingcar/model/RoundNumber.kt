@@ -2,7 +2,9 @@ package racingcar.model
 
 import racingcar.controller.Race
 
-class RoundNumber(roundNumber: String) {
+class RoundNumber(
+    roundNumber: String,
+) {
     init {
         require(roundNumber.isNotEmpty()) { Race.ERROR_REQUEST_INPUT }
         require(checkNumberOnly(roundNumber)) { ERROR_INPUT_NUMBER_ONLY }
