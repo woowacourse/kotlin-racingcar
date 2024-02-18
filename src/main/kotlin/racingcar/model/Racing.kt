@@ -1,7 +1,7 @@
 package racingcar.model
 
 class Racing {
-    fun racingCars(cars: MutableList<Car>) {
+    fun racingCars(cars: List<Car>) {
         for (car in cars) {
             val randomNum = rand()
             car.move(goOrStop(randomNum))

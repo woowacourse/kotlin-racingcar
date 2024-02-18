@@ -12,10 +12,9 @@ class GameController {
 
     fun game() {
         val carNames = inputCarName()
-        var cars = mutableListOf<Car>()
+        val cars = carNames.split(",").map { Car(it) }
         val count = inputTryCnt()
 
-        carNames.split(",").forEach { cars.add(Car(it)) }
         run(count, cars)
     }
 
@@ -37,7 +36,7 @@ class GameController {
 
     fun run(
         count: Int,
-        cars: MutableList<Car>,
+        cars: List<Car>,
     ) {
         outputView.printRunMenu()
 
