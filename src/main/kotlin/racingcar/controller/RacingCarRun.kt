@@ -1,5 +1,8 @@
-package racingcar.model
+package racingcar.controller
 
+import racingcar.model.Car
+import racingcar.model.FinalWinner
+import racingcar.model.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -49,7 +52,7 @@ class RacingCarRun {
     ) {
         repeat(numberOfAttempts) {
             cars.forEach { car ->
-                val randomNumber = randomNumberGenerator.generateRandomNumber()
+                val randomNumber = RandomNumberGenerator.generateRandomNumber()
                 car.moveCar(randomNumber)
             }
             cars.forEach {
