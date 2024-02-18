@@ -4,8 +4,8 @@ class Winner {
     fun judgeWinners(
         car: Car,
         maxPosition: Int,
-    ): String {
-        lateinit var winners: String
+    ): String? {
+        var winners: String? = null
 
         if (car.position == maxPosition) {
             winners = car.name
