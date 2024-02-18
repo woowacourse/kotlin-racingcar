@@ -1,6 +1,6 @@
 package racingcar
 
-import racingcar.controller.RacingCarRun
+import racingcar.model.RacingCarRun
 
 fun main() {
     val racingCarRun = RacingCarRun()

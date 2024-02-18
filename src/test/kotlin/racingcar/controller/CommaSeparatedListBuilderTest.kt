@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.model.CommaSeparatedListBuilder
 
 class CommaSeparatedListBuilderTest {
     private lateinit var commaSeparatedListBuilder: CommaSeparatedListBuilder

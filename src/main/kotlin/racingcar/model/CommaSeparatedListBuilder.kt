@@ -1,4 +1,4 @@
-package racingcar.controller
+package racingcar.model
 
 class CommaSeparatedListBuilder() {
     fun commaSeparatedListBuild(carNamesText: String) =
