@@ -7,7 +7,6 @@ import view.InputView
 import view.OutputView
 
 class RacingGame(
-    private val inputView: InputView,
     private val outputView: OutputView,
     private val numberGenerator: NumberGenerator,
 ) {
@@ -19,9 +18,9 @@ class RacingGame(
         getWinners(cars)
     }
 
-    private fun readCars(): Cars = Cars.from(inputView.readCars(), numberGenerator)
+    private fun readCars(): Cars = Cars.from(InputView.readCars(), numberGenerator)
 
-    private fun readTryCount(): TryCount = TryCount.from(inputView.readTryCount())
+    private fun readTryCount(): TryCount = TryCount.from(InputView.readTryCount())
 
     private fun race(
         cars: Cars,
