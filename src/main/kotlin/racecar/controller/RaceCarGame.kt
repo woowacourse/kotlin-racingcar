@@ -30,19 +30,19 @@ class RaceCarGame(
         cars: RaceCars,
         trialCount: Int,
     ) {
-        val winners =
-            cars.run {
-                startRace(trialCount)
-                findWinners()
-            }
+        startRace(cars, trialCount)
+        val winners = cars.findWinners()
         outputView.outputWinners(winners)
     }
 
-    private fun RaceCars.startRace(trialCount: Int) {
+    private fun startRace(
+        carGroup: RaceCars,
+        trialCount: Int,
+    ) {
         outputView.outputRaceResultTitle()
         repeat(trialCount) {
-            move()
-            outputView.outputRacingStatus(cars)
+            carGroup.move()
+            outputView.outputRacingStatus(carGroup.cars)
         }
     }
 }
