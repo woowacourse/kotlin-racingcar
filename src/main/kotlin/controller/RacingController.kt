@@ -5,8 +5,7 @@ import model.RandomNumber
 import view.InputView
 import view.OutputView
 
-class RacingController(
-) {
+class RacingController {
 
     fun run() {
         val carsName = InputView.readCarsName()
