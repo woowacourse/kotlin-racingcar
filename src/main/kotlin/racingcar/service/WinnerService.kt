@@ -4,9 +4,9 @@ import racingcar.model.Car
 
 object WinnerService {
     fun getWinners(cars: List<Car>): List<Car> {
-        val maxForwardCountCar = cars.maxOf { it.forwardCount }
+        val maxForwardCountCar = cars.maxOf { it.position }
         return cars.filter { car ->
-            car.forwardCount == maxForwardCountCar
+            car.position == maxForwardCountCar
         }
     }
 }

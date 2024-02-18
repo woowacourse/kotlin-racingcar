@@ -23,12 +23,12 @@ class RacingCarController {
         }
 
     fun run() {
-        OutputView.printProcessStepMessage()
+        OutputView.printProcessResultMessage()
 
         val racingGame = RacingGame(cars)
         tryCount.forEach {
             racingGame.updateCarsPosition()
-            OutputView.printProcessStep(cars)
+            OutputView.printCarsPosition(cars)
         }
 
         val winners = WinnerService.getWinners(cars)

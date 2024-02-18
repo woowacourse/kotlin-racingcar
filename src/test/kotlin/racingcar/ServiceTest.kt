@@ -28,7 +28,7 @@ class ServiceTest {
         ForwardService.tryForwardCar(car, 4)
 
         // then
-        assertThat(car.forwardCount).isEqualTo(1)
+        assertThat(car.position).isEqualTo(1)
     }
 
     @Test
@@ -40,7 +40,7 @@ class ServiceTest {
         ForwardService.tryForwardCar(car, 0)
 
         // then
-        assertThat(car.forwardCount).isEqualTo(0)
+        assertThat(car.position).isEqualTo(0)
     }
 
     /** WinnerService Test */
