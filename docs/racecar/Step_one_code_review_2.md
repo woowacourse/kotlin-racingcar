@@ -4,8 +4,8 @@
 
 ## View
 - [x] : InputView : 시도 횟수 검증문 toIntOrNull()로 리팩토링
-- [ ] : OutputView : StringBuilder 대신 kotlin dsl 함수인 buildString 로 리팩토링
-- [ ] : error message 좀 더 명시적으로 수정  
+- [x] : OutputView : StringBuilder 대신 kotlin dsl 함수인 buildString 로 리팩토링
+- [x] : error message 좀 더 명시적으로 수정  
 
 ## controller
 - [ ] : Random.Int() -> random() 로 리팩토링
