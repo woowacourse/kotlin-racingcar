@@ -1,13 +1,12 @@
 package racingcar.domain
 
-import kotlin.random.Random
+import racingcar.constant.MoveConstant
 
 class Car(val name: String) {
     var position: Int = 0
         private set
 
-    fun move() {
-        val randomNumber = Random.nextInt(10)
-        if (randomNumber >= 4) position++
+    fun move(number: Int) {
+        if (number >= MoveConstant.FORWARD_NUMBER) position++
     }
 }

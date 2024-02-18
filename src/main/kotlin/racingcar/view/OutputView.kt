@@ -21,5 +21,4 @@ class OutputView {
     fun printErrorMessage(e: String) {
         println(e)
     }
-
 }
