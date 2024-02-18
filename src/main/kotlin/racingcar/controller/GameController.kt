@@ -37,14 +37,15 @@ class GameController {
     }
 
     private fun getRoundCounts(): Int {
-        while (true) {
-            try {
-                val roundCounts = InputView.readRoundCounts()
-                ValidationUtil.validateRoundCounts(roundCounts)
-                return roundCounts!!.toInt()
-            } catch (e: IllegalArgumentException) {
-                OutputView.printErrorMessage(e.message!!)
+        return runCatching {
+            val roundCounts = InputView.readRoundCounts()
+            ValidationUtil.validateCarNames(roundCounts)
+            return roundCounts!!.toInt()
+        }.getOrElse { exception ->
+            if(exception is IllegalArgumentException) {
+                OutputView.printErrorMessage(exception.message!!)
             }
+            getRoundCounts()
         }
     }
 
