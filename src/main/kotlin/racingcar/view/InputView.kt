@@ -18,8 +18,8 @@ class InputView {
     fun printLastWinner() = print(LAST_WINNER)
     fun askCarNames(): String = readln()
     fun askNumberOfAttempts(): Int = readln().toInt()
-    fun limitNumberOfAttempts(numberOfAttemtps: Int) {
-        require(numberOfAttemtps in 1..10000)
+    fun limitNumberOfAttempts(numberOfAttempts: Int) {
+        require(numberOfAttempts in 1..10000)
     }
 
     companion object {
