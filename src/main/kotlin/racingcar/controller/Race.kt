@@ -1,20 +1,25 @@
 package racingcar.controller
 
 import racingcar.model.Car
+import racingcar.model.RaceManager
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class Race {
     private val outputView = OutputView()
     private val inputView = InputView()
+    private val raceManager = RaceManager()
+
     private lateinit var cars: List<Car>
     private var roundNumber: Int = INITIAL_ROUND_NUMBER
 
     fun start() {
         showCarNamesGuide()
         getCars()
-        showRoundNumberGuide()
-        getRoundNumber()
+        raceManager.apply {
+            showRoundNumberGuide()
+            roundNumber = getRoundNumber()
+        }
         showResult(roundNumber)
         showWinners()
     }
@@ -51,41 +56,6 @@ class Race {
             } catch (e: IllegalArgumentException) {
                 outputView.printErrorMessage(e.message)
             }
-        }
-    }
-
-    private fun showRoundNumberGuide() = outputView.printRoundNumberGuide()
-
-    private fun getRoundNumberInput() = inputView.readRoundNumber()
-
-    private fun getRoundNumber() {
-        while (true) {
-            try {
-                val roundNumberInput = getRoundNumberInput()
-                roundNumber = getValidRoundNumber(roundNumberInput)
-                break
-            } catch (e: IllegalArgumentException) {
-                outputView.printErrorMessage(e.message)
-            }
-        }
-    }
-
-    fun getValidRoundNumber(roundNumberInput: String): Int {
-        require(checkRoundNumber(roundNumberInput)) { ERROR_INPUT_NUMBER_ONLY }
-        require(roundNumberInput.isNotEmpty()) { ERROR_REQUEST_INPUT }
-
-        val roundNumber = roundNumberInput.toInt()
-        require(roundNumber >= MIN_ROUND_NUMBER) { ERROR_ROUND_LESS_THAN_ONE }
-
-        return roundNumber
-    }
-
-    fun checkRoundNumber(roundNumber: String): Boolean {
-        try {
-            roundNumber.toInt()
-            return true
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(ERROR_INPUT_NUMBER_ONLY)
         }
     }
 
@@ -138,14 +108,11 @@ class Race {
         const val ERROR_CAR_LESS_THAN_TWO = "[Error] 자동차 이름은 2대 이상 입력해 주세요."
         const val ERROR_CAR_GREATER_THAN_TWENTY = "[Error] 자동차 이름은 20대 이하로 입력해 주세요."
         const val ERROR_NAME_DUPLICATION = "[Error] 중복된 자동차 이름은 작성할 수 없습니다."
-        const val ERROR_ROUND_LESS_THAN_ONE = "[Error] 1회 이상 입력해 주세요."
-        const val ERROR_INPUT_NUMBER_ONLY = "[Error] 숫자만 입력해 주세요."
 
         const val COMMA = ","
 
         const val MIN_NAMES_SIZE = 2
         const val MAX_NAMES_SIZE = 20
-        const val MIN_ROUND_NUMBER = 1
         const val INITIAL_ROUND_NUMBER = 0
     }
 }
