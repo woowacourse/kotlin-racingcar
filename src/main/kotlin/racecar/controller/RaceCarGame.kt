@@ -33,7 +33,7 @@ class RaceCarGame(
         val winners =
             cars.run {
                 startRace(trialCount)
-                findHeadGroup()
+                findWinners()
             }
         outputView.outputWinners(winners)
     }

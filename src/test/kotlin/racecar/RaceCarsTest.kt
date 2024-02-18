@@ -32,7 +32,7 @@ class RaceCarsTest {
     }
 
     @Test
-    fun `가장 선두 주자에 있는 차들을 찾을 수 있다`() {
+    fun `우승한 차들을 찾을 수 있다`() {
         // given
         val headCar = RaceCar("foo").apply { move(5) }
         val headCar2 = RaceCar("bar").apply { move(6) }
@@ -40,7 +40,7 @@ class RaceCarsTest {
         val raceCars = RaceCars(listOf(headCar, headCar2, car), { 2 })
         val expectedHeadGroup = listOf(headCar, headCar2)
         // when
-        val headCarGroup = raceCars.findHeadGroup()
+        val headCarGroup = raceCars.findWinners()
         // then
         assertThat(headCarGroup).isEqualTo(expectedHeadGroup)
     }
