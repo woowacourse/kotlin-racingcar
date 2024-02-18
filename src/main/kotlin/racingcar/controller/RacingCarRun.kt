@@ -46,6 +46,7 @@ class RacingCarRun {
         val finalWinners = FinalWinner.decideWinner(cars)
         outputView.printFinalWinners(finalWinners)
     }
+
     private fun printEachCarsPosition(
         numberOfAttempts: Int,
         cars: MutableList<Car>
