@@ -1,10 +1,11 @@
 package racingcar.service
 
-import racingcar.constants.GameConstants
 import racingcar.model.Car
 
 object ForwardService {
-    private fun isForward(randomNumber: Int) = randomNumber >= GameConstants.FORWARD_FLAG_NUMBER
+    private const val FORWARD_FLAG_NUMBER = 4
+
+    private fun isForward(randomNumber: Int) = randomNumber >= FORWARD_FLAG_NUMBER
 
     fun tryForwardCar(
         car: Car,

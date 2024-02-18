@@ -1,8 +1,8 @@
 package racingcar.service
 
-import racingcar.constants.GameConstants
-import kotlin.random.Random
-
 object RandomForwardNumberGenerator : ForwardNumberGenerator {
-    override fun generate() = Random.nextInt(GameConstants.MAX_RANDOM_NUMBER + 1)
+    private const val MIN_RANDOM_NUMBER = 0
+    private const val MAX_RANDOM_NUMBER = 9
+
+    override fun generate() = (MIN_RANDOM_NUMBER..MAX_RANDOM_NUMBER).random()
 }
