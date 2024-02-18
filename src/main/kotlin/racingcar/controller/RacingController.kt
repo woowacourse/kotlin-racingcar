@@ -5,7 +5,6 @@ import racingcar.model.MoveManager
 import racingcar.model.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
-import racingcar.view.OutputView.printNewLine
 
 class RacingController {
     private val manager = MoveManager()
@@ -40,9 +39,8 @@ class RacingController {
     private fun play() {
         currentRacingStatus.map { car ->
             if (manager.isMoveAble(numberGenerator.getRandomNumber())) car.move()
-            OutputView.printCurrentPosition(car.name, car.position)
         }
-        printNewLine()
+        OutputView.printNameAndCurrentPosition(currentRacingStatus)
     }
 
     private fun getWinners(): List<String> {
