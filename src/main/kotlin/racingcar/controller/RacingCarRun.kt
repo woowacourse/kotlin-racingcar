@@ -2,7 +2,6 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.FinalWinner
-import racingcar.model.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -15,8 +14,7 @@ class RacingCarRun {
     fun run() {
         val car: MutableList<Car> = organizeAndValidateCarList()
         validateNumberOfAttempts()
-        outputView.printExecutionResults()
-        printEachCarsPosition(numberOfAttempts, car)
+        outputView.printEachCarsPosition(numberOfAttempts, car)
         printFinalWinner(car)
     }
 
@@ -54,21 +52,7 @@ class RacingCarRun {
         outputView.printFinalWinners(finalWinners)
     }
 
-    private fun printEachCarsPosition(
-        numberOfAttempts: Int,
-        cars: MutableList<Car>
-    ) {
-        repeat(numberOfAttempts) {
-            cars.forEach { car ->
-                val randomNumber = RandomNumberGenerator.generateRandomNumber()
-                car.moveCar(randomNumber)
-            }
-            cars.forEach {
-                println("${it.name}: ${it.position}")
-            }
-            println()
-        }
-    }
+
     companion object {
         const val NUMBER_OF_ATTEMPTS_ERROR = "시도 횟수는 1 ~ 10000여야 합니다."
         const val NAME_FORMAT_ERROR = "이름은 알파벳과 한글로만 이루어져 있어야 합니다."
