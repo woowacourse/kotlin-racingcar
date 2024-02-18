@@ -1,8 +1,8 @@
 package racingcar.controller
 
 import racingcar.model.Car
-import racingcar.utils.RandomNumber
 import racingcar.model.Winner
+import racingcar.utils.RandomNumber
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
