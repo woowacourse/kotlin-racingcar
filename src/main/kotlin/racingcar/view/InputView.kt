@@ -2,21 +2,21 @@ package racingcar.view
 
 
 class InputView {
-    fun printEnterCarNames() = println(ENTER_CAR_NAMES)
-    fun limitNumberOfCars(numberOfCars: Int){
-        require(numberOfCars in 1..100)
-    }
-    fun nameFormat(names: String) {
-        val regex = Regex("^[a-zA-Z가-힣,]+\$")
-        require(regex.matches(names))
-    }
-    fun duplicatedCarName(carNames: List<String>) {
-        require(carNames.size == carNames.toSet().size)
-    }
     fun enterNumberOfAttempts() = println(ENTER_NUMBER_OF_ATTEMPTS)
     fun printExecutionResults() = println(EXECUTION_RESULTS)
     fun printLastWinner() = print(LAST_WINNER)
-    fun askCarNames(): String = readln()
+    fun askCarNames(): List<String> {
+        println(ENTER_CAR_NAMES)
+        val carNames = readln()
+        val carNamesList = carNames.split(",").map { it.trim() }
+
+        require(Regex("^[a-zA-Z가-힣,]+\$").matches(carNames))
+        require(carNamesList.size == carNamesList.toSet().size)
+        require(carNamesList.size in 1..100)
+
+        return carNamesList
+    }
+
     fun askNumberOfAttempts(): Int = readln().toInt()
     fun limitNumberOfAttempts(numberOfAttempts: Int) {
         require(numberOfAttempts in 1..10000)

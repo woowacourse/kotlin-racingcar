@@ -6,56 +6,28 @@ import racingcar.view.OutputView
 class RacingCarRun {
     private val inputView = InputView()
     private val outputView = OutputView()
+    private lateinit var carNamesList: List<String>
 
     fun run() {
-        inputView.printEnterCarNames()
-        val cars: MutableList<Car> = mutableListOf()
-        val carNames = inputView.askCarNames()
-        val nameOfCars = CommaSeparatedListBuilder.commaSeparatedListBuild(carNames)
-        val numberOfCars = nameOfCars.size
-        repeat(numberOfCars) { cars.add(Car(nameOfCars[it])) }
-        reInputAndOrganizeCarNames(nameOfCars, carNames, numberOfCars, CommaSeparatedListBuilder, cars)
+        while (true) {
+            try {
+                carNamesList = inputView.askCarNames()
+                break
+            } catch (e: IllegalArgumentException) {
+                println(NAME_FORMAT_ERROR)
+                println(NUMBER_OF_CAR_ERROR)
+                println(DUPLICATED_CAR_NAME_ERROR)
+            }
+        }
+        val car: MutableList<Car> = mutableListOf()
+        carNamesList.forEach { carName ->
+            car.add(Car(carName))
+        }
 
         val numberOfAttempts = inputNumberOfAttempts()
         inputView.printExecutionResults()
-        val randomNumberGenerator = RandomNumberGenerator()
-        printEachCarsPosition(numberOfAttempts, cars, randomNumberGenerator)
-        printFinalWinner(cars)
-    }
-
-    private fun reInputAndOrganizeCarNames(
-        nameOfCars: List<String>,
-        carNames: String,
-        numberOfCars: Int,
-        commaSeparatedListBuilder: CommaSeparatedListBuilder,
-        cars: MutableList<Car>
-    ) {
-        var nameOfCars1 = nameOfCars
-        var carNames1 = carNames
-        var numberOfCars1 = numberOfCars
-        while (true) {
-            try {
-                inputViewValidate(nameOfCars1, carNames1, numberOfCars1)
-                break
-            } catch (e: IllegalArgumentException) {
-                printEachErrorMessages(nameOfCars1, numberOfCars1, carNames1)
-                carNames1 = inputView.askCarNames()
-                nameOfCars1 = commaSeparatedListBuilder.commaSeparatedListBuild(carNames1)
-                numberOfCars1 = nameOfCars1.size
-                cars.clear()
-                repeat(numberOfCars1) { cars.add(Car(nameOfCars1[it])) }
-            }
-        }
-    }
-
-    private fun inputViewValidate(
-        nameOfCars: List<String>,
-        carNames: String,
-        numberOfCars: Int
-    ) {
-        inputView.duplicatedCarName(nameOfCars)
-        inputView.nameFormat(carNames)
-        inputView.limitNumberOfCars(numberOfCars)
+        printEachCarsPosition(numberOfAttempts, car, RandomNumberGenerator)
+        printFinalWinner(car)
     }
 
     private fun printFinalWinner(cars: MutableList<Car>) {
@@ -68,22 +40,6 @@ class RacingCarRun {
         inputView.enterNumberOfAttempts()
         val numberOfAttempts = validateNumberOfAttempts()
         return numberOfAttempts
-    }
-
-    private fun printEachErrorMessages(
-        nameOfCars: List<String>,
-        numberOfCars: Int,
-        carNames: String
-    ) {
-        if (nameOfCars.size != nameOfCars.toSet().size) {
-            println(DUPLICATED_CAR_NAME_ERROR)
-        }
-        if (numberOfCars !in 1..100) {
-            println(NUMBER_OF_CAR_ERROR)
-        }
-        if (!Regex("^[a-zA-Z가-힣,]+\$").matches(carNames)) {
-            println(NAME_FORMAT_ERROR)
-        }
     }
 
     private fun printEachCarsPosition(
