@@ -1,7 +1,7 @@
 package racingcar.model
 
-import org.junit.jupiter.api.BeforeEach
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.RepeatedTest
 import racingcar.constants.Constants.MAXIMUM_RANDOM_SELECTION_NUM
 import racingcar.constants.Constants.MINIMUM_RANDOM_SELECTION_NUM

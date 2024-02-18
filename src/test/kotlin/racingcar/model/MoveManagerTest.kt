@@ -18,7 +18,6 @@ class MoveManagerTest {
         assertThat(moveManager.isMoveAble(num)).isFalse()
     }
 
-
     @Test
     fun `4 이상의 정수가 뽑혔을 경우 true를 반환`() {
         val num = 4

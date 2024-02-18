@@ -9,7 +9,6 @@ import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
 class OutputViewTest {
-
     private lateinit var outContent: ByteArrayOutputStream
 
     @BeforeEach
@@ -26,7 +25,8 @@ class OutputViewTest {
 
         val output = outContent.toString()
         assertThat(output).contains(
-            "carName : ", "-".repeat(nums)
+            "carName : ",
+            "-".repeat(nums),
         )
     }
 }

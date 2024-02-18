@@ -10,15 +10,17 @@ object RacingController {
     private val manager = MoveManager()
     private val numberGenerator = RandomNumberGenerator()
     private lateinit var currentRacingStatus: MutableList<Car>
-    fun start() = with(OutputView) {
-        val names = getValidNames()
-        val trialNum = getValidTrial()
 
-        initializeCars(names)
-        printTrialResultMessage()
-        repeat(trialNum) { play() }
-        printFinalWinners(getWinners())
-    }
+    fun start() =
+        with(OutputView) {
+            val names = getValidNames()
+            val trialNum = getValidTrial()
+
+            initializeCars(names)
+            printTrialResultMessage()
+            repeat(trialNum) { play() }
+            printFinalWinners(getWinners())
+        }
 
     private fun getValidNames(): List<String> {
         OutputView.printInputCarNamesMessage()
