@@ -1,4 +1,5 @@
 package racingcar.model
 
-interface NumberGenerator {
+fun interface NumberGenerator {
+    fun getNumber(): Int
 }
