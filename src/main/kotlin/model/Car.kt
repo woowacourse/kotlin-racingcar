@@ -1,8 +1,8 @@
 package model
 
-class Car(val name: String) {
+class Car(val name: String, forwardCount: Int = 0) {
 
-    var forwardCount = DEFAULT_FORWARD_COUNT
+    var forwardCount = forwardCount
         private set
 
     init {
