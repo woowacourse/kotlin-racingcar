@@ -7,6 +7,8 @@ import racingcar.model.Car
 import racingcar.model.Winner
 
 class WinnerTest {
+    private val winner = Winner()
+
     @DisplayName("우승자 판단 테스트 - 우승자일 때")
     @Test
     fun judgeWinners() {
@@ -14,7 +16,7 @@ class WinnerTest {
         val maxPosition = 3
         val expectedResult = "hye"
         val result =
-            Winner().judge(
+            winner.judge(
                 car,
                 maxPosition,
             )
@@ -29,7 +31,7 @@ class WinnerTest {
         val maxPosition = 3
         val expectedResult = null
         val result =
-            Winner().judge(
+            winner.judge(
                 car,
                 maxPosition,
             )
