@@ -3,6 +3,7 @@ package racingcar
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
+import racingcar.domain.Validator
 
 class ValidatorTest {
     @Test

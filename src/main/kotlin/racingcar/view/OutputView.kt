@@ -1,6 +1,6 @@
 package racingcar.view
 
-import racingcar.model.Car
+import racingcar.domain.model.Car
 
 object OutputView {
     fun outputStartGame() {

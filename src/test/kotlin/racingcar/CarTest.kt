@@ -2,7 +2,7 @@ package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.model.Car
+import racingcar.domain.model.Car
 
 class CarTest {
 

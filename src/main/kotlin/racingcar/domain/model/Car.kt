@@ -1,4 +1,4 @@
-package racingcar.model
+package racingcar.domain.model
 
 import racingcar.util.Constant
 import kotlin.random.Random

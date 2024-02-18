@@ -1,8 +1,8 @@
 package racingcar.controller
 
-import racingcar.Validator
-import racingcar.model.Car
-import racingcar.model.RacingGame
+import racingcar.domain.Validator
+import racingcar.domain.model.Car
+import racingcar.domain.model.RacingGame
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -20,6 +20,7 @@ class CarController {
     }
 
     private fun registerCars(): List<Car> {
+        OutputView.outputRegisterCar()
         val carNames = InputView.inputCarNames()
         return try {
             Validator.validateCarNames(carNames)
@@ -37,6 +38,7 @@ class CarController {
     }
 
     private fun registerRound(): Int {
+        OutputView.outputRegisterNumberOfRoundRound()
         val numberOfRound = InputView.inputNumberOfRound()
         return try {
             Validator.validateNumberOfRound(numberOfRound)
