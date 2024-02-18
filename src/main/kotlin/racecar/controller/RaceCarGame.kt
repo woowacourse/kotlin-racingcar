@@ -6,12 +6,11 @@ import racecar.view.KernelRaceCarGameInputView
 import racecar.view.KernelRaceCarGameOutputView
 import racecar.view.RaceCarGameInputView
 import racecar.view.RaceCarGameOutputView
-import kotlin.random.Random
 
 class RaceCarGame(
     private val inputView: RaceCarGameInputView = KernelRaceCarGameInputView(),
     private val outputView: RaceCarGameOutputView = KernelRaceCarGameOutputView(),
-    private val scoreGenerator: ScoreGenerator = ScoreGenerator { Random.nextInt(10) },
+    private val scoreGenerator: ScoreGenerator = ScoreGenerator { (0..10).random() },
 ) {
     fun start() {
         val cars: RaceCars = initRaceCars()

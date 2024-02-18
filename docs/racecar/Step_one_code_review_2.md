@@ -8,7 +8,7 @@
 - [x] : error message 좀 더 명시적으로 수정  
 
 ## controller
-- [ ] : Random.Int() -> random() 로 리팩토링
+- [x] : Random.Int() -> random() 로 리팩토링
 - [ ] : Error 핸들링
 - [ ] : 무분별한 scope 함수, Extension 레팩토링
 ## domain 쪽
