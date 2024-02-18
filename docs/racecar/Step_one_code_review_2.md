@@ -6,7 +6,7 @@
 - [x] : InputView : 시도 횟수 검증문 toIntOrNull()로 리팩토링
 - [x] : OutputView : StringBuilder 대신 kotlin dsl 함수인 buildString 로 리팩토링
 - [x] : error message 좀 더 명시적으로 수정  
-
+- [x] : ErrorMessage output
 ## controller
 - [x] : Random.Int() -> random() 로 리팩토링
 - [ ] : Error 핸들링

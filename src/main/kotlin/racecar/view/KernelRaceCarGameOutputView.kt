@@ -9,6 +9,8 @@ class KernelRaceCarGameOutputView : RaceCarGameOutputView {
         println(formatToRacingStatus(cars))
     }
 
+    override fun outputErrorMessage(errorMessage: String) = println(errorMessage)
+
     override fun outputWinners(winner: List<RaceCar>) = print(winner.formatToWinners())
 
     private fun formatToRacingStatus(winners: List<RaceCar>) =

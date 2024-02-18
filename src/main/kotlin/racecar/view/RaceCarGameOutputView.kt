@@ -8,4 +8,6 @@ interface RaceCarGameOutputView {
     fun outputRacingStatus(cars: List<RaceCar>)
 
     fun outputWinners(winner: List<RaceCar>)
+
+    fun outputErrorMessage(errorMessage: String)
 }
