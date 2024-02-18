@@ -2,8 +2,6 @@ package racingcar.view
 
 
 class InputView {
-    fun printExecutionResults() = println(EXECUTION_RESULTS)
-    fun printLastWinner() = print(LAST_WINNER)
     fun askCarNames(): List<String> {
         println(ENTER_CAR_NAMES)
         val carNames = readln()

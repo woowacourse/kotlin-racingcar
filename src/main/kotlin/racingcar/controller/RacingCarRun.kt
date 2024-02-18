@@ -37,18 +37,15 @@ class RacingCarRun {
             }
         }
 
-        inputView.printExecutionResults()
+        outputView.printExecutionResults()
         printEachCarsPosition(numberOfAttempts, car)
         printFinalWinner(car)
     }
-
     private fun printFinalWinner(cars: MutableList<Car>) {
-        inputView.printLastWinner()
+        outputView.printLastWinner()
         val finalWinners = FinalWinner.decideWinner(cars)
         outputView.printFinalWinners(finalWinners)
     }
-
-
     private fun printEachCarsPosition(
         numberOfAttempts: Int,
         cars: MutableList<Car>
@@ -64,8 +61,6 @@ class RacingCarRun {
             println()
         }
     }
-
-
     companion object {
         const val NUMBER_OF_ATTEMPTS_ERROR = "시도 횟수는 1 ~ 10000여야 합니다."
         const val NAME_FORMAT_ERROR = "이름은 알파벳과 한글로만 이루어져 있어야 합니다."
