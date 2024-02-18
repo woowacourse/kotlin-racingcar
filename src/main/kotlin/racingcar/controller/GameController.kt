@@ -8,7 +8,6 @@ import racingcar.view.OutputView
 
 class GameController {
 
-    private val inputView = InputView()
     private val outputView = OutputView()
     private val validationUtil = ValidationUtil()
     private val winnerService = WinnerService()
@@ -31,7 +30,7 @@ class GameController {
     private fun getCarNames(): List<String> {
         while (true) {
             try {
-                val carNames = inputView.readCarNames()
+                val carNames = InputView.readCarNames()
                 validationUtil.validateCarNames(carNames)
                 return carNames!!.split(",")
             } catch (e: IllegalArgumentException) {
@@ -43,7 +42,7 @@ class GameController {
     private fun getRoundCounts(): Int {
         while (true) {
             try {
-                val roundCounts = inputView.readRoundCounts()
+                val roundCounts = InputView.readRoundCounts()
                 validationUtil.validateRoundCounts(roundCounts)
                 return roundCounts!!.toInt()
             } catch (e: IllegalArgumentException) {
