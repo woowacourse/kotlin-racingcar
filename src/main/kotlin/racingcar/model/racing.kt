@@ -36,7 +36,7 @@ fun findWinnerNames(cars: List<Car>): List<String> {
 private fun winnerJudge(
     car: Car,
     tmp: Int,
-    winners: MutableList<String>
+    winners: MutableList<String>,
 ): Int {
     val pos = car.position
     val num = max(pos, tmp)
