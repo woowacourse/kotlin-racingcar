@@ -24,14 +24,15 @@ class GameController {
 
 
     private fun getCarNames(): List<String> {
-        while (true) {
-            try {
-                val carNames = InputView.readCarNames()
-                ValidationUtil.validateCarNames(carNames)
-                return carNames!!.split(",")
-            } catch (e: IllegalArgumentException) {
-                OutputView.printErrorMessage(e.message!!)
+        return runCatching {
+            val carNames = InputView.readCarNames()
+            ValidationUtil.validateCarNames(carNames)
+            carNames!!.split(",")
+        }.getOrElse { exception ->
+            if(exception is IllegalArgumentException) {
+                OutputView.printErrorMessage(exception.message!!)
             }
+            getCarNames()
         }
     }
 
