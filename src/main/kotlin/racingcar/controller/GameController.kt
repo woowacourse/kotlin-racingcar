@@ -24,13 +24,7 @@ class GameController {
     }
 
     fun inputTryCnt(): Int {
-        var count = 0
-        try {
-            count = inputView.inputTry()
-        } catch (e: Exception) {
-            println(e)
-            count = inputTryCnt()
-        }
+        val count = inputView.inputTry()
         return count
     }
 
