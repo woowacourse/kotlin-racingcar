@@ -3,6 +3,8 @@ package racecar
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import racecar.domain.RaceCar
+import racecar.domain.RaceCars
 
 class RaceCarsTest {
     @Test

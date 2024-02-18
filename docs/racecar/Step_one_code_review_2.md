@@ -1,6 +1,6 @@
 # 수정 목록
 ## 프로젝트
-- [ ] : view, domain, controller 로 패키징
+- [x] : view, domain, controller 로 패키징
 
 ## View
 - [ ] : InputView : 시도 횟수 검증문 toIntOrNull()로 리팩토링

@@ -1,4 +1,6 @@
-package racecar
+package racecar.view
+
+import racecar.domain.RaceCar
 
 class KernelRaceCarGameOutputView : RaceCarGameOutputView {
     override fun outputRaceResultTitle() = println("실행 결과")

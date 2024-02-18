@@ -1,5 +1,11 @@
-package racecar
+package racecar.controller
 
+import racecar.domain.RaceCars
+import racecar.domain.ScoreGenerator
+import racecar.view.KernelRaceCarGameInputView
+import racecar.view.KernelRaceCarGameOutputView
+import racecar.view.RaceCarGameInputView
+import racecar.view.RaceCarGameOutputView
 import kotlin.random.Random
 
 class RaceCarGame(
