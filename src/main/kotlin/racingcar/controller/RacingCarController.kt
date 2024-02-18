@@ -2,6 +2,7 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.RacingCarGame
+import racingcar.utils.NumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -24,7 +25,7 @@ class RacingCarController(
     private fun startRound(round: Int) {
         outputView.printResultTitle()
         repeat(round) {
-            val result = racingCarGame.race()
+            val result = racingCarGame.race(NumberGenerator::getRandomNumber)
             outputView.printRoundResult(result)
         }
     }

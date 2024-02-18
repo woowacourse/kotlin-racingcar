@@ -15,6 +15,14 @@ class RacingCarGameTest {
     }
 
     @Test
+    fun `자동차 경주 한 라운드 실행 - hodu, leo만 한 칸 전진`() {
+        val numbers = mutableListOf(2, 3, 4, 5)
+        val result = racingCarGame.race { numbers.removeAt(0) }
+        val expected = listOf(Car("eddy"), Car("yenny"), Car("hodu", 1), Car("leo", 1))
+        assertThat(result).isEqualTo(expected)
+    }
+
+    @Test
     fun `무작위 값이 4 이상일 경우 - 해당 자동차 한 칸 전진`() {
         racingCarGame.move(0, 4)
         assertThat(cars[0].distance).isEqualTo(1)
