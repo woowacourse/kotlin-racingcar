@@ -10,6 +10,8 @@ class Race {
     private val outputView = OutputView()
     private val inputView = InputView()
 
+    private val winner = Winner()
+
     private lateinit var cars: List<Car>
     private var roundNumber: Int = INITIAL_ROUND_NUMBER
 
@@ -77,11 +79,12 @@ class Race {
     }
 
     private fun getWinners(cars: List<Car>): List<String> {
-        var winners = mutableListOf<String>()
+        val winners = mutableListOf<String>()
         val maxPosition = getMaxPosition(cars)
 
         cars.forEach { car ->
-            winners = Winner().judgeWinners(car, maxPosition)
+            val winner = winner.judgeWinners(car, maxPosition)
+            winners.add(winner)
         }
         return winners
     }

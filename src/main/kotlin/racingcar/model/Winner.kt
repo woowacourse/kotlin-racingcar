@@ -4,11 +4,11 @@ class Winner {
     fun judgeWinners(
         car: Car,
         maxPosition: Int,
-    ): MutableList<String> {
-        val winners = mutableListOf<String>()
+    ): String {
+        lateinit var winners: String
 
         if (car.position == maxPosition) {
-            winners.add(car.name)
+            winners = car.name
         }
         return winners
     }
