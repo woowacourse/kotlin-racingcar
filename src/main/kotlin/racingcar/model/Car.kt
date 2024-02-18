@@ -1,11 +1,13 @@
 package racingcar.model
 
+import racingcar.util.Validation
+
 class Car(val name: String) {
     var position: Int = DEFAULT_POSITION
         private set
 
     init {
-        require(name.length <= CAR_NAME_LENGTH_MAX)
+        Validation.checkNameLength(name)
     }
 
     fun move(distance: Int) {
@@ -13,7 +15,6 @@ class Car(val name: String) {
     }
 
     companion object {
-        const val CAR_NAME_LENGTH_MAX = 5
         const val DEFAULT_POSITION = 0
     }
 }
