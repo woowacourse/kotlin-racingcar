@@ -1,7 +1,6 @@
 package model
 
 import util.NumberGenerator
-import util.Validation
 
 class Racing(carsName: List<String>, private val randomNumber: NumberGenerator) {
 
@@ -9,7 +8,7 @@ class Racing(carsName: List<String>, private val randomNumber: NumberGenerator) 
 
     init {
         cars = carsName.map { Car(it) }
-        Validation.checkNameDuplication(carsName)
+        checkNameDuplication(carsName)
     }
 
     fun move() {
@@ -27,5 +26,11 @@ class Racing(carsName: List<String>, private val randomNumber: NumberGenerator) 
 
     companion object {
         private const val FORWARD_STANDARD_NUMBER = 4
+
+        fun checkNameDuplication(carsName: List<String>) {
+            require(carsName.size == carsName.toSet().size) {
+                "[ERROR] 자동차 이름은 중복될 수 없습니다."
+            }
+        }
     }
 }
