@@ -9,9 +9,9 @@ class InputView {
         val carNames = readln()
         val carNamesList = carNames.split(",").map { it.trim() }
 
-        require(Regex("^[a-zA-Z가-힣,]+\$").matches(carNames))
+        require(Regex(NAME_FORMAT).matches(carNames))
         require(carNamesList.size == carNamesList.toSet().size)
-        require(carNamesList.size in 1..100)
+        require(carNamesList.size in numberOfCarsRange)
 
         return carNamesList
     }
@@ -20,7 +20,7 @@ class InputView {
         println(ENTER_NUMBER_OF_ATTEMPTS)
         val numberOfAttempts = readln().toInt()
 
-        require(numberOfAttempts in 1..10000)
+        require(numberOfAttempts in numberOfAttemptsRange)
 
         return numberOfAttempts
     }
@@ -30,5 +30,9 @@ class InputView {
         const val ENTER_NUMBER_OF_ATTEMPTS = "시도할 횟수는 몇 회인가요?"
         const val EXECUTION_RESULTS = "실행 결과"
         const val LAST_WINNER = "최종 우승자: "
+
+        const val NAME_FORMAT = "^[a-zA-Z가-힣,]+\$"
+        val numberOfCarsRange = 1..100
+        val numberOfAttemptsRange = 1..10000
     }
 }
