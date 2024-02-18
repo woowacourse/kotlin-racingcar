@@ -1,5 +1,6 @@
 package racingcar
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
@@ -31,5 +32,25 @@ class CarTest {
         assertThrows<IllegalArgumentException> {
             Car("he na")
         }
+    }
+
+    @DisplayName("전진 조건 4 이상 일 때 - 전진")
+    @ParameterizedTest
+    @ValueSource(ints = [4, 5, 9])
+    fun move(randomNumber: Int) {
+        val expectedResult = 1
+        val result = Car("hye").move(randomNumber)
+
+        assertEquals(expectedResult, result)
+    }
+
+    @DisplayName("전진 조건 4 미만 일 때 - 정지")
+    @ParameterizedTest
+    @ValueSource(ints = [0, 2, 3])
+    fun stop(randomNumber: Int) {
+        val expectedResult = 0
+        val result = Car("hye").move(randomNumber)
+
+        assertEquals(expectedResult, result)
     }
 }
