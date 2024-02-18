@@ -9,8 +9,9 @@ data class Car(val name: String, var position: Int = INITIAL_POSITION) {
         require(!name.contains(SPACE)) { ERROR_CAR_NAME_CONTAINS_SPACE }
     }
 
-    fun move() {
-        if (RandomNumber.generator() >= MIN_POSITION_CONDITION) position++
+    fun move(randomNumber: Int): Int {
+        if (randomNumber >= MIN_POSITION_CONDITION) position++
+        return position
     }
 
     companion object {

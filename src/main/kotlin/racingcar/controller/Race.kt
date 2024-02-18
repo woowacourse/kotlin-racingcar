@@ -83,7 +83,7 @@ class Race {
         cars.forEach { car ->
             val randomNumber = RandomNumber.generator()
 
-            car.move()
+            car.move(randomNumber)
             outputView.printRaceResult(car.name, car.position)
         }
     }
