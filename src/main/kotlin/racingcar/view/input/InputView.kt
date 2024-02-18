@@ -3,7 +3,7 @@ package racingcar.view.input
 import racingcar.model.Car
 import racingcar.model.TryCount
 
-class InputView {
+object InputView {
     fun readCarNames(): List<Car> {
         val inputCarNames = readlnOrNull()
         InputValidator.validateCarNames(inputCarNames)

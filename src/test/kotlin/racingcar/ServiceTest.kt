@@ -8,15 +8,11 @@ import racingcar.service.RandomGenerator
 import racingcar.service.WinnerService
 
 class ServiceTest {
-    private val forwardService = ForwardService()
-    private val winnerService = WinnerService()
-
     /** RandomGenerator Test */
     @Test
     fun `생성한 랜덤값이 제한 범위에 포함되는지 확인한다`() {
-        val randomGenerator = RandomGenerator()
         repeat(100) {
-            assertThat(randomGenerator.generate())
+            assertThat(RandomGenerator.generate())
                 .isGreaterThanOrEqualTo(0)
                 .isLessThanOrEqualTo(9)
         }
@@ -29,7 +25,7 @@ class ServiceTest {
         val car = Car("olive")
 
         // when
-        forwardService.tryForwardCar(car, 4)
+        ForwardService.tryForwardCar(car, 4)
 
         // then
         assertThat(car.forwardCount).isEqualTo(1)
@@ -41,7 +37,7 @@ class ServiceTest {
         val car = Car("olive")
 
         // when
-        forwardService.tryForwardCar(car, 0)
+        ForwardService.tryForwardCar(car, 0)
 
         // then
         assertThat(car.forwardCount).isEqualTo(0)
@@ -58,7 +54,7 @@ class ServiceTest {
             )
 
         // when
-        val winners = winnerService.getWinners(cars)
+        val winners = WinnerService.getWinners(cars)
 
         // then
         assertThat(winners[0].toString()).isEqualTo("chae")
@@ -74,7 +70,7 @@ class ServiceTest {
             )
 
         // when
-        val winners = winnerService.getWinners(cars)
+        val winners = WinnerService.getWinners(cars)
 
         // then
         assertThat(winners.map { it.toString() })

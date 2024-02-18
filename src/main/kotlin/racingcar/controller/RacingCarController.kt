@@ -7,45 +7,38 @@ import racingcar.utils.retryWhileNoException
 import racingcar.view.input.InputView
 import racingcar.view.output.OutputView
 
-class RacingCarController(
-    private val inputView: InputView,
-    private val outputView: OutputView,
-) {
+class RacingCarController {
     private val cars = inputCarNames()
     private val tryCount = inputTryCount()
 
     private fun inputCarNames() =
         retryWhileNoException {
-            outputView.printInputCarNamesMessage()
-            inputView.readCarNames()
+            OutputView.printInputCarNamesMessage()
+            InputView.readCarNames()
         }
 
     private fun inputTryCount() =
         retryWhileNoException {
-            outputView.printInputTryCountMessage()
-            inputView.readTryCount()
+            OutputView.printInputTryCountMessage()
+            InputView.readTryCount()
         }
 
     fun run() {
-        outputView.printProcessStepMessage()
+        OutputView.printProcessStepMessage()
 
         tryCount.forEach {
             processStep()
         }
 
-        val winnerService = WinnerService()
-        val winners = winnerService.getWinners(cars)
-        outputView.printWinners(winners)
+        val winners = WinnerService.getWinners(cars)
+        OutputView.printWinners(winners)
     }
 
     private fun processStep() {
-        val forwardService = ForwardService()
-        val randomGenerator = RandomGenerator()
-
         cars.forEach { car ->
-            val randomNumber = randomGenerator.generate()
-            forwardService.tryForwardCar(car, randomNumber)
+            val randomNumber = RandomGenerator.generate()
+            ForwardService.tryForwardCar(car, randomNumber)
         }
-        outputView.printProcessStep(cars)
+        OutputView.printProcessStep(cars)
     }
 }

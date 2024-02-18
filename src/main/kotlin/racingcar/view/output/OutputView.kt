@@ -3,7 +3,7 @@ package racingcar.view.output
 import racingcar.constants.OutputConstants
 import racingcar.model.Car
 
-class OutputView {
+object OutputView {
     fun printInputCarNamesMessage() = println(OutputConstants.INPUT_CAR_NAMES_MESSAGE)
 
     fun printInputTryCountMessage() = println(OutputConstants.INPUT_TRY_COUNT_MESSAGE)

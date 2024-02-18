@@ -3,6 +3,6 @@ package racingcar.service
 import racingcar.constants.GameConstants
 import kotlin.random.Random
 
-class RandomGenerator {
+object RandomGenerator {
     fun generate() = Random.nextInt(GameConstants.MAX_RANDOM_NUMBER + 1)
 }
