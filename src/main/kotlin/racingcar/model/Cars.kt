@@ -3,7 +3,7 @@ package racingcar.model
 import racingcar.controller.Race
 
 class Cars(
-    private val names: List<String>,
+    names: List<String>,
 ) {
     init {
         require(names.isNotEmpty()) { Race.ERROR_REQUEST_INPUT }
@@ -12,7 +12,7 @@ class Cars(
         require(names.distinct().size == names.size) { ERROR_NAME_DUPLICATION }
     }
 
-    fun makeCars(): List<Car> {
+    fun makeCars(names: List<String>): List<Car> {
         val cars = mutableListOf<Car>()
 
         names.forEach { name ->

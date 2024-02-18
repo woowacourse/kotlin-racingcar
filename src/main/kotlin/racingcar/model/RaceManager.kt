@@ -21,7 +21,7 @@ class RaceManager {
         while (true) {
             try {
                 names = getNames()
-                cars = Cars(names).makeCars()
+                cars = Cars(names).makeCars(names)
                 break
             } catch (e: IllegalArgumentException) {
                 outputView.printErrorMessage(e.message)
