@@ -18,4 +18,11 @@ class GameControllerTest {
         assertDoesNotThrow{ValidationUtil.validateCarNames("hodu,우테코,6기")}
         assertThrows<IllegalArgumentException>{ValidationUtil.validateCarNames("-,:,?")}
     }
+
+    @Test
+    fun `시도 횟수는 자연수여야 합니다`() {
+        assertDoesNotThrow{ValidationUtil.validateRoundCounts("6")}
+        assertThrows<IllegalArgumentException>{ValidationUtil.validateRoundCounts("문자열")}
+        assertThrows<IllegalArgumentException>{ValidationUtil.validateRoundCounts("-4")}
+    }
 }
