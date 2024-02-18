@@ -12,10 +12,12 @@ class RacingGame(
         }
     }
 
-    fun judgeWinners(): List<Car> {
+    fun judgeWinners(): List<String> {
         val maxPosition = findMaxPosition()
         return cars.filter { car ->
             car.position == maxPosition
+        }.map { car ->
+            car.name
         }
     }
 

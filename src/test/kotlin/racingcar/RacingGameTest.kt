@@ -52,11 +52,7 @@ class RacingGameTest {
         }
         val expectWinners = listOf("pobi", "jun")
 
-        val actualWinners = racingGame
-            .judgeWinners()
-            .map { car ->
-                car.name
-            }
+        val actualWinners = racingGame.judgeWinners()
 
         assertThat(actualWinners).isEqualTo(expectWinners)
     }
@@ -81,11 +77,7 @@ class RacingGameTest {
         }
         val expectWinners = listOf("woni")
 
-        val actualWinners = racingGame
-            .judgeWinners()
-            .map { car ->
-                car.name
-            }
+        val actualWinners = racingGame.judgeWinners()
 
         assertThat(actualWinners).isNotEqualTo(expectWinners)
     }

@@ -16,7 +16,6 @@ class CarController {
             cars = cars,
             numberOfRound = numberOfRound
         )
-        endRacingGame()
     }
 
     private fun registerCars(): List<Car> {
@@ -57,14 +56,7 @@ class CarController {
             racingGame.racingCars()
             OutputView.outputRoundResults(cars = cars)
         }
-    }
-
-    private fun endRacingGame() {
-        val winners = racingGame
-            .judgeWinners()
-            .map { winner ->
-                winner.name
-            }
+        val winners = racingGame.judgeWinners()
         OutputView.outputWinners(winners)
     }
 }
