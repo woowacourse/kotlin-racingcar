@@ -1,6 +1,6 @@
 package racingcar.util
 
-class ValidationUtil {
+object ValidationUtil {
     fun validateCarNames(carNames: String?) {
         require(carNames != null) { "ERROR : 자동차의 이름을 입력해주세요." }
         val splitCarNames: List<String> = carNames.split(",")
