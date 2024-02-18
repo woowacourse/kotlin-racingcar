@@ -1,6 +1,7 @@
 package domain
 
 import org.assertj.core.api.Assertions.assertThatThrownBy
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
@@ -33,5 +34,12 @@ class CarsTest {
         val cars = Cars.from("aa,bb,cc", ExplicitNumberGenerator(3))
         cars.startPhase()
         assertTrue { cars.cars.all { it.position == 0 } }
+    }
+
+    @Test
+    fun `결과를 기반으로 우승자 확인`() {
+        val cars = Cars.from("aa,bb,cc", ExplicitNumberGenerator(4))
+        cars.startPhase()
+        assertEquals(listOf("aa", "bb", "cc"), cars.getWinners().winners.map { it.name })
     }
 }
