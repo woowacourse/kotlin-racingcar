@@ -1,6 +1,12 @@
 package racingcar.model
 
-data class Car(val name: String, var position: Int = INITIAL_POSITION) {
+class Car(
+    val name: String,
+    position: Int = INITIAL_POSITION,
+) {
+    var position: Int = position
+        private set
+
     init {
         require(name.isNotEmpty()) { ERROR_CAR_NAME_BLANK }
         require(name.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH) { ERROR_CAR_NAME_OUT_OF_RANGE }
