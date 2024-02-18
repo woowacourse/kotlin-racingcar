@@ -35,7 +35,7 @@ class RaceManager {
     private fun getRoundNumberInput() = inputView.readRoundNumber()
 
     fun getRoundNumber(): Int {
-        var roundNumber : String
+        var roundNumber: String
 
         while (true) {
             try {
