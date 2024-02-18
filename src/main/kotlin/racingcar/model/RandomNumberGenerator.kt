@@ -1,8 +1,6 @@
 package racingcar.model
 
-class RandomNumberGenerator {
+object RandomNumberGenerator {
+    private val randomNumber = 0..9
     fun generateRandomNumber(): Int = randomNumber.random()
-    companion object{
-        val randomNumber = 0..9
-    }
 }
