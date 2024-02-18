@@ -34,8 +34,7 @@ class RacingGame(
     }
 
     private fun getWinners(cars: Cars) {
-        val winners = cars.getWinners()
         outputView.printResultHeader()
-        outputView.printWinner(winners)
+        outputView.printWinner(cars.getWinners())
     }
 }
