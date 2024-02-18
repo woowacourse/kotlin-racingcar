@@ -13,4 +13,9 @@ class GameControllerTest {
         assertThrows<IllegalArgumentException>{ValidationUtil.validateCarNames("longname,over5length")}
     }
 
+    @Test
+    fun `자동차 이름은 한글, 영어, 숫자 이외의 문자를 사용할 수 없습니다`() {
+        assertDoesNotThrow{ValidationUtil.validateCarNames("hodu,우테코,6기")}
+        assertThrows<IllegalArgumentException>{ValidationUtil.validateCarNames("-,:,?")}
+    }
 }
