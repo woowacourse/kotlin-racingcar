@@ -1,6 +1,9 @@
 package racingcar.model
 
-class Car(var name: String, var position: Int = DEFAULT_POSITION) {
+class Car(val name: String) {
+    var position: Int = DEFAULT_POSITION
+        private set
+
     init {
         require(name.length <= CAR_NAME_LENGTH_MAX)
     }
