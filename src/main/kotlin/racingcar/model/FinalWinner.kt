@@ -1,6 +1,6 @@
 package racingcar.model
 
-class FinalWinner {
+object FinalWinner {
     fun decideWinner(cars: List<Car>): List<String> {
         val winnersPosition = cars.maxOf { it.position.length }
 

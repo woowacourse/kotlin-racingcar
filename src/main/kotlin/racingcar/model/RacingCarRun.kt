@@ -6,7 +6,6 @@ import racingcar.view.OutputView
 class RacingCarRun {
     private val inputView = InputView()
     private val outputView = OutputView()
-    private val finalWinner = FinalWinner()
 
     fun run() {
         inputView.printEnterCarNames()
@@ -61,7 +60,7 @@ class RacingCarRun {
 
     private fun printFinalWinner(cars: MutableList<Car>) {
         inputView.printLastWinner()
-        val finalWinners = finalWinner.decideWinner(cars)
+        val finalWinners = FinalWinner.decideWinner(cars)
         outputView.printFinalWinners(finalWinners)
     }
 
