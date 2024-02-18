@@ -13,6 +13,25 @@ class RacingCarRun {
     private var numberOfAttempts: Int = 0
 
     fun run() {
+        val car: MutableList<Car> = organizeAndValidateCarList()
+        validateNumberOfAttempts()
+        outputView.printExecutionResults()
+        printEachCarsPosition(numberOfAttempts, car)
+        printFinalWinner(car)
+    }
+
+    private fun validateNumberOfAttempts() {
+        while (true) {
+            try {
+                numberOfAttempts = inputView.askNumberOfAttempts()
+                break
+            } catch (e: IllegalArgumentException) {
+                println(NUMBER_OF_ATTEMPTS_ERROR)
+            }
+        }
+    }
+
+    private fun organizeAndValidateCarList(): MutableList<Car> {
         while (true) {
             try {
                 carNamesList = inputView.askCarNames()
@@ -27,22 +46,10 @@ class RacingCarRun {
         carNamesList.forEach { carName ->
             car.add(Car(carName))
         }
-
-        while(true){
-            try{
-                numberOfAttempts = inputView.askNumberOfAttempts()
-                break
-            } catch(e: IllegalArgumentException){
-                println(NUMBER_OF_ATTEMPTS_ERROR)
-            }
-        }
-
-        outputView.printExecutionResults()
-        printEachCarsPosition(numberOfAttempts, car)
-        printFinalWinner(car)
+        return car
     }
+
     private fun printFinalWinner(cars: MutableList<Car>) {
-        outputView.printLastWinner()
         val finalWinners = FinalWinner.decideWinner(cars)
         outputView.printFinalWinners(finalWinners)
     }
