@@ -13,10 +13,11 @@ class WinnerTest {
         val car = Car("hye", 3)
         val maxPosition = 3
         val expectedResult = "hye"
-        val result = Winner().judge(
-            car,
-            maxPosition
-        )
+        val result =
+            Winner().judge(
+                car,
+                maxPosition,
+            )
 
         assertEquals(expectedResult, result)
     }
@@ -27,10 +28,11 @@ class WinnerTest {
         val car = Car("hye", 1)
         val maxPosition = 3
         val expectedResult = null
-        val result = Winner().judge(
-            car,
-            maxPosition
-        )
+        val result =
+            Winner().judge(
+                car,
+                maxPosition,
+            )
 
         assertEquals(expectedResult, result)
     }
