@@ -24,8 +24,8 @@ class RaceCarTest {
     }
 
     @Test
-    fun `자동차 이름은 5자를 초과할 수 없다`() {
-        assertThrows<IllegalArgumentException>("자동차 이름은 5자를 초과할 수 없다.") {
+    fun `자동차 이름 길이는 1 ~ 5 범위를 벗어날 수 없다`() {
+        assertThrows<IllegalArgumentException>("자동차 이름은 1 ~ 5 길이 법위를 벗어날 수 없습니다.") {
             RaceCar("foobar")
         }
     }
