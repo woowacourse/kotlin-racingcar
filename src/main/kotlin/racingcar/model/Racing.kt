@@ -15,31 +15,10 @@ class Racing {
     }
 
     fun findWinnerNames(cars: List<Car>): List<String> {
-        var maxNum = -1
-        var winners = mutableListOf<String>()
-        for (car in cars) {
-            maxNum = winnerJudge(car, maxNum, winners)
-        }
+        val maxPosition = cars.maxOf { it.position }
+        val winners = cars.filter { it.position == maxPosition }.map { it.name }
 
         return winners
-    }
-
-    private fun winnerJudge(
-        car: Car,
-        tmp: Int,
-        winners: MutableList<String>,
-    ): Int {
-        val len = car.position
-        val num = len.coerceAtLeast(tmp)
-        if (tmp < num) {
-            winners.apply {
-                clear()
-                add(car.name)
-            }
-        } else if (tmp == len) {
-            winners.add(car.name)
-        }
-        return num
     }
 
     companion object {
