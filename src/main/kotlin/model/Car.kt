@@ -4,12 +4,12 @@ import util.Validation
 
 class Car(val name: String) {
 
+    var forwardCount = DEFAULT_FORWARD_COUNT
+        private set
+
     init {
         Validation.checkNameLength(name)
     }
-
-    var forwardCount = DEFAULT_FORWARD_COUNT
-        private set
 
     fun moveForward(isMove: Boolean) {
         if (isMove) {
