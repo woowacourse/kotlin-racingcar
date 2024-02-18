@@ -1,6 +1,6 @@
 package racingcar.model
 
-class CommaSeparatedListBuilder() {
+object CommaSeparatedListBuilder {
     fun commaSeparatedListBuild(carNamesText: String) =
         carNamesText.split(Regex("\\s*,\\s*")).map { it.trim() }
 }

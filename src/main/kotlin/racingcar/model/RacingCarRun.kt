@@ -11,12 +11,11 @@ class RacingCarRun {
     fun run() {
         inputView.printEnterCarNames()
         val cars: MutableList<Car> = mutableListOf()
-        val commaSeparatedListBuilder = CommaSeparatedListBuilder()
         val carNames = inputView.askCarNames()
-        val nameOfCars = commaSeparatedListBuilder.commaSeparatedListBuild(carNames)
+        val nameOfCars = CommaSeparatedListBuilder.commaSeparatedListBuild(carNames)
         val numberOfCars = nameOfCars.size
         repeat(numberOfCars) { cars.add(Car(nameOfCars[it])) }
-        reInputAndOrganizeCarNames(nameOfCars, carNames, numberOfCars, commaSeparatedListBuilder, cars)
+        reInputAndOrganizeCarNames(nameOfCars, carNames, numberOfCars, CommaSeparatedListBuilder, cars)
 
         val numberOfAttempts = inputNumberOfAttempts()
         inputView.printExecutionResults()
