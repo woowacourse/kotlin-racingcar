@@ -2,6 +2,7 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.Cars
+import racingcar.model.Winner
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -80,19 +81,7 @@ class Race {
         val maxPosition = getMaxPosition(cars)
 
         cars.forEach { car ->
-            winners = judgeWinners(car, maxPosition)
-        }
-        return winners
-    }
-
-    fun judgeWinners(
-        car: Car,
-        maxPosition: Int,
-    ): MutableList<String> {
-        val winners = mutableListOf<String>()
-
-        if (car.position == maxPosition) {
-            winners.add(car.name)
+            winners = Winner().judgeWinners(car, maxPosition)
         }
         return winners
     }
