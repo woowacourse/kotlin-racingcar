@@ -7,7 +7,7 @@ import racingcar.domain.Car
 
 class WinnerServiceTest {
     @Test
-    fun testFindWinners() {
+    fun `위치가 3,2,0인 자동차들이 있을 경우, 우승자는 위치가 3인 자동차이다`() {
         val cars =
             listOf(
                 Car("car0"),
