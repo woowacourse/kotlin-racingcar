@@ -1,8 +1,10 @@
 package racingcar
 
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import racingcar.model.Car
 import racingcar.model.Cars
 
 class CarsTest {
@@ -46,5 +48,15 @@ class CarsTest {
         assertThrows<IllegalArgumentException> {
             Cars(names)
         }
+    }
+
+    @DisplayName("자동차 생성 테스트")
+    @Test
+    fun makeCars() {
+        val names = listOf("pobi", "jason")
+        val expectedResult = listOf(Car("pobi"), Car("jason"))
+        val result = Cars(names).makeCars(names)
+
+        assertEquals(expectedResult, result)
     }
 }
