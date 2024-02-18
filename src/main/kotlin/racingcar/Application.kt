@@ -5,10 +5,6 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 fun main() {
-    val carController = CarController(
-        inputView = InputView(),
-        outputView = OutputView(),
-        validator = Validator()
-    )
+    val carController = CarController()
     carController.run()
 }

@@ -3,7 +3,7 @@ package racingcar.view
 import racingcar.model.Car
 import racingcar.util.Message
 
-class OutputView {
+object OutputView {
 
     fun outputStartGame() {
         println()
@@ -21,7 +21,5 @@ class OutputView {
         println(Message.FINAL_WINNERS.format(winners.joinToString(", ")))
     }
 
-    companion object {
-        const val PROGRESS_BAR = "-"
-    }
+    private const val PROGRESS_BAR = "-"
 }

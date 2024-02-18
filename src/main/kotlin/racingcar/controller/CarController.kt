@@ -6,11 +6,7 @@ import racingcar.model.RacingGame
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class CarController(
-    private val inputView: InputView,
-    private val outputView: OutputView,
-    private val validator: Validator
-) {
+class CarController {
     private lateinit var racingGame: RacingGame
 
     fun run() {
@@ -24,9 +20,9 @@ class CarController(
     }
 
     private fun registerCars(): List<Car> {
-        val carNames = inputView.inputCarNames()
+        val carNames = InputView.inputCarNames()
         return try {
-            validator.validateCarNames(carNames)
+            Validator.validateCarNames(carNames)
             makeCars(carNames)
         } catch (e: IllegalArgumentException) {
             println(e.message)
@@ -41,9 +37,9 @@ class CarController(
     }
 
     private fun registerRound(): Int {
-        val numberOfRound = inputView.inputNumberOfRound()
+        val numberOfRound = InputView.inputNumberOfRound()
         return try {
-            validator.validateNumberOfRound(numberOfRound)
+            Validator.validateNumberOfRound(numberOfRound)
             numberOfRound.toInt()
         } catch (e: IllegalArgumentException) {
             println(e.message)
@@ -56,11 +52,11 @@ class CarController(
         numberOfRound: Int
     ) {
         racingGame = RacingGame(cars = cars)
-        outputView.outputStartGame()
+        OutputView.outputStartGame()
         repeat(numberOfRound) {
             val randomNumbers = makeCarRandomNumber(cars = cars)
             racingGame.racingCars(randomNumbers = randomNumbers)
-            outputView.outputRoundResults(cars = cars)
+            OutputView.outputRoundResults(cars = cars)
         }
     }
 
@@ -70,7 +66,7 @@ class CarController(
             .map { winner ->
                 winner.getName()
             }
-        outputView.outputWinners(winners)
+        OutputView.outputWinners(winners)
     }
 
     private fun makeCarRandomNumber(cars: List<Car>): List<Int> {
