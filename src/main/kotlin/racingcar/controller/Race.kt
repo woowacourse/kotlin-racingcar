@@ -39,7 +39,7 @@ class Race {
 
     private fun validateEachName(names: List<String>) {
         names.forEach { name ->
-            Car(name)
+            Validation().carName(name)
         }
     }
 

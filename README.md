@@ -42,5 +42,8 @@
 - [x] Erase unnecessary companion objects.
   - As Validation class already use the constants, some constants became unnecessary.
 - [x] Make Car Data class to (just) class.
+- [ ] Seperate Validation parts from Model(Car class).
+  - Move validation parts in init block of Car class.
+  - Make the arguments already validated before making the instances. 
 - [ ] Depth Reduction needed.
   - All depth should be 1.

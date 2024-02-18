@@ -4,9 +4,6 @@ import racingcar.validator.Validation
 import kotlin.random.Random
 
 class Car(val name: String, var position: Int = INITIAL_POSITION) {
-    init {
-        Validation().carName(name)
-    }
 
     private fun getRandomNumber(): Int = Random.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
 
