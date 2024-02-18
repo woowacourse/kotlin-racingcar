@@ -18,13 +18,30 @@ class RaceCarGame(
         startRaceGame(cars, trialCount)
     }
 
-    private fun initRaceCars() =
-        RaceCars(
-            carNames = inputView.inputCarNames(),
-            scoreGenerator = scoreGenerator,
-        )
+    private fun initRaceCars(): RaceCars {
+        return runCatching {
+            RaceCars(
+                carNames = inputView.inputCarNames(),
+                scoreGenerator = scoreGenerator,
+            )
+        }.onFailure {
+            if (it is IllegalArgumentException) {
+                outputView.outputErrorMessage(it.message.orEmpty())
+                return initRaceCars()
+            }
+        }.getOrThrow()
+    }
 
-    private fun initTrialCount(): Int = inputView.inputTrialCount()
+    private fun initTrialCount(): Int {
+        return runCatching {
+            inputView.inputTrialCount()
+        }.onFailure {
+            if (it is IllegalArgumentException) {
+                outputView.outputErrorMessage(it.message.orEmpty())
+                return initTrialCount()
+            }
+        }.getOrThrow()
+    }
 
     private fun startRaceGame(
         cars: RaceCars,
