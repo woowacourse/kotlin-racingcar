@@ -1,22 +1,21 @@
 package racingcar.controller
 
-import racingcar.model.Car
-import racingcar.model.RacingStatusManager
+import racingcar.model.*
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 object RacingController {
     private lateinit var racingStatusManager: RacingStatusManager
+    private lateinit var numberGenerator: NumberGenerator
+    private lateinit var movementDecisionMaker: MovementDecisionMaker
 
     fun start() = with(OutputView) {
         val names = getValidNames()
         val trialNum = getValidTrial()
 
         initializeCars(names)
-
         printTrialResultMessage()
         repeat(trialNum) { play() }
-
         printFinalWinners(getWinners())
     }
 
@@ -31,12 +30,17 @@ object RacingController {
     }
 
     private fun initializeCars(names: List<String>) {
+        numberGenerator = RandomNumberGenerator()
+        movementDecisionMaker = ThresholdMovementDecisionMaker()
         racingStatusManager = RacingStatusManager(cars = names.map { Car(it) })
     }
 
     private fun play() {
         racingStatusManager.also { statusManager ->
-            statusManager.setRacingResult()
+            statusManager.setRacingResult(
+                getNumber = numberGenerator::getNumber,
+                isMovable = movementDecisionMaker::isMovable
+            )
             showCurrentRacingStatus(statusManager.currentRacingStatus)
         }
     }
