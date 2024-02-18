@@ -9,7 +9,9 @@ class RaceCar(
         private set
 
     init {
-        require(name.any { it.isWhitespace() }.not()) { "빈 문자열을 포함할 수 없습니다." }
+        if (name.any { it.isWhitespace() }) {
+            throw IllegalArgumentException("빈 문자열을 포함할 수 없습니다.")
+        }
         require(name.length <= 5) {
             "자동차 이름은 5자를 초과할 수 없다."
         }

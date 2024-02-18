@@ -13,7 +13,7 @@
 - [ ] : 무분별한 scope 함수, Extension 레팩토링
 ## domain 쪽
 ### RaceCar
-- [ ] : 빈 문자열 검증 가독성 리팩토링
+- [x] : 빈 문자열 검증 가독성 리팩토링
 - [ ] : ParameterizedTest 로 test 리팩토링 
 - [ ] : 불필요한 compare 함수 삭제
 
