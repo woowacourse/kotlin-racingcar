@@ -40,7 +40,7 @@ class GameController {
     ) {
         outputView.printRunMenu()
 
-        for (i in 1..count) {
+        repeat(count) {
             racing.racingCars(cars)
             outputView.printProgress(cars)
         }
