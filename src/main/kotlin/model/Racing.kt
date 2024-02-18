@@ -5,8 +5,7 @@ import util.Validation
 
 class Racing(carsName: List<String>, private val randomNumber: NumberGenerator) {
 
-    var cars: List<Car>
-        private set
+    val cars: List<Car>
 
     init {
         cars = carsName.map { Car(it) }
