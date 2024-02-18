@@ -11,21 +11,11 @@ class GameController {
     val racing = Racing()
 
     fun game() {
-        val carNames = inputCarName()
+        val carNames = inputView.inputCar()
         val cars = carNames.split(",").map { Car(it) }
-        val count = inputTryCnt()
+        val count = inputView.inputTry()
 
         run(count, cars)
-    }
-
-    fun inputCarName(): String {
-        val carNames = inputView.inputCar()
-        return carNames
-    }
-
-    fun inputTryCnt(): Int {
-        val count = inputView.inputTry()
-        return count
     }
 
     fun run(
