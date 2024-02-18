@@ -32,15 +32,16 @@ object RacingController {
     private fun initializeCars(names: List<String>) {
         numberGenerator = RandomNumberGenerator()
         movementDecisionMaker = ThresholdMovementDecisionMaker()
-        racingStatusManager = RacingStatusManager(cars = names.map { Car(it) })
+        racingStatusManager = RacingStatusManager(
+            cars = names.map { Car(it) },
+            getNumber = numberGenerator::getNumber,
+            isMovable = movementDecisionMaker::isMovable
+        )
     }
 
     private fun play() {
         racingStatusManager.also { statusManager ->
-            statusManager.setRacingResult(
-                getNumber = numberGenerator::getNumber,
-                isMovable = movementDecisionMaker::isMovable
-            )
+            statusManager.setRacingResult()
             showCurrentRacingStatus(statusManager.currentRacingStatus)
         }
     }

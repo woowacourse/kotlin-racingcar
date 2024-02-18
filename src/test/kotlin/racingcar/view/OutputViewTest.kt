@@ -9,7 +9,6 @@ import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
 class OutputViewTest {
-
     private lateinit var outContent: ByteArrayOutputStream
 
     @BeforeEach
@@ -25,8 +24,6 @@ class OutputViewTest {
         OutputView.printCurrentPosition(car.name, car.position)
 
         val output = outContent.toString()
-        assertThat(output).contains(
-            "carName : ", "-".repeat(nums)
-        )
+        assertThat(output).contains("carName : ", "-".repeat(nums))
     }
 }

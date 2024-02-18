@@ -5,7 +5,6 @@ import racingcar.constants.Constants.MINIMUM_RANDOM_SELECTION_NUM
 import racingcar.constants.Constants.STOP_THRESHOLD
 
 class TestNumberGenerator : NumberGenerator {
-
     private var trial = 0
 
     override fun getNumber(): Int {

@@ -17,7 +17,7 @@ object OutputView {
 
     fun printCurrentPosition(
         name: String,
-        position: Int
+        position: Int,
     ) = println(CURRENT_POSITION_TEMPLATE.format(name, PROGRESS_BAR.repeat(position)))
 
     fun printFinalWinners(names: List<String>) = println(FINAL_WINNERS.format(names.joinToString(WINNERS_SEPARATOR)))
