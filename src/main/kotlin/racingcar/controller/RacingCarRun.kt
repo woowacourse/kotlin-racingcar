@@ -38,7 +38,7 @@ class RacingCarRun {
         }
 
         inputView.printExecutionResults()
-        printEachCarsPosition(numberOfAttempts, car, RandomNumberGenerator)
+        printEachCarsPosition(numberOfAttempts, car)
         printFinalWinner(car)
     }
 
@@ -51,8 +51,7 @@ class RacingCarRun {
 
     private fun printEachCarsPosition(
         numberOfAttempts: Int,
-        cars: MutableList<Car>,
-        randomNumberGenerator: RandomNumberGenerator
+        cars: MutableList<Car>
     ) {
         repeat(numberOfAttempts) {
             cars.forEach { car ->
