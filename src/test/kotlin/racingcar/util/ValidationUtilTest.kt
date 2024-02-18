@@ -5,7 +5,6 @@ import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 
 class ValidationUtilTest {
-
     private val validationUtil = ValidationUtil()
 
     @Test

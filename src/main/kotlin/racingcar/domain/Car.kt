@@ -2,7 +2,6 @@ package racingcar.domain
 
 import racingcar.constant.MoveConstant
 
-
 class Car(val name: String) {
     var position: Int = 0
         private set

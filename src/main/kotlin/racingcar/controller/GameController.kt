@@ -8,7 +8,6 @@ import racingcar.view.OutputView
 import kotlin.random.Random
 
 class GameController {
-
     private val inputView = InputView()
     private val outputView = OutputView()
     private val validationUtil = ValidationUtil()
@@ -28,7 +27,6 @@ class GameController {
         outputView.printWinners(winners)
     }
 
-
     private fun getCarNames(): List<String> {
         return runCatching {
             val carNames = inputView.readCarNames()
@@ -41,7 +39,6 @@ class GameController {
             getCarNames()
         }
     }
-
 
     private fun getRoundCounts(): Int {
         return runCatching {
@@ -56,7 +53,10 @@ class GameController {
         }
     }
 
-    private fun playRacingGame(cars: List<Car>, roundCounts: Int) {
+    private fun playRacingGame(
+        cars: List<Car>,
+        roundCounts: Int,
+    ) {
         outputView.printResultMessage()
         repeat(roundCounts) {
             cars.forEach {
