@@ -1,6 +1,6 @@
 package racingcar.model
 
-import kotlin.random.Random
+import racingcar.utils.RandomNumber
 
 data class Car(val name: String, var position: Int = INITIAL_POSITION) {
     init {
@@ -9,10 +9,8 @@ data class Car(val name: String, var position: Int = INITIAL_POSITION) {
         require(!name.contains(SPACE)) { ERROR_CAR_NAME_CONTAINS_SPACE }
     }
 
-    private fun getRandomNumber(): Int = Random.nextInt(MIN_RANDOM_NUMBER, MAX_RANDOM_NUMBER)
-
     fun move() {
-        if (getRandomNumber() >= MIN_POSITION_CONDITION) position++
+        if (RandomNumber.generator() >= MIN_POSITION_CONDITION) position++
     }
 
     companion object {
@@ -24,8 +22,6 @@ data class Car(val name: String, var position: Int = INITIAL_POSITION) {
 
         const val MIN_NAME_LENGTH = 1
         const val MAX_NAME_LENGTH = 5
-        const val MIN_RANDOM_NUMBER = 0
-        const val MAX_RANDOM_NUMBER = 9
         const val MIN_POSITION_CONDITION = 4
         const val INITIAL_POSITION = 0
     }

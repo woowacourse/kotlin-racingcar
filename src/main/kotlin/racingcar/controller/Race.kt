@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.model.Car
+import racingcar.utils.RandomNumber
 import racingcar.model.Winner
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -80,6 +81,8 @@ class Race {
 
     private fun showRaceStatus() {
         cars.forEach { car ->
+            val randomNumber = RandomNumber.generator()
+
             car.move()
             outputView.printRaceResult(car.name, car.position)
         }
