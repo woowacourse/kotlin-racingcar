@@ -3,6 +3,7 @@ package racingcar.controller
 import racingcar.domain.Validator
 import racingcar.domain.model.Car
 import racingcar.domain.model.RacingGame
+import racingcar.util.Constant
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -56,8 +57,10 @@ class CarController {
         racingGame = RacingGame(cars = cars)
         OutputView.outputStartGame()
         repeat(numberOfRound) {
-            val randomNumbers = makeCarRandomNumber(cars = cars)
-            racingGame.racingCars(randomNumbers = randomNumbers)
+            racingGame.racingCars(
+                minNumber = Constant.MIN_RANDOM_NUMBER,
+                maxNumber = Constant.MAX_RANDOM_NUMBER
+            )
             OutputView.outputRoundResults(cars = cars)
         }
     }
@@ -69,11 +72,5 @@ class CarController {
                 winner.getName()
             }
         OutputView.outputWinners(winners)
-    }
-
-    private fun makeCarRandomNumber(cars: List<Car>): List<Int> {
-        return cars.map { car ->
-            car.makeRandomNumber()
-        }
     }
 }
