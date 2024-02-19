@@ -1,12 +1,12 @@
 package racingcar
 
-import org.junit.jupiter.api.Assertions.assertEquals
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.controller.Race
 import racingcar.model.Car
+import racingcar.model.Winner
 
 class WinnerTest {
-    private val race = Race()
+    private val winner = Winner()
 
     @Test
     fun checkWinners() {
@@ -16,9 +16,13 @@ class WinnerTest {
                 Car("hena", 2),
                 Car("pang", 3),
             )
-        val expectedResult = listOf("crong")
-        val winners = race.getWinners(cars)
+        val expectedResult = mutableListOf("crong")
 
-        assertEquals(expectedResult, winners)
+        val actualResult = mutableListOf<String>()
+        cars.forEach { car ->
+            winner.judgeWinners(car, 5, actualResult)
+        }
+
+        assertThat(actualResult).isEqualTo(expectedResult)
     }
 }

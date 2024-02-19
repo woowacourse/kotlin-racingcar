@@ -1,6 +1,10 @@
 package racingcar.controller
 
 import racingcar.model.Car
+import racingcar.model.Cars
+import racingcar.model.RoundNumber
+import racingcar.model.Winner
+import racingcar.util.RandomNumber
 import racingcar.validator.Validation
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -25,21 +29,13 @@ class Race {
         while (true) {
             kotlin.runCatching {
                 names = inputView.readCarNames().split(COMMA)
-                validateNames(names)
+                Cars(names)
+                names.forEach {name ->
+                    Car(name)
+                }
             }
                 .onSuccess { return names }
                 .onFailure { exception -> println(exception.message) }
-        }
-    }
-
-    fun validateNames(names: List<String>) {
-        Validation().carNameList(names)
-        validateEachName(names)
-    }
-
-    private fun validateEachName(names: List<String>) {
-        names.forEach { name ->
-            Car(name)
         }
     }
 
@@ -59,18 +55,13 @@ class Race {
         var roundNumber: Int
 
         while (true) {
-            runCatching { getValidRoundNumber(inputView.readRoundNumber()) }
+            runCatching { RoundNumber(inputView.readRoundNumber()).roundNumber }
                 .onSuccess { value ->
                     roundNumber = value
                     return roundNumber
                 }
                 .onFailure { exception -> println(exception.message) }
         }
-    }
-
-    fun getValidRoundNumber(roundNumberInput: String): Int {
-        Validation().roundNumber(roundNumberInput)
-        return roundNumberInput.toInt()
     }
 
     private fun showResult(roundNumber: Int) {
@@ -85,7 +76,7 @@ class Race {
 
     private fun showRaceStatus() {
         cars.forEach { car ->
-            car.move()
+            car.move(RandomNumber().getRandomNumber())
             outputView.printRaceResult(car.name, car.position)
         }
     }
@@ -95,20 +86,11 @@ class Race {
         val maxPosition = getMaxPosition(cars)
 
         cars.forEach { car ->
-            judgeWinners(car, maxPosition, winners)
+            Winner().judgeWinners(car, maxPosition, winners)
         }
         return winners
     }
 
-    private fun judgeWinners(
-        car: Car,
-        maxPosition: Int,
-        winners: MutableList<String>,
-    ) {
-        if (car.position == maxPosition) {
-            winners.add(car.name)
-        }
-    }
 
     private fun getMaxPosition(cars: List<Car>): Int = cars.maxOfOrNull { it.position }!!
 
