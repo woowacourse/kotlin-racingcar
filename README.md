@@ -46,6 +46,10 @@
   - Move validation parts in init block of Car class.
   - Make the arguments already validated before making the instances. 
 - [x] Depth Reduction needed.
-  - All depth should be 1.  - All depth should be 1.
+  - All depth should be 1.
 - [x] Change `move` function possible to test.
   - move `getRandomNumber` function to Util.
+- [x] Make test code for move functions of Car class.
+- [x] (Domain)Model seperation from controller.
+  - All tests are conducted by model.
+  - -> validation parts were moved to init block.
