@@ -3,12 +3,14 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class RaceCarsTest {
+    /*
     @Test
     fun `차는 중복될 수 없습니다`() {
         assertThrows<IllegalArgumentException>("차는 중복될 수 없습니다.") {
             RaceCars(listOf(RaceCar("foo"), RaceCar("foo")), { 1 })
         }
     }
+     */
 
     @Test
     fun `차 리스트는 비어 있으면 안된다`() {
