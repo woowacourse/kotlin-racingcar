@@ -3,7 +3,6 @@ package racingcar.view
 import racingcar.model.Car
 
 class OutputView {
-
     fun printResultTitle() = println(MESSAGE_ROUND_RESULT)
 
     fun printRoundResult(cars: List<Car>) {
@@ -11,7 +10,7 @@ class OutputView {
         println()
     }
 
-    fun printWinners(winners: List<Car>){
+    fun printWinners(winners: List<Car>) {
         println("$MESSAGE_WINNER ${winners.joinToString(", ") { it.name }}")
     }
 
