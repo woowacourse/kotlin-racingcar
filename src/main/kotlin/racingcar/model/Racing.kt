@@ -1,17 +1,13 @@
 package racingcar.model
 
-class Racing {
+import racingcar.RandomMoveStrategy
+import kotlin.random.Random
+
+class Racing : RandomMoveStrategy {
     fun racingCars(cars: List<Car>) {
         for (car in cars) {
-            val randomNum = rand()
-            car.move(goOrStop(randomNum))
+            if (shouldMove(START_RANGE, END_RANGE)) car.move()
         }
-    }
-
-    fun rand() = (START_RANGE..END_RANGE).random()
-
-    fun goOrStop(num: Int): Int {
-        return if (num >= TARGET_NUM) MOVE else STOP
     }
 
     fun findWinnerNames(cars: List<Car>): List<String> {
@@ -25,7 +21,12 @@ class Racing {
         const val START_RANGE = 0
         const val END_RANGE = 9
         const val TARGET_NUM = 4
-        const val MOVE = 1
-        const val STOP = 0
+    }
+
+    override fun shouldMove(
+        minNum: Int,
+        maxNum: Int,
+    ): Boolean {
+        return Random.nextInt(minNum, maxNum) >= TARGET_NUM
     }
 }

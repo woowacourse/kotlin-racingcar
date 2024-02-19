@@ -8,8 +8,8 @@ class Car(val name: String) {
         require(name.length <= CAR_NAME_MAX_LENGTH)
     }
 
-    fun move(distance: Int) {
-        position += distance
+    fun move() {
+        position += 1
     }
 
     companion object {
