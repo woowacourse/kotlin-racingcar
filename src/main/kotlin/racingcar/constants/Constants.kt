@@ -1,6 +1,7 @@
 package racingcar.constants
 
 object Constants {
+    const val MOVE_THRESHOLD = 4
     const val DEFAULT_POSITION = 0
     const val MINIMUM_NAME_LENGTH = 1
     const val MAXIMUM_NAME_LENGTH = 5

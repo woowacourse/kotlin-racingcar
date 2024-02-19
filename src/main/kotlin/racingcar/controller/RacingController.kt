@@ -6,9 +6,10 @@ import racingcar.model.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class RacingController {
-    private val manager = MoveManager()
-    private val numberGenerator = RandomNumberGenerator()
+class RacingController(
+    private val manager: MoveManager,
+    private val numberGenerator: RandomNumberGenerator
+) {
     private lateinit var currentRacingStatus: List<Car>
 
     fun start() =
