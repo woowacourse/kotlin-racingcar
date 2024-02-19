@@ -11,14 +11,14 @@ class RacingGame(
             tryForwardCar(car)
         }
 
-    private fun isForward(randomNumber: Int) = randomNumber >= FORWARD_FLAG_NUMBER
-
     private fun tryForwardCar(car: Car) {
         val forwardNumber = forwardNumberGenerator.generate()
         if (isForward(forwardNumber)) {
             car.forward()
         }
     }
+
+    private fun isForward(forwardNumber: Int) = forwardNumber >= FORWARD_FLAG_NUMBER
 
     fun getWinners(): List<Car> {
         val maxForwardCountCar = cars.maxOf { it.position }
