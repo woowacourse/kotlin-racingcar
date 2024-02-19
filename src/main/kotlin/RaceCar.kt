@@ -6,7 +6,7 @@ class RaceCar(
 
     init {
         require(name.length <= 5) {
-            "자동차 이름은 5자를 초과할 수 없다."
+            "${name}은 5자를 초과합니다. 자동차 이름은 5자를 초과할 수 없습니다."
         }
     }
 
