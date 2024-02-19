@@ -7,7 +7,7 @@ class Car(val name: String) {
         private set
 
     fun move() {
-        val randomNumber = Random.nextInt(10)
-        if (randomNumber >= 4) position++
+        val number: Int = Random.nextInt(10)
+        if (number >= 4) position++
     }
 }

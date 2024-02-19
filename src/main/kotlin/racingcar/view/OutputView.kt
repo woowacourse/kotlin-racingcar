@@ -2,7 +2,7 @@ package racingcar.view
 
 import racingcar.domain.Car
 
-class OutputView {
+object OutputView {
     fun printResultMessage() {
         println("\n실행 결과")
     }

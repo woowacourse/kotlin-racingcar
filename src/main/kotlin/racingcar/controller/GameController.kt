@@ -1,6 +1,6 @@
 package racingcar.controller
 
-import racingcar.domain.Car
+import racingcar.domain.RacingGame
 import racingcar.service.WinnerService
 import racingcar.util.ValidationUtil
 import racingcar.view.InputView
@@ -8,57 +8,51 @@ import racingcar.view.OutputView
 
 class GameController {
 
-    private val inputView = InputView()
-    private val outputView = OutputView()
-    private val validationUtil = ValidationUtil()
-    private val winnerService = WinnerService()
-
     fun start() {
         //  사용자 입력 및 검증
         val carNames = getCarNames()
         val roundCounts = getRoundCounts()
 
-        // 레이싱 게임 실행
-        val cars: List<Car> = carNames.map { Car(it) }
-        playRacingGame(cars, roundCounts)
+        // 자동차 경주 준비 및 시작
+        val racingGame = RacingGame(carNames)
+        playRacingGame(racingGame, roundCounts)
 
         // 결과 출력
-        val winners = winnerService.findWinners(cars)
-        outputView.printWinners(winners)
+        val winners = WinnerService.findWinners(racingGame.cars)
+        OutputView.printWinners(winners)
     }
 
-
     private fun getCarNames(): List<String> {
-        while (true) {
-            try {
-                val carNames = inputView.readCarNames()
-                validationUtil.validateCarNames(carNames)
-                return carNames!!.split(",")
-            } catch (e: IllegalArgumentException) {
-                outputView.printErrorMessage(e.message!!)
+        return runCatching {
+            val carNames = InputView.readCarNames()
+            ValidationUtil.validateCarNames(carNames)
+            carNames!!.split(",")
+        }.getOrElse { exception ->
+            if(exception is IllegalArgumentException) {
+                OutputView.printErrorMessage(exception.message!!)
             }
+            getCarNames()
         }
     }
 
     private fun getRoundCounts(): Int {
-        while (true) {
-            try {
-                val roundCounts = inputView.readRoundCounts()
-                validationUtil.validateRoundCounts(roundCounts)
-                return roundCounts!!.toInt()
-            } catch (e: IllegalArgumentException) {
-                outputView.printErrorMessage(e.message!!)
+        return runCatching {
+            val roundCounts = InputView.readRoundCounts()
+            ValidationUtil.validateCarNames(roundCounts)
+            return roundCounts!!.toInt()
+        }.getOrElse { exception ->
+            if(exception is IllegalArgumentException) {
+                OutputView.printErrorMessage(exception.message!!)
             }
+            getRoundCounts()
         }
     }
 
-    private fun playRacingGame(cars: List<Car>, roundCounts: Int) {
-        outputView.printResultMessage()
+    private fun playRacingGame(racingGame: RacingGame, roundCounts: Int) {
+        OutputView.printResultMessage()
         repeat(roundCounts) {
-            cars.forEach {
-                it.move()
-            }
-            outputView.printRoundResult(cars)
+            racingGame.playOneRound()
+            OutputView.printRoundResult(racingGame.cars)
         }
     }
 }
