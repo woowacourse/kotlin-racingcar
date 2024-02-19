@@ -6,7 +6,7 @@ import racingcar.model.move
 import racingcar.view.*
 
 
-fun game() {
+fun gameStart() {
     var carNames: MutableList<String>
     try {
         carNames = inputCarName()
