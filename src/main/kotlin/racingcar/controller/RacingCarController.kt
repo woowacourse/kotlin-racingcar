@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.service.RacingGame
+import racingcar.service.RandomForwardNumberGenerator
 import racingcar.service.WinnerService
 import racingcar.utils.retryWhileNoException
 import racingcar.view.input.InputView
@@ -25,7 +26,7 @@ class RacingCarController {
     fun run() {
         OutputView.printProcessResultMessage()
 
-        val racingGame = RacingGame(cars)
+        val racingGame = RacingGame(cars, RandomForwardNumberGenerator)
         tryCount.forEach {
             racingGame.updateCarsPosition()
             OutputView.printCarsPosition(cars)
