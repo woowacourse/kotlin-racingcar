@@ -2,14 +2,15 @@ package racingcar.view
 
 import racingcar.model.Car
 
+private const val RATIO="-"
+
 fun printRunMenu(){
     println("실행 결과")
 }
 
 fun printProgress(cars: List<Car>) {
     for (car in cars) {
-        // car.position 값만큼 "-"를 반복하여 출력
-        val progress = "-".repeat(car.position)
+        val progress = RATIO.repeat(car.position)
         println("${car.name} : $progress")
     }
     println()
