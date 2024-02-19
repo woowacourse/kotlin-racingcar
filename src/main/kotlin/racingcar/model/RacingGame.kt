@@ -1,7 +1,7 @@
 package racingcar.model
 
 class RacingGame(private val carNames: MutableList<Car>) {
-    private fun generateRandomNumber(): Int = randomNumber.random()
+    fun generateRandomNumber(): Int = randomNumber.random()
 
     fun decideWinner(cars: List<Car>): List<String> {
         val winnersPosition = cars.maxOf { it.position.length }
