@@ -2,7 +2,7 @@ package racingcar.domain.model
 
 class Car(
     private val name: String
-)  {
+) {
     private var step: Int = 0
 
     fun moveCar() {
