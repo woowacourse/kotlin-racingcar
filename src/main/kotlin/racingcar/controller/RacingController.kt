@@ -2,13 +2,13 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.MoveManager
-import racingcar.model.RandomNumberGenerator
+import racingcar.model.NumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingController(
     private val manager: MoveManager,
-    private val numberGenerator: RandomNumberGenerator
+    private val numberGenerator: NumberGenerator
 ) {
     private lateinit var currentRacingStatus: List<Car>
 
@@ -39,7 +39,7 @@ class RacingController(
 
     private fun play() {
         currentRacingStatus.map { car ->
-            if (manager.isMoveAble(numberGenerator.getRandomNumber())) car.move()
+            if (manager.isMoveAble(numberGenerator.getNumber())) car.move()
         }
         OutputView.printNameAndCurrentPosition(currentRacingStatus)
     }
