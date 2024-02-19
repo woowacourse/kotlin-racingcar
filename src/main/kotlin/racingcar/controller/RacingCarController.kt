@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.service.RacingService
+import racingcar.service.RandomGenerator
 import racingcar.service.WinnerService
 import racingcar.utils.retryWhileNoException
 import racingcar.view.input.InputView
@@ -30,7 +31,8 @@ class RacingCarController(
 
     private fun processStep() {
         outputView.printProcessStepMessage()
-        val racingService = RacingService()
+        val randomNumberGenerator = RandomGenerator()
+        val racingService = RacingService(randomNumberGenerator)
         repeat(tryCount.count) {
             val currentCars = racingService.startRace(cars)
             outputView.printProcessStep(currentCars)
