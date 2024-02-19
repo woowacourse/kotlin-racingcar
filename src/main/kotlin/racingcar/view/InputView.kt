@@ -1,7 +1,29 @@
 package racingcar.view
 
-class InputView {
-    fun readCarNames(): String = readln()
+import racingcar.model.Car
+import racingcar.model.Cars
+import racingcar.model.RoundNumber
 
-    fun readRoundNumber(): String = readln()
+class InputView {
+    fun readCarNames(): List<String> {
+        val namesString = readln()
+        val names = namesString.split(COMMA)
+
+        names.forEach { name ->
+            Car(name)
+        }
+        Cars(names)
+        return names
+    }
+
+    fun readRoundNumber(): String {
+        val roundNumber = readln()
+
+        RoundNumber(roundNumber)
+        return roundNumber
+    }
+
+    companion object {
+        private const val COMMA = ","
+    }
 }
