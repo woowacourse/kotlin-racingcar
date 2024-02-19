@@ -11,7 +11,7 @@ const val TARGET_NUM = 4
 fun move(cars: MutableList<Car>) {
     for (car in cars) {
         val randomNum = rand()
-        if (isMovePossible(randomNum)) car.position++
+        if (isMovePossible(randomNum)) car.plusPosition()
     }
     printProgress(cars)
 }
