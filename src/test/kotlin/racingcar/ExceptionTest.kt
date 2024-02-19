@@ -3,7 +3,7 @@ package racingcar
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
-import org.junit.jupiter.params.provider.NullSource
+import org.junit.jupiter.params.provider.NullAndEmptySource
 import org.junit.jupiter.params.provider.ValueSource
 import racingcar.view.input.InputValidator
 
@@ -12,8 +12,8 @@ class ExceptionTest {
 
     /** 자동차 이름 입력 Test */
     @ParameterizedTest
-    @NullSource
-    @ValueSource(strings = ["", " ", ",,,"])
+    @NullAndEmptySource
+    @ValueSource(strings = [",,,"])
     fun `자동차 이름을 입력하지 않는 경우 예외가 발생한다`(inputCarNames: String?) {
         assertThrows<IllegalArgumentException> {
             inputValidator.validateCarNames(inputCarNames)
@@ -54,8 +54,7 @@ class ExceptionTest {
 
     /** 시도할 횟수 입력 Test */
     @ParameterizedTest
-    @NullSource
-    @ValueSource(strings = ["", " "])
+    @NullAndEmptySource
     fun `시도할 횟수를 입력하지 않는 경우 예외가 발생한다`(inputTryCount: String?) {
         assertThrows<IllegalArgumentException> {
             inputValidator.validateTryCount(inputTryCount)
