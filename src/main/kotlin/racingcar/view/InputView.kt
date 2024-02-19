@@ -4,10 +4,12 @@ import racingcar.util.Message
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-class InputView {
+object InputView {
+    private val br = BufferedReader(InputStreamReader(System.`in`))
+
     fun inputCarNames(): List<String> {
         println(Message.REGISTER_CAR_NAMES)
-        return br.readLine().split(",")
+        return br.readLine().split(INPUT_SEPARATOR)
     }
 
     fun inputNumberOfRound(): String {
@@ -15,7 +17,5 @@ class InputView {
         return br.readLine()
     }
 
-    companion object {
-        val br = BufferedReader(InputStreamReader(System.`in`))
-    }
+    private const val INPUT_SEPARATOR = ","
 }

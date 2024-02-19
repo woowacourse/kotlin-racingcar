@@ -1,16 +1,13 @@
 package racingcar.controller
 
-import racingcar.Validator
 import racingcar.model.Car
 import racingcar.model.RacingGame
+import racingcar.util.Constant
+import racingcar.util.InputValidator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class CarController(
-    private val inputView: InputView,
-    private val outputView: OutputView,
-    private val validator: Validator
-) {
+class CarController {
     private lateinit var racingGame: RacingGame
 
     fun run() {
@@ -20,13 +17,12 @@ class CarController(
             cars = cars,
             numberOfRound = numberOfRound
         )
-        endRacingGame()
     }
 
     private fun registerCars(): List<Car> {
-        val carNames = inputView.inputCarNames()
+        val carNames = InputView.inputCarNames()
         return try {
-            validator.validateCarNames(carNames)
+            InputValidator.validateCarNames(carNames)
             makeCars(carNames)
         } catch (e: IllegalArgumentException) {
             println(e.message)
@@ -41,9 +37,9 @@ class CarController(
     }
 
     private fun registerRound(): Int {
-        val numberOfRound = inputView.inputNumberOfRound()
+        val numberOfRound = InputView.inputNumberOfRound()
         return try {
-            validator.validateNumberOfRound(numberOfRound)
+            InputValidator.validateNumberOfRound(numberOfRound)
             numberOfRound.toInt()
         } catch (e: IllegalArgumentException) {
             println(e.message)
@@ -56,26 +52,12 @@ class CarController(
         numberOfRound: Int
     ) {
         racingGame = RacingGame(cars = cars)
-        outputView.outputStartGame()
+        OutputView.outputStartGame()
         repeat(numberOfRound) {
-            val randomNumbers = makeCarRandomNumber(cars = cars)
-            racingGame.racingCars(randomNumbers = randomNumbers)
-            outputView.outputRoundResults(cars = cars)
+            racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+            OutputView.outputRoundResults(cars = cars)
         }
-    }
-
-    private fun endRacingGame() {
-        val winners = racingGame
-            .judgeWinners()
-            .map { winner ->
-                winner.getName()
-            }
-        outputView.outputWinners(winners)
-    }
-
-    private fun makeCarRandomNumber(cars: List<Car>): List<Int> {
-        return cars.map { car ->
-            car.makeRandomNumber()
-        }
+        val winnerNames = racingGame.judgeWinners().map { winner -> winner.name }
+        OutputView.outputWinnerNames(winnerNames)
     }
 }

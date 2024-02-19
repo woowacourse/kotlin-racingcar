@@ -1,21 +1,14 @@
 package racingcar.model
 
-import racingcar.util.Constant
-import kotlin.random.Random
-
-class Car(
-    private val name: String,
-    private var step: Int = 0
-) {
-    fun makeRandomNumber(): Int {
-        return Random.nextInt(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER)
-    }
+class Car(val name: String) {
+    var position: Int = DEFAULT_POSITION
+        private set
 
     fun moveCar() {
-        step += 1
+        position += 1
     }
 
-    fun getName(): String = name
-
-    fun getStep(): Int = step
+    companion object {
+        const val DEFAULT_POSITION = 0
+    }
 }
