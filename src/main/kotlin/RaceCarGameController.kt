@@ -10,7 +10,7 @@ class RaceCarGameController {
 
     fun findWinners(cars: RaceCars, trialCount: Int) {
         startRace(cars, trialCount)
-        val winners = cars.findHeadGroup()
+        val winners = cars.findWinnerCars()
         OutputView.outputWinners(winners.formatToWinners())
     }
 

@@ -20,6 +20,8 @@ class RaceCar(
         }
     }
 
+    fun isSamePosition(other: RaceCar) = compareTo(other) == 0
+
     override fun compareTo(other: RaceCar) = (distance - other.distance)
 
     override fun toString(): String = "$name : ${DISTANCE_UNIT.repeat(distance)}"

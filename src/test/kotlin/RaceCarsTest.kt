@@ -42,7 +42,7 @@ class RaceCarsTest {
         val raceCars = RaceCars(listOf(headCar, headCar2, car), { 2 })
         val expectedHeadGroup = listOf(headCar, headCar2)
         // when
-        val headCarGroup = raceCars.findHeadGroup()
+        val headCarGroup = raceCars.findWinnerCars()
         // then
         assertThat(headCarGroup).isEqualTo(expectedHeadGroup)
     }
