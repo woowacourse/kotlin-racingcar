@@ -1,4 +1,4 @@
-data class RaceCar(
+class RaceCar(
     val name: String,
 ) : Comparable<RaceCar> {
 
