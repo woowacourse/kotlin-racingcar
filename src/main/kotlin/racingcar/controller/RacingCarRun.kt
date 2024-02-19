@@ -1,7 +1,7 @@
 package racingcar.controller
 
 import racingcar.model.Car
-import racingcar.model.FinalWinner
+import racingcar.model.RacingGame
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -10,9 +10,11 @@ class RacingCarRun {
     private val outputView = OutputView()
     private lateinit var carNamesList: List<String>
     private var numberOfAttempts: Int = 0
+    private lateinit var racingGame: RacingGame
 
     fun run() {
         val car: MutableList<Car> = organizeAndValidateCarList()
+        racingGame = RacingGame(car)
         validateNumberOfAttempts()
         outputView.printEachCarsPosition(numberOfAttempts, car)
         printFinalWinner(car)
@@ -48,7 +50,7 @@ class RacingCarRun {
     }
 
     private fun printFinalWinner(cars: MutableList<Car>) {
-        val finalWinners = FinalWinner.decideWinner(cars)
+        val finalWinners = racingGame.decideWinner(cars)
         outputView.printFinalWinners(finalWinners)
     }
 
