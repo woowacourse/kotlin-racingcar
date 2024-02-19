@@ -9,14 +9,14 @@ class RacingGame(private val carNames: MutableList<Car>) {
         return cars.filter { it.position.length == winnersPosition }.map { it.name }
     }
 
-    fun carMovingControl(){
+    fun carMovingControl() {
         carNames.forEach { car ->
             val randomNumber = generateRandomNumber()
             car.moveCar(randomNumber)
         }
     }
 
-    companion object{
+    companion object {
         private val randomNumber = 0..9
     }
 }
