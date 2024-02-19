@@ -1,4 +1,4 @@
-package racecar
+package racecar.view
 
 class KernelRaceCarGameInputView : RaceCarGameInputView {
     override fun inputCarNames(): List<String> {
@@ -11,8 +11,8 @@ class KernelRaceCarGameInputView : RaceCarGameInputView {
         return readln().also(::validateTrialCount).toInt()
     }
 
-    private fun validateTrialCount(input: String) {
-        check(input.all { it.isDigit() }) { "입력값은 모두 숫자여야한다" }
+    private fun validateTrialCount(trialCount: String) {
+        trialCount.toIntOrNull() ?: throw IllegalArgumentException("입력값 $trialCount - 시도 횟수는 숫자여야 한다.")
     }
 
     companion object {

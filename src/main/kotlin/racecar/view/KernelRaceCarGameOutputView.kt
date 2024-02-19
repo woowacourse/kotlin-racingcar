@@ -1,18 +1,22 @@
-package racecar
+package racecar.view
+
+import racecar.domain.RaceCar
 
 class KernelRaceCarGameOutputView : RaceCarGameOutputView {
     override fun outputRaceResultTitle() = println("실행 결과")
 
     override fun outputRacingStatus(cars: List<RaceCar>) {
-        println(cars.formatToRaceStatus())
+        println(formatToRacingStatus(cars))
     }
+
+    override fun outputErrorMessage(errorMessage: String) = println(errorMessage)
 
     override fun outputWinners(winner: List<RaceCar>) = print(winner.formatToWinners())
 
-    private fun List<RaceCar>.formatToRaceStatus() =
-        StringBuilder()
-            .also { sb -> forEach { car -> sb.append("${car.formatToStatus()}\n") } }
-            .toString()
+    private fun formatToRacingStatus(winners: List<RaceCar>) =
+        buildString {
+            winners.forEach { append("${it.formatToStatus()}\n") }
+        }
 
     private fun List<RaceCar>.formatToWinners() = "최종 우승자: ${joinToString { it.name }}"
 

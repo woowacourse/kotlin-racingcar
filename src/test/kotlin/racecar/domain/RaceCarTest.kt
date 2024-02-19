@@ -1,9 +1,10 @@
-package racecar
+package racecar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class RaceCarTest {
     @Test
@@ -23,8 +24,8 @@ class RaceCarTest {
     }
 
     @Test
-    fun `자동차 이름은 5자를 초과할 수 없다`() {
-        assertThrows<IllegalArgumentException>("자동차 이름은 5자를 초과할 수 없다.") {
+    fun `자동차 이름 길이는 1 ~ 5 범위를 벗어날 수 없다`() {
+        assertThrows<IllegalArgumentException>("자동차 이름은 1 ~ 5 길이 법위를 벗어날 수 없습니다.") {
             RaceCar("foobar")
         }
     }
@@ -35,15 +36,12 @@ class RaceCarTest {
         assertThat(startPosition).isZero()
     }
 
-    @Test
-    fun `자동차는 시작 위치를 다른 정수로 바꿀 수 있다`() {
-        val plusPosition = RaceCar("foo", startPoint = 1).position
-        val minusPosition = RaceCar("foo", startPoint = -1).position
+    @ParameterizedTest
+    @ValueSource(ints = [-1, 1])
+    fun `자동차는 시작 위치를 다른 정수로 바꿀 수 있다`(startPosition: Int) {
+        val actualPosition = RaceCar("foo", startPoint = startPosition).position
         // then
-        assertAll(
-            { assertThat(plusPosition).isEqualTo(1) },
-            { assertThat(minusPosition).isEqualTo(-1) },
-        )
+        assertThat(actualPosition).isEqualTo(startPosition)
     }
 
     @Test
@@ -81,14 +79,5 @@ class RaceCarTest {
         val actualPosition = raceCar.position
         // then
         assertThat(actualPosition).isEqualTo(expectedPosition)
-    }
-
-    @Test
-    fun `자동차의 position을 비교할 수 있다`() {
-        // given
-        val raceCar1 = RaceCar("foo", 2)
-        val raceCar2 = RaceCar("bar", 3)
-        // then
-        assertThat(raceCar1.comparePosition(raceCar2)).isEqualTo(-1)
     }
 }

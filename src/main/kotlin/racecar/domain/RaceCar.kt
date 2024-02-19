@@ -1,4 +1,4 @@
-package racecar
+package racecar.domain
 
 class RaceCar(
     val name: String,
@@ -9,19 +9,17 @@ class RaceCar(
         private set
 
     init {
-        require(name.any { it.isWhitespace() }.not()) { "빈 문자열을 포함할 수 없습니다." }
-        require(name.length <= 5) {
-            "자동차 이름은 5자를 초과할 수 없다."
+        if (name.any { it.isWhitespace() }) {
+            throw IllegalArgumentException("빈 문자열을 포함할 수 없습니다.")
+        }
+        require(name.length in 1..5) {
+            "자동차 이름은 1 ~ 5 길이 법위를 벗어날 수 없습니다."
         }
     }
 
     fun move(score: Int) {
         position += moveStrategy.move(score)
     }
-
-    fun comparePosition(other: RaceCar) = (position - other.position)
-
-    fun samePosition(other: RaceCar) = (position == other.position)
 
     override fun toString(): String = "$name : ${DISTANCE_UNIT.repeat(position)}"
 

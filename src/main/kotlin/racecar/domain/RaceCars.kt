@@ -1,4 +1,4 @@
-package racecar
+package racecar.domain
 
 class RaceCars(
     val cars: List<RaceCar>,
@@ -9,10 +9,10 @@ class RaceCars(
         require(cars.isNotEmpty()) { "차 리스트는 비어 있으면 안된다." }
     }
 
-    fun findHeadGroup(): List<RaceCar> =
+    fun findWinners(): List<RaceCar> =
         with(cars) {
-            val winnerCar = maxWith { c1, c2 -> c1.comparePosition(c2) }
-            val winnerCars = filter { it.samePosition(winnerCar) }
+            val maxPosition = maxOf { it.position }
+            val winnerCars = filter { maxPosition == it.position }
             return winnerCars
         }
 

@@ -1,4 +1,6 @@
-package racecar
+package racecar.view
+
+import racecar.domain.RaceCar
 
 interface RaceCarGameOutputView {
     fun outputRaceResultTitle()
@@ -6,4 +8,6 @@ interface RaceCarGameOutputView {
     fun outputRacingStatus(cars: List<RaceCar>)
 
     fun outputWinners(winner: List<RaceCar>)
+
+    fun outputErrorMessage(errorMessage: String)
 }
