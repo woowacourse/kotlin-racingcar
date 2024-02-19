@@ -71,11 +71,11 @@ class InputValidatorTest {
     }
 
     @Nested
-    inner class `레이싱 게임 시도 횟수 유효성 메소드 getValidatedTrialNum 테스트` {
+    inner class `정수인지 여부를 검사하고 값을 반환하는 메서드 getIntegerOrException 테스트` {
         @Test
         fun `정상적으로 입력하여 정수를 반환`() {
             val input = "5"
-            val actualOutput: Int = InputValidator.getValidatedTrialNum(input)
+            val actualOutput: Int = InputValidator.getIntegerOrException(input)
             val expectedOutput = 5
             assertThat(actualOutput).isEqualTo(expectedOutput)
         }
@@ -85,7 +85,7 @@ class InputValidatorTest {
             testExceptions(
                 input = "안녕하세요",
                 exceptionMessage = INVALID_TRIAL_NUM_TYPE_EXCEPTION,
-                getValidatedInput = InputValidator::getValidatedTrialNum,
+                getValidatedInput = InputValidator::getIntegerOrException,
             )
         }
 
@@ -94,7 +94,7 @@ class InputValidatorTest {
             testExceptions(
                 input = "2147483648",
                 exceptionMessage = INVALID_TRIAL_NUM_TYPE_EXCEPTION,
-                getValidatedInput = InputValidator::getValidatedTrialNum,
+                getValidatedInput = InputValidator::getIntegerOrException,
             )
         }
 
@@ -103,24 +103,33 @@ class InputValidatorTest {
             testExceptions(
                 input = "1.5",
                 exceptionMessage = INVALID_TRIAL_NUM_TYPE_EXCEPTION,
-                getValidatedInput = InputValidator::getValidatedTrialNum,
+                getValidatedInput = InputValidator::getIntegerOrException,
             )
+        }
+    }
+
+    @Nested
+    inner class `레이싱 게임 시도 횟수 유효성 메소드 getValidatedTrialNum 테스트` {
+        @Test
+        fun `정상적으로 입력하여 정수를 반환`() {
+            val input = 5
+            val actualOutput: Int = InputValidator.getValidatedTrialNum(input)
+            val expectedOutput = 5
+            assertThat(actualOutput).isEqualTo(expectedOutput)
         }
 
         @Test
         fun `시도 횟수로 0이 입력됐을 때, 예외를 발생시킴`() {
-            testExceptions(
-                input = "0",
-                exceptionMessage = INVALID_TRIAL_NUM_RANGE_EXCEPTION,
+            testIntegerExceptions(
+                input = 0,
                 getValidatedInput = InputValidator::getValidatedTrialNum,
             )
         }
 
         @Test
         fun `시도 횟수로 음수가 입력됐을 때, 예외를 발생시킴`() {
-            testExceptions(
-                input = "-5",
-                exceptionMessage = INVALID_TRIAL_NUM_RANGE_EXCEPTION,
+            testIntegerExceptions(
+                input = -5,
                 getValidatedInput = InputValidator::getValidatedTrialNum,
             )
         }
@@ -135,6 +144,17 @@ class InputValidatorTest {
             getValidatedInput(input)
         } catch (e: IllegalArgumentException) {
             Assertions.assertEquals(exceptionMessage, e.message)
+        }
+    }
+
+    private fun <T> testIntegerExceptions(
+        input: Int,
+        getValidatedInput: (Int) -> T,
+    ) {
+        try {
+            getValidatedInput(input)
+        } catch (e: IllegalArgumentException) {
+            Assertions.assertEquals(INVALID_TRIAL_NUM_RANGE_EXCEPTION, e.message)
         }
     }
 }
