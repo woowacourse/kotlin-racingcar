@@ -21,8 +21,19 @@ class CarTest {
     }
 
     @Test
-    fun `랜덤변수가 이동조건에 해당하면 이동하는지`() {
+    fun `랜덤변수가 이동조건에 해당하면 이동하는지(7)`() {
         car.moveCar(7)
+        assertThat(car.position == "-------")
+    }
+
+    @Test
+    fun `랜덤변수가 이동조건에 해당하면 이동하는지(6)`() {
+        car.moveCar(6)
+        assertThat(car.position == "-------")
+    }
+    @Test
+    fun `랜덤변수가 이동조건에 해당하면 이동하는지(5)`() {
+        car.moveCar(5)
         assertThat(car.position == "-------")
     }
 }
