@@ -41,8 +41,7 @@ object RacingController {
 
     private fun play() {
         racingStatusManager.also { statusManager ->
-            statusManager.setRacingResult()
-            showCurrentRacingStatus(statusManager.currentRacingStatus)
+            showCurrentRacingStatus(statusManager.getRacingStatus())
         }
     }
 

@@ -8,9 +8,11 @@ class RacingStatusManager(
     var currentRacingStatus: List<Car> = cars
         private set
 
-    fun setRacingResult() {
-        currentRacingStatus.map {
-            it.takeIf { isMovable(getNumber()) }?.moveStep() ?: it
+    fun getRacingStatus(): List<Car> {
+        currentRacingStatus.forEach {
+            if (isMovable(getNumber())) it.moveStep()
         }
+
+        return currentRacingStatus
     }
 }
