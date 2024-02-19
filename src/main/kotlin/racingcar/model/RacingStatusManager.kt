@@ -1,7 +1,5 @@
 package racingcar.model
 
-import racingcar.controller.RacingController
-
 class RacingStatusManager(
     cars: List<Car>,
     private val getNumber: () -> Int,

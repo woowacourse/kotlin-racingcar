@@ -1,5 +1,7 @@
 package racingcar.model
 
-interface NumberGenerator {
-    fun getNumber(): Int
+class NumberGenerator(
+    private val pickingStrategy: PickingStrategy
+) {
+    fun getNumber(): Int = pickingStrategy.pickNumber()
 }

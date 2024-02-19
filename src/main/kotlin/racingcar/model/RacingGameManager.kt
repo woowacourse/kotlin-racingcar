@@ -6,7 +6,8 @@ class RacingGameManager {
     private lateinit var movementDecisionMaker: MovementDecisionMaker
 
     fun initializeCars(names: List<String>) {
-        numberGenerator = RandomNumberGenerator()
+        val pickingStrategy = RandomNumberPickingStrategy()
+        numberGenerator = NumberGenerator(pickingStrategy)
         movementDecisionMaker = ThresholdMovementDecisionMaker()
         racingStatusManager = RacingStatusManager(
             cars = names.map { Car(it) },

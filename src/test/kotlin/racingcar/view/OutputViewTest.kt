@@ -19,7 +19,10 @@ class OutputViewTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 3, 10])
     fun `진행도 별 현재 위치 정보 출력 테스트`(nums: Int) {
-        val car = Car("carName", nums)
+        val car = Car("carName")
+        repeat(nums) {
+            car.moveStep()
+        }
         System.setOut(PrintStream(outContent))
         OutputView.printCurrentPosition(car.name, car.position)
 
