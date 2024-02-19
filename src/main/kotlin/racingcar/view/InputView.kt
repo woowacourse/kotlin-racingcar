@@ -1,25 +1,25 @@
 package racingcar.view
 
-
 class InputView {
-    fun printEnterCarNames() = println(ENTER_CAR_NAMES)
-    fun limitNumberOfCars(numberOfCars: Int){
-        require(numberOfCars in 1..100)
+    fun askCarNames(): List<String> {
+        println(ENTER_CAR_NAMES)
+        val carNames = readln()
+        val carNamesList = carNames.split(",").map { it.trim() }
+
+        require(Regex(NAME_FORMAT).matches(carNames))
+        require(carNamesList.size == carNamesList.toSet().size)
+        require(carNamesList.size in numberOfCarsRange)
+
+        return carNamesList
     }
-    fun nameFormat(names: String) {
-        val regex = Regex("^[a-zA-Z가-힣,]+\$")
-        require(regex.matches(names))
-    }
-    fun duplicatedCarName(carNames: List<String>) {
-        require(carNames.size == carNames.toSet().size)
-    }
-    fun enterNumberOfAttempts() = println(ENTER_NUMBER_OF_ATTEMPTS)
-    fun printExecutionResults() = println(EXECUTION_RESULTS)
-    fun printLastWinner() = print(LAST_WINNER)
-    fun askCarNames(): String = readln()
-    fun askNumberOfAttempts(): Int = readln().toInt()
-    fun limitNumberOfAttempts(numberOfAttemtps: Int) {
-        require(numberOfAttemtps in 1..10000)
+
+    fun askNumberOfAttempts(): Int {
+        println(ENTER_NUMBER_OF_ATTEMPTS)
+        val numberOfAttempts = readln().toInt()
+
+        require(numberOfAttempts in numberOfAttemptsRange)
+
+        return numberOfAttempts
     }
 
     companion object {
@@ -27,5 +27,9 @@ class InputView {
         const val ENTER_NUMBER_OF_ATTEMPTS = "시도할 횟수는 몇 회인가요?"
         const val EXECUTION_RESULTS = "실행 결과"
         const val LAST_WINNER = "최종 우승자: "
+
+        const val NAME_FORMAT = "^[a-zA-Z가-힣,]+\$"
+        val numberOfCarsRange = 1..100
+        val numberOfAttemptsRange = 1..10000
     }
 }
