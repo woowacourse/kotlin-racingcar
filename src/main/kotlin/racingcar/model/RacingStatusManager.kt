@@ -9,8 +9,8 @@ class RacingStatusManager(
         private set
 
     fun setRacingResult() {
-        currentRacingStatus = currentRacingStatus.map {
-            it.takeIf { isMovable(getNumber()) }?.getMoveStepResult() ?: it
+        currentRacingStatus.map {
+            it.takeIf { isMovable(getNumber()) }?.moveStep() ?: it
         }
     }
 }
