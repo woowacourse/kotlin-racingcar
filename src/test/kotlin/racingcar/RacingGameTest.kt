@@ -15,9 +15,9 @@ class RacingGameTest {
             Car("jun"),
         )
         val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+        racingGame.racingCars(randomBound = Pair(Constant.STANDARD_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
 
-        assertThat(cars.all { car -> car.position in 0..1 }).isTrue
+        assertThat(cars.all { car -> car.position == 1 }).isTrue
     }
 
     @Test
@@ -28,9 +28,9 @@ class RacingGameTest {
             Car("jun"),
         )
         val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
+        racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.STANDARD_RANDOM_NUMBER - 1))
 
-        assertThat(cars.all { car -> car.position !in 0..1 }).isFalse
+        assertThat(cars.all { car -> car.position == 0 }).isTrue
     }
 
     @Test
