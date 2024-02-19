@@ -24,18 +24,13 @@ object InputValidator {
         return names
     }
 
-    fun getValidatedTrialNum(input: String): Int =
-        try {
-            val trialNum = input.toInt()
-            if (trialNum <= MINIMUM_TRIAL_NUM) {
-                throw IllegalArgumentException(
-                    INVALID_TRIAL_NUM_RANGE_EXCEPTION,
-                )
-            }
-            trialNum
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(INVALID_TRIAL_NUM_TYPE_EXCEPTION)
-        }
+    fun getValidatedTrialNum(input: Int): Int {
+        require(MINIMUM_TRIAL_NUM < input) { INVALID_TRIAL_NUM_RANGE_EXCEPTION }
+        return input
+    }
+
+    fun getIntegerOrException(input: String): Int =
+        input.toIntOrNull() ?: throw IllegalArgumentException(INVALID_TRIAL_NUM_TYPE_EXCEPTION)
 
     private const val NAME_SEPARATOR = ","
 }

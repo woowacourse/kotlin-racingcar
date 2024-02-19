@@ -16,8 +16,8 @@ object InputView {
 
     fun readTrialNum(): Int =
         try {
-            val input = reader.readLine()
-            InputValidator.getValidatedTrialNum(input)
+            val inputNum = InputValidator.getIntegerOrException(reader.readLine())
+            InputValidator.getValidatedTrialNum(inputNum)
         } catch (e: IllegalArgumentException) {
             println(e.message)
             readTrialNum()
