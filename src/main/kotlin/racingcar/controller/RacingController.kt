@@ -5,18 +5,16 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 object RacingController {
-    private lateinit var racingStatusManager: RacingStatusManager
-    private lateinit var numberGenerator: NumberGenerator
-    private lateinit var movementDecisionMaker: MovementDecisionMaker
+    private val racingGameManager = RacingGameManager()
 
     fun start() = with(OutputView) {
         val names = getValidNames()
         val trialNum = getValidTrial()
 
-        initializeCars(names)
+        racingGameManager.initializeCars(names)
         printTrialResultMessage()
-        repeat(trialNum) { play() }
-        printFinalWinners(racingStatusManager.getWinners())
+        repeat(trialNum) { showCurrentRacingStatus(racingGameManager.play()) }
+        printFinalWinners(racingGameManager.getWinners())
     }
 
     private fun getValidNames(): List<String> {
@@ -27,22 +25,6 @@ object RacingController {
     private fun getValidTrial(): Int {
         OutputView.printInputTrialNumMessage()
         return InputView.readTrialNum()
-    }
-
-    private fun initializeCars(names: List<String>) {
-        numberGenerator = RandomNumberGenerator()
-        movementDecisionMaker = ThresholdMovementDecisionMaker()
-        racingStatusManager = RacingStatusManager(
-            cars = names.map { Car(it) },
-            getNumber = numberGenerator::getNumber,
-            isMovable = movementDecisionMaker::isMovable
-        )
-    }
-
-    private fun play() {
-        racingStatusManager.also { statusManager ->
-            showCurrentRacingStatus(statusManager.getRacingStatus())
-        }
     }
 
     private fun showCurrentRacingStatus(currentRacingStatus: List<Car>) {
