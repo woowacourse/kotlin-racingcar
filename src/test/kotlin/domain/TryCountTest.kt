@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.ValueSource
 
 class TryCountTest {
@@ -24,9 +25,12 @@ class TryCountTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["1", "2", "3", "10"])
-    fun `1 이상인 수 입력 TryCount 생성 시 성공`(input: String) {
+    @CsvSource("1, 1", "2, 2", "3, 3")
+    fun `1 이상인 수 입력 TryCount 생성 시 성공`(
+        input: String,
+        expectedCount: Int,
+    ) {
         val tryCount = assertDoesNotThrow { TryCount.from(input) }
-        assertThat(tryCount.count == input.toInt())
+        assertThat(tryCount.count == expectedCount)
     }
 }

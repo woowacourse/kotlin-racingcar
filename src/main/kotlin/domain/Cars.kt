@@ -1,25 +1,43 @@
 package domain
 
 class Cars private constructor(val cars: List<Car>) {
-
-    fun startPhase() {
+    fun startPhaseWith(moveStrategy: MoveStrategy) {
         cars.forEach {
-            it.moveIfPossible()
+            moveStrategy.move(it)
         }
     }
 
+    override fun toString(): String {
+        return "Cars(cars=$cars)"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Cars
+
+        if (cars != other.cars) return false
+
+        return true
+    }
+
+    override fun hashCode(): Int {
+        return cars.hashCode()
+    }
+
     companion object {
-        fun from(input: String, numberGenerator: NumberGenerator) =
+        fun from(input: String) =
             input.validateCars()
-                .map { Car(it, numberGenerator) }
+                .map { Car(it) }
                 .run { Cars(this) }
     }
 }
 
-fun String.validateCars(): List<String> {
+private fun String.validateCars(): List<String> {
     val carNames = this.split(",")
     require(carNames.size == carNames.toSet().size) { EXCEPTION_DUPLICATED_NAME }
     return carNames
 }
 
-const val EXCEPTION_DUPLICATED_NAME = "중복된 이름이 존재합니다."
+private const val EXCEPTION_DUPLICATED_NAME = "중복된 이름이 존재합니다."
