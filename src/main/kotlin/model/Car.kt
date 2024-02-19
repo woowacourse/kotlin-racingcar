@@ -1,6 +1,6 @@
 package model
 
-class Car(val name: String, forwardCount: Int = 0) {
+class Car(val name: String, forwardCount: Int = DEFAULT_FORWARD_COUNT) {
 
     var forwardCount = forwardCount
         private set
