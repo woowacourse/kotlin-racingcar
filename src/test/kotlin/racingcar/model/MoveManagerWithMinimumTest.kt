@@ -3,13 +3,14 @@ package racingcar.model
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
+import racingcar.constants.Constants.MOVE_THRESHOLD
 
-class MoveManagerTest {
-    private lateinit var moveManager: MoveManager
+class MoveManagerWithMinimumTest {
+    private lateinit var moveManager: MoveManagerWithMinNum
 
     @BeforeEach
     fun setup() {
-        moveManager = MoveManager()
+        moveManager = MoveManagerWithMinNum(MOVE_THRESHOLD)
     }
 
     @Test
