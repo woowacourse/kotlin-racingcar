@@ -16,7 +16,7 @@ object RacingController {
         initializeCars(names)
         printTrialResultMessage()
         repeat(trialNum) { play() }
-        printFinalWinners(getWinners())
+        printFinalWinners(racingStatusManager.getWinners())
     }
 
     private fun getValidNames(): List<String> {
@@ -52,12 +52,5 @@ object RacingController {
                 if (car == currentRacingStatus.last()) printEmptyLine()
             }
         }
-    }
-
-    private fun getWinners(): List<String> {
-        val currentRacingStatus = racingStatusManager.currentRacingStatus
-        val maxPosition = currentRacingStatus.maxBy { it.position }.position
-
-        return currentRacingStatus.filter { it.position == maxPosition }.map { it.name }
     }
 }

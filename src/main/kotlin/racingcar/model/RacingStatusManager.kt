@@ -1,5 +1,7 @@
 package racingcar.model
 
+import racingcar.controller.RacingController
+
 class RacingStatusManager(
     cars: List<Car>,
     private val getNumber: () -> Int,
@@ -14,5 +16,10 @@ class RacingStatusManager(
         }
 
         return currentRacingStatus
+    }
+
+    fun getWinners(): List<String> {
+        val maxPosition = currentRacingStatus.maxBy { it.position }.position
+        return currentRacingStatus.filter { it.position == maxPosition }.map { it.name }
     }
 }
