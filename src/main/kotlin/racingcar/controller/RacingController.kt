@@ -2,23 +2,26 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.MoveManager
-import racingcar.model.RandomNumberGenerator
+import racingcar.model.NumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-object RacingController {
-    private val manager = MoveManager()
-    private val numberGenerator = RandomNumberGenerator()
-    private lateinit var currentRacingStatus: MutableList<Car>
-    fun start() = with(OutputView) {
-        val names = getValidNames()
-        val trialNum = getValidTrial()
+class RacingController(
+    private val manager: MoveManager,
+    private val numberGenerator: NumberGenerator
+) {
+    private lateinit var currentRacingStatus: List<Car>
 
-        initializeCars(names)
-        printTrialResultMessage()
-        repeat(trialNum) { play() }
-        printFinalWinners(getWinners())
-    }
+    fun start() =
+        with(OutputView) {
+            val names = getValidNames()
+            val trialNum = getValidTrial()
+
+            initializeCars(names)
+            printTrialResultMessage()
+            repeat(trialNum) { play() }
+            printFinalWinners(getWinners())
+        }
 
     private fun getValidNames(): List<String> {
         OutputView.printInputCarNamesMessage()
@@ -36,10 +39,9 @@ object RacingController {
 
     private fun play() {
         currentRacingStatus.map { car ->
-            if (manager.isMoveAble(numberGenerator.getRandomNumber())) car.move()
-            OutputView.printCurrentPosition(car.name, car.position)
+            if (manager.isMoveAble(numberGenerator.getNumber())) car.move()
         }
-        println()
+        OutputView.printNameAndCurrentPosition(currentRacingStatus)
     }
 
     private fun getWinners(): List<String> {

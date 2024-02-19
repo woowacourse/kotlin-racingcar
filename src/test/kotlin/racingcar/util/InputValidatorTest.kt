@@ -1,7 +1,10 @@
-package racingcar
+package racingcar.util
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.*
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.DisplayName
+import org.junit.jupiter.api.Nested
+import org.junit.jupiter.api.Test
 import racingcar.constants.Constants.DUPLICATED_NAME_EXCEPTION
 import racingcar.constants.Constants.INVALID_NAME_SIZE_EXCEPTION
 import racingcar.constants.Constants.INVALID_NUM_OF_CARS_EXCEPTION
@@ -16,12 +19,9 @@ class InputValidatorTest {
         @Test
         fun `정상적으로 입력하여 문자열의 리스트를 반환`() {
             val input = "bingt,k ,@@,123 ,우테코"
-
-            // list of String
             val actualOutput: List<String> = InputValidator.getValidatedNames(input)
-            val expectedOutput: List<String> = listOf(
-                "bingt", "k", "@@", "123", "우테코"
-            )
+            val expectedOutput: List<String> =
+                listOf("bingt", "k", "@@", "123", "우테코")
             assertThat(actualOutput).isEqualTo(expectedOutput)
         }
 
@@ -29,9 +29,12 @@ class InputValidatorTest {
         fun `Empty인 문자열을 입력했을 때, 예외를 발생시킴`() {
             try {
                 val input = ",,,,"
-                val actualOutput = InputValidator.getValidatedNames(input)
+                InputValidator.getValidatedNames(input)
             } catch (e: IllegalArgumentException) {
-                Assertions.assertEquals(INVALID_NAME_SIZE_EXCEPTION, e.message)
+                Assertions.assertEquals(
+                    INVALID_NAME_SIZE_EXCEPTION,
+                    e.message,
+                )
             }
         }
 
@@ -39,9 +42,12 @@ class InputValidatorTest {
         fun `Blank인 문자열을 입력했을 때, 예외를 발생시킴`() {
             try {
                 val input = ", ,  ,   "
-                val actualOutput = InputValidator.getValidatedNames(input)
+                InputValidator.getValidatedNames(input)
             } catch (e: IllegalArgumentException) {
-                Assertions.assertEquals(INVALID_NAME_SIZE_EXCEPTION, e.message)
+                Assertions.assertEquals(
+                    INVALID_NAME_SIZE_EXCEPTION,
+                    e.message,
+                )
             }
         }
 
@@ -50,7 +56,7 @@ class InputValidatorTest {
             testExceptions(
                 input = "kkm,kkm,kkm",
                 exceptionMessage = DUPLICATED_NAME_EXCEPTION,
-                getValidatedInput = InputValidator::getValidatedNames
+                getValidatedInput = InputValidator::getValidatedNames,
             )
         }
 
@@ -59,17 +65,17 @@ class InputValidatorTest {
             testExceptions(
                 input = "kkm",
                 exceptionMessage = INVALID_NUM_OF_CARS_EXCEPTION,
-                getValidatedInput = InputValidator::getValidatedNames
+                getValidatedInput = InputValidator::getValidatedNames,
             )
         }
     }
 
     @Nested
-    inner class `레이싱 게임 시도 횟수 유효성 메소드 getValidatedTrialNum 테스트` {
+    inner class `정수인지 여부를 검사하고 값을 반환하는 메서드 getIntegerOrException 테스트` {
         @Test
         fun `정상적으로 입력하여 정수를 반환`() {
             val input = "5"
-            val actualOutput: Int = InputValidator.getValidatedTrialNum(input)
+            val actualOutput: Int = InputValidator.getIntegerOrException(input)
             val expectedOutput = 5
             assertThat(actualOutput).isEqualTo(expectedOutput)
         }
@@ -79,7 +85,7 @@ class InputValidatorTest {
             testExceptions(
                 input = "안녕하세요",
                 exceptionMessage = INVALID_TRIAL_NUM_TYPE_EXCEPTION,
-                getValidatedInput = InputValidator::getValidatedTrialNum
+                getValidatedInput = InputValidator::getIntegerOrException,
             )
         }
 
@@ -88,7 +94,7 @@ class InputValidatorTest {
             testExceptions(
                 input = "2147483648",
                 exceptionMessage = INVALID_TRIAL_NUM_TYPE_EXCEPTION,
-                getValidatedInput = InputValidator::getValidatedTrialNum
+                getValidatedInput = InputValidator::getIntegerOrException,
             )
         }
 
@@ -97,25 +103,34 @@ class InputValidatorTest {
             testExceptions(
                 input = "1.5",
                 exceptionMessage = INVALID_TRIAL_NUM_TYPE_EXCEPTION,
-                getValidatedInput = InputValidator::getValidatedTrialNum
+                getValidatedInput = InputValidator::getIntegerOrException,
             )
+        }
+    }
+
+    @Nested
+    inner class `레이싱 게임 시도 횟수 유효성 메소드 getValidatedTrialNum 테스트` {
+        @Test
+        fun `정상적으로 입력하여 정수를 반환`() {
+            val input = 5
+            val actualOutput: Int = InputValidator.getValidatedTrialNum(input)
+            val expectedOutput = 5
+            assertThat(actualOutput).isEqualTo(expectedOutput)
         }
 
         @Test
         fun `시도 횟수로 0이 입력됐을 때, 예외를 발생시킴`() {
-            testExceptions(
-                input = "0",
-                exceptionMessage = INVALID_TRIAL_NUM_RANGE_EXCEPTION,
-                getValidatedInput = InputValidator::getValidatedTrialNum
+            testIntegerExceptions(
+                input = 0,
+                getValidatedInput = InputValidator::getValidatedTrialNum,
             )
         }
 
         @Test
         fun `시도 횟수로 음수가 입력됐을 때, 예외를 발생시킴`() {
-            testExceptions(
-                input = "-5",
-                exceptionMessage = INVALID_TRIAL_NUM_RANGE_EXCEPTION,
-                getValidatedInput = InputValidator::getValidatedTrialNum
+            testIntegerExceptions(
+                input = -5,
+                getValidatedInput = InputValidator::getValidatedTrialNum,
             )
         }
     }
@@ -123,12 +138,23 @@ class InputValidatorTest {
     private fun <T> testExceptions(
         input: String,
         exceptionMessage: String,
-        getValidatedInput: (String) -> T
+        getValidatedInput: (String) -> T,
     ) {
         try {
-            val actualOutput = getValidatedInput(input)
+            getValidatedInput(input)
         } catch (e: IllegalArgumentException) {
             Assertions.assertEquals(exceptionMessage, e.message)
+        }
+    }
+
+    private fun <T> testIntegerExceptions(
+        input: Int,
+        getValidatedInput: (Int) -> T,
+    ) {
+        try {
+            getValidatedInput(input)
+        } catch (e: IllegalArgumentException) {
+            Assertions.assertEquals(INVALID_TRIAL_NUM_RANGE_EXCEPTION, e.message)
         }
     }
 }

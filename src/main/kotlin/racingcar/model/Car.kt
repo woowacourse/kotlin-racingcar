@@ -1,8 +1,15 @@
 package racingcar.model
 
+import racingcar.constants.Constants.DEFAULT_POSITION
+
 data class Car(
     val name: String,
-    var position: Int = 0
+    private var _position: Int = DEFAULT_POSITION
 ) {
-    fun move() = position++
+    val position: Int
+        get() = _position
+
+    fun move() {
+        _position++
+    }
 }
