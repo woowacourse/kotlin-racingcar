@@ -54,7 +54,7 @@ class GameController {
         OutputView.printResultMessage()
         repeat(roundCounts) {
             cars.forEach {
-                it.move(Random.nextInt(10))
+                it.move()
             }
             OutputView.printRoundResult(cars)
         }
