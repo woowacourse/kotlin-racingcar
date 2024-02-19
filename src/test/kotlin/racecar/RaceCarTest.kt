@@ -2,8 +2,9 @@ package racecar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertAll
 import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import racecar.domain.RaceCar
 
 class RaceCarTest {
@@ -36,15 +37,12 @@ class RaceCarTest {
         assertThat(startPosition).isZero()
     }
 
-    @Test
-    fun `자동차는 시작 위치를 다른 정수로 바꿀 수 있다`() {
-        val plusPosition = RaceCar("foo", startPoint = 1).position
-        val minusPosition = RaceCar("foo", startPoint = -1).position
+    @ParameterizedTest
+    @ValueSource(ints = [-1, 1])
+    fun `자동차는 시작 위치를 다른 정수로 바꿀 수 있다`(startPosition: Int) {
+        val actualPosition = RaceCar("foo", startPoint = startPosition).position
         // then
-        assertAll(
-            { assertThat(plusPosition).isEqualTo(1) },
-            { assertThat(minusPosition).isEqualTo(-1) },
-        )
+        assertThat(actualPosition).isEqualTo(startPosition)
     }
 
     @Test

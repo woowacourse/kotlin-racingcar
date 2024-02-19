@@ -15,7 +15,7 @@
 ### RaceCar
 - [x] : 빈 문자열 검증 가독성 리팩토링
 - [x] : 문자열 길이 1 ~ 5 검증으로 변경
-- [ ] : ParameterizedTest 로 test 리팩토링 
+- [x] : ParameterizedTest 로 test 리팩토링 
 - [ ] : 불필요한 compare 함수 삭제
 
 ### RaceCars
