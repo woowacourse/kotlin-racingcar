@@ -8,13 +8,26 @@ class RacingGame(
 ) {
     fun updateCarsPosition() =
         cars.forEach { car ->
-            ForwardService.tryForwardCar(car, forwardNumberGenerator)
+            tryForwardCar(car)
         }
+
+    private fun isForward(randomNumber: Int) = randomNumber >= FORWARD_FLAG_NUMBER
+
+    private fun tryForwardCar(car: Car) {
+        val forwardNumber = forwardNumberGenerator.generate()
+        if (isForward(forwardNumber)) {
+            car.forward()
+        }
+    }
 
     fun getWinners(): List<Car> {
         val maxForwardCountCar = cars.maxOf { it.position }
         return cars.filter { car ->
             car.position == maxForwardCountCar
         }
+    }
+
+    companion object {
+        private const val FORWARD_FLAG_NUMBER = 4
     }
 }

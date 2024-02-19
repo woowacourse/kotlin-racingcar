@@ -4,12 +4,10 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.model.Car
 import racingcar.service.ForwardNumberGenerator
-import racingcar.service.ForwardService
 import racingcar.service.RacingGame
 import racingcar.service.RandomForwardNumberGenerator
 
 class ServiceTest {
-    /** ForwardService Test */
     @Test
     fun `랜덤 숫자가 전진 기준과 같거나 큰 경우 전진하는지 확인한다`() {
         // given
@@ -18,9 +16,10 @@ class ServiceTest {
             object : ForwardNumberGenerator {
                 override fun generate() = 4
             }
+        val racingGame = RacingGame(listOf(car), testForwardNumberGenerator)
 
         // when
-        ForwardService.tryForwardCar(car, testForwardNumberGenerator)
+        racingGame.updateCarsPosition()
 
         // then
         assertThat(car.position).isEqualTo(1)
@@ -34,15 +33,15 @@ class ServiceTest {
             object : ForwardNumberGenerator {
                 override fun generate() = 0
             }
+        val racingGame = RacingGame(listOf(car), testForwardNumberGenerator)
 
         // when
-        ForwardService.tryForwardCar(car, testForwardNumberGenerator)
+        racingGame.updateCarsPosition()
 
         // then
         assertThat(car.position).isEqualTo(0)
     }
 
-    /** WinnerService Test */
     @Test
     fun `단독 우승자를 확인한다`() {
         // given

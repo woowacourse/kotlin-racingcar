@@ -8,7 +8,6 @@ import org.junit.jupiter.params.provider.ValueSource
 import racingcar.view.input.InputValidator
 
 class ExceptionTest {
-    /** 자동차 이름 입력 Test */
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = ["", " ", ",,,"])
@@ -50,7 +49,6 @@ class ExceptionTest {
         }
     }
 
-    /** 시도할 횟수 입력 Test */
     @ParameterizedTest
     @NullSource
     @ValueSource(strings = ["", " "])
