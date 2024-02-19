@@ -1,22 +1,20 @@
 package racingcar.model
 
-class CarHandler(
-    private val cars: List<Car>,
-    private val randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator(),
+class RacingCars(
+    val cars: List<Car>,
 ) {
     init {
         require(cars.distinct().size == cars.size) { NUMBER_OF_CAR_ERROR_MESSAGE }
         require(cars.size in MINIMUM_NUMBER_OF_CAR..MAXIMUM_NUMBER_OF_CAR) { DUPLICATE_CAR_NAME_ERROR_MESSAGE }
     }
 
-    fun proceed() {
+    fun proceed(moveCondition: () -> Int) {
         cars.forEach { car ->
-            val number = randomNumberGenerator.make()
-            car.move(number)
+            car.move(moveCondition())
         }
     }
 
-    fun winner(): List<String> {
+    fun findWinner(): List<String> {
         val winnerPosition = cars.maxOf { it.position.length }
 
         return cars.filter { it.position.length == winnerPosition }.map { it.name }
