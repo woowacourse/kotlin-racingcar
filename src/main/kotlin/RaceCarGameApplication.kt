@@ -6,5 +6,5 @@ fun main() {
 
 fun generateRaceCars(): RaceCars {
     val carNames = InputView.inputCarNames()
-    return RaceCars.from(carNames) { (0..10).random() }
+    return RaceCars.from(carNames) { (0..9).random() }
 }
