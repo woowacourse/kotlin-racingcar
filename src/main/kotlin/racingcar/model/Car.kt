@@ -4,7 +4,7 @@ class Car(val name: String) {
     var position: String = DEFAULT_POSITION
         private set
 
-    private fun decideMovement(randomNumber: Int): Boolean = randomNumber in moveIfInThisRange
+    fun decideMovement(randomNumber: Int): Boolean = randomNumber in moveIfInThisRange
 
     fun moveCar(randomNumber: Int) {
         if (decideMovement(randomNumber)) {
