@@ -11,8 +11,8 @@ class RaceCars(
 
     fun findWinners(): List<RaceCar> =
         with(cars) {
-            val winnerCar = maxWith { c1, c2 -> c1.comparePosition(c2) }
-            val winnerCars = filter { it.samePosition(winnerCar) }
+            val maxPosition = maxOf { it.position }
+            val winnerCars = filter { maxPosition == it.position }
             return winnerCars
         }
 

@@ -21,10 +21,6 @@ class RaceCar(
         position += moveStrategy.move(score)
     }
 
-    fun comparePosition(other: RaceCar) = (position - other.position)
-
-    fun samePosition(other: RaceCar) = (position == other.position)
-
     override fun toString(): String = "$name : ${DISTANCE_UNIT.repeat(position)}"
 
     override fun equals(other: Any?): Boolean {
