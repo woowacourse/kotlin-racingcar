@@ -1,46 +1,47 @@
 package racingcar.model
 
+import racingcar.MoveStrategy
 import racingcar.util.Constant
 import kotlin.random.Random
 
 class RacingGame(
     private val cars: List<Car>
-) {
-    fun racingCars() {
+) : MoveStrategy {
+    fun racingCars(randomBound: Pair<Int, Int>) {
         cars.forEach { car ->
-            racingCar(car = car)
+            racingCar(
+                car = car,
+                randomBound = randomBound
+            )
         }
     }
 
-    fun judgeWinners(): List<String> {
+    fun judgeWinners(): List<Car> {
         val maxPosition = findMaxPosition()
         return cars.filter { car ->
             car.position == maxPosition
-        }.map { car ->
-            car.name
         }
     }
 
     private fun racingCar(
-        car: Car
+        car: Car,
+        randomBound: Pair<Int, Int>
     ) {
-        val randomNumber = generateRandomNumber()
-        if (judgeMoveStop(randomNumber = randomNumber)) {
+        if (shouldMove(randomBound = randomBound)
+        ) {
             car.moveCar()
         }
-    }
-
-    private fun judgeMoveStop(randomNumber: Int): Boolean {
-        return randomNumber >= Constant.STANDARD_RANDOM_NUMBER
-    }
-
-    private fun generateRandomNumber(): Int {
-        return Random.nextInt(Constant.MAX_RANDOM_NUMBER)
     }
 
     private fun findMaxPosition(): Int {
         return cars.maxOf { car ->
             car.position
         }
+    }
+
+    override fun shouldMove(randomBound: Pair<Int, Int>): Boolean {
+        val minRandomNumber = randomBound.first
+        val maxRandomNumber = randomBound.second
+        return Random.nextInt(minRandomNumber, maxRandomNumber) >= Constant.STANDARD_RANDOM_NUMBER
     }
 }

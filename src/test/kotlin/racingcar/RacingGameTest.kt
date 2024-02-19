@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.model.Car
 import racingcar.model.RacingGame
+import racingcar.util.Constant
 
 class RacingGameTest {
     @Test
@@ -14,7 +15,7 @@ class RacingGameTest {
             Car("jun"),
         )
         val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars()
+        racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
 
         assertThat(cars.all { car -> car.position in 0..1 }).isTrue
     }
@@ -27,58 +28,68 @@ class RacingGameTest {
             Car("jun"),
         )
         val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars()
+        racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
 
         assertThat(cars.all { car -> car.position !in 0..1 }).isFalse
     }
 
     @Test
-    fun `올바른 최종 우승자 판단 테스트`() {
-        val carOfPobi = Car("pobi")
-        val carOfWoni = Car("woni")
-        val carOfJun = Car("jun")
+    fun `전진 가능할 때 올바른 최종 우승자 판단 테스트`() {
         val cars = listOf(
-            carOfPobi,
-            carOfWoni,
-            carOfJun,
+            Car("pobi"),
+            Car("woni"),
+            Car("jun"),
         )
-        val racingGame = RacingGame(cars)
-        repeat(5) {
-            carOfPobi.moveCar()
-            carOfJun.moveCar()
-        }
-        repeat(4) {
-            carOfWoni.moveCar()
-        }
-        val expectWinners = listOf("pobi", "jun")
+        val racingGame = RacingGame(cars = cars)
+        racingGame.racingCars(randomBound = Pair(Constant.STANDARD_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
 
         val actualWinners = racingGame.judgeWinners()
 
-        assertThat(actualWinners).isEqualTo(expectWinners)
+        assertThat(actualWinners.all { winner -> winner.position == 1 }).isTrue
     }
 
     @Test
-    fun `올바르지 최종 않은 우승자 판단 테스트`() {
-        val carOfPobi = Car("pobi")
-        val carOfWoni = Car("woni")
-        val carOfJun = Car("jun")
+    fun `전진 가능할 때 올바르지 않은 최종 우승자 판단 테스트`() {
         val cars = listOf(
-            carOfPobi,
-            carOfWoni,
-            carOfJun,
+            Car("pobi"),
+            Car("woni"),
+            Car("jun"),
         )
-        val racingGame = RacingGame(cars)
-        repeat(5) {
-            carOfPobi.moveCar()
-            carOfJun.moveCar()
-        }
-        repeat(4) {
-            carOfWoni.moveCar()
-        }
-        val expectWinners = listOf("woni")
+        val racingGame = RacingGame(cars = cars)
+        racingGame.racingCars(randomBound = Pair(Constant.STANDARD_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
 
         val actualWinners = racingGame.judgeWinners()
 
-        assertThat(actualWinners).isNotEqualTo(expectWinners)
+        assertThat(actualWinners.all { winner -> winner.position == 0 }).isFalse
+    }
+
+    @Test
+    fun `전진 가능하지 않을때 올바른 최종 우승자 판단 테스트`() {
+        val cars = listOf(
+            Car("pobi"),
+            Car("woni"),
+            Car("jun"),
+        )
+        val racingGame = RacingGame(cars = cars)
+        racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.STANDARD_RANDOM_NUMBER - 1))
+
+        val actualWinners = racingGame.judgeWinners()
+
+        assertThat(actualWinners.all { winner -> winner.position == 0 }).isTrue
+    }
+
+    @Test
+    fun `전진 가능하지 않을때 올바르지 않은 최종 우승자 판단 테스트`() {
+        val cars = listOf(
+            Car("pobi"),
+            Car("woni"),
+            Car("jun"),
+        )
+        val racingGame = RacingGame(cars = cars)
+        racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.STANDARD_RANDOM_NUMBER - 1))
+
+        val actualWinners = racingGame.judgeWinners()
+
+        assertThat(actualWinners.all { winner -> winner.position == 1 }).isFalse
     }
 }

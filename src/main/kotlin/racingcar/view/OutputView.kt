@@ -16,7 +16,7 @@ object OutputView {
         println()
     }
 
-    fun outputWinners(winners: List<String>) {
+    fun outputWinnerNames(winners: List<String>) {
         println(Message.FINAL_WINNERS.format(winners.joinToString(", ")))
     }
 

@@ -2,6 +2,7 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.RacingGame
+import racingcar.util.Constant
 import racingcar.util.InputValidator
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -53,10 +54,10 @@ class CarController {
         racingGame = RacingGame(cars = cars)
         OutputView.outputStartGame()
         repeat(numberOfRound) {
-            racingGame.racingCars()
+            racingGame.racingCars(randomBound = Pair(Constant.MIN_RANDOM_NUMBER, Constant.MAX_RANDOM_NUMBER))
             OutputView.outputRoundResults(cars = cars)
         }
-        val winners = racingGame.judgeWinners()
-        OutputView.outputWinners(winners)
+        val winnerNames = racingGame.judgeWinners().map { winner -> winner.name }
+        OutputView.outputWinnerNames(winnerNames)
     }
 }
