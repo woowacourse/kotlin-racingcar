@@ -1,19 +1,18 @@
 package racingcar.view
 
 import racingcar.model.Car
-import racingcar.model.RandomNumberGenerator
+import racingcar.model.RacingGame
 
 class OutputView {
+
     fun printEachCarsPosition(
         numberOfAttempts: Int,
         cars: MutableList<Car>,
     ) {
+        val racingGame = RacingGame(cars)
         println(InputView.EXECUTION_RESULTS)
         repeat(numberOfAttempts) {
-            cars.forEach { car ->
-                val randomNumber = RandomNumberGenerator.generateRandomNumber()
-                car.moveCar(randomNumber)
-            }
+            racingGame.carMovingControl()
             cars.forEach {
                 println("${it.name}: ${it.position}")
             }
