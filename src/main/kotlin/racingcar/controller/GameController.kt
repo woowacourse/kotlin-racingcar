@@ -1,12 +1,10 @@
 package racingcar.controller
 
-import racingcar.domain.Car
 import racingcar.domain.RacingGame
 import racingcar.service.WinnerService
 import racingcar.util.ValidationUtil
 import racingcar.view.InputView
 import racingcar.view.OutputView
-import kotlin.random.Random
 
 class GameController {
 
