@@ -1,7 +1,8 @@
 package racingcar
 
-import racingcar.controller.game
+import racingcar.controller.GameController
 
 fun main() {
-    game()
+    val gameController = GameController()
+    gameController.game()
 }

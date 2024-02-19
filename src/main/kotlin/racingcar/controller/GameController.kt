@@ -1,48 +1,35 @@
 package racingcar.controller
 
 import racingcar.model.Car
-import racingcar.model.findWinnerNames
-import racingcar.model.racingCars
-import racingcar.view.inputCar
-import racingcar.view.inputTry
-import racingcar.view.printRunMenu
-import racingcar.view.printWinners
+import racingcar.model.Racing
+import racingcar.view.Input
+import racingcar.view.Output
 
-fun game() {
-    val carNames = inputCarName()
-    var cars = mutableListOf<Car>()
-    val count = inputTryCnt()
+class GameController {
+    val inputView = Input()
+    val outputView = Output()
+    val racing = Racing()
 
-    carNames.split(",").forEach { cars.add(Car(it)) }
-    run(count, cars)
-}
+    fun game() {
+        val carNames: List<String> = inputView.inputCar()
+        val cars = carNames.map { Car(it) }
+        val count = inputView.inputTry()
 
-fun inputCarName(): String {
-    val carNames = inputCar()
-    return carNames
-}
-
-fun inputTryCnt(): Int {
-    var count = 0
-    try {
-        count = inputTry()
-    } catch (e: Exception) {
-        println(e)
-        count = inputTryCnt()
-    }
-    return count
-}
-
-fun run(
-    count: Int,
-    cars: MutableList<Car>,
-) {
-    printRunMenu()
-
-    for (i in 1..count) {
-        racingCars(cars)
+        run(count, cars)
     }
 
-    val winners = findWinnerNames(cars)
-    printWinners(winners)
+    fun run(
+        count: Int,
+        cars: List<Car>,
+    ) {
+        outputView.printRunMenu()
+
+        repeat(count) {
+            racing.racingCars(cars)
+            outputView.printProgress(cars)
+        }
+
+        val winners = racing.findWinnerNames(cars)
+        outputView.printWinners(winners)
+    }
 }
