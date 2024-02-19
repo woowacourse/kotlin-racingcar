@@ -6,7 +6,7 @@ import racingcar.model.RandomNumberGenerator
 class OutputView {
     fun printEachCarsPosition(
         numberOfAttempts: Int,
-        cars: MutableList<Car>
+        cars: MutableList<Car>,
     ) {
         println(InputView.EXECUTION_RESULTS)
         repeat(numberOfAttempts) {
@@ -20,12 +20,13 @@ class OutputView {
             println()
         }
     }
-    fun printFinalWinners(finalWinners: List<String>){
+
+    fun printFinalWinners(finalWinners: List<String>) {
         print(InputView.LAST_WINNER)
         print(finalWinners.joinToString(FINAL_WINNER_PRINT_SEPARATOR))
     }
 
-    companion object{
+    companion object {
         const val FINAL_WINNER_PRINT_SEPARATOR = ","
     }
 }

@@ -1,6 +1,5 @@
 package racingcar.view
 
-
 class InputView {
     fun askCarNames(): List<String> {
         println(ENTER_CAR_NAMES)

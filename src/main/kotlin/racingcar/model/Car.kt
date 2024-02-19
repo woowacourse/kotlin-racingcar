@@ -1,16 +1,18 @@
 package racingcar.model
 
-class Car(val name: String){
+class Car(val name: String) {
     var position: String = DEFAULT_POSITION
         private set
+
     private fun decideMovement(randomNumber: Int): Boolean = randomNumber in moveIfInThisRange
 
-    fun moveCar(randomNumber: Int){
-        if (decideMovement(randomNumber)){
+    fun moveCar(randomNumber: Int) {
+        if (decideMovement(randomNumber)) {
             position += POSITION_INDICATOR
         }
     }
-    companion object{
+
+    companion object {
         val moveIfInThisRange = 4..9
         const val DEFAULT_POSITION = ""
         const val POSITION_INDICATOR = "-"
