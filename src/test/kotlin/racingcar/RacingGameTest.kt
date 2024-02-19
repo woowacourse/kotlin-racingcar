@@ -2,8 +2,9 @@ package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import racingcar.model.Car
-import racingcar.model.RacingGame
+import racingcar.domain.model.Car
+import racingcar.domain.model.RacingGame
+import racingcar.util.Constant
 
 class RacingGameTest {
     @Test
@@ -13,10 +14,15 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val randomNumbers = listOf(0, 4, 9)
+        val mockMinNumber = Constant.STANDARD_RANDOM_NUMBER
+        val mockMaxNumber = Constant.MAX_RANDOM_NUMBER
         val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomNumbers)
-        val expectCarSteps = listOf(0, 1, 1)
+        racingGame.racingCars(
+            minNumber = mockMinNumber,
+            maxNumber = mockMaxNumber
+        )
+
+        val expectCarSteps = listOf(1, 1, 1)
         val actualCarSteps = cars.map { car ->
             car.getStep()
         }
@@ -30,10 +36,14 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val randomNumbers = listOf(0, 4, 9)
+        val mockMinNumber = Constant.MIN_RANDOM_NUMBER
+        val mockMaxNumber = Constant.STANDARD_RANDOM_NUMBER - 1
         val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomNumbers)
-        val expectCarSteps = listOf(1, 0, 0)
+        racingGame.racingCars(
+            minNumber = mockMinNumber,
+            maxNumber = mockMaxNumber
+        )
+        val expectCarSteps = listOf(1, 1, 1)
         val actualCarSteps = cars.map { car ->
             car.getStep()
         }
@@ -43,10 +53,17 @@ class RacingGameTest {
     @Test
     fun `올바른 최종 우승자 판단 테스트`() {
         val cars = listOf(
-            Car("pobi", 5),
-            Car("woni", 4),
-            Car("jun", 5),
+            Car("pobi"),
+            Car("woni"),
+            Car("jun")
         )
+        cars.filter { car ->
+            car.getName() == "pobi" || car.getName() == "jun"
+        }.forEach { car ->
+            repeat(5) {
+                car.moveCar()
+            }
+        }
         val racingGame = RacingGame(cars)
         val expectWinners = listOf("pobi", "jun")
         val actualWinners = racingGame
@@ -60,10 +77,17 @@ class RacingGameTest {
     @Test
     fun `올바르지 최종 않은 우승자 판단 테스트`() {
         val cars = listOf(
-            Car("pobi", 5),
-            Car("woni", 4),
-            Car("jun", 5),
+            Car("pobi"),
+            Car("woni"),
+            Car("jun"),
         )
+        cars.filter { car ->
+            car.getName() == "pobi" || car.getName() == "jun"
+        }.forEach { car ->
+            repeat(5) {
+                car.moveCar()
+            }
+        }
         val racingGame = RacingGame(cars)
         val expectWinners = listOf("woni")
         val actualWinners = racingGame

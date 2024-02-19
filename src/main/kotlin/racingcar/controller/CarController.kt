@@ -1,16 +1,13 @@
 package racingcar.controller
 
-import racingcar.Validator
-import racingcar.model.Car
-import racingcar.model.RacingGame
+import racingcar.domain.Validator
+import racingcar.domain.model.Car
+import racingcar.domain.model.RacingGame
+import racingcar.util.Constant
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class CarController(
-    private val inputView: InputView,
-    private val outputView: OutputView,
-    private val validator: Validator
-) {
+class CarController {
     private lateinit var racingGame: RacingGame
 
     fun run() {
@@ -24,9 +21,10 @@ class CarController(
     }
 
     private fun registerCars(): List<Car> {
-        val carNames = inputView.inputCarNames()
+        OutputView.outputRegisterCar()
+        val carNames = InputView.inputCarNames()
         return try {
-            validator.validateCarNames(carNames)
+            Validator.validateCarNames(carNames)
             makeCars(carNames)
         } catch (e: IllegalArgumentException) {
             println(e.message)
@@ -41,9 +39,10 @@ class CarController(
     }
 
     private fun registerRound(): Int {
-        val numberOfRound = inputView.inputNumberOfRound()
+        OutputView.outputRegisterNumberOfRoundRound()
+        val numberOfRound = InputView.inputNumberOfRound()
         return try {
-            validator.validateNumberOfRound(numberOfRound)
+            Validator.validateNumberOfRound(numberOfRound)
             numberOfRound.toInt()
         } catch (e: IllegalArgumentException) {
             println(e.message)
@@ -56,11 +55,13 @@ class CarController(
         numberOfRound: Int
     ) {
         racingGame = RacingGame(cars = cars)
-        outputView.outputStartGame()
+        OutputView.outputStartGame()
         repeat(numberOfRound) {
-            val randomNumbers = makeCarRandomNumber(cars = cars)
-            racingGame.racingCars(randomNumbers = randomNumbers)
-            outputView.outputRoundResults(cars = cars)
+            racingGame.racingCars(
+                minNumber = Constant.MIN_RANDOM_NUMBER,
+                maxNumber = Constant.MAX_RANDOM_NUMBER
+            )
+            OutputView.outputRoundResults(cars = cars)
         }
     }
 
@@ -70,12 +71,6 @@ class CarController(
             .map { winner ->
                 winner.getName()
             }
-        outputView.outputWinners(winners)
-    }
-
-    private fun makeCarRandomNumber(cars: List<Car>): List<Int> {
-        return cars.map { car ->
-            car.makeRandomNumber()
-        }
+        OutputView.outputWinners(winners)
     }
 }

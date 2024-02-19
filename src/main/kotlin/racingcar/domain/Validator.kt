@@ -1,9 +1,9 @@
-package racingcar
+package racingcar.domain
 
 import racingcar.util.Constant
 import racingcar.util.Exception
 
-class Validator {
+object Validator {
     fun validateCarNames(carNames: List<String>) {
         validateNumberOfCar(carNames)
         validateCarNamesDuplicate(carNames)
