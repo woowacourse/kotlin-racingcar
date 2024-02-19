@@ -5,7 +5,8 @@ import org.junit.jupiter.api.Test
 import racingcar.model.Car
 import racingcar.service.ForwardNumberGenerator
 import racingcar.service.ForwardService
-import racingcar.service.WinnerService
+import racingcar.service.RacingGame
+import racingcar.service.RandomForwardNumberGenerator
 
 class ServiceTest {
     /** ForwardService Test */
@@ -50,9 +51,10 @@ class ServiceTest {
                 Car("olive"),
                 Car("chae").apply { forward() },
             )
+        val racingGame = RacingGame(cars, RandomForwardNumberGenerator)
 
         // when
-        val winners = WinnerService.getWinners(cars)
+        val winners = racingGame.getWinners()
 
         // then
         assertThat(winners[0].toString()).isEqualTo("chae")
@@ -66,9 +68,10 @@ class ServiceTest {
                 Car("olive").apply { forward() },
                 Car("chae").apply { forward() },
             )
+        val racingGame = RacingGame(cars, RandomForwardNumberGenerator)
 
         // when
-        val winners = WinnerService.getWinners(cars)
+        val winners = racingGame.getWinners()
 
         // then
         assertThat(winners.map { it.toString() })
