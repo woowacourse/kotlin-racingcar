@@ -7,8 +7,7 @@ class RacingStatusManager(
     private val getNumber: () -> Int,
     private val isMovable: (Int) -> Boolean,
 ) {
-    var currentRacingStatus: List<Car> = cars
-        private set
+    private var currentRacingStatus: List<Car> = cars
 
     fun getRacingStatus(): List<Car> {
         currentRacingStatus.forEach {
