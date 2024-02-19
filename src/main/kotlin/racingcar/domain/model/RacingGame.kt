@@ -1,16 +1,25 @@
 package racingcar.domain.model
 
+import racingcar.data.RandomNumberMaker
 import racingcar.util.Constant
+import kotlin.random.Random
 
 class RacingGame(
     private val cars: List<Car>
-) {
+) : RandomNumberMaker {
 
-    fun racingCars(randomNumbers: List<Int>) {
-        cars.forEachIndexed { index, car ->
+    fun racingCars(
+        minNumber: Int,
+        maxNumber: Int
+    ) {
+        cars.forEach { car ->
+            val randomNumber = makeRandomNumber(
+                minNumber = minNumber,
+                maxNumber = maxNumber
+            )
             racingCar(
-                randomNumber = randomNumbers[index],
-                car = car
+                car = car,
+                randomNumber = randomNumber
             )
         }
     }
@@ -28,16 +37,23 @@ class RacingGame(
         }
     }
 
-    private fun judgeMoveStop(randomNumber: Int): Boolean {
-        return randomNumber >= Constant.STANDARD_RANDOM_NUMBER
-    }
-
     private fun racingCar(
-        randomNumber: Int,
-        car: Car
+        car: Car,
+        randomNumber: Int
     ) {
         if (judgeMoveStop(randomNumber)) {
             car.moveCar()
         }
+    }
+
+    private fun judgeMoveStop(randomNumber: Int): Boolean {
+        return randomNumber >= Constant.STANDARD_RANDOM_NUMBER
+    }
+
+    override fun makeRandomNumber(minNumber: Int, maxNumber: Int): Int {
+        return Random.nextInt(
+            from = minNumber,
+            until = maxNumber
+        )
     }
 }

@@ -13,10 +13,15 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val randomNumbers = listOf(0, 4, 9)
+        val mockMinNumber = 4
+        val mockMaxNumber = 9
         val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomNumbers)
-        val expectCarSteps = listOf(0, 1, 1)
+        racingGame.racingCars(
+            minNumber = mockMinNumber,
+            maxNumber = mockMaxNumber
+        )
+
+        val expectCarSteps = listOf(1, 1, 1)
         val actualCarSteps = cars.map { car ->
             car.getStep()
         }
@@ -30,10 +35,14 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val randomNumbers = listOf(0, 4, 9)
+        val mockMinNumber = 0
+        val mockMaxNumber = 3
         val racingGame = RacingGame(cars = cars)
-        racingGame.racingCars(randomNumbers)
-        val expectCarSteps = listOf(1, 0, 0)
+        racingGame.racingCars(
+            minNumber = mockMinNumber,
+            maxNumber = mockMaxNumber
+        )
+        val expectCarSteps = listOf(1, 1, 1)
         val actualCarSteps = cars.map { car ->
             car.getStep()
         }

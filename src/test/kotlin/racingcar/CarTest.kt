@@ -2,9 +2,14 @@ package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import racingcar.data.RandomNumberMaker
 import racingcar.domain.model.Car
 
 class CarTest {
+    @Test
+    fun `올바른 차 전진 여부 테스트`() {
+
+    }
 
     @Test
     fun `올바른 차 전진 테스트`() {
