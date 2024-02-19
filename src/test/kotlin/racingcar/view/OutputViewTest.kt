@@ -9,7 +9,6 @@ import java.io.ByteArrayOutputStream
 import java.io.PrintStream
 
 class OutputViewTest {
-
     private lateinit var outContent: ByteArrayOutputStream
 
     @BeforeEach
@@ -19,14 +18,15 @@ class OutputViewTest {
 
     @ParameterizedTest
     @ValueSource(ints = [0, 3, 10])
-    fun `현재 위치가 0일 때, 현재 위치 출력 테스트`(nums: Int) {
-        val car = Car("carName", nums)
+    fun `진행도 별 현재 위치 정보 출력 테스트`(nums: Int) {
+        val car = Car("carName")
+        repeat(nums) {
+            car.moveStep()
+        }
         System.setOut(PrintStream(outContent))
         OutputView.printCurrentPosition(car.name, car.position)
 
         val output = outContent.toString()
-        assertThat(output).contains(
-            "carName : ", "-".repeat(nums)
-        )
+        assertThat(output).contains("carName : ", "-".repeat(nums))
     }
 }

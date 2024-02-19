@@ -3,7 +3,6 @@ package racingcar.view
 import racingcar.utils.InputValidator
 
 object InputView {
-
     private val reader = System.`in`.bufferedReader()
 
     fun readNames(): List<String> = try {
