@@ -4,7 +4,6 @@ import racingcar.model.Car
 import racingcar.model.RacingGame
 
 class OutputView {
-
     fun printEachCarsPosition(
         numberOfAttempts: Int,
         cars: MutableList<Car>,
