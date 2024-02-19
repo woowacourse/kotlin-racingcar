@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.domain.Car
+import racingcar.domain.RacingGame
 import racingcar.service.WinnerService
 import racingcar.util.ValidationUtil
 import racingcar.view.InputView
@@ -14,15 +15,14 @@ class GameController {
         val carNames = getCarNames()
         val roundCounts = getRoundCounts()
 
-        // 레이싱 게임 실행
-        val cars: List<Car> = carNames.map { Car(it) }
-        playRacingGame(cars, roundCounts)
+        // 자동차 경주 준비 및 시작
+        val racingGame = RacingGame(carNames)
+        playRacingGame(racingGame, roundCounts)
 
         // 결과 출력
-        val winners = WinnerService.findWinners(cars)
+        val winners = WinnerService.findWinners(racingGame.cars)
         OutputView.printWinners(winners)
     }
-
 
     private fun getCarNames(): List<String> {
         return runCatching {
@@ -50,13 +50,11 @@ class GameController {
         }
     }
 
-    private fun playRacingGame(cars: List<Car>, roundCounts: Int) {
+    private fun playRacingGame(racingGame: RacingGame, roundCounts: Int) {
         OutputView.printResultMessage()
         repeat(roundCounts) {
-            cars.forEach {
-                it.move()
-            }
-            OutputView.printRoundResult(cars)
+            racingGame.playOneRound()
+            OutputView.printRoundResult(racingGame.cars)
         }
     }
 }
