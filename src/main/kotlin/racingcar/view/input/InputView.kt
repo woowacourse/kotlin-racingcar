@@ -3,21 +3,18 @@ package racingcar.view.input
 import racingcar.model.Car
 import racingcar.model.TryCount
 
-class InputView {
-    private val inputConverter = InputConverter()
-    private val inputValidator = InputValidator()
-
+object InputView {
     fun readCarNames(): List<Car> {
         val inputCarNames = readlnOrNull()
-        inputValidator.validateCarNames(inputCarNames)
+        InputValidator.validateCarNames(inputCarNames)
 
-        return inputConverter.convertCars(inputCarNames)!!
+        return InputConverter.convertCars(inputCarNames!!)
     }
 
     fun readTryCount(): TryCount {
         val inputTryCount = readlnOrNull()
-        inputValidator.validateTryCount(inputTryCount)
+        InputValidator.validateTryCount(inputTryCount)
 
-        return inputConverter.convertTryCount(inputTryCount!!)
+        return InputConverter.convertTryCount(inputTryCount!!)
     }
 }
