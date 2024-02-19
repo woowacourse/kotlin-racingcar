@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import racingcar.domain.model.Car
 import racingcar.domain.model.RacingGame
+import racingcar.util.Constant
 
 class RacingGameTest {
     @Test
@@ -13,8 +14,8 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val mockMinNumber = 4
-        val mockMaxNumber = 9
+        val mockMinNumber = Constant.STANDARD_RANDOM_NUMBER
+        val mockMaxNumber = Constant.MAX_RANDOM_NUMBER
         val racingGame = RacingGame(cars = cars)
         racingGame.racingCars(
             minNumber = mockMinNumber,
@@ -35,8 +36,8 @@ class RacingGameTest {
             Car("woni"),
             Car("jun"),
         )
-        val mockMinNumber = 0
-        val mockMaxNumber = 3
+        val mockMinNumber = Constant.MIN_RANDOM_NUMBER
+        val mockMaxNumber = Constant.STANDARD_RANDOM_NUMBER - 1
         val racingGame = RacingGame(cars = cars)
         racingGame.racingCars(
             minNumber = mockMinNumber,
