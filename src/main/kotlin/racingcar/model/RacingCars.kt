@@ -2,22 +2,24 @@ package racingcar.model
 
 class RacingCars(
     val cars: List<Car>,
+    private val randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator()
 ) {
     init {
         require(cars.distinct().size == cars.size) { NUMBER_OF_CAR_ERROR_MESSAGE }
         require(cars.size in MINIMUM_NUMBER_OF_CAR..MAXIMUM_NUMBER_OF_CAR) { DUPLICATE_CAR_NAME_ERROR_MESSAGE }
     }
 
-    fun proceed(moveCondition: () -> Int) {
+    fun race() {
         cars.forEach { car ->
-            car.move(moveCondition())
+            val randomNumber = randomNumberGenerator.make()
+            car.move(randomNumber)
         }
     }
 
     fun findWinner(): List<String> {
-        val winnerPosition = cars.maxOf { it.position.length }
+        val winnerPosition = cars.maxOf { it.position }
 
-        return cars.filter { it.position.length == winnerPosition }.map { it.name }
+        return cars.filter { it.position == winnerPosition }.map { it.name }
     }
 
     companion object {
