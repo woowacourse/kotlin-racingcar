@@ -5,12 +5,12 @@ import racingcar.model.Car
 class ConsoleOutputView : OutputView {
     override fun printExecutionResult() = println("$LINE_BREAK$EXECUTION_RESULTS")
 
-    override fun printProgress(middleResult: List<Car>) {
+    override fun printProgress(cars: List<Car>) {
         println(
-            middleResult.joinToString(
+            cars.joinToString(
                 separator = MIDDLE_RESULT_SEPARATOR,
                 postfix = MIDDLE_RESULT_POSTFIX
-            ) { "${it.name}$MIDDLE_RESULT_FORMAT ${it.position}" })
+            ) { "${it.name}$MIDDLE_RESULT_FORMAT ${CAR_POSITION.repeat(it.position)}" })
     }
 
     override fun printLastWinner(winners: List<String>) = print("$LAST_WINNER ${winners.joinToString(LAST_WINNERS_SEPARATOR)}")
@@ -22,6 +22,7 @@ class ConsoleOutputView : OutputView {
         private const val MIDDLE_RESULT_POSTFIX = "\n"
         private const val MIDDLE_RESULT_FORMAT = ":"
         private const val LAST_WINNERS_SEPARATOR = ", "
+        private const val CAR_POSITION = "-"
         private const val LINE_BREAK = "\n"
     }
 }

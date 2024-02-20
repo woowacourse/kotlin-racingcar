@@ -5,7 +5,7 @@ import racingcar.model.Car
 interface OutputView {
     fun printExecutionResult()
 
-    fun printProgress(middleResult: List<Car>)
+    fun printProgress(cars: List<Car>)
 
     fun printLastWinner(winners: List<String>)
 }
