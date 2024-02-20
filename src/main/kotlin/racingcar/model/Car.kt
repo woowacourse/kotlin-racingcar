@@ -1,7 +1,7 @@
 package racingcar.model
 
-class Car(val name: String, position: String = START_POSITION_OF_CAR) {
-    var position: String = position
+class Car(val name: String, position: Int = DEFAULT_POSITION) {
+    var position: Int = position
         private set
 
     init {
@@ -10,12 +10,11 @@ class Car(val name: String, position: String = START_POSITION_OF_CAR) {
     }
 
     fun move(number: Int) {
-        if (number >= MOVE_CONDITION) position += PROGRESS_ELEMENT
+        if (number >= MOVE_CONDITION) position += 1
     }
 
     companion object {
-        private const val START_POSITION_OF_CAR = ""
-        private const val PROGRESS_ELEMENT = "-"
+        private const val DEFAULT_POSITION = 0
         private const val MINIMUM_OF_NAME_LENGTH = 1
         private const val MAXIMUM_OF_NAME_LENGTH = 5
         private const val MOVE_CONDITION = 4

@@ -18,8 +18,7 @@ class CarTest {
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `진행 조건이 성립할 때 앞으로 움직였는지`(inout: Int) {
         car.move(inout)
-
-        assertThat(car.position).isEqualTo("-")
+        assertThat(car.position).isEqualTo(1)
     }
 
     @ParameterizedTest
@@ -27,7 +26,7 @@ class CarTest {
     fun `진행 조건이 성립하지 않을 때 멈췄는지`(inout: Int) {
         car.move(inout)
 
-        assertThat(car.position).isEqualTo("")
+        assertThat(car.position).isEqualTo(0)
     }
 
     @ParameterizedTest

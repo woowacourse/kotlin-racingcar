@@ -2,14 +2,12 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.RacingCars
-import racingcar.model.RandomNumberGenerator
 import racingcar.view.input.InputView
 import racingcar.view.output.OutputView
 
 class CarRacing(
     private val inputView: InputView,
     private val outputView: OutputView,
-    private val randomNumberGenerator: RandomNumberGenerator = RandomNumberGenerator(),
 ) {
     fun play() {
         val cars = getCars()
@@ -30,7 +28,7 @@ class CarRacing(
         val attempts = inputView.askNumberOfAttempts()
         outputView.printExecutionResult()
         repeat(attempts) {
-            racingCars.proceed { randomNumberGenerator.make() }
+            racingCars.race()
             outputView.printProgress(racingCars.cars)
         }
     }
