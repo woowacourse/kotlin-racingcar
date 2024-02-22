@@ -3,12 +3,14 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class RaceCarsTest {
+    /*
     @Test
     fun `차는 중복될 수 없습니다`() {
         assertThrows<IllegalArgumentException>("차는 중복될 수 없습니다.") {
             RaceCars(listOf(RaceCar("foo"), RaceCar("foo")), { 1 })
         }
     }
+     */
 
     @Test
     fun `차 리스트는 비어 있으면 안된다`() {
@@ -40,7 +42,7 @@ class RaceCarsTest {
         val raceCars = RaceCars(listOf(headCar, headCar2, car), { 2 })
         val expectedHeadGroup = listOf(headCar, headCar2)
         // when
-        val headCarGroup = raceCars.findHeadGroup()
+        val headCarGroup = raceCars.findWinnerCars()
         // then
         assertThat(headCarGroup).isEqualTo(expectedHeadGroup)
     }

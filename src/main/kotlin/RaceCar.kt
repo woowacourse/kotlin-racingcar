@@ -1,4 +1,4 @@
-data class RaceCar(
+class RaceCar(
     val name: String,
 ) : Comparable<RaceCar> {
 
@@ -6,7 +6,7 @@ data class RaceCar(
 
     init {
         require(name.length <= 5) {
-            "자동차 이름은 5자를 초과할 수 없다."
+            "${name}은 5자를 초과합니다. 자동차 이름은 5자를 초과할 수 없습니다."
         }
     }
 
@@ -19,6 +19,8 @@ data class RaceCar(
             distance++
         }
     }
+
+    fun isSamePosition(other: RaceCar) = compareTo(other) == 0
 
     override fun compareTo(other: RaceCar) = (distance - other.distance)
 
