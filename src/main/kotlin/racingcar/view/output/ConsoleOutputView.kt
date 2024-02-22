@@ -1,27 +1,28 @@
 package racingcar.view.output
 
+import racingcar.model.Car
+
 class ConsoleOutputView : OutputView {
-    override fun enterCarNames() = println(ENTER_CAR_NAMES)
-
-    override fun enterNumberOfAttempts() {
-        println(ENTER_NUMBER_OF_ATTEMPTS)
-    }
-
     override fun printExecutionResult() = println("$LINE_BREAK$EXECUTION_RESULTS")
 
-    override fun printProgress(intermediateResults: List<String>) {
-        println(intermediateResults.joinToString(separator = INTERMEDIATE_RESULT_DELIMITERS, postfix = LINE_BREAK))
+    override fun printProgress(cars: List<Car>) {
+        println(
+            cars.joinToString(
+                separator = MIDDLE_RESULT_SEPARATOR,
+                postfix = MIDDLE_RESULT_POSTFIX
+            ) { "${it.name}$MIDDLE_RESULT_FORMAT ${CAR_POSITION.repeat(it.position)}" })
     }
 
-    override fun printLastWinner(winners: List<String>) = print("$LINE_BREAK$LAST_WINNER ${winners.joinToString(LAST_WINNERS_SEPARATOR)}")
+    override fun printLastWinner(winners: List<String>) = print("$LAST_WINNER ${winners.joinToString(LAST_WINNERS_SEPARATOR)}")
 
     companion object {
-        private const val ENTER_CAR_NAMES = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
-        private const val ENTER_NUMBER_OF_ATTEMPTS = "시도할 횟수는 몇 회인가요?"
         private const val EXECUTION_RESULTS = "실행 결과"
         private const val LAST_WINNER = "최종 우승자:"
-        private const val INTERMEDIATE_RESULT_DELIMITERS = "\n"
+        private const val MIDDLE_RESULT_SEPARATOR = "\n"
+        private const val MIDDLE_RESULT_POSTFIX = "\n"
+        private const val MIDDLE_RESULT_FORMAT = ":"
         private const val LAST_WINNERS_SEPARATOR = ", "
+        private const val CAR_POSITION = "-"
         private const val LINE_BREAK = "\n"
     }
 }
