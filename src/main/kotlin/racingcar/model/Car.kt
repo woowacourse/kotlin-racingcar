@@ -2,7 +2,7 @@ package racingcar.model
 
 import racingcar.constants.GameConstants
 
-class Car(private val name: String) : Comparable<Car> {
+class Car(val name: String) {
     var position: Int = 0
         private set
 
@@ -15,9 +15,4 @@ class Car(private val name: String) : Comparable<Car> {
     fun forward() {
         position++
     }
-
-    override fun toString() = name
-
-    override fun compareTo(other: Car) =
-        other.position.compareTo(this.position)
 }
