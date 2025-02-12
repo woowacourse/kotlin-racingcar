@@ -20,9 +20,10 @@ class Race(rawCarNames: String, rawTryCount: String) {
 
     fun getWinners(): List<String> {
         val maxNumber = cars.maxOfOrNull { it.moveCount() }
-        val winners = cars.filter { car ->
-            car.moveCount() == maxNumber
-        }.map { it.carName }
+        val winners =
+            cars.filter { car ->
+                car.moveCount() == maxNumber
+            }.map { it.carName }
         return winners
     }
 }

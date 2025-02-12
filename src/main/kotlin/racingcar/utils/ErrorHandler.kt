@@ -3,10 +3,12 @@ package racingcar.utils
 object ErrorHandler {
     fun String.validCarName(): String {
         val carNames = this.split(",")
-        if (carNames.duplicateCarNames()
-            || carNames.emptyCarNames()
-            || carNames.carNameLength()
-        ) throw IllegalArgumentException("[ERROR] 자동차 이름을 다시 입력해주세요.")
+        if (carNames.duplicateCarNames() ||
+            carNames.emptyCarNames() ||
+            carNames.carNameLength()
+        ) {
+            throw IllegalArgumentException("[ERROR] 자동차 이름을 다시 입력해주세요.")
+        }
         return this
     }
 
@@ -29,7 +31,6 @@ object ErrorHandler {
     }
 
     fun String.validTryCount(): String {
-
         if (this.toIntTryCount() || this.emptyTryCount()) throw IllegalArgumentException("[ERROR] 시도횟수를 다시 입력해주세요.")
         return this
     }
