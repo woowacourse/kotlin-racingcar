@@ -4,7 +4,6 @@ import view.InputView
 import view.OutputView
 
 fun main() {
-
     fun generateCarList(carsInput: List<String>): MutableList<Car> {
         val cars = mutableListOf<Car>()
         carsInput.map { cars.add(Car(it, 0)) }
@@ -20,7 +19,10 @@ fun main() {
         }
     }
 
-    fun race(count: Int, cars: List<Car>) {
+    fun race(
+        count: Int,
+        cars: List<Car>,
+    ) {
         OutputView.printResultHeader()
         repeat(count) {
             moveCars(cars)

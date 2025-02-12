@@ -19,10 +19,10 @@ object InputView {
 
     fun readCount(): Int {
         println(Messages.MESSAGE_INPUT_RACE_COUNT)
-        val count = br.readLine().toIntOrNull()
+        val count = br.readLine()
         Validator.validateCount(count)
         println()
 
-        return count!!
+        return count.toInt()
     }
 }

@@ -1,7 +1,6 @@
 package util
 
 object Validator {
-
     fun validateCarName(input: List<String>) {
         require(input.all { it.isNotEmpty() && it.length <= Constants.CONDITION_CAR_MAX_LENGTH }) {
             IllegalArgumentException(Messages.MESSAGE_INVALID_CAR_NAME)
@@ -11,9 +10,13 @@ object Validator {
         }
     }
 
-    fun validateCount(count: Int?) {
-        require(count != null && count >= Constants.CONDITION_CAR_MIN_COUNT) {
-            IllegalArgumentException(Messages.MESSAGE_INVALID_RACE_COUNT)
+    fun validateCount(count: String) {
+        require(count.toIntOrNull() != null) {
+            IllegalArgumentException(Messages.MESSAGE_RACE_COUNT_NOT_INTEGER)
+        }
+
+        require(count.toInt() >= Constants.CONDITION_CAR_MIN_COUNT) {
+            IllegalArgumentException(Messages.MESSAGE_RACE_COUNT_TOO_SMALL)
         }
     }
 }

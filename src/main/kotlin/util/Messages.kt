@@ -8,5 +8,6 @@ object Messages {
 
     const val MESSAGE_INVALID_CAR_NAME = "유효하지 않은 자동차 이름입니다."
     const val MESSAGE_DUPLICATE_CAR_NAME = "자동차 이름에 중복이 있습니다."
-    const val MESSAGE_INVALID_RACE_COUNT = "유효하지 않은 경주 횟수입니다."
+    const val MESSAGE_RACE_COUNT_NOT_INTEGER = "경주 횟수가 정수가 아닙니다."
+    const val MESSAGE_RACE_COUNT_TOO_SMALL = "경주 횟수가 1 이상이어야 합니다."
 }
