@@ -10,7 +10,20 @@ class RaceController(val count: Int, val cars: MutableList<Car>, val inOutContro
             oneRace()
         }
     }
-
+    fun comparePosition():MutableList<String>{
+        var winnerList: MutableList<String> = mutableListOf()
+        var maxPosition = 0
+        for (car in cars){
+            if(car.currentPosition==maxPosition){
+                winnerList.add(car.name)
+            }
+            if(car.currentPosition>maxPosition){
+                winnerList=mutableListOf(car.name)
+                maxPosition=car.currentPosition
+            }
+        }
+        return winnerList
+    }
     private fun oneRace() {
         for (car in cars) {
             car.currentPosition += goOrNot()

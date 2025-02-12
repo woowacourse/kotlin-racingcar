@@ -21,4 +21,9 @@ class InOutView {
     fun printGameResult() {
         println(InOutConstant.OUTPUT_GAME_RESULT)
     }
+
+    fun printFinalResult(winnerList : MutableList<String>) {
+        print(InOutConstant.OUTPUT_FINAL_RESULT)
+        println(winnerList.joinToString(", "))
+    }
 }

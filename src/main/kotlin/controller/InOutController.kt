@@ -35,4 +35,9 @@ class InOutController(val inOutView: InOutView) {
     fun printGameResult() {
         inOutView.printGameResult()
     }
+
+    fun printFinalResult(winnerResult: MutableList<String>){
+        inOutView.printFinalResult(winnerResult)
+
+    }
 }

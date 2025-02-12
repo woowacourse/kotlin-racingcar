@@ -11,5 +11,7 @@ class MainController {
         repo.cars = inOutController.getCarName()
         val raceController = RaceController(inOutController.getTryCount(), repo.cars, inOutController)
         raceController.fullRace()
+        val winnerList = raceController.comparePosition()
+        inOutController.printFinalResult(winnerList)
     }
 }
