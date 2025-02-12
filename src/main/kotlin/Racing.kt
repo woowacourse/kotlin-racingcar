@@ -1,9 +1,11 @@
 class Racing {
     val inputView = InputView()
+    val outputView = OutputView()
+
     fun play() {
         val cars = getCars(inputView.readCars())
         val attempts = getAttempts(inputView.readAttempt())
-        race(cars,attempts)
+        race(cars, attempts)
     }
 
     fun getCars(carsInput: String): List<Car> {
@@ -14,13 +16,15 @@ class Racing {
         return carsName.map { carName -> Car(carName.trim()) }
     }
 
-    fun getAttempts(attempts: String):Int = requireNotNull(attempts.toIntOrNull()) { "[ERROR]: 시도 횟수를 입력해주세요." }
+    fun getAttempts(attempts: String): Int = requireNotNull(attempts.toIntOrNull()) { "[ERROR]: 시도 횟수를 입력해주세요." }
 
     fun race(cars: List<Car>, attempts: Int) {
-        repeat(attempts){
+        outputView.printResultTitle()
+        repeat(attempts) {
             cars.forEach { car ->
                 car.move()
             }
+            outputView.printCarState(cars)
         }
     }
 }
