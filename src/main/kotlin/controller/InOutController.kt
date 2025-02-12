@@ -5,7 +5,7 @@ import data.Car
 import view.InOutConstant
 import view.InOutView
 
-class InOutController(val inOutView: InOutView) {
+class InOutController(private val inOutView: InOutView) {
     fun getCarName(): MutableList<Car> {
         val input = inOutView.getData(InOutConstant.NAME)
         val carNames = input.split(",")
@@ -21,7 +21,6 @@ class InOutController(val inOutView: InOutView) {
 
     fun getTryCount(): Int {
         val input = inOutView.getData(InOutConstant.COUNT).toIntOrNull()
-//        val input = inOutView.getTryCount().toIntOrNull()
         if (input == null) throw IllegalArgumentException(ErrorConstant.ERROR_NOT_NUMBER)
         if (input <= 0) throw IllegalArgumentException(ErrorConstant.ERROR_UNDER_ZERO)
         return input

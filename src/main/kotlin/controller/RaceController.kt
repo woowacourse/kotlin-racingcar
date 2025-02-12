@@ -3,7 +3,11 @@ package controller
 import data.Car
 import model.Repository
 
-class RaceController(val count: Int, val repo: Repository, val inOutController: InOutController) {
+class RaceController(
+    private val count: Int,
+    private val repo: Repository,
+    private val inOutController: InOutController
+) {
     fun fullRace() {
         inOutController.printGameResult()
         repeat(count) {
