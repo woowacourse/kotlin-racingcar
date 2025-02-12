@@ -1,6 +1,10 @@
 fun main() {
     val cars: List<Car> = readCars()
     val round: Int = readRound()
+    println("\n실행결과")
+    val racecourse = Racecourse(cars, round)
+    racecourse.startRace()
+
 }
 
 fun readCars(): List<Car> {
