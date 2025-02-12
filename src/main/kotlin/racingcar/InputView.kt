@@ -1,4 +1,4 @@
-
+package racingcar
 
 class InputView {
     fun insertCarNames(): String {
