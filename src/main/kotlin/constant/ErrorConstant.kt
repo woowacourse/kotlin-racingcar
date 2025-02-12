@@ -1,0 +1,6 @@
+package constant
+
+object ErrorConstant {
+    const val ERROR_WRONG_NAME_LENGTH = "[ERROR] 자동차 이름은 5자 이하여야 합니다."
+    const val ERROR_SAME_NAME = "[ERROR] 자동차 이름은 중복될 수 없습니다."
+}
