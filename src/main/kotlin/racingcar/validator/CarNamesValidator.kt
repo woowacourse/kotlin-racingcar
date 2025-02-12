@@ -1,11 +1,12 @@
 package racingcar.validator
 
 class CarNamesValidator {
-    fun validate(input: String) {
+    fun validate(input: String): List<String> {
         isNotEmpty(input)
         val carNames = input.split(COMMA)
         isValidLength(carNames)
         isUniqueName(carNames)
+        return carNames
     }
 
     private fun isNotEmpty(carName: String) {
