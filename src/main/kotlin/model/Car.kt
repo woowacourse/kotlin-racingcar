@@ -16,7 +16,7 @@ class Car(
     }
 
     private fun validateCar(name: String) {
-        require(name.trim().isEmpty()) { "자동차 이름이 올바르지 않습니다." }
+        require(name.trim().isNotEmpty()) { "자동차 이름이 올바르지 않습니다." }
         require(name.length <= MAX_NAME_LENGTH) { "자동차 이름은 5자를 초과할 수 없습니다." }
     }
 
