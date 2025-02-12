@@ -7,4 +7,10 @@ class Input {
             Car(name)
         }
     }
+
+    fun readRaceCount(): Int {
+        val count = readln().toInt()
+        require(count > 0) { "[ERROR] 자동차 경주는 0회 이상 이루어져야 합니다." }
+        return count
+    }
 }
