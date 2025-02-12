@@ -1,51 +1,52 @@
 package racingcar
 
-import racingcar.domain.Car
-import racingcar.domain.Messages
+import racingcar.Messages.*
 
 class InputValidator {
-    fun validRaceCountChecker(input: String) {
-        emptyStringCheck(input)
-        positiveInputCheck(input)
-        tryCountLengthCheck(input)
+    fun carNamesValidate(input: String) {
+        emptyCheck(input)
+        val names = input.split(",").map { it.trim() }
+        nameLengthCheck(names)
+        duplicateNameCheck(names)
+        availableNameCheck(names)
     }
 
-    fun validCarNameChecker(name: String) {
-        emptyStringCheck(name)
-        carNameLengthCheck(name)
-        carNameConsistPossibleCharactersCheck(name)
+    fun tryCountValidate(input: String) {
+        emptyCheck(input)
+        val number = positiveInputCheck(input)
+        tryCountLengthCheck(number)
     }
 
-    private fun emptyStringCheck(input: String) {
-        require(input.isNotBlank()) { Messages.ERROR_EMPTY_INPUT.message }
+    private fun emptyCheck(input: String) {
+        require(input.isNotBlank()) { ERROR_EMPTY_INPUT.message }
     }
 
-    private fun carNameConsistPossibleCharactersCheck(name: String) {
-        require(!name.startsWith(" ") && !name.endsWith(" ")) { Messages.ERROR_NOT_AVAILABLE_NAME.message }
-        val regex = Regex("^[가-힣a-zA-Z0-9 ]*$")
-        require(regex.matches(name)) { Messages.ERROR_NOT_AVAILABLE_NAME.message }
+    private fun nameLengthCheck(names:List<String>){
+        names.forEach { name ->
+            require(name.length in 1..5) { ERROR_NAME_LENGTH.message }
+        }
     }
 
-    private fun carNameLengthCheck(name: String) {
-        require(name.length in 1..5) { Messages.ERROR_NAME_LENGTH.message }
+    private fun duplicateNameCheck(names:List<String>){
+        require(names.size == names.distinct().size) { ERROR_DUPLICATE_NAME.message }
     }
 
-    fun possibleMoveValueCheck(value: Int) {
-        require(value in 0..9) { Messages.ERROR_MOVE_VALUE }
+    private fun availableNameCheck(names:List<String>){
+        names.forEach { name ->
+            val regex = Regex("^[가-힣a-zA-Z0-9]*$")
+            require(regex.matches(name)) { ERROR_NOT_AVAILABLE_NAME.message }
+        }
     }
 
-    fun duplicateCarNameCheck(cars: List<Car>) {
-        require(cars.map { it.name }.distinct().size == cars.size) { Messages.ERROR_DUPLICATE_NAME.message }
+    private fun positiveInputCheck(input: String):Int{
+        val number = runCatching { input.toInt() }
+            .getOrElse { throw IllegalArgumentException(ERROR_NOT_POSITIVE.message) }
+        require(number > 0) { ERROR_NOT_POSITIVE.message }
+        return number
     }
 
-    private fun positiveInputCheck(input: String) {
-        val number =
-            runCatching { input.toInt() }
-                .getOrElse { throw IllegalArgumentException(Messages.ERROR_NOT_POSITIVE.message) }
-        require(number > 0) { Messages.ERROR_NOT_POSITIVE.message }
+    private fun tryCountLengthCheck(number: Int){
+        require(number.toString().length < 9) { ERROR_OVERSIZE_TRY_COUNT.message }
     }
 
-    private fun tryCountLengthCheck(input: String) {
-        require(input.length < 9) { Messages.ERROR_OVERSIZE_TRY_COUNT.message }
-    }
 }
