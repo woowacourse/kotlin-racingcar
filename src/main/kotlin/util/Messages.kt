@@ -5,4 +5,8 @@ object Messages {
     const val MESSAGE_INPUT_RACE_COUNT = "시도할 횟수는 몇 회인가요?"
     const val MESSAGE_OUTPUT_RACE_RESULT = "실행 결과"
     const val MESSAGE_OUTPUT_WINNER = "최종 우승자: "
+
+    const val MESSAGE_INVALID_CAR_NAME = "유효하지 않은 자동차 이름입니다."
+    const val MESSAGE_DUPLICATE_CAR_NAME = "자동차 이름에 중복이 있습니다."
+    const val MESSAGE_INVALID_RACE_COUNT = "유효하지 않은 경주 횟수입니다."
 }
