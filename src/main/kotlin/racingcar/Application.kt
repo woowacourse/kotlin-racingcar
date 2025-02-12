@@ -1,36 +1,20 @@
 package racingcar
 
-import racingcar.view.ConsoleInputView
-import racingcar.view.ConsoleOutputView
-
+import racingcar.Messages.*
 fun main() {
-    Application().run()
+    Application.run()
 }
 
-class Application {
-    private val random = Random()
-    private val outputView = ConsoleOutputView()
-    private val inputView = ConsoleInputView()
-    private val inputValidator = InputValidator()
-    private val raceService = RaceService(random, outputView, inputView, inputValidator)
+class Application{
 
-    fun run() {
-        initializeRace()
-        startRace()
-        showRaceResult()
-    }
+    companion object {
+        fun run() {
+            println(GAME_START.message)
+            val namesInput = readln()
+            val names: List<String> = namesInput.split(",")
 
-    private fun initializeRace() {
-        raceService.carsInitializer()
-        raceService.raceCountInitializer()
-    }
-
-    private fun startRace() {
-        raceService.showRaceResultHeader()
-        raceService.doWholeRace()
-    }
-
-    private fun showRaceResult() {
-        raceService.showCarNamesByWinnerFormat()
+            println(GAME_INPUT_COUNT.message)
+            val raceCount: Int = readln().toInt()
+        }
     }
 }
