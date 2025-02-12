@@ -6,7 +6,8 @@ class Racing {
         val cars = getCars(inputView.readCars())
         val attempts = getAttempts(inputView.readAttempt())
         race(cars, attempts)
-        outputView.printRaceWinner(cars)
+        val winners = getWinners(cars)
+        outputView.printRaceWinner(winners)
     }
 
     fun getCars(carsInput: String): List<Car> {
@@ -19,7 +20,10 @@ class Racing {
 
     fun getAttempts(attempts: String): Int = requireNotNull(attempts.toIntOrNull()) { "[ERROR]: 시도 횟수를 입력해주세요." }
 
-    fun race(cars: List<Car>, attempts: Int) {
+    fun race(
+        cars: List<Car>,
+        attempts: Int,
+    ) {
         outputView.printResultTitle()
         repeat(attempts) {
             cars.forEach { car ->
@@ -27,5 +31,10 @@ class Racing {
             }
             outputView.printCarState(cars)
         }
+    }
+
+    fun getWinners(cars: List<Car>): List<Car> {
+        val maxPosition = cars.maxOf { car -> car.position }
+        return cars.filter { car -> car.position == maxPosition }
     }
 }
