@@ -1,13 +1,12 @@
 import view.InputView
 import view.OutputView
 
-fun main(){
-
+fun main() {
     val inputView = InputView()
     val outputView = OutputView()
 
     RacingController(
         inputView = inputView,
-        outputView = outputView
+        outputView = outputView,
     ).run()
 }

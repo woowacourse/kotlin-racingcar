@@ -7,15 +7,14 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
-
     @ParameterizedTest
-    @ValueSource(strings = ["1","22","333","4444","55 5 "])
+    @ValueSource(strings = ["1", "22", "333", "4444", "55 5 "])
     fun `자동차 생성 테스트`(carName: String) {
-        assertDoesNotThrow{ Car(carName) }
+        assertDoesNotThrow { Car(carName) }
     }
 
     @ParameterizedTest
-    @ValueSource(strings = [""," ","33333", "44 4444"])
+    @ValueSource(strings = ["", " ", "33333", "44 4444"])
     fun `자동차 생성 예외 테스트`(carName: String) {
         assertThrows<IllegalArgumentException> { Car(carName) }
     }

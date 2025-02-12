@@ -6,7 +6,6 @@ class RacingController(
     private val inputView: InputView,
     private val outputView: OutputView,
 ) {
-
     private val racingGame = RacingGame()
 
     fun run() {
