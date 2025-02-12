@@ -1,29 +1,31 @@
 package view
 
-import constant.InOutConstant
 import data.Car
 
-class InOutView {
-    fun getCarNames(): String {
-        println(InOutConstant.INPUT_CAR_NAME)
-        return readln()
-    }
+enum class InOutConstant(val constant: String) {
+    NAME("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."),
+    COUNT("시도할 횟수는 몇 회인가요?"),
+    CURRENT_RESULT_FORMAT("%s : %s"),
+    GAME_RESULT("\n실행 결과"),
+    FINAL_RESULT("최종 우승자 : ")
+}
 
-    fun getTryCount(): String {
-        println(InOutConstant.INPUT_TRY_COUNT)
+class InOutView {
+    fun getData(data: InOutConstant): String {
+        println(data.constant)
         return readln()
     }
 
     fun printCurrentResult(car: Car) {
-        println(InOutConstant.OUTPUT_CURRENT_RESULT_FORMAT.format(car.name, "-".repeat(car.currentPosition)))
+        println(InOutConstant.CURRENT_RESULT_FORMAT.constant.format(car.name, "-".repeat(car.currentPosition)))
     }
 
     fun printGameResult() {
-        println(InOutConstant.OUTPUT_GAME_RESULT)
+        println(InOutConstant.GAME_RESULT.constant)
     }
 
     fun printFinalResult(winnerList : MutableList<Car>) {
-        print(InOutConstant.OUTPUT_FINAL_RESULT)
+        print(InOutConstant.FINAL_RESULT.constant)
         println(winnerList.map { it.name }.joinToString(", "))
     }
 }

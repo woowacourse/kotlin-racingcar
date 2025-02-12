@@ -2,11 +2,12 @@ package controller
 
 import constant.ErrorConstant
 import data.Car
+import view.InOutConstant
 import view.InOutView
 
 class InOutController(val inOutView: InOutView) {
     fun getCarName(): MutableList<Car> {
-        val input = inOutView.getCarNames()
+        val input = inOutView.getData(InOutConstant.NAME)
         val carNames = input.split(",")
         val cars: MutableList<Car> = mutableListOf()
 
@@ -19,7 +20,8 @@ class InOutController(val inOutView: InOutView) {
     }
 
     fun getTryCount(): Int {
-        val input = inOutView.getTryCount().toIntOrNull()
+        val input = inOutView.getData(InOutConstant.COUNT).toIntOrNull()
+//        val input = inOutView.getTryCount().toIntOrNull()
         if (input == null) throw IllegalArgumentException(ErrorConstant.ERROR_NOT_NUMBER)
         if (input <= 0) throw IllegalArgumentException(ErrorConstant.ERROR_UNDER_ZERO)
         return input
