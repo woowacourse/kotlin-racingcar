@@ -6,6 +6,7 @@ class Racing {
         val cars = getCars(inputView.readCars())
         val attempts = getAttempts(inputView.readAttempt())
         race(cars, attempts)
+        outputView.printRaceWinner(cars)
     }
 
     fun getCars(carsInput: String): List<Car> {
