@@ -31,4 +31,6 @@ fun main() {
             winner.add(car.name)
         }
     }
+
+    println("최종 우승자: ${winner.joinToString(", ")}")
 }
