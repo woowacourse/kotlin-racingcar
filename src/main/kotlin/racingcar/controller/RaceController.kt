@@ -1,13 +1,19 @@
-package racingcar
+package racingcar.controller
+
+import racingcar.domain.Race
+import racingcar.utils.ErrorHandler
+import racingcar.utils.ErrorHandler.validCarName
+import racingcar.utils.ErrorHandler.validTryCount
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 class RaceController {
     private val inputView = InputView()
     private val outputView = OutputView()
 
-
     fun run() {
-        val rawCarNames = inputView.insertCarNames()
-        val rawTryCount = inputView.insertTryCount()
+        val rawCarNames = inputView.insertCarNames().validCarName()
+        val rawTryCount = inputView.insertTryCount().validTryCount()
 
         val race = Race(rawCarNames, rawTryCount)
         race.moveOrStops()

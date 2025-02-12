@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.view
 
 class OutputView {
     fun printRoundResult(carNames: List<String>, moves: List<List<String>>, tryCount: Int) {

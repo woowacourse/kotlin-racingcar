@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Car(val carName: String) {
     val moveOrStop = mutableListOf<String>()
@@ -14,4 +14,3 @@ class Car(val carName: String) {
         return moveOrStop.count { it == "-" }
     }
 }
-//val moves = listOf("-","","-","-")

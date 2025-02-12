@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Race(private val rawCarNames: String, rawTryCount: String) {
     val tryCount = rawTryCount.toInt()
