@@ -1,4 +1,26 @@
+import model.RacingGame
+import view.InputView
+import view.OutputView
 
-class RacingController {
+class RacingController(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+) {
 
+    private val racingGame = RacingGame()
+
+    fun run() {
+        inputCarNames()
+        inputRacingCount()
+    }
+
+    private fun inputCarNames() {
+        val rawInput = inputView.inputCarName()
+        racingGame.generateCars(rawInput)
+    }
+
+    private fun inputRacingCount() {
+        val rawCount = inputView.inputRacingCount()
+        racingGame.tryRacing(rawCount)
+    }
 }
