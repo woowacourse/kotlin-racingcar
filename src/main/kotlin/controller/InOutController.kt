@@ -3,6 +3,7 @@ package controller
 import constant.ErrorConstant
 import data.Car
 import view.InOutView
+import kotlin.math.E
 
 class InOutController(val inOutView: InOutView) {
     fun getCarName(): MutableList<Car> {
@@ -16,5 +17,12 @@ class InOutController(val inOutView: InOutView) {
         }
 
         return cars
+    }
+
+    fun getTryCount(): Int{
+        val input = inOutView.getTryCount().toIntOrNull()
+        if(input==null) throw IllegalArgumentException(ErrorConstant.ERROR_NOT_NUMBER)
+        if(input<=0) throw IllegalArgumentException(ErrorConstant.ERROR_UNDER_ZERO)
+        return input
     }
 }
