@@ -30,8 +30,9 @@ class CarNamesValidatorTest {
     @ParameterizedTest
     @CsvSource(
         "###, @@@, !!!,''",
-        "as1@, chan", "#poby",
-        "d!b@"
+        "as1@, chan",
+        "#poby",
+        "d!b@",
     )
     fun `자동차 이름이 영문, 숫자 이외의 문자가 입력 되었을 때`(value: String) {
         Assertions.assertThatThrownBy {
