@@ -1,6 +1,6 @@
 package racingcar.domain
 
-class Race(private val rawCarNames: String, rawTryCount: String) {
+class Race(rawCarNames: String, rawTryCount: String) {
     val tryCount = rawTryCount.toInt()
     val cars = rawCarNames.split(",").map { Car(it) }
 
