@@ -1,4 +1,7 @@
-class Racecourse(private val cars: List<Car>, private val round: Int) {
+class Racecourse(
+    private val cars: List<Car>,
+    private val round: Int,
+) {
     fun startRace() {
         repeat(round) {
             startRound()
