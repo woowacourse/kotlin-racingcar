@@ -25,4 +25,10 @@ fun main() {
         println()
     }
 
+    val winner = mutableListOf<String>()
+    cars.forEach { car ->
+        if (car.position == cars.maxOf { it.position }) {
+            winner.add(car.name)
+        }
+    }
 }
