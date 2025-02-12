@@ -1,8 +1,8 @@
 package racingcar
 
-class Race(val carNames: String, rawTryCount: String) {
-    private val tryCount = rawTryCount.toInt()
-    private val cars = carNames.split(",").map { Car(it) }
+class Race(private val rawCarNames: String, rawTryCount: String) {
+    val tryCount = rawTryCount.toInt()
+    val cars = rawCarNames.split(",").map { Car(it) }
 
     private fun isMove(randomNumber: Int): Boolean {
         return randomNumber in 3..9
