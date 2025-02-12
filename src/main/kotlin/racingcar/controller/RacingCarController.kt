@@ -1,5 +1,7 @@
 package racingcar.controller
 
+import racingcar.model.Car
+import racingcar.model.Game
 import racingcar.util.retryWhenException
 import racingcar.validator.CarNamesValidator
 import racingcar.validator.RoundsValidator
@@ -11,13 +13,20 @@ class RacingCarController {
     private val outputView = OutputView()
 
     fun start() {
-        retryWhenException {
-            val carNames = inputView.readCarNames()
-            validateCarNames(carNames)
-        }
+        val carNames =
+            retryWhenException {
+                val input = inputView.readCarNames()
+                validateCarNames(input)
+            }
 
-        val rounds = inputView.readRounds()
-        validateRounds(rounds)
+        val rounds =
+            retryWhenException {
+                val input = inputView.readRounds()
+                validateRounds(input)
+            }
+
+        val cars = carNames.map { Car(it) }
+        val game = Game(cars, rounds)
     }
 
     private fun validateCarNames(input: String): List<String> {
