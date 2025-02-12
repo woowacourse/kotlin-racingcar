@@ -1,27 +1,39 @@
 package racingcar
 
-import racingcar.Messages.*
-import racingcar.InputValidator
+import racingcar.domain.Car
+import racingcar.domain.Messages
 
 fun main() {
-    Application.run()
+    Application().run()
 }
 
-class Application{
+class Application(
+    private val cars:List<Car> = InputInitializer.getCars(),
+    private val raceCount:Int = InputInitializer.getRaceCount()
+) {
 
-    companion object {
-        fun run() {
-            val inputValidator = InputValidator()
+    fun run() {
+        startGame()
+        getWinner()
+    }
 
-            println(GAME_START.message)
-            val namesInput = readln()
-            inputValidator.carNamesValidate(namesInput)
-            val names: List<String> = namesInput.split(",")
+    private fun startGame() {
+        println(Messages.GAME_RESULT.message)
+        repeat(raceCount) {
+            race()
+            println()
+        }
+    }
 
-            println(GAME_INPUT_COUNT.message)
-            val raceCountInput = readln()
-            inputValidator.tryCountValidate(raceCountInput)
-            val raceCount: Int = raceCountInput.toInt()
+    private fun getWinner() {
+        val winners = cars.filter { it.distance == cars.maxOf { car -> car.distance } }
+        println(Messages.WINNER.formattedMessage(winners.joinToString(", ") {it.name}))
+    }
+
+    private fun race() {
+        cars.forEach {
+            it.randomMove()
+            it.printDistanceInfo()
         }
     }
 }
