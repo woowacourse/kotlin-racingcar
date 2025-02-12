@@ -6,6 +6,8 @@ class RacingController(private val inputView: InputView) {
 
     fun run() {
         carNames = splitCarNames(inputView.inputCarNames())
+        validateCarNames(carNames)
+        tryNumber = validateTryNumber(inputView.inputTryNumber())
 
     }
 
@@ -17,5 +19,13 @@ class RacingController(private val inputView: InputView) {
         require(splitCarNames.all { it.length <= 5 }) { "각 자동차 이름은 5자를 초과할 수 없습니다." }
         require(splitCarNames.any { it.isNotEmpty() }) { "각 자동차 이름은 공백이 불가합니다." }
         require(splitCarNames.size == splitCarNames.toSet().size) { "각 자동차 이름은 중복이 불가합니다." }
+    }
+
+    private fun validateTryNumber(inputTryNumber: String): Int {
+        return try {
+            inputTryNumber.toInt()
+        } catch (e: NumberFormatException) {
+            throw IllegalArgumentException(e)
+        }
     }
 }
