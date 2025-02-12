@@ -21,7 +21,8 @@ fun main() {
     carsInput.map { cars.add(Car(it, 0)) }
 
     println("시도할 횟수는 몇 회인가요?")
-    val count = br.readLine().toInt()
+    val count = br.readLine().toIntOrNull() ?: throw IllegalArgumentException()
+    if (count <= 0) throw IllegalArgumentException()
     println()
 
     println("실행 결과")
