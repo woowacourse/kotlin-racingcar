@@ -1,6 +1,5 @@
 package controller
 
-import data.Race
 import model.Repository
 import view.InOutView
 
@@ -10,7 +9,7 @@ class MainController {
 
     fun runProgram() {
         repo.cars = inOutController.getCarName()
-        val raceController = RaceController(inOutController.getTryCount(),repo.cars)
+        val raceController = RaceController(inOutController.getTryCount(), repo.cars, inOutController)
         raceController.fullRace()
     }
 }

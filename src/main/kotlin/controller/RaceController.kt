@@ -3,27 +3,25 @@ package controller
 import data.Car
 import java.util.Random
 
-class RaceController(val count: Int, val cars: MutableList<Car>) {
+class RaceController(val count: Int, val cars: MutableList<Car>, val inOutController: InOutController) {
     fun fullRace() {
-        for (time in 1..count) {
+        inOutController.printGameResult()
+        repeat(count) {
             oneRace()
         }
     }
 
-    fun oneRace() {
+    private fun oneRace() {
         for (car in cars) {
             car.currentPosition += goOrNot()
         }
+        inOutController.printCurrentPosition(cars)
     }
 
+    private fun goOrNot(): Int {
+        var nowNumber = Random().nextInt(10)
 
-
-    fun goOrNot(): Int {
-
-        var nowNumber = Random(10).nextInt()
-        if (nowNumber >= 4) {
-            return 1
-        }
+        if (nowNumber >= 4) return 1
         return 0
     }
 }

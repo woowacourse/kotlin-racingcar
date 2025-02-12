@@ -3,7 +3,6 @@ package controller
 import constant.ErrorConstant
 import data.Car
 import view.InOutView
-import kotlin.math.E
 
 class InOutController(val inOutView: InOutView) {
     fun getCarName(): MutableList<Car> {
@@ -24,5 +23,16 @@ class InOutController(val inOutView: InOutView) {
         if(input==null) throw IllegalArgumentException(ErrorConstant.ERROR_NOT_NUMBER)
         if(input<=0) throw IllegalArgumentException(ErrorConstant.ERROR_UNDER_ZERO)
         return input
+    }
+
+    fun printCurrentPosition(cars: MutableList<Car>) {
+        cars.forEach { car ->
+            inOutView.printCurrentResult(car)
+        }
+        println()
+    }
+
+    fun printGameResult() {
+        inOutView.printGameResult()
     }
 }
