@@ -15,7 +15,7 @@ class OutputView {
     }
 
     fun printResult(name: List<String>) {
-        println(name.joinToString(", "))
+        println("최종 우승자: " + name.joinToString(", "))
 
     }
 }
