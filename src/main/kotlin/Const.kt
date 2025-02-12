@@ -1,0 +1,11 @@
+const val INIT_POSITION = 0
+const val TRY_NUMBER_UNTIL = 10
+const val MOVE_MIN_NUMBER = 4
+const val CAR_NAME_LENGTH = 5
+const val INPUT_CAR_NAME = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
+const val INPUT_ATTEMPTS = "시도할 횟수는 몇 회인가요?"
+const val RESULT = "실행결과"
+const val FINAL_WINNER = "최종 우승자:"
+const val CAR_NAME_ERROR = "[ERROR]: 자동차 이름은 5자를 내외입니다."
+const val ATTEMPT_INPUT_ERROR = "[ERROR]: 시도 횟수를 입력해주세요."
+const val CAR_POSITION = "-"

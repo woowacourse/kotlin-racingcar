@@ -13,12 +13,12 @@ class Racing {
     fun getCars(carsInput: String): List<Car> {
         val carsName = carsInput.split(",")
         carsName.forEach {
-            require(it.length < 5) { "[ERROR]: 자동차 이름은 5자를 내외입니다." }
+            require(it.length < CAR_NAME_LENGTH) { CAR_NAME_ERROR }
         }
         return carsName.map { carName -> Car(carName.trim()) }
     }
 
-    fun getAttempts(attempts: String): Int = requireNotNull(attempts.toIntOrNull()) { "[ERROR]: 시도 횟수를 입력해주세요." }
+    fun getAttempts(attempts: String): Int = requireNotNull(attempts.toIntOrNull()) { ATTEMPT_INPUT_ERROR }
 
     fun race(
         cars: List<Car>,
