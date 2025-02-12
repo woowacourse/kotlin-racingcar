@@ -7,7 +7,7 @@ enum class InOutConstant(val constant: String) {
     COUNT("시도할 횟수는 몇 회인가요?"),
     CURRENT_RESULT_FORMAT("%s : %s"),
     GAME_RESULT("\n실행 결과"),
-    FINAL_RESULT("최종 우승자 : ")
+    FINAL_RESULT("최종 우승자 : "),
 }
 
 class InOutView {
@@ -24,8 +24,8 @@ class InOutView {
         println(InOutConstant.GAME_RESULT.constant)
     }
 
-    fun printFinalResult(winnerList : MutableList<Car>) {
+    fun printFinalResult(winnerList: MutableList<Car>) {
         print(InOutConstant.FINAL_RESULT.constant)
-        println(winnerList.map { it.name }.joinToString(", "))
+        println(winnerList.joinToString(", ") { it.name })
     }
 }

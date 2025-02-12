@@ -6,7 +6,7 @@ import model.Repository
 class RaceController(
     private val count: Int,
     private val repo: Repository,
-    private val inOutController: InOutController
+    private val inOutController: InOutController,
 ) {
     fun fullRace() {
         inOutController.printGameResult()

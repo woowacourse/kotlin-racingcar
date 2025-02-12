@@ -3,7 +3,10 @@ package model
 import data.Car
 import java.util.Random
 
-class Repository(private var cars: MutableList<Car>,private val random: Random) {
+class Repository(
+    private var cars: MutableList<Car>,
+    private val random: Random,
+) {
     private var winnerList: MutableList<Car> = mutableListOf()
 
     fun getCars(): MutableList<Car> {
