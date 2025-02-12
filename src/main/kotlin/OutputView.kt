@@ -6,4 +6,9 @@ class OutputView {
         }
         println()
     }
+
+    fun printRaceWinner(cars: List<Car>) {
+        val maxPosition = cars.maxOf { car -> car.position }
+        println("최종 우승지: ${cars.filter { car -> car.position == maxPosition }.joinToString(", ")}")
+    }
 }
