@@ -2,14 +2,22 @@ class Car(
     val name: String,
 ) {
     init {
-        require(name.length in 1..5) { "[ERROR] 자동차 이름은 1자 이상 5자 이하여야 합니다." }
+        require(name.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) {
+            "[ERROR] 자동차 이름은 ${MIN_CAR_NAME_LENGTH}자 이상 ${MAX_CAR_NAME_LENGTH}자 이하여야 합니다."
+        }
         require(name.isNotBlank()) { "[ERROR] 자동차 이름은 공백일 수 없습니다." }
     }
 
-    var position: Int = 0
+    var position: Int = INITIAL_CAR_POSITION
         private set
 
     fun moveForward() {
         position++
+    }
+
+    companion object {
+        private const val MIN_CAR_NAME_LENGTH = 1
+        private const val MAX_CAR_NAME_LENGTH = 5
+        private const val INITIAL_CAR_POSITION = 0
     }
 }

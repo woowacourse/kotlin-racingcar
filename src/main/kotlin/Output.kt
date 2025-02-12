@@ -13,12 +13,17 @@ class Output {
 
     fun printRaceProgress(cars: List<Car>) {
         cars.forEach { car ->
-            println("${car.name} : ${"-".repeat(car.position)}")
+            println("${car.name} : ${RACE_CAR_POSITION_INDICATOR.repeat(car.position)}")
         }
         println()
     }
 
     fun printWinners(winnerNames: List<String>) {
-        println("최종 우승자: ${winnerNames.joinToString(", ")}")
+        println("최종 우승자: ${winnerNames.joinToString(RACE_WINNER_NAMES_DIVIDER)}")
+    }
+
+    companion object {
+        private const val RACE_CAR_POSITION_INDICATOR = "-"
+        private const val RACE_WINNER_NAMES_DIVIDER = ", "
     }
 }
