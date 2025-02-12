@@ -3,10 +3,10 @@ package domain
 import kotlin.random.Random
 import kotlin.random.nextInt
 
-class Car (
+class Car(
     val name: String,
-    var position: Int = INIT_POSITION
-){
+    var position: Int = INIT_POSITION,
+) {
     fun move() {
         if (Random.nextInt(MIN_RANGE..MAX_RANGE) >= STANDARD_NUMBER) {
             ++position
