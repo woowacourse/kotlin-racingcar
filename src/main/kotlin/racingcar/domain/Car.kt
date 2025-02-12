@@ -1,22 +1,11 @@
 package racingcar.domain
 
-import racingcar.InputValidator
+import kotlin.random.Random
 
-class Car(
-    val name: String,
-    private val inputValidator: InputValidator,
-) {
-    var distance: Int = 0
-        private set
-
-    init {
-        inputValidator.validCarNameChecker(name)
+class Car(val name: String, private val random: Random, var distance: Int = 0) {
+    fun randomMove() {
+        if (random.nextInt(0, 10) >= 4) distance++
     }
 
-    fun moveByValue(value: Int) {
-        inputValidator.possibleMoveValueCheck(value)
-        if (value >= 4) distance++
-    }
-
-    override fun toString(): String = "$name : ${"-".repeat(distance)}"
+    fun printDistanceInfo() = println("$name : ${ "-".repeat(distance) }")
 }

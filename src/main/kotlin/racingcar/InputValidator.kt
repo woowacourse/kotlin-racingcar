@@ -1,39 +1,45 @@
 package racingcar
 
+import racingcar.domain.Car
+import racingcar.domain.Configure.Companion.RANDOM_SEED
+import racingcar.domain.Messages
+import kotlin.random.Random
+
 class InputValidator {
-    fun carNamesValidate(input: String) {
+    fun carNamesValidate(input: String):List<Car> {
         emptyCheck(input)
         val names = input.split(",").map { it.trim() }
-        nameLengthCheck(names)
         duplicateNameCheck(names)
-        availableNameCheck(names)
+
+        names.forEach { name ->
+            nameLengthCheck(name)
+            availableNameCheck(name)
+        }
+        return toCars(names)
     }
 
-    fun tryCountValidate(input: String) {
+    fun tryCountValidate(input: String):Int {
         emptyCheck(input)
         val number = positiveInputCheck(input)
         tryCountLengthCheck(number)
+        return number
     }
 
     private fun emptyCheck(input: String) {
         require(input.isNotBlank()) { Messages.ERROR_EMPTY_INPUT.message }
     }
 
-    private fun nameLengthCheck(names: List<String>) {
-        names.forEach { name ->
-            require(name.length in 1..5) { Messages.ERROR_NAME_LENGTH.message }
-        }
+    private fun nameLengthCheck(name: String) {
+        require(name.length in 1..5) { Messages.ERROR_NAME_LENGTH.message }
     }
 
     private fun duplicateNameCheck(names: List<String>) {
         require(names.size == names.distinct().size) { Messages.ERROR_DUPLICATE_NAME.message }
     }
 
-    private fun availableNameCheck(names: List<String>) {
-        names.forEach { name ->
-            val regex = Regex("^[가-힣a-zA-Z0-9]*$")
-            require(regex.matches(name)) { Messages.ERROR_NOT_AVAILABLE_NAME.message }
-        }
+    private fun availableNameCheck(name: String) {
+        val regex = Regex("^[가-힣a-zA-Z0-9]*$")
+        require(regex.matches(name)) { Messages.ERROR_NOT_AVAILABLE_NAME.message }
     }
 
     private fun positiveInputCheck(input: String): Int {
@@ -46,5 +52,10 @@ class InputValidator {
 
     private fun tryCountLengthCheck(number: Int) {
         require(number.toString().length < 9) { Messages.ERROR_OVERSIZE_TRY_COUNT.message }
+    }
+
+    private fun toCars(names: List<String>): List<Car> {
+        val random = Random(RANDOM_SEED)
+        return names.map { Car(it, random) }
     }
 }
