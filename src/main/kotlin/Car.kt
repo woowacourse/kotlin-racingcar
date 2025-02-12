@@ -1,7 +1,8 @@
 class Car(
     val name: String,
+    initialDistance: Int = 0,
 ) {
-    var distance: Int = 0
+    var distance: Int = initialDistance
         private set
 
     fun move() {
@@ -18,6 +19,24 @@ class Car(
             output += "-"
         }
         return output
+    }
+
+    override fun hashCode(): Int {
+        var result = name.hashCode()
+        result = 31 * result + distance
+        return result
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Car
+
+        if (name != other.name) return false
+        if (distance != other.distance) return false
+
+        return true
     }
 
     companion object {
