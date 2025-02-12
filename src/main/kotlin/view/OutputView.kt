@@ -1,6 +1,6 @@
 package view
 
-import Car
+import model.Car
 import util.Constants
 import util.Messages
 

@@ -1,3 +1,4 @@
+import model.Car
 import util.Constants
 import view.InputView
 import view.OutputView
