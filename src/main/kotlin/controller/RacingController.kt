@@ -1,13 +1,29 @@
-import view.InputView
+package controller
 
-class RacingController(private val inputView: InputView) {
+import domain.Car
+import view.InputView
+import view.OutputView
+
+class RacingController(private val inputView: InputView, private val outputView: OutputView) {
     private lateinit var carNames: List<String>
     private var tryNumber: Int = 0
+    private lateinit var cars: List<Car>
 
     fun run() {
         carNames = splitCarNames(inputView.inputCarNames())
         validateCarNames(carNames)
         tryNumber = validateTryNumber(inputView.inputTryNumber())
+
+        cars = carNames.map { Car(it, 0) }
+
+        outputView.printStatus()
+
+        repeat(tryNumber) {
+            cars.forEach { it.move() }
+            outputView.printCars(cars)
+        }
+
+        outputView.printResult( cars.filter { it.position == cars.maxOf { it.position } }.map { it.name })
 
     }
 
