@@ -22,8 +22,8 @@ class InOutView {
         println(InOutConstant.OUTPUT_GAME_RESULT)
     }
 
-    fun printFinalResult(winnerList : MutableList<String>) {
+    fun printFinalResult(winnerList : MutableList<Car>) {
         print(InOutConstant.OUTPUT_FINAL_RESULT)
-        println(winnerList.joinToString(", "))
+        println(winnerList.map { it.name }.joinToString(", "))
     }
 }

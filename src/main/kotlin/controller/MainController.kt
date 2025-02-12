@@ -4,14 +4,13 @@ import model.Repository
 import view.InOutView
 
 class MainController {
-    val repo = Repository()
     val inOutController = InOutController(InOutView())
 
     fun runProgram() {
-        repo.cars = inOutController.getCarName()
-        val raceController = RaceController(inOutController.getTryCount(), repo.cars, inOutController)
+        val repo = Repository(inOutController.getCarName())
+        val raceController = RaceController(inOutController.getTryCount(), repo, inOutController)
         raceController.fullRace()
-        val winnerList = raceController.comparePosition()
+        val winnerList = raceController.getFinalResult()
         inOutController.printFinalResult(winnerList)
     }
 }

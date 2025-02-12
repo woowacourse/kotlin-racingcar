@@ -1,40 +1,24 @@
 package controller
 
 import data.Car
-import java.util.Random
+import model.Repository
 
-class RaceController(val count: Int, val cars: MutableList<Car>, val inOutController: InOutController) {
+class RaceController(val count: Int, val repo: Repository, val inOutController: InOutController) {
     fun fullRace() {
         inOutController.printGameResult()
         repeat(count) {
             oneRace()
         }
     }
-    fun comparePosition():MutableList<String>{
-        var winnerList: MutableList<String> = mutableListOf()
-        var maxPosition = 0
-        for (car in cars){
-            if(car.currentPosition==maxPosition){
-                winnerList.add(car.name)
-            }
-            if(car.currentPosition>maxPosition){
-                winnerList=mutableListOf(car.name)
-                maxPosition=car.currentPosition
-            }
-        }
-        return winnerList
-    }
+
     private fun oneRace() {
-        for (car in cars) {
-            car.currentPosition += goOrNot()
+        for (car in repo.getCars()) {
+            repo.moveCar(car)
         }
-        inOutController.printCurrentPosition(cars)
+        inOutController.printCurrentPosition(repo.getCars())
     }
 
-    private fun goOrNot(): Int {
-        var nowNumber = Random().nextInt(10)
-
-        if (nowNumber >= 4) return 1
-        return 0
+    fun getFinalResult(): MutableList<Car> {
+        return repo.comparePosition()
     }
 }
