@@ -11,6 +11,8 @@ class Racingcar {
         val cars = mutableSetOf<Car>()
         carsInput.map { cars.add(Car(it, 0)) }
 
+        println("시도할 횟수는 몇 회인가요?")
+        val count = br.readLine().toInt()
     }
 
 }
