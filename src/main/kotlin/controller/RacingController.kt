@@ -5,7 +5,7 @@ import model.Cars
 import model.Race
 
 class RacingController(
-    private val userInterface: UserInterface = UserInterface()
+    private val userInterface: UserInterface = UserInterface(),
 ) {
     fun run() {
         val cars = getCarNames()
@@ -23,7 +23,7 @@ class RacingController(
     private fun playRacing(
         cars: Cars,
         attemptCount: AttemptCount,
-        race: Race
+        race: Race,
     ) {
         userInterface.handleStartRoundMessage()
         repeat(attemptCount.getCount()) {

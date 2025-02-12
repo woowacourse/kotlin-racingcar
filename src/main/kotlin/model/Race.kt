@@ -2,7 +2,7 @@ package model
 
 class Race(
     private val cars: Cars,
-    private val numberGenerator: NumberGenerator = RandomNumberGenerator()
+    private val numberGenerator: NumberGenerator = RandomNumberGenerator(),
 ) {
     fun playOneRound() {
         cars.parsedCars.forEach { car ->
@@ -12,8 +12,7 @@ class Race(
 
     fun getWinner(): List<String> {
         val maxPosition = cars.parsedCars.maxOf { it.position }
-        val winners = cars.parsedCars.filter { it.position == maxPosition }
-            .map { it.name }
+        val winners = cars.parsedCars.filter { it.position == maxPosition }.map { it.name }
 
         return winners
     }

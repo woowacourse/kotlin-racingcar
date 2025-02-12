@@ -2,7 +2,7 @@ package model
 
 import kotlin.random.Random
 
-class RandomNumberGenerator: NumberGenerator {
+class RandomNumberGenerator : NumberGenerator {
     override fun generate(): Int {
         return Random.nextInt(MAX_VALUE)
     }

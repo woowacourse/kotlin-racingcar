@@ -6,7 +6,7 @@ import view.OutputView
 
 class UserInterface(
     private val inputView: InputView = InputView(),
-    private val outputView: OutputView = OutputView()
+    private val outputView: OutputView = OutputView(),
 ) {
     fun handleStartMessage(): String {
         outputView.printMessage("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")

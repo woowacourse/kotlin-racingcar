@@ -16,6 +16,6 @@ class Cars(private val input: String) {
     }
 
     private fun parseCars() {
-       parsedCars = input.split(",").map { Car(it) }
+        parsedCars = input.split(",").map { Car(it) }
     }
 }
