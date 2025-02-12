@@ -9,5 +9,6 @@ class RacingCarController {
 
     fun start() {
         val carNames = inputView.readCarNames()
+        val rounds = inputView.readRounds()
     }
 }
