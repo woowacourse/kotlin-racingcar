@@ -1,5 +1,6 @@
 package model
 
+import kotlin.math.max
 import kotlin.random.Random
 
 class RacingGame {
@@ -12,7 +13,7 @@ class RacingGame {
         require(racingCars.size == racingCars.distinct().size) { DUPLICATE_CAR_NAME }
     }
 
-    fun tryRacing(rawCount: String) {
+    fun tryRacing(rawCount: String): String {
         require(rawCount.toIntOrNull() != null) { INVALID_COUNT }
         require(rawCount.toInt() > 0) { NEGATIVE_COUNT }
         var result = "실행 결과"
@@ -20,12 +21,19 @@ class RacingGame {
         repeat(rawCount.toInt()) {
             racingCars.forEach {
                 it.tryForward(getRandomValue())
-                result += "\n${it.getStep()}"
+                result += "\n${it.getName()} : ${it.getStep()}"
             }
+            result += "\n"
         }
+        return result
     }
 
     private fun getRandomValue(): Int = Random.nextInt(0, 9)
+
+    fun calculateWinner(): String {
+        val maxValue = racingCars.maxOfOrNull { it.getStep().length }
+        return racingCars.filter { it.getStep().length == maxValue }.map{it.getName()}.joinToString(", ")
+    }
 
     private companion object {
         const val INVALID_CAR_SIZE = "레이싱 게임은 두대 이상이어야 합니다."

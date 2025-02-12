@@ -49,4 +49,5 @@ class RacingGameTest {
         racingGame.generateCars("carA, carB")
         assertThrows<IllegalArgumentException> { racingGame.tryRacing(input) }
     }
+
 }

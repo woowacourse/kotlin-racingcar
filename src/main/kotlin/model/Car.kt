@@ -13,7 +13,8 @@ class Car(
         if (randomValue >= 4) step++
     }
 
-    fun getStep(): String = "$name : ${"-".repeat(step)}"
+    fun getName(): String = this.name
+    fun getStep(): String = "-".repeat(this.step)
 
     private companion object {
         const val CAR_NAME_LENGTH = "자동차 이름의 길이는 최소 1글자 최대 4글자여야 합니다."

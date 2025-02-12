@@ -12,6 +12,7 @@ class RacingController(
     fun run() {
         inputCarNames()
         inputRacingCount()
+        printRacingWinner()
     }
 
     private fun inputCarNames() {
@@ -21,6 +22,13 @@ class RacingController(
 
     private fun inputRacingCount() {
         val rawCount = inputView.inputRacingCount()
-        racingGame.tryRacing(rawCount)
+
+        val result = racingGame.tryRacing(rawCount)
+        outputView.printResult(result)
+    }
+
+    private fun printRacingWinner() {
+        val result = racingGame.calculateWinner()
+        outputView.printWinner(result)
     }
 }
