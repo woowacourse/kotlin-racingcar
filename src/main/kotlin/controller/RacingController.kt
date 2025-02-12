@@ -23,12 +23,11 @@ class RacingController(private val inputView: InputView, private val outputView:
             outputView.printCars(cars)
         }
 
-        outputView.printResult( cars.filter { it.position == cars.maxOf { it.position } }.map { it.name })
-
+        outputView.printResult(cars.filter { car -> car.position == cars.maxOf { it.position } }.map { it.name })
     }
 
     private fun splitCarNames(inputCarNames: String): List<String> {
-        return inputCarNames.split(',')
+        return inputCarNames.split(DELIMITER)
     }
 
     private fun validateCarNames(splitCarNames: List<String>) {
@@ -43,5 +42,9 @@ class RacingController(private val inputView: InputView, private val outputView:
         } catch (e: NumberFormatException) {
             throw IllegalArgumentException(e)
         }
+    }
+
+    companion object {
+        const val DELIMITER = ","
     }
 }
