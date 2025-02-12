@@ -22,7 +22,7 @@ class Repository(private var cars: MutableList<Car>,private val random: Random) 
     }
 
     fun comparePosition(): MutableList<Car> {
-        val maxPosition = cars.map { it.currentPosition }.max()
+        val maxPosition = cars.maxOfOrNull { it.currentPosition }
         winnerList = cars.filter { it.currentPosition == maxPosition }.toMutableList()
         return winnerList
     }

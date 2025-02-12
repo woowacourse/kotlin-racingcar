@@ -8,14 +8,11 @@ import view.InOutView
 class InOutController(private val inOutView: InOutView) {
     fun getCarName(): MutableList<Car> {
         val input = inOutView.getData(InOutConstant.NAME)
-        val carNames = input.split(",")
-        val cars: MutableList<Car> = mutableListOf()
+        val carNames = input.split(",").filter { it.isNotEmpty() }
+        if (carNames.isEmpty()) throw IllegalArgumentException(ErrorConstant.ERROR_NO_NAME)
 
-        carNames.forEach { car ->
-            if (cars.find { it.name == car } != null) throw IllegalArgumentException(ErrorConstant.ERROR_SAME_NAME)
-            cars.add(Car(car))
-        }
-
+        if (carNames.toSet().size != carNames.size) throw IllegalArgumentException(ErrorConstant.ERROR_SAME_NAME)
+        val cars = carNames.map { Car(it) }.toMutableList()
         return cars
     }
 
