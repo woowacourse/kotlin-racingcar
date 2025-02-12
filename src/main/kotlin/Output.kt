@@ -6,4 +6,15 @@ class Output {
     fun printRaceCountGuide() {
         println("시도할 횟수는 몇 회인가요?")
     }
+
+    fun printRaceResultTitle() {
+        println("\n실행 결과")
+    }
+
+    fun printRaceProgress(cars: List<Car>) {
+        cars.forEach { car ->
+            println("${car.name} : ${"-".repeat(car.position)}")
+        }
+        println()
+    }
 }

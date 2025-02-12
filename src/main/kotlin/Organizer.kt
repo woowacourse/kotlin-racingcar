@@ -8,6 +8,7 @@ class Organizer {
         val cars = input.readCarNames() // TODO: car 객체를 반환하는데 메서드 네이밍은 readCarNames임 그래서 수정하기
         output.printRaceCountGuide()
         val raceCount = input.readRaceCount()
+        output.printRaceResultTitle()
         repeat(raceCount) {
             startRace(cars)
         }
@@ -17,6 +18,7 @@ class Organizer {
         cars.forEach { car ->
             runCar(car)
         }
+        output.printRaceProgress(cars)
     }
 
     private fun runCar(car: Car) {
