@@ -1,4 +1,3 @@
 package racingcar.view
 
-class OutputView {
-}
+class OutputView
