@@ -39,6 +39,20 @@ class RacingGameTest {
         assertThat(result).contains(expected)
     }
 
+    @Test
+    fun `경주 종료후 복수 우승자 검증 테스트`() {
+        val numbers = listOf(1, 6, 6)
+        val generator = TestNumberGenerator(numbers)
+        val racingGame = RacingGame(generator)
+
+        racingGame.generateCars("CarA, CarB, CarC")
+
+        racingGame.tryRacing("1")
+        val result = racingGame.calculateWinner()
+
+        assertThat(result).contains("CarB, CarC")
+    }
+
     inner class TestNumberGenerator(
         private val numbers: List<Int>,
     ) : RandomNumberGenerator {
