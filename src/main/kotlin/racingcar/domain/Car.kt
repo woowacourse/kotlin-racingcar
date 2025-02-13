@@ -6,5 +6,5 @@ class Car(
 ) {
     fun randomMove() = distance++
 
-    fun printDistanceInfo() = println("$name : ${ "-".repeat(distance) }")
+    fun printDistanceInfo() = println("$name : ${"-".repeat(distance)}")
 }
