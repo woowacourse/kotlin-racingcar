@@ -1,28 +1,54 @@
 package model
 
-import org.junit.jupiter.api.BeforeEach
+import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class RacingGameTest {
-    private lateinit var racingGame: RacingGame
-
-    @BeforeEach
-    fun setup() {
-        racingGame = RacingGame()
-    }
-
     @ParameterizedTest
-    @ValueSource(strings = ["", " ", "car12345", "1", "car1, car1", "car1, car12345"])
-    fun `자동차 생성 예외 테스트`(input: String) {
+    @ValueSource(strings = ["", " ", "car12345", "1", "car, car", "car1, car12345"])
+    fun `입력 값으로부터 자동차 이름 검증 예외 테스트`(input: String) {
+        val generator = RandomNumberGeneratorImpl()
+        val racingGame = RacingGame(generator)
         assertThrows<IllegalArgumentException> { racingGame.generateCars(input) }
     }
 
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "0", "-1"])
-    fun `경주 횟수 입력 예외 테스트`(input: String) {
+    fun `입력 값으로부터 경주 실행 횟수 검증 예외 테스트`(input: String) {
+        val generator = RandomNumberGeneratorImpl()
+        val racingGame = RacingGame(generator)
         racingGame.generateCars("carA, carB")
         assertThrows<IllegalArgumentException> { racingGame.tryRacing(input) }
+    }
+
+    @Test
+    fun `경주 종료후 우승자 검증 테스트`() {
+        val numbers = listOf(1, 6, 3)
+        val generator = TestNumberGenerator(numbers)
+        val racingGame = RacingGame(generator)
+
+        racingGame.generateCars("CarA, CarB, CarC")
+
+        val expected = "CarB"
+        racingGame.tryRacing("1")
+        val result = racingGame.calculateWinner()
+
+        assertThat(result).contains(expected)
+    }
+
+    inner class TestNumberGenerator(
+        private val numbers: List<Int>,
+    ) : RandomNumberGenerator {
+        private var idx: Int = 0
+
+        override fun generate(
+            min: Int,
+            max: Int,
+        ): Int {
+            return numbers[idx++]
+        }
     }
 }

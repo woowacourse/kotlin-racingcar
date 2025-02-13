@@ -1,4 +1,5 @@
 import model.RacingGame
+import model.RandomNumberGeneratorImpl
 import view.InputView
 import view.OutputView
 
@@ -6,7 +7,12 @@ class RacingController(
     private val inputView: InputView,
     private val outputView: OutputView,
 ) {
-    private val racingGame = RacingGame()
+    private var racingGame: RacingGame
+
+    init {
+        val randomNumberGeneratorImpl = RandomNumberGeneratorImpl()
+        racingGame = RacingGame(randomNumberGeneratorImpl)
+    }
 
     fun run() {
         inputCarNames()
