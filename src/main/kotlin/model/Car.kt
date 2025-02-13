@@ -11,8 +11,8 @@ class Car(
         require(name.length <= 5) { ErrorConstant.ERROR_WRONG_NAME_LENGTH }
     }
 
-    fun moveCar() {
-        val random = Random().nextInt(10)
+    fun moveCar(random: Random) {
+        val random = random.nextInt(10)
         currentPosition += goOrNot(random)
     }
 
