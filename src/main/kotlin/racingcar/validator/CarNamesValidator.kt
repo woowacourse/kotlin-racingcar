@@ -3,7 +3,7 @@ package racingcar.validator
 class CarNamesValidator {
     fun validate(input: String): List<String> {
         isNotEmpty(input)
-        val carNames = input.split(COMMA)
+        val carNames = input.split(COMMA).map { it.trim() }
         isValidLength(carNames)
         isValidFormat(carNames)
         isUniqueName(carNames)
