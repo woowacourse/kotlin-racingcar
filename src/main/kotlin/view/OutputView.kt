@@ -5,7 +5,6 @@ import util.Constants
 import util.Messages
 
 object OutputView {
-
     fun printRound(car: Car) {
         println("${car.name} : ${Constants.INDICATOR_CAR_POSITION.repeat(car.position)}")
     }
