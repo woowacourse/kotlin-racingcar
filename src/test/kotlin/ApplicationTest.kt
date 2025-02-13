@@ -11,8 +11,7 @@ class ApplicationTest {
 
     @Test
     fun `자동차 이름은 5자를 초과할 수 없다`() {
-        val car = Car("5자 이상의 자동차 이름")
-        assertThat(isCarNameValid(car)).isFalse()
+        assertThat(checkCarNameValid("5자 이상의 자동차 이름")).isFalse()
     }
 
     @Test
@@ -21,6 +20,12 @@ class ApplicationTest {
         val cars = userInputExample.toCars()
         assertThat(cars.map { car: Car -> car.name }).isEqualTo(listOf("자동차", "이름은", "쉼표로", "구분한다"))
     }
+
+//    @Test
+//    fun `라운드는 1 이상의 숫자여야 한다`() {
+//        val
+//        assertThat((car)).isFalse()
+//    }
 
     @Test
     fun `전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다`() {

@@ -28,8 +28,6 @@ fun String.toCars(): List<Car> =
         .filter { it.isNotBlank() }
         .map { name -> Car(name) }
 
-fun isCarNameValid(car: Car): Boolean = car.name.length <= 5
-
 fun readRound(): Int {
     println("시도할 횟수는 몇 회인가요?")
     val userInput: String? = readlnOrNull()
