@@ -24,15 +24,21 @@ class Organizer(
         raceCount: Int,
         raceCars: List<Car>,
     ) {
+        val randomGenerator = RandomGenerator()
         outputPrinter.printRaceResultTitle()
         repeat(raceCount) {
-            executeRace(raceCars)
+            executeRace(raceCars, randomGenerator)
         }
     }
 
-    private fun executeRace(raceCars: List<Car>) {
+    private fun executeRace(
+        raceCars: List<Car>,
+        randomGenerator: RandomGenerator,
+    ) {
         raceCars.forEach { car ->
-            car.trigger()
+            val randomNumber = randomGenerator.getRandomNumber()
+            val isMoved = judge.isCarAbleToMove(randomNumber)
+            car.moveForward(isMoved)
         }
         outputPrinter.printRaceProgress(raceCars)
     }
