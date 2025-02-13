@@ -1,3 +1,5 @@
+import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -26,5 +28,34 @@ class CarTest {
         assertDoesNotThrow {
             Car(name)
         }
+    }
+
+    @Test
+    fun `자동차의 초기 위치는 0이다`() {
+        val car = Car("공백")
+        val initialPosition = 0
+        Assertions.assertEquals(initialPosition, car.position)
+    }
+
+    @Test
+    fun `전진이 가능하면 자동차는 전진한다`() {
+        val car = Car("뭉치")
+        val isMoved = true
+        val previousPosition = car.position
+
+        car.moveForward(isMoved)
+
+        Assertions.assertTrue(car.position > previousPosition)
+    }
+
+    @Test
+    fun `전진이 불가능하면 자동차는 멈춘다`() {
+        val car = Car("뭉치")
+        val isMoved = false
+        val previousPosition = car.position
+
+        car.moveForward(isMoved)
+
+        Assertions.assertTrue(car.position == previousPosition)
     }
 }
