@@ -27,6 +27,7 @@ class RacingCarController {
 
         val cars = carNames.map { Car(it) }
         val game = Game(cars, rounds)
+        game.play()
     }
 
     private fun validateCarNames(input: String): List<String> {
