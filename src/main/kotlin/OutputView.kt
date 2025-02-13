@@ -1,4 +1,8 @@
 class OutputView {
+    fun printDuplicate() {
+        println(CAR_DUPLICATE_REMOVE)
+    }
+
     fun printResultTitle() = println(RESULT)
 
     fun printCarState(cars: List<Car>) {

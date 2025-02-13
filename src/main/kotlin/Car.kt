@@ -1,6 +1,6 @@
 import kotlin.random.Random
 
-class Car(val name: String) {
+data class Car(val name: String) {
     init {
         require(name.length < CAR_NAME_LENGTH) { CAR_NAME_ERROR }
     }
