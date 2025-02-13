@@ -14,16 +14,16 @@ class RacingGame {
 
     fun tryRacing(rawCount: String): String {
         require(rawCount.toIntOrNull()?.let { it > 0 } == true) { INVALID_COUNT }
-        var result = "실행 결과"
+        val result = StringBuilder("실행 결과")
 
         repeat(rawCount.toInt()) {
             racingCars.forEach {
                 it.tryForward(getRandomValue())
-                result += "\n${it.getName()} : ${it.getStep()}"
+                result.append("\n${it.getName()} : ${it.getStep()}")
             }
-            result += "\n"
+            result.append("\n")
         }
-        return result
+        return result.toString()
     }
 
     private fun getRandomValue(): Int = Random.nextInt(0, 9)
