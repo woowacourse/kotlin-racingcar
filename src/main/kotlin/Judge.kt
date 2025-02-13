@@ -1,11 +1,11 @@
 class Judge {
     fun isCarAbleToMove(randomNumber: Int): Boolean = randomNumber >= MIN_RANDOM_AVAILABILITY_CONDITION
 
-    fun selectWinners(cars: List<Car>): List<String> {
-        val maxPosition = cars.maxOf { car -> car.position }
-        return cars
-            .filter { car ->
-                car.position == maxPosition
+    fun selectWinnerNames(raceCars: List<Car>): List<String> {
+        val maxPosition = raceCars.maxOf { raceCar -> raceCar.position }
+        return raceCars
+            .filter { raceCar ->
+                raceCar.position == maxPosition
             }.map { winner -> winner.name }
     }
 
