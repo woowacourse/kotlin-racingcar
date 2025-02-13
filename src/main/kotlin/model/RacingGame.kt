@@ -20,7 +20,7 @@ class RacingGame(
 
     fun calculateWinner(): String {
         val maxValue = racingCars.maxOf { it.getStep().length }
-        return racingCars.filter { it.getStep().length == maxValue }.joinToString(", ") { it.getName() }
+        return racingCars.filter { it.getStep().length == maxValue }.joinToString(WINNER_SEPARATOR) { it.getName() }
     }
 
     private fun repeatRacing(count: Int): String {
@@ -41,6 +41,7 @@ class RacingGame(
         const val DUPLICATE_CAR_NAME_MESSAGE = "자동차 이름이 중복됩니다."
         const val INVALID_COUNT_MESSAGE = "시도할 횟수는 자연수여야 합니다."
         const val DELIMITER = ","
+        const val WINNER_SEPARATOR = ", "
         const val RACING_CAR_MIN_SIZE = 1
         const val MIN_VALUE = 0
         const val MAX_VALUE = 9
