@@ -26,11 +26,15 @@ class Racing {
     ) {
         outputView.printResultTitle()
         repeat(attempts) {
-            cars.forEach { car ->
-                car.move()
-            }
-            outputView.printCarState(cars)
+            carMove(cars)
         }
+    }
+
+    private fun carMove(carsName: List<Car>) {
+        carsName.forEach { car ->
+            car.move()
+        }
+        outputView.printCarState(carsName)
     }
 
     private fun getWinners(cars: List<Car>): List<Car> {
