@@ -11,14 +11,8 @@ class Racing {
     }
 
     private fun getCars(carsInput: String): List<Car> {
-        val carsName = carsInput.split(CAR_DELIMITER)
-        val cars = CarFactory().createCar(carsName)
-        return duplicateCarName(cars)
-    }
-
-    private fun duplicateCarName(cars: List<Car>): List<Car> {
-        if (cars.size != cars.toSet().size) outputView.printDuplicate()
-        return cars.distinct()
+        val carsName = carsInput.split(",")
+        return CarFactory().createCar(carsName)
     }
 
     private fun getAttempts(attempts: String): Int = requireNotNull(attempts.toIntOrNull()) { ATTEMPT_INPUT_ERROR }
