@@ -13,28 +13,44 @@ class RacingCarController {
     private val outputView = OutputView()
 
     fun start() {
+        val cars = getCars()
+        val rounds = getRounds()
+        val game = Game(cars)
+        playGame(rounds, game)
+    }
+
+    private fun getCars(): List<Car> {
         val carNames =
             retryWhenException {
                 val input = inputView.readCarNames()
                 validateCarNames(input)
             }
+        return carNames.map { Car(it) }
+    }
 
-        val rounds =
-            retryWhenException {
-                val input = inputView.readRounds()
-                validateRounds(input)
-            }
+    private fun getRounds(): Int {
+        return retryWhenException {
+            val input = inputView.readRounds()
+            validateRounds(input)
+        }
+    }
 
-        val cars = carNames.map { Car(it) }
-        val game = Game(cars)
+    private fun playGame(
+        rounds: Int,
+        game: Game,
+    ) {
         outputView.printGameResultMessage()
         repeat(rounds) {
-            game.playRound()
-            val roundResult = game.getRoundResult()
-            outputView.printRoundResult(roundResult)
+            playRound(game)
         }
         val winners = game.getWinners()
         outputView.printWinners(winners)
+    }
+
+    private fun playRound(game: Game) {
+        game.playRound()
+        val roundResult = game.getRoundResult()
+        outputView.printRoundResult(roundResult)
     }
 
     private fun validateCarNames(input: String): List<String> {
