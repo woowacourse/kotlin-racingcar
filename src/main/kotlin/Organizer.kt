@@ -1,8 +1,8 @@
-class Organizer {
-    private val inputReader = InputReader()
-    private val outputPrinter = OutputPrinter()
-    private val judge = Judge()
-
+class Organizer(
+    private val inputReader: InputReader,
+    private val outputPrinter: OutputPrinter,
+    private val judge: Judge,
+) {
     fun hostRace() {
         val cars = getRaceCars()
         val raceCount = getRaceCount()

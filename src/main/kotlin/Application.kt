@@ -1,4 +1,7 @@
 fun main() {
-    val organizer = Organizer()
+    val inputReader = InputReader()
+    val outputPrinter = OutputPrinter()
+    val judge = Judge()
+    val organizer = Organizer(inputReader, outputPrinter, judge)
     organizer.hostRace()
 }
