@@ -38,6 +38,46 @@ class ApplicationTest {
     }
 
     @Test
+    @DisplayName("자동차 이름이 6자 이상인 경우 예외가 발생한다.")
+    fun t1_2() {
+        val input = "a,b,123456,c"
+
+        assertThrows<IllegalArgumentException> { InputValidator().carNamesValidate(input) }
+    }
+
+    @Test
+    @DisplayName("자동차 이름이 비어있는 경우 예외가 발생한다.")
+    fun t1_3() {
+        val input = "a,,b,c"
+
+        assertThrows<IllegalArgumentException> { InputValidator().carNamesValidate(input) }
+    }
+
+    @Test
+    @DisplayName("자동차 이름에 특수문자가 존재할 경우 예외가 발생한다.")
+    fun t1_4() {
+        val input = "@밀러,@메다"
+
+        assertThrows<IllegalArgumentException> { InputValidator().carNamesValidate(input) }
+    }
+
+    @Test
+    @DisplayName("자동차 이름에 중복이 존재할 경우 예외가 발생한다.")
+    fun t1_5() {
+        val input = "밀러,밀러,메다"
+
+        assertThrows<IllegalArgumentException> { InputValidator().carNamesValidate(input) }
+    }
+
+    @Test
+    @DisplayName("trim을 적용한 자동차 이름에 중복이 존재할 경우 예외가 발생한다.")
+    fun t1_6() {
+        val input = " 밀러 ,밀러     ,메다"
+
+        assertThrows<IllegalArgumentException> { InputValidator().carNamesValidate(input) }
+    }
+
+    @Test
     @DisplayName("이동한 거리는 distance 프로퍼티에 저장되며 객체 생성시 0으로 초기화 한다")
     fun t2() {
         val input = "a,b,c"
@@ -87,6 +127,12 @@ class ApplicationTest {
 
             실행 결과
             pobi : 
+            """.trimIndent().normalize(),
+        )
+        assertThat(output.toString().normalize()).contains(
+            """
+            
+            최종 우승자 : 
             """.trimIndent().normalize(),
         )
     }
