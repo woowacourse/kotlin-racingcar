@@ -37,11 +37,9 @@ class RacingController(private val inputView: InputView, private val outputView:
     }
 
     private fun validateTryNumber(inputTryNumber: String): Int {
-        return try {
-            inputTryNumber.toInt()
-        } catch (e: NumberFormatException) {
-            throw IllegalArgumentException(e)
-        }
+        require(inputTryNumber.all { it.isDigit() }) { "시도 횟수는 숫자로 입력해주세요." }
+        require(inputTryNumber.toInt() > 0) { "시도 횟수는 0보다 커야 합니다." }
+        return inputTryNumber.toInt()
     }
 
     companion object {
