@@ -1,6 +1,6 @@
 class Racing {
-    val inputView = InputView()
-    val outputView = OutputView()
+    private val inputView = InputView()
+    private val outputView = OutputView()
 
     fun play() {
         val cars = getCars(inputView.readCars())
@@ -10,7 +10,7 @@ class Racing {
         outputView.printRaceWinner(winners)
     }
 
-    fun getCars(carsInput: String): List<Car> {
+    private fun getCars(carsInput: String): List<Car> {
         val carsName = carsInput.split(",")
         carsName.forEach {
             require(it.length < CAR_NAME_LENGTH) { CAR_NAME_ERROR }
@@ -18,9 +18,9 @@ class Racing {
         return carsName.map { carName -> Car(carName.trim()) }
     }
 
-    fun getAttempts(attempts: String): Int = requireNotNull(attempts.toIntOrNull()) { ATTEMPT_INPUT_ERROR }
+    private fun getAttempts(attempts: String): Int = requireNotNull(attempts.toIntOrNull()) { ATTEMPT_INPUT_ERROR }
 
-    fun race(
+    private fun race(
         cars: List<Car>,
         attempts: Int,
     ) {
@@ -33,7 +33,7 @@ class Racing {
         }
     }
 
-    fun getWinners(cars: List<Car>): List<Car> {
+    private fun getWinners(cars: List<Car>): List<Car> {
         val maxPosition = cars.maxOf { car -> car.position }
         return cars.filter { car -> car.position == maxPosition }
     }
