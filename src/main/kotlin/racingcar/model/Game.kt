@@ -16,8 +16,8 @@ class Game(
         cars.forEach { car ->
             val randomNumber = makeRandomNumber()
             when (randomNumber) {
-                Move.MOVABLE -> {}
-                Move.UNMOVABLE -> {}
+                Move.MOVABLE -> car.move()
+                Move.UNMOVABLE -> return
             }
         }
     }
