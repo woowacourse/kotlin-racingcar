@@ -4,15 +4,15 @@ class Organizer(
     private val judge: Judge,
 ) {
     fun hostRace() {
-        val cars = getRaceCars()
+        val raceCars = getRaceCars()
         val raceCount = getRaceCount()
-        executeRaces(raceCount, cars)
-        getRaceWinners(cars)
+        executeRaces(raceCount, raceCars)
+        getRaceWinners(raceCars)
     }
 
     private fun getRaceCars(): List<Car> {
         outputPrinter.printRaceCarNamesGuide()
-        return inputReader.readCarNames() // TODO: car 객체를 반환하는데 메서드 네이밍은 readCarNames임 그래서 수정하기
+        return inputReader.readRaceCars()
     }
 
     private fun getRaceCount(): Int {
@@ -22,23 +22,23 @@ class Organizer(
 
     private fun executeRaces(
         raceCount: Int,
-        cars: List<Car>,
+        raceCars: List<Car>,
     ) {
         outputPrinter.printRaceResultTitle()
         repeat(raceCount) {
-            executeRace(cars)
+            executeRace(raceCars)
         }
     }
 
-    private fun executeRace(cars: List<Car>) {
-        cars.forEach { car ->
+    private fun executeRace(raceCars: List<Car>) {
+        raceCars.forEach { car ->
             car.trigger()
         }
-        outputPrinter.printRaceProgress(cars)
+        outputPrinter.printRaceProgress(raceCars)
     }
 
-    private fun getRaceWinners(cars: List<Car>) {
-        val winnerNames = judge.selectWinners(cars)
+    private fun getRaceWinners(raceCars: List<Car>) {
+        val winnerNames = judge.selectWinners(raceCars)
         outputPrinter.printWinners(winnerNames)
     }
 }
