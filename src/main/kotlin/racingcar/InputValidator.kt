@@ -1,12 +1,10 @@
 package racingcar
 
 import racingcar.domain.Car
-import racingcar.domain.Configure.Companion.RANDOM_SEED
 import racingcar.domain.Messages
-import kotlin.random.Random
 
 class InputValidator {
-    fun carNamesValidate(input: String):List<Car> {
+    fun carNamesValidate(input: String): List<Car> {
         emptyCheck(input)
         val names = input.split(",").map { it.trim() }
         duplicateNameCheck(names)
@@ -18,7 +16,7 @@ class InputValidator {
         return toCars(names)
     }
 
-    fun tryCountValidate(input: String):Int {
+    fun tryCountValidate(input: String): Int {
         emptyCheck(input)
         val number = positiveInputCheck(input)
         tryCountLengthCheck(number)
@@ -54,8 +52,5 @@ class InputValidator {
         require(number.toString().length < 9) { Messages.ERROR_OVERSIZE_TRY_COUNT.message }
     }
 
-    private fun toCars(names: List<String>): List<Car> {
-        val random = Random(RANDOM_SEED)
-        return names.map { Car(it, random) }
-    }
+    private fun toCars(names: List<String>): List<Car> = names.map { Car(it) }
 }
