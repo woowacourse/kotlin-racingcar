@@ -8,12 +8,12 @@ class RacingGame(
     fun generateCars(rawCars: String) {
         racingCars = rawCars.split(DELIMITER).map { Car(it.trim()) }
 
-        require(racingCars.size > RACING_CAR_MIN_SIZE) { INVALID_CAR_SIZE }
-        require(racingCars.size == racingCars.map { it.getName() }.distinct().size) { DUPLICATE_CAR_NAME }
+        require(racingCars.size > RACING_CAR_MIN_SIZE) { INVALID_CAR_SIZE_MESSAGE }
+        require(racingCars.size == racingCars.map { it.getName() }.distinct().size) { DUPLICATE_CAR_NAME_MESSAGE }
     }
 
     fun tryRacing(rawCount: String): String {
-        require(rawCount.toIntOrNull()?.let { it > 0 } == true) { INVALID_COUNT }
+        require(rawCount.toIntOrNull()?.let { it > 0 } == true) { INVALID_COUNT_MESSAGE }
 
         return repeatRacing(rawCount.toInt())
     }
@@ -37,9 +37,9 @@ class RacingGame(
     }
 
     private companion object {
-        const val INVALID_CAR_SIZE = "레이싱 게임은 두대 이상이어야 합니다."
-        const val DUPLICATE_CAR_NAME = "자동차 이름이 중복됩니다."
-        const val INVALID_COUNT = "시도할 횟수는 자연수여야 합니다."
+        const val INVALID_CAR_SIZE_MESSAGE = "레이싱 게임은 두대 이상이어야 합니다."
+        const val DUPLICATE_CAR_NAME_MESSAGE = "자동차 이름이 중복됩니다."
+        const val INVALID_COUNT_MESSAGE = "시도할 횟수는 자연수여야 합니다."
         const val DELIMITER = ","
         const val RACING_CAR_MIN_SIZE = 1
         const val MIN_VALUE = 0
