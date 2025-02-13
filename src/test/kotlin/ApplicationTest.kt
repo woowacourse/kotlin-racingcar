@@ -21,11 +21,17 @@ class ApplicationTest {
         assertThat(cars.map { car: Car -> car.name }).isEqualTo(listOf("자동차", "이름은", "쉼표로", "구분한다"))
     }
 
-//    @Test
-//    fun `라운드는 1 이상의 숫자여야 한다`() {
-//        val
-//        assertThat((car)).isFalse()
-//    }
+    @Test
+    fun `시도횟수는 1 이상의 숫자여야 한다`() {
+        assertThat(checkRoundValid(null)).isFalse()
+        assertThat(checkRoundValid("")).isFalse()
+        assertThat(checkRoundValid("0")).isFalse()
+        assertThat(checkRoundValid("-1")).isFalse()
+        assertThat(checkRoundValid("1.1")).isFalse()
+        assertThat(checkRoundValid("asd")).isFalse()
+        assertThat(checkRoundValid("${Int.MAX_VALUE + 1}")).isFalse()
+        assertThat(checkRoundValid("10")).isTrue()
+    }
 
     @Test
     fun `전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다`() {
