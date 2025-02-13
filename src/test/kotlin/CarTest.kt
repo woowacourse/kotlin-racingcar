@@ -1,0 +1,30 @@
+import org.junit.jupiter.api.assertDoesNotThrow
+import org.junit.jupiter.api.assertThrows
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
+
+class CarTest {
+    @ParameterizedTest
+    @ValueSource(strings = [" ", "  ", "     "])
+    fun `자동차 이름이 공백일 때 에러를 발생시킨다`(name: String) {
+        assertThrows<IllegalArgumentException> {
+            Car(name)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", "123456", "ㄱㄴㄷㄹㅁㅂㅅ"])
+    fun `자동차 이름의 길이가 0자 이거나 5자 초과할 때 에러를 발생시킨다`(name: String) {
+        assertThrows<IllegalArgumentException> {
+            Car(name)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["공백", "뭉치", "딸기우유", "용"])
+    fun `자동차 이름이 조건을 충족할 때, 자동차 객체를 생성한다`(name: String) {
+        assertDoesNotThrow {
+            Car(name)
+        }
+    }
+}
