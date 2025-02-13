@@ -80,14 +80,14 @@ class ApplicationTest {
         val output = setOutput()
 
         Application().run()
-        assertThat(output.toString()).contains(
+        assertThat(output.toString().normalize()).contains(
             """
             경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).
             시도할 횟수는 몇 회인가요?
 
             실행 결과
             pobi : 
-            """.trimIndent(),
+            """.trimIndent().normalize(),
         )
     }
 
@@ -101,4 +101,10 @@ class ApplicationTest {
             .isGreaterThan(60000000)
             .isLessThan(60010000)
     }
+
+    private fun String.normalize(): String =
+        this
+            .replace("\r\n", "\n") // 윈도우 -> 맥
+            .replace("\r", "\n") // 구형 맥
+            .trimEnd()
 }
