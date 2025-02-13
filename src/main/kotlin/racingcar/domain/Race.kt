@@ -5,7 +5,7 @@ class Race(rawCarNames: String, rawTryCount: String) {
     val cars = rawCarNames.split(",").map { Car(it) }
 
     private fun isMove(randomNumber: Int): Boolean {
-        return randomNumber in 3..9
+        return randomNumber in 4..9
     }
 
     fun moveOrStops() {
