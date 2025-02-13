@@ -29,8 +29,8 @@ class RacingGame {
     private fun getRandomValue(): Int = Random.nextInt(0, 9)
 
     fun calculateWinner(): String {
-        val maxValue = racingCars.maxOfOrNull { it.getStep().length }
-        return racingCars.filter { it.getStep().length == maxValue }.map { it.getName() }.joinToString(", ")
+        val maxValue = racingCars.maxOf { it.getStep().length }
+        return racingCars.filter { it.getStep().length == maxValue }.joinToString(", ") { it.getName() }
     }
 
     private companion object {
