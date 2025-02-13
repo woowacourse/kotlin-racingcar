@@ -7,9 +7,8 @@ import Constants.TRY_COUNT_LOWER_BOUND
 import Constants.TRY_COUNT_UPPER_BOUND
 
 object InputValidator {
-
     fun validateCarName(input: String) {
-        require(input.isNotEmpty()) { ERROR_EMPTY_CAR_NAME_MESSAGE }
+        require(input.isNotBlank()) { ERROR_EMPTY_CAR_NAME_MESSAGE }
         val carNames = input.split(CAR_NAME_DELIMITER)
         carNames.forEach {
             validateCarNameLength(it)
@@ -22,12 +21,11 @@ object InputValidator {
     }
 
     private fun validateDuplicatedCarName(input: List<String>): Boolean {
-        return input.distinct().size != input.size
+        return input.distinct().size == input.size
     }
 
     fun validateTryCount(input: String) {
-        require(input.isNotEmpty()) { ERROR_EMPTY_TRY_COUNT_MESSAGE }
+        require(input.isNotBlank()) { ERROR_EMPTY_TRY_COUNT_MESSAGE }
         require(input.toIntOrNull() != null) { ERROR_IS_NOT_NUMBER_MESSAGE }
     }
-
 }
