@@ -2,17 +2,8 @@ package racingcar.model
 
 import racingcar.enums.Move
 
-class Game(
-    private val cars: List<Car>,
-    private val rounds: Int,
-) {
-    fun play() {
-        repeat(rounds) {
-            playRound()
-        }
-    }
-
-    private fun playRound() {
+class Game(private val cars: List<Car>) {
+    fun playRound() {
         cars.forEach { car ->
             val randomNumber = makeRandomNumber()
             when (randomNumber) {
@@ -20,6 +11,12 @@ class Game(
                 Move.UNMOVABLE -> return
             }
         }
+    }
+
+    fun getRoundResult(): List<Pair<String, Int>> {
+        return cars.map { car ->
+            car.name to car.position
+        }.toList()
     }
 
     private fun makeRandomNumber(): Move {
