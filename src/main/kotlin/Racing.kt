@@ -11,7 +11,7 @@ class Racing {
     }
 
     private fun getCars(carsInput: String): List<Car> {
-        val carsName = carsInput.split(",")
+        val carsName = carsInput.split(CAR_DELIMITER)
         return CarFactory().createCar(carsName)
     }
 

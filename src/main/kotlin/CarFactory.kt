@@ -1,6 +1,6 @@
 class CarFactory {
     fun createCar(carNames: List<String>): List<Car> {
-        val anonymousCounts = (1..carNames.count { it.isBlank() }).toMutableList()
+        val anonymousCounts = (ANONYMITY_MIN_COUNT..carNames.count { it.isBlank() }).toMutableList()
         return carNames.map { carName -> getAnonymousCar(carName, anonymousCounts) }
     }
 
@@ -8,7 +8,7 @@ class CarFactory {
         name: String,
         anonymousCounts: MutableList<Int>,
     ): Car {
-        if (name.isBlank()) return Car("익명${anonymousCounts.removeFirst()}")
+        if (name.isBlank()) return Car(ANONYMITY + anonymousCounts.removeFirst())
         return Car(name)
     }
 }

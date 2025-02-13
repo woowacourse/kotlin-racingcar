@@ -2,7 +2,7 @@ import kotlin.random.Random
 
 class Car(val name: String) {
     init {
-        require(name.length < 5) { CAR_NAME_ERROR }
+        require(name.length < CAR_NAME_LENGTH) { CAR_NAME_ERROR }
     }
 
     private var _position = INIT_POSITION
