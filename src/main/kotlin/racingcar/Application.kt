@@ -7,33 +7,32 @@ fun main() {
     Application().run()
 }
 
-class Application(
-    private val cars:List<Car> = InputInitializer.getCars(),
-    private val raceCount:Int = InputInitializer.getRaceCount()
-) {
+class Application {
+    private val inputValidatorService = InputValidatorService()
+    private val raceService = RaceService()
+    private val cars = mutableListOf<Car>()
 
     fun run() {
         startGame()
-        getWinner()
+        print(raceService.getWinner(cars))
     }
 
     private fun startGame() {
+        cars.addAll(getCars())
+
+        val raceCount = getRaceCount()
         println(Messages.GAME_RESULT.message)
-        repeat(raceCount) {
-            race()
-            println()
-        }
+
+        print(raceService.race(raceCount, cars))
     }
 
-    private fun getWinner() {
-        val winners = cars.filter { it.distance == cars.maxOf { car -> car.distance } }
-        println(Messages.WINNER.formattedMessage(winners.joinToString(", ") {it.name}))
+    private fun getRaceCount(): Int {
+        println(Messages.GAME_INPUT_COUNT.message)
+        return inputValidatorService.getValidatedRaceCount(readln())
     }
 
-    private fun race() {
-        cars.forEach {
-            it.randomMove()
-            it.printDistanceInfo()
-        }
+    private fun getCars(): List<Car> {
+        println(Messages.GAME_START.message)
+        return inputValidatorService.getValidatedCarNames(readln())
     }
 }
