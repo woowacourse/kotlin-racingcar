@@ -1,6 +1,7 @@
 class Car(
     private val name: String,
 ) {
+    private val randomGenerator = RandomGenerator()
     var position: Int = INITIAL_CAR_POSITION
         private set
 
@@ -11,8 +12,9 @@ class Car(
         require(name.isNotBlank()) { "[ERROR] 자동차 이름은 공백일 수 없습니다." }
     }
 
-    fun moveForward() {
-        position++
+    fun trigger() {
+        val isMoved = randomGenerator.getRandomAvailability()
+        if (isMoved) position++
     }
 
     fun showName(): String = name
