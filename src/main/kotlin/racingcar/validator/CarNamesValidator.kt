@@ -33,7 +33,7 @@ class CarNamesValidator {
         const val INVALID_NAME_FORMAT_ERROR = "$ERROR 자동차 이름은 영문 또는 숫자로 이루어져야 합니다."
         const val NOT_UNIQUE_NAME_ERROR = "$ERROR 자동차 이름이 중복됩니다."
 
-        const val COMMA = ','
+        const val COMMA = ","
         const val MIN_NAME_LENGTH = 1
         const val MAX_NAME_LENGTH = 5
 

@@ -27,9 +27,11 @@ class RacingCarController {
 
         val cars = carNames.map { Car(it) }
         val game = Game(cars)
+        outputView.printGameResultMessage()
         repeat(rounds) {
             game.playRound()
             val roundResult = game.getRoundResult()
+            outputView.printRoundResult(roundResult)
         }
     }
 
