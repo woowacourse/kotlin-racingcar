@@ -10,15 +10,13 @@ class Car(
         if (isMovable(random)) {
             distance += 1
         }
-        println("$name : ${displayDistance()}")
+        displayDistance()
     }
 
-    private fun displayDistance(): String {
-        var output = ""
-        repeat(distance) {
-            output += "-"
-        }
-        return output
+    private fun displayDistance() {
+        var prettyDistance = ""
+        repeat(distance) { prettyDistance += "-" }
+        println("$name : $prettyDistance")
     }
 
     override fun hashCode(): Int {
