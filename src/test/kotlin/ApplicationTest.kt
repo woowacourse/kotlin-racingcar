@@ -140,6 +140,8 @@ class ApplicationTest {
     fun t6() {
         val random = Random(RANDOM_SEED)
         var count = 0
+        val osName = System.getProperty("os.name")
+        assertThat(osName).contains("MAc")
         repeat(100000000) { if (random.nextInt(0, 10) >= 4) count++ }
         assertThat(count)
             .isGreaterThan(60000000)
