@@ -1,11 +1,10 @@
 package controller
 
-import data.Car
-import model.Repository
+import model.Car
 
 class RaceController(
     private val count: Int,
-    private val repo: Repository,
+    private val cars: MutableList<Car>,
     private val inOutController: InOutController,
 ) {
     fun fullRace() {
@@ -16,13 +15,19 @@ class RaceController(
     }
 
     private fun oneRace() {
-        for (car in repo.getCars()) {
-            repo.moveCar(car)
+        for (car in cars) {
+            car.moveCar()
         }
-        inOutController.printCurrentPosition(repo.getCars())
+        inOutController.printCurrentPosition(cars)
     }
 
     fun getFinalResult(): MutableList<Car> {
-        return repo.comparePosition()
+        return comparePosition()
+    }
+
+    fun comparePosition(): MutableList<Car> {
+        val maxPosition = cars.maxOfOrNull { it.currentPosition }
+        val winnerList = cars.filter { it.currentPosition == maxPosition }.toMutableList()
+        return winnerList
     }
 }

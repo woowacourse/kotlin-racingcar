@@ -1,7 +1,7 @@
 package controller
 
 import constant.ErrorConstant
-import data.Car
+import model.Car
 import view.InOutConstant
 import view.InOutView
 
