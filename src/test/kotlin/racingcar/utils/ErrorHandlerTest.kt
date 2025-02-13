@@ -44,7 +44,7 @@ class ErrorHandlerTest {
     @Test
     fun `시도횟수가 빈 값일 때 예외 발생`() {
         val value = ""
-        val expectedMessage = "[ERROR] 자동차 이름을 다시 입력해주세요."
+        val expectedMessage = "[ERROR] 시도횟수를 다시 입력해주세요."
         val result =
             assertThrows<IllegalArgumentException> {
                 value.validTryCount()
@@ -55,7 +55,7 @@ class ErrorHandlerTest {
     @Test
     fun `시도횟수가 올바르지 않을 때 예외 발생`() {
         val value = "asc"
-        val expectedMessage = "[ERROR] 자동차 이름을 다시 입력해주세요."
+        val expectedMessage = "[ERROR] 시도횟수를 다시 입력해주세요."
         val result =
             assertThrows<IllegalArgumentException> {
                 value.validTryCount()

@@ -1,12 +1,16 @@
 package racingcar.view
 
+import racingcar.utils.Constants.COMMA
+import racingcar.utils.Constants.RUNNING_RESULT_MESSAGE
+import racingcar.utils.Constants.WINNERS_MESSAGE
+
 class OutputView {
     fun printRoundResult(
         carNames: List<String>,
         moves: List<List<String>>,
         tryCount: Int,
     ) {
-        println("\n실행 결과")
+        println(RUNNING_RESULT_MESSAGE)
         for (i in 0 until tryCount) {
             carNames.forEachIndexed { index, carName ->
                 println("$carName : ${moves[index].take(i + 1).joinToString("")}")
@@ -16,6 +20,6 @@ class OutputView {
     }
 
     fun printWinners(winners: List<String>) {
-        println("최종 우승자: ${winners.joinToString(", ")}")
+        println("$WINNERS_MESSAGE ${winners.joinToString("$COMMA ")}")
     }
 }

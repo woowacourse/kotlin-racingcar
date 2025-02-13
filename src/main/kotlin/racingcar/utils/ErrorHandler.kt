@@ -1,13 +1,21 @@
 package racingcar.utils
 
+import racingcar.utils.Constants.CARNAME_ERROR_MESSAGE
+import racingcar.utils.Constants.CARNAME_MAX_LENGTH
+import racingcar.utils.Constants.COMMA
+import racingcar.utils.Constants.MAX_BOUND
+import racingcar.utils.Constants.MIN_BOUND
+import racingcar.utils.Constants.RANDOM_NUMBER_BOUND_ERROR_MESSAGE
+import racingcar.utils.Constants.TRYCOUNT_ERROR_MESSAGE
+
 object ErrorHandler {
     fun String.validCarName(): String {
-        val carNames = this.split(",")
+        val carNames = this.split(COMMA)
         if (carNames.duplicateCarNames() ||
             carNames.emptyCarNames() ||
             carNames.carNameLength()
         ) {
-            throw IllegalArgumentException("[ERROR] 자동차 이름을 다시 입력해주세요.")
+            throw IllegalArgumentException(CARNAME_ERROR_MESSAGE)
         }
         return this
     }
@@ -25,13 +33,13 @@ object ErrorHandler {
 
     private fun List<String>.carNameLength(): Boolean {
         this.forEach { carName ->
-            return carName.length > 5
+            return carName.length > CARNAME_MAX_LENGTH
         }
         return false
     }
 
     fun String.validTryCount(): String {
-        if (this.toIntTryCount() || this.emptyTryCount()) throw IllegalArgumentException("[ERROR] 시도횟수를 다시 입력해주세요.")
+        if (this.toIntTryCount() || this.emptyTryCount()) throw IllegalArgumentException(TRYCOUNT_ERROR_MESSAGE)
         return this
     }
 
@@ -44,7 +52,7 @@ object ErrorHandler {
     }
 
     fun Int.validRandomNumber(): Int {
-        if (this !in 0..9) throw IllegalArgumentException("[ERROR] 0-9사이 숫자가 아닙니다.")
+        if (this !in MIN_BOUND..MAX_BOUND) throw IllegalArgumentException(RANDOM_NUMBER_BOUND_ERROR_MESSAGE)
         return this
     }
 }
