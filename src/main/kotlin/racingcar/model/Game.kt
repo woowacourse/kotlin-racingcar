@@ -19,6 +19,12 @@ class Game(private val cars: List<Car>) {
         }.toList()
     }
 
+    fun getWinners(): List<String> {
+        val maxPosition = cars.maxOf { it.position }
+        val winners = cars.filter { it.position == maxPosition }.map { it.name }
+        return winners
+    }
+
     private fun makeRandomNumber(): Move {
         val random = (MIN_RANDOM_NUMBER..MAX_RANDOM_NUMBER).random()
         return Move.create(random)

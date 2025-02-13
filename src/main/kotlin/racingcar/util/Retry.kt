@@ -5,7 +5,7 @@ fun <T> retryWhenException(action: () -> T): T {
         try {
             return action()
         } catch (e: IllegalArgumentException) {
-            println(e)
+            println(e.message)
         }
     }
 }

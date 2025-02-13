@@ -11,9 +11,16 @@ class OutputView {
         roundResult.forEach { result ->
             println(result.toString())
         }
+        println()
+    }
+
+    fun printWinners(winners: List<String>) {
+        println(WINNERS_FORMAT.format(winners.joinToString(COMMA)))
     }
 
     companion object {
         const val GAME_RESULT_MESSAGE = "실행 결과"
+        const val WINNERS_FORMAT = "최종 우승자: %s"
+        const val COMMA = ", "
     }
 }

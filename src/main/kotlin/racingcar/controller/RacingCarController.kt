@@ -33,6 +33,8 @@ class RacingCarController {
             val roundResult = game.getRoundResult()
             outputView.printRoundResult(roundResult)
         }
+        val winners = game.getWinners()
+        outputView.printWinners(winners)
     }
 
     private fun validateCarNames(input: String): List<String> {
