@@ -1,4 +1,4 @@
 fun main() {
     val organizer = Organizer()
-    organizer.prepare()
+    organizer.hostRace()
 }
