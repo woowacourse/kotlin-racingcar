@@ -13,7 +13,10 @@ class RacingController(private val inputView: InputView, private val outputView:
 
     fun run() {
         carNames = splitCarNames(inputView.inputCarNames())
-        InputValidator.validateCarNames(carNames)
+        carNames.forEach {
+            InputValidator.validateCarName(it)
+        }
+
         tryNumber = InputValidator.validateTryNumber(inputView.inputTryNumber())
 
         cars = carNames.map { Car(it, 0) }
