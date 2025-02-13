@@ -3,8 +3,8 @@ package racingcar
 import racingcar.domain.Car
 import racingcar.domain.Messages
 
-class InputValidator {
-    fun carNamesValidate(input: String): List<Car> {
+class InputValidatorService {
+    fun getValidatedCarNames(input: String): List<Car> {
         emptyCheck(input)
         val names = input.split(",").map { it.trim() }
         duplicateNameCheck(names)
@@ -16,7 +16,7 @@ class InputValidator {
         return toCars(names)
     }
 
-    fun tryCountValidate(input: String): Int {
+    fun getValidatedRaceCount(input: String): Int {
         emptyCheck(input)
         val number = positiveInputCheck(input)
         tryCountLengthCheck(number)

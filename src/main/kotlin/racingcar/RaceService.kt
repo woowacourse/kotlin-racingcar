@@ -1,64 +1,34 @@
 package racingcar
 
 import racingcar.domain.Car
+import racingcar.domain.Configure.Companion.RANDOM_SEED
 import racingcar.domain.Messages
+import kotlin.random.Random
 
-class RaceService(
-    private val random: RandomGenerator,
-    private val outputView: OutputView,
-    private val inputView: InputView,
-    private val inputValidator: InputValidator,
-) {
-    private val cars = mutableListOf<Car>()
-    private var raceCount = 0
+class RaceService {
+    private val random = Random(RANDOM_SEED)
+    private var stringBuilder = StringBuilder()
 
-    fun carsInitializer() {
-        cars.clear()
-        outputView.showMessage(Messages.USERINFO_INPUT_CAR_NAME.message, true)
-        val carNamesUserInput = inputView.readInput()
-        cars += getCarsByUserInput(carNamesUserInput)
+    fun getWinner(cars: List<Car>): String {
+        val winners = cars.filter { it.distance == cars.maxOf { car -> car.distance } }
+        return Messages.WINNER.formattedMessage(winners.joinToString(", ") { it.name })
     }
 
-    private fun getCarsByUserInput(userInput: String): List<Car> {
-        val carNames = userInput.split(",").map { it.trim() }
-        val cars = carNames.map { Car(it, inputValidator) }
-        inputValidator.duplicateCarNameCheck(cars)
-        return cars
-    }
-
-    fun raceCountInitializer() {
-        outputView.showMessage(Messages.USERINFO_INPUT_RACE_COUNT.message, true)
-        val raceCountUserInput = inputView.readInput()
-        inputValidator.validRaceCountChecker(raceCountUserInput)
-        raceCount = raceCountUserInput.toInt()
-    }
-
-    private fun filterWinCars(): List<Car> = cars.filter { it.distance == cars.maxOf { car -> car.distance } }
-
-    fun showCarNamesByWinnerFormat() =
-        outputView.showMessage(
-            Messages.WINNER_NAMES_ANNOUNCE.formattedMessage(
-                filterWinCars().joinToString(", ") { it.name },
-            ),
-            true,
-        )
-
-    fun showRaceResultHeader() {
-        outputView.showBlankLine()
-        outputView.showMessage(Messages.RACE_RESULT.message, true)
-    }
-
-    fun doWholeRace() {
+    fun race(
+        raceCount: Int,
+        cars: List<Car>,
+    ): String {
         repeat(raceCount) {
-            doSingleRace(cars)
-            outputView.showBlankLine()
+            singleRace(cars)
+            stringBuilder.append("\n")
         }
+        return stringBuilder.toString()
     }
 
-    private fun doSingleRace(cars: List<Car>) {
-        cars.forEach { car ->
-            car.moveByValue(random.nextInt(0, 10))
-            outputView.showMessage(car.toString(), true)
+    private fun singleRace(cars: List<Car>) {
+        cars.forEach {
+            if (random.nextInt(0, 10) >= 4) it.moveForward()
+            stringBuilder.append(it.getDistanceInfo() + "\n")
         }
     }
 }
