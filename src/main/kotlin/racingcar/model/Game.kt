@@ -6,10 +6,8 @@ class Game(private val cars: List<Car>) {
     fun playRound() {
         cars.forEach { car ->
             val randomNumber = makeRandomNumber()
-            when (randomNumber) {
-                Move.MOVABLE -> car.move()
-                Move.UNMOVABLE -> return
-            }
+            val moveState = Move.create(randomNumber)
+            car.move(moveState)
         }
     }
 
@@ -25,9 +23,8 @@ class Game(private val cars: List<Car>) {
         return winners
     }
 
-    private fun makeRandomNumber(): Move {
-        val random = (MIN_RANDOM_NUMBER..MAX_RANDOM_NUMBER).random()
-        return Move.create(random)
+    private fun makeRandomNumber(): Int {
+        return (MIN_RANDOM_NUMBER..MAX_RANDOM_NUMBER).random()
     }
 
     companion object {
