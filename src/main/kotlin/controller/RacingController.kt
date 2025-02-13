@@ -1,6 +1,7 @@
 package controller
 
 import domain.Car
+import utils.RandomGenerator
 import view.InputView
 import view.OutputView
 
@@ -19,10 +20,9 @@ class RacingController(private val inputView: InputView, private val outputView:
         outputView.printStatus()
 
         repeat(tryNumber) {
-            cars.forEach { it.move() }
+            cars.forEach { it.move(RandomGenerator.generateRandomNumber()) }
             outputView.printCars(cars)
         }
-
         outputView.printResult(cars.filter { car -> car.position == cars.maxOf { it.position } }.map { it.name })
     }
 
@@ -45,6 +45,6 @@ class RacingController(private val inputView: InputView, private val outputView:
     }
 
     companion object {
-        const val DELIMITER = ","
+        const val DELIMITER = ','
     }
 }
