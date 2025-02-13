@@ -15,7 +15,7 @@ class Racing {
         carsName.forEach {
             require(it.length < CAR_NAME_LENGTH) { CAR_NAME_ERROR }
         }
-        return carsName.map { carName -> Car(carName.trim()) }
+        return CarFactory().createCar(carsName)
     }
 
     private fun getAttempts(attempts: String): Int = requireNotNull(attempts.toIntOrNull()) { ATTEMPT_INPUT_ERROR }
