@@ -25,4 +25,18 @@ class CarTest {
             assertThat(car.position).isEqualTo(0)
         }
     }
+
+    @Test
+    fun `가장 많이 전진한 자동차를 우승자 리스트에 추가한다`() {
+        val cars = mutableListOf(Car("car1", 1), Car("car2", 2), Car("car3", 3))
+        val winner = racingController.getWinner(cars)
+        assertThat(winner).isEqualTo(mutableListOf("car3"))
+    }
+
+    @Test
+    fun `가장 많이 전진한 자동차가 여러 대일 경우 모두 우승자 리스트에 추가한다`() {
+        val cars = mutableListOf(Car("car1", 1), Car("car2", 2), Car("car3", 2))
+        val winner = racingController.getWinner(cars)
+        assertThat(winner).isEqualTo(mutableListOf("car2", "car3"))
+    }
 }
