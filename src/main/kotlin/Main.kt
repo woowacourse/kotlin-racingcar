@@ -32,8 +32,17 @@ fun isCarNameValid(car: Car): Boolean = car.name.length <= 5
 
 fun readRound(): Int {
     println("시도할 횟수는 몇 회인가요?")
-    return readlnOrNull()?.toIntOrNull() ?: run {
-        println("올바른 숫자를 입력하세요.")
-        readRound()
+    val userInput: String? = readlnOrNull()
+    if (checkRoundValid(userInput)) {
+        return userInput!!.toInt()
     }
+    println("올바른 숫자를 입력하세요.")
+    return readRound()
+}
+
+fun checkRoundValid(userInput: String?): Boolean {
+    if (userInput == null) return false
+    if (userInput.toIntOrNull() == null) return false
+    if (userInput.toInt() <= 0) return false
+    return true
 }
