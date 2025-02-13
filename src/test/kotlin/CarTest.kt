@@ -1,3 +1,5 @@
+import domain.cars.Car
+import domain.numbergenerator.NumberGenerator
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 
