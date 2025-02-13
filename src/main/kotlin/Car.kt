@@ -1,5 +1,5 @@
 class Car(
-    private val name: String,
+    val name: String,
 ) {
     private val randomGenerator = RandomGenerator()
     var position: Int = INITIAL_CAR_POSITION
@@ -16,8 +16,6 @@ class Car(
         val isMoved = randomGenerator.getRandomAvailability()
         if (isMoved) position++
     }
-
-    fun showName(): String = name
 
     companion object {
         private const val MIN_CAR_NAME_LENGTH = 1

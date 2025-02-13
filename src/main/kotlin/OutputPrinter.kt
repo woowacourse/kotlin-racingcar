@@ -13,7 +13,7 @@ class OutputPrinter {
 
     fun printRaceProgress(cars: List<Car>) {
         cars.forEach { car ->
-            println("${car.showName()} : ${RACE_CAR_POSITION_INDICATOR.repeat(car.position)}")
+            println("${car.name} : ${RACE_CAR_POSITION_INDICATOR.repeat(car.position)}")
         }
         println()
     }

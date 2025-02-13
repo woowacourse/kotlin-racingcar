@@ -4,6 +4,6 @@ class Judge {
         return cars
             .filter { car ->
                 car.position == maxPosition
-            }.map { it.showName() }
+            }.map { it.name }
     }
 }
