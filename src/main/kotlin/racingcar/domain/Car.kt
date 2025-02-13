@@ -4,7 +4,7 @@ class Car(
     val name: String,
     var distance: Int = 0,
 ) {
-    fun randomMove() = distance++
+    fun moveForward() = distance++
 
-    fun printDistanceInfo() = println("$name : ${"-".repeat(distance)}")
+    fun getDistanceInfo() = "$name : ${"-".repeat(distance)}"
 }
