@@ -12,9 +12,6 @@ class Racing {
 
     private fun getCars(carsInput: String): List<Car> {
         val carsName = carsInput.split(",")
-        carsName.forEach {
-            require(it.length < CAR_NAME_LENGTH) { CAR_NAME_ERROR }
-        }
         return CarFactory().createCar(carsName)
     }
 
