@@ -1,24 +1,19 @@
 package racingcar.view
 
+import racingcar.model.RoundResult
+
 class OutputView {
     fun printGameResultMessage() {
         println(GAME_RESULT_MESSAGE)
     }
 
-    fun printRoundResult(roundResult: List<Pair<String, Int>>) {
+    fun printRoundResult(roundResult: List<RoundResult>) {
         roundResult.forEach { result ->
-            println(
-                ROUND_RESULT_FORMAT.format(
-                    result.first,
-                    HYPHEN.repeat(result.second),
-                ),
-            )
+            println(result.toString())
         }
     }
 
     companion object {
         const val GAME_RESULT_MESSAGE = "실행 결과"
-        const val ROUND_RESULT_FORMAT = "%s : %s"
-        const val HYPHEN = "-"
     }
 }

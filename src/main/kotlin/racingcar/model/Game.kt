@@ -13,9 +13,9 @@ class Game(private val cars: List<Car>) {
         }
     }
 
-    fun getRoundResult(): List<Pair<String, Int>> {
+    fun getRoundResult(): List<RoundResult> {
         return cars.map { car ->
-            car.name to car.position
+            RoundResult(car.name, car.position)
         }.toList()
     }
 
