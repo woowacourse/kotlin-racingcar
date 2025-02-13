@@ -8,16 +8,18 @@ fun main() {
 
 fun readCars(): List<Car> {
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-    while (true) {
-        val userInput = readlnOrNull()
-        userInput?.let {
-            val cars = it.toCars()
-            if (cars.all { car -> car.name.length <= 5 }) {
-                return cars
-            }
-        }
-        println("자동차 이름은 5자를 초과할 수 없습니다. 다시 입력해주세요.")
+    val userInput: String? = readlnOrNull()
+    if (checkCarNameValid(userInput)) {
+        return userInput!!.toCars()
     }
+    println("자동차 이름은 5자를 초과할 수 없습니다. 다시 입력해주세요.")
+    return readCars()
+}
+
+fun checkCarNameValid(userInput: String?): Boolean {
+    if (userInput == null) return false
+    val cars = userInput.toCars()
+    return cars.all { car -> car.name.length <= 5 }
 }
 
 fun String.toCars(): List<Car> =
