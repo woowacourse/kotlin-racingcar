@@ -24,7 +24,7 @@ class InputTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["S", "9999999999", " ", "", ""])
+    @ValueSource(strings = ["S", "9999999999", " ", ""])
     fun `경주 횟수가 정수가 아닌 경우 예외를 발생한다`(count: String) {
         assertThrows<IllegalArgumentException> { Validator.validateCount(count) }
     }
