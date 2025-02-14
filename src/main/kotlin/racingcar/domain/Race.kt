@@ -1,14 +1,8 @@
 package racingcar.domain
 
-import racingcar.utils.Constants.COMMA
-
 class Race(rawCarNames: String, rawTryCount: String) {
     val tryCount = rawTryCount.toInt()
     val cars = getCars(rawCarNames)
-
-    private fun getCars(rawCarNames: String): List<Car> {
-        return rawCarNames.split(COMMA).map { Car(it.trim()) }
-    }
 
     fun getPositions() {
         val generateRandomNumber = GenerateRandomNumber()
@@ -27,5 +21,13 @@ class Race(rawCarNames: String, rawTryCount: String) {
                 car.moveCount() == maxNumber
             }.map { it.carName }
         return winners
+    }
+
+    private fun getCars(rawCarNames: String): List<Car> {
+        return rawCarNames.split(COMMA).map { Car(it.trim()) }
+    }
+
+    companion object {
+        const val COMMA = ","
     }
 }

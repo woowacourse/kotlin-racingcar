@@ -1,10 +1,5 @@
 package racingcar.domain
 
-import racingcar.utils.Constants.MOVE
-import racingcar.utils.Constants.MOVE_MAX_RANGE
-import racingcar.utils.Constants.MOVE_MIN_RANGE
-import racingcar.utils.Constants.STOP
-
 class Car(val carName: String) {
     val position = mutableListOf<String>()
 
@@ -17,5 +12,12 @@ class Car(val carName: String) {
 
     fun moveCount(): Int {
         return position.count { it == MOVE }
+    }
+
+    companion object {
+        const val MOVE_MIN_RANGE = 4
+        const val MOVE_MAX_RANGE = 9
+        const val MOVE = "-"
+        const val STOP = ""
     }
 }

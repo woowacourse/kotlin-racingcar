@@ -1,11 +1,6 @@
 package racingcar.utils
 
-import racingcar.utils.Constants.CARNAME_ERROR_MESSAGE
-import racingcar.utils.Constants.CARNAME_MAX_LENGTH
-import racingcar.utils.Constants.COMMA
-import racingcar.utils.Constants.TRYCOUNT_ERROR_MESSAGE
-
-object Validate {
+class Validate {
     fun String.validCarName(): String {
         val carNames = this.split(COMMA)
         if (carNames.duplicateCarNames() ||
@@ -46,5 +41,12 @@ object Validate {
 
     private fun String.emptyTryCount(): Boolean {
         return this.isBlank()
+    }
+
+    companion object {
+        const val COMMA = ","
+        const val CARNAME_ERROR_MESSAGE = "[ERROR] 자동차 이름을 다시 입력해주세요."
+        const val TRYCOUNT_ERROR_MESSAGE = "[ERROR] 시도횟수를 다시 입력해주세요."
+        const val CARNAME_MAX_LENGTH = 5
     }
 }
