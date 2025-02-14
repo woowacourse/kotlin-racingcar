@@ -12,23 +12,28 @@ class RacingCarController(
     private val outputView: OutputView,
 ) {
     fun start() {
-        val cars = getCars()
+        val game = settingGame()
         val rounds = getRounds()
-        val game = Game(cars)
         playGame(rounds, game)
     }
 
-    private fun getCars(): List<Car> {
+    private fun settingGame(): Game {
         return retryWhenException(
             action = {
-                val input = inputView.readCarNames()
-                val carNames = getCarNames(input)
-                carNames.map { Car(it) }
+                val cars = getCars()
+                Game(cars)
             },
             onError = {
                 outputView.printErrorMessage(it)
             },
         )
+    }
+
+    private fun getCars(): List<Car> {
+        val input = inputView.readCarNames()
+        val carNames = getCarNames(input)
+        val cars = carNames.map { Car(it) }
+        return cars
     }
 
     private fun getCarNames(input: String): List<String> {
