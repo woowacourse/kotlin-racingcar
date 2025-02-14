@@ -9,12 +9,12 @@ import java.io.InputStreamReader
 object InputView {
     private val br = BufferedReader(InputStreamReader(System.`in`))
 
-    fun readCars(): List<String> {
+    fun readCarNames(): List<String> {
         println(Messages.MESSAGE_INPUT_CAR_NAMES)
-        val carsInput = br.readLine().split(Constants.DELIMITER_CAR_INPUT).map { it.trim() }
-        Validator.validateCarName(carsInput)
+        val carNames = br.readLine().split(Constants.DELIMITER_CAR_INPUT).map { it.trim() }
+        Validator.validateCarName(carNames)
 
-        return carsInput
+        return carNames
     }
 
     fun readCount(): Int {

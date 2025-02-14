@@ -1,15 +1,14 @@
 import model.Car
 import model.Cars
-import util.Constants
 import view.InputView
 import view.OutputView
 
 class RacingController {
-    fun start() {
-        val carInput = InputView.readCars()
-        val cars = generateCars(carInput)
+    fun run() {
+        val carNames = InputView.readCarNames()
+        val cars = generateCars(carNames)
         val count = InputView.readCount()
-        race(cars, count)
+        playRace(cars, count)
         val winner = cars.getWinners()
         OutputView.printWinner(winner)
     }
@@ -20,18 +19,10 @@ class RacingController {
         return cars
     }
 
-    private fun playRound(cars: Cars) {
-        cars.cars.forEach { car ->
-            val randomNumber = (Constants.CONDITION_RANDOM_MIN..Constants.CONDITION_RANDOM_MAX).random()
-            car.move(randomNumber)
-            OutputView.printRound(car)
-        }
-    }
-
-    private fun race(cars: Cars, count: Int) {
+    private fun playRace(cars: Cars, count: Int) {
         OutputView.printResultHeader()
         repeat(count) {
-            playRound(cars)
+            cars.playRound()
             println()
         }
     }

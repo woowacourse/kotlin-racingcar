@@ -1,4 +1,4 @@
 fun main() {
     val racingController = RacingController()
-    racingController.start()
+    racingController.run()
 }
