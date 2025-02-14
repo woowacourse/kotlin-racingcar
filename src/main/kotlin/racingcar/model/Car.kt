@@ -1,4 +1,4 @@
-package model
+package racingcar.model
 
 class Car(val name: String) {
     private var step: Int = DEFAULT_STEP

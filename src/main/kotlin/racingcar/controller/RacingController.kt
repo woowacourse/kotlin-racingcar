@@ -1,7 +1,9 @@
-import model.RacingGame
-import model.RandomNumberGeneratorImpl
-import view.InputView
-import view.OutputView
+package racingcar.controller
+
+import racingcar.model.RacingGame
+import racingcar.model.RandomNumberGeneratorImpl
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 class RacingController(
     private val inputView: InputView,

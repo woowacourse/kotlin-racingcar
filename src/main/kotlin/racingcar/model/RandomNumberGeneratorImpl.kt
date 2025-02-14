@@ -1,4 +1,4 @@
-package model
+package racingcar.model
 
 class RandomNumberGeneratorImpl : RandomNumberGenerator {
     override fun generate(

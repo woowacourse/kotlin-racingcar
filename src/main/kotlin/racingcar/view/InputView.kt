@@ -1,4 +1,4 @@
-package view
+package racingcar.view
 
 class InputView {
     fun inputCarName(): String = readLine(INPUT_CAR_NAME_MESSAGE)

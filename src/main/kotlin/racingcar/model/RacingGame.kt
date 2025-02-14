@@ -1,4 +1,4 @@
-package model
+package racingcar.model
 
 class RacingGame(
     private val generator: RandomNumberGenerator,
