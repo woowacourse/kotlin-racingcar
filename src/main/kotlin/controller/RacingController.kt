@@ -6,33 +6,43 @@ import validator.InputValidator
 import view.InputView
 import view.OutputView
 
-class RacingController(private val inputView: InputView, private val outputView: OutputView) {
-    private lateinit var carNames: List<String>
-    private var tryNumber: Int = 0
-    private lateinit var cars: List<Car>
-
+class RacingController(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+) {
     fun run() {
-        carNames = splitCarNames(inputView.inputCarNames())
-        carNames.forEach { InputValidator.validateCarName(it) }
-        InputValidator.validateDuplicatedName(carNames)
-        tryNumber = InputValidator.validateTryNumber(inputView.inputTryNumber())
-
-        cars = carNames.map { Car(it, 0) }
+        val carNames: List<String> = splitCarNames(inputView.inputCarNames())
+        val cars: List<Car> = carNames.map { Car(it) }
+        val tryNumber = InputValidator.validateTryNumber(inputView.inputTryNumber())
 
         outputView.printStatus()
-
         repeat(tryNumber) {
-            cars.forEach { it.move(RandomGenerator.generateRandomNumber()) }
+            playRace(cars)
             outputView.printCars(cars)
         }
-        outputView.printResult(cars.filter { car -> car.position == cars.maxOf { it.position } }.map { it.name })
+        outputView.printResult(getWinners(cars))
     }
 
     private fun splitCarNames(inputCarNames: String): List<String> {
-        return inputCarNames.split(DELIMITER)
+        return inputCarNames.split(DELIMITER).map { it.trim() }
+    }
+
+    private fun playRace(cars: List<Car>) {
+        for (car in cars) {
+            if (RandomGenerator.getRandomNumber(MIN_RANGE, MAX_RANGE) >= MOVE_CONDITION) {
+                car.move()
+            }
+        }
+    }
+
+    private fun getWinners(cars: List<Car>): List<String> {
+        return cars.filter { car -> car.position == cars.maxOf { it.position } }.map { it.name }
     }
 
     companion object {
-        const val DELIMITER = ','
+        private const val DELIMITER = ','
+        private const val MIN_RANGE = 0
+        private const val MAX_RANGE = 9
+        private const val MOVE_CONDITION = 4
     }
 }
