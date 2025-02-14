@@ -29,17 +29,8 @@ class RaceControllerTest {
         return outputStream.toString().trim()
     }
 
-    val cars: MutableList<Car> = mutableListOf(Car("hwan", 2), Car("sia", 4))
+    val cars: MutableList<Car> = mutableListOf(Car("hwan"), Car("xia"))
     val outController = OutController(InOutView())
-    val raceController = RaceController(3, cars, outController)
-
-    @Test
-    fun `가장 많이 움직인 자동차가 우승한다`() {
-        val winnerList = raceController.comparePosition()
-        outController.printFinalResult(winnerList)
-
-        assertThat(output()).isEqualTo("최종 우승자 : sia")
-    }
 
     @Test
     fun `랜덤으로 움직인 자동차 중 가장 많이 움직인 자동차가 우승한다`() {

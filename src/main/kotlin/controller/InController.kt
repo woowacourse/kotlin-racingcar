@@ -2,6 +2,7 @@ package controller
 
 import constant.ErrorConstant
 import model.Car
+import model.Random
 import view.InOutConstants
 import view.InOutView
 
@@ -9,7 +10,7 @@ class InController(private val inOutView: InOutView) {
     fun getCarName(): MutableList<Car> {
         val input = inOutView.getData(InOutConstants.NAME)
         val carNames = splitToComma(input)
-        val cars = carNames.map { Car(it) }.toMutableList()
+        val cars = carNames.map { Car(it, randomMaker = Random()) }.toMutableList()
         return cars
     }
 

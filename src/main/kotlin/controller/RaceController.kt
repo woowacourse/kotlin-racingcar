@@ -1,7 +1,6 @@
 package controller
 
 import model.Car
-import java.util.Random
 
 class RaceController(
     private val count: Int,
@@ -17,7 +16,7 @@ class RaceController(
 
     private fun oneRace() {
         for (car in cars) {
-            car.moveCar(Random())
+            car.moveCar()
         }
         outController.printCurrentPosition(cars)
     }
