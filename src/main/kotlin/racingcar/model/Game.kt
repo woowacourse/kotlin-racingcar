@@ -11,7 +11,7 @@ class Game(private val cars: List<Car>) {
         cars.forEach { car ->
             val randomNumber = makeRandomNumber()
             val moveState = MoveState.create(randomNumber)
-            car.move(moveState)
+            car.increasePositionIfMovable(moveState)
         }
     }
 

@@ -11,7 +11,7 @@ class Car(val name: String) {
         validateNameFormat(name)
     }
 
-    fun move(moveState: MoveState) {
+    fun increasePositionIfMovable(moveState: MoveState) {
         when (moveState) {
             MoveState.MOVABLE -> position++
             MoveState.UNMOVABLE -> return
