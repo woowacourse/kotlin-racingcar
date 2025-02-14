@@ -36,7 +36,7 @@ class ApplicationTest {
         assertThat(race.isMovable(number)).isFalse()
     }
 
-    @ValueSource(ints = [0, 3])
+    @ValueSource(ints = [4, 9])
     @ParameterizedTest
     fun `4에서 9이면 전진한다`(number: Int) {
         val race = Racecourse(listOf(Car("name")), 1)
