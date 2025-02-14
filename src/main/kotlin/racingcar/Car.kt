@@ -1,5 +1,7 @@
 package racingcar
 
+import racingcar.extension.times
+
 class Car(
     val name: String,
     initialDistance: Int = 0,
@@ -16,9 +18,7 @@ class Car(
     }
 
     private fun displayDistance() {
-        var prettyDistance = ""
-        repeat(distance) { prettyDistance += "-" }
-        println("$name : $prettyDistance")
+        println("$name : ${"-" * (distance)}")
     }
 
     override fun hashCode(): Int {
