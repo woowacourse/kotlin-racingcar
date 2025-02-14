@@ -2,48 +2,40 @@ package model
 
 class RacingGame(
     private val generator: RandomNumberGenerator,
+    private val cars: List<Car>,
 ) {
-    private lateinit var racingCars: List<Car>
-
-    fun generateCars(rawCars: String) {
-        racingCars = rawCars.split(DELIMITER).map { Car(it.trim()) }
-
-        require(racingCars.size > RACING_CAR_MIN_SIZE) { INVALID_CAR_SIZE_MESSAGE }
-        require(racingCars.size == racingCars.map { it.getName() }.distinct().size) { DUPLICATE_CAR_NAME_MESSAGE }
-    }
-
     fun tryRacing(rawCount: String): String {
         require(rawCount.toIntOrNull()?.let { it > 0 } == true) { INVALID_COUNT_MESSAGE }
 
         return repeatRacing(rawCount.toInt())
     }
 
-    fun calculateWinner(): String {
-        val maxValue = racingCars.maxOf { it.getStep().length }
-        return racingCars.filter { it.getStep().length == maxValue }.joinToString(WINNER_SEPARATOR) { it.getName() }
+    fun getWinners(): List<String> {
+        return cars.filter { it.position == cars.maxOf { car -> car.position } }
+            .map { it.name }
     }
 
     private fun repeatRacing(count: Int): String {
-        val result = StringBuilder("실행 결과")
+        val result = StringBuilder("실행 결과\n")
 
         repeat(count) {
-            racingCars.forEach {
-                it.tryForward(generator.generate(MIN_VALUE, MAX_VALUE))
-                result.append("\n${it.getName()} : ${it.getStep()}")
-            }
-            result.append("\n")
+            raceOneRound()
+            result.append(getRaceState()).append("\n")
         }
+
         return result.toString()
     }
 
+    private fun raceOneRound() {
+        cars.forEach { it.tryForward(generator.generate(MIN_RANGE, MAX_RANGE)) }
+    }
+
+    private fun getRaceState(): String = cars.joinToString("\n") { "${it.name} : ${FORWARD_SIGN.repeat(it.position)}" }
+
     private companion object {
-        const val INVALID_CAR_SIZE_MESSAGE = "레이싱 게임은 두대 이상이어야 합니다."
-        const val DUPLICATE_CAR_NAME_MESSAGE = "자동차 이름이 중복됩니다."
         const val INVALID_COUNT_MESSAGE = "시도할 횟수는 자연수여야 합니다."
-        const val DELIMITER = ","
-        const val WINNER_SEPARATOR = ", "
-        const val RACING_CAR_MIN_SIZE = 1
-        const val MIN_VALUE = 0
-        const val MAX_VALUE = 9
+        const val FORWARD_SIGN = "-"
+        const val MIN_RANGE = 0
+        const val MAX_RANGE = 9
     }
 }

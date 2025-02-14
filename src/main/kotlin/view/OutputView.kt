@@ -1,11 +1,13 @@
 package view
 
-class OutputView {
-    fun printResult(result: String) {
+object OutputView {
+    fun printRaceState(result: String) {
         println(result)
     }
 
-    fun printWinner(winner: String) {
-        println("최종 우승자 : $winner")
+    fun printWinner(winners: List<String>) {
+        println("최종 우승자 : ${winners.joinToString(WINNER_DELIMITER)}")
     }
+
+    private const val WINNER_DELIMITER = ", "
 }
