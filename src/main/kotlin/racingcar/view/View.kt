@@ -54,5 +54,6 @@ class View {
         println("\n실행결과")
         val racecourse = Racecourse(cars, round)
         racecourse.startRace()
+        println("최종 우승자: ${racecourse.winners.joinToString { car: Car -> car.name }}")
     }
 }

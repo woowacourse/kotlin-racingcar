@@ -9,7 +9,6 @@ class Racecourse(
             startRound()
             println()
         }
-        println("최종 우승자: ${winners.joinToString { car: Car -> car.name }}")
     }
 
     private fun startRound() {
