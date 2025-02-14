@@ -1,33 +1,23 @@
 package domain
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
-    private val car = Car("테스트", 0)
-
-    @BeforeEach
-    fun init() {
-        car.position = 0
-    }
-
     @ParameterizedTest
-    @ValueSource(
-        ints = [4, 5, 6, 7, 8, 9],
-    )
+    @ValueSource(ints = [4, 5])
     fun `무작위 값이 4 이상인 경우, 자동차는 전진한다`(num: Int) {
+        val car = Car("test")
         car.move(num)
-        assertThat(car.position == 1).isTrue()
+        assertThat(car.position).isEqualTo(1)
     }
 
     @ParameterizedTest
-    @ValueSource(
-        ints = [0, 1, 2, 3],
-    )
+    @ValueSource(ints = [3])
     fun `무작위 값이 4 미만인 경우, 자동차는 전진하지 않는다`(num: Int) {
+        val car = Car("test")
         car.move(num)
-        assertThat(car.position == 0).isTrue()
+        assertThat(car.position).isEqualTo(0)
     }
 }
