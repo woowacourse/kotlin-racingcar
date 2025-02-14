@@ -32,7 +32,7 @@ value class Rounds(
             require(input.toIntOrNull() != null) { NOT_NUMERIC_ERROR }
         }
 
-        fun from(input: String): Rounds {
+        private fun from(input: String): Rounds {
             val value = validateUserInput(input)
             return Rounds(value)
         }
