@@ -1,5 +1,4 @@
-import racingcar.Car
-import racingcar.Racecourse
+package racingcar
 
 fun main() {
     val cars: List<Car> = readCars()

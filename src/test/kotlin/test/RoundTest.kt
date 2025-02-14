@@ -2,7 +2,7 @@ package test
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import parseToRound
+import racingcar.parseToRound
 
 class RoundTest {
     @Test
