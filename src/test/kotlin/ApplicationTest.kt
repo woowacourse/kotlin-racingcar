@@ -29,10 +29,18 @@ class ApplicationTest {
         assertThat(checkRoundValid(round)).isEqualTo(0)
     }
 
-    @Test
-    fun `전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다`() {
-//        (0..3).forEach { random -> assertThat(isMovable(random)).isFalse() }
-//        (4..9).forEach { random -> assertThat(isMovable(random)).isTrue() }
+    @ValueSource(ints = [0, 3])
+    @ParameterizedTest
+    fun `0에서 3이면 전진하지 않는다`(number: Int) {
+        val race = Racecourse(listOf(Car("name")), 1)
+        assertThat(race.isMovable(number)).isFalse()
+    }
+
+    @ValueSource(ints = [0, 3])
+    @ParameterizedTest
+    fun `4에서 9이면 전진한다`(number: Int) {
+        val race = Racecourse(listOf(Car("name")), 1)
+        assertThat(race.isMovable(number)).isTrue()
     }
 
     @Test
