@@ -54,15 +54,10 @@ class ApplicationTest {
     }
 
     @Test
-    fun `자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다`() {
-        val cars: List<Car> =
-            listOf(
-                Car(name = "a", initialDistance = 5),
-                Car(name = "b", initialDistance = 0),
-                Car(name = "c", initialDistance = 0),
-            )
+    fun `자동차 경주 게임의 우승자는 가장 멀리 간 사람이다`() {
+        val cars: List<Car> = Car.createCars("a,b,c")
+        cars.first().move(9)
         val racecourse = Racecourse(cars, 0)
-        val expectedWinners: List<Car> = listOf(Car(name = "a", initialDistance = 5))
-        assertThat(racecourse.winners).isEqualTo(expectedWinners)
+        assertThat(racecourse.winners).isEqualTo(listOf(cars.first()))
     }
 }
