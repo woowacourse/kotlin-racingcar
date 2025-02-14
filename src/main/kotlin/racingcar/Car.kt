@@ -1,3 +1,5 @@
+package racingcar
+
 class Car(
     val name: String,
     initialDistance: Int = 0,

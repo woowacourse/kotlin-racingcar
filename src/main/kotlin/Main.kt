@@ -1,3 +1,6 @@
+import racingcar.Car
+import racingcar.Racecourse
+
 fun main() {
     val cars: List<Car> = readCars()
     val round: Int = readRound()
