@@ -9,6 +9,7 @@ class View {
     fun playRacingGame() {
         val cars: List<Car> = readCars()
         val roundManager: RoundManager = readRound()
+        println()
         showResult(cars, roundManager)
     }
 
@@ -50,7 +51,7 @@ class View {
         cars: List<Car>,
         roundManager: RoundManager,
     ) {
-        println("\n실행결과")
+        println("실행결과")
         val racecourse = Racecourse(cars, roundManager)
         racecourse.startRace { println() }
         print("최종 우승자: ${racecourse.winners.joinToString { car: Car -> car.name }}")
