@@ -7,6 +7,11 @@ class Car(
     var position: Int = position
         private set
 
+    init {
+        require(name.length <= 5) { "각 자동차 이름은 5자를 초과할 수 없습니다." }
+        require(name.isNotBlank()) { "각 자동차 이름은 공백이 불가합니다." }
+    }
+
     fun move() {
         ++position
     }
