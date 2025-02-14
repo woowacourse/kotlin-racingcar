@@ -11,8 +11,8 @@ class Cars(input: String) {
     }
 
     fun getWinners(): String {
-        val maxDistance = cars.maxOf { it.getDistance() }
-        val winnerNames = cars.filter { it.getDistance() == maxDistance }.map { it.carName }
+        val maxDistance = cars.maxOf { it.distance }
+        val winnerNames = cars.filter { it.distance == maxDistance }.map { it.carName }
         return winnerNames.joinToString(Constants.WINNER_NAME_DELIMITER) { it }
     }
 

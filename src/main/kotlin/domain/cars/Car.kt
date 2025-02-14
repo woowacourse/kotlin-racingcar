@@ -5,11 +5,8 @@ import Constants.MOVING_STANDARD
 import domain.numbergenerator.NumberGenerator
 
 class Car(val carName: String) {
-    private var distance: Int = 0
-
-    fun getDistance(): Int {
-        return distance
-    }
+    var distance: Int = 0
+        private set
 
     fun moveOrStop(numberGenerator: NumberGenerator) {
         val randomNumber = numberGenerator.generate()
