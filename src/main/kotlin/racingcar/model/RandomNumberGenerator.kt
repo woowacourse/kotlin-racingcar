@@ -1,8 +1,10 @@
 package racingcar.model
 
-interface RandomNumberGenerator {
-    fun generate(
+class RandomNumberGenerator : NumberGenerator {
+    override fun generate(
         min: Int,
         max: Int,
-    ): Int
+    ): Int {
+        return (min..max).random()
+    }
 }

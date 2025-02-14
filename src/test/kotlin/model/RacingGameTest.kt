@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.model.NumberGenerator
 import racingcar.model.RacingGame
 import racingcar.model.RandomNumberGenerator
-import racingcar.model.RandomNumberGeneratorImpl
 
 class RacingGameTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "car12345", "1", "car, car", "car1, car12345"])
     fun `입력 값으로부터 자동차 이름 검증 예외 테스트`(input: String) {
-        val generator = RandomNumberGeneratorImpl()
+        val generator = RandomNumberGenerator()
         val racingGame = RacingGame(generator)
         assertThrows<IllegalArgumentException> { racingGame.generateCars(input) }
     }
@@ -21,7 +21,7 @@ class RacingGameTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "0", "-1"])
     fun `입력 값으로부터 경주 실행 횟수 검증 예외 테스트`(input: String) {
-        val generator = RandomNumberGeneratorImpl()
+        val generator = RandomNumberGenerator()
         val racingGame = RacingGame(generator)
         racingGame.generateCars("carA, carB")
         assertThrows<IllegalArgumentException> { racingGame.tryRacing(input) }
@@ -30,7 +30,7 @@ class RacingGameTest {
     @Test
     fun `경주 종료후 우승자 검증 테스트`() {
         val numbers = listOf(1, 6, 3)
-        val generator = TestNumberGenerator(numbers)
+        val generator = FixedNumberGenerator(numbers)
         val racingGame = RacingGame(generator)
 
         racingGame.generateCars("CarA, CarB, CarC")
@@ -45,7 +45,7 @@ class RacingGameTest {
     @Test
     fun `경주 종료후 복수 우승자 검증 테스트`() {
         val numbers = listOf(1, 6, 6)
-        val generator = TestNumberGenerator(numbers)
+        val generator = FixedNumberGenerator(numbers)
         val racingGame = RacingGame(generator)
 
         racingGame.generateCars("CarA, CarB, CarC")
@@ -56,9 +56,9 @@ class RacingGameTest {
         assertThat(result).contains("CarB, CarC")
     }
 
-    inner class TestNumberGenerator(
+    inner class FixedNumberGenerator(
         private val numbers: List<Int>,
-    ) : RandomNumberGenerator {
+    ) : NumberGenerator {
         private var idx: Int = 0
 
         override fun generate(
