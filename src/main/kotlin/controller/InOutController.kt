@@ -2,12 +2,12 @@ package controller
 
 import constant.ErrorConstant
 import model.Car
-import view.InOutConstant
+import view.InOutConstants
 import view.InOutView
 
 class InOutController(private val inOutView: InOutView) {
     fun getCarName(): MutableList<Car> {
-        val input = inOutView.getData(InOutConstant.NAME)
+        val input = inOutView.getData(InOutConstants.NAME)
         val carNames = splitToComma(input)
         val cars = carNames.map { Car(it) }.toMutableList()
         return cars
@@ -22,7 +22,7 @@ class InOutController(private val inOutView: InOutView) {
     }
 
     fun getTryCount(): Int {
-        val input = inOutView.getData(InOutConstant.COUNT)
+        val input = inOutView.getData(InOutConstants.COUNT)
         val count = parseInt(input)
         return count
     }
