@@ -5,8 +5,8 @@ import racingcar.util.ErrorMessage
 class RoundManager private constructor(
     val time: Int,
 ) {
-    fun play(onRound: () -> Unit) {
-        repeat(time) { onRound() }
+    fun play(onEachRound: () -> Unit) {
+        repeat(time) { onEachRound() }
     }
 
     companion object {
