@@ -21,30 +21,25 @@ class RacingController(
         printWinner(winners)
     }
 
-    // 자동차 준비
     private fun generateCar() {
         val rawInput = inputView.inputCarName()
         cars = GenerateCar().generateCar(rawInput)
     }
 
-    // 몇바퀴 경주
     private fun getRaceRounds(): String {
         val rawCount = inputView.inputRacingCount()
         return rawCount
     }
 
-    // 경주 실행
     private fun tryRacing(round: String) {
         val result = racingGame.tryRacing(round)
         outputView.printRaceState(result)
     }
 
-    // 우승자 받기
     private fun getWinner(): List<String> {
         return racingGame.getWinners()
     }
 
-    // 우승자 출력
     private fun printWinner(winners: List<String>) {
         outputView.printWinner(winners)
     }
