@@ -17,7 +17,7 @@ class RacingController(private val inputView: InputView, private val outputView:
         InputValidator.validateDuplicatedName(carNames)
         tryNumber = InputValidator.validateTryNumber(inputView.inputTryNumber())
 
-        cars = carNames.map { Car(it, 0) }
+        cars = carNames.map { Car(it) }
 
         outputView.printStatus()
 
