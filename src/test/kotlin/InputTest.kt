@@ -1,4 +1,4 @@
-import controller.ViewController
+import controller.RacingViewController
 import model.Car
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
@@ -10,7 +10,7 @@ import view.InputView
 import view.OutputView
 
 class InputTest {
-    private val viewController = ViewController(InputView(), OutputView())
+    private val viewController = RacingViewController(InputView(), OutputView())
     private val initialInput = System.`in`
 
     @BeforeEach

@@ -1,7 +1,7 @@
-import controller.ProgramController
+import controller.RacingGameController
 
 fun main() {
-    val mainController = ProgramController()
+    val racingGameController = RacingGameController()
 
-    mainController.runProgram()
+    racingGameController.startRacingGameProgram()
 }

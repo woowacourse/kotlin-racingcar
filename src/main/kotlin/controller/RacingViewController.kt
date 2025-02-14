@@ -6,13 +6,12 @@ import model.Car
 import view.InputView
 import view.OutputView
 
-class ViewController(private val inputView: InputView, private val outputView: OutputView) {
-    fun getCarName(): List<Car> {
+class RacingViewController(private val inputView: InputView, private val outputView: OutputView) {
+    fun getCarName(): List<String> {
         val input = inputView.getUserInput(MessageConstant.INPUT_NAME)
         val carNames = splitToComma(input)
         validateName(carNames)
-        val cars = carNames.map { Car(it) }
-        return cars
+        return carNames
     }
 
     private fun splitToComma(input: String): List<String> {

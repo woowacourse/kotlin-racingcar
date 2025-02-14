@@ -8,7 +8,7 @@ class Car(
     var currentPosition: Int = DEFAULT_POSITION,
 ) {
     init {
-        require(name.length <= 5) { ErrorConstant.ERROR_WRONG_NAME_LENGTH }
+        require(name.length <= MAX_NAME_LENGTH) { ErrorConstant.ERROR_WRONG_NAME_LENGTH }
     }
 
     fun moveCar(random: Random) {
@@ -26,5 +26,6 @@ class Car(
         const val FORWARD_NUMBER: Int = 4
         const val MAX_BOUND: Int = 10
         const val MIN_BOUND: Int = 0
+        const val MAX_NAME_LENGTH: Int = 5
     }
 }

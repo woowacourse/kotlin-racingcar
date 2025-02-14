@@ -28,6 +28,10 @@ class RaceControllerTest {
         println(output())
     }
 
+    private fun setInput(input: String) {
+        System.setIn(input.byteInputStream())
+    }
+
     private fun output(): String {
         return outputStream.toString().trim()
     }
@@ -36,8 +40,8 @@ class RaceControllerTest {
     private val siaCar = Car("sia", 4)
     private val cars: List<Car> = listOf(hwanCar, siaCar)
 
-    private val inOutController = ViewController(InputView(), OutputView())
-    private val raceController = RaceController(3, cars, inOutController)
+    private val inOutController = RacingViewController(InputView(), OutputView())
+    private val raceController = RacingGameController()
 
     @Test
     fun `자동차가 1칸 이동하면 현재 위치가 1 늘어난다`() {
@@ -57,18 +61,9 @@ class RaceControllerTest {
 
     @Test
     fun `가장 많이 움직인 자동차가 우승한다`() {
-        val winnerList = raceController.getFinalResult()
+        val winnerList = raceController.getFinalResult(cars)
         inOutController.printFinalResult(winnerList)
 
         assertThat(output()).isEqualTo("최종 우승자 : sia")
-    }
-
-    @Test
-    fun `랜덤으로 가장 많이 전진한 자동차를 최종 우승자로 출력한다`() {
-        val raceController = RaceController(4, cars, inOutController)
-        raceController.startRacing()
-        val winnerList = raceController.getFinalResult()
-        inOutController.printFinalResult(winnerList)
-        assertThat(output()).contains("최종 우승자 : ${winnerList.joinToString(", ") { it.name }}")
     }
 }
