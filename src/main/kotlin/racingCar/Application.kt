@@ -1,9 +1,9 @@
 package racingCar
 
 fun main() {
-    val inputReader = InputReader()
-    val outputPrinter = OutputPrinter()
+    val inputView = InputView()
+    val outputView = OutputView()
     val judge = Judge()
-    val organizer = Organizer(inputReader, outputPrinter, judge)
+    val organizer = Organizer(inputView, outputView, judge)
     organizer.hostRace()
 }
