@@ -1,14 +1,14 @@
 package racingCar
 
-class Organizer(
+class RaceGame(
     private val inputView: InputView,
     private val outputView: OutputView,
     private val judge: Judge,
 ) {
-    fun hostRace() {
+    fun run() {
         val raceCars = getRaceCars()
         val raceCount = getRaceCount()
-        executeRaces(raceCount, raceCars)
+        start(raceCount, raceCars)
         getRaceWinners(raceCars)
     }
 
@@ -22,18 +22,18 @@ class Organizer(
         return inputView.readRaceCount()
     }
 
-    private fun executeRaces(
+    private fun start(
         raceCount: Int,
         raceCars: List<Car>,
     ) {
         val randomGenerator = RandomGenerator()
         outputView.printRaceResultTitle()
         repeat(raceCount) {
-            executeRace(raceCars, randomGenerator)
+            progress(raceCars, randomGenerator)
         }
     }
 
-    private fun executeRace(
+    private fun progress(
         raceCars: List<Car>,
         randomGenerator: RandomGenerator,
     ) {

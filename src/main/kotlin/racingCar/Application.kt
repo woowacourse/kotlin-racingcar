@@ -4,6 +4,6 @@ fun main() {
     val inputView = InputView()
     val outputView = OutputView()
     val judge = Judge()
-    val organizer = Organizer(inputView, outputView, judge)
-    organizer.hostRace()
+    val raceGame = RaceGame(inputView, outputView, judge)
+    raceGame.run()
 }
