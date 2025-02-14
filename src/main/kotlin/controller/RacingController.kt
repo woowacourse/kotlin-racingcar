@@ -33,7 +33,7 @@ class RacingController(
 
     private fun playRace(cars: List<Car>) {
         for (car in cars) {
-            car.moveOrStop(getMoveOrStopCondition())
+            car.moveOrStop(getMoveOrStopConditionByNumber(RandomGenerator.getRandomNumber(MIN_RANGE, MAX_RANGE)))
         }
     }
 
@@ -41,8 +41,8 @@ class RacingController(
         return cars.filter { car -> car.position == cars.maxOf { it.position } }.map { it.name }
     }
 
-    private fun getMoveOrStopCondition(): Boolean {
-        return RandomGenerator.getRandomNumber(MIN_RANGE, MAX_RANGE) < MOVE_CONDITION
+    private fun getMoveOrStopConditionByNumber(number: Int): Boolean {
+        return number < MOVE_CONDITION
     }
 
     companion object {
