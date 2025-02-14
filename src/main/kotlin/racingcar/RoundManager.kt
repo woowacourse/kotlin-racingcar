@@ -3,10 +3,10 @@ package racingcar
 import racingcar.util.ErrorMessage
 
 class RoundManager private constructor(
-    val time: Int,
+    val roundCount: Int,
 ) {
     fun play(onEachRound: () -> Unit) {
-        repeat(time) { onEachRound() }
+        repeat(roundCount) { onEachRound() }
     }
 
     companion object {
