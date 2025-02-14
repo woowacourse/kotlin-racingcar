@@ -1,6 +1,7 @@
 package racingcar.view
 
 import racingcar.Car
+import racingcar.Racecourse
 import racingcar.util.ErrorMessage
 
 class View {
@@ -44,5 +45,14 @@ class View {
         }
 
         return value.toInt()
+    }
+
+    fun showResult(
+        cars: List<Car>,
+        round: Int,
+    ) {
+        println("\n실행결과")
+        val racecourse = Racecourse(cars, round)
+        racecourse.startRace()
     }
 }
