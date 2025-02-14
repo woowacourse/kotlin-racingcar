@@ -33,16 +33,11 @@ fun readRound(): Int {
     println("시도할 횟수는 몇 회인가요?")
     val userInput: String? = readlnOrNull()
     requireNotNull(userInput) { "시도 횟수를 입력해주세요." }
-    if (checkRoundValid(userInput)) {
+    if (checkRoundValid(userInput) != 0) {
         return userInput.toInt()
     }
     println("올바른 숫자를 입력하세요.")
     return readRound()
 }
 
-fun checkRoundValid(userInput: String?): Boolean {
-    if (userInput == null) return false
-    if (userInput.toIntOrNull() == null) return false
-    if (userInput.toInt() <= 0) return false
-    return true
-}
+fun checkRoundValid(userInput: String): Int = userInput.toIntOrNull() ?: 0
