@@ -10,7 +10,7 @@ import view.InputView
 import view.OutputView
 
 class InputTest {
-    val viewController = ViewController(InputView(), OutputView())
+    private val viewController = ViewController(InputView(), OutputView())
     private val initialInput = System.`in`
 
     @BeforeEach
