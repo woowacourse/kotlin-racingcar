@@ -1,48 +1,39 @@
 package racingcar.model
 
 class RacingGame(
-    private val generator: RandomNumberGenerator,
+    private val generator: NumberGenerator,
 ) {
     private lateinit var racingCars: List<Car>
 
-    fun generateCars(rawCars: String) {
-        racingCars = rawCars.split(DELIMITER).map { Car(it.trim()) }
-
-        require(racingCars.size > RACING_CAR_MIN_SIZE) { INVALID_CAR_SIZE_MESSAGE }
-        require(racingCars.size == racingCars.map { it.name }.distinct().size) { DUPLICATE_CAR_NAME_MESSAGE }
+    fun generateCars(carNames: List<String>) {
+        racingCars = carNames.map { Car(it.trim()) }
     }
 
-    fun tryRacing(rawCount: String): String {
-        require(rawCount.toIntOrNull()?.let { it > 0 } == true) { INVALID_COUNT_MESSAGE }
-
-        return repeatRacing(rawCount.toInt())
+    fun tryRacing(
+        count: Int,
+        printCurrentCarStep: (String) -> Unit,
+    ) {
+        repeat(count) {
+            racingCars.forEach { car ->
+                tryForward(car)
+                printCurrentCarStep(prettyCarStep(car))
+            }
+            printCurrentCarStep("")
+        }
     }
+
+    private fun tryForward(car: Car) = car.tryForward(generator.generate(MIN_VALUE, MAX_VALUE))
+
+    private fun prettyCarStep(car: Car): String = "${car.name} : ${STEP_MARK.repeat(car.step)}"
 
     fun calculateWinner(): String {
-        val maxValue = racingCars.maxOf { it.getStep().length }
-        return racingCars.filter { it.getStep().length == maxValue }.joinToString(WINNER_SEPARATOR) { it.name }
-    }
-
-    private fun repeatRacing(count: Int): String {
-        val result = StringBuilder("실행 결과")
-
-        repeat(count) {
-            racingCars.forEach {
-                it.tryForward(generator.generate(MIN_VALUE, MAX_VALUE))
-                result.append("\n${it.name} : ${it.getStep()}")
-            }
-            result.append("\n")
-        }
-        return result.toString()
+        val maxValue = racingCars.maxOf { it.step }
+        return racingCars.filter { it.step == maxValue }.joinToString(WINNER_SEPARATOR) { it.name }
     }
 
     private companion object {
-        const val INVALID_CAR_SIZE_MESSAGE = "레이싱 게임은 두대 이상이어야 합니다."
-        const val DUPLICATE_CAR_NAME_MESSAGE = "자동차 이름이 중복됩니다."
-        const val INVALID_COUNT_MESSAGE = "시도할 횟수는 자연수여야 합니다."
-        const val DELIMITER = ","
+        const val STEP_MARK = "-"
         const val WINNER_SEPARATOR = ", "
-        const val RACING_CAR_MIN_SIZE = 1
         const val MIN_VALUE = 0
         const val MAX_VALUE = 9
     }

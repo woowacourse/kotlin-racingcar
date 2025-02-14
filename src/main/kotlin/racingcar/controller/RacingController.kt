@@ -1,41 +1,41 @@
 package racingcar.controller
 
 import racingcar.model.RacingGame
-import racingcar.model.RandomNumberGeneratorImpl
+import racingcar.model.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class RacingController(
-    private val inputView: InputView,
-    private val outputView: OutputView,
-) {
+class RacingController {
     private var racingGame: RacingGame
 
     init {
-        val randomNumberGeneratorImpl = RandomNumberGeneratorImpl()
+        val randomNumberGeneratorImpl = RandomNumberGenerator()
         racingGame = RacingGame(randomNumberGeneratorImpl)
     }
 
     fun run() {
-        inputCarNames()
-        inputRacingCount()
+        prepareRacingCar()
+        tryRacing()
         printRacingWinner()
     }
 
-    private fun inputCarNames() {
-        val rawInput = inputView.inputCarName()
-        racingGame.generateCars(rawInput)
+    private fun prepareRacingCar() {
+        val carNames = InputView.inputCarNames()
+        racingGame.generateCars(carNames)
     }
 
-    private fun inputRacingCount() {
-        val rawCount = inputView.inputRacingCount()
-
-        val result = racingGame.tryRacing(rawCount)
-        outputView.printResult(result)
+    private fun tryRacing() {
+        OutputView.printRacingResult()
+        racingGame.tryRacing(
+            count = InputView.inputRacingCount(),
+            printCurrentCarStep = { currentCarStep ->
+                OutputView.print(currentCarStep)
+            },
+        )
     }
 
     private fun printRacingWinner() {
         val result = racingGame.calculateWinner()
-        outputView.printWinner(result)
+        OutputView.printWinner(result)
     }
 }
