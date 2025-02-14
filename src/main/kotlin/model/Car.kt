@@ -1,17 +1,15 @@
 package model
 
-class Car(private val name: String) {
+class Car(val name: String) {
     private var step: Int = DEFAULT_STEP
 
     init {
         require(name.trim().length in MIN_VALUE..MAX_VALUE) { CAR_NAME_LENGTH_MESSAGE }
     }
 
-    fun tryForward(randomValue: Int) {
-        if (randomValue >= FORWARD_VALUE) step++
+    fun tryForward(number: Int) {
+        if (number >= FORWARD_VALUE) step++
     }
-
-    fun getName(): String = this.name
 
     fun getStep(): String = "-".repeat(this.step)
 

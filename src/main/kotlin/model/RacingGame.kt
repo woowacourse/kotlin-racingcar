@@ -9,7 +9,7 @@ class RacingGame(
         racingCars = rawCars.split(DELIMITER).map { Car(it.trim()) }
 
         require(racingCars.size > RACING_CAR_MIN_SIZE) { INVALID_CAR_SIZE_MESSAGE }
-        require(racingCars.size == racingCars.map { it.getName() }.distinct().size) { DUPLICATE_CAR_NAME_MESSAGE }
+        require(racingCars.size == racingCars.map { it.name }.distinct().size) { DUPLICATE_CAR_NAME_MESSAGE }
     }
 
     fun tryRacing(rawCount: String): String {
@@ -20,7 +20,7 @@ class RacingGame(
 
     fun calculateWinner(): String {
         val maxValue = racingCars.maxOf { it.getStep().length }
-        return racingCars.filter { it.getStep().length == maxValue }.joinToString(WINNER_SEPARATOR) { it.getName() }
+        return racingCars.filter { it.getStep().length == maxValue }.joinToString(WINNER_SEPARATOR) { it.name }
     }
 
     private fun repeatRacing(count: Int): String {
@@ -29,7 +29,7 @@ class RacingGame(
         repeat(count) {
             racingCars.forEach {
                 it.tryForward(generator.generate(MIN_VALUE, MAX_VALUE))
-                result.append("\n${it.getName()} : ${it.getStep()}")
+                result.append("\n${it.name} : ${it.getStep()}")
             }
             result.append("\n")
         }
