@@ -5,9 +5,9 @@ class Car(
         private set
 
     init {
-        require(name.isNotBlank()) { "[ERROR] 자동차 이름은 공백일 수 없습니다." }
+        require(name.isNotBlank()) { "[ERROR] 자동차 이름은 공백일 수 없습니다. (입력한 이름: $name)" }
         require(name.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) {
-            "[ERROR] 자동차 이름은 ${MIN_CAR_NAME_LENGTH}자 이상 ${MAX_CAR_NAME_LENGTH}자 이하여야 합니다."
+            "[ERROR] 자동차 이름은 ${MIN_CAR_NAME_LENGTH}자 이상 ${MAX_CAR_NAME_LENGTH}자 이하여야 합니다. (입력한 이름: $name)"
         }
     }
 
