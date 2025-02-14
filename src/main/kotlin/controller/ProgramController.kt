@@ -3,13 +3,13 @@ package controller
 import view.InputView
 import view.OutputView
 
-class MainController {
+class ProgramController {
     private val viewController = ViewController(InputView(), OutputView())
 
     fun runProgram() {
         val cars = viewController.getCarName()
         val raceController = RaceController(viewController.getTryCount(), cars, viewController)
-        raceController.fullRace()
+        raceController.startRacing()
         val winnerList = raceController.getFinalResult()
         viewController.printFinalResult(winnerList)
     }

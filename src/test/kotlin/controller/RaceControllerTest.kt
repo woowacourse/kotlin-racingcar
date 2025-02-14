@@ -54,7 +54,7 @@ class RaceControllerTest {
     @Test
     fun `전체 로직 점검`() {
         val raceController = RaceController(4, cars, inOutController)
-        raceController.fullRace()
+        raceController.startRacing()
         val winnerList = raceController.getFinalResult()
         inOutController.printFinalResult(winnerList)
         assertThat(output()).contains("최종 우승자 : ${winnerList.joinToString(", ") { it.name }}")

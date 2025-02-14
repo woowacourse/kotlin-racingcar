@@ -10,28 +10,36 @@ class ViewController(private val inputView: InputView, private val outputView: O
     fun getCarName(): List<Car> {
         val input = inputView.getUserInput(MessageConstant.INPUT_NAME)
         val carNames = splitToComma(input)
+        validateName(carNames)
         val cars = carNames.map { Car(it) }
         return cars
     }
 
-    fun splitToComma(input: String): List<String> {
+    private fun splitToComma(input: String): List<String> {
         val carNames = input.split(",").filter { it.isNotEmpty() }
-        if (carNames.isEmpty()) throw IllegalArgumentException(ErrorConstant.ERROR_NO_NAME)
-
-        if (carNames.toSet().size != carNames.size) throw IllegalArgumentException(ErrorConstant.ERROR_SAME_NAME)
         return carNames
+    }
+
+    private fun validateName(name: List<String>) {
+        if (name.isEmpty()) throw java.lang.IllegalArgumentException(ErrorConstant.ERROR_NO_NAME)
+        if (name.toSet().size != name.size) throw IllegalArgumentException(ErrorConstant.ERROR_SAME_NAME)
     }
 
     fun getTryCount(): Int {
         val input = inputView.getUserInput(MessageConstant.INPUT_COUNT)
         val count = parseInt(input)
+        validateCount(count)
+        return count!!
+    }
+
+    private fun parseInt(input: String): Int? {
+        val count = input.toIntOrNull()
         return count
     }
 
-    fun parseInt(input: String): Int {
-        val count = input.toIntOrNull() ?: throw IllegalArgumentException(ErrorConstant.ERROR_NOT_NUMBER)
+    private fun validateCount(count: Int?) {
+        if (count == null) throw IllegalArgumentException(ErrorConstant.ERROR_UNDER_ZERO)
         if (count <= 0) throw IllegalArgumentException(ErrorConstant.ERROR_UNDER_ZERO)
-        return count
     }
 
     fun printCurrentPosition(cars: List<Car>) {

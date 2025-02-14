@@ -8,14 +8,14 @@ class RaceController(
     private val cars: List<Car>,
     private val viewController: ViewController,
 ) {
-    fun fullRace() {
+    fun startRacing() {
         viewController.printGameResult()
         repeat(count) {
-            oneRace()
+            performRace()
         }
     }
 
-    private fun oneRace() {
+    private fun performRace() {
         for (car in cars) {
             car.moveCar(Random())
         }

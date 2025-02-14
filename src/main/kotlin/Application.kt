@@ -1,7 +1,7 @@
-import controller.MainController
+import controller.ProgramController
 
 fun main() {
-    val mainController = MainController()
+    val mainController = ProgramController()
 
     mainController.runProgram()
 }
