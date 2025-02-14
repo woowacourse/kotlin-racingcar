@@ -1,8 +1,6 @@
 package racingcar.domain
 
 import racingcar.utils.Constants.COMMA
-import racingcar.utils.Constants.MOVE_MAX_RANGE
-import racingcar.utils.Constants.MOVE_MIN_RANGE
 
 class Race(rawCarNames: String, rawTryCount: String) {
     val tryCount = rawTryCount.toInt()
@@ -12,16 +10,12 @@ class Race(rawCarNames: String, rawTryCount: String) {
         return rawCarNames.split(COMMA).map { Car(it.trim()) }
     }
 
-    private fun isMove(randomNumber: Int): Boolean {
-        return randomNumber in MOVE_MIN_RANGE..MOVE_MAX_RANGE
-    }
-
     fun getPositions() {
         val generateRandomNumber = GenerateRandomNumber()
         repeat(tryCount) {
             cars.forEach { car ->
                 val randomNumber = generateRandomNumber.randomNumber()
-                car.moves(isMove(randomNumber))
+                car.moves(randomNumber)
             }
         }
     }
