@@ -4,7 +4,7 @@ import Constants
 import domain.numbergenerator.NumberGenerator
 
 class Cars(input: String) {
-    private val cars: List<Car> = input.split(Constants.CAR_NAME_DELIMITER).map { Car(it.trim()) }
+    private val cars: List<Car> = CarsArgumentConverter.toCarList(input)
 
     fun lap(numberGenerator: NumberGenerator) {
         cars.forEach { it.moveOrStop(numberGenerator) }
