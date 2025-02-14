@@ -28,8 +28,7 @@ class InOutController(private val inOutView: InOutView) {
     }
 
     fun parseInt(input: String): Int {
-        val count = input.toIntOrNull()
-        if (count == null) throw IllegalArgumentException(ErrorConstant.ERROR_NOT_NUMBER)
+        val count = input.toIntOrNull() ?: throw IllegalArgumentException(ErrorConstant.ERROR_NOT_NUMBER)
         if (count <= 0) throw IllegalArgumentException(ErrorConstant.ERROR_UNDER_ZERO)
         return count
     }
