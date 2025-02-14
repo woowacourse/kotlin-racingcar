@@ -3,7 +3,7 @@ package racingcar.view
 object InputView {
     fun inputCarNames(): List<String> {
         val input = readLine(INPUT_CAR_NAME_MESSAGE)
-        val carNames = input.split(DELIMITER)
+        val carNames = input.split(DELIMITER).filter { it.isNotBlank() }
         validateCarNames(carNames)
 
         return carNames
