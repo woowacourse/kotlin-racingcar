@@ -25,9 +25,11 @@ class RacingController {
     }
 
     private fun tryRacing() {
-        OutputView.printRacingResult()
+        val racingCount = InputView.inputRacingCount()
+
+        OutputView.printRacingResultHeader()
         racingGame.tryRacing(
-            count = InputView.inputRacingCount(),
+            count = racingCount,
             printCurrentCarStep = { currentCarStep ->
                 OutputView.print(currentCarStep)
             },
