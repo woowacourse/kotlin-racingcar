@@ -1,6 +1,6 @@
 package racingcar.model
 
-import racingcar.enums.Move
+import racingcar.enums.MoveState
 
 class Car(val name: String) {
     var position: Int = 0
@@ -11,10 +11,10 @@ class Car(val name: String) {
         validateNameFormat(name)
     }
 
-    fun move(moveState: Move) {
+    fun move(moveState: MoveState) {
         when (moveState) {
-            Move.MOVABLE -> position++
-            Move.UNMOVABLE -> return
+            MoveState.MOVABLE -> position++
+            MoveState.UNMOVABLE -> return
         }
     }
 

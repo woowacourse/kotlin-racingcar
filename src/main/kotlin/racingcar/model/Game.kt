@@ -1,6 +1,6 @@
 package racingcar.model
 
-import racingcar.enums.Move
+import racingcar.enums.MoveState
 
 class Game(private val cars: List<Car>) {
     init {
@@ -10,7 +10,7 @@ class Game(private val cars: List<Car>) {
     fun playRound() {
         cars.forEach { car ->
             val randomNumber = makeRandomNumber()
-            val moveState = Move.create(randomNumber)
+            val moveState = MoveState.create(randomNumber)
             car.move(moveState)
         }
     }
