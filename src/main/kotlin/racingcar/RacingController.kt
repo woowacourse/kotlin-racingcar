@@ -10,17 +10,10 @@ class RacingController {
         return carsInput.map { Car(it) }
     }
 
-    fun moveCars(
-        number: Int,
-        car: Car,
-    ) {
-        if (number >= Constants.CONDITION_MOVE_THRESHOLD) car.position++
-    }
-
     fun playRound(cars: List<Car>) {
         cars.forEach { car ->
             val number = (Constants.CONDITION_RANDOM_MIN..Constants.CONDITION_RANDOM_MAX).random()
-            moveCars(number, car)
+            car.move(number)
             OutputView.printRound(car)
         }
     }
