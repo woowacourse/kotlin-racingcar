@@ -6,11 +6,10 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingController {
-    fun generateCarList(carsInput: List<String>): MutableList<Car> {
-        val cars = mutableListOf<Car>()
-        carsInput.map { cars.add(Car(it, 0)) }
-
-        return cars
+    fun generateCarList(carsInput: List<String>): List<Car> {
+        return carsInput.map {
+            Car(it, 0)
+        }
     }
 
     fun moveCars(
@@ -39,7 +38,7 @@ class RacingController {
         }
     }
 
-    fun getWinner(cars: List<Car>): MutableList<String> {
+    fun getWinner(cars: List<Car>): List<String> {
         val winner = mutableListOf<String>()
         cars.forEach { car ->
             if (car.position == cars.maxOf { it.position }) {
