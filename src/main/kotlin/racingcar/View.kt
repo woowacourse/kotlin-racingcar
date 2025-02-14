@@ -1,8 +1,5 @@
-package racingcar.view
+package racingcar
 
-import racingcar.Car
-import racingcar.Racecourse
-import racingcar.RoundManager
 import racingcar.util.ErrorMessage
 import racingcar.util.extension.times
 
