@@ -3,7 +3,7 @@ package racingCar
 class RaceGame(
     private val inputView: InputView,
     private val outputView: OutputView,
-    private val judge: Judge,
+    private val referee: Referee,
 ) {
     fun run() {
         val raceCars = getRaceCars()
@@ -39,14 +39,14 @@ class RaceGame(
     ) {
         raceCars.forEach { raceCar ->
             val randomNumber = randomGenerator.getRandomNumber()
-            val isMoved = judge.isCarAbleToMove(randomNumber)
+            val isMoved = referee.isCarAbleToMove(randomNumber)
             raceCar.moveForward(isMoved)
         }
         outputView.printRaceProgress(raceCars)
     }
 
     private fun getRaceWinners(raceCars: List<Car>) {
-        val winnerNames = judge.selectWinnerNames(raceCars)
+        val winnerNames = referee.selectWinnerNames(raceCars)
         outputView.printWinners(winnerNames)
     }
 }

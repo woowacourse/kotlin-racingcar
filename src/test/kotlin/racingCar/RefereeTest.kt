@@ -7,19 +7,19 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
-class JudgeTest {
-    private val judge = Judge()
+class RefereeTest {
+    private val referee = Referee()
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
     fun `랜덤 숫자가 4 미만인 경우 false 를 반환한다`(randomNumber: Int) {
-        assertFalse(judge.isCarAbleToMove(randomNumber))
+        assertFalse(referee.isCarAbleToMove(randomNumber))
     }
 
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `랜덤 숫자가 4 이상인 경우 true 를 반환한다`(randomNumber: Int) {
-        assertTrue(judge.isCarAbleToMove(randomNumber))
+        assertTrue(referee.isCarAbleToMove(randomNumber))
     }
 
     @Test
@@ -36,7 +36,7 @@ class JudgeTest {
 
         val cars = listOf(car1, car2, car3, car4)
 
-        val winnerNames = judge.selectWinnerNames(cars)
+        val winnerNames = referee.selectWinnerNames(cars)
 
         Assertions.assertEquals(listOf("제이슨"), winnerNames)
     }
@@ -55,7 +55,7 @@ class JudgeTest {
 
         val cars = listOf(car1, car2, car3, car4)
 
-        val winnerNames = judge.selectWinnerNames(cars)
+        val winnerNames = referee.selectWinnerNames(cars)
 
         Assertions.assertEquals(listOf("제이슨", "디노", "레아", "제임스"), winnerNames)
     }
