@@ -1,7 +1,6 @@
 package racingcar
 
 import racingcar.util.ErrorMessage
-import racingcar.util.extension.times
 
 class Car private constructor(
     val name: String,
@@ -14,14 +13,9 @@ class Car private constructor(
         if (isMovable(number)) {
             distance += 1
         }
-        displayDistance()
     }
 
     private fun isMovable(random: Int): Boolean = random >= 4
-
-    private fun displayDistance() {
-        println("$name : ${"-" * (distance)}")
-    }
 
     override fun hashCode(): Int {
         var result = name.hashCode()
