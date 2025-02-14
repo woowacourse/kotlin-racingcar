@@ -4,7 +4,7 @@ import view.InputView
 import view.OutputView
 
 class RacingController {
-    fun generateCarList(carsInput: List<String>): MutableList<Car> {
+    fun generateCarList(carsInput: List<String>): List<Car> {
         val cars = mutableListOf<Car>()
         carsInput.map { cars.add(Car(it, 0)) }
 
@@ -37,7 +37,7 @@ class RacingController {
         }
     }
 
-    fun getWinner(cars: List<Car>): MutableList<String> {
+    fun getWinner(cars: List<Car>): List<String> {
         val winner = mutableListOf<String>()
         cars.forEach { car ->
             if (car.position == cars.maxOf { it.position }) {

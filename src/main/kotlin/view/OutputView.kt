@@ -13,7 +13,7 @@ object OutputView {
         println(Messages.MESSAGE_OUTPUT_RACE_RESULT)
     }
 
-    fun printWinner(winner: MutableList<String>) {
+    fun printWinner(winner: List<String>) {
         println(Messages.MESSAGE_OUTPUT_WINNER + winner.joinToString(Constants.DELIMITER_WINNER_OUTPUT))
     }
 }
