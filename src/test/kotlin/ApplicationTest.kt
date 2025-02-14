@@ -1,4 +1,5 @@
 import org.assertj.core.api.Assertions.assertThat
+import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import racingcar.Car
 import racingcar.Racecourse
@@ -15,7 +16,7 @@ class ApplicationTest {
 
     @Test
     fun `자동차 이름은 5자를 초과할 수 없다`() {
-        assertThat(checkCarNameValid("5자 이상의 자동차 이름")).isFalse()
+        assertThatThrownBy { Car.createCars("5자 이상의 자동차 이름") }.hasMessage("자동차 이름은 5자를 초과할 수 없습니다. 다시 입력해주세요.")
     }
 
     @Test
