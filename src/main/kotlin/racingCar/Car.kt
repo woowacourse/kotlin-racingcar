@@ -1,3 +1,5 @@
+package racingCar
+
 class Car(
     val name: String,
 ) {

@@ -1,3 +1,5 @@
+package racingCar
+
 class InputReader {
     fun readRaceCars(): List<Car> {
         val carNames = readln().split(RACE_CAR_NAME_DIVIDER)

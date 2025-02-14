@@ -1,3 +1,5 @@
+package racingCar
+
 class Judge {
     fun isCarAbleToMove(randomNumber: Int): Boolean = randomNumber >= MIN_RANDOM_AVAILABILITY_CONDITION
 

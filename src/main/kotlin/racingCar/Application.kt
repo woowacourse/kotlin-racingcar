@@ -1,3 +1,5 @@
+package racingCar
+
 fun main() {
     val inputReader = InputReader()
     val outputPrinter = OutputPrinter()

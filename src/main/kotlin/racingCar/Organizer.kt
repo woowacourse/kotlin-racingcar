@@ -1,3 +1,5 @@
+package racingCar
+
 class Organizer(
     private val inputReader: InputReader,
     private val outputPrinter: OutputPrinter,
