@@ -2,16 +2,18 @@ package racingcar
 
 class Racecourse(
     private val cars: List<Car>,
-    private val round: Int,
+    private val roundManager: RoundManager,
 ) {
-    fun startRace() {
-        repeat(round) {
-            startRound()
-            println()
-        }
+    fun startRace(onEachRound: () -> Unit) {
+        roundManager.play(
+            onEachRound = {
+                moveCars()
+                onEachRound()
+            },
+        )
     }
 
-    private fun startRound() {
+    private fun moveCars() {
         cars.forEach { car: Car -> car.move((0..9).random()) }
     }
 
