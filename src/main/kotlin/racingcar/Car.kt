@@ -1,6 +1,7 @@
 package racingcar
 
-import racingcar.extension.times
+import racingcar.util.ErrorMessage
+import racingcar.util.extension.times
 
 class Car private constructor(
     val name: String,
@@ -41,7 +42,6 @@ class Car private constructor(
     companion object {
         const val CAR_NAME_SEPARATOR: String = ","
         const val MAX_CAR_NAME_LENGTH: Int = 5
-        const val ERROR_MESSAGE_OVER_MAX_CAR_NAME_LENGTH: String = "자동차 이름은 5자를 초과할 수 없습니다. 다시 입력해주세요."
 
         fun isMovable(random: Int): Boolean {
             // 전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다.
@@ -55,7 +55,7 @@ class Car private constructor(
         fun createCars(value: String): List<Car> {
             val carNames: List<String> = value.split(CAR_NAME_SEPARATOR).map { it.trim() }
             if (carNames.any { carName: String -> carName.length > MAX_CAR_NAME_LENGTH }) {
-                throw IllegalArgumentException(ERROR_MESSAGE_OVER_MAX_CAR_NAME_LENGTH)
+                throw IllegalArgumentException(ErrorMessage.OVER_MAX_CAR_NAME_LENGTH)
             }
             return carNames.map { carName: String -> Car(carName) }
         }
