@@ -23,6 +23,10 @@ class InputValidatorService {
         return number
     }
 
+    fun possibleMoveValueCheck(value: Int) {
+        require(value in 0..9) { Messages.ERROR_MOVE_VALUE }
+    }
+
     private fun emptyCheck(input: String) {
         require(input.isNotBlank()) { Messages.ERROR_EMPTY_INPUT.message }
     }

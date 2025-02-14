@@ -14,6 +14,7 @@ enum class Messages(
     ERROR_NOT_AVAILABLE_NAME("지원되지 않는 이름입니다. (한글, 영어, 숫자, 공백 가능)"),
     ERROR_NOT_POSITIVE("1 이상의 양의 정수(자연수)만 입력이 가능합니다."),
     ERROR_OVERSIZE_TRY_COUNT("8자리 이하의 자연수만 입력이 가능합니다."),
+    ERROR_MOVE_VALUE("Car의 이동을 결정하는 값은 0~9 이내의 정수만 가능합니다."),
     ;
 
     fun formattedMessage(vararg args: String) = String.format(message, *args)

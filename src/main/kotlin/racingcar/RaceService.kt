@@ -27,7 +27,7 @@ class RaceService {
 
     private fun singleRace(cars: List<Car>) {
         cars.forEach {
-            if (random.nextInt(0, 10) >= 4) it.moveForward()
+            it.moveByValue(random.nextInt(0, 10))
             stringBuilder.append(it.getDistanceInfo() + "\n")
         }
     }
