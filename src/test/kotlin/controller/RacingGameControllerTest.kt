@@ -13,7 +13,7 @@ import java.io.OutputStream
 import java.io.PrintStream
 import java.util.Random
 
-class RaceControllerTest {
+class RacingGameControllerTest {
     private lateinit var outputStream: OutputStream
 
     @BeforeEach
@@ -26,10 +26,6 @@ class RaceControllerTest {
     fun printOutput() {
         System.setOut(System.out)
         println(output())
-    }
-
-    private fun setInput(input: String) {
-        System.setIn(input.byteInputStream())
     }
 
     private fun output(): String {
