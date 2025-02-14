@@ -1,7 +1,7 @@
 import controller.InOutController
-import model.Car
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import view.InOutView
 
 class InputTest {
@@ -9,8 +9,16 @@ class InputTest {
 
     @Test
     fun `자동차 이름은 5자를 초과할 수 없다`() {
-        assertThatThrownBy { Car("hwannow") }
-            .isInstanceOf(IllegalArgumentException::class.java)
+        assertThatThrownBy {
+            inOutController.splitToComma("pobi, jason1, haki")
+        }.isInstanceOf(IllegalArgumentException::class.java)
+    }
+
+    @Test
+    fun `쉼표 앞 뒤에 공백이 있을 때 공백을 글자 수로 취급하지 않는다`() {
+        assertDoesNotThrow {
+            inOutController.splitToComma("pobi, jason, haki")
+        }
     }
 
     @Test

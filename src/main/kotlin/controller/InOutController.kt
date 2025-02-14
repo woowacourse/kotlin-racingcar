@@ -14,10 +14,10 @@ class InOutController(private val inOutView: InOutView) {
     }
 
     fun splitToComma(input: String): MutableList<String> {
-        val carNames = input.split(",").filter { it.isNotEmpty() }
+        val carNames = input.split(",").map { it.trim() }.filter { it.isNotBlank() }
         if (carNames.isEmpty()) throw IllegalArgumentException(ErrorConstant.ERROR_NO_NAME)
-
         if (carNames.toSet().size != carNames.size) throw IllegalArgumentException(ErrorConstant.ERROR_SAME_NAME)
+        if (carNames.any { it.length > 5 }) throw IllegalArgumentException(ErrorConstant.ERROR_WRONG_NAME_LENGTH)
         return carNames.toMutableList()
     }
 
