@@ -33,14 +33,16 @@ class RacingController(
 
     private fun playRace(cars: List<Car>) {
         for (car in cars) {
-            if (RandomGenerator.getRandomNumber(MIN_RANGE, MAX_RANGE) >= MOVE_CONDITION) {
-                car.move()
-            }
+            car.moveOrStop(getMoveOrStopCondition())
         }
     }
 
     private fun getWinners(cars: List<Car>): List<String> {
         return cars.filter { car -> car.position == cars.maxOf { it.position } }.map { it.name }
+    }
+
+    private fun getMoveOrStopCondition(): Boolean {
+        return RandomGenerator.getRandomNumber(MIN_RANGE, MAX_RANGE) < MOVE_CONDITION
     }
 
     companion object {
