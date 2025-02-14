@@ -49,6 +49,10 @@ class Car private constructor(
             return random >= 4
         }
 
+        /**
+         * create List<Car> from string value.
+         * @throws IllegalArgumentException when any car name doesn't follow car name rule
+         * **/
         fun createCars(value: String): List<Car> {
             val carNames: List<String> = value.split(CAR_NAME_SEPARATOR).map { it.trim() }
             if (carNames.any { carName: String -> carName.length > MAX_CAR_NAME_LENGTH }) {
