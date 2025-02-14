@@ -8,7 +8,7 @@ import racingcar.utils.Constants.MIN_BOUND
 import racingcar.utils.Constants.RANDOM_NUMBER_BOUND_ERROR_MESSAGE
 import racingcar.utils.Constants.TRYCOUNT_ERROR_MESSAGE
 
-object ErrorHandler {
+object Validate {
     fun String.validCarName(): String {
         val carNames = this.split(COMMA)
         if (carNames.duplicateCarNames() ||
@@ -17,6 +17,16 @@ object ErrorHandler {
         ) {
             throw IllegalArgumentException(CARNAME_ERROR_MESSAGE)
         }
+        return this
+    }
+
+    fun String.validTryCount(): String {
+        if (this.toIntTryCount() || this.emptyTryCount()) throw IllegalArgumentException(TRYCOUNT_ERROR_MESSAGE)
+        return this
+    }
+
+    fun Int.validRandomNumber(): Int {
+        if (this !in MIN_BOUND..MAX_BOUND) throw IllegalArgumentException(RANDOM_NUMBER_BOUND_ERROR_MESSAGE)
         return this
     }
 
@@ -38,21 +48,11 @@ object ErrorHandler {
         return false
     }
 
-    fun String.validTryCount(): String {
-        if (this.toIntTryCount() || this.emptyTryCount()) throw IllegalArgumentException(TRYCOUNT_ERROR_MESSAGE)
-        return this
-    }
-
     private fun String.toIntTryCount(): Boolean {
         return this.toIntOrNull() == null
     }
 
     private fun String.emptyTryCount(): Boolean {
         return this.isBlank()
-    }
-
-    fun Int.validRandomNumber(): Int {
-        if (this !in MIN_BOUND..MAX_BOUND) throw IllegalArgumentException(RANDOM_NUMBER_BOUND_ERROR_MESSAGE)
-        return this
     }
 }

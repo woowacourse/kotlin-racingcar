@@ -1,8 +1,8 @@
 package racingcar.controller
 
 import racingcar.domain.Race
-import racingcar.utils.ErrorHandler.validCarName
-import racingcar.utils.ErrorHandler.validTryCount
+import racingcar.utils.Validate.validCarName
+import racingcar.utils.Validate.validTryCount
 import racingcar.view.InputView
 import racingcar.view.OutputView
 

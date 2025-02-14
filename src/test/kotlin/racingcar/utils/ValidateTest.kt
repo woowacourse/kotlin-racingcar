@@ -4,10 +4,10 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import racingcar.domain.GenerateRandomNumber
-import racingcar.utils.ErrorHandler.validCarName
-import racingcar.utils.ErrorHandler.validTryCount
+import racingcar.utils.Validate.validCarName
+import racingcar.utils.Validate.validTryCount
 
-class ErrorHandlerTest {
+class ValidateTest {
     @Test
     fun `자동차 이름이 중복일 때 예외 발생`() {
         val value = "a,b,b"
