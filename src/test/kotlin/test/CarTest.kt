@@ -41,4 +41,10 @@ class CarTest {
             ),
         )
     }
+
+    @Test
+    fun `전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다`() {
+        (0..3).forEach { random -> Assertions.assertThat(Car.isMovable(random)).isFalse() }
+        (4..9).forEach { random -> Assertions.assertThat(Car.isMovable(random)).isTrue() }
+    }
 }
