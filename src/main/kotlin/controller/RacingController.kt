@@ -11,9 +11,9 @@ class RacingController(
     private val outputView: OutputView,
 ) {
     fun run() {
-        val carNames: List<String> = splitCarNames(inputView.inputCarNames())
+        val carNames: List<String> = getCarNames()
         val cars: List<Car> = carNames.map { Car(it) }
-        val tryNumber = InputValidator.validateTryNumber(inputView.inputTryNumber())
+        val tryNumber: Int = getTryNumber()
 
         outputView.printStatus()
         repeat(tryNumber) {
@@ -23,8 +23,12 @@ class RacingController(
         outputView.printResult(getWinners(cars))
     }
 
-    private fun splitCarNames(inputCarNames: String): List<String> {
-        return inputCarNames.split(DELIMITER).map { it.trim() }
+    private fun getCarNames(): List<String> {
+        return inputView.inputCarNames().split(DELIMITER).map { it.trim() }
+    }
+
+    private fun getTryNumber(): Int {
+        return InputValidator.validateTryNumber(inputView.inputTryNumber())
     }
 
     private fun playRace(cars: List<Car>) {
