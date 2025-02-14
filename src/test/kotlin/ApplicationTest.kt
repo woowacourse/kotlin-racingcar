@@ -1,5 +1,7 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class ApplicationTest {
     @Test
@@ -21,16 +23,10 @@ class ApplicationTest {
         assertThat(cars.map { car: Car -> car.name }).isEqualTo(listOf("자동차", "이름은", "쉼표로", "구분한다"))
     }
 
-    @Test
-    fun `시도횟수는 1 이상의 숫자여야 한다`() {
-        assertThat(checkRoundValid(null)).isFalse()
-        assertThat(checkRoundValid("")).isFalse()
-        assertThat(checkRoundValid("0")).isFalse()
-        assertThat(checkRoundValid("-1")).isFalse()
-        assertThat(checkRoundValid("1.1")).isFalse()
-        assertThat(checkRoundValid("asd")).isFalse()
-        assertThat(checkRoundValid("${Int.MAX_VALUE + 1}")).isFalse()
-        assertThat(checkRoundValid("10")).isTrue()
+    @ValueSource(strings = ["", "0", "-1", "1.1", "asd", "${Int.MAX_VALUE + 1}"])
+    @ParameterizedTest
+    fun `시도횟수는 1 이상의 숫자여야 한다`(round: String) {
+        assertThat(checkRoundValid(round)).isEqualTo(0)
     }
 
     @Test
@@ -40,15 +36,15 @@ class ApplicationTest {
     }
 
     @Test
-    fun `자동차 경주 게임을 완료한 후 누가 우승했는지를 알려준다`() {
-//        val cars: List<Car> =
-//            listOf(
-//                Car(name = "a", initialDistance = 5),
-//                Car(name = "b", initialDistance = 0),
-//                Car(name = "c", initialDistance = 0),
-//            )
-//        val racecourse = Racecourse(cars, 0)
-//        val expectedWinners = listOf(Car(name = "a", initialDistance = 5))
-//        assertThat(racecourse.winners).isEqualTo(expectedWinners)
+    fun `자동차 경주 게임을 완료한 후 가장 큰 distance를 가진 객체가 우승한다`() {
+        val cars: List<Car> =
+            listOf(
+                Car(name = "a", initialDistance = 5),
+                Car(name = "b", initialDistance = 0),
+                Car(name = "c", initialDistance = 0),
+            )
+        val racecourse = Racecourse(cars, 0)
+        val expectedWinners = listOf(Car(name = "a", initialDistance = 5))
+        assertThat(racecourse.winners).isEqualTo(expectedWinners)
     }
 }
