@@ -9,7 +9,7 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
     @ParameterizedTest
-    @ValueSource(strings = [" ", "  ", "     "])
+    @ValueSource(strings = ["", " ", "  ", "     "])
     fun `자동차 이름이 공백일 때 에러를 발생시킨다`(name: String) {
         assertThrows<IllegalArgumentException> {
             Car(name)
@@ -19,6 +19,14 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = ["", "123456", "ㄱㄴㄷㄹㅁㅂㅅ"])
     fun `자동차 이름의 길이가 0자 이거나 5자 초과할 때 에러를 발생시킨다`(name: String) {
+        assertThrows<IllegalArgumentException> {
+            Car(name)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", " ", "  ", "     "])
+    fun `자동차 이름이 특수문자일 때 에러를 발생시킨다`(name: String) {
         assertThrows<IllegalArgumentException> {
             Car(name)
         }
@@ -40,7 +48,7 @@ class CarTest {
     }
 
     @Test
-    fun `전진이 가능하면 자동차는 전진한다`() {
+    fun `전진한 후 자동차는 이전 위치보다 앞서있다`() {
         val car = Car("뭉치")
         val isMoved = true
         val previousPosition = car.position
