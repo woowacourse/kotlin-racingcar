@@ -2,19 +2,18 @@ package racingcar
 
 class Racecourse(
     private val cars: List<Car>,
-    private val roundManager: RoundManager,
+    private val round: Int,
 ) {
-    fun startRace(onEachRound: () -> Unit) {
-        roundManager.play(
-            onEachRound = {
-                moveCars()
-                onEachRound()
-            },
-        )
+    fun startRace() {
+        repeat(round) {
+            startRound()
+            println()
+        }
+        println("최종 우승자: ${winners.joinToString { car: Car -> car.name }}")
     }
 
-    private fun moveCars() {
-        cars.forEach { car: Car -> car.move((0..9).random()) }
+    private fun startRound() {
+        cars.forEach { car: Car -> car.move() }
     }
 
     val winners: List<Car>
