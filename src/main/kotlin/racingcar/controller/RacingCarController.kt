@@ -4,7 +4,6 @@ import racingcar.model.Car
 import racingcar.model.Game
 import racingcar.model.Rounds
 import racingcar.util.retryWhenException
-import racingcar.validator.InputValidator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -23,7 +22,6 @@ class RacingCarController(
         return retryWhenException(
             action = {
                 val input = inputView.readCarNames()
-                InputValidator.validateNotEmpty(input)
                 val carNames = getCarNames(input)
                 carNames.map { Car(it) }
             },
