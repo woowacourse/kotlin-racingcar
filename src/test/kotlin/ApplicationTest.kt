@@ -21,9 +21,14 @@ class ApplicationTest {
 
     @Test
     fun `자동차 이름은 쉼표(,)를 기준으로 구분한다`() {
-        val userInputExample = "자동차,이름은,쉼표로,구분한다"
-        val cars = userInputExample.toCars()
-        assertThat(cars.map { car: Car -> car.name }).isEqualTo(listOf("자동차", "이름은", "쉼표로", "구분한다"))
+        assertThat(Car.createCars("자동차, 이름은, 쉼표로, 구분한다").map { car: Car -> car.name }).isEqualTo(
+            listOf(
+                "자동차",
+                "이름은",
+                "쉼표로",
+                "구분한다",
+            ),
+        )
     }
 
     @Test
