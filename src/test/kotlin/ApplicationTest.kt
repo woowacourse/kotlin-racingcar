@@ -1,17 +1,26 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 import racingcar.Car
 import racingcar.Racecourse
 
 class ApplicationTest {
-    @Test
-    fun `주어진 횟수 동안 n대의 자동차는 전진 또는 멈출 수 있다`() {
-        val cars: List<Car> = Car.createCars("Test1, Test2, Test3")
-        val round: Int = (1..10_000).random()
-        val expectedDistance: IntRange = 0..round
-        repeat(round) { cars.forEach(Car::move) }
-        assertThat(cars).allSatisfy { car: Car -> car.distance in expectedDistance }
+    @ParameterizedTest
+    @ValueSource(ints = [4, 5, 6, 7, 8, 9])
+    fun `4 이상의 값이라면 자동차는 한칸 전진한다`(number: Int) {
+        val car: Car = Car.createCars("Test").first()
+        car.move(number)
+        assertThat(car.distance == 1).isTrue
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 2, 3])
+    fun `4 미만의 값이라면 자동차는 정지한다`(number: Int) {
+        val car: Car = Car.createCars("Test").first()
+        car.move(number)
+        assertThat(car.distance == 0).isTrue
     }
 
     @Test
