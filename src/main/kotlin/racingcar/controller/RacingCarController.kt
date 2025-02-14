@@ -20,12 +20,17 @@ class RacingCarController(
     }
 
     private fun getCars(): List<Car> {
-        return retryWhenException {
-            val input = inputView.readCarNames()
-            InputValidator.validateNotEmpty(input)
-            val carNames = getCarNames(input)
-            carNames.map { Car(it) }
-        }
+        return retryWhenException(
+            action = {
+                val input = inputView.readCarNames()
+                InputValidator.validateNotEmpty(input)
+                val carNames = getCarNames(input)
+                carNames.map { Car(it) }
+            },
+            onError = {
+                outputView.printErrorMessage(it)
+            },
+        )
     }
 
     private fun getCarNames(input: String): List<String> {
@@ -33,10 +38,15 @@ class RacingCarController(
     }
 
     private fun getRounds(): Rounds {
-        return retryWhenException {
-            val input = inputView.readRounds()
-            Rounds(input)
-        }
+        return retryWhenException(
+            action = {
+                val input = inputView.readRounds()
+                Rounds(input)
+            },
+            onError = {
+                outputView.printErrorMessage(it)
+            },
+        )
     }
 
     private fun playGame(
