@@ -17,6 +17,8 @@ class Car private constructor(
         displayDistance()
     }
 
+    private fun isMovable(random: Int): Boolean = random >= 4
+
     private fun displayDistance() {
         println("$name : ${"-" * (distance)}")
     }
@@ -42,11 +44,6 @@ class Car private constructor(
     companion object {
         const val CAR_NAME_SEPARATOR: String = ","
         const val MAX_CAR_NAME_LENGTH: Int = 5
-
-        fun isMovable(random: Int): Boolean {
-            // 전진하는 조건은 0에서 9 사이에서 무작위 값을 구한 후 무작위 값이 4 이상일 경우이다.
-            return random >= 4
-        }
 
         /**
          * create List<Car> from string value.
