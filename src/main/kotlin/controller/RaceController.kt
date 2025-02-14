@@ -6,10 +6,10 @@ import java.util.Random
 class RaceController(
     private val count: Int,
     private val cars: MutableList<Car>,
-    private val inOutController: InOutController,
+    private val outController: OutController,
 ) {
     fun fullRace() {
-        inOutController.printGameResult()
+        outController.printGameResult()
         repeat(count) {
             oneRace()
         }
@@ -19,7 +19,7 @@ class RaceController(
         for (car in cars) {
             car.moveCar(Random())
         }
-        inOutController.printCurrentPosition(cars)
+        outController.printCurrentPosition(cars)
     }
 
     fun getFinalResult(): MutableList<Car> {

@@ -5,7 +5,7 @@ import model.Car
 import view.InOutConstants
 import view.InOutView
 
-class InOutController(private val inOutView: InOutView) {
+class InController(private val inOutView: InOutView) {
     fun getCarName(): MutableList<Car> {
         val input = inOutView.getData(InOutConstants.NAME)
         val carNames = splitToComma(input)
@@ -32,20 +32,5 @@ class InOutController(private val inOutView: InOutView) {
         if (count == null) throw IllegalArgumentException(ErrorConstant.ERROR_NOT_NUMBER)
         if (count <= 0) throw IllegalArgumentException(ErrorConstant.ERROR_UNDER_ZERO)
         return count
-    }
-
-    fun printCurrentPosition(cars: MutableList<Car>) {
-        cars.forEach { car ->
-            inOutView.printCurrentResult(car)
-        }
-        println()
-    }
-
-    fun printGameResult() {
-        inOutView.printGameResult()
-    }
-
-    fun printFinalResult(winnerResult: MutableList<Car>) {
-        inOutView.printFinalResult(winnerResult)
     }
 }

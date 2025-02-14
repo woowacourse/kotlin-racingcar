@@ -30,23 +30,23 @@ class RaceControllerTest {
     }
 
     val cars: MutableList<Car> = mutableListOf(Car("hwan", 2), Car("sia", 4))
-    val inOutController = InOutController(InOutView())
-    val raceController = RaceController(3, cars, inOutController)
+    val outController = OutController(InOutView())
+    val raceController = RaceController(3, cars, outController)
 
     @Test
     fun `가장 많이 움직인 자동차가 우승한다`() {
         val winnerList = raceController.comparePosition()
-        inOutController.printFinalResult(winnerList)
+        outController.printFinalResult(winnerList)
 
         assertThat(output()).isEqualTo("최종 우승자 : sia")
     }
 
     @Test
-    fun `전체 로직 점검`() {
-        val raceController = RaceController(4, cars, inOutController)
+    fun `랜덤으로 움직인 자동차 중 가장 많이 움직인 자동차가 우승한다`() {
+        val raceController = RaceController(4, cars, outController)
         raceController.fullRace()
         val winnerList = raceController.getFinalResult()
-        inOutController.printFinalResult(winnerList)
+        outController.printFinalResult(winnerList)
         assertThat(output()).contains("최종 우승자 : ${winnerList.joinToString(", ") { it.name }}")
     }
 }

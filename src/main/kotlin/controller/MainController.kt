@@ -3,13 +3,14 @@ package controller
 import view.InOutView
 
 class MainController {
-    private val inOutController = InOutController(InOutView())
+    private val inController = InController(InOutView())
+    private val outController = OutController(InOutView())
 
     fun runProgram() {
-        val cars = inOutController.getCarName()
-        val raceController = RaceController(inOutController.getTryCount(), cars, inOutController)
+        val cars = inController.getCarName()
+        val raceController = RaceController(inController.getTryCount(), cars, outController)
         raceController.fullRace()
         val winnerList = raceController.getFinalResult()
-        inOutController.printFinalResult(winnerList)
+        outController.printFinalResult(winnerList)
     }
 }
