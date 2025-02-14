@@ -15,6 +15,15 @@ class CarTest {
     }
 
     @Test
+    fun `자동차 이름을 입력하면 position이 0인 자동차 객체들이 리스트에 저장된다`() {
+        val input = listOf("car1", "car2", "car3")
+
+        val cars = racingController.generateCarList(input)
+
+        assertThat(cars).isEqualTo(listOf(Car("car1", 0), Car("car2", 0), Car("car3", 0)))
+    }
+
+    @Test
     fun `무작위 값이 4 이상이면 자동차가 전진한다`() {
         val number = (Constants.CONDITION_RANDOM_MIN..Constants.CONDITION_RANDOM_MAX).random()
 
