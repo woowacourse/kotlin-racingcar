@@ -4,6 +4,7 @@ import racingcar.Car
 import racingcar.Racecourse
 import racingcar.RoundManager
 import racingcar.util.ErrorMessage
+import racingcar.util.extension.times
 
 class View {
     fun playRacingGame() {
@@ -53,7 +54,10 @@ class View {
     ) {
         println("실행결과")
         val racecourse = Racecourse(cars, roundManager)
-        racecourse.startRace { println() }
+        racecourse.startRace(onEachRound = {
+            cars.forEach { car: Car -> println("${car.name} : ${"-" * (car.distance)}") }
+            println()
+        })
         print("최종 우승자: ${racecourse.winners.joinToString { car: Car -> car.name }}")
     }
 }
