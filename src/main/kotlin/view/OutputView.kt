@@ -1,6 +1,7 @@
 package view
 
 import model.Car
+import model.Cars
 import util.Constants
 import util.Messages
 
@@ -13,7 +14,7 @@ object OutputView {
         println(Messages.MESSAGE_OUTPUT_RACE_RESULT)
     }
 
-    fun printWinner(winner: List<String>) {
-        println(Messages.MESSAGE_OUTPUT_WINNER + winner.joinToString(Constants.DELIMITER_WINNER_OUTPUT))
+    fun printWinner(winners: Cars) {
+        println(Messages.MESSAGE_OUTPUT_WINNER + winners.cars.joinToString(Constants.DELIMITER_WINNER_OUTPUT) { it.name })
     }
 }

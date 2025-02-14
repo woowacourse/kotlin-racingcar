@@ -1,56 +1,38 @@
 import model.Car
+import model.Cars
 import util.Constants
 import view.InputView
 import view.OutputView
 
 class RacingController {
-    fun generateCarList(carsInput: List<String>): List<Car> {
-        val cars = mutableListOf<Car>()
-        carsInput.map { cars.add(Car(it)) }
+    fun start() {
+        val carInput = InputView.readCars()
+        val cars = generateCars(carInput)
+        val count = InputView.readCount()
+        race(cars, count)
+        val winner = cars.getWinners()
+        OutputView.printWinner(winner)
+    }
 
+    private fun generateCars(carNames: List<String>): Cars {
+        val cars = Cars()
+        carNames.map { cars.add(Car(it)) }
         return cars
     }
 
-    fun moveCars(car: Car) {
-        val randomNumber = (Constants.CONDITION_RANDOM_MIN..Constants.CONDITION_RANDOM_MAX).random()
-        car.move(randomNumber)
-    }
-
-    fun playRound(cars: List<Car>) {
-        cars.forEach { car ->
-            moveCars(car)
+    private fun playRound(cars: Cars) {
+        cars.cars.forEach { car ->
+            val randomNumber = (Constants.CONDITION_RANDOM_MIN..Constants.CONDITION_RANDOM_MAX).random()
+            car.move(randomNumber)
             OutputView.printRound(car)
         }
     }
 
-    fun race(
-        count: Int,
-        cars: List<Car>,
-    ) {
+    private fun race(cars: Cars, count: Int) {
         OutputView.printResultHeader()
         repeat(count) {
             playRound(cars)
             println()
         }
-    }
-
-    fun getWinner(cars: List<Car>): List<String> {
-        val winner = mutableListOf<String>()
-        cars.forEach { car ->
-            if (car.position == cars.maxOf { it.position }) {
-                winner.add(car.name)
-            }
-        }
-
-        return winner
-    }
-
-    fun start() {
-        val carInput = InputView.readCars()
-        val cars = generateCarList(carInput)
-        val count = InputView.readCount()
-        race(count, cars)
-        val winner = getWinner(cars)
-        OutputView.printWinner(winner)
     }
 }
