@@ -6,7 +6,7 @@ data class Car(val name: String) {
     private var _position = INIT_POSITION
     val position get() = _position
 
-    fun move(tryNumber: Int) {
-        if (tryNumber >= MOVE_MIN_NUMBER) _position++
+    fun move(numberGenerator: NumberGenerator) {
+        if (numberGenerator.generate() >= MOVE_MIN_NUMBER) _position++
     }
 }

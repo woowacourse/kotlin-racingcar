@@ -29,7 +29,7 @@ class Racing {
 
     private fun carMove(carsName: List<Car>) {
         carsName.forEach { car ->
-            car.move(RandomGenerator().generate())
+            car.move(RandomNumber())
         }
         outputView.printCarState(carsName)
     }

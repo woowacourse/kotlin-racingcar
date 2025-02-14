@@ -1,15 +1,23 @@
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
-    @ParameterizedTest
-    @ValueSource(ints = [4, 6, 8, 10, 21])
-    fun `자동차 이동 테스트`(tryNumber: Int) {
+    @Test
+    fun `자동차 이동 가능 테스트`() {
         val car = Car("123")
-        car.move(tryNumber)
+        car.move(TryMoveNumber())
         val actual = 1
+        assertThat(actual).isEqualTo(car.position)
+    }
+
+    @Test
+    fun `자동차 이동 불가 테스트`() {
+        val car = Car("123")
+        car.move(TryStopNumber())
+        val actual = 0
         assertThat(actual).isEqualTo(car.position)
     }
 
