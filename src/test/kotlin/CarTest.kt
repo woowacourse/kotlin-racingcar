@@ -14,7 +14,7 @@ class CarTest {
         car.moveOrStop(TestMoveNumberGenerator())
 
         // then
-        Assertions.assertThat(car.getDistance()).isEqualTo(expected)
+        Assertions.assertThat(car.distance).isEqualTo(expected)
     }
 
     @Test
@@ -24,7 +24,7 @@ class CarTest {
 
         car.moveOrStop(TestStopNumberGenerator())
 
-        Assertions.assertThat(car.getDistance()).isEqualTo(expected)
+        Assertions.assertThat(car.distance).isEqualTo(expected)
     }
 
     @Test
