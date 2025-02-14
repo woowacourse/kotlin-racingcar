@@ -1,7 +1,8 @@
 package racingcar.model
 
 class Car(val name: String) {
-    private var step: Int = DEFAULT_STEP
+    var step: Int = DEFAULT_STEP
+        private set
 
     init {
         require(name.trim().length in MIN_VALUE..MAX_VALUE) { CAR_NAME_LENGTH_MESSAGE }
@@ -10,8 +11,6 @@ class Car(val name: String) {
     fun tryForward(number: Int) {
         if (number >= FORWARD_VALUE) step++
     }
-
-    fun getStep(): String = "-".repeat(this.step)
 
     private companion object {
         const val DEFAULT_STEP: Int = 0

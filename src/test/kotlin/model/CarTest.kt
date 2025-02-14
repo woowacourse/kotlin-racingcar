@@ -22,11 +22,11 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
-    fun `자동차 전진 검증 테스트`(randomValue: Int) {
+    fun `number가 4와 9사이일 때 자동차 전진 테스트`(randomValue: Int) {
         val car = Car("carA")
         car.tryForward(randomValue)
 
-        val output = car.getStep()
+        val output = "-".repeat(car.step)
         val expected = "-"
 
         assertThat(output).isEqualTo(expected)
@@ -34,11 +34,11 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
-    fun `자동차 전진 실패 검증 테스트`(randomValue: Int) {
+    fun `number가 3이하일 때 자동차 전진 실패 테스트`(randomValue: Int) {
         val car = Car("carA")
         car.tryForward(randomValue)
 
-        val output = car.getStep()
+        val output = "-".repeat(car.step)
         val expected = ""
 
         assertThat(output).isEqualTo(expected)
