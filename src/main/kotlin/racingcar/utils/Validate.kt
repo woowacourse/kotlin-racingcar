@@ -3,9 +3,6 @@ package racingcar.utils
 import racingcar.utils.Constants.CARNAME_ERROR_MESSAGE
 import racingcar.utils.Constants.CARNAME_MAX_LENGTH
 import racingcar.utils.Constants.COMMA
-import racingcar.utils.Constants.MAX_BOUND
-import racingcar.utils.Constants.MIN_BOUND
-import racingcar.utils.Constants.RANDOM_NUMBER_BOUND_ERROR_MESSAGE
 import racingcar.utils.Constants.TRYCOUNT_ERROR_MESSAGE
 
 object Validate {
@@ -22,11 +19,6 @@ object Validate {
 
     fun String.validTryCount(): String {
         if (this.toIntTryCount() || this.emptyTryCount()) throw IllegalArgumentException(TRYCOUNT_ERROR_MESSAGE)
-        return this
-    }
-
-    fun Int.validRandomNumber(): Int {
-        if (this !in MIN_BOUND..MAX_BOUND) throw IllegalArgumentException(RANDOM_NUMBER_BOUND_ERROR_MESSAGE)
         return this
     }
 
