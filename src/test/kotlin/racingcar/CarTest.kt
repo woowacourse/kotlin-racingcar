@@ -17,14 +17,14 @@ class CarTest {
     @Test
     fun `4이상의 값이 전달되면 자동차의 위치가 1 증가한다`() {
         val moveState = MoveState.create(5)
-        car.move(moveState)
+        car.increasePositionIfMovable(moveState)
         car.position.shouldBe(1)
     }
 
     @Test
     fun `4 미만의 값이 전달되면 자동차의 위치가 유지된다`() {
         val moveState = MoveState.create(3)
-        car.move(moveState)
+        car.increasePositionIfMovable(moveState)
         car.position.shouldBe(0)
     }
 }
