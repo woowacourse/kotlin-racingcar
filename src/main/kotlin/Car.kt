@@ -10,8 +10,10 @@ class Car(
     }
 
     private fun displayDistance() {
-        var prettyDistance = ""
-        repeat(distance) { prettyDistance += "-" }
-        println("$name : $prettyDistance")
+        println("$name : ${DISTANCE_SYMBOL.repeat(distance)}")
+    }
+
+    companion object {
+        const val DISTANCE_SYMBOL: String = "-"
     }
 }
