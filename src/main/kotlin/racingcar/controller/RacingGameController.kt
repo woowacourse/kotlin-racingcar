@@ -1,18 +1,20 @@
 package racingcar.controller
 
 import racingcar.domain.Race
-import racingcar.utils.Validate.validCarName
-import racingcar.utils.Validate.validTryCount
+import racingcar.utils.Validator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingGameController {
     private val inputView = InputView()
     private val outputView = OutputView()
+    private val validator = Validator()
 
     fun run() {
-        val rawCarNames = inputView.insertCarNames().validCarName()
-        val rawTryCount = inputView.insertTryCount().validTryCount()
+        val rawCarNames = inputView.insertCarNames()
+        validator.validateCarName(rawCarNames)
+        val rawTryCount = inputView.insertTryCount()
+        validator.validateTryCount(rawTryCount)
         val gameResult = playing(rawCarNames, rawTryCount)
 
         printGameResult(gameResult)

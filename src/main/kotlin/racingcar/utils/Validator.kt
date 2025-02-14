@@ -1,20 +1,22 @@
 package racingcar.utils
 
-class Validate {
-    fun String.validCarName(): String {
-        val carNames = this.split(COMMA)
+class Validator {
+    fun validateCarName(rawCarName: String) {
+        val carNames = rawCarName.split(COMMA)
         if (carNames.duplicateCarNames() ||
             carNames.emptyCarNames() ||
             carNames.carNameLength()
         ) {
             throw IllegalArgumentException(CARNAME_ERROR_MESSAGE)
         }
-        return this
     }
 
-    fun String.validTryCount(): String {
-        if (this.toIntTryCount() || this.emptyTryCount()) throw IllegalArgumentException(TRYCOUNT_ERROR_MESSAGE)
-        return this
+    fun validateTryCount(rawTryCount: String) {
+        if (rawTryCount.toIntTryCount() || rawTryCount.emptyTryCount()) {
+            throw IllegalArgumentException(
+                TRYCOUNT_ERROR_MESSAGE,
+            )
+        }
     }
 
     private fun List<String>.duplicateCarNames(): Boolean {
