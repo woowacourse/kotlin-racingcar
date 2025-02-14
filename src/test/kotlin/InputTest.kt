@@ -26,13 +26,14 @@ class InputTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["S", "9999999999", " ", ""])
+    @ValueSource(strings = ["S", "9999999999", " ", "", "0.8"])
     fun `경주 횟수가 정수가 아닌 경우 예외를 발생한다`(count: String) {
         assertThrows<IllegalArgumentException> { inputView.validateCount(count) }
     }
 
-    @Test
-    fun `경주 횟수가 1보다 작은 경우 예외를 발생한다`() {
-        assertThrows<IllegalArgumentException> { inputView.validateCount("0") }
+    @ParameterizedTest
+    @ValueSource(strings = ["0", "-1", "-22", "-999999"])
+    fun `경주 횟수가 1보다 작은 경우 예외를 발생한다`(count: String) {
+        assertThrows<IllegalArgumentException> { inputView.validateCount(count) }
     }
 }
