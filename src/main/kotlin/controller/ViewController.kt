@@ -7,19 +7,19 @@ import view.InputView
 import view.OutputView
 
 class ViewController(private val inputView: InputView, private val outputView: OutputView) {
-    fun getCarName(): MutableList<Car> {
+    fun getCarName(): List<Car> {
         val input = inputView.getUserInput(MessageConstant.INPUT_NAME)
         val carNames = splitToComma(input)
-        val cars = carNames.map { Car(it) }.toMutableList()
+        val cars = carNames.map { Car(it) }
         return cars
     }
 
-    fun splitToComma(input: String): MutableList<String> {
+    fun splitToComma(input: String): List<String> {
         val carNames = input.split(",").filter { it.isNotEmpty() }
         if (carNames.isEmpty()) throw IllegalArgumentException(ErrorConstant.ERROR_NO_NAME)
 
         if (carNames.toSet().size != carNames.size) throw IllegalArgumentException(ErrorConstant.ERROR_SAME_NAME)
-        return carNames.toMutableList()
+        return carNames
     }
 
     fun getTryCount(): Int {
@@ -34,7 +34,7 @@ class ViewController(private val inputView: InputView, private val outputView: O
         return count
     }
 
-    fun printCurrentPosition(cars: MutableList<Car>) {
+    fun printCurrentPosition(cars: List<Car>) {
         cars.forEach { car ->
             outputView.printCurrentResult(car)
         }
@@ -45,7 +45,7 @@ class ViewController(private val inputView: InputView, private val outputView: O
         outputView.printGameResult()
     }
 
-    fun printFinalResult(winnerResult: MutableList<Car>) {
+    fun printFinalResult(winnerResult: List<Car>) {
         outputView.printFinalResult(winnerResult)
     }
 }

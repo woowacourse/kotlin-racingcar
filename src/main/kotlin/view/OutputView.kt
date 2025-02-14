@@ -12,7 +12,7 @@ class OutputView {
         println(MessageConstant.GAME_RESULT)
     }
 
-    fun printFinalResult(winnerList: MutableList<Car>) {
+    fun printFinalResult(winnerList: List<Car>) {
         print(MessageConstant.FINAL_RESULT)
         println(winnerList.joinToString(", ") { it.name })
     }

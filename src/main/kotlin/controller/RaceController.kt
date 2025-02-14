@@ -5,11 +5,11 @@ import java.util.Random
 
 class RaceController(
     private val count: Int,
-    private val cars: MutableList<Car>,
-    private val inOutController: ViewController,
+    private val cars: List<Car>,
+    private val viewController: ViewController,
 ) {
     fun fullRace() {
-        inOutController.printGameResult()
+        viewController.printGameResult()
         repeat(count) {
             oneRace()
         }
@@ -19,16 +19,12 @@ class RaceController(
         for (car in cars) {
             car.moveCar(Random())
         }
-        inOutController.printCurrentPosition(cars)
+        viewController.printCurrentPosition(cars)
     }
 
-    fun getFinalResult(): MutableList<Car> {
-        return comparePosition()
-    }
-
-    fun comparePosition(): MutableList<Car> {
+    fun getFinalResult(): List<Car> {
         val maxPosition = cars.maxOfOrNull { it.currentPosition }
-        val winnerList = cars.filter { it.currentPosition == maxPosition }.toMutableList()
+        val winnerList = cars.filter { it.currentPosition == maxPosition }
         return winnerList
     }
 }
