@@ -2,8 +2,10 @@ package domain
 
 class Car(
     val name: String,
-    var position: Int = INIT_POSITION,
 ) {
+    var position: Int = INIT_POSITION
+        private set
+
     fun move(randomNum: Int) {
         if (randomNum >= STANDARD_NUMBER) {
             ++position
