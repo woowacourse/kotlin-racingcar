@@ -8,10 +8,10 @@ import racingcar.validator.RoundsValidator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class RacingCarController {
-    private val inputView = InputView()
-    private val outputView = OutputView()
-
+class RacingCarController(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+) {
     fun start() {
         val cars = getCars()
         val rounds = getRounds()
