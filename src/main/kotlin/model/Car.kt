@@ -24,7 +24,7 @@ class Car(
     companion object {
         const val DEFAULT_POSITION: Int = 0
         const val FORWARD_NUMBER: Int = 4
-        const val MAX_BOUND: Int = 9
+        const val MAX_BOUND: Int = 10
         const val MIN_BOUND: Int = 0
     }
 }
