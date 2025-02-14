@@ -9,6 +9,10 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class RefereeTest {
     private val referee = Referee()
+    private val car1 = Car("제이슨")
+    private val car2 = Car("디노")
+    private val car3 = Car("레아")
+    private val car4 = Car("제임스")
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
@@ -24,11 +28,6 @@ class RefereeTest {
 
     @Test
     fun `주어진 자동차 목록에서 가장 많이 전진한 우승자의 이름을 반환한다`() {
-        val car1 = Car("제이슨")
-        val car2 = Car("디노")
-        val car3 = Car("레아")
-        val car4 = Car("제임스")
-
         repeat(4) { car1.moveForward(true) }
         repeat(3) { car2.moveForward(true) }
         repeat(2) { car3.moveForward(true) }
@@ -43,11 +42,6 @@ class RefereeTest {
 
     @Test
     fun `주어진 자동차 목록에서 가장 많이 전진한 여러 명의 우승자의 이름들을 반환한다`() {
-        val car1 = Car("제이슨")
-        val car2 = Car("디노")
-        val car3 = Car("레아")
-        val car4 = Car("제임스")
-
         repeat(4) { car1.moveForward(true) }
         repeat(4) { car2.moveForward(true) }
         repeat(4) { car3.moveForward(true) }
