@@ -7,13 +7,13 @@ class Car(
         private set
 
     fun move(randomNum: Int) {
-        if (randomNum >= STANDARD_NUMBER) {
+        if (randomNum >= MOVEMENT_THRESHOLD) {
             ++position
         }
     }
 
     companion object {
         const val INIT_POSITION = 0
-        const val STANDARD_NUMBER = 4
+        const val MOVEMENT_THRESHOLD = 4
     }
 }
