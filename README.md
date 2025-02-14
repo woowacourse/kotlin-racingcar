@@ -48,3 +48,7 @@
 
 - `Racecourse.startRace()`
 - `Racecourse.finalWinners`
+
+### Class Diagram
+
+![Class Diagram](class-diagram.png)
