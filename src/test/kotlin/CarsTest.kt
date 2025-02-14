@@ -1,5 +1,5 @@
 import domain.cars.Cars
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class CarsTest {
@@ -8,7 +8,7 @@ class CarsTest {
         val cars = getDummy()
         val expected = "포비, 크론, 디노"
 
-        Assertions.assertEquals(expected, cars.getWinners())
+        assertEquals(expected, cars.getWinners())
     }
 }
 
