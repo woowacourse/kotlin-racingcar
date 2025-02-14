@@ -9,9 +9,8 @@ class Car private constructor(
     var distance: Int = initialDistance
         private set
 
-    fun move() {
-        val random: Int = (0..9).random()
-        if (isMovable(random)) {
+    fun move(number: Int) {
+        if (isMovable(number)) {
             distance += 1
         }
         displayDistance()

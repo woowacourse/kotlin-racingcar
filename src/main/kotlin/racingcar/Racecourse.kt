@@ -13,7 +13,7 @@ class Racecourse(
     }
 
     private fun startRound() {
-        cars.forEach { car: Car -> car.move() }
+        cars.forEach { car: Car -> car.move((0..9).random()) }
     }
 
     val winners: List<Car>
