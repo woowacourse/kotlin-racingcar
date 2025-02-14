@@ -1,13 +1,14 @@
 package controller
 
 import constant.ErrorConstant
+import constant.MessageConstant
 import model.Car
-import view.InOutConstant
-import view.InOutView
+import view.InputView
+import view.OutputView
 
-class InOutController(private val inOutView: InOutView) {
+class ViewController(private val inputView: InputView, private val outputView: OutputView) {
     fun getCarName(): MutableList<Car> {
-        val input = inOutView.getData(InOutConstant.NAME)
+        val input = inputView.getUserInput(MessageConstant.INPUT_NAME)
         val carNames = splitToComma(input)
         val cars = carNames.map { Car(it) }.toMutableList()
         return cars
@@ -22,7 +23,7 @@ class InOutController(private val inOutView: InOutView) {
     }
 
     fun getTryCount(): Int {
-        val input = inOutView.getData(InOutConstant.COUNT)
+        val input = inputView.getUserInput(MessageConstant.INPUT_COUNT)
         val count = parseInt(input)
         return count
     }
@@ -35,16 +36,16 @@ class InOutController(private val inOutView: InOutView) {
 
     fun printCurrentPosition(cars: MutableList<Car>) {
         cars.forEach { car ->
-            inOutView.printCurrentResult(car)
+            outputView.printCurrentResult(car)
         }
         println()
     }
 
     fun printGameResult() {
-        inOutView.printGameResult()
+        outputView.printGameResult()
     }
 
     fun printFinalResult(winnerResult: MutableList<Car>) {
-        inOutView.printFinalResult(winnerResult)
+        outputView.printFinalResult(winnerResult)
     }
 }

@@ -6,7 +6,7 @@ import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import view.InOutView
+import view.OutputView
 import java.io.ByteArrayOutputStream
 import java.io.OutputStream
 import java.io.PrintStream
@@ -32,7 +32,7 @@ class RaceControllerTest {
     }
 
     val cars: MutableList<Car> = mutableListOf(Car("hwan", 2), Car("sia", 4))
-    val inOutController = InOutController(InOutView())
+    val inOutController = ViewController(OutputView())
     val raceController = RaceController(3, cars, inOutController)
 
     @Test

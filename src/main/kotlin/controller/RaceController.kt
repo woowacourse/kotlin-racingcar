@@ -6,7 +6,7 @@ import java.util.Random
 class RaceController(
     private val count: Int,
     private val cars: MutableList<Car>,
-    private val inOutController: InOutController,
+    private val inOutController: ViewController,
 ) {
     fun fullRace() {
         inOutController.printGameResult()

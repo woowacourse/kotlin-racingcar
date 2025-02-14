@@ -1,11 +1,11 @@
-import controller.InOutController
+import controller.ViewController
 import model.Car
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import view.InOutView
+import view.OutputView
 
 class InputTest {
-    val inOutController = InOutController(InOutView())
+    val inOutController = ViewController(OutputView())
 
     @Test
     fun `자동차 이름은 5자를 초과할 수 없다`() {
