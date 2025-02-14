@@ -12,8 +12,10 @@ class Car(
         require(name.isNotBlank()) { "각 자동차 이름은 공백이 불가합니다." }
     }
 
-    fun move() {
-        ++position
+    fun moveOrStop(condition: Boolean) {
+        if (condition) {
+            ++position
+        }
     }
 
     companion object {
