@@ -4,16 +4,16 @@ import racingcar.utils.Constants.MOVE
 import racingcar.utils.Constants.STOP
 
 class Car(val carName: String) {
-    val moveOrStop = mutableListOf<String>()
+    val position = mutableListOf<String>()
 
     fun moves(isMove: Boolean) {
         when (isMove) {
-            true -> moveOrStop.add(MOVE)
-            false -> moveOrStop.add(STOP)
+            true -> position.add(MOVE)
+            false -> position.add(STOP)
         }
     }
 
     fun moveCount(): Int {
-        return moveOrStop.count { it == MOVE }
+        return position.count { it == MOVE }
     }
 }
