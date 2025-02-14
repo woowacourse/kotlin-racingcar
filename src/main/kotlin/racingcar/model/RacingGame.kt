@@ -14,11 +14,15 @@ class RacingGame(
         printCurrentCarStep: (String) -> Unit,
     ) {
         repeat(count) {
-            racingCars.forEach { car ->
-                tryForward(car)
-                printCurrentCarStep(prettyCarStep(car))
-            }
+            tryRacingOnce(printCurrentCarStep)
             printCurrentCarStep("")
+        }
+    }
+
+    private fun tryRacingOnce(printCurrentCarStep: (String) -> Unit) {
+        racingCars.forEach { car ->
+            tryForward(car)
+            printCurrentCarStep(prettyCarStep(car))
         }
     }
 
