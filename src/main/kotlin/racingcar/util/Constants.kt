@@ -1,4 +1,4 @@
-package util
+package racingcar.util
 
 object Constants {
     const val DELIMITER_CAR_INPUT = ","

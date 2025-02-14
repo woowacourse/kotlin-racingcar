@@ -1,8 +1,8 @@
-package view
+package racingcar.view
 
-import util.Constants
-import util.Messages
-import util.Validator
+import racingcar.util.Constants
+import racingcar.util.Messages
+import racingcar.util.Validator
 import java.io.BufferedReader
 import java.io.InputStreamReader
 

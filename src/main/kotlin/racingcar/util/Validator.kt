@@ -1,4 +1,4 @@
-package util
+package racingcar.util
 
 object Validator {
     fun validateCarName(input: List<String>) {

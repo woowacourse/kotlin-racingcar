@@ -1,7 +1,9 @@
-import model.Car
-import util.Constants
-import view.InputView
-import view.OutputView
+package racingcar
+
+import racingcar.model.Car
+import racingcar.util.Constants
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 class RacingController {
     fun generateCarList(carsInput: List<String>): MutableList<Car> {

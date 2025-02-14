@@ -1,8 +1,9 @@
-import model.Car
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import util.Constants
+import racingcar.RacingController
+import racingcar.model.Car
+import racingcar.util.Constants
 
 class CarTest {
     private lateinit var car: Car
