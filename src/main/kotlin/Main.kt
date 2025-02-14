@@ -11,25 +11,19 @@ fun main() {
 
 fun readCars(): List<Car> {
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
-    val userInput: String? = readlnOrNull()
-    if (checkCarNameValid(userInput)) {
-        return userInput!!.toCars()
+
+    runCatching {
+        val userInput: String = readlnOrNull() ?: throw IllegalArgumentException("입력에 오류가 발생했습니다. 다시 입력해주세요.")
+        Car.createCars(userInput)
+    }.onSuccess { cars: List<Car> ->
+        return cars
+    }.onFailure { error: Throwable ->
+        println(error.message)
+        return readCars()
     }
-    println("자동차 이름은 5자를 초과할 수 없습니다. 다시 입력해주세요.")
-    return readCars()
-}
 
-fun checkCarNameValid(userInput: String?): Boolean {
-    if (userInput == null) return false
-    val cars = userInput.toCars()
-    return cars.all { car -> car.name.length <= 5 }
+    throw IllegalStateException("runCatching in readCars() didn't success and didn't fail also")
 }
-
-fun String.toCars(): List<Car> =
-    split(",")
-        .map { it.trim() }
-        .filter { it.isNotBlank() }
-        .map { name -> Car(name) }
 
 fun readRound(): Int {
     println("시도할 횟수는 몇 회인가요?")
