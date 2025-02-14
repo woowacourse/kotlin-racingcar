@@ -1,11 +1,12 @@
 object Constants {
-    const val ERROR = "[ERROR]"
-    const val ERROR_EMPTY_CAR_NAME_MESSAGE = "$ERROR 자동차 이름은 공백일 수 없습니다."
-    const val ERROR_DUPLICATED_CAR_NAME_MESSAGE = "$ERROR 중복된 자동차 이름이 있습니다."
-    const val ERROR_OUT_OF_BOUND_CAR_NAME_MESSAGE = "$ERROR 자동차 이름의 최대 길이를 초과했습니다."
-    const val ERROR_EMPTY_TRY_COUNT_MESSAGE = "$ERROR 시도횟수는 공백일 수 없습니다."
-    const val ERROR_IS_NOT_NUMBER_MESSAGE = "$ERROR 시도횟수는 숫자여야만 합니다."
-    const val ERROR_OUT_OF_BOUND_TRY_COUNT_MESSAGE = "$ERROR 시도횟수는 1에서 1,000 사이의 숫자여야 합니다."
+    private const val ERROR = "[ERROR]"
+    private const val CURRENT_INPUT_MESSAGE = "(현재 입력 : %s)"
+    const val ERROR_EMPTY_CAR_NAME_MESSAGE_WITH_INPUT = "$ERROR 자동차 이름은 공백일 수 없습니다.$CURRENT_INPUT_MESSAGE"
+    const val ERROR_DUPLICATED_CAR_NAME_MESSAGE_WITH_INPUT = "$ERROR 중복된 자동차 이름이 있습니다.$CURRENT_INPUT_MESSAGE"
+    const val ERROR_OUT_OF_BOUND_CAR_NAME_MESSAGE_WITH_INPUT = "$ERROR 자동차 이름의 최대 길이를 초과했습니다.$CURRENT_INPUT_MESSAGE"
+    const val ERROR_EMPTY_TRY_COUNT_MESSAGE_WITH_INPUT = "$ERROR 시도횟수는 공백일 수 없습니다.$CURRENT_INPUT_MESSAGE"
+    const val ERROR_IS_NOT_NUMBER_MESSAGE_WITH_INPUT = "$ERROR 시도횟수는 숫자여야만 합니다.$CURRENT_INPUT_MESSAGE"
+    const val ERROR_OUT_OF_BOUND_TRY_COUNT_MESSAGE_WITH_INPUT = "$ERROR 시도횟수는 1에서 1,000 사이의 숫자여야 합니다.$CURRENT_INPUT_MESSAGE"
 
     const val CAR_NAME_LOWER_BOUND = 1
     const val CAR_NAME_UPPER_BOUND = 5
