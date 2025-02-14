@@ -41,7 +41,7 @@ fun readRound(): Int {
 }
 
 fun checkRoundValid(userInput: String): Int {
-    var validatedNumber = userInput.toIntOrNull() ?: 0
+    val validatedNumber = userInput.toIntOrNull() ?: 0
     if (validatedNumber <= 0) return 0
     return validatedNumber
 }
