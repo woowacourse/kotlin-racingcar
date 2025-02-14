@@ -9,8 +9,9 @@ fun main() {
 fun readCars(): List<Car> {
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
     val userInput: String? = readlnOrNull()
+    requireNotNull(userInput) { "자동차의 이름을 입력해주세요" }
     if (checkCarNameValid(userInput)) {
-        return userInput!!.toCars()
+        return userInput.toCars()
     }
     println("자동차 이름은 5자를 초과할 수 없습니다. 다시 입력해주세요.")
     return readCars()
@@ -31,8 +32,9 @@ fun String.toCars(): List<Car> =
 fun readRound(): Int {
     println("시도할 횟수는 몇 회인가요?")
     val userInput: String? = readlnOrNull()
+    requireNotNull(userInput) { "시도 횟수를 입력해주세요." }
     if (checkRoundValid(userInput)) {
-        return userInput!!.toInt()
+        return userInput.toInt()
     }
     println("올바른 숫자를 입력하세요.")
     return readRound()
