@@ -7,9 +7,7 @@ import racingcar.view.OutputView
 
 class RacingController {
     fun generateCarList(carsInput: List<String>): List<Car> {
-        return carsInput.map {
-            Car(it, 0)
-        }
+        return carsInput.map { Car(it) }
     }
 
     fun moveCars(
