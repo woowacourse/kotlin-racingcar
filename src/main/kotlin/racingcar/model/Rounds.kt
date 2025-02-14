@@ -2,7 +2,7 @@ package racingcar.model
 
 @JvmInline
 value class Rounds(
-    val value: Int
+    val value: Int,
 ) {
     init {
         validate(value)
@@ -18,7 +18,6 @@ value class Rounds(
     }
 
     companion object {
-
         private fun validateUserInput(input: String): Int {
             isEmpty(input)
             isNumeric(input)
