@@ -2,9 +2,9 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.Game
+import racingcar.model.Rounds
 import racingcar.util.retryWhenException
 import racingcar.validator.InputValidator
-import racingcar.validator.RoundsValidator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -29,24 +29,22 @@ class RacingCarController(
     }
 
     private fun getCarNames(input: String): List<String> {
-        return input.split(COMMA).map { it.trim() }
+        return input.split(SEPARATOR).map { it.trim() }
     }
 
-    private fun getRounds(): Int {
+    private fun getRounds(): Rounds {
         return retryWhenException {
             val input = inputView.readRounds()
-            InputValidator.validateNotEmpty(input)
-            RoundsValidator.validate(input)
-            input.toInt()
+            Rounds(input)
         }
     }
 
     private fun playGame(
-        rounds: Int,
+        rounds: Rounds,
         game: Game,
     ) {
         outputView.printGameResultMessage()
-        repeat(rounds) {
+        repeat(rounds.value) {
             playRound(game)
         }
         val winners = game.getWinners()
@@ -60,6 +58,6 @@ class RacingCarController(
     }
 
     companion object {
-        const val COMMA = ","
+        const val SEPARATOR = ","
     }
 }
