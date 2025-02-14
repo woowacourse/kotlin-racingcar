@@ -13,7 +13,7 @@ fun readCars(): List<Car> {
     println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
 
     runCatching {
-        val userInput: String = readlnOrNull() ?: throw IllegalArgumentException("입력에 오류가 발생했습니다. 다시 입력해주세요.")
+        val userInput: String = readlnOrNull() ?: throw IllegalArgumentException(ERROR_MESSAGE_FAIL_TO_READ_INPUT)
         Car.createCars(userInput)
     }.onSuccess { cars: List<Car> ->
         return cars
@@ -22,22 +22,33 @@ fun readCars(): List<Car> {
         return readCars()
     }
 
-    throw IllegalStateException("runCatching in readCars() didn't success and didn't fail also")
+    throw IllegalStateException(ERROR_MESSAGE_RUNCATCHING_NO_RESULT)
 }
 
 fun readRound(): Int {
     println("시도할 횟수는 몇 회인가요?")
-    val userInput: String? = readlnOrNull()
-    if (checkRoundValid(userInput)) {
-        return userInput!!.toInt()
+
+    runCatching {
+        val userInput: String = readlnOrNull() ?: throw IllegalStateException(ERROR_MESSAGE_FAIL_TO_READ_INPUT)
+        parseToRound(userInput)
+    }.onSuccess { round: Int ->
+        return round
+    }.onFailure { error: Throwable ->
+        println(error.message)
+        return readRound()
     }
-    println("올바른 숫자를 입력하세요.")
-    return readRound()
+
+    throw IllegalStateException(ERROR_MESSAGE_RUNCATCHING_NO_RESULT)
 }
 
-fun checkRoundValid(userInput: String?): Boolean {
-    if (userInput == null) return false
-    if (userInput.toIntOrNull() == null) return false
-    if (userInput.toInt() <= 0) return false
-    return true
+fun parseToRound(value: String): Int {
+    require(value.toIntOrNull() != null && value.toInt() > 0) {
+        ERROR_MESSAGE_INVALID_ROUND
+    }
+
+    return value.toInt()
 }
+
+const val ERROR_MESSAGE_RUNCATCHING_NO_RESULT = "runCatching didn't success and didn't fail also"
+const val ERROR_MESSAGE_FAIL_TO_READ_INPUT: String = "입력에 오류가 발생했습니다. 다시 입력해주세요."
+const val ERROR_MESSAGE_INVALID_ROUND: String = "시도할 횟수는 1 이상의 자연수여야 합니다. 다시 입력해주세요."
