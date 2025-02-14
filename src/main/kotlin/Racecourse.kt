@@ -11,8 +11,16 @@ class Racecourse(
     }
 
     private fun startRound() {
-        cars.forEach { car: Car -> car.move() }
+        cars.forEach { car: Car ->
+            if (isMovable(generateRandomNumber())) {
+                car.move()
+            }
+        }
     }
+
+    private fun generateRandomNumber(): Int = (0..9).random()
+
+    private fun isMovable(random: Int): Boolean = random >= MOVEMENT_CONDITION
 
     val winners: List<Car>
         get() {
@@ -20,4 +28,8 @@ class Racecourse(
             val winners: List<Car> = cars.filter { car: Car -> car.distance == maxDistance }
             return winners
         }
+
+    companion object {
+        const val MOVEMENT_CONDITION: Int = 4
+    }
 }
