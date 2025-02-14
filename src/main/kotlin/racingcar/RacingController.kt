@@ -6,6 +6,9 @@ import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingController {
+    private val inputView = InputView()
+    private val outputView = OutputView
+
     fun generateCarList(carsInput: List<String>): List<Car> {
         return carsInput.map { Car(it) }
     }
@@ -41,11 +44,11 @@ class RacingController {
     }
 
     fun start() {
-        val carInput = InputView.readCars()
+        val carInput = inputView.readCars()
         val cars = generateCarList(carInput)
-        val count = InputView.readCount()
+        val count = inputView.readCount()
         race(count, cars)
         val winner = getWinner(cars)
-        OutputView.printWinner(winner)
+        outputView.printWinner(winner)
     }
 }
