@@ -27,7 +27,7 @@ class RacingGame(
     }
 
     private fun raceOneRound() {
-        cars.forEach { it.tryForward(generator.generate(MIN_RANGE, MAX_RANGE)) }
+        cars.forEach { it.tryForward(generator.generate()) }
     }
 
     private fun getRaceState(): String = cars.joinToString("\n") { "${it.name} : ${FORWARD_SIGN.repeat(it.position)}" }
@@ -35,7 +35,5 @@ class RacingGame(
     private companion object {
         const val INVALID_COUNT_MESSAGE = "시도할 횟수는 자연수여야 합니다."
         const val FORWARD_SIGN = "-"
-        const val MIN_RANGE = 0
-        const val MAX_RANGE = 9
     }
 }

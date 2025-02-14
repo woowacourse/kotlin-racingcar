@@ -25,7 +25,7 @@ class CarTest {
         val car = Car("carA")
         car.tryForward(randomValue)
 
-        val output = car.getStep()
+        val output = car.position
         val expected = "-"
 
         assertThat(output).isEqualTo(expected)
@@ -37,7 +37,7 @@ class CarTest {
         val car = Car("carA")
         car.tryForward(randomValue)
 
-        val output = car.getStep()
+        val output = car.position
         val expected = ""
 
         assertThat(output).isEqualTo(expected)
