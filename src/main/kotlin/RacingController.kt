@@ -6,22 +6,19 @@ import view.OutputView
 class RacingController {
     fun generateCarList(carsInput: List<String>): List<Car> {
         val cars = mutableListOf<Car>()
-        carsInput.map { cars.add(Car(it, 0)) }
+        carsInput.map { cars.add(Car(it)) }
 
         return cars
     }
 
-    fun moveCars(
-        number: Int,
-        car: Car,
-    ) {
-        if (number >= Constants.CONDITION_MOVE_THRESHOLD) car.position++
+    fun moveCars(car: Car) {
+        val randomNumber = (Constants.CONDITION_RANDOM_MIN..Constants.CONDITION_RANDOM_MAX).random()
+        car.move(randomNumber)
     }
 
     fun playRound(cars: List<Car>) {
         cars.forEach { car ->
-            val number = (Constants.CONDITION_RANDOM_MIN..Constants.CONDITION_RANDOM_MAX).random()
-            moveCars(number, car)
+            moveCars(car)
             OutputView.printRound(car)
         }
     }

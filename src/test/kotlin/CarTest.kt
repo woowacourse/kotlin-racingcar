@@ -2,7 +2,6 @@ import model.Car
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import util.Constants
 
 class CarTest {
     private lateinit var car: Car
@@ -10,25 +9,18 @@ class CarTest {
 
     @BeforeEach
     fun setUp() {
-        car = Car("car", 0)
+        car = Car("car")
     }
 
     @Test
-    fun `무작위 값이 4 이상이면 자동차가 전진한다`() {
-        val number = (Constants.CONDITION_RANDOM_MIN..Constants.CONDITION_RANDOM_MAX).random()
-
-        racingController.moveCars(number, car)
-
-        if (number >= Constants.CONDITION_MOVE_THRESHOLD) {
-            assertThat(car.position).isEqualTo(1)
-        } else {
-            assertThat(car.position).isEqualTo(0)
-        }
+    fun `무작위 값이 4 미만이면 자동차가 전진하지 않는다`() {
+        car.move(0)
+        assertThat(car.position).isEqualTo(0)
     }
 
     @Test
     fun `가장 많이 전진한 자동차를 우승자 리스트에 추가한다`() {
-        val cars = listOf(Car("car1", 1), Car("car2", 2), Car("car3", 3))
+        val cars = listOf(Car("car1"), Car("car2"), Car("car3"))
 
         val winner = racingController.getWinner(cars)
 
@@ -37,7 +29,7 @@ class CarTest {
 
     @Test
     fun `가장 많이 전진한 자동차가 여러 대일 경우 모두 우승자 리스트에 추가한다`() {
-        val cars = listOf(Car("car1", 1), Car("car2", 2), Car("car3", 2))
+        val cars = listOf(Car("car1"), Car("car2"), Car("car3"))
 
         val winner = racingController.getWinner(cars)
 
