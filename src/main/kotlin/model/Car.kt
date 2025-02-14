@@ -4,8 +4,11 @@ import java.util.Random
 
 class Car(
     val name: String,
-    var currentPosition: Int = 0,
+    currentPosition: Int = 0,
 ) {
+    var currentPosition: Int = currentPosition
+        private set
+
     fun moveCar(random: Random) {
         val random = random.nextInt(10)
         currentPosition += goOrNot(random)
