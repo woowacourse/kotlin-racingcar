@@ -6,9 +6,11 @@ import racingcar.Racecourse
 class ApplicationTest {
     @Test
     fun `주어진 횟수 동안 n대의 자동차는 전진 또는 멈출 수 있다`() {
-        val car = Car("Test")
-        car.move()
-        assertThat(car.distance).isIn(car.distance, car.distance + 1)
+        val cars: List<Car> = Car.createCars("Test1, Test2, Test3")
+        val round: Int = (1..10_000).random()
+        val expectedDistance: IntRange = 0..round
+        repeat(round) { cars.forEach(Car::move) }
+        assertThat(cars).allSatisfy { car: Car -> car.distance in expectedDistance }
     }
 
     @Test
