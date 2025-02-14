@@ -1,11 +1,8 @@
 package utils
 
-import kotlin.random.Random
-import kotlin.random.nextInt
-
 object RandomGenerator {
     fun generateRandomNumber(): Int {
-        return Random.nextInt(MIN_RANGE..MAX_RANGE)
+        return (MIN_RANGE..MAX_RANGE).random()
     }
 
     private const val MIN_RANGE = 0
