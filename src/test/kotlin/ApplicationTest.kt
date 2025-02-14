@@ -50,7 +50,7 @@ class ApplicationTest {
                 Car(name = "c", initialDistance = 0),
             )
         val racecourse = Racecourse(cars, 0)
-        val expectedWinners = listOf(Car(name = "a", initialDistance = 5))
+        val expectedWinners: List<Car> = listOf(Car(name = "a", initialDistance = 5))
         assertThat(racecourse.winners).isEqualTo(expectedWinners)
     }
 }
