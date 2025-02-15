@@ -3,15 +3,14 @@ class Racing {
     private val outputView = OutputView()
 
     fun play() {
-        val cars = getCars(inputView.readCars())
-        val attempts = getAttempts(inputView.readAttempt())
+        val cars = getCars(inputView.readCarsName())
+        val attempts = inputView.readAttempt()
         race(cars, attempts)
         val winners = getWinners(cars)
         outputView.printRaceWinner(winners)
     }
 
-    private fun getCars(carsInput: String): List<Car> {
-        val carsName = carsInput.split(CAR_DELIMITER)
+    private fun getCars(carsName: List<String>): List<Car> {
         val cars = CarFactory().createCar(carsName)
         return duplicateCarName(cars)
     }
@@ -20,8 +19,6 @@ class Racing {
         if (cars.size != cars.toSet().size) outputView.printDuplicate()
         return cars.distinct()
     }
-
-    private fun getAttempts(attempts: String): Int = requireNotNull(attempts.toIntOrNull()) { ATTEMPT_INPUT_ERROR }
 
     private fun race(
         cars: List<Car>,

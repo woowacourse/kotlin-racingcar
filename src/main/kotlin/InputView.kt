@@ -3,13 +3,13 @@ import java.util.Scanner
 class InputView {
     private val scanner = Scanner(System.`in`)
 
-    fun readCars(): String {
+    fun readCarsName(): List<String> {
         println(INPUT_CAR_NAME)
-        return scanner.nextLine()
+        return scanner.nextLine().split(CAR_DELIMITER)
     }
 
-    fun readAttempt(): String {
+    fun readAttempt(): Int {
         println(INPUT_ATTEMPTS)
-        return scanner.nextLine()
+        return requireNotNull(scanner.nextLine().toIntOrNull()) { ATTEMPT_INPUT_ERROR }
     }
 }
