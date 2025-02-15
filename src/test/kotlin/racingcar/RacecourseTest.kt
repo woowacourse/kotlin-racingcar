@@ -25,11 +25,15 @@ class RacecourseTest {
         val cars: List<Car> =
             listOf(
                 Car(name = "a", initialDistance = 5),
-                Car(name = "b", initialDistance = 0),
+                Car(name = "b", initialDistance = 5),
                 Car(name = "c", initialDistance = 0),
             )
         val racecourse = Racecourse(cars, 0)
-        val expectedWinners = listOf(Car(name = "a", initialDistance = 5))
-        assertThat(racecourse.winners).isEqualTo(expectedWinners)
+        val expectedWinners = listOf(Car(name = "a", initialDistance = 5), Car(name = "b", initialDistance = 5))
+        assertThat(
+            racecourse.winners.joinToString { car: Car ->
+                car.name
+            },
+        ).isEqualTo(expectedWinners.joinToString { car: Car -> car.name })
     }
 }
