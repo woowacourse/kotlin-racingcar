@@ -8,6 +8,8 @@ interface RandomGenerator {
 }
 
 interface OutputView {
+    val messages: List<String>
+
     fun showMessage(
         message: String,
         endWithNewLine: Boolean = false,
