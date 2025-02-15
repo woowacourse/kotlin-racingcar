@@ -19,6 +19,6 @@ class Car(val carName: String) {
 
     companion object {
         const val CAR_POSITION_MARK = "-"
-        const val MOVING_STANDARD = 4
+        private const val MOVING_STANDARD = 4
     }
 }

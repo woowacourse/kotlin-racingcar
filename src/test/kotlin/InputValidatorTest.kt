@@ -1,3 +1,9 @@
+import InputValidator.Companion.ERROR_DUPLICATED_CAR_NAME_MESSAGE
+import InputValidator.Companion.ERROR_EMPTY_CAR_NAME_MESSAGE
+import InputValidator.Companion.ERROR_EMPTY_TRY_COUNT_MESSAGE
+import InputValidator.Companion.ERROR_IS_NOT_NUMBER_MESSAGE
+import InputValidator.Companion.ERROR_OUT_OF_BOUND_CAR_NAME_MESSAGE
+import InputValidator.Companion.ERROR_OUT_OF_BOUND_TRY_COUNT_MESSAGE
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
@@ -47,15 +53,5 @@ class InputValidatorTest {
         Assertions.assertThatIllegalArgumentException().isThrownBy {
             inputValidator.validateTryCount(input)
         }.withMessage(ERROR_OUT_OF_BOUND_TRY_COUNT_MESSAGE)
-    }
-
-    companion object {
-        private const val ERROR = "[ERROR]"
-        const val ERROR_EMPTY_CAR_NAME_MESSAGE = "$ERROR 자동차 이름은 공백일 수 없습니다."
-        const val ERROR_DUPLICATED_CAR_NAME_MESSAGE = "$ERROR 중복된 자동차 이름이 있습니다."
-        const val ERROR_OUT_OF_BOUND_CAR_NAME_MESSAGE = "$ERROR 자동차 이름의 최대 길이를 초과했습니다."
-        const val ERROR_EMPTY_TRY_COUNT_MESSAGE = "$ERROR 시도횟수는 공백일 수 없습니다."
-        const val ERROR_IS_NOT_NUMBER_MESSAGE = "$ERROR 시도횟수는 숫자여야만 합니다."
-        const val ERROR_OUT_OF_BOUND_TRY_COUNT_MESSAGE = "$ERROR 시도횟수는 1에서 1,000 사이의 숫자여야 합니다."
     }
 }

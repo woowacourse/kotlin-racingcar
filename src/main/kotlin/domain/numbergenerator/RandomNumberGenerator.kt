@@ -8,7 +8,7 @@ class RandomNumberGenerator : NumberGenerator {
     }
 
     companion object {
-        const val RANDOM_NUMBER_LOWER_BOUND = 0
-        const val RANDOM_NUMBER_UPPER_BOUND = 9
+        private const val RANDOM_NUMBER_LOWER_BOUND = 0
+        private const val RANDOM_NUMBER_UPPER_BOUND = 9
     }
 }

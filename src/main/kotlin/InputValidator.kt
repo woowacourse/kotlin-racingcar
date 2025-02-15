@@ -33,7 +33,7 @@ class InputValidator {
         const val ERROR_IS_NOT_NUMBER_MESSAGE = "$ERROR 시도횟수는 숫자여야만 합니다."
         const val ERROR_OUT_OF_BOUND_TRY_COUNT_MESSAGE = "$ERROR 시도횟수는 1에서 1,000 사이의 숫자여야 합니다."
 
-        const val TRY_COUNT_LOWER_BOUND = 1
-        const val TRY_COUNT_UPPER_BOUND = 5
+        private const val TRY_COUNT_LOWER_BOUND = 1
+        private const val TRY_COUNT_UPPER_BOUND = 5
     }
 }
