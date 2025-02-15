@@ -1,5 +1,5 @@
 class OutputView {
-    fun printDuplicate() {
+    fun printRemoveDuplicateCars() {
         println(CAR_DUPLICATE_REMOVE)
     }
 
@@ -18,6 +18,6 @@ class OutputView {
         private const val CAR_POSITION = "-"
         private const val WINNER_DELIMITER = ", "
         private const val CAR_STATE_DELIMITER = " : "
-        private const val CAR_DUPLICATE_REMOVE = "중복된 차이름을 제거하였습니다."
+        private const val CAR_DUPLICATE_REMOVE = "중복된 자동차를 제거하였습니다."
     }
 }
