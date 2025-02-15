@@ -1,8 +1,10 @@
 package racingcar
 
 class OutputView {
-    fun printToConsole(
+    fun showMessageToUser(
         input: String,
-        isWithNewLine: Boolean = false,
-    ) = if (isWithNewLine) println(input) else print(input)
+        endWithNewLine: Boolean = false,
+    ) = if (endWithNewLine) println(input) else print(input)
+
+    fun showBlankLineToUser() = println()
 }

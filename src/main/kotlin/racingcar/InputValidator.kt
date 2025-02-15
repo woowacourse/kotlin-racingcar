@@ -4,17 +4,10 @@ import racingcar.domain.Car
 import racingcar.domain.Messages
 
 class InputValidator {
-    fun getValidatedCarNames(input: String): List<Car> {
-        val names = input.split(",").map { it.trim() }
-        duplicateNameCheck(names)
-        return toCars(names)
-    }
-
-    fun getValidatedRaceCount(input: String): Int {
+    fun validRaceCountChecker(input: String) {
         emptyStringCheck(input)
-        val number = positiveInputCheck(input)
-        tryCountLengthCheck(number)
-        return number
+        positiveInputCheck(input)
+        tryCountLengthCheck(input)
     }
 
     fun validCarNameChecker(name: String) {
@@ -40,21 +33,18 @@ class InputValidator {
         require(value in 0..9) { Messages.ERROR_MOVE_VALUE }
     }
 
-    private fun duplicateNameCheck(names: List<String>) {
-        require(names.size == names.distinct().size) { Messages.ERROR_DUPLICATE_NAME.message }
+    fun duplicateCarNameCheck(cars: List<Car>) {
+        require(cars.map { it.name }.distinct().size == cars.size) { Messages.ERROR_DUPLICATE_NAME.message }
     }
 
-    private fun positiveInputCheck(input: String): Int {
+    private fun positiveInputCheck(input: String) {
         val number =
             runCatching { input.toInt() }
                 .getOrElse { throw IllegalArgumentException(Messages.ERROR_NOT_POSITIVE.message) }
         require(number > 0) { Messages.ERROR_NOT_POSITIVE.message }
-        return number
     }
 
-    private fun tryCountLengthCheck(number: Int) {
-        require(number.toString().length < 9) { Messages.ERROR_OVERSIZE_TRY_COUNT.message }
+    private fun tryCountLengthCheck(input: String) {
+        require(input.length < 9) { Messages.ERROR_OVERSIZE_TRY_COUNT.message }
     }
-
-    private fun toCars(names: List<String>): List<Car> = names.map { Car(it) }
 }

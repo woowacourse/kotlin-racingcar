@@ -3,9 +3,9 @@ package racingcar.domain
 enum class Messages(
     val message: String,
 ) {
-    GAME_START("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."),
-    GAME_INPUT_COUNT("시도할 횟수는 몇 회인가요?"),
-    GAME_RESULT("\n실행 결과"),
+    USERINFO_INPUT_CAR_NAME("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."),
+    USERINFO_INPUT_RACE_COUNT("시도할 횟수는 몇 회인가요?"),
+    RACE_RESULT("실행 결과"),
     WINNER_NAMES_ANNOUNCE("최종 우승자 : %s"),
 
     ERROR_EMPTY_INPUT("문자열을 입력하지 않으셨습니다."),
