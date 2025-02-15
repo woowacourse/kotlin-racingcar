@@ -23,10 +23,11 @@ class Game(
         }.joinToString("\n")
     }
 
-    fun getWinners(): List<String> {
+    fun getWinners(): String {
         val maxPosition = cars.maxOf { it.position }
         val winners = cars.filter { it.position == maxPosition }.map { it.name }
-        return winners
+        val winnersMsg = winners.joinToString(", ")
+        return winnersMsg
     }
 
     private fun validateUniqueName(carNames: List<String>) {
