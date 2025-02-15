@@ -19,20 +19,20 @@ value class Rounds(
 
     companion object {
         private fun validateUserInput(input: String): Int {
-            isEmpty(input)
-            isNumeric(input)
+            checkEmpty(input)
+            checkNumeric(input)
             return input.toInt()
         }
 
-        private fun isEmpty(input: String) {
+        private fun checkEmpty(input: String) {
             require(input.isNotBlank()) { EMPTY_INPUT_ERROR }
         }
 
-        private fun isNumeric(input: String) {
+        private fun checkNumeric(input: String) {
             require(input.toIntOrNull() != null) { NOT_NUMERIC_ERROR }
         }
 
-        private fun from(input: String): Rounds {
+        fun from(input: String): Rounds {
             val value = validateUserInput(input)
             return Rounds(value)
         }
