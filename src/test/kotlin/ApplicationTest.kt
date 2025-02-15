@@ -32,7 +32,7 @@ class ApplicationTest {
         val input = "a,b,c"
         val inputs = listOf("a", "b", "c")
 
-        InputValidatorService().getValidatedCarNames(input).forEachIndexed { idx, car ->
+        InputValidator().getValidatedCarNames(input).forEachIndexed { idx, car ->
             assertThat(car.name).isEqualTo(inputs[idx])
         }
     }
@@ -42,7 +42,7 @@ class ApplicationTest {
     fun t1_2() {
         val input = "a,b,123456,c"
 
-        assertThrows<IllegalArgumentException> { InputValidatorService().getValidatedCarNames(input) }
+        assertThrows<IllegalArgumentException> { InputValidator().getValidatedCarNames(input) }
     }
 
     @Test
@@ -50,7 +50,7 @@ class ApplicationTest {
     fun t1_3() {
         val input = "a,,b,c"
 
-        assertThrows<IllegalArgumentException> { InputValidatorService().getValidatedCarNames(input) }
+        assertThrows<IllegalArgumentException> { InputValidator().getValidatedCarNames(input) }
     }
 
     @Test
@@ -58,7 +58,7 @@ class ApplicationTest {
     fun t1_4() {
         val input = "@밀러,@메다"
 
-        assertThrows<IllegalArgumentException> { InputValidatorService().getValidatedCarNames(input) }
+        assertThrows<IllegalArgumentException> { InputValidator().getValidatedCarNames(input) }
     }
 
     @Test
@@ -66,7 +66,7 @@ class ApplicationTest {
     fun t1_5() {
         val input = "밀러,밀러,메다"
 
-        assertThrows<IllegalArgumentException> { InputValidatorService().getValidatedCarNames(input) }
+        assertThrows<IllegalArgumentException> { InputValidator().getValidatedCarNames(input) }
     }
 
     @Test
@@ -74,14 +74,14 @@ class ApplicationTest {
     fun t1_6() {
         val input = " 밀러 ,밀러     ,메다"
 
-        assertThrows<IllegalArgumentException> { InputValidatorService().getValidatedCarNames(input) }
+        assertThrows<IllegalArgumentException> { InputValidator().getValidatedCarNames(input) }
     }
 
     @Test
     @DisplayName("이동한 거리는 distance 프로퍼티에 저장되며 객체 생성시 0으로 초기화 한다")
     fun t2() {
         val input = "a,b,c"
-        InputValidatorService().getValidatedCarNames(input).forEach { car ->
+        InputValidator().getValidatedCarNames(input).forEach { car ->
             assertThat(car.distance).isEqualTo(0)
         }
     }

@@ -8,7 +8,7 @@ fun main() {
 }
 
 class Application {
-    private val inputValidatorService = InputValidatorService()
+    private val inputValidator = InputValidator()
     private val raceService = RaceService()
     private val cars = mutableListOf<Car>()
 
@@ -28,11 +28,11 @@ class Application {
 
     private fun getRaceCount(): Int {
         println(Messages.GAME_INPUT_COUNT.message)
-        return inputValidatorService.getValidatedRaceCount(readln())
+        return inputValidator.getValidatedRaceCount(readln())
     }
 
     private fun getCars(): List<Car> {
         println(Messages.GAME_START.message)
-        return inputValidatorService.getValidatedCarNames(readln())
+        return inputValidator.getValidatedCarNames(readln())
     }
 }

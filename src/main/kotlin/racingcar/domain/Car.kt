@@ -1,16 +1,20 @@
 package racingcar.domain
 
-import racingcar.InputValidatorService
+import racingcar.InputValidator
 
 class Car(
     val name: String,
 ) {
     var distance: Int = 0
         private set
-    private val inputValidatorService = InputValidatorService()
+    private val inputValidator = InputValidator()
+
+    init {
+        inputValidator.validCarNameChecker(name)
+    }
 
     fun moveByValue(value: Int) {
-        inputValidatorService.possibleMoveValueCheck(value)
+        inputValidator.possibleMoveValueCheck(value)
         if (value >= 4) distance++
     }
 
