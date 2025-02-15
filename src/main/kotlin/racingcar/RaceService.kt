@@ -1,15 +1,17 @@
 package racingcar
 
 import racingcar.domain.Car
-import racingcar.domain.Configure.Companion.RANDOM_SEED
 import racingcar.domain.Messages
+import racingcar.view.InputView
+import racingcar.view.OutputView
 import kotlin.random.Random
 
-class RaceService {
-    private val random = Random(RANDOM_SEED)
-    private val outputView = OutputView()
-    private val inputView = InputView()
-    private val inputValidator = InputValidator()
+class RaceService(
+    private val random: Random,
+    private val outputView: OutputView,
+    private val inputView: InputView,
+    private val inputValidator: InputValidator,
+) {
     private val cars = mutableListOf<Car>()
     private var raceCount = 0
 
@@ -22,7 +24,7 @@ class RaceService {
 
     private fun getCarsByUserInput(userInput: String): List<Car> {
         val carNames = userInput.split(",").map { it.trim() }
-        val cars = carNames.map { Car(it) }
+        val cars = carNames.map { Car(it, inputValidator) }
         inputValidator.duplicateCarNameCheck(cars)
         return cars
     }

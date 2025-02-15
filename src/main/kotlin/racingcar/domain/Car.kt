@@ -4,10 +4,10 @@ import racingcar.InputValidator
 
 class Car(
     val name: String,
+    private val inputValidator: InputValidator,
 ) {
     var distance: Int = 0
         private set
-    private val inputValidator = InputValidator()
 
     init {
         inputValidator.validCarNameChecker(name)
