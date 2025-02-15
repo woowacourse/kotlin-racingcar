@@ -2,7 +2,6 @@ package controller
 
 import model.AttemptCount
 import model.Cars
-import model.Race
 
 class RacingController(
     private val userInterface: UserInterface = UserInterface(),
@@ -10,30 +9,31 @@ class RacingController(
     fun run() {
         val cars = getCarNames()
         val attemptCount = getAttemptCount()
-        val race = Race(cars)
-        playRacing(cars, attemptCount, race)
-        val winners = race.getWinner()
-        userInterface.handleWinnerMessage(winners)
+        playRacing(cars, attemptCount)
+        showWinners(cars)
     }
 
-    private fun getCarNames(): Cars = Cars(userInterface.handleStartMessage())
+    private fun getCarNames(): Cars {
+        val input = userInterface.handleStartMessage()
+        val carNames = input.split(",")
+        return Cars(carNames)
+    }
 
     private fun getAttemptCount(): AttemptCount = AttemptCount(userInterface.handleAttemptCountMessage())
 
     private fun playRacing(
         cars: Cars,
         attemptCount: AttemptCount,
-        race: Race,
     ) {
         userInterface.handleStartRoundMessage()
         repeat(attemptCount.getCount()) {
-            race.playOneRound()
+            cars.playOneRound()
             userInterface.handleRoundResultMessage(cars)
         }
     }
 
-    private fun showWinners(race: Race) {
-        val winners = race.getWinner()
+    private fun showWinners(cars: Cars) {
+        val winners = cars.getWinner()
         userInterface.handleWinnerMessage(winners)
     }
 }
