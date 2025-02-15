@@ -17,10 +17,10 @@ class Game(
         }
     }
 
-    fun getRoundResult(): List<RoundResult> {
+    fun getRoundResult(): String {
         return cars.map { car ->
             RoundResult(car.name, car.position)
-        }.toList()
+        }.joinToString("\n")
     }
 
     fun getWinners(): List<String> {

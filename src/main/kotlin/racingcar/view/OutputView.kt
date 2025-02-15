@@ -1,16 +1,12 @@
 package racingcar.view
 
-import racingcar.model.RoundResult
-
 class OutputView {
     fun printGameResultMessage() {
         println(GAME_RESULT_MESSAGE)
     }
 
-    fun printRoundResult(roundResult: List<RoundResult>) {
-        roundResult.forEach { result ->
-            println(result.toString())
-        }
+    fun printRoundResult(roundResult: String) {
+        println(roundResult)
         println()
     }
 
