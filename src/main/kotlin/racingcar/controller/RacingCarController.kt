@@ -2,6 +2,7 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.Game
+import racingcar.model.RandomNumberFactory
 import racingcar.model.Rounds
 import racingcar.util.retryWhenException
 import racingcar.view.InputView
@@ -21,7 +22,7 @@ class RacingCarController(
         return retryWhenException(
             action = {
                 val cars = getCars()
-                Game(cars)
+                Game(cars, randomNumberFactory())
             },
             onError = {
                 outputView.printErrorMessage(it)
@@ -68,6 +69,11 @@ class RacingCarController(
         game.playRound()
         val roundResult = game.getRoundResult()
         outputView.printRoundResult(roundResult)
+    }
+
+    private fun randomNumberFactory() = RandomNumberFactory{
+        val randomNumberRange = 0..9
+        (randomNumberRange).random()
     }
 
     companion object {

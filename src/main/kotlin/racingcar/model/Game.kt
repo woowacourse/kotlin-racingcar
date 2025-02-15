@@ -2,15 +2,17 @@ package racingcar.model
 
 import racingcar.enums.MoveState
 
-class Game(private val cars: List<Car>) {
+class Game(
+    private val cars: List<Car>,
+    private val randomNumberFactory: RandomNumberFactory,
+) {
     init {
         validateUniqueName(cars.map { it.name })
     }
 
     fun playRound() {
         cars.forEach { car ->
-            val randomNumber = makeRandomNumber()
-            val moveState = MoveState.create(randomNumber)
+            val moveState = MoveState.create(randomNumberFactory())
             car.increasePositionIfMovable(moveState)
         }
     }
@@ -31,15 +33,8 @@ class Game(private val cars: List<Car>) {
         require(carNames.size == carNames.distinct().size) { NOT_UNIQUE_NAME_ERROR }
     }
 
-    private fun makeRandomNumber(): Int {
-        return (MIN_RANDOM_NUMBER..MAX_RANDOM_NUMBER).random()
-    }
-
     companion object {
         private const val ERROR = "[ERROR]"
         const val NOT_UNIQUE_NAME_ERROR = "$ERROR 자동차 이름이 중복됩니다."
-
-        const val MIN_RANDOM_NUMBER = 0
-        const val MAX_RANDOM_NUMBER = 9
     }
 }
