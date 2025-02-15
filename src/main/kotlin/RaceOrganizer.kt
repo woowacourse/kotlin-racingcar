@@ -6,7 +6,9 @@ class RaceOrganizer(
     fun hostRace() {
         val raceCars = getRaceCars()
         val raceCount = getRaceCount()
-        executeRaces(raceCount, raceCars)
+        val randomGenerator = RandomGenerator()
+
+        executeRaces(raceCount, raceCars, randomGenerator)
         getRaceWinners(raceCars)
     }
 
@@ -23,8 +25,8 @@ class RaceOrganizer(
     private fun executeRaces(
         raceCount: Int,
         raceCars: List<Car>,
+        randomGenerator: RandomGenerator,
     ) {
-        val randomGenerator = RandomGenerator()
         outputPrinter.printRaceResultTitle()
         repeat(raceCount) {
             executeRace(raceCars, randomGenerator)
