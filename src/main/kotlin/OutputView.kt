@@ -13,7 +13,7 @@ class OutputView {
     fun printRaceWinner(winners: List<Car>) = println("$FINAL_WINNER ${winners.joinToString(WINNER_DELIMITER) { winner -> winner.name }}")
 
     companion object {
-        const val RESULT = "실행결과"
+        const val RESULT = "실행결과\n"
         const val CAR_POSITION = "-"
         const val FINAL_WINNER = "최종 우승자:"
         const val WINNER_DELIMITER = ", "
