@@ -12,7 +12,8 @@ class CarFactoryTest {
         actual: List<Car>,
     ) {
         val carFactory = CarFactory()
-        assertThat(actual).isEqualTo(carFactory.createCar(carNames))
+        val anonymousNumbersExtractor = AnonymousNumbersExtractor(listOf(1, 2, 3, 4, 5, 6))
+        assertThat(actual).isEqualTo(carFactory.createCars(carNames, anonymousNumbersExtractor))
     }
 
     @ParameterizedTest
@@ -22,7 +23,7 @@ class CarFactoryTest {
         actual: List<Car>,
     ) {
         val carFactory = CarFactory()
-        assertFalse(actual == carFactory.createCar(carsName))
+        assertFalse(actual == carFactory.createCars(carsName))
     }
 
     companion object {
@@ -33,6 +34,7 @@ class CarFactoryTest {
                 Arguments.arguments(listOf("동전", "제리", ""), listOf(Car("동전"), Car("제리"), Car("익명1"))),
                 Arguments.arguments(listOf("제리", "  ", "제이든"), listOf(Car("제리"), Car("익명1"), Car("제이든"))),
                 Arguments.arguments(listOf("제이든", "", "제리", ""), listOf(Car("제이든"), Car("익명1"), Car("제리"), Car("익명2"))),
+                Arguments.arguments(listOf("익명3", "익명4", "  "), listOf(Car("익명3"), Car("익명4"), Car("익명1"))),
             )
         }
 
