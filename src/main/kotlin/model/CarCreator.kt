@@ -1,8 +1,8 @@
 package model
 
-class GenerateCar {
-    fun generateCar(rawCars: String): List<Car> {
-        val racingCars = rawCars.split(DELIMITER).map { Car(it.trim()) }
+class CarCreator {
+    fun createCars(carNamesInput: String): List<Car> {
+        val racingCars = carNamesInput.split(DELIMITER).map { Car(it.trim()) }
 
         require(racingCars.size > MIN_CAR_NUM) { INVALID_CAR_SIZE_MESSAGE }
         require(racingCars.map { it.name }.toSet().size == racingCars.size) { DUPLICATE_CAR_NAME_MESSAGE }

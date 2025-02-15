@@ -1,5 +1,5 @@
 import model.Car
-import model.GenerateCar
+import model.CarCreator
 import model.RacingGame
 import model.RandomNumberGeneratorImpl
 import view.InputView
@@ -22,7 +22,7 @@ class RacingController(
 
     private fun generateCar() {
         val rawInput = inputView.inputCarName()
-        cars = GenerateCar().generateCar(rawInput)
+        cars = CarCreator().createCars(rawInput)
     }
 
     private fun getRaceRounds(): String {
