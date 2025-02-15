@@ -19,7 +19,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["abcdef", "익명123", "12345"])
+    @ValueSource(strings = ["abcdef", "익명1234", "123456"])
     fun `자동차 이름이 5자 초과일 경우 예외 발생 테스트`(name: String) {
         assertThrows<IllegalArgumentException> {
             Car(name)
