@@ -26,6 +26,7 @@ class GameController {
     }
 
     private fun playGame(game: Game) {
+        println()
         OutputView.printResultHeader()
         repeat(game.rounds) {
             game.moveCars()
