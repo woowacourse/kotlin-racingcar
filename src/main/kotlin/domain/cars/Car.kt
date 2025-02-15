@@ -1,7 +1,5 @@
 package domain.cars
 
-import domain.numbergenerator.NumberGenerator
-
 class Car(val carName: String) {
     private var distance: Int = 0
 
@@ -9,7 +7,7 @@ class Car(val carName: String) {
         return distance
     }
 
-    fun moveOrStop(number: Int) {
+    fun updateDistanceIfMovable(number: Int) {
         if (isMovable(number)) ++distance
     }
 
