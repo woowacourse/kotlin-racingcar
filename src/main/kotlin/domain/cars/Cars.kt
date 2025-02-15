@@ -1,10 +1,9 @@
 package domain.cars
 
-import Constants
 import domain.numbergenerator.NumberGenerator
 
 class Cars(input: String) {
-    private val cars: List<Car> = input.split(Constants.CAR_NAME_DELIMITER).map { Car(it.trim()) }
+    private val cars: List<Car> = input.split(CAR_NAME_DELIMITER).map { Car(it) }
 
     fun lap(numberGenerator: NumberGenerator) {
         cars.forEach { it.moveOrStop(numberGenerator) }
@@ -13,7 +12,7 @@ class Cars(input: String) {
     fun getWinners(): String {
         val maxDistance = cars.maxOf { it.getDistance() }
         val winnerNames = cars.filter { it.getDistance() == maxDistance }.map { it.carName }
-        return winnerNames.joinToString(Constants.WINNER_NAME_DELIMITER) { it }
+        return winnerNames.joinToString(WINNER_NAME_DELIMITER) { it }
     }
 
     override fun toString(): String {
@@ -22,5 +21,10 @@ class Cars(input: String) {
                 appendLine(it.toString())
             }
         }
+    }
+
+    companion object {
+        const val CAR_NAME_DELIMITER = ","
+        const val WINNER_NAME_DELIMITER = ", "
     }
 }
