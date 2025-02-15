@@ -6,7 +6,10 @@ class Cars(input: String) {
     private val cars: List<Car> = input.split(CAR_NAME_DELIMITER).map { Car(it) }
 
     fun moveAll(numberGenerator: NumberGenerator) {
-        cars.forEach { it.moveOrStop(numberGenerator) }
+        cars.forEach { car ->
+            val randomNumber = numberGenerator.generate() // 랜덤 숫자 생성
+            car.moveOrStop(randomNumber) // 숫자만 넘겨줌
+        }
     }
 
     fun getWinners(): String {
