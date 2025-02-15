@@ -13,8 +13,8 @@ class CarTest {
         actual: Int,
     ) {
         val car = Car("동전")
-        val numbersExtractor = NumbersExtractor(tryNumbers)
-        repeat(numbersExtractor.currentNumbersSize) { car.move(numbersExtractor) }
+        val tryMoveNumbersExtractor = TryMoveNumbersExtractor(tryNumbers)
+        repeat(tryMoveNumbersExtractor.currentNumbersSize) { car.move(tryMoveNumbersExtractor) }
         assertThat(actual).isEqualTo(car.position)
     }
 
