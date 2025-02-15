@@ -1,7 +1,5 @@
 fun main() {
-    val inputValidator = InputValidator()
-    val inputReader = InputReader(inputValidator)
-
+    val inputReader = InputReader()
     val outputPrinter = OutputPrinter()
 
     val judge = Judge()
