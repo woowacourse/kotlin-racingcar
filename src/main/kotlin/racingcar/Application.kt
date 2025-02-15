@@ -1,18 +1,16 @@
 package racingcar
 
-import racingcar.domain.Configure.Companion.RANDOM_SEED
-import racingcar.view.InputView
-import racingcar.view.OutputView
-import kotlin.random.Random
+import racingcar.view.ConsoleInputView
+import racingcar.view.ConsoleOutputView
 
 fun main() {
     Application().run()
 }
 
 class Application {
-    private val random = Random(RANDOM_SEED)
-    private val outputView = OutputView()
-    private val inputView = InputView()
+    private val random = Random()
+    private val outputView = ConsoleOutputView()
+    private val inputView = ConsoleInputView()
     private val inputValidator = InputValidator()
     private val raceService = RaceService(random, outputView, inputView, inputValidator)
 
