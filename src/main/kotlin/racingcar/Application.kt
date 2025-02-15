@@ -14,7 +14,7 @@ class Application {
 
     fun run() {
         startGame()
-        print(raceService.getWinner(cars))
+        raceService.showCarNamesByWinnerFormat(raceService.getWinCars(cars))
     }
 
     private fun startGame() {
@@ -23,7 +23,7 @@ class Application {
         val raceCount = getRaceCount()
         println(Messages.GAME_RESULT.message)
 
-        print(raceService.race(raceCount, cars))
+        raceService.repeatRaceByCount(raceCount, cars)
     }
 
     private fun getRaceCount(): Int {

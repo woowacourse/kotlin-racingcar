@@ -7,28 +7,27 @@ import kotlin.random.Random
 
 class RaceService {
     private val random = Random(RANDOM_SEED)
-    private var stringBuilder = StringBuilder()
+    private val outputView = OutputView()
 
-    fun getWinner(cars: List<Car>): String {
-        val winners = cars.filter { it.distance == cars.maxOf { car -> car.distance } }
-        return Messages.WINNER.formattedMessage(winners.joinToString(", ") { it.name })
-    }
+    fun getWinCars(cars: List<Car>): List<Car> = cars.filter { it.distance == cars.maxOf { car -> car.distance } }
 
-    fun race(
+    fun showCarNamesByWinnerFormat(cars: List<Car>) =
+        outputView.printToConsole(Messages.WINNER_NAMES_ANNOUNCE.formattedMessage(cars.joinToString(", ") { it.name }))
+
+    fun repeatRaceByCount(
         raceCount: Int,
         cars: List<Car>,
-    ): String {
+    ) {
         repeat(raceCount) {
-            singleRace(cars)
-            stringBuilder.append("\n")
+            doSingleRace(cars)
+            outputView.printToConsole("", true)
         }
-        return stringBuilder.toString()
     }
 
-    private fun singleRace(cars: List<Car>) {
-        cars.forEach {
-            it.moveByValue(random.nextInt(0, 10))
-            stringBuilder.append(it.getDistanceInfo() + "\n")
+    private fun doSingleRace(cars: List<Car>) {
+        cars.forEach { car ->
+            car.moveByValue(random.nextInt(0, 10))
+            outputView.printToConsole(car.toString(), true)
         }
     }
 }
