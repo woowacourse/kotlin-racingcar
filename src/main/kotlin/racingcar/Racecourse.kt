@@ -22,7 +22,7 @@ class Racecourse(
     }
 
     fun displayDistance(car: Car) {
-        println("$car.name : ${Car.DISTANCE_SYMBOL.repeat(car.distance)}")
+        println("${car.name} : ${Car.DISTANCE_SYMBOL.repeat(car.distance)}")
     }
 
     private fun generateRandomNumber(): Int = (0..9).random()
