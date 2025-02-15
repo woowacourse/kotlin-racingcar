@@ -1,6 +1,5 @@
 package validator
 
-import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
@@ -8,27 +7,39 @@ import org.junit.jupiter.params.provider.ValueSource
 class InputValidatorTest {
     @ParameterizedTest
     @ValueSource(
-        strings = ["creammm", " "],
+        strings = ["creammm", "tamatama"],
     )
-    fun `개별 자동차 이름 유효성 검사`(name: String) {
+    fun `각 자동차 이름은 5자를 초과할 수 없다`(name: String) {
         assertThrows<IllegalArgumentException> {
             InputValidator.validateCarName(name)
         }
     }
 
-    @Test
-    fun `자동차 이름 중복 검사`() {
-        val names = listOf("tama", "tama")
+    @ParameterizedTest
+    @ValueSource(
+        strings = ["", " ", "          "],
+    )
+    fun `각 자동차 이름은 공백이 불가하다`(name: String) {
         assertThrows<IllegalArgumentException> {
-            InputValidator.validateDuplicatedName(names)
+            InputValidator.validateCarName(name)
         }
     }
 
     @ParameterizedTest
     @ValueSource(
-        strings = ["0", " ", "seven"],
+        strings = ["한번", " ", "seven"],
     )
-    fun `시도 횟수 유효성 검사`(tryNumber: String) {
+    fun `시도 횟수는 숫자로 입력해야 한다`(tryNumber: String) {
+        assertThrows<IllegalArgumentException> {
+            InputValidator.validateTryNumber(tryNumber)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(
+        strings = ["0", "-1"],
+    )
+    fun `시도 횟수는 0보다 커야한다`(tryNumber: String) {
         assertThrows<IllegalArgumentException> {
             InputValidator.validateTryNumber(tryNumber)
         }
