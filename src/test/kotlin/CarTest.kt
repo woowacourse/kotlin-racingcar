@@ -3,11 +3,13 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
     @ParameterizedTest
-    @ValueSource(strings = [" ", "  ", "     "])
+    @EmptySource
+    @ValueSource(strings = [" ", "\t", "\n"])
     fun `자동차 이름이 공백일 때 에러를 발생시킨다`(name: String) {
         assertThrows<IllegalArgumentException> {
             Car(name)
