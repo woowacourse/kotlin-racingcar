@@ -1,5 +1,7 @@
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class InputValidatorTest {
     @Test
@@ -35,5 +37,13 @@ class InputValidatorTest {
         Assertions.assertThatIllegalArgumentException().isThrownBy {
             InputValidator.validateTryCount("aa")
         }.withMessage(Constants.ERROR_IS_NOT_NUMBER_MESSAGE)
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["0", "1001"])
+    fun `시도 횟수가 1에서 1000사이의 숫자가 아니면 예외가 발생한다`(input: String) {
+        Assertions.assertThatIllegalArgumentException().isThrownBy {
+            InputValidator.validateTryCount(input)
+        }.withMessage(Constants.ERROR_OUT_OF_BOUND_TRY_COUNT_MESSAGE)
     }
 }
