@@ -13,9 +13,13 @@ class RaceServiceTest {
     private lateinit var raceService: RaceService
     private lateinit var random: RandomGenerator
     private lateinit var inputView: InputView
-    private lateinit var outputView: OutputView
+    private lateinit var outputView: TestOutputView
 
-    class TestOutputView : OutputView {
+    interface TestableOutputView : OutputView {
+        val messages: List<String>
+    }
+
+    class TestOutputView : TestableOutputView {
         override val messages: MutableList<String> = mutableListOf()
 
         override fun showMessage(
