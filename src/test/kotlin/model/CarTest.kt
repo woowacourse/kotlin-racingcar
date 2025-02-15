@@ -1,6 +1,8 @@
 package model
 
 import org.assertj.core.api.Assertions.assertThat
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
@@ -19,9 +21,16 @@ class CarTest {
         assertThrows<IllegalArgumentException> { Car(carName) }
     }
 
+    @Test
+    fun `자동차의 초기 위치는 0이어야 한다`() {
+        val car = Car("car1")
+
+        assertEquals(0, car.position)
+    }
+
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
-    fun `자동차 전진 검증 테스트`(randomValue: Int) {
+    fun `자동차는 4 이상의 값이 들어오면 한칸 전진한다`(randomValue: Int) {
         val car = Car("carA")
         car.tryForward(randomValue)
 
@@ -33,7 +42,7 @@ class CarTest {
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
-    fun `자동차 전진 실패 검증 테스트`(randomValue: Int) {
+    fun `자동차는 4 미만의 값이 들어오면 정지한다`(randomValue: Int) {
         val car = Car("carA")
         car.tryForward(randomValue)
 
