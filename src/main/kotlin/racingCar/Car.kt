@@ -11,8 +11,8 @@ class Car(
         require(name.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) { OUT_OF_RANGE_NAME_LENGTH_ERROR_MESSAGE }
     }
 
-    fun moveForward(isMoved: Boolean) {
-        if (isMoved) position++
+    fun moveForward() {
+        position++
     }
 
     companion object {

@@ -25,7 +25,12 @@ class RaceGame(
 
     private fun getRaceCount(): Int {
         outputView.printRaceCountGuide()
-        return inputView.readRaceCount()
+        return try {
+            inputView.readRaceCount()
+        } catch (error: IllegalArgumentException) {
+            outputView.printErrorMessage(message = error.message ?: "")
+            return getRaceCount()
+        }
     }
 
     private fun start(
@@ -46,7 +51,7 @@ class RaceGame(
         raceCars.forEach { raceCar ->
             val randomNumber = randomGenerator.getRandomNumber()
             val isMoved = referee.isCarAbleToMove(randomNumber)
-            raceCar.moveForward(isMoved)
+            if (isMoved) raceCar.moveForward()
         }
         outputView.printRaceProgress(raceCars)
     }
