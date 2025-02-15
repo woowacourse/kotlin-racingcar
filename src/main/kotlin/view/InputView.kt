@@ -5,7 +5,7 @@ import java.util.Scanner
 class InputView {
     private val scanner = Scanner(System.`in`)
 
-    fun readCarName(): String {
+    fun readName(): String {
         println(INPUT_CAR_NAME_MESSAGE)
         return scanner.nextLine()
     }

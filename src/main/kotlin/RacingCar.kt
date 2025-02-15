@@ -21,7 +21,7 @@ class RacingCar {
     }
 
     private fun getCars(): Cars {
-        val carName = inputView.readCarName()
+        val carName = inputView.readName()
         inputValidator.validateName(carName)
         return Cars(carName)
     }
