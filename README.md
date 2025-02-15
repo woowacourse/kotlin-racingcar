@@ -21,3 +21,8 @@
   - 내부 함수 접근 제한
   - 자동차 이동 기능 분리
   - 랜덤 값 생성 기능 분리
+
+- 수정사항
+  - CarTest에 NumberGenerator를 테스트 하기 위한 전략 패턴 도입
+  - Racing에서 carName의 검증을 InputView에서 검증하도록 수정
+  - 각 클래스 별로 상수 분리
