@@ -1,4 +1,4 @@
-class Organizer(
+class RaceOrganizer(
     private val inputReader: InputReader,
     private val outputPrinter: OutputPrinter,
     private val judge: Judge,
