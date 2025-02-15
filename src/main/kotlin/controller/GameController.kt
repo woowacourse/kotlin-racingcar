@@ -7,13 +7,17 @@ import view.OutputView
 
 class GameController {
     fun run() {
-        val carNames = InputView.readCarNames()
-        val cars = generateCars(carNames)
-        val rounds = InputView.readRounds()
-        val game = Game(cars, rounds)
+        val game = initializeGame()
         playGame(game)
         val winner = game.getWinner()
         OutputView.printWinner(winner)
+    }
+
+    private fun initializeGame(): Game {
+        val carNames = InputView.readCarNames()
+        val cars = generateCars(carNames)
+        val rounds = InputView.readRounds()
+        return Game(cars, rounds)
     }
 
     private fun generateCars(carNames: List<String>): List<Car> {
