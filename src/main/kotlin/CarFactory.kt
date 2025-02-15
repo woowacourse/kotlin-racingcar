@@ -11,4 +11,9 @@ class CarFactory {
         if (name.isBlank()) return Car(ANONYMITY + anonymousCounts.removeFirst())
         return Car(name)
     }
+
+    companion object {
+        const val ANONYMITY_MIN_COUNT = 1
+        const val ANONYMITY = "익명"
+    }
 }

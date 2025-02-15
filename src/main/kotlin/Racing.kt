@@ -11,8 +11,13 @@ class Racing {
     }
 
     private fun getCars(carsInput: String): List<Car> {
-        val carsName = carsInput.split(",")
-        return CarFactory().createCar(carsName)
+        val carsName = carsInput.split(CAR_DELIMITER)
+        return duplicateCarName(CarFactory().createCar(carsName))
+    }
+
+    private fun duplicateCarName(carsName: List<Car>): List<Car> {
+        if (carsName.size != carsName.toSet().size) outputView.printDuplicate()
+        return carsName.distinct()
     }
 
     private fun race(
@@ -35,5 +40,9 @@ class Racing {
     private fun getWinners(cars: List<Car>): List<Car> {
         val maxPosition = cars.maxOf { car -> car.position }
         return cars.filter { car -> car.position == maxPosition }
+    }
+
+    companion object {
+        const val CAR_DELIMITER = ","
     }
 }
