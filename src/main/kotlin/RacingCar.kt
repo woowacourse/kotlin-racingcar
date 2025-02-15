@@ -7,7 +7,6 @@ class RacingCar {
     private val inputView = InputView()
     private val outputView = OutputView()
     private val randomNumberGenerator = RandomNumberGenerator()
-    private val inputValidator = InputValidator()
 
     fun play() {
         val cars = getCars()
@@ -22,13 +21,13 @@ class RacingCar {
 
     private fun getCars(): Cars {
         val carName = inputView.readName()
-        inputValidator.validateName(carName)
+        InputValidator.validateName(carName)
         return Cars(carName)
     }
 
     private fun getTryCount(): Int {
         val tryCount = inputView.readTryCount()
-        inputValidator.validateTryCount(tryCount)
+        InputValidator.validateTryCount(tryCount)
         return tryCount.toInt()
     }
 }
