@@ -9,7 +9,7 @@ class GameController {
     fun run() {
         val carNames = InputView.readCarNames()
         val cars = generateCars(carNames)
-        val rounds = InputView.readCount()
+        val rounds = InputView.readRounds()
         val game = Game(cars, rounds)
         playGame(game)
         val winner = game.getWinner()
