@@ -68,7 +68,7 @@ class GameTest {
     fun `validateUniqueName - 자동차 이름이 중복되면 예외가 발생해야 한다`() {
         val duplicatedCars = listOf(Car("pobi"), Car("pobi"))
 
-        Assertions.assertThatThrownBy{
+        Assertions.assertThatThrownBy {
             Game(duplicatedCars, RandomNumberFactory { 0 })
         }.isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("[ERROR] 자동차 이름이 중복됩니다.")

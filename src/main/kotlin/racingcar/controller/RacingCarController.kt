@@ -71,10 +71,11 @@ class RacingCarController(
         outputView.printRoundResult(roundResult)
     }
 
-    private fun randomNumberFactory() = RandomNumberFactory{
-        val randomNumberRange = 0..9
-        (randomNumberRange).random()
-    }
+    private fun randomNumberFactory() =
+        RandomNumberFactory {
+            val randomNumberRange = 0..9
+            (randomNumberRange).random()
+        }
 
     companion object {
         const val SEPARATOR = ","
