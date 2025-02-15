@@ -1,6 +1,6 @@
 import java.util.LinkedList
 
-class NumbersExtractor(numbers: List<Int>) : NumberStrategy {
+class TryMoveNumbersExtractor(numbers: List<Int>) : TryMoveNumberStrategy {
     private val numbers = LinkedList(numbers)
     val currentNumbersSize get() = numbers.size
 
