@@ -1,16 +1,24 @@
 package model
 
-import util.Constants
-
 data class Car(val name: String) {
-    var position = INITIAL_POSITION
+    var position = CAR_INITIAL_POSITION
         private set
 
+    init {
+        require(name.isNotEmpty()) { MESSAGE_CAR_NAME_EMPTY }
+        require(name.length <= CAR_NAME_MAX_LENGTH) { MESSAGE_CAR_NAME_TOO_LONG }
+    }
+
     fun move(number: Int) {
-        if (number >= Constants.CONDITION_MOVE_THRESHOLD) position++
+        if (number >= CAR_MOVE_THRESHOLD) position++
     }
 
     companion object {
-        const val INITIAL_POSITION = 0
+        const val CAR_INITIAL_POSITION = 0
+        const val CAR_NAME_MAX_LENGTH = 5
+        const val CAR_MOVE_THRESHOLD = 4
+
+        const val MESSAGE_CAR_NAME_EMPTY = "자동차 이름은 공백일 수 없습니다."
+        const val MESSAGE_CAR_NAME_TOO_LONG = "자동차 이름은 최대 5자입니다."
     }
 }

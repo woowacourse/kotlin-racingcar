@@ -12,7 +12,6 @@ object InputView {
     fun readCarNames(): List<String> {
         println(Messages.MESSAGE_INPUT_CAR_NAMES)
         val carNames = br.readLine().split(Constants.DELIMITER_CAR_INPUT).map { it.trim() }
-        Validator.validateCarName(carNames)
 
         return carNames
     }
