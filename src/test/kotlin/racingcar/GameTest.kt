@@ -7,7 +7,6 @@ import org.junit.jupiter.api.Test
 import racingcar.model.Car
 import racingcar.model.Game
 import racingcar.model.RandomNumberFactory
-import racingcar.model.RoundResult
 
 class GameTest {
     private lateinit var randomNumberFactory: FakeRandomNumberFactory
@@ -48,6 +47,19 @@ class GameTest {
         val result = game.getRoundResult()
 
         val expected = "peto : -\npor : -"
+
+        assertEquals(expected, result)
+    }
+
+    @Test
+    fun `getWinners - 게임 최종 우승자를 출력한다`() {
+        val game = Game(cars, randomNumberFactory.movableRandomNumberFactory())
+
+        game.playRound()
+
+        val result = game.getWinners()
+
+        val expected = "peto, por"
 
         assertEquals(expected, result)
     }
