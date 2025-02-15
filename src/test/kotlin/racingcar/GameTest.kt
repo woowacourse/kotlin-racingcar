@@ -40,6 +40,19 @@ class GameTest {
     }
 
     @Test
+    fun `getRoundResult - 게임 중간 라운드 결과를 출력한다`() {
+        val game = Game(cars, randomNumberFactory.movableRandomNumberFactory())
+
+        game.playRound()
+
+        val result = game.getRoundResult()
+
+        val expected = "peto : -\npor : -"
+
+        assertEquals(expected, result)
+    }
+
+    @Test
     fun `validateUniqueName - 자동차 이름이 중복되면 예외가 발생해야 한다`() {
         val duplicatedCars = listOf(Car("pobi"), Car("pobi"))
 
