@@ -1,13 +1,15 @@
 package model
 
+import view.OutputView
+
 class RacingGame(
     private val generator: RandomNumberGenerator,
     private val cars: List<Car>,
 ) {
-    fun tryRacing(rawCount: String): String {
+    fun tryRacing(rawCount: String) {
         require(rawCount.toIntOrNull()?.let { it > 0 } == true) { INVALID_COUNT_MESSAGE }
 
-        return repeatRacing(rawCount.toInt())
+        repeatRacing(rawCount.toInt())
     }
 
     fun getWinners(): List<String> {
@@ -15,25 +17,20 @@ class RacingGame(
             .map { it.name }
     }
 
-    private fun repeatRacing(count: Int): String {
-        val result = StringBuilder("실행 결과\n")
+    private fun repeatRacing(count: Int) {
+        OutputView.printMessage("실행 결과\n")
 
         repeat(count) {
             raceOneRound()
-            result.append(getRaceState()).append("\n")
+            OutputView.printRaceState(cars)
         }
-
-        return result.toString()
     }
 
     private fun raceOneRound() {
         cars.forEach { it.tryForward(generator.generate()) }
     }
 
-    private fun getRaceState(): String = cars.joinToString("\n") { "${it.name} : ${FORWARD_SIGN.repeat(it.position)}" }
-
     private companion object {
         const val INVALID_COUNT_MESSAGE = "시도할 횟수는 자연수여야 합니다."
-        const val FORWARD_SIGN = "-"
     }
 }

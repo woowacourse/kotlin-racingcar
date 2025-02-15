@@ -14,7 +14,7 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["", " ", "33333", "44 4444"])
+    @ValueSource(strings = ["", " ", "333333", "44 4444"])
     fun `자동차 이름 유효성 예외 테스트`(carName: String) {
         assertThrows<IllegalArgumentException> { Car(carName) }
     }
@@ -25,7 +25,7 @@ class CarTest {
         val car = Car("carA")
         car.tryForward(randomValue)
 
-        val output = car.position
+        val output = "-".repeat(car.position)
         val expected = "-"
 
         assertThat(output).isEqualTo(expected)
@@ -37,7 +37,7 @@ class CarTest {
         val car = Car("carA")
         car.tryForward(randomValue)
 
-        val output = car.position
+        val output = "-".repeat(car.position)
         val expected = ""
 
         assertThat(output).isEqualTo(expected)
