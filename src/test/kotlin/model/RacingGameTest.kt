@@ -20,7 +20,7 @@ class RacingGameTest {
         val generator = RandomNumberGeneratorImpl()
         val generateCar = GenerateCar().generateCar("carA, carB")
         val racingGame = RacingGame(generator, generateCar)
-        assertThrows<IllegalArgumentException> { racingGame.tryRacing(input) }
+        assertThrows<IllegalArgumentException> { racingGame.runRace(input) }
     }
 
     @Test
@@ -31,7 +31,7 @@ class RacingGameTest {
         val racingGame = RacingGame(generator, generateCar)
 
         val expected = "carB"
-        racingGame.tryRacing("1")
+        racingGame.runRace("1")
         val result = racingGame.getWinners()
 
         assertThat(result).contains(expected)
@@ -44,7 +44,7 @@ class RacingGameTest {
         val generateCar = GenerateCar().generateCar("carA, carB, carC")
         val racingGame = RacingGame(generator, generateCar)
 
-        racingGame.tryRacing("1")
+        racingGame.runRace("1")
         val result = racingGame.getWinners()
 
         assertThat(result).contains("carB", "carC")

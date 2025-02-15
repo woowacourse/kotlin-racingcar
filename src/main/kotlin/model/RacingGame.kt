@@ -6,7 +6,7 @@ class RacingGame(
     private val generator: RandomNumberGenerator,
     private val cars: List<Car>,
 ) {
-    fun tryRacing(rawCount: String) {
+    fun runRace(rawCount: String) {
         require(rawCount.toIntOrNull()?.let { it > 0 } == true) { INVALID_COUNT_MESSAGE }
 
         repeatRacing(rawCount.toInt())
