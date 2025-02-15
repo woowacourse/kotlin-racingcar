@@ -16,8 +16,8 @@ class Racecourse(
         cars.forEach { car: Car ->
             if (isMovable(generateRandomNumber())) {
                 car.move()
-                displayDistance(car)
             }
+            displayDistance(car)
         }
     }
 
