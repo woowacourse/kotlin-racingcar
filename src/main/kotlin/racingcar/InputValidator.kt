@@ -21,7 +21,8 @@ class InputValidator {
     }
 
     private fun carNameConsistPossibleCharactersCheck(name: String) {
-        val regex = Regex("^[가-힣a-zA-Z0-9]*$")
+        require(!name.startsWith(" ") && !name.endsWith(" ")) { Messages.ERROR_NOT_AVAILABLE_NAME.message }
+        val regex = Regex("^[가-힣a-zA-Z0-9 ]*$")
         require(regex.matches(name)) { Messages.ERROR_NOT_AVAILABLE_NAME.message }
     }
 
