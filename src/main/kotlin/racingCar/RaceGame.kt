@@ -14,7 +14,13 @@ class RaceGame(
 
     private fun getRaceCars(): List<Car> {
         outputView.printRaceCarNamesGuide()
-        return inputView.readRaceCars()
+
+        return try {
+            inputView.readRaceCars().map { carName -> Car(carName) }
+        } catch (error: IllegalArgumentException) {
+            outputView.printErrorMessage(message = error.message ?: "")
+            return getRaceCars()
+        }
     }
 
     private fun getRaceCount(): Int {

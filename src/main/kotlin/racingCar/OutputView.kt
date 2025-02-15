@@ -24,6 +24,10 @@ class OutputView {
         println("최종 우승자: ${winnerNames.joinToString(RACE_WINNER_NAMES_DIVIDER)}")
     }
 
+    fun printErrorMessage(message: String) {
+        println(message)
+    }
+
     companion object {
         private const val RACE_CAR_POSITION_INDICATOR = "-"
         private const val RACE_WINNER_NAMES_DIVIDER = ", "
