@@ -5,14 +5,11 @@ import org.junit.jupiter.api.Test
 class CarTest {
     @Test
     fun `숫자가 4 이상이면 전진한다 `() {
-        // given
         val car = Car("포비")
         val expected = 1
 
-        // when
         car.updateDistanceIfMovable(4)
 
-        // then
         Assertions.assertThat(car.getDistance()).isEqualTo(expected)
     }
 

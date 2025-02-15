@@ -7,8 +7,8 @@ class Cars(input: String) {
 
     fun moveAll(numberGenerator: NumberGenerator) {
         cars.forEach { car ->
-            val randomNumber = numberGenerator.generate() // 랜덤 숫자 생성
-            car.updateDistanceIfMovable(randomNumber) // 숫자만 넘겨줌
+            val randomNumber = numberGenerator.generate()
+            car.updateDistanceIfMovable(randomNumber)
         }
     }
 
