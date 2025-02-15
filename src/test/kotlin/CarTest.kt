@@ -10,7 +10,7 @@ class CarTest {
         val expected = 1
 
         // when
-        car.moveOrStop(4)
+        car.updateDistanceIfMovable(4)
 
         // then
         Assertions.assertThat(car.getDistance()).isEqualTo(expected)
@@ -21,7 +21,7 @@ class CarTest {
         val car = Car("포비")
         val expected = 0
 
-        car.moveOrStop(1)
+        car.updateDistanceIfMovable(1)
 
         Assertions.assertThat(car.getDistance()).isEqualTo(expected)
     }
