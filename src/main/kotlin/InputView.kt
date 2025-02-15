@@ -8,8 +8,9 @@ class InputView {
         return scanner.nextLine()
     }
 
-    fun readAttempt(): String {
+    fun readAttempt(): Int {
         println(INPUT_ATTEMPTS)
-        return scanner.nextLine()
+        val attempts = scanner.nextLine()
+        return requireNotNull(attempts.toIntOrNull()) { ATTEMPT_INPUT_ERROR }
     }
 }

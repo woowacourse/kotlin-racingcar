@@ -4,7 +4,7 @@ class Racing {
 
     fun play() {
         val cars = getCars(inputView.readCars())
-        val attempts = getAttempts(inputView.readAttempt())
+        val attempts = inputView.readAttempt()
         race(cars, attempts)
         val winners = getWinners(cars)
         outputView.printRaceWinner(winners)
@@ -14,8 +14,6 @@ class Racing {
         val carsName = carsInput.split(",")
         return CarFactory().createCar(carsName)
     }
-
-    private fun getAttempts(attempts: String): Int = requireNotNull(attempts.toIntOrNull()) { ATTEMPT_INPUT_ERROR }
 
     private fun race(
         cars: List<Car>,
