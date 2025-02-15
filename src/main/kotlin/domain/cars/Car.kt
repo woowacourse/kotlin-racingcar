@@ -9,9 +9,8 @@ class Car(val carName: String) {
         return distance
     }
 
-    fun moveOrStop(numberGenerator: NumberGenerator) {
-        val randomNumber = numberGenerator.generate()
-        if (isMovable(randomNumber)) ++distance
+    fun moveOrStop(number: Int) {
+        if (isMovable(number)) ++distance
     }
 
     private fun isMovable(number: Int) = number >= MOVING_STANDARD
