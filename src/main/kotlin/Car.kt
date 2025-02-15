@@ -1,4 +1,4 @@
-class Car(
+class Car private constructor(
     val name: String,
 ) {
     var position: Int = INITIAL_CAR_POSITION
