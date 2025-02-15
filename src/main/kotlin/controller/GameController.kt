@@ -9,8 +9,7 @@ class GameController {
     fun run() {
         val game = initializeGame()
         playGame(game)
-        val winner = game.getWinner()
-        OutputView.printWinner(winner)
+        announceResult(game)
     }
 
     private fun initializeGame(): Game {
@@ -32,5 +31,10 @@ class GameController {
             game.moveCars()
             OutputView.printState(game)
         }
+    }
+
+    private fun announceResult(game: Game) {
+        val winner = game.getWinner()
+        OutputView.printWinner(winner)
     }
 }
