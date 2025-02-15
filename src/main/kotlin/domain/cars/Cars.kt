@@ -5,7 +5,7 @@ import domain.numbergenerator.NumberGenerator
 class Cars(input: String) {
     private val cars: List<Car> = input.split(CAR_NAME_DELIMITER).map { Car(it) }
 
-    fun lap(numberGenerator: NumberGenerator) {
+    fun moveAll(numberGenerator: NumberGenerator) {
         cars.forEach { it.moveOrStop(numberGenerator) }
     }
 
