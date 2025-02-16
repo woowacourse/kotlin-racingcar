@@ -1,21 +1,22 @@
 package controller
 
 import model.Car
-import view.InOutView
+import view.InView
+import view.OutView
 
-class OutController(var inOutView: InOutView) {
+class OutController(private var outView: OutView) {
     fun printCurrentPosition(cars: MutableList<Car>) {
         cars.forEach { car ->
-            inOutView.printCurrentResult(car)
+            outView.printCurrentResult(car)
         }
         println()
     }
 
     fun printGameResult() {
-        inOutView.printGameResult()
+        outView.printGameResult()
     }
 
     fun printFinalResult(winnerResult: MutableList<Car>) {
-        inOutView.printFinalResult(winnerResult)
+        outView.printFinalResult(winnerResult)
     }
 }

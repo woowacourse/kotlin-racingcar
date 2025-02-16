@@ -5,7 +5,8 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
-import view.InOutView
+import view.InView
+import view.OutView
 import java.io.ByteArrayOutputStream
 import java.io.OutputStream
 import java.io.PrintStream
@@ -30,7 +31,7 @@ class RaceControllerTest {
     }
 
     val cars: MutableList<Car> = mutableListOf(Car("hwan"), Car("xia"))
-    val outController = OutController(InOutView())
+    val outController = OutController(OutView())
 
     @Test
     fun `랜덤으로 움직인 자동차 중 가장 많이 움직인 자동차가 우승한다`() {

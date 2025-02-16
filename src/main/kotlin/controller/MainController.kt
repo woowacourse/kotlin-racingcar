@@ -1,10 +1,11 @@
 package controller
 
-import view.InOutView
+import view.InView
+import view.OutView
 
 class MainController {
-    private val inController = InController(InOutView())
-    private val outController = OutController(InOutView())
+    private val inController = InController(InView())
+    private val outController = OutController(OutView())
 
     fun runProgram() {
         val cars = inController.getCarName()
