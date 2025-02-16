@@ -1,6 +1,7 @@
 package controller
 
 import model.Car
+import model.GameResult
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -36,8 +37,7 @@ class RacingGameControllerTest {
     private val siaCar = Car("sia", 4)
     private val cars: List<Car> = listOf(hwanCar, siaCar)
 
-    private val inOutController = RacingViewController(InputView(), OutputView())
-    private val raceController = RacingGameController()
+    private val raceController = RacingGameController(InputView(), OutputView())
 
     @Test
     fun `자동차가 1칸 이동하면 현재 위치가 1 늘어난다`() {
@@ -57,8 +57,9 @@ class RacingGameControllerTest {
 
     @Test
     fun `가장 많이 움직인 자동차가 우승한다`() {
-        val winnerList = raceController.getFinalResult(cars)
-        inOutController.printFinalResult(winnerList)
+        val gameResult = GameResult(cars)
+        val winnerList = gameResult.getFinalResult()
+        raceController.printFinalResult(winnerList)
 
         assertThat(output()).isEqualTo("최종 우승자 : sia")
     }

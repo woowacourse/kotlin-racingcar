@@ -1,41 +1,76 @@
 package controller
 
+import constant.MessageConstant
 import model.Car
+import model.GameResult
+import model.RoundResult
+import validator.InputValidator
 import view.InputView
 import view.OutputView
-import java.util.Random
 
-class RacingGameController {
-    private val viewController = RacingViewController(InputView(), OutputView())
+class RacingGameController(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+) {
+    private val validator = InputValidator()
 
     fun startRacingGameProgram() {
-        val cars: List<Car> = viewController.getCarName().map { Car(it) }
-        val count: Int = viewController.getTryCount()
-        executeRacing(cars, count)
-        val winnerList: List<Car> = getFinalResult(cars)
-        viewController.printFinalResult(winnerList)
+        val cars: List<Car> = getCarName().map { Car(it) }
+        val count: Int = getTryCount()
+        val roundResult = RoundResult(cars)
+        executeRacing(roundResult, count)
+        val gameResult = GameResult(cars)
+        val winnerList: List<Car> = gameResult.getFinalResult()
+        printFinalResult(winnerList)
+    }
+
+    fun getCarName(): List<String> {
+        val input = inputView.getUserInput(MessageConstant.INPUT_NAME)
+        val carNames = splitToComma(input)
+        validator.validateName(carNames)
+        return carNames
+    }
+
+    private fun splitToComma(input: String): List<String> {
+        val carNames = input.split(",").filter { it.isNotEmpty() }
+        return carNames
+    }
+
+    fun getTryCount(): Int {
+        val input = inputView.getUserInput(MessageConstant.INPUT_COUNT)
+        val count = parseInt(input)
+        validator.validateCount(count)
+        return count!!
+    }
+
+    private fun parseInt(input: String): Int? {
+        val count = input.toIntOrNull()
+        return count
     }
 
     private fun executeRacing(
-        cars: List<Car>,
+        roundResult: RoundResult,
         count: Int,
     ) {
-        viewController.printGameResult()
+        printGameResult()
         repeat(count) {
-            runEachCar(cars)
+            val currentPositions: List<String> = roundResult.runCarAndGetRoundResult()
+            printCurrentPositions(currentPositions)
         }
     }
 
-    private fun runEachCar(cars: List<Car>) {
-        for (car in cars) {
-            car.moveCar(Random())
+    private fun printCurrentPositions(currentPositions: List<String>) {
+        currentPositions.forEach {
+            outputView.printCurrentResult(it)
         }
-        viewController.printCurrentPosition(cars)
+        println()
     }
 
-    fun getFinalResult(cars: List<Car>): List<Car> {
-        val maxPosition = cars.maxOfOrNull { it.currentPosition }
-        val winnerList = cars.filter { it.currentPosition == maxPosition }
-        return winnerList
+    private fun printGameResult() {
+        outputView.printGameResult()
+    }
+
+    fun printFinalResult(winnerResult: List<Car>) {
+        outputView.printFinalResult(winnerResult)
     }
 }

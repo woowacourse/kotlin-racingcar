@@ -4,8 +4,8 @@ import constant.MessageConstant
 import model.Car
 
 class OutputView {
-    fun printCurrentResult(car: Car) {
-        println(MessageConstant.ROUND_RESULT_FORMAT.format(car.name, "-".repeat(car.currentPosition)))
+    fun printCurrentResult(currentResult: String) {
+        println(currentResult)
     }
 
     fun printGameResult() {

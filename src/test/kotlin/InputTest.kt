@@ -1,4 +1,4 @@
-import controller.RacingViewController
+import controller.RacingGameController
 import model.Car
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
@@ -10,8 +10,8 @@ import view.InputView
 import view.OutputView
 
 class InputTest {
-    private val viewController = RacingViewController(InputView(), OutputView())
     private val initialInput = System.`in`
+    private val raceController = RacingGameController(InputView(), OutputView())
 
     @BeforeEach
     fun resetInput() {
@@ -37,7 +37,7 @@ class InputTest {
     fun `자동차 이름은 중복될 수 없다`() {
         assertThatThrownBy {
             setInput("hwan,hwan")
-            viewController.getCarName()
+            raceController.getCarName()
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
@@ -48,7 +48,7 @@ class InputTest {
     fun `시도 횟수는 0 이하일 수 없다`(input: String) {
         assertThatThrownBy {
             setInput(input)
-            viewController.getTryCount()
+            raceController.getTryCount()
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
@@ -56,7 +56,7 @@ class InputTest {
     fun `입력받은 시도 횟수는 숫자 이외의 문자일 수 없다`() {
         assertThatThrownBy {
             setInput("a")
-            viewController.getTryCount()
+            raceController.getTryCount()
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
@@ -64,7 +64,7 @@ class InputTest {
     fun `자동차 이름을 아무것도 입력받지 않을 수 없다`() {
         assertThatThrownBy {
             setInput("\n")
-            viewController.getCarName()
+            raceController.getCarName()
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 }
