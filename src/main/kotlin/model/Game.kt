@@ -6,7 +6,7 @@ class Game(val cars: List<Car>, val rounds: Int) {
     init {
         require(cars.size == cars.toSet().size) { throw IllegalArgumentException(MESSAGE_DUPLICATE_CAR_NAME) }
         require(cars.size > 1) { throw IllegalArgumentException(MESSAGE_NOT_ENOUGH_CARS) }
-        require(rounds > 1) { throw IllegalArgumentException(MESSAGE_ROUNDS_TOO_SMALL) }
+        require(rounds > 0) { throw IllegalArgumentException(MESSAGE_ROUNDS_TOO_SMALL) }
     }
 
     fun moveCars() {
