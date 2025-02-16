@@ -25,7 +25,7 @@ class RaceController(
         return comparePosition()
     }
 
-    fun comparePosition(): MutableList<Car> {
+    private fun comparePosition(): MutableList<Car> {
         val maxPosition = cars.maxOfOrNull { it.currentPosition }
         val winnerList = cars.filter { it.currentPosition == maxPosition }.toMutableList()
         return winnerList

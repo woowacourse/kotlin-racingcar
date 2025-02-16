@@ -3,7 +3,7 @@ package view
 import constant.InOutConstants
 import model.Car
 
-class OutView{
+class OutView {
     fun printCurrentResult(car: Car) {
         println(InOutConstants.CURRENT_RESULT_FORMAT.format(car.name, "-".repeat(car.currentPosition)))
     }
