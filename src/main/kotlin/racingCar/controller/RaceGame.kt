@@ -1,15 +1,16 @@
 package racingCar.controller
 
 import racingCar.model.Car
+import racingCar.model.RaceRule
 import racingCar.model.RandomGenerator
-import racingCar.model.Referee
 import racingCar.view.InputView
 import racingCar.view.OutputView
 
 class RaceGame(
     private val inputView: InputView,
     private val outputView: OutputView,
-    private val referee: Referee,
+    private val randomGenerator: RandomGenerator,
+    private val raceRule: RaceRule,
 ) {
     fun run() {
         val raceCars = getRaceCars()
@@ -43,20 +44,16 @@ class RaceGame(
         raceCount: Int,
         raceCars: List<Car>,
     ) {
-        val randomGenerator = RandomGenerator()
         outputView.printRaceResultTitle()
         repeat(raceCount) {
-            progress(raceCars, randomGenerator)
+            progress(raceCars)
         }
     }
 
-    private fun progress(
-        raceCars: List<Car>,
-        randomGenerator: RandomGenerator,
-    ) {
+    private fun progress(raceCars: List<Car>) {
         raceCars.forEach { raceCar ->
             val randomNumber = randomGenerator.getRandomNumber()
-            val isMoved = referee.isCarAbleToMove(randomNumber)
+            val isMoved = raceRule.isCarAbleToMove(randomNumber)
             if (isMoved) raceCar.moveForward()
             outputView.printRaceProgress(raceCar.name, raceCar.position)
         }
@@ -64,7 +61,7 @@ class RaceGame(
     }
 
     private fun getRaceWinners(raceCars: List<Car>) {
-        val winnerNames = referee.selectWinnerNames(raceCars)
+        val winnerNames = raceRule.selectWinnerNames(raceCars)
         outputView.printWinners(winnerNames)
     }
 }
