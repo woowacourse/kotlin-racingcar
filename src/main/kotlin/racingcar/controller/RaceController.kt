@@ -12,8 +12,8 @@ class RaceController {
     private val outputView = OutputView()
 
     fun run() {
-        val (rawCarNames, rawTryCount) = getCars()
-        val race = Race(rawCarNames, rawTryCount)
+        val (carNames, tryCount) = getCars()
+        val race = Race(carNames, tryCount)
 
         println(Constants.RUNNING_RESULT_MESSAGE)
 
