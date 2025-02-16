@@ -5,7 +5,11 @@ class Input {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
         val userInput: String? = readlnOrNull()
         requireNotNull(userInput) { "자동차의 이름을 입력해주세요" }
-        return userInput.toCars()
+        if (checkCarNameValid(userInput)) {
+            return userInput.toCars()
+        }
+        println("자동차 이름은 5자를 초과할 수 없습니다. 다시 입력해주세요.")
+        return readCars()
     }
 
     fun readRound(): Int {
@@ -19,9 +23,21 @@ class Input {
         return readRound()
     }
 
+    fun checkCarNameValid(name: String): Boolean {
+        runCatching {
+            require(name.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH)
+        }.onSuccess { return true }
+        return false
+    }
+
     fun checkRoundValid(userInput: String): Int {
         val validatedNumber = userInput.toIntOrNull() ?: 0
         if (validatedNumber <= 0) return 0
         return validatedNumber
+    }
+
+    companion object {
+        const val MIN_NAME_LENGTH = 1
+        const val MAX_NAME_LENGTH = 5
     }
 }
