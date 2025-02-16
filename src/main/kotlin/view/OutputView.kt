@@ -12,6 +12,7 @@ object OutputView {
     }
 
     fun printResultHeader() {
+        println()
         println(MESSAGE_OUTPUT_RESULT_HEADER)
     }
 
