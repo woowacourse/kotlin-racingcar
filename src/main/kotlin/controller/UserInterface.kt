@@ -27,7 +27,9 @@ class UserInterface(
     fun handleRoundResultMessage(cars: Cars) {
         val builder = StringBuilder()
         cars.parsedCars.forEach { car ->
-            builder.append(car)
+            builder.append(car.name)
+            builder.append(" : ")
+            builder.append("-".repeat(car.position))
             builder.append("\n")
         }
         outputView.printMessage(builder.toString())

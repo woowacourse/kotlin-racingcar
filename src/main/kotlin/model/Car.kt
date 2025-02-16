@@ -15,14 +15,6 @@ class Car(
         if (number >= MINIMUM_MOVE_POINT) position++
     }
 
-    override fun toString(): String {
-        return buildString {
-            append(name)
-            append(DELIMITER)
-            append(POSITION_SIGN.repeat(position))
-        }
-    }
-
     private fun validateCar(name: String) {
         require(name.trim().isNotEmpty()) { "자동차 이름에 빈 값이 입력되었습니다." }
         require(name.length <= MAX_NAME_LENGTH) { "자동차 이름이 5자를 초과하였습니다." }
@@ -32,7 +24,5 @@ class Car(
         const val MAX_NAME_LENGTH = 5
         const val MINIMUM_MOVE_POINT = 4
         const val INIT_POSITION = 0
-        private const val DELIMITER = " : "
-        private const val POSITION_SIGN = "-"
     }
 }
