@@ -1,0 +1,8 @@
+package racingCar.view
+
+object InputView {
+    fun getUserInput(): String {
+        val input = readln().trim()
+        return input
+    }
+}
