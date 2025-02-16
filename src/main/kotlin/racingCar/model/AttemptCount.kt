@@ -1,4 +1,4 @@
-package model
+package racingCar.view.model
 
 class AttemptCount(private val input: String) {
     init {

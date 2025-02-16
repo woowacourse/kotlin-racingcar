@@ -1,4 +1,4 @@
-package model
+package racingCar.view.model
 
 data class Car(
     val name: String,

@@ -1,4 +1,4 @@
-package view
+package racingCar.view
 
 object InputView {
     fun getUserInput(): String {

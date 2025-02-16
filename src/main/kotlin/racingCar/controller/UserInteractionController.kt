@@ -1,8 +1,8 @@
-package controller
+package racingCar.view.controller
 
-import model.Cars
-import view.InputView
-import view.OutputView
+import racingCar.view.model.Cars
+import racingCar.view.InputView
+import racingCar.view.OutputView
 
 class UserInteractionController {
     fun handleStartMessage(): String {
