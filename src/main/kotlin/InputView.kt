@@ -9,7 +9,7 @@ class InputView {
         carNames.forEach { carName ->
             require(carName.length <= CAR_NAME_LENGTH) { CAR_NAME_ERROR }
         }
-        return scanner.nextLine().split(CAR_DELIMITER)
+        return carNames
     }
 
     fun readAttempt(): Int {
