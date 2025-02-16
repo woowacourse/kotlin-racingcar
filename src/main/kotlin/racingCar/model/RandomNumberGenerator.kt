@@ -2,12 +2,8 @@ package racingCar.model
 
 import kotlin.random.Random
 
-class RandomNumberGenerator : NumberGenerator {
+class RandomNumberGenerator(private val maxValue: Int) : NumberGenerator {
     override fun generate(): Int {
-        return Random.nextInt(MAX_VALUE)
-    }
-
-    companion object {
-        const val MAX_VALUE = 9
+        return Random.nextInt(maxValue)
     }
 }
