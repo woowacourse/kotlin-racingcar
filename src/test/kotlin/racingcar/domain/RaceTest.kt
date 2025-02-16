@@ -13,7 +13,7 @@ class RaceTest {
         var index = 0
         repeat(race.tryCount) {
             cars.forEach { car ->
-                car.moves(randomValues[index] > 3)
+                car.moveOrStop(randomValues[index])
                 index++
             }
         }
