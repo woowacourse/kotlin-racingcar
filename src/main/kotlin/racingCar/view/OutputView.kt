@@ -1,6 +1,6 @@
-package view
+package racingCar.view
 
-class OutputView {
+object OutputView {
     fun printMessage(message: String) {
         println(message)
     }
