@@ -1,7 +1,6 @@
 package racingcar.controller
 
 import racingcar.domain.Race
-import racingcar.utils.Constants
 import racingcar.utils.ErrorHandler.validCarName
 import racingcar.utils.ErrorHandler.validTryCount
 import racingcar.view.InputView
@@ -15,7 +14,7 @@ class RaceController {
         val (carNames, tryCount) = getCars()
         val race = Race(carNames, tryCount)
 
-        println(Constants.RUNNING_RESULT_MESSAGE)
+        println(RUNNING_RESULT_MESSAGE)
 
         repeat(race.tryCount) {
             race.runRound()
@@ -29,5 +28,9 @@ class RaceController {
         val rawCarNames = inputView.insertCarNames().validCarName()
         val rawTryCount = inputView.insertTryCount().validTryCount()
         return rawCarNames to rawTryCount
+    }
+
+    companion object {
+        const val RUNNING_RESULT_MESSAGE = "\n실행 결과"
     }
 }

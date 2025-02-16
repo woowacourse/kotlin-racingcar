@@ -2,8 +2,6 @@ package racingcar.view
 
 import racingcar.domain.Car
 import racingcar.utils.Constants.COMMA
-import racingcar.utils.Constants.MOVE
-import racingcar.utils.Constants.WINNERS_MESSAGE
 
 class OutputView {
     fun printRoundResult(cars: List<Car>) {
@@ -15,5 +13,10 @@ class OutputView {
 
     fun printWinners(winners: List<String>) {
         println("$WINNERS_MESSAGE ${winners.joinToString("$COMMA ")}")
+    }
+
+    companion object {
+        const val MOVE = "-"
+        const val WINNERS_MESSAGE = "최종 우승자:"
     }
 }
