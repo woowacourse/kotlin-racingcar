@@ -1,7 +1,8 @@
 class Car private constructor(
     val name: String,
+    position: Int = INITIAL_CAR_POSITION,
 ) {
-    var position: Int = INITIAL_CAR_POSITION
+    var position: Int = position
         private set
 
     fun moveForward(isMoved: Boolean) {
@@ -15,9 +16,10 @@ class Car private constructor(
 
         operator fun invoke(
             name: String,
+            position: Int = INITIAL_CAR_POSITION,
         ): Car {
             validateCarName(name)
-            return Car(name)
+            return Car(name, position)
         }
 
         private fun validateCarName(carName: String) {
