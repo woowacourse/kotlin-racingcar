@@ -1,6 +1,6 @@
 package view
 
-class InputView {
+object InputView {
     fun getUserInput(): String {
         val input = readln().trim()
         return input
