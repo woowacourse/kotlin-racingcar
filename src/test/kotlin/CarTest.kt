@@ -55,15 +55,13 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
     fun `랜덤 숫자가 4 미만인 경우 false 를 반환한다`(randomNumber: Int) {
-        val car = Car("공백")
-        assertFalse(car.isCarAbleToMove(randomNumber))
+        assertFalse(Car.isCarAbleToMove(randomNumber))
     }
 
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `랜덤 숫자가 4 이상인 경우 true 를 반환한다`(randomNumber: Int) {
-        val car = Car("공백")
-        assertTrue(car.isCarAbleToMove(randomNumber))
+        assertTrue(Car.isCarAbleToMove(randomNumber))
     }
 
     @Test

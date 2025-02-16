@@ -38,7 +38,7 @@ class RaceOrganizer(
     ) {
         raceCars.forEach { raceCar ->
             val randomNumber = randomGenerator.getRandomNumber()
-            val isMoved = raceCar.isCarAbleToMove(randomNumber)
+            val isMoved = Car.isCarAbleToMove(randomNumber)
             raceCar.moveForward(isMoved)
         }
         outputPrinter.printRaceProgress(raceCars)
