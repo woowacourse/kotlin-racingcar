@@ -34,10 +34,14 @@ class Car private constructor(
 
         fun getWinnerNames(raceCars: List<Car>): List<String> {
             val maxPosition = raceCars.maxOf { raceCar -> raceCar.position }
-            return raceCars
-                .filter { raceCar ->
-                    raceCar.position == maxPosition
-                }.map { winner -> winner.name }
+            return raceCars.toWinnerCars(maxPosition).toCarNames()
         }
+
+        private fun List<Car>.toWinnerCars(maxPosition: Int) = this
+            .filter { raceCar ->
+                raceCar.position == maxPosition
+            }
+
+        private fun List<Car>.toCarNames() = this.map { car -> car.name }
     }
 }
