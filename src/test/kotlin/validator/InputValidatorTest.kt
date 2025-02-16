@@ -10,14 +10,14 @@ class InputValidatorTest {
     @ValueSource(
         strings = ["creammm", " "],
     )
-    fun `개별 자동차 이름 유효성 검사`(name: String) {
+    fun `자동차 이름은 5자를 초과할 수 없으며, 공백이 불가하다`(name: String) {
         assertThrows<IllegalArgumentException> {
             InputValidator.validateCarName(name)
         }
     }
 
     @Test
-    fun `자동차 이름 중복 검사`() {
+    fun `자동차 이름은 중복 될 수 없다`() {
         val names = listOf("tama", "tama")
         assertThrows<IllegalArgumentException> {
             InputValidator.validateDuplicatedName(names)
@@ -28,7 +28,7 @@ class InputValidatorTest {
     @ValueSource(
         strings = ["0", " ", "seven"],
     )
-    fun `시도 횟수 유효성 검사`(tryNumber: String) {
+    fun `시도 횟수는 정수 형태로 입력되어야 한다`(tryNumber: String) {
         assertThrows<IllegalArgumentException> {
             InputValidator.validateTryNumber(tryNumber)
         }
