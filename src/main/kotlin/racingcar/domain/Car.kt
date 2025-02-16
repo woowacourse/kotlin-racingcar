@@ -1,5 +1,7 @@
 package racingcar.domain
 
+import racingcar.domain.strategy.MoveStrategy
+
 class Car(
     val name: String,
 ) {
@@ -8,6 +10,10 @@ class Car(
 
     init {
         carNameLengthCheck(name)
+    }
+
+    fun moveByStrategy(moveStrategy: MoveStrategy) {
+        if (moveStrategy.isMove()) distance++
     }
 
     companion object {

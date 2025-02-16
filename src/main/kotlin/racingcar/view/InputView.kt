@@ -6,8 +6,8 @@ class InputView {
         return readln().split(",")
     }
 
-//    fun readTryCount(): String {
-//        println("시도할 횟수는 몇 회인가요?")
-//        return readln()
-//    }
+    fun readTryCount(): String {
+        println("시도할 횟수는 몇 회인가요?")
+        return readln()
+    }
 }
