@@ -11,19 +11,19 @@ class RaceController {
     private val outputView = OutputView()
 
     fun run() {
-        val values = start()
-        val gameResult = playing(values)
+        val values = getCars()
+        val gameResult = runRace(values)
 
         printGameResult(gameResult)
     }
 
-    private fun start(): Pair<String, String> {
+    private fun getCars(): Pair<String, String> {
         val rawCarNames = inputView.insertCarNames().validCarName()
         val rawTryCount = inputView.insertTryCount().validTryCount()
         return rawCarNames to rawTryCount
     }
 
-    private fun playing(values: Pair<String, String>): Race {
+    private fun runRace(values: Pair<String, String>): Race {
         val race = Race(values.first, values.second)
         race.moveOrStops()
         return race
