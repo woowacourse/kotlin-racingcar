@@ -38,7 +38,10 @@ class Validator {
     }
 
     private fun String.toIntTryCount(): Boolean {
-        return this.toIntOrNull() == null
+        if (this.toIntOrNull() == null) return true
+        if (this.toInt() <= 0) return true
+
+        return false
     }
 
     private fun String.emptyTryCount(): Boolean {
