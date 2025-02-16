@@ -15,9 +15,9 @@ class Car(val carName: String) {
     }
 
     companion object {
-        const val MOVE_MIN_RANGE = 4
-        const val MOVE_MAX_RANGE = 9
-        const val MOVE = "-"
-        const val STOP = ""
+        private const val MOVE_MIN_RANGE = 4
+        private const val MOVE_MAX_RANGE = 9
+        private const val MOVE = "-"
+        private const val STOP = ""
     }
 }

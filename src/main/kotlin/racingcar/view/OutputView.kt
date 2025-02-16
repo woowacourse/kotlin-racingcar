@@ -20,8 +20,8 @@ class OutputView {
     }
 
     companion object {
-        const val RUNNING_RESULT_MESSAGE = "\n실행 결과"
-        const val WINNERS_MESSAGE = "최종 우승자:"
-        const val COMMA = ","
+        private const val RUNNING_RESULT_MESSAGE = "\n실행 결과"
+        private const val WINNERS_MESSAGE = "최종 우승자:"
+        private const val COMMA = ","
     }
 }

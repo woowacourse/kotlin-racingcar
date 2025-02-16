@@ -28,6 +28,6 @@ class Race(rawCarNames: String, rawTryCount: String) {
     }
 
     companion object {
-        const val COMMA = ","
+        private const val COMMA = ","
     }
 }
