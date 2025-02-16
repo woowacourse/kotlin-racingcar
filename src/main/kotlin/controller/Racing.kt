@@ -1,3 +1,11 @@
+package controller
+
+import model.car.Car
+import model.car.CarFactory
+import model.number.RandomNumber
+import view.InputView
+import view.OutputView
+
 class Racing {
     private val inputView = InputView()
     private val outputView = OutputView()

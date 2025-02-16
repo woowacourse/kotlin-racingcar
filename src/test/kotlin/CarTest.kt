@@ -1,3 +1,6 @@
+import model.car.Car
+import model.number.TryMoveNumber
+import model.number.TryStopNumber
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows

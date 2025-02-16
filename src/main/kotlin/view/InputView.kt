@@ -1,3 +1,5 @@
+package view
+
 import java.util.Scanner
 
 class InputView {

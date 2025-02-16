@@ -1,3 +1,5 @@
+package model.car
+
 class CarFactory {
     fun createCar(carNames: List<String>): List<Car> {
         val anonymousCounts = (ANONYMITY_MIN_COUNT..carNames.count { it.isBlank() }).toMutableList()

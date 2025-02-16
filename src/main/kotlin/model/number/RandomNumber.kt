@@ -1,3 +1,5 @@
+package model.number
+
 import kotlin.random.Random
 
 class RandomNumber : NumberGenerator {
