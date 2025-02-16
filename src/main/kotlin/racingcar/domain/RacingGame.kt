@@ -1,18 +1,15 @@
 package racingcar.domain
 
-import racingcar.domain.strategy.RandomMoveStrategy
+import racingcar.domain.strategy.MoveStrategy
 
 class RacingGame(
     carNames: List<String>,
-    raceCountText: String,
+    private val moveStrategy: MoveStrategy,
 ) {
     private val cars: MutableList<Car> = mutableListOf()
-    private var raceCount: Int = 0
-    val raceInfo: MutableList<Map<String, Int>> = mutableListOf()
 
     init {
-        raceCount = validateAndParseRaceCount(raceCountText)
-        carNames.forEach { cars.add(Car(it)) }
+        validateAndTrimCarNames(carNames).forEach { cars.add(Car(it)) }
     }
 
     fun getWinCarNames(): List<String> = getWinCars().map { it.name }
@@ -22,27 +19,35 @@ class RacingGame(
             car.distance == cars.maxOf { it.distance }
         }
 
-    fun doWholeRace() {
-        repeat(raceCount) { doSingleRace() }
+    fun doWholeRace(
+        rounds: Int,
+        onEachRound: (Map<String, Int>) -> Unit,
+    ) {
+        validateNaturalNumber(rounds)
+        repeat(rounds) {
+            onEachRound(doSingleRace()) // 매 경기 결과 콜백
+        }
     }
 
-    private fun doSingleRace() {
+    private fun doSingleRace(): Map<String, Int> {
         val singleRaceInfo: MutableMap<String, Int> = mutableMapOf()
         cars.forEach {
-            it.moveByStrategy(RandomMoveStrategy())
+            it.moveByStrategy(moveStrategy)
             singleRaceInfo[it.name] = it.distance
         }
-        raceInfo.add(singleRaceInfo)
+        return singleRaceInfo
     }
 
     companion object {
-        private fun validateAndParseRaceCount(raceCountText: String): Int {
-            val number = parseToInt(raceCountText)
-            validateNaturalNumber(number)
-            return number
+        private fun validateAndTrimCarNames(carNames: List<String>): List<String> {
+            val trimmedCarNames = trimCarNames(carNames)
+            require(trimmedCarNames.distinct().size == trimmedCarNames.size) { ERROR_DUPLICATE_NAME }
+            return trimmedCarNames
         }
 
-        private fun parseToInt(text: String): Int = text.toIntOrNull() ?: throw IllegalArgumentException("입력이 숫자가 아닙니다.")
+        private fun trimCarNames(carNames: List<String>) = carNames.map { carName -> carName.trim() }
+
+        private const val ERROR_DUPLICATE_NAME = "중복된 자동차 이름이 존재합니다."
 
         private fun validateNaturalNumber(number: Int) {
             require(number > 0) { "입력이 자연수가 아닙니다." }

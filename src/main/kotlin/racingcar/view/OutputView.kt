@@ -5,14 +5,11 @@ class OutputView {
         println("최종 우승자 : ${winners.joinToString(", ")}")
     }
 
-    fun showRaceInfo(raceInfo: List<Map<String, Int>>) {
+    fun showRaceResultHeader() {
         println("\n실행 결과")
-        raceInfo.forEach {
-            showSingleRaceInfo(it)
-        }
     }
 
-    private fun showSingleRaceInfo(singleRace: Map<String, Int>) {
+    fun showSingleRaceInfo(singleRace: Map<String, Int>) {
         singleRace.forEach {
             println("${it.key}: ${"-".repeat(it.value)}")
         }

@@ -18,7 +18,9 @@ class Car(
 
     companion object {
         private fun carNameLengthCheck(name: String) {
-            require(name.length in 1..5) { Messages.ERROR_NAME_LENGTH.message }
+            require(name.length in 1..5) { ERROR_NAME_LENGTH }
         }
+
+        private const val ERROR_NAME_LENGTH = "자동차 이름을 1자 이상 5자 이하로 입력하세요."
     }
 }
