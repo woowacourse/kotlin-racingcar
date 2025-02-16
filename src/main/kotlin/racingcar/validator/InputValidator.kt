@@ -6,5 +6,5 @@ object InputValidator {
     }
 
     private const val ERROR = "[ERROR]"
-    private const val EMPTY_INPUT_ERROR = "$ERROR 빈 값을 입력하셨습니다."
+    const val EMPTY_INPUT_ERROR = "$ERROR 빈 값을 입력하셨습니다."
 }

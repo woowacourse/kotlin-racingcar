@@ -15,7 +15,7 @@ class RacingCarController(
     fun start() {
         val cars = getCars()
         val rounds = getRounds()
-        val game = Game(cars)
+        val game = getGame(cars)
         playGame(rounds, game)
     }
 
@@ -30,6 +30,12 @@ class RacingCarController(
 
     private fun getCarNames(input: String): List<String> {
         return input.split(COMMA).map { it.trim() }
+    }
+
+    private fun getGame(cars: List<Car>): Game {
+        return retryWhenException {
+            Game(cars)
+        }
     }
 
     private fun getRounds(): Int {
