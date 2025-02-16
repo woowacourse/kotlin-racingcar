@@ -1,10 +1,16 @@
 package racingcar.domain
 
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 
 class CarTest {
-    private val car = Car("a,b,c")
+    private lateinit var car: Car
+
+    @BeforeEach
+    fun setUp() {
+        car = Car("a,b,c")
+    }
 
     @Test
     fun `랜덤 숫자가 4이상인 경우 전진 여부 테스트`() {
