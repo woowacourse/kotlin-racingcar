@@ -12,9 +12,8 @@ class CarTest {
         tryNumbers: List<Int>,
         actual: Int,
     ) {
-        val car = Car("동전")
-        val tryMoveNumbersExtractor = TryMoveNumbersExtractor(tryNumbers)
-        repeat(tryMoveNumbersExtractor.currentNumbersSize) { car.move(tryMoveNumbersExtractor) }
+        val car = Car("동전", tryMoveNumberStrategy = TryMoveNumbersExtractor(tryNumbers))
+        repeat(tryNumbers.size) { car.move() }
         assertThat(actual).isEqualTo(car.position)
     }
 

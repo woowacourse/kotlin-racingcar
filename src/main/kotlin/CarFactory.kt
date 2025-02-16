@@ -1,13 +1,10 @@
-class CarFactory {
+class CarFactory(private val anonymousNumberStrategy: AnonymousNumberStrategy = AnonymousNumberGenerator()) {
     private val anonymousNumbers = mutableSetOf<Int>()
 
-    fun createCars(
-        carsName: List<String>,
-        anonymousTryMoveNumberGenerator: AnonymousNumberStrategy = AnonymousNumberGenerator(),
-    ): List<Car> {
+    fun createCars(carsName: List<String>): List<Car> {
         val cars = mutableListOf<Car>()
         anonymousNumbers.addAll(initAnonymousNumbers(carsName))
-        carsName.forEach { carName -> cars.add(createCar(carName, anonymousTryMoveNumberGenerator)) }
+        carsName.forEach { carName -> cars.add(createCar(carName)) }
         return cars.distinct()
     }
 
@@ -16,12 +13,9 @@ class CarFactory {
             .mapNotNull { anonymousName -> anonymousName.removePrefix(ANONYMITY).toOnlyIntOrNull() }
     }
 
-    private fun createCar(
-        name: String,
-        anonymousTryMoveNumberGenerator: AnonymousNumberStrategy = AnonymousNumberGenerator(),
-    ): Car {
+    private fun createCar(name: String): Car {
         if (name.isBlank()) {
-            val anonymousNumber = anonymousTryMoveNumberGenerator.getNumber(anonymousNumbers)
+            val anonymousNumber = anonymousNumberStrategy.getNumber(anonymousNumbers)
             anonymousNumbers.add(anonymousNumber)
             return Car(ANONYMITY + anonymousNumber)
         }

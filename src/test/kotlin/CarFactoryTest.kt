@@ -10,7 +10,7 @@ class CarFactoryTest {
 
     @BeforeEach
     fun setUp() {
-        carFactory = CarFactory()
+        carFactory = CarFactory(AnonymousNumbersExtractor(listOf(1, 2, 3, 4, 5, 6)))
     }
 
     @ParameterizedTest
@@ -19,8 +19,7 @@ class CarFactoryTest {
         carNames: List<String>,
         actual: List<Car>,
     ) {
-        val anonymousNumbersExtractor = AnonymousNumbersExtractor(listOf(1, 2, 3, 4, 5, 6))
-        assertThat(actual).isEqualTo(carFactory.createCars(carNames, anonymousNumbersExtractor))
+        assertThat(actual).isEqualTo(carFactory.createCars(carNames))
     }
 
     @ParameterizedTest
