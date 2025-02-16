@@ -1,7 +1,5 @@
 package racingCar.view
 
-import racingCar.model.Car
-
 class OutputView {
     fun printRaceCarNamesGuide() {
         println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
@@ -12,14 +10,15 @@ class OutputView {
     }
 
     fun printRaceResultTitle() {
-        println("\n실행 결과")
+        printLineBreak()
+        println("실행 결과")
     }
 
-    fun printRaceProgress(cars: List<Car>) {
-        cars.forEach { car ->
-            println("${car.name} : ${RACE_CAR_POSITION_INDICATOR.repeat(car.position)}")
-        }
-        println()
+    fun printRaceProgress(
+        carName: String,
+        carPosition: Int,
+    ) {
+        println("$carName : ${RACE_CAR_POSITION_INDICATOR.repeat(carPosition)}")
     }
 
     fun printWinners(winnerNames: List<String>) {
@@ -28,6 +27,10 @@ class OutputView {
 
     fun printErrorMessage(message: String) {
         println(message)
+    }
+
+    fun printLineBreak() {
+        println()
     }
 
     companion object {

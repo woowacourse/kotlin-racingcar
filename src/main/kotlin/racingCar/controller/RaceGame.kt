@@ -58,8 +58,9 @@ class RaceGame(
             val randomNumber = randomGenerator.getRandomNumber()
             val isMoved = referee.isCarAbleToMove(randomNumber)
             if (isMoved) raceCar.moveForward()
+            outputView.printRaceProgress(raceCar.name, raceCar.position)
         }
-        outputView.printRaceProgress(raceCars)
+        outputView.printLineBreak()
     }
 
     private fun getRaceWinners(raceCars: List<Car>) {
