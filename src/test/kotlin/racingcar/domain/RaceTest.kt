@@ -8,12 +8,12 @@ class RaceTest {
     private val cars = race.cars
 
     @Test
-    fun `우승자리스트 테스트`() {
+    fun `우승자 리스트 정상 출력 확인`() {
         val randomValues = listOf(4, 2, 6, 4, 5, 6, 7, 8, 9)
         var index = 0
         repeat(race.tryCount) {
             cars.forEach { car ->
-                car.moves(randomValues[index] > 3)
+                car.moves(randomValues[index])
                 index++
             }
         }

@@ -7,19 +7,19 @@ class CarTest {
     private val car = Car("a,b,c")
 
     @Test
-    fun `전진 여부 테스트`() {
-        car.moves(true)
+    fun `랜덤 숫자가 4 이상이면 전진한다`() {
+        car.moves(5)
         val expected = listOf("-")
-        val result = car.moveOrStop
+        val result = car.position
 
         assertEquals(expected, result)
     }
 
     @Test
-    fun `전진 횟수 테스트`() {
+    fun `자동차에 저장된 전진 횟수를 계산한다`() {
         val expected = 1
-        car.moveOrStop.add("-")
-        car.moveOrStop.add("")
+        car.position.add("-")
+        car.position.add("")
         val result = car.moveCount()
 
         assertEquals(expected, result)
