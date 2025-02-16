@@ -1,19 +1,15 @@
 package racingcar.domain
 
-import racingcar.utils.Constants.MOVE
-import racingcar.utils.Constants.STOP
+class Car(private val carName: String) {
+    private var position: Int = 0
 
-class Car(val carName: String) {
-    val moveOrStop = mutableListOf<String>()
+    fun getName(): String = carName
 
-    fun moves(isMove: Boolean) {
-        when (isMove) {
-            true -> moveOrStop.add(MOVE)
-            false -> moveOrStop.add(STOP)
+    fun getPosition(): Int = position
+
+    fun moveOrStop(isMove: Boolean) {
+        if (isMove) {
+            position++
         }
-    }
-
-    fun moveCount(): Int {
-        return moveOrStop.count { it == MOVE }
     }
 }

@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.domain.Race
+import racingcar.utils.Constants
 import racingcar.utils.ErrorHandler.validCarName
 import racingcar.utils.ErrorHandler.validTryCount
 import racingcar.view.InputView
@@ -11,26 +12,22 @@ class RaceController {
     private val outputView = OutputView()
 
     fun run() {
-        val values = getCars()
-        val gameResult = runRace(values)
+        val (rawCarNames, rawTryCount) = getCars()
+        val race = Race(rawCarNames, rawTryCount)
 
-        printGameResult(gameResult)
+        println(Constants.RUNNING_RESULT_MESSAGE)
+
+        repeat(race.tryCount) {
+            race.runRound()
+            outputView.printRoundResult(race.cars)
+        }
+
+        outputView.printWinners(race.getWinners())
     }
 
     private fun getCars(): Pair<String, String> {
         val rawCarNames = inputView.insertCarNames().validCarName()
         val rawTryCount = inputView.insertTryCount().validTryCount()
         return rawCarNames to rawTryCount
-    }
-
-    private fun runRace(values: Pair<String, String>): Race {
-        val race = Race(values.first, values.second)
-        race.moveOrStops()
-        return race
-    }
-
-    private fun printGameResult(gameResult: Race) {
-        outputView.printRoundResult(gameResult.cars.map { it.carName }, gameResult.cars.map { it.moveOrStop }, gameResult.tryCount)
-        outputView.printWinners(gameResult.getWinners())
     }
 }
