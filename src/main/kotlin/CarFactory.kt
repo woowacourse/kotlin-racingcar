@@ -5,6 +5,7 @@ class CarFactory(private val anonymousNumberStrategy: AnonymousNumberStrategy = 
         val cars = mutableListOf<Car>()
         anonymousNumbers.addAll(initAnonymousNumbers(carsName))
         carsName.forEach { carName -> cars.add(createCar(carName)) }
+        anonymousNumbers.clear()
         return cars.distinct()
     }
 
