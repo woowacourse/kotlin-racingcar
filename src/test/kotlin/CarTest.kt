@@ -39,25 +39,14 @@ class CarTest {
         Assertions.assertEquals(initialPosition, car.position)
     }
 
-    @Test
-    fun `전진이 가능하면 자동차는 전진한다`() {
+    @ParameterizedTest
+    @ValueSource(booleans = [true, false])
+    fun `전진 가능 여부에 따라 자동차는 전진하거나 멈춘다`(isMoved: Boolean) {
         val car = Car("뭉치")
-        val isMoved = true
         val previousPosition = car.position
 
         car.moveForward(isMoved)
 
-        Assertions.assertTrue(car.position > previousPosition)
-    }
-
-    @Test
-    fun `전진이 불가능하면 자동차는 멈춘다`() {
-        val car = Car("뭉치")
-        val isMoved = false
-        val previousPosition = car.position
-
-        car.moveForward(isMoved)
-
-        Assertions.assertTrue(car.position == previousPosition)
+        Assertions.assertEquals(isMoved, car.position > previousPosition)
     }
 }
