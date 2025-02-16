@@ -4,7 +4,7 @@ class Cars(
     input: String,
     private val numberGenerator: RandomNumberGenerator = RandomNumberGenerator(),
 ) {
-    private val parsedCars: List<Car> = input.split(",").map { Car(it) }
+    val parsedCars: List<Car> = input.split(",").map { Car(it.trim()) }
 
     fun playOneRound() {
         parsedCars.forEach { car ->
