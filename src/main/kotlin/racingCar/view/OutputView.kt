@@ -1,4 +1,6 @@
-package racingCar
+package racingCar.view
+
+import racingCar.model.Car
 
 class OutputView {
     fun printRaceCarNamesGuide() {

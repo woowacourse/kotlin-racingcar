@@ -2,6 +2,7 @@ package racingCar
 
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import racingCar.model.RandomGenerator
 
 class RandomGeneratorTest {
     private val randomGenerator = RandomGenerator()

@@ -1,4 +1,4 @@
-package racingCar
+package racingCar.model
 
 class Referee {
     fun isCarAbleToMove(randomNumber: Int): Boolean = randomNumber >= MIN_RANDOM_AVAILABILITY_CONDITION

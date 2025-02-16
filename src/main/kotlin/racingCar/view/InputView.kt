@@ -1,4 +1,4 @@
-package racingCar
+package racingCar.view
 
 class InputView {
     fun readRaceCars(): List<String> {
