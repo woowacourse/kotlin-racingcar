@@ -4,7 +4,7 @@ class CarService(private val _cars: List<Car>) {
     fun race() = _cars.forEach { car -> car.move(TryMoveNumberGenerator()) }
 
     fun getWinners(): List<Car> {
-        val maxPosition = cars.maxOf { car -> car.position }
-        return cars.filter { car -> car.position == maxPosition }
+        val topPositionCar = cars.maxOf { it }
+        return cars.filter { car -> car.position == topPositionCar.position }
     }
 }

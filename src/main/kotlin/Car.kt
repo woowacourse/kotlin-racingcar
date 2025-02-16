@@ -1,13 +1,16 @@
-data class Car(val name: String) {
+data class Car(val name: String, private var _position: Int = INIT_POSITION) : Comparable<Car> {
     init {
         require(name.length <= CAR_NAME_LENGTH) { CAR_NAME_ERROR }
     }
 
-    private var _position = INIT_POSITION
     val position get() = _position
 
     fun move(tryMoveNumberStrategy: TryMoveNumberStrategy) {
         if (tryMoveNumberStrategy.getNumber() >= MOVE_MIN_NUMBER) _position++
+    }
+
+    override fun compareTo(other: Car): Int {
+        return this.position - other.position
     }
 
     companion object {
