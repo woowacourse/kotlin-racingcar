@@ -1,17 +1,24 @@
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertFalse
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 
 class CarFactoryTest {
+    private lateinit var carFactory: CarFactory
+
+    @BeforeEach
+    fun setUp() {
+        carFactory = CarFactory()
+    }
+
     @ParameterizedTest
     @MethodSource("getAnonymousCarSuccessCases")
     fun `자동차 익명 순서에 맞게 생성 성공 테스트`(
         carNames: List<String>,
         actual: List<Car>,
     ) {
-        val carFactory = CarFactory()
         val anonymousNumbersExtractor = AnonymousNumbersExtractor(listOf(1, 2, 3, 4, 5, 6))
         assertThat(actual).isEqualTo(carFactory.createCars(carNames, anonymousNumbersExtractor))
     }
@@ -22,7 +29,6 @@ class CarFactoryTest {
         carsName: List<String>,
         actual: List<Car>,
     ) {
-        val carFactory = CarFactory()
         assertFalse(actual == carFactory.createCars(carsName))
     }
 
