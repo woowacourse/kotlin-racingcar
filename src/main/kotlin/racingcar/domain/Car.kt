@@ -10,7 +10,7 @@ class Car(
         private set
 
     init {
-        inputValidator.validCarNameChecker(name)
+        carNameLengthCheck(name)
     }
 
     fun moveByValue(value: Int) {
@@ -18,5 +18,9 @@ class Car(
         if (value >= 4) distance++
     }
 
-    override fun toString(): String = "$name : ${"-".repeat(distance)}"
+    companion object {
+        private fun carNameLengthCheck(name: String) {
+            require(name.length in 1..5) { Messages.ERROR_NAME_LENGTH.message }
+        }
+    }
 }

@@ -12,22 +12,10 @@ class InputValidator {
 
     fun validCarNameChecker(name: String) {
         emptyStringCheck(name)
-        carNameLengthCheck(name)
-        carNameConsistPossibleCharactersCheck(name)
     }
 
     private fun emptyStringCheck(input: String) {
         require(input.isNotBlank()) { Messages.ERROR_EMPTY_INPUT.message }
-    }
-
-    private fun carNameConsistPossibleCharactersCheck(name: String) {
-        require(!name.startsWith(" ") && !name.endsWith(" ")) { Messages.ERROR_NOT_AVAILABLE_NAME.message }
-        val regex = Regex("^[가-힣a-zA-Z0-9 ]*$")
-        require(regex.matches(name)) { Messages.ERROR_NOT_AVAILABLE_NAME.message }
-    }
-
-    private fun carNameLengthCheck(name: String) {
-        require(name.length in 1..5) { Messages.ERROR_NAME_LENGTH.message }
     }
 
     fun possibleMoveValueCheck(value: Int) {

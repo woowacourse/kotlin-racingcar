@@ -1,9 +1,11 @@
 package racingcar
 
+import racingcar.controller.RacingController
 import racingcar.view.ConsoleInputView
 import racingcar.view.ConsoleOutputView
 
 fun main() {
+    RacingController().run()
     Application().run()
 }
 
