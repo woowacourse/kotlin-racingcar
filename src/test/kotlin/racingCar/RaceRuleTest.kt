@@ -7,10 +7,10 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 import racingCar.model.Car
-import racingCar.model.Referee
+import racingCar.model.RaceRule
 
-class RefereeTest {
-    private val referee = Referee()
+class RaceRuleTest {
+    private val raceRule = RaceRule()
     private val car1 = Car("제이슨")
     private val car2 = Car("디노")
     private val car3 = Car("레아")
@@ -19,13 +19,13 @@ class RefereeTest {
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
     fun `랜덤 숫자가 4 미만인 경우 false 를 반환한다`(randomNumber: Int) {
-        assertFalse(referee.isCarAbleToMove(randomNumber))
+        assertFalse(raceRule.isCarAbleToMove(randomNumber))
     }
 
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
     fun `랜덤 숫자가 4 이상인 경우 true 를 반환한다`(randomNumber: Int) {
-        assertTrue(referee.isCarAbleToMove(randomNumber))
+        assertTrue(raceRule.isCarAbleToMove(randomNumber))
     }
 
     @Test
@@ -37,7 +37,7 @@ class RefereeTest {
 
         val cars = listOf(car1, car2, car3, car4)
 
-        val winnerNames = referee.selectWinnerNames(cars)
+        val winnerNames = raceRule.selectWinnerNames(cars)
 
         Assertions.assertEquals(listOf("제이슨"), winnerNames)
     }
@@ -51,7 +51,7 @@ class RefereeTest {
 
         val cars = listOf(car1, car2, car3, car4)
 
-        val winnerNames = referee.selectWinnerNames(cars)
+        val winnerNames = raceRule.selectWinnerNames(cars)
 
         Assertions.assertEquals(listOf("제이슨", "디노", "레아", "제임스"), winnerNames)
     }

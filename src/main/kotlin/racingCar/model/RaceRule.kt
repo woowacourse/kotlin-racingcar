@@ -1,6 +1,6 @@
 package racingCar.model
 
-class Referee {
+class RaceRule {
     fun isCarAbleToMove(randomNumber: Int): Boolean = randomNumber >= MIN_RANDOM_AVAILABILITY_CONDITION
 
     fun selectWinnerNames(raceCars: List<Car>): List<String> {
