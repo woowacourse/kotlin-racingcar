@@ -35,6 +35,8 @@ class CarFactoryTest {
                 Arguments.arguments(listOf("제리", "  ", "제이든"), listOf(Car("제리"), Car("익명1"), Car("제이든"))),
                 Arguments.arguments(listOf("제이든", "", "제리", ""), listOf(Car("제이든"), Car("익명1"), Car("제리"), Car("익명2"))),
                 Arguments.arguments(listOf("익명3", "익명4", "  "), listOf(Car("익명3"), Car("익명4"), Car("익명1"))),
+                Arguments.arguments(listOf("익명3", "익명1.0", "  "), listOf(Car("익명3"), Car("익명1.0"), Car("익명1"))),
+                Arguments.arguments(listOf("익명3", "익명1.3", "  "), listOf(Car("익명3"), Car("익명1.3"), Car("익명1"))),
             )
         }
 

@@ -13,7 +13,7 @@ class CarFactory {
 
     private fun initAnonymousNumbers(carsName: List<String>): List<Int> {
         return carsName.filter { carName -> carName.startsWith(ANONYMITY) }
-            .mapNotNull { anonymousName -> anonymousName.removePrefix(ANONYMITY).toIntOrNull() }
+            .mapNotNull { anonymousName -> anonymousName.removePrefix(ANONYMITY).toOnlyIntOrNull() }
     }
 
     private fun createCar(
@@ -29,7 +29,6 @@ class CarFactory {
     }
 
     companion object {
-        private const val ADD_DUPLICATE_COUNT = 1
         private const val ANONYMITY = "익명"
     }
 }
