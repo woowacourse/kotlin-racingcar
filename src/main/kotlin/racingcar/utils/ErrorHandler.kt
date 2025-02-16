@@ -10,7 +10,7 @@ import racingcar.utils.Constants.TRYCOUNT_ERROR_MESSAGE
 
 object ErrorHandler {
     fun String.validCarName(): String {
-        val carNames = this.split(COMMA)
+        val carNames = this.split(COMMA).map { it.trim() }
         if (carNames.duplicateCarNames() ||
             carNames.emptyCarNames() ||
             carNames.carNameLength()
