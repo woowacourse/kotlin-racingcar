@@ -2,7 +2,8 @@ package racingCar.model
 
 class Cars(
     input: String,
-    private val numberGenerator: RandomNumberGenerator = RandomNumberGenerator(RANDOM_MAX_VALUE),
+    maxValue: Int = DEFAULT_RANDOM_MAX_VALUE,
+    private val numberGenerator: RandomNumberGenerator = RandomNumberGenerator(maxValue),
 ) {
     val parsedCars: List<Car> = input.split(",").map { Car(it.trim()) }
 
@@ -20,6 +21,6 @@ class Cars(
     }
 
     companion object {
-        const val RANDOM_MAX_VALUE: Int = 9
+        const val DEFAULT_RANDOM_MAX_VALUE: Int = 9
     }
 }
