@@ -18,9 +18,11 @@ class CarTest {
     @Test
     @DisplayName("자동차의 이름은 존재해야 한다.")
     fun carNameNullTest() {
-        assertThrows<IllegalArgumentException> {
-            Car("")
-        }
+        val exception =
+            assertThrows<IllegalArgumentException> {
+                Car("")
+            }
+        assertEquals("자동차 이름에 빈 값이 입력되었습니다.", exception.message)
     }
 
     @Test
@@ -34,9 +36,11 @@ class CarTest {
     @Test
     @DisplayName("자동차 이름이 6자 이상이면 예외를 발생한다.")
     fun carNameExceptionTest() {
-        assertThrows<IllegalArgumentException> {
-            Car("오이오이오이")
-        }
+        val exception =
+            assertThrows<IllegalArgumentException> {
+                Car("오이오이오이")
+            }
+        assertEquals("자동차 이름이 5자를 초과하였습니다.", exception.message)
     }
 
     @Test

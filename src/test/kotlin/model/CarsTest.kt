@@ -11,25 +11,31 @@ class CarsTest {
     @Test
     @DisplayName("자동차 이름이 존재하지 않으면, 예외가 발생한다.")
     fun carsNameNotExistTest() {
-        assertThrows<IllegalArgumentException> {
-            cars = Cars(listOf(""))
-        }
+        val exception =
+            assertThrows<IllegalArgumentException> {
+                cars = Cars(listOf(""))
+            }
+        assertEquals("자동차 이름에 빈 값이 입력되었습니다.", exception.message)
     }
 
     @Test
     @DisplayName("자동차 이름이 중복되면, 예외가 발생한다.")
     fun carsNameDuplicateTest() {
-        assertThrows<IllegalArgumentException> {
-            cars = Cars(listOf("오이", "오이"))
-        }
+        val exception =
+            assertThrows<IllegalArgumentException> {
+                cars = Cars(listOf("오이", "오이"))
+            }
+        assertEquals("자동차 이름 중 중복이 존재합니다.", exception.message)
     }
 
     @Test
     @DisplayName("자동차가 2대 미만이면, 예외가 발생한다.")
     fun carsLessThanTwoTest() {
-        assertThrows<IllegalArgumentException> {
-            cars = Cars(listOf("오이"))
-        }
+        val exception =
+            assertThrows<IllegalArgumentException> {
+                cars = Cars(listOf("오이"))
+            }
+        assertEquals("자동차 이름이 5자를 초과하였습니다.", exception.message)
     }
 
     @Test
