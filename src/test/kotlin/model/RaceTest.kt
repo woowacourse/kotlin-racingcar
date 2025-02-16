@@ -4,6 +4,9 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import racingCar.model.Car
+import racingCar.model.Cars
+import racingCar.model.NumberGenerator
 
 class RaceTest {
     private lateinit var race: Race

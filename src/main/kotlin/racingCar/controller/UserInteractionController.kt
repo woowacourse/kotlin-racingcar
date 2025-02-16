@@ -1,6 +1,6 @@
-package racingCar.view.controller
+package racingCar.controller
 
-import racingCar.view.model.Cars
+import racingCar.model.Cars
 import racingCar.view.InputView
 import racingCar.view.OutputView
 

@@ -1,8 +1,7 @@
-package racingCar.view.controller
+package racingCar.controller
 
-import racingCar.view.model.AttemptCount
-import racingCar.view.model.Cars
-import racingCar.view.model.Race
+import racingCar.model.AttemptCount
+import racingCar.model.Cars
 
 class RacingController(
     private val userInterface: UserInteractionController = UserInteractionController(),

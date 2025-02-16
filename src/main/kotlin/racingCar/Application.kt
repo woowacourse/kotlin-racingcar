@@ -1,6 +1,6 @@
-package racingCar.view
+package racingCar
 
-import racingCar.view.controller.RacingController
+import racingCar.controller.RacingController
 
 fun main() {
     val racingController = RacingController()

@@ -1,4 +1,4 @@
-package racingCar.view.model
+package racingCar.model
 
 import kotlin.random.Random
 
