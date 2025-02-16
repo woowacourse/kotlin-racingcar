@@ -5,6 +5,8 @@ class Car private constructor(
     var position: Int = position
         private set
 
+    fun isCarAbleToMove(randomNumber: Int): Boolean = randomNumber >= MIN_RANDOM_AVAILABILITY_CONDITION
+
     fun moveForward(isMoved: Boolean) {
         if (isMoved) position++
     }
@@ -13,6 +15,7 @@ class Car private constructor(
         private const val INITIAL_CAR_POSITION = 0
         private const val MIN_CAR_NAME_LENGTH = 1
         private const val MAX_CAR_NAME_LENGTH = 5
+        private const val MIN_RANDOM_AVAILABILITY_CONDITION = 4
 
         operator fun invoke(
             name: String,
@@ -27,6 +30,14 @@ class Car private constructor(
             require(carName.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) {
                 "[ERROR] 자동차 이름은 ${MIN_CAR_NAME_LENGTH}자 이상 ${MAX_CAR_NAME_LENGTH}자 이하여야 합니다. (입력한 이름: $carName)"
             }
+        }
+
+        fun getWinnerNames(raceCars: List<Car>): List<String> {
+            val maxPosition = raceCars.maxOf { raceCar -> raceCar.position }
+            return raceCars
+                .filter { raceCar ->
+                    raceCar.position == maxPosition
+                }.map { winner -> winner.name }
         }
     }
 }

@@ -1,7 +1,6 @@
 class RaceOrganizer(
     private val inputReader: InputReader,
     private val outputPrinter: OutputPrinter,
-    private val judge: Judge,
 ) {
     fun hostRace() {
         val raceCars = getRaceCars()
@@ -39,14 +38,14 @@ class RaceOrganizer(
     ) {
         raceCars.forEach { raceCar ->
             val randomNumber = randomGenerator.getRandomNumber()
-            val isMoved = judge.isCarAbleToMove(randomNumber)
+            val isMoved = raceCar.isCarAbleToMove(randomNumber)
             raceCar.moveForward(isMoved)
         }
         outputPrinter.printRaceProgress(raceCars)
     }
 
     private fun getRaceWinners(raceCars: List<Car>) {
-        val winnerNames = judge.selectWinnerNames(raceCars)
+        val winnerNames = Car.getWinnerNames(raceCars)
         outputPrinter.printWinners(winnerNames)
     }
 }
