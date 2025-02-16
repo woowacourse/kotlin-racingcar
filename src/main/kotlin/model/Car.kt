@@ -17,8 +17,8 @@ class Car(
     }
 
     private fun goOrNot(moveValue: Int): Int {
-        if (moveValue >= FORWARD_NUMBER) return 1
-        return 0
+        if (moveValue >= FORWARD_NUMBER) return MOVE_AMOUNT
+        return NOT_MOVE_AMOUNT
     }
 
     companion object {
@@ -27,5 +27,7 @@ class Car(
         const val MAX_BOUND: Int = 10
         const val MIN_BOUND: Int = 0
         const val MAX_NAME_LENGTH: Int = 5
+        const val MOVE_AMOUNT: Int = 1
+        const val NOT_MOVE_AMOUNT: Int = 0
     }
 }
