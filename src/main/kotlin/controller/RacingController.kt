@@ -29,7 +29,7 @@ class RacingController(private val inputView: InputView, private val outputView:
     }
 
     private fun splitCarNames(inputCarNames: String): List<String> {
-        return inputCarNames.split(DELIMITER)
+        return inputCarNames.split(DELIMITER).map { it.trim() }
     }
 
     companion object {

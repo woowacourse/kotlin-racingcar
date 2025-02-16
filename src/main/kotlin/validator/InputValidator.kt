@@ -2,7 +2,7 @@ package validator
 
 object InputValidator {
     fun validateCarName(splitCarName: String) {
-        require(splitCarName.trim().length <= 5) { "잘못 입력된 자동차 이름 -> $splitCarName : 자동차 이름은 5자를 초과할 수 없습니다." }
+        require(splitCarName.length <= 5) { "잘못 입력된 자동차 이름 -> $splitCarName : 자동차 이름은 5자를 초과할 수 없습니다." }
         require(splitCarName.isNotBlank()) { "잘못 입력된 자동차 이름 -> $splitCarName : 자동차 이름은 공백이 불가합니다." }
     }
 
