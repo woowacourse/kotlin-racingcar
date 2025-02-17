@@ -1,11 +1,10 @@
 package view
 
 import model.Car
-import model.Game
 
 object OutputView {
-    fun printState(game: Game) {
-        game.cars.forEach { car ->
+    fun printState(cars: List<Car>) {
+        cars.forEach { car ->
             println("${car.name} : ${CAR_POSITION_INDICATOR.repeat(car.position)}")
         }
         println()

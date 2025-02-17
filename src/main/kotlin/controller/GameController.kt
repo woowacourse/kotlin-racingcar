@@ -29,7 +29,7 @@ object GameController {
         OutputView.printResultHeader()
         repeat(game.rounds) {
             game.moveCars()
-            OutputView.printState(game)
+            OutputView.printState(game.cars)
         }
     }
 
