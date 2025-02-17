@@ -31,7 +31,7 @@ class Cars(
             parsedCars.forEach { car ->
                 append(car.name)
                 append(" : ")
-                append("-".repeat(car.position))
+                append(POSITION_SIGN.repeat(car.position))
                 append("\n")
             }
         }
@@ -44,5 +44,6 @@ class Cars(
 
     companion object {
         private const val MINIMUM_CAR_COUNT = 2
+        private const val POSITION_SIGN = "-"
     }
 }
