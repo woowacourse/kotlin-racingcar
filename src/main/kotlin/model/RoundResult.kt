@@ -1,6 +1,6 @@
 package model
 
-import constant.MessageConstant.ROUND_RESULT_FORMAT
+import constant.RacingGameOutputConstant.ROUND_RESULT_FORMAT
 import java.util.Random
 
 class RoundResult(
