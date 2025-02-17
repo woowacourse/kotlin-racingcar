@@ -15,7 +15,7 @@ class CarTest {
     @DisplayName("자동차가 생성되면, 위치는 0이어야 한다.")
     fun carInitialPositionTest() {
         val car = Car("test")
-        assertThat(car.position).isEqualTo(Car.INIT_POSITION)
+        assertThat(car.getPosition()).isEqualTo(Car.INIT_POSITION)
     }
 
     @Test
@@ -43,18 +43,10 @@ class CarTest {
     }
 
     @Test
-    @DisplayName("숫자가 4 이상이면 1칸 전진한다.")
+    @DisplayName("자동차는 전진한다.")
     fun carMovedForwardTest() {
         car = Car("test")
-        car.moveForward(Car.MINIMUM_MOVE_POINT)
-        assertEquals(car.position, Car.INIT_POSITION + 1)
-    }
-
-    @Test
-    @DisplayName("숫자가 4 미만이면 전진하지 않는다")
-    fun carDoNotMoveForwardTest() {
-        car = Car("test")
-        car.moveForward(Car.MINIMUM_MOVE_POINT - 1)
-        assertEquals(car.position, Car.INIT_POSITION)
+        car.moveForward()
+        assertEquals(car.getPosition(), Car.INIT_POSITION + 1)
     }
 }
