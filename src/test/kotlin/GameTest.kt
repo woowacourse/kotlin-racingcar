@@ -35,19 +35,16 @@ class GameTest {
 
     @Test
     fun `가장 많이 전진한 자동차를 우승자 리스트에 추가한다`() {
-        val cars = listOf(Car("A"), Car("B"))
+        val cars = listOf(Car("A", 1), Car("B", 0))
         val game = Game(cars, 1)
-        cars[0].move(9)
         val winner = game.getWinner()
         assertThat(winner).isEqualTo(listOf(cars[0]))
     }
 
     @Test
     fun `가장 많이 전진한 자동차가 여러 대일 경우 모두 우승자 리스트에 추가한다`() {
-        val cars = listOf(Car("A"), Car("B"))
+        val cars = listOf(Car("A", 1), Car("B", 1))
         val game = Game(cars, 1)
-        cars[0].move(9)
-        cars[1].move(9)
         val winner = game.getWinner()
         assertThat(winner).isEqualTo(cars)
     }

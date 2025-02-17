@@ -1,12 +1,16 @@
 package model
 
 data class Car(val name: String) {
-    var position = CAR_INITIAL_POSITION
+    var position: Int = CAR_INITIAL_POSITION
         private set
 
     init {
         require(name.isNotEmpty()) { MESSAGE_CAR_NAME_EMPTY }
         require(name.length <= CAR_NAME_MAX_LENGTH) { MESSAGE_CAR_NAME_TOO_LONG }
+    }
+
+    constructor(name: String, position: Int) : this(name) {
+        this.position = position
     }
 
     fun move(number: Int) {
