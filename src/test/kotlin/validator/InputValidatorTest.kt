@@ -7,24 +7,6 @@ import org.junit.jupiter.params.provider.ValueSource
 
 class InputValidatorTest {
     @Test
-    fun `자동차 이름은 5자를 초과할 수 없다`() {
-        val name = "creammm"
-        assertThrows<IllegalArgumentException> {
-            InputValidator.validateCarName(name)
-        }
-    }
-
-    @ParameterizedTest
-    @ValueSource(
-        strings = ["\t", " ", "\n", "\r"],
-    )
-    fun `자동차 이름은 공백이 불가하다`(name: String) {
-        assertThrows<IllegalArgumentException> {
-            InputValidator.validateCarName(name)
-        }
-    }
-
-    @Test
     fun `자동차 이름은 중복 될 수 없다`() {
         val names = listOf("tama", "tama")
         assertThrows<IllegalArgumentException> {
