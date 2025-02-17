@@ -7,7 +7,7 @@ class Car(val carName: String) {
         return distance
     }
 
-    fun updateDistanceIfMovable(number: Int) {
+    fun updateDistance(number: Int) {
         if (isMovable(number)) ++distance
     }
 
