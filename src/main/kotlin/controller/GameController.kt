@@ -1,14 +1,14 @@
 package controller
 
-import model.Car
-import model.Game
+import domain.Car
+import domain.Game
 import view.InputView
 import view.OutputView
 
-class GameController {
+object GameController {
     fun run() {
         val game = initializeGame()
-        playGame(game)
+        game.play()
         announceResult(game)
     }
 
@@ -20,21 +20,11 @@ class GameController {
     }
 
     private fun generateCars(carNames: List<String>): List<Car> {
-        val cars = mutableListOf<Car>()
-        carNames.map { cars.add(Car(it)) }
-        return cars
-    }
-
-    private fun playGame(game: Game) {
-        OutputView.printResultHeader()
-        repeat(game.rounds) {
-            game.moveCars()
-            OutputView.printState(game)
-        }
+        return carNames.map { Car(it) }
     }
 
     private fun announceResult(game: Game) {
-        val winner = game.getWinner()
-        OutputView.printWinner(winner)
+        OutputView.printResult(game.result)
+        OutputView.printWinner(game.getWinner())
     }
 }

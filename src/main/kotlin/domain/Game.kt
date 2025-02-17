@@ -1,19 +1,30 @@
-package model
+package domain
 
 import java.lang.IllegalArgumentException
 
-class Game(val cars: List<Car>, val rounds: Int) {
+class Game(private val cars: List<Car>, private val rounds: Int) {
+    var result: String = ""
+        private set
+
     init {
         require(cars.size == cars.toSet().size) { throw IllegalArgumentException(MESSAGE_DUPLICATE_CAR_NAME) }
         require(cars.size > 1) { throw IllegalArgumentException(MESSAGE_NOT_ENOUGH_CARS) }
         require(rounds > 0) { throw IllegalArgumentException(MESSAGE_ROUNDS_TOO_SMALL) }
     }
 
-    fun moveCars() {
+    fun play() {
+        repeat(rounds) {
+            moveCars()
+        }
+    }
+
+    private fun moveCars() {
         cars.forEach { car ->
             val randomNumber = (RANDOM_NUMBER_MIN..RANDOM_NUMBER_MAX).random()
             car.move(randomNumber)
+            result += car.getStatus()
         }
+        result += "\n"
     }
 
     fun getWinner(): List<Car> {
@@ -23,8 +34,8 @@ class Game(val cars: List<Car>, val rounds: Int) {
     }
 
     companion object {
-        const val RANDOM_NUMBER_MIN = 0
-        const val RANDOM_NUMBER_MAX = 9
+        private const val RANDOM_NUMBER_MIN = 0
+        private const val RANDOM_NUMBER_MAX = 9
 
         private const val MESSAGE_DUPLICATE_CAR_NAME = "자동차 이름에 중복이 있습니다."
         private const val MESSAGE_NOT_ENOUGH_CARS = "최소 두 대의 자동차가 참가해야 합니다."
