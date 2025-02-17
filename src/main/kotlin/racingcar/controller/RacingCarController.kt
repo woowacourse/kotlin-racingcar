@@ -4,8 +4,8 @@ import racingcar.model.Car
 import racingcar.model.Game
 import racingcar.model.Messenger.getRoundResultMessage
 import racingcar.model.Messenger.getWinnerMessage
-import racingcar.model.RandomNumberFactory
 import racingcar.model.Rounds
+import racingcar.model.random.RandomNumberGenerator
 import racingcar.util.retryWhenException
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -13,6 +13,7 @@ import racingcar.view.OutputView
 class RacingCarController(
     private val inputView: InputView,
     private val outputView: OutputView,
+    private val randomNumberGenerator: RandomNumberGenerator,
 ) {
     fun start() {
         val game = settingGame()
@@ -24,7 +25,7 @@ class RacingCarController(
         return retryWhenException(
             action = {
                 val cars = getCars()
-                Game(cars, randomNumberFactory())
+                Game(cars, randomNumberGenerator)
             },
             onError = {
                 outputView.printErrorMessage(it)
@@ -75,16 +76,7 @@ class RacingCarController(
         outputView.printRoundResult(roundResultMessage)
     }
 
-    private fun randomNumberFactory() =
-        RandomNumberFactory {
-            val randomNumberRange = RANDOM_NUMBER_MIN..RANDOM_NUMBER_MAX
-            (randomNumberRange).random()
-        }
-
     companion object {
         const val SEPARATOR = ","
-
-        const val RANDOM_NUMBER_MIN = 0
-        const val RANDOM_NUMBER_MAX = 9
     }
 }
