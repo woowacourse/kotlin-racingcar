@@ -3,16 +3,19 @@ package racingcar.view
 class OutputView {
     fun printRoundResult(
         carNames: List<String>,
-        moves: List<List<String>>,
-        tryCount: Int,
+        roundPositions: List<List<Int>>,
     ) {
         println(RUNNING_RESULT_MESSAGE)
-        for (i in 0 until tryCount) {
+        roundPositions.forEach { positions ->
             carNames.forEachIndexed { index, carName ->
-                println("$carName : ${moves[index].take(i + 1).joinToString("")}")
+                println("$carName : ${printMoves(positions[index])}")
             }
             println()
         }
+    }
+
+    private fun printMoves(position: Int): String {
+        return MOVE.repeat(position)
     }
 
     fun printWinners(winners: List<String>) {
@@ -23,5 +26,6 @@ class OutputView {
         private const val RUNNING_RESULT_MESSAGE = "\n실행 결과"
         private const val WINNERS_MESSAGE = "최종 우승자:"
         private const val COMMA = ","
+        private const val MOVE = "-"
     }
 }

@@ -1,14 +1,14 @@
 package racingcar.controller
 
 import racingcar.domain.Race
-import racingcar.utils.Validator
+import racingcar.utils.InputValidator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingGameController {
     private val inputView = InputView()
     private val outputView = OutputView()
-    private val validator = Validator()
+    private val validator = InputValidator()
 
     fun run() {
         val rawCarNames = inputView.insertCarNames()
@@ -16,7 +16,6 @@ class RacingGameController {
         val rawTryCount = inputView.insertTryCount()
         validator.validateTryCount(rawTryCount)
         val gameResult = playing(rawCarNames, rawTryCount)
-
         printGameResult(gameResult)
     }
 
@@ -25,15 +24,14 @@ class RacingGameController {
         rawTryCount: String,
     ): Race {
         val race = Race(rawCarNames, rawTryCount)
-        race.getPositions()
         return race
     }
 
     private fun printGameResult(gameResult: Race) {
+        val roundPositions = gameResult.getPositions()
         outputView.printRoundResult(
             gameResult.cars.map { it.carName },
-            gameResult.cars.map { it.position },
-            gameResult.tryCount,
+            roundPositions,
         )
         outputView.printWinners(gameResult.getWinners())
     }
