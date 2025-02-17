@@ -34,7 +34,8 @@ class RacingController(
         round: Int,
     ) {
         outputView.printResultMessage()
-        racingGame.runRace(round)
+        val raceStates = racingGame.repeatRacing(round)
+        raceStates.forEach { outputView.printRaceState(it) }
     }
 
     private fun printRaceWinner(winners: List<String>) {

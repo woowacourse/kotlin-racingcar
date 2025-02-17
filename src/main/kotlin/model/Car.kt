@@ -1,6 +1,6 @@
 package model
 
-class Car(val name: String) {
+data class Car(val name: String) {
     var position: Int = DEFAULT_POSITION
         private set
 

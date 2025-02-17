@@ -1,7 +1,5 @@
 package model
 
-import view.OutputView
-
 class RacingGame(
     private val generator: NumberGenerator,
     private val cars: List<Car>,
@@ -31,11 +29,15 @@ class RacingGame(
         return winners
     }
 
-    private fun repeatRacing(count: Int) {
+    fun repeatRacing(count: Int): List<List<Car>> {
+        val raceStates = mutableListOf<List<Car>>()
+
         repeat(count) {
             raceOneRound()
-            OutputView.printRaceState(cars)
+            raceStates.add(cars.map { it.copy() })
         }
+
+        return raceStates
     }
 
     private fun raceOneRound() {
