@@ -17,7 +17,7 @@ class OutputView {
     }
 
     companion object {
-        const val OUTPUT_RESULT_MESSAGE = "\n실행 결과"
-        const val OUTPUT_FINAL_WINNER_MESSAGE_FORMAT = "최종 우승자: %s"
+        private const val OUTPUT_RESULT_MESSAGE = "\n실행 결과"
+        private const val OUTPUT_FINAL_WINNER_MESSAGE_FORMAT = "최종 우승자: %s"
     }
 }
