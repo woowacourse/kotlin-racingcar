@@ -1,4 +1,4 @@
-package racing.domain.generator.anonymous
+package racingcar.domain.generator.anonymous
 
 class AnonymousNumberGenerator : AnonymousNumberStrategy {
     override fun getNumber(excludeNumbers: Set<Int>): Int {

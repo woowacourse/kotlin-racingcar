@@ -1,4 +1,4 @@
-package racing.domain.generator.trymove
+package racingcar.domain.generator.trymove
 
 import java.util.LinkedList
 

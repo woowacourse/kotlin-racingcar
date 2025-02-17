@@ -1,9 +1,9 @@
-package racing.domain.generator.car
+package racingcar.domain.generator.car
 
-import racing.domain.generator.anonymous.AnonymousNumberGenerator
-import racing.domain.generator.anonymous.AnonymousNumberStrategy
-import racing.domain.model.Car
-import racing.toOnlyIntOrNull
+import racingcar.domain.generator.anonymous.AnonymousNumberGenerator
+import racingcar.domain.generator.anonymous.AnonymousNumberStrategy
+import racingcar.domain.model.Car
+import racingcar.toOnlyIntOrNull
 
 class CarGenerator(private val anonymousNumberStrategy: AnonymousNumberStrategy = AnonymousNumberGenerator()) {
     private val anonymousNumbers = mutableSetOf<Int>()

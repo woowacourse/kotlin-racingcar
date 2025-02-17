@@ -1,4 +1,4 @@
-# kotlin-racing
+# kotlin-racingcar
 
 - 구현: 실행 순서에 따른 기능 목록 작성
     - 자동차 입력 기능 구현
