@@ -1,11 +1,13 @@
-package racing.view
+package racing.ui.controller
 
 import racing.domain.generator.car.CarGenerator
 import racing.domain.model.Car
 import racing.domain.service.CarWinnersService
 import racing.domain.service.RaceService
+import racing.ui.view.InputView
+import racing.ui.view.OutputView
 
-class Racing(private val inputView: InputView = InputView(), private val outputView: OutputView = OutputView()) {
+class RacingController(private val inputView: InputView = InputView(), private val outputView: OutputView = OutputView()) {
     fun play() {
         val cars = getCars(inputView.readCarsName())
         val attempts = inputView.readAttempt()
