@@ -15,7 +15,7 @@ class Race(carNames: String, tryCount: String) {
     }
 
     fun getWinners(): List<String> {
-        val maxPosition = cars.maxOfOrNull { it.getPosition() }
-        return cars.filter { it.getPosition() == maxPosition }.map { it.getName() }
+        val maxPosition = cars.maxOfOrNull { it.position }
+        return cars.filter { it.position == maxPosition }.map { it.name }
     }
 }

@@ -1,11 +1,8 @@
 package racingcar.domain
 
-class Car(private val carName: String) {
-    private var position: Int = 0
-
-    fun getName(): String = carName
-
-    fun getPosition(): Int = position
+class Car(val name: String) {
+    var position: Int = 0
+        private set
 
     fun moveOrStop(randomNumber: Int) {
         if (randomNumber >= MOVE_MIN_RANGE) {

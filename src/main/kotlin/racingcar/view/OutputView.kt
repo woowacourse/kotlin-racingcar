@@ -6,7 +6,7 @@ import racingcar.utils.Constants.COMMA
 class OutputView {
     fun printRoundResult(cars: List<Car>) {
         cars.forEach { car ->
-            println("${car.getName()} : ${MOVE.repeat(car.getPosition())}")
+            println("${car.name} : ${MOVE.repeat(car.position)}")
         }
         println()
     }
