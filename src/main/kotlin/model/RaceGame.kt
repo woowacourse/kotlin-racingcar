@@ -1,6 +1,7 @@
 package model
 
 import controller.RaceController
+import java.util.stream.Collectors.toList
 
 class RaceGame(
     private val count: Int,
@@ -10,7 +11,7 @@ class RaceGame(
         val raceResults = mutableListOf<List<Car>>()
         repeat(count) {
             oneRace()
-            raceResults.add(cars.toList())
+            raceResults.add(cars.map { Car(it.name,it.currentPosition) })
         }
         return raceResults
     }
