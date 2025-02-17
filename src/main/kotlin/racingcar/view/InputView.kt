@@ -5,7 +5,7 @@ import racingcar.util.Messages
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
-class InputView {
+object InputView {
     private val br = BufferedReader(InputStreamReader(System.`in`))
 
     fun validateCarName(input: List<String>) {
