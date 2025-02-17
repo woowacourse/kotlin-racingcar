@@ -2,8 +2,8 @@ package test
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
-import racingcar.Car
-import racingcar.Racecourse
+import racingcar.domain.Car
+import racingcar.domain.Racecourse
 
 class RacecourseTest {
     @Test
