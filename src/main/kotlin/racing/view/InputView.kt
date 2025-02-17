@@ -7,7 +7,7 @@ class InputView {
 
     fun readCarsName(): List<String> {
         println(INPUT_CAR_NAME)
-        val carNames = scanner.nextLine().split(CAR_DELIMITER)
+        val carNames = scanner.nextLine().split(CAR_DELIMITER).map { carName -> carName.trim() }
         carNames.forEach { carName ->
             require(carName.length <= CAR_NAME_LENGTH) { CAR_NAME_ERROR }
         }
