@@ -4,8 +4,11 @@ import constant.InOutConstants
 import model.Car
 
 class OutView {
-    fun printCurrentResult(car: Car) {
-        println(InOutConstants.CURRENT_RESULT_FORMAT.format(car.name, "-".repeat(car.currentPosition)))
+    fun printCurrentResult(race: List<Car>) {
+        race.forEach{car->
+            println(InOutConstants.CURRENT_RESULT_FORMAT.format(car.name, "-".repeat(car.currentPosition)))
+        }
+        println()
     }
 
     fun printGameResult() {
@@ -14,7 +17,7 @@ class OutView {
 
     fun printFinalResult(winnerList: List<Car>) {
         print(InOutConstants.FINAL_RESULT)
-        println(winnerList.joinToString(", ") { it.name })
+        print(winnerList.joinToString(", ") { it.name })
     }
 
 }

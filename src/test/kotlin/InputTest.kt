@@ -1,14 +1,10 @@
-import controller.InController
 import dto.CarNames
 import dto.TryCount
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
-import view.InView
 
 class InputTest {
-    private val inController = InController(InView())
-
     @Test
     fun `자동차 이름은 5자를 초과할 수 없다`() {
         assertThatThrownBy {

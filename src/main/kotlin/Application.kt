@@ -1,7 +1,8 @@
-import controller.MainController
+import controller.RaceController
+import view.InView
+import view.OutView
 
 fun main() {
-    val mainController = MainController()
-
+    val mainController = RaceController(InView(), OutView())
     mainController.runProgram()
 }

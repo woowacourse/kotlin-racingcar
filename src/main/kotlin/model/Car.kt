@@ -1,5 +1,6 @@
 package model
 
+import constant.ErrorConstant
 import java.util.Random
 
 interface IntGenerator {
@@ -15,6 +16,12 @@ class Car(
     currentPosition: Int = 0,
     var randomMaker: IntGenerator = model.Random(),
 ) {
+    init{
+        when{
+            name.length>=5 -> throw IllegalArgumentException(ErrorConstant.ERROR_WRONG_NAME_LENGTH)
+            name.isBlank() -> throw IllegalArgumentException(ErrorConstant.ERROR_NO_NAME)
+        }
+    }
     var currentPosition: Int = currentPosition
         private set
 

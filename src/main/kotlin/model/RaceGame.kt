@@ -1,26 +1,25 @@
 package model
 
-import controller.OutController
+import controller.RaceController
 
-class RaceService(
+class RaceGame(
     private val count: Int,
     private val cars: MutableList<Car>,
-    private val outController: OutController,
 ) {
-    fun fullRace() {
-        outController.printGameResult()
+    fun fullRace(): List<List<Car>> {
+        val raceResults = mutableListOf<List<Car>>()
         repeat(count) {
             oneRace()
+            raceResults.add(cars.toList())
         }
+        return raceResults
     }
 
     private fun oneRace() {
         for (car in cars) {
             car.moveCar()
         }
-        outController.printCurrentPosition(cars)
     }
-
     fun getFinalResult(): MutableList<Car> {
         return comparePosition()
     }
