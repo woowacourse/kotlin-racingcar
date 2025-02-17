@@ -1,5 +1,6 @@
 package controller
 
+import model.RaceService
 import view.InView
 import view.OutView
 
@@ -9,9 +10,9 @@ class MainController {
 
     fun runProgram() {
         val cars = inController.getCarName()
-        val raceController = RaceController(inController.getTryCount(), cars, outController)
-        raceController.fullRace()
-        val winnerList = raceController.getFinalResult()
+        val raceService = RaceService(inController.getTryCount(), cars, outController)
+        raceService.fullRace()
+        val winnerList = raceService.getFinalResult()
         outController.printFinalResult(winnerList)
     }
 }

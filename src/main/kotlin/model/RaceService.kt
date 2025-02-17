@@ -1,8 +1,8 @@
-package controller
+package model
 
-import model.Car
+import controller.OutController
 
-class RaceController(
+class RaceService(
     private val count: Int,
     private val cars: MutableList<Car>,
     private val outController: OutController,
