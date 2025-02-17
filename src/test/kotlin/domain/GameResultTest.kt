@@ -15,6 +15,8 @@ class GameResultTest {
 
     @Test
     fun `현재 위치가 가장 큰 자동차들을 우승 자동차 리스트로 반환한다`() {
-        assertThat(gameResult.getFinalResult()).isEqualTo(correctResult)
+        val winners: List<Car> = gameResult.getFinalResult()
+
+        assertThat(winners).isEqualTo(correctResult)
     }
 }

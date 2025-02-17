@@ -16,6 +16,7 @@ class RoundResultTest {
     @Test
     fun `자동차 이름과 현재 위치를 문자열로 변환하여 반환한다`() {
         val nameAndPosition: List<String> = roundResult.getRoundResult()
+
         assertThat(nameAndPosition).isEqualTo(correctResult)
     }
 }

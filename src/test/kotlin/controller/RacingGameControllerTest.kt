@@ -38,7 +38,7 @@ class RacingGameControllerTest {
     private val raceController = RacingGameController(InputView(), OutputView())
 
     @Test
-    fun `가장 많이 움직인 자동차가 우승한다`() {
+    fun `현재 위치가 가장 큰 자동차가 우승한다`() {
         val gameResult = GameResult(cars)
         val winnerList = gameResult.getFinalResult()
         raceController.printFinalResult(winnerList)
