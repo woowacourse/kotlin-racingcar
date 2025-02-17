@@ -1,7 +1,7 @@
 package racingcar.view
 
 import racingcar.domain.Car
-import racingcar.toCars
+import racingcar.domain.toCars
 
 class InputView {
     fun readCars(): List<Car>? {
