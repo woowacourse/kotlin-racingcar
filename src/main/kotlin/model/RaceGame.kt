@@ -8,7 +8,7 @@ class RaceGame(
         val raceResults = mutableListOf<List<Car>>()
         repeat(count) {
             oneRace()
-            raceResults.add(cars.map { Car(it.name,it.currentPosition) })
+            raceResults.add(cars.map { Car(it.name, it.currentPosition) })
         }
         return raceResults
     }
@@ -18,6 +18,7 @@ class RaceGame(
             car.moveCar()
         }
     }
+
     fun getFinalResult(): MutableList<Car> {
         return comparePosition()
     }

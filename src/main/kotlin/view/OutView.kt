@@ -5,7 +5,7 @@ import model.Car
 
 class OutView {
     fun printCurrentResult(race: List<Car>) {
-        race.forEach{car->
+        race.forEach { car ->
             println(InOutConstants.CURRENT_RESULT_FORMAT.format(car.name, "-".repeat(car.currentPosition)))
         }
         println()
@@ -19,5 +19,4 @@ class OutView {
         print(InOutConstants.FINAL_RESULT)
         print(winnerList.joinToString(", ") { it.name })
     }
-
 }

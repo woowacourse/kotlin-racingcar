@@ -5,7 +5,6 @@ import dto.TryCount
 import model.Car
 import model.CarManger
 import model.RaceGame
-import model.Random
 import view.InView
 import view.OutView
 import kotlin.collections.forEach
@@ -25,7 +24,10 @@ class RaceController(val inView: InView, val outView: OutView) {
         }
     }
 
-    fun printGameResult(resultList: List<List<Car>>, winnerList: List<Car>) {
+    fun printGameResult(
+        resultList: List<List<Car>>,
+        winnerList: List<Car>,
+    ) {
         outView.printGameResult()
         printRacePosition(resultList)
         printFinalResult(winnerList)
