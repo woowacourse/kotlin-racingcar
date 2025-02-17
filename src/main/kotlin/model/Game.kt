@@ -1,5 +1,6 @@
 package model
 
+import view.OutputView
 import java.lang.IllegalArgumentException
 
 class Game(val cars: List<Car>, val rounds: Int) {
@@ -9,7 +10,14 @@ class Game(val cars: List<Car>, val rounds: Int) {
         require(rounds > 0) { throw IllegalArgumentException(MESSAGE_ROUNDS_TOO_SMALL) }
     }
 
-    fun moveCars() {
+    fun play() {
+        repeat(rounds) {
+            moveCars()
+            OutputView.printState(cars)
+        }
+    }
+
+    private fun moveCars() {
         cars.forEach { car ->
             val randomNumber = (RANDOM_NUMBER_MIN..RANDOM_NUMBER_MAX).random()
             car.move(randomNumber)

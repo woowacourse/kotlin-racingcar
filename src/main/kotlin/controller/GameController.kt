@@ -25,10 +25,7 @@ object GameController {
 
     private fun playGame(game: Game) {
         OutputView.printResultHeader()
-        repeat(game.rounds) {
-            game.moveCars()
-            OutputView.printState(game.cars)
-        }
+        game.play()
     }
 
     private fun announceResult(game: Game) {
