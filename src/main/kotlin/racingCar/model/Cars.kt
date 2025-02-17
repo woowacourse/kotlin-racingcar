@@ -16,7 +16,6 @@ class Cars(
     fun getWinner(): List<String> {
         val maxPosition = parsedCars.maxOf { it.getPosition() }
         val winners = parsedCars.filter { it.getPosition() == maxPosition }.map { it.name }
-
         return winners
     }
 
