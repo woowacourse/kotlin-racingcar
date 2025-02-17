@@ -1,3 +1,7 @@
+package domain
+
+import util.RandomGenerator
+
 class Cars(
     val cars: List<Car>,
     private val randomGenerator: RandomGenerator,

@@ -1,8 +1,12 @@
+import controller.RaceController
+import ui.InputReader
+import ui.OutputPrinter
+
 fun main() {
     val inputReader = InputReader()
     val outputPrinter = OutputPrinter()
 
-    val raceOrganizer = RaceOrganizer(inputReader, outputPrinter)
+    val raceController = RaceController(inputReader, outputPrinter)
 
-    raceOrganizer.hostRace()
+    raceController.hostRace()
 }

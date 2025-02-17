@@ -1,4 +1,12 @@
-class RaceOrganizer(
+package controller
+
+import domain.Car
+import domain.Cars
+import ui.InputReader
+import ui.OutputPrinter
+import util.RandomGenerator
+
+class RaceController(
     private val inputReader: InputReader,
     private val outputPrinter: OutputPrinter,
 ) {

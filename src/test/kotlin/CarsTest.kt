@@ -1,5 +1,8 @@
+import domain.Car
+import domain.Cars
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
+import util.RandomGenerator
 
 class CarsTest {
     private val randomGenerator = RandomGenerator()

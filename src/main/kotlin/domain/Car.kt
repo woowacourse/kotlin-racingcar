@@ -1,3 +1,5 @@
+package domain
+
 class Car(
     val name: String,
     position: Int = INITIAL_CAR_POSITION,
