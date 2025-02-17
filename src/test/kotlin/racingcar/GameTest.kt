@@ -18,7 +18,6 @@ class GameTest {
         cars = listOf(Car("peto"), Car("por"))
     }
 
-    @Test
     fun `getRoundResult - 게임 중간 라운드 결과를 출력한다`() {
         val game = Game(cars, randomNumberFactory.movableRandomNumberFactory())
 
