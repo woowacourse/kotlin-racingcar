@@ -27,7 +27,7 @@ class Racecourse(
 
     private fun generateRandomNumber(): Int = (0..9).random()
 
-    fun isMovable(random: Int): Boolean = random >= MOVEMENT_CONDITION
+    fun isMovable(number: Int): Boolean = number >= MOVEMENT_CONDITION
 
     val winners: List<Car>
         get() {
