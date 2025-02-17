@@ -1,13 +1,18 @@
-package racingcar
+package racingcar.view
 
+import racingcar.controller.RacingCarController
+import racingcar.domain.Car
+import racingcar.domain.Racecourse
+import racingcar.domain.RoundManager
 import racingcar.util.ErrorMessage
 import racingcar.util.extension.times
 
-class View {
+class RacingCarView {
+    private val controller: RacingCarController = RacingCarController()
+
     fun playRacingGame() {
         val cars: List<Car> = readCars()
         val roundManager: RoundManager = readRound()
-        println()
         showResult(cars, roundManager)
     }
 
@@ -17,7 +22,8 @@ class View {
         runCatching {
             val userInput: String =
                 readlnOrNull() ?: throw IllegalArgumentException(ErrorMessage.FAIL_TO_READ_INPUT)
-            Car.createCars(userInput)
+            val carNames: List<String> = userInput.split(CAR_NAME_SEPARATOR).map { carName: String -> carName.trim() }
+            controller.parseToCars(carNames)
         }.onSuccess { cars: List<Car> ->
             return cars
         }.onFailure { error: Throwable ->
@@ -34,7 +40,8 @@ class View {
         runCatching {
             val userInput: String =
                 readlnOrNull() ?: throw IllegalStateException(ErrorMessage.FAIL_TO_READ_INPUT)
-            RoundManager.from(userInput)
+            userInput.toIntOrNull()?.let { round: Int -> controller.parseToRoundManager(round) }
+                ?: throw IllegalStateException(ErrorMessage.INVALID_ROUND)
         }.onSuccess { roundManager: RoundManager ->
             return roundManager
         }.onFailure { error: Throwable ->
@@ -49,12 +56,16 @@ class View {
         cars: List<Car>,
         roundManager: RoundManager,
     ) {
-        println("실행결과")
+        println("\n실행결과")
         val racecourse = Racecourse(cars, roundManager)
         racecourse.startRace(onEachRound = {
             cars.forEach { car: Car -> println("${car.name} : ${"-" * (car.distance)}") }
             println()
         })
         print("최종 우승자: ${racecourse.winners.joinToString { car: Car -> car.name }}")
+    }
+
+    companion object {
+        const val CAR_NAME_SEPARATOR: String = ","
     }
 }
