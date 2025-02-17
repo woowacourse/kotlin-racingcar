@@ -4,10 +4,10 @@ import racingcar.model.Cars
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class RacingController {
-    private val inputView = InputView()
-    private val outputView = OutputView
-
+class RacingController(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+) {
     private fun race(
         count: Int,
         cars: Cars,
