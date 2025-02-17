@@ -1,7 +1,7 @@
-package controller
+package racingcar.controller
 
-import model.AttemptCount
-import model.Cars
+import racingcar.domain.model.AttemptCount
+import racingcar.domain.model.Cars
 
 class RacingController(
     private val userInterface: UserInterface = UserInterface(),

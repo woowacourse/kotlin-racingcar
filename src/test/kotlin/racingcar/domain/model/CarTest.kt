@@ -1,4 +1,4 @@
-package model
+package racingcar.domain.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals

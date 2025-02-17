@@ -1,6 +1,6 @@
-package controller
+package racingcar.controller
 
-import model.Cars
+import racingcar.domain.model.Cars
 import view.InputView
 import view.OutputView
 

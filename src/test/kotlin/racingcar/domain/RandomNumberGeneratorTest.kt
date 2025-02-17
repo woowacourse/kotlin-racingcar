@@ -1,4 +1,4 @@
-package model
+package racingcar.domain
 
 import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.DisplayName

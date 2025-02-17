@@ -1,4 +1,7 @@
-package model
+package racingcar.domain.model
+
+import racingcar.domain.NumberGenerator
+import racingcar.domain.RandomNumberGenerator
 
 class Cars(
     private val carNames: List<String>,
