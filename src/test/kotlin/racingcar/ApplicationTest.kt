@@ -15,6 +15,6 @@ class ApplicationTest {
     @ValueSource(strings = ["", "0", "-1", "1.1", "asd", "${Int.MAX_VALUE + 1}"])
     @ParameterizedTest
     fun `시도횟수는 1 이상의 숫자여야 한다`(round: String) {
-        assertThat(InputView().checkRoundValid(round)).isEqualTo(0)
+        assertThat(InputView().checkRoundValid(round)).isFalse()
     }
 }
