@@ -5,7 +5,7 @@ import model.Game
 import view.InputView
 import view.OutputView
 
-class GameController {
+object GameController {
     fun run() {
         val game = initializeGame()
         playGame(game)
