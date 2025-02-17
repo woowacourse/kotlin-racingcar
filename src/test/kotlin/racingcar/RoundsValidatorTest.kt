@@ -4,6 +4,7 @@ import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import racingcar.constants.ErrorMessages
 import racingcar.validator.RoundsValidator
 
 class RoundsValidatorTest {
@@ -12,7 +13,7 @@ class RoundsValidatorTest {
         Assertions.assertThatThrownBy {
             RoundsValidator.validate("-1")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(RoundsValidator.INVALID_RANGE_ERROR)
+            .hasMessage(ErrorMessages.INVALID_RANGE_ERROR)
     }
 
     @ParameterizedTest
@@ -21,7 +22,7 @@ class RoundsValidatorTest {
         Assertions.assertThatThrownBy {
             RoundsValidator.validate(value)
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(RoundsValidator.NOT_NUMERIC_ERROR)
+            .hasMessage(ErrorMessages.NOT_NUMERIC_ERROR)
     }
 
     @Test
@@ -29,6 +30,6 @@ class RoundsValidatorTest {
         Assertions.assertThatThrownBy {
             RoundsValidator.validate("11")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(RoundsValidator.INVALID_RANGE_ERROR)
+            .hasMessage(ErrorMessages.INVALID_RANGE_ERROR)
     }
 }
