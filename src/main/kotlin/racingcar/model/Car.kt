@@ -24,6 +24,7 @@ class Car(val name: String) {
     }
 
     private fun validateNameFormat(name: String) {
+        val regex = Regex("^[a-zA-Z0-9]*\$")
         require(name.matches(regex)) { INVALID_NAME_FORMAT_ERROR }
     }
 
@@ -33,7 +34,5 @@ class Car(val name: String) {
 
         const val MIN_NAME_LENGTH = 1
         const val MAX_NAME_LENGTH = 5
-
-        private val regex = Regex("^[a-zA-Z0-9]*\$")
     }
 }
