@@ -10,29 +10,31 @@ import view.InView
 import view.OutView
 import kotlin.collections.forEach
 
-class RaceController(val inView: InView,val outView: OutView) {
+class RaceController(val inView: InView, val outView: OutView) {
     fun runProgram() {
         val cars = getCarName()
         val raceGame = RaceGame(getTryCount(), cars)
-        printGameResult()
         val resultList = raceGame.fullRace()
         val winnerList = raceGame.getFinalResult()
-        printRacePosition(resultList)
-        printFinalResult(winnerList)
+        printGameResult(resultList, winnerList)
     }
+
     fun printRacePosition(raceList: List<List<Car>>) {
-        raceList.forEach{ race ->
+        raceList.forEach { race ->
             outView.printCurrentResult(race)
         }
     }
 
-    fun printGameResult() {
+    fun printGameResult(resultList: List<List<Car>>, winnerList: List<Car>) {
         outView.printGameResult()
+        printRacePosition(resultList)
+        printFinalResult(winnerList)
     }
 
-    fun printFinalResult(winnerResult: MutableList<Car>) {
+    fun printFinalResult(winnerResult: List<Car>) {
         outView.printFinalResult(winnerResult)
     }
+
     fun getCarName(): MutableList<Car> {
         val carNames = CarNames(inView.getData(InOutConstants.NAME))
         val cars = carNames.carNamesList.map { Car(it, randomMaker = Random()) }.toMutableList()
