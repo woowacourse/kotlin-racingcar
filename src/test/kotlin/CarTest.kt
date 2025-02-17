@@ -17,9 +17,9 @@ class CarTest {
         }
     }
 
-    @ParameterizedTest
-    @ValueSource(strings = ["123456"])
-    fun `자동차 이름의 길이가 5자를 초과할 때 에러를 발생시킨다`(name: String) {
+    @Test
+    fun `자동차 이름의 길이가 5자를 초과할 때 에러를 발생시킨다`() {
+        val name: String = "123456"
         assertThrows<IllegalArgumentException> {
             Car(name)
         }
