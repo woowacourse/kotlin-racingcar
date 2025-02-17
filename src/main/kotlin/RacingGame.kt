@@ -6,14 +6,13 @@ import view.OutputView
 class RacingGame {
     private val inputView = InputView()
     private val outputView = OutputView()
-    private val randomNumberGenerator = RandomNumberGenerator()
 
     fun play() {
         val cars = getCars()
         val tryCount = getTryCount()
         outputView.showResult()
         repeat(tryCount) {
-            cars.lap(randomNumberGenerator)
+            cars.lap(RandomNumberGenerator.generate())
             outputView.showStatus(cars)
         }
         outputView.showWinners(cars.getWinners())
