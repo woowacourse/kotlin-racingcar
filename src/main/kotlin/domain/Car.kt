@@ -1,7 +1,5 @@
 package domain
 
-import validator.InputValidator.validateCarName
-
 class Car(
     val name: String,
     position: Int = INIT_POSITION,
@@ -9,17 +7,16 @@ class Car(
     var position: Int = position
         private set
 
-    init {
-        validateCarName(name)
+    fun isMovable(number: Int): Boolean {
+        return number < MOVE_CONDITION
     }
 
-    fun moveOrStop(condition: Boolean) {
-        if (condition) {
-            ++position
-        }
+    fun move() {
+        ++position
     }
 
     companion object {
         const val INIT_POSITION = 0
+        const val MOVE_CONDITION = 4
     }
 }
