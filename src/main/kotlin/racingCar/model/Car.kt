@@ -9,7 +9,6 @@ data class Car(
     fun moveForward() = position++
 
     companion object {
-        const val MINIMUM_MOVE_POINT = 4
         const val INIT_POSITION = 0
     }
 }
