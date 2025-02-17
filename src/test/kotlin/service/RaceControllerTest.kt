@@ -1,7 +1,9 @@
-package controller
+package service
 
+import controller.RaceController
 import model.Car
-import org.assertj.core.api.Assertions.assertThat
+import model.RaceGame
+import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -31,14 +33,14 @@ class RaceControllerTest {
     }
 
     val cars: MutableList<Car> = mutableListOf(Car("hwan"), Car("xia"))
-    val outController = OutController(OutView())
 
     @Test
     fun `랜덤으로 움직인 자동차 중 가장 많이 움직인 자동차가 우승한다`() {
-        val raceController = RaceController(4, cars, outController)
-        raceController.fullRace()
-        val winnerList = raceController.getFinalResult()
-        outController.printFinalResult(winnerList)
-        assertThat(output()).contains("최종 우승자 : ${winnerList.joinToString(", ") { it.name }}")
+        val raceGame = RaceGame(4, cars)
+        raceGame.fullRace()
+        val winnerList = raceGame.getFinalResult()
+        val raceController = RaceController(InView(), OutView())
+        raceController.printFinalResult(winnerList)
+        Assertions.assertThat(output()).contains("최종 우승자 : ${winnerList.joinToString(", ") { it.name }}")
     }
 }

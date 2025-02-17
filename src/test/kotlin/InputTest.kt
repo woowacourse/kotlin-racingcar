@@ -1,32 +1,20 @@
-import controller.InController
-import dto.CarNames
 import dto.TryCount
+import model.CarManger
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
-import view.InView
 
 class InputTest {
-    private val inController = InController(InView())
-
     @Test
     fun `자동차 이름은 5자를 초과할 수 없다`() {
         assertThatThrownBy {
-            CarNames("pobi, jason1, haki").carNamesList
+            CarManger("pobi, jason1, haki")
         }.isInstanceOf(IllegalArgumentException::class.java)
-    }
-
-    @Test
-    fun `쉼표 앞 뒤에 공백이 있을 때 공백을 글자 수로 취급하지 않는다`() {
-        assertDoesNotThrow {
-            CarNames("pobi, jason, haki").carNamesList
-        }
     }
 
     @Test
     fun `자동차 이름은 중복될 수 없다`() {
         assertThatThrownBy {
-            CarNames("가가,나나,나나,다다").carNamesList
+            CarManger("가가,나나,나나,다다")
         }.isInstanceOf(IllegalArgumentException::class.java)
     }
 
