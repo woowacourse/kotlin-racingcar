@@ -3,11 +3,11 @@ class RaceOrganizer(
     private val outputPrinter: OutputPrinter,
 ) {
     fun hostRace() {
-        val raceCars = getRaceCars()
-        val raceCount = getRaceCount()
         val randomGenerator = RandomGenerator()
+        val raceCars = Cars(getRaceCars(), randomGenerator)
+        val raceCount = getRaceCount()
 
-        executeRaces(raceCount, raceCars, randomGenerator)
+        executeRaces(raceCount, raceCars)
         getRaceWinners(raceCars)
     }
 
@@ -23,28 +23,23 @@ class RaceOrganizer(
 
     private fun executeRaces(
         raceCount: Int,
-        raceCars: List<Car>,
-        randomGenerator: RandomGenerator,
+        raceCars: Cars,
     ) {
         outputPrinter.printRaceResultTitle()
         repeat(raceCount) {
-            executeRace(raceCars, randomGenerator)
+            executeRace(raceCars)
         }
     }
 
     private fun executeRace(
-        raceCars: List<Car>,
-        randomGenerator: RandomGenerator,
+        raceCars: Cars,
     ) {
-        raceCars.forEach { raceCar ->
-            val randomNumber = randomGenerator.getRandomNumber()
-            raceCar.moveForward(randomNumber)
-        }
-        outputPrinter.printRaceProgress(raceCars)
+        raceCars.moveCars()
+        outputPrinter.printRaceProgress(raceCars.cars)
     }
 
-    private fun getRaceWinners(raceCars: List<Car>) {
-        val winnerNames = Car.getWinnerNames(raceCars)
+    private fun getRaceWinners(raceCars: Cars) {
+        val winnerNames = raceCars.getWinnerNames()
         outputPrinter.printWinners(winnerNames)
     }
 }

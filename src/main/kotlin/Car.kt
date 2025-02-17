@@ -27,17 +27,5 @@ class Car(
         private const val MIN_CAR_NAME_LENGTH = 1
         private const val MAX_CAR_NAME_LENGTH = 5
         private const val MIN_RANDOM_AVAILABILITY_CONDITION = 4
-
-        fun getWinnerNames(raceCars: List<Car>): List<String> {
-            val maxPosition = raceCars.maxOf { raceCar -> raceCar.position }
-            return raceCars.toWinnerCars(maxPosition).toCarNames()
-        }
-
-        private fun List<Car>.toWinnerCars(maxPosition: Int) = this
-            .filter { raceCar ->
-                raceCar.position == maxPosition
-            }
-
-        private fun List<Car>.toCarNames() = this.map { car -> car.name }
     }
 }
