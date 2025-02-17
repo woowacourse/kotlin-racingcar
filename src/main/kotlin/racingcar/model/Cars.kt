@@ -18,12 +18,7 @@ class Cars {
     }
 
     fun getWinner(): List<String> {
-        val winner = mutableListOf<String>()
-        cars.forEach { car ->
-            if (car.position == cars.maxOf { it.position }) {
-                winner.add(car.name)
-            }
-        }
-        return winner
+        val maxPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == maxPosition }.map { it.name }
     }
 }
