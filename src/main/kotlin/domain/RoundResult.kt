@@ -1,4 +1,4 @@
-package model
+package domain
 
 import constant.RacingGameOutputConstant.ROUND_RESULT_FORMAT
 import java.util.Random

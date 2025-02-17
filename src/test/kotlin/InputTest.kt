@@ -1,5 +1,4 @@
 import controller.RacingGameController
-import model.Car
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -25,12 +24,6 @@ class InputTest {
 
     private fun setInput(input: String) {
         System.setIn(input.byteInputStream())
-    }
-
-    @Test
-    fun `자동차 이름은 5자를 초과할 수 없다`() {
-        assertThatThrownBy { Car("hwannow") }
-            .isInstanceOf(IllegalArgumentException::class.java)
     }
 
     @Test

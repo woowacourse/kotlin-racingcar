@@ -1,4 +1,4 @@
-package model
+package domain
 
 class GameResult(
     private val cars: List<Car>,

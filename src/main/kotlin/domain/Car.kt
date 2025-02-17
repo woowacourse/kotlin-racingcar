@@ -1,4 +1,4 @@
-package model
+package domain
 
 import constant.ErrorConstant
 import java.util.Random

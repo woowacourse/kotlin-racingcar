@@ -1,7 +1,7 @@
 package view
 
 import constant.RacingGameOutputConstant
-import model.Car
+import domain.Car
 
 class OutputView {
     fun printCurrentResult(currentResult: String) {

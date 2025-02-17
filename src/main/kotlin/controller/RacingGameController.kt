@@ -1,9 +1,9 @@
 package controller
 
 import constant.RacingGameOutputConstant
-import model.Car
-import model.GameResult
-import model.RoundResult
+import domain.Car
+import domain.GameResult
+import domain.RoundResult
 import validator.RacingGameValidator
 import view.InputView
 import view.OutputView
