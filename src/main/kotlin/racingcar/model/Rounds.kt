@@ -12,9 +12,8 @@ value class Rounds private constructor(val value: Int) {
         validateRange(value)
     }
 
-    private fun validateRange(input: Int) {
-        val rounds = input.toInt()
-        require(rounds in MIN_ROUNDS..MAX_ROUNDS) { INVALID_RANGE_ERROR }
+    private fun validateRange(value: Int) {
+        require(value in MIN_ROUNDS..MAX_ROUNDS) { INVALID_RANGE_ERROR }
     }
 
     companion object {
