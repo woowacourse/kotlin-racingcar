@@ -1,5 +1,5 @@
-import model.Car
-import model.Game
+import domain.Car
+import domain.Game
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test

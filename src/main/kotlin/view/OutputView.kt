@@ -1,8 +1,12 @@
 package view
 
-import model.Car
+import domain.Car
 
 object OutputView {
+    fun printMessage(prompt: String) {
+        println(prompt)
+    }
+
     fun printResult(result: String) {
         println()
         println(MESSAGE_OUTPUT_RESULT_HEADER)
@@ -11,10 +15,6 @@ object OutputView {
 
     fun printWinner(winners: List<Car>) {
         println(MESSAGE_OUTPUT_WINNER_PREFIX + winners.joinToString(WINNER_OUTPUT_SEPARATOR) { it.name })
-    }
-
-    fun printMessage(prompt: String) {
-        println(prompt)
     }
 
     private const val WINNER_OUTPUT_SEPARATOR = ", "

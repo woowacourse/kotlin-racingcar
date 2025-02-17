@@ -1,7 +1,7 @@
 package controller
 
-import model.Car
-import model.Game
+import domain.Car
+import domain.Game
 import view.InputView
 import view.OutputView
 
@@ -25,7 +25,6 @@ object GameController {
 
     private fun announceResult(game: Game) {
         OutputView.printResult(game.result)
-        val winner = game.getWinner()
-        OutputView.printWinner(winner)
+        OutputView.printWinner(game.getWinner())
     }
 }
