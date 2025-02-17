@@ -6,7 +6,7 @@ class OutputView {
     }
 
     fun printReCarName() {
-        println("자동차 이름은 5자를 초과할 수 없습니다. 다시 입력해주세요.")
+        println("자동차 이름은 5자를 초과하거나 공백일 수 없습니다. 다시 입력해주세요.")
     }
 
     fun printRound() {

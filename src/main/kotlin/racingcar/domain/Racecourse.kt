@@ -22,7 +22,7 @@ class Racecourse(
     }
 
     fun displayDistance(car: Car) {
-        println("${car.name} : ${Car.DISTANCE_SYMBOL.repeat(car.distance)}")
+        println("${car.name} : ${DISTANCE_SYMBOL.repeat(car.distance)}")
     }
 
     private fun generateRandomNumber(): Int = (0..9).random()
@@ -37,6 +37,7 @@ class Racecourse(
         }
 
     companion object {
-        const val MOVEMENT_CONDITION: Int = 4
+        private const val MOVEMENT_CONDITION: Int = 4
+        private const val DISTANCE_SYMBOL: String = "-"
     }
 }
