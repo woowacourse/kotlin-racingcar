@@ -11,18 +11,18 @@ class Car(
     var position: Int = position
         private set
 
-    fun moveForward(number: Int) {
-        if (isCarAbleToMove(number)) position++
-    }
-
-    private fun isCarAbleToMove(randomNumber: Int): Boolean = randomNumber >= MIN_RANDOM_AVAILABILITY_CONDITION
-
     private fun validateCarName(carName: String) {
         require(carName.isNotBlank()) { "[ERROR] 자동차 이름은 공백일 수 없습니다. (입력한 이름: $carName)" }
         require(carName.length in MIN_CAR_NAME_LENGTH..MAX_CAR_NAME_LENGTH) {
             "[ERROR] 자동차 이름은 ${MIN_CAR_NAME_LENGTH}자 이상 ${MAX_CAR_NAME_LENGTH}자 이하여야 합니다. (입력한 이름: $carName)"
         }
     }
+
+    fun moveForward(number: Int) {
+        if (isCarAbleToMove(number)) position++
+    }
+
+    private fun isCarAbleToMove(randomNumber: Int): Boolean = randomNumber >= MIN_RANDOM_AVAILABILITY_CONDITION
 
     companion object {
         private const val INITIAL_CAR_POSITION = 0
