@@ -1,51 +1,51 @@
 package racingcar.utils
 
-class Validator {
+class InputValidator {
     fun validateCarName(rawCarName: String) {
         val carNames = rawCarName.split(COMMA)
-        if (carNames.duplicateCarNames() ||
-            carNames.emptyCarNames() ||
-            carNames.carNameLength()
+        if (isDuplicateCarNames(carNames) ||
+            isEmptyCarNames(carNames) ||
+            carNameLengthCheck(carNames)
         ) {
             throw IllegalArgumentException(CARNAME_ERROR_MESSAGE)
         }
     }
 
     fun validateTryCount(rawTryCount: String) {
-        if (rawTryCount.toIntTryCount() || rawTryCount.emptyTryCount()) {
+        if (isTryCountNumeric(rawTryCount) || isEmptyTryCount(rawTryCount)) {
             throw IllegalArgumentException(
                 TRYCOUNT_ERROR_MESSAGE,
             )
         }
     }
 
-    private fun List<String>.duplicateCarNames(): Boolean {
-        return this.size != this.toSet().size
+    private fun isDuplicateCarNames(carNames: List<String>): Boolean {
+        return carNames.size != carNames.toSet().size
     }
 
-    private fun List<String>.emptyCarNames(): Boolean {
-        this.forEach { carName ->
+    private fun isEmptyCarNames(carNames: List<String>): Boolean {
+        carNames.forEach { carName ->
             return carName.isBlank()
         }
         return false
     }
 
-    private fun List<String>.carNameLength(): Boolean {
-        this.forEach { carName ->
+    private fun carNameLengthCheck(carNames: List<String>): Boolean {
+        carNames.forEach { carName ->
             return carName.length > CARNAME_MAX_LENGTH
         }
         return false
     }
 
-    private fun String.toIntTryCount(): Boolean {
-        if (this.toIntOrNull() == null) return true
-        if (this.toInt() <= 0) return true
+    private fun isTryCountNumeric(rawTryCount: String): Boolean {
+        if (rawTryCount.toIntOrNull() == null) return true
+        if (rawTryCount.toInt() <= 0) return true
 
         return false
     }
 
-    private fun String.emptyTryCount(): Boolean {
-        return this.isBlank()
+    private fun isEmptyTryCount(rawTryCount: String): Boolean {
+        return rawTryCount.isBlank()
     }
 
     companion object {

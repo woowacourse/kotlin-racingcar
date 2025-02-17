@@ -3,8 +3,8 @@ package racingcar.utils
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
-class ValidatorTest {
-    private val validator = Validator()
+class InputValidatorTest {
+    private val validator = InputValidator()
 
     @Test
     fun `자동차 이름이 중복일 때 예외 발생`() {

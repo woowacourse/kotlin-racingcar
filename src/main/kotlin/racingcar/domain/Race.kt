@@ -4,21 +4,24 @@ class Race(rawCarNames: String, rawTryCount: String) {
     val tryCount = rawTryCount.toInt()
     val cars = getCars(rawCarNames)
 
-    fun getPositions() {
+    fun getPositions(): List<List<Int>> {
         val generateRandomNumber = GenerateRandomNumber()
+        val roundResults = mutableListOf<List<Int>>()
         repeat(tryCount) {
             cars.forEach { car ->
                 val randomNumber = generateRandomNumber.randomNumber()
                 car.moves(randomNumber)
             }
+            roundResults.add(cars.map { it.position })
         }
+        return roundResults
     }
 
     fun getWinners(): List<String> {
-        val maxNumber = cars.maxOfOrNull { it.moveCount() }
+        val maxNumber = cars.maxOfOrNull { it.position }
         val winners =
             cars.filter { car ->
-                car.moveCount() == maxNumber
+                car.position == maxNumber
             }.map { it.carName }
         return winners
     }
