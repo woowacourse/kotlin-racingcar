@@ -3,9 +3,7 @@ package racingcar.model
 import racingcar.util.ErrorConstants.ERROR
 
 @JvmInline
-value class Rounds(
-    val value: Int,
-) {
+value class Rounds private constructor(val value: Int) {
     init {
         validate(value)
     }
