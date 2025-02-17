@@ -10,10 +10,6 @@ class Car(
     fun move() {
         distance += 1
     }
-
-    companion object {
-        const val DISTANCE_SYMBOL: String = "-"
-    }
 }
 
 fun String.toCars(): List<Car> =
