@@ -1,26 +1,25 @@
-package racingcar
+package racingcar.view
 
-class Input {
-    fun readCars(): List<Car> {
-        println("경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분).")
+import racingcar.domain.Car
+import racingcar.toCars
+
+class InputView {
+    fun readCars(): List<Car>? {
         val userInput: String? = readlnOrNull()
         requireNotNull(userInput) { "자동차의 이름을 입력해주세요" }
         if (checkCarNameValid(userInput)) {
             return userInput.toCars()
         }
-        println("자동차 이름은 5자를 초과할 수 없습니다. 다시 입력해주세요.")
-        return readCars()
+        return null
     }
 
-    fun readRound(): Int {
-        println("시도할 횟수는 몇 회인가요?")
+    fun readRound(): Int? {
         val userInput: String? = readlnOrNull()
         requireNotNull(userInput) { "시도 횟수를 입력해주세요." }
         if (checkRoundValid(userInput) != 0) {
             return userInput.toInt()
         }
-        println("올바른 숫자를 입력하세요.")
-        return readRound()
+        return null
     }
 
     fun checkCarNameValid(name: String): Boolean {

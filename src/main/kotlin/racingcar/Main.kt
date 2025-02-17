@@ -1,11 +1,11 @@
 package racingcar
 
+import racingcar.controller.RacingCarController
+import racingcar.domain.Car
+
 fun main() {
-    val cars: List<Car> = Input().readCars()
-    val round: Int = Input().readRound()
-    println("\n실행결과")
-    val racecourse = Racecourse(cars, round)
-    racecourse.startRace()
+    val racingCarController = RacingCarController()
+    racingCarController.start()
 }
 
 fun String.toCars(): List<Car> =
