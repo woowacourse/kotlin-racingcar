@@ -13,7 +13,7 @@ class CarTest {
     }
 
     @Test
-    fun `랜덤 숫자가 4이상인 경우 전진 여부 테스트`() {
+    fun `랜덤 숫자가 4이상인 경우에만 전진한다`() {
         car.moveOrStop(4)
         val expected = 1
         val result = car.getPosition()
