@@ -26,6 +26,8 @@ class RacingController(
     }
 
     companion object {
-        private fun parseRaceCountTextToInt(text: String): Int = text.toIntOrNull() ?: throw IllegalArgumentException("입력이 숫자가 아닙니다.")
+        private fun parseRaceCountTextToInt(text: String): Int = text.toIntOrNull() ?: throw IllegalArgumentException(ERROR_NOT_NUMBER)
+
+        private const val ERROR_NOT_NUMBER = "입력이 숫자가 아닙니다."
     }
 }

@@ -47,10 +47,11 @@ class RacingGame(
 
         private fun trimCarNames(carNames: List<String>) = carNames.map { carName -> carName.trim() }
 
-        private const val ERROR_DUPLICATE_NAME = "중복된 자동차 이름이 존재합니다."
-
         private fun validateNaturalNumber(number: Int) {
-            require(number > 0) { "입력이 자연수가 아닙니다." }
+            require(number > 0) { ERROR_NOT_NATURAL_NUMBER }
         }
+
+        private const val ERROR_DUPLICATE_NAME = "중복된 자동차 이름이 존재합니다."
+        private const val ERROR_NOT_NATURAL_NUMBER = "입력이 자연수가 아닙니다."
     }
 }
