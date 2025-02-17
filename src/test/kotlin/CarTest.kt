@@ -40,26 +40,15 @@ class CarTest {
 
         Assertions.assertThat(car.toString()).isEqualTo(expected)
     }
-//
-//    @Test
-//    fun `숫자가 4 미만이면 전진하지 않고 위치를 출력한다`() {
-//        val car = Car("포비")
-//        val expected = "포비 : "
-//
-//        car.moveOrStop(TestStopNumberGenerator())
-//
-//        Assertions.assertThat(car.toString()).isEqualTo(expected)
-//    }
+
+    @Test
+    fun `숫자가 4 미만이면 전진하지 않고 위치를 출력한다`() {
+        val car = Car("포비")
+        val expected = "포비 : "
+        val stayNumber = 3
+
+        car.moveOrStop(stayNumber)
+
+        Assertions.assertThat(car.toString()).isEqualTo(expected)
+    }
 }
-//
-//  class TestMoveNumberGenerator : NumberGenerator {
-//    override fun generate(): Int {
-//        return 4
-//    }
-//  }
-//
-//  class TestStopNumberGenerator : NumberGenerator {
-//    override fun generate(): Int {
-//        return 1
-//    }
-//  }
