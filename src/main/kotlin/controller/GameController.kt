@@ -20,9 +20,7 @@ object GameController {
     }
 
     private fun generateCars(carNames: List<String>): List<Car> {
-        val cars = mutableListOf<Car>()
-        carNames.map { cars.add(Car(it)) }
-        return cars
+        return carNames.map { Car(it) }
     }
 
     private fun playGame(game: Game) {
