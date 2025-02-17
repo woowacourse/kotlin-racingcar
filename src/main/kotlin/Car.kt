@@ -9,9 +9,11 @@ class Car(
     var position: Int = position
         private set
 
-    fun moveForward(isMoved: Boolean) {
-        if (isMoved) position++
+    fun moveForward(number: Int) {
+        if (isCarAbleToMove(number)) position++
     }
+
+    private fun isCarAbleToMove(randomNumber: Int): Boolean = randomNumber >= MIN_RANDOM_AVAILABILITY_CONDITION
 
     private fun validateCarName(carName: String) {
         require(carName.isNotBlank()) { "[ERROR] 자동차 이름은 공백일 수 없습니다. (입력한 이름: $carName)" }
@@ -25,8 +27,6 @@ class Car(
         private const val MIN_CAR_NAME_LENGTH = 1
         private const val MAX_CAR_NAME_LENGTH = 5
         private const val MIN_RANDOM_AVAILABILITY_CONDITION = 4
-
-        fun isCarAbleToMove(randomNumber: Int): Boolean = randomNumber >= MIN_RANDOM_AVAILABILITY_CONDITION
 
         fun getWinnerNames(raceCars: List<Car>): List<String> {
             val maxPosition = raceCars.maxOf { raceCar -> raceCar.position }
