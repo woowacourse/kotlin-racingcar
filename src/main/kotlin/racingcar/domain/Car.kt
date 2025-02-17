@@ -15,3 +15,9 @@ class Car(
         const val DISTANCE_SYMBOL: String = "-"
     }
 }
+
+fun String.toCars(): List<Car> =
+    split(",")
+        .map { it.trim() }
+        .filter { it.isNotBlank() }
+        .map { name -> Car(name) }
