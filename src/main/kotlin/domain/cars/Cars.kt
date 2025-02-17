@@ -10,7 +10,7 @@ class Cars(private val cars: List<Car>) {
     fun getWinners(): String {
         val maxDistance = cars.maxOf { it.distance }
         val winnerNames = cars.filter { it.distance == maxDistance }.map { it.carName }
-        return winnerNames.joinToString(Constants.WINNER_NAME_DELIMITER) { it }
+        return winnerNames.joinToString(Constants.WINNER_NAME_DELIMITER)
     }
 
     override fun toString(): String {
