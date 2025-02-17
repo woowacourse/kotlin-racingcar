@@ -1,6 +1,6 @@
 package racingcar.utils
 
-class Validator {
+class InputValidator {
     fun validateCarName(rawCarName: String) {
         val carNames = rawCarName.split(COMMA)
         if (carNames.duplicateCarNames() ||
