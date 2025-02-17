@@ -1,8 +1,9 @@
+package racing.domain.generator.trymove
+
 import java.util.LinkedList
 
 class TryMoveNumbersExtractor(numbers: List<Int>) : TryMoveNumberStrategy {
     private val numbers = LinkedList(numbers)
-    val currentNumbersSize get() = numbers.size
 
     override fun getNumber(): Int {
         require(numbers.isNotEmpty()) { EXTRACTOR_EMPTY_ERROR }

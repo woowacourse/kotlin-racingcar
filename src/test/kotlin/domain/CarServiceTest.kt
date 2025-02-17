@@ -1,8 +1,12 @@
+package domain
+
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import racing.domain.model.Car
+import racing.domain.service.CarService
 
 class CarServiceTest {
     private lateinit var carService: CarService

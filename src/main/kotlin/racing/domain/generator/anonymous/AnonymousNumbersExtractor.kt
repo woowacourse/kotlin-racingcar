@@ -1,3 +1,5 @@
+package racing.domain.generator.anonymous
+
 import java.util.LinkedList
 
 class AnonymousNumbersExtractor(numbers: List<Int>) : AnonymousNumberStrategy {

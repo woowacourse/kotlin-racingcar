@@ -1,3 +1,7 @@
+package racing.view
+
+import racing.domain.model.Car
+
 class OutputView {
     fun printRemoveDuplicateCars() {
         println(CAR_DUPLICATE_REMOVE)
@@ -6,7 +10,7 @@ class OutputView {
     fun printResultTitle() = println(RESULT)
 
     fun printCarState(cars: List<Car>) {
-        cars.forEach { car -> println("${car.name}${CAR_STATE_DELIMITER}${CAR_POSITION.repeat(car.position)}") }
+        cars.forEach { car -> println("${car.name}$CAR_STATE_DELIMITER${CAR_POSITION.repeat(car.position)}") }
         println()
     }
 

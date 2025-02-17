@@ -1,3 +1,8 @@
+package racing.domain.model
+
+import racing.domain.generator.trymove.TryMoveNumberGenerator
+import racing.domain.generator.trymove.TryMoveNumberStrategy
+
 data class Car(
     val name: String,
     private var _position: Int = INIT_POSITION,

@@ -1,4 +1,11 @@
-class CarFactory(private val anonymousNumberStrategy: AnonymousNumberStrategy = AnonymousNumberGenerator()) {
+package racing.domain.generator.car
+
+import racing.domain.generator.anonymous.AnonymousNumberGenerator
+import racing.domain.generator.anonymous.AnonymousNumberStrategy
+import racing.domain.model.Car
+import racing.toOnlyIntOrNull
+
+class CarGenerator(private val anonymousNumberStrategy: AnonymousNumberStrategy = AnonymousNumberGenerator()) {
     private val anonymousNumbers = mutableSetOf<Int>()
 
     fun createCars(carsName: List<String>): List<Car> {

@@ -1,9 +1,13 @@
+package domain
+
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
 import org.junit.jupiter.params.provider.ValueSource
+import racing.domain.generator.trymove.TryMoveNumbersExtractor
+import racing.domain.model.Car
 
 class CarTest {
     @ParameterizedTest
