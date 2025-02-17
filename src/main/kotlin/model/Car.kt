@@ -17,7 +17,7 @@ class Car(
 
     private fun validateCar(name: String) {
         require(name.trim().isNotEmpty()) { "자동차 이름에 빈 값이 입력되었습니다." }
-        require(name.length <= MAX_NAME_LENGTH) { "자동차 이름이 5자를 초과하였습니다." }
+        require(name.length <= MAX_NAME_LENGTH) { "자동차 이름이 5자를 초과하였습니다.: $name" }
     }
 
     companion object {
