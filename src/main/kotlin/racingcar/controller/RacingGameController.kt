@@ -8,13 +8,13 @@ import racingcar.view.OutputView
 class RacingGameController {
     private val inputView = InputView()
     private val outputView = OutputView()
-    private val validator = InputValidator()
+    private val inputValidator = InputValidator()
 
     fun run() {
         val rawCarNames = inputView.insertCarNames()
-        validator.validateCarName(rawCarNames)
+        inputValidator.validateCarName(rawCarNames)
         val rawTryCount = inputView.insertTryCount()
-        validator.validateTryCount(rawTryCount)
+        inputValidator.validateTryCount(rawTryCount)
         val gameResult = playing(rawCarNames, rawTryCount)
         printGameResult(gameResult)
     }
