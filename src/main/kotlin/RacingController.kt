@@ -13,7 +13,7 @@ class RacingController(
         val cars: List<Car> = generateCar()
         val racingGame = RacingGame(RandomNumberGenerator(), cars)
 
-        val raceRound: String = getRaceRounds()
+        val raceRound: Int = getRaceRounds()
         runRace(racingGame, raceRound)
 
         val winners = racingGame.getWinners()
@@ -25,13 +25,13 @@ class RacingController(
         return CarCreator().createCars(carNameInput)
     }
 
-    private fun getRaceRounds(): String {
+    private fun getRaceRounds(): Int {
         return inputView.inputRacingCount()
     }
 
     private fun runRace(
         racingGame: RacingGame,
-        round: String,
+        round: Int,
     ) {
         outputView.printResultMessage()
         racingGame.runRace(round)

@@ -3,7 +3,11 @@ package view
 object InputView {
     fun inputCarName(): String = readLine(INPUT_CAR_NAME_MESSAGE)
 
-    fun inputRacingCount(): String = readLine(INPUT_COUNT_MESSAGE)
+    fun inputRacingCount(): Int {
+        val input = readLine(INPUT_COUNT_MESSAGE).trim()
+        return input.toIntOrNull()?.takeIf { it > 0 }
+            ?: throw IllegalArgumentException(INVALID_COUNT_MESSAGE)
+    }
 
     private fun readLine(message: String): String {
         println(message)
@@ -12,4 +16,5 @@ object InputView {
 
     private const val INPUT_CAR_NAME_MESSAGE = "경주할 자동차 이름을 입력하세요(이름은 쉼표(,)를 기준으로 구분)."
     private const val INPUT_COUNT_MESSAGE = "시도할 횟수는 몇 회인가요?"
+    private const val INVALID_COUNT_MESSAGE = "시도할 횟수는 자연수여야 합니다."
 }

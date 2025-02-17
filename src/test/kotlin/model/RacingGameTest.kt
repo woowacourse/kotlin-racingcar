@@ -15,8 +15,8 @@ class RacingGameTest {
     }
 
     @ParameterizedTest
-    @ValueSource(strings = ["", " ", "0", "-1"])
-    fun `입력 값으로부터 경주 실행 횟수 검증 예외 테스트`(input: String) {
+    @ValueSource(ints = [0, -1])
+    fun `입력 값으로부터 경주 실행 횟수 검증 예외 테스트`(input: Int) {
         val generator = RandomNumberGenerator()
         val generateCar = CarCreator().createCars("carA, carB")
         val racingGame = RacingGame(generator, generateCar)
@@ -31,7 +31,7 @@ class RacingGameTest {
         val racingGame = RacingGame(generator, generateCar)
 
         val expected = "carB"
-        racingGame.runRace("1")
+        racingGame.runRace(1)
         val result = racingGame.getWinners()
 
         assertThat(result).contains(expected)
@@ -44,7 +44,7 @@ class RacingGameTest {
         val generateCar = CarCreator().createCars("carA, carB, carC")
         val racingGame = RacingGame(generator, generateCar)
 
-        racingGame.runRace("1")
+        racingGame.runRace(1)
         val result = racingGame.getWinners()
 
         assertThat(result).contains("carB", "carC")
