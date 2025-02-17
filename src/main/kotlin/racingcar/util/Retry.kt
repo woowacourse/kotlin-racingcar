@@ -5,10 +5,10 @@ fun <T> retryWhenException(
     onError: (String?) -> Unit,
 ): T {
     while (true) {
-        try {
+        runCatching {
             return action()
-        } catch (e: IllegalArgumentException) {
-            onError(e.message)
+        }.onFailure {
+            onError(it.message)
         }
     }
 }
