@@ -3,7 +3,6 @@ package racingcar.utils
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import racingcar.domain.GenerateRandomNumber
 import racingcar.utils.ErrorHandler.validCarName
 import racingcar.utils.ErrorHandler.validTryCount
 
@@ -61,14 +60,5 @@ class ErrorHandlerTest {
                 value.validTryCount()
             }
         assertEquals(expectedMessage, result.message)
-    }
-
-    @Test
-    fun `랜덤 숫자의 범위가 올바르지 않을 때 예외 발생`() {
-        val value = GenerateRandomNumber().randomNumber()
-        val expected = true
-        val result = value in 0..9
-
-        assertEquals(expected, result)
     }
 }

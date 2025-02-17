@@ -6,7 +6,7 @@ import racingcar.utils.Constants.COMMA
 class OutputView {
     fun printRoundResult(cars: List<Car>) {
         cars.forEach { car ->
-            println("${car.getName()} : ${MOVE.repeat(car.getPosition())}")
+            println("${car.name} : ${MOVE.repeat(car.position)}")
         }
         println()
     }
@@ -16,7 +16,7 @@ class OutputView {
     }
 
     companion object {
-        const val MOVE = "-"
-        const val WINNERS_MESSAGE = "최종 우승자:"
+        private const val MOVE = "-"
+        private const val WINNERS_MESSAGE = "최종 우승자:"
     }
 }
