@@ -17,16 +17,17 @@ class CarTest {
         // then
         Assertions.assertThat(car.distance).isEqualTo(expected)
     }
-//
-//    @Test
-//    fun `숫자가 4 미만이면 전진하지 않는다`() {
-//        val car = Car("포비")
-//        val expected = 0
-//
-//        car.moveOrStop(TestStopNumberGenerator())
-//
-//        Assertions.assertThat(car.distance).isEqualTo(expected)
-//    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [0, 1, 2, 3])
+    fun `숫자가 4 미만이면 전진하지 않는다`(number: Int) {
+        val car = Car("포비")
+        val expected = 0
+
+        car.moveOrStop(number)
+
+        Assertions.assertThat(car.distance).isEqualTo(expected)
+    }
 //
 //    @Test
 //    fun `숫자가 4 이상이면 전진하고 위치를 출력한다`() {
