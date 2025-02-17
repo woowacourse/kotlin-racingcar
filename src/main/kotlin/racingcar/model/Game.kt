@@ -18,17 +18,16 @@ class Game(
         }
     }
 
-    fun getRoundResult(): String {
+    fun getRoundResult(): List<RoundResult> {
         return cars.map { car ->
             RoundResult(car.name, car.position)
-        }.joinToString("\n")
+        }
     }
 
-    fun getWinners(): String {
+    fun getWinners(): List<String> {
         val maxPosition = cars.maxOf { it.position }
         val winners = cars.filter { it.position == maxPosition }.map { it.name }
-        val winnersMsg = winners.joinToString(", ")
-        return winnersMsg
+        return winners
     }
 
     private fun validateUniqueName(carNames: List<String>) {

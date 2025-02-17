@@ -62,13 +62,15 @@ class RacingCarController(
             playRound(game)
         }
         val winners = game.getWinners()
-        outputView.printWinners(winners)
+        val winnersMsg = winners.joinToString(", ")
+        outputView.printWinners(winnersMsg)
     }
 
     private fun playRound(game: Game) {
         game.playRound()
         val roundResult = game.getRoundResult()
-        outputView.printRoundResult(roundResult)
+        val roundResultMessage = roundResult.joinToString("\n")
+        outputView.printRoundResult(roundResultMessage)
     }
 
     private fun randomNumberFactory() =
