@@ -3,8 +3,8 @@ package view
 import model.Car
 
 object OutputView {
-    fun printMessage(message: String) {
-        println(message)
+    fun printResultMessage() {
+        println(RESULT_MESSAGE)
     }
 
     fun printRaceState(cars: List<Car>) {
@@ -16,6 +16,7 @@ object OutputView {
         println("최종 우승자 : ${winners.joinToString(WINNER_DELIMITER)}")
     }
 
+    private const val RESULT_MESSAGE = "\n실행 결과"
     private const val WINNER_DELIMITER = ", "
     private const val FORWARD_SIGN = "-"
 }

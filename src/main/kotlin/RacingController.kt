@@ -31,6 +31,7 @@ class RacingController(
     }
 
     private fun tryRacing(round: String) {
+        outputView.printResultMessage()
         racingGame.runRace(round)
     }
 

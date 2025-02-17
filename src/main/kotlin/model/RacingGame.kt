@@ -18,8 +18,6 @@ class RacingGame(
     }
 
     private fun repeatRacing(count: Int) {
-        OutputView.printMessage("실행 결과\n")
-
         repeat(count) {
             raceOneRound()
             OutputView.printRaceState(cars)
