@@ -20,6 +20,10 @@ object OutputView {
         println(MESSAGE_OUTPUT_WINNER_PREFIX + winners.joinToString(WINNER_OUTPUT_SEPARATOR) { it.name })
     }
 
+    fun printMessage(prompt: String) {
+        println(prompt)
+    }
+
     private const val CAR_POSITION_INDICATOR = "-"
     private const val WINNER_OUTPUT_SEPARATOR = ", "
 

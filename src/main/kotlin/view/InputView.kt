@@ -15,7 +15,7 @@ object InputView {
     }
 
     private fun getInput(prompt: String): String {
-        println(prompt)
+        OutputView.printMessage(prompt)
         return readlnOrNull() ?: ""
     }
 
