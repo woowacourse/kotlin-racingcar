@@ -3,9 +3,7 @@ package domain.cars
 import Constants
 import domain.numbergenerator.NumberGenerator
 
-class Cars(input: String) {
-    private val cars: List<Car> = CarsArgumentConverter.toCarList(input)
-
+class Cars(private val cars: List<Car>) {
     fun lap(numberGenerator: NumberGenerator) {
         cars.forEach { it.moveOrStop(numberGenerator) }
     }
