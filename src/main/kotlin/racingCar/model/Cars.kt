@@ -9,14 +9,13 @@ class Cars(
 
     fun playOneRound() {
         parsedCars.forEach { car ->
-            car.moveForward(numberGenerator.generate())
+            if (numberGenerator.generate() >= 4) car.moveForward()
         }
     }
 
     fun getWinner(): List<String> {
-        val maxPosition = parsedCars.maxOf { it.position }
-        val winners = parsedCars.filter { it.position == maxPosition }.map { it.name }
-
+        val maxPosition = parsedCars.maxOf { it.getPosition() }
+        val winners = parsedCars.filter { it.getPosition() == maxPosition }.map { it.name }
         return winners
     }
 
