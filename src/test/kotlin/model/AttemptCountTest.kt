@@ -4,7 +4,6 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
-import racingCar.model.AttemptCount
 
 class AttemptCountTest {
     private lateinit var attemptCount: AttemptCount
