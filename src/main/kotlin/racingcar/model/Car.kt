@@ -12,7 +12,7 @@ class Car(val name: String) {
         validateNameFormat(name)
     }
 
-    fun increasePositionIfMovable(moveState: MoveState) {
+    fun moveCarWhenMovable(moveState: MoveState) {
         when (moveState) {
             MoveState.MOVABLE -> position++
             MoveState.UNMOVABLE -> return

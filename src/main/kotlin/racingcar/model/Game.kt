@@ -14,7 +14,7 @@ class Game(
     fun playRound() {
         cars.forEach { car ->
             val moveState = MoveState.create(randomNumberFactory())
-            car.increasePositionIfMovable(moveState)
+            car.moveCarWhenMovable(moveState)
         }
     }
 
