@@ -2,6 +2,9 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.Game
+import racingcar.model.Messenger
+import racingcar.model.Messenger.getRoundResultMessage
+import racingcar.model.Messenger.getWinnerMessage
 import racingcar.model.RandomNumberFactory
 import racingcar.model.Rounds
 import racingcar.util.retryWhenException
@@ -62,14 +65,14 @@ class RacingCarController(
             playRound(game)
         }
         val winners = game.getWinners()
-        val winnersMsg = winners.joinToString("$SEPARATOR ")
+        val winnersMsg = getWinnerMessage(winners)
         outputView.printWinners(winnersMsg)
     }
 
     private fun playRound(game: Game) {
         game.playRound()
         val roundResult = game.getRoundResult()
-        val roundResultMessage = roundResult.joinToString("\n")
+        val roundResultMessage = getRoundResultMessage(roundResult)
         outputView.printRoundResult(roundResultMessage)
     }
 
