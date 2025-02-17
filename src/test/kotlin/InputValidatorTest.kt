@@ -1,43 +1,92 @@
 package racingcar
 
+import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
-import racingcar.global.InputValidator.requireCarNames
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
+import racingcar.domain.Car
 
 class InputValidatorTest {
-    @Test
-    @DisplayName("자동차 이름이 6자 이상인 경우 예외가 발생한다.")
-    fun t1() {
-        val input = "a,b,123456,c"
-        assertThrows<IllegalArgumentException> { requireCarNames(input) }
+    private lateinit var inputValidator: InputValidator
+
+    @BeforeEach
+    fun setUp() {
+        inputValidator = InputValidator()
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["1", "12345678"])
+    @DisplayName("올바른 경주 횟수 검증")
+    fun validateValidRaceCount(raceCount: String) {
+        assertDoesNotThrow {
+            inputValidator.validRaceCountChecker(raceCount)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", " ", "0", "-1", "한번", "one", " 1", "123456789"])
+    @DisplayName("잘못된 경주 횟수 검증")
+    fun validateInvalidRaceCount(raceCount: String) {
+        assertThrows<IllegalArgumentException> {
+            inputValidator.validRaceCountChecker(raceCount)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["eng", "Eng", "한글", "12345", "공 백포함", "문자다섯개", "차 c1A"])
+    @DisplayName("올바른 자동차 이름 검증")
+    fun validateValidCarNames(carName: String) {
+        assertDoesNotThrow {
+            inputValidator.validCarNameChecker(carName)
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings = ["", " ", "\t", "\n", " 앞공백", "뒤공백 ", "다섯글자초과", "특@문", "ㅊㅗ성"])
+    @DisplayName("잘못된 자동차 이름 검증")
+    fun validateInvalidCarNames(carName: String) {
+        assertThrows<IllegalArgumentException> {
+            inputValidator.validCarNameChecker(carName)
+        }
     }
 
     @Test
-    @DisplayName("자동차 이름이 비어있는 경우 예외가 발생한다.")
-    fun t2() {
-        val input = "a,,b,c"
-        assertThrows<IllegalArgumentException> { requireCarNames(input) }
+    @DisplayName("올바른 자동차 이동 판정 랜덤값 체크")
+    fun validateValidCarMoveValue() {
+        for (raceCount in 0..9) {
+            assertDoesNotThrow {
+                inputValidator.possibleMoveValueCheck(raceCount)
+            }
+        }
+    }
+
+    @ParameterizedTest
+    @ValueSource(ints = [-1, 10])
+    @DisplayName("잘못된 자동차 이동 판정 랜덤값 체크")
+    fun validateInvalidCarMoveValue(raceCount: Int) {
+        assertThrows<IllegalArgumentException> {
+            inputValidator.possibleMoveValueCheck(raceCount)
+        }
     }
 
     @Test
-    @DisplayName("자동차 이름에 특수문자가 존재할 경우 예외가 발생한다.")
-    fun t3() {
-        val input = "@밀러,@메다"
-        assertThrows<IllegalArgumentException> { requireCarNames(input) }
+    @DisplayName("이름이 중복 되지 않은 자동차 리스트")
+    fun validateNotDuplicateCarName() {
+        val cars = listOf(Car("a", inputValidator), Car("b", inputValidator))
+        assertDoesNotThrow {
+            inputValidator.duplicateCarNameCheck(cars)
+        }
     }
 
     @Test
-    @DisplayName("자동차 이름에 중복이 존재할 경우 예외가 발생한다.")
-    fun t5() {
-        val input = "밀러,밀러,메다"
-        assertThrows<IllegalArgumentException> { requireCarNames(input) }
-    }
-
-    @Test
-    @DisplayName("trim을 적용한 자동차 이름에 중복이 존재할 경우 예외가 발생한다.")
-    fun t6() {
-        val input = " 밀러 ,밀러     ,메다"
-        assertThrows<IllegalArgumentException> { requireCarNames(input) }
+    @DisplayName("이름이 중복된 자동차 리스트")
+    fun validateDuplicateCarName() {
+        val cars = listOf(Car("a", inputValidator), Car("a", inputValidator))
+        assertThrows<IllegalArgumentException> {
+            inputValidator.duplicateCarNameCheck(cars)
+        }
     }
 }
