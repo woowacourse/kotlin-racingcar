@@ -1,7 +1,7 @@
 package racing
 
-import racing.view.Racing
+import racing.ui.controller.RacingController
 
 fun main() {
-    Racing().play()
+    RacingController().play()
 }
