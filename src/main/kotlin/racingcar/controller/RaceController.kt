@@ -31,6 +31,6 @@ class RaceController {
     }
 
     companion object {
-        const val RUNNING_RESULT_MESSAGE = "\n실행 결과"
+        private const val RUNNING_RESULT_MESSAGE = "\n실행 결과"
     }
 }

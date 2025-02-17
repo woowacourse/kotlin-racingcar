@@ -16,7 +16,7 @@ class OutputView {
     }
 
     companion object {
-        const val MOVE = "-"
-        const val WINNERS_MESSAGE = "최종 우승자:"
+        private const val MOVE = "-"
+        private const val WINNERS_MESSAGE = "최종 우승자:"
     }
 }
