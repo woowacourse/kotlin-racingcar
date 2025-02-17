@@ -73,11 +73,14 @@ class RacingCarController(
 
     private fun randomNumberFactory() =
         RandomNumberFactory {
-            val randomNumberRange = 0..9
+            val randomNumberRange = RANDOM_NUMBER_MIN..RANDOM_NUMBER_MAX
             (randomNumberRange).random()
         }
 
     companion object {
         const val SEPARATOR = ","
+
+        const val RANDOM_NUMBER_MIN = 0
+        const val RANDOM_NUMBER_MAX = 9
     }
 }
