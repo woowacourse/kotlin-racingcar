@@ -62,7 +62,7 @@ class RacingCarController(
             playRound(game)
         }
         val winners = game.getWinners()
-        val winnersMsg = winners.joinToString(", ")
+        val winnersMsg = winners.joinToString("$SEPARATOR ")
         outputView.printWinners(winnersMsg)
     }
 
