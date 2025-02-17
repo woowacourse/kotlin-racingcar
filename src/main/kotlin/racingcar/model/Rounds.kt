@@ -8,7 +8,7 @@ value class Rounds private constructor(val value: Int) {
         validate(value)
     }
 
-    fun validate(value: Int) {
+    private fun validate(value: Int) {
         validateRange(value)
     }
 
