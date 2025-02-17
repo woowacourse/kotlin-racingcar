@@ -1,16 +1,21 @@
+package domain
+
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertFalse
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.Arguments
 import org.junit.jupiter.params.provider.MethodSource
+import racing.domain.generator.anonymous.AnonymousNumbersExtractor
+import racing.domain.generator.car.CarGenerator
+import racing.domain.model.Car
 
-class CarFactoryTest {
-    private lateinit var carFactory: CarFactory
+class CarGeneratorTest {
+    private lateinit var carGenerator: CarGenerator
 
     @BeforeEach
     fun setUp() {
-        carFactory = CarFactory(AnonymousNumbersExtractor(listOf(1, 2, 3, 4, 5, 6)))
+        carGenerator = CarGenerator(AnonymousNumbersExtractor(listOf(1, 2, 3, 4, 5, 6)))
     }
 
     @ParameterizedTest
@@ -19,7 +24,7 @@ class CarFactoryTest {
         carNames: List<String>,
         actual: List<Car>,
     ) {
-        assertThat(actual).isEqualTo(carFactory.createCars(carNames))
+        assertThat(actual).isEqualTo(carGenerator.createCars(carNames))
     }
 
     @ParameterizedTest
@@ -28,7 +33,7 @@ class CarFactoryTest {
         carsName: List<String>,
         actual: List<Car>,
     ) {
-        assertFalse(actual == carFactory.createCars(carsName))
+        assertFalse(actual == carGenerator.createCars(carsName))
     }
 
     companion object {

@@ -1,3 +1,5 @@
+package racing.domain.generator.trymove
+
 import kotlin.random.Random
 
 class TryMoveNumberGenerator : TryMoveNumberStrategy {

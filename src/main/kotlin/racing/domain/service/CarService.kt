@@ -1,3 +1,7 @@
+package racing.domain.service
+
+import racing.domain.model.Car
+
 class CarService(
     private val _cars: List<Car>,
 ) {
