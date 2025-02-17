@@ -1,4 +1,5 @@
-import model.car.Car
+package model.car
+
 import model.number.TryMoveNumber
 import model.number.TryStopNumber
 import org.assertj.core.api.Assertions.assertThat
