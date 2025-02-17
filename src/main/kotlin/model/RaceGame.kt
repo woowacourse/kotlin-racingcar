@@ -1,11 +1,8 @@
 package model
 
-import controller.RaceController
-import java.util.stream.Collectors.toList
-
 class RaceGame(
     private val count: Int,
-    private val cars: MutableList<Car>,
+    private val cars: List<Car>,
 ) {
     fun fullRace(): List<List<Car>> {
         val raceResults = mutableListOf<List<Car>>()

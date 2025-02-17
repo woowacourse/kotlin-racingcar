@@ -3,6 +3,7 @@ package controller
 import constant.InOutConstants
 import dto.TryCount
 import model.Car
+import model.CarManger
 import model.RaceGame
 import model.Random
 import view.InView
@@ -34,10 +35,11 @@ class RaceController(val inView: InView, val outView: OutView) {
         outView.printFinalResult(winnerResult)
     }
 
-    fun getCarName(input: String = inView.getData(InOutConstants.NAME)): MutableList<Car> {
-        val carNamesList: List<String> = input.split(",").map { it.trim() }.filter { it.isNotBlank() }
-        val cars = carNamesList.map { Car(it, randomMaker = Random()) }.toMutableList()
-        return cars
+    fun getCarName(): List<Car> {
+        val input = inView.getData(InOutConstants.NAME)
+        val carManger = CarManger(input)
+        val carList: List<Car> = carManger.getCarList()
+        return carList
     }
 
     fun getTryCount(): Int {
