@@ -1,6 +1,7 @@
 package racingcar.model
 
 import racingcar.enums.MoveState
+import racingcar.util.ErrorConstants.ERROR
 
 class Car(val name: String) {
     var position: Int = 0
@@ -27,7 +28,6 @@ class Car(val name: String) {
     }
 
     companion object {
-        private const val ERROR = "[ERROR]"
         const val INVALID_NAME_LENGTH_ERROR = "$ERROR 자동차 이름은 1~5자이어야 합니다."
         const val INVALID_NAME_FORMAT_ERROR = "$ERROR 자동차 이름은 영문 또는 숫자로 이루어져야 합니다."
 

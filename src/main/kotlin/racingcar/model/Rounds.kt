@@ -1,5 +1,7 @@
 package racingcar.model
 
+import racingcar.util.ErrorConstants.ERROR
+
 @JvmInline
 value class Rounds(
     val value: Int,
@@ -39,7 +41,6 @@ value class Rounds(
 
         operator fun invoke(input: String): Rounds = from(input)
 
-        private const val ERROR = "[ERROR]"
         private const val EMPTY_INPUT_ERROR = "$ERROR 빈 값을 입력하셨습니다."
         private const val NOT_NUMERIC_ERROR = "$ERROR 숫자를 입력해야 합니다."
         private const val INVALID_RANGE_ERROR = "$ERROR 1에서 10 사이의 수를 입력해야 합니다."

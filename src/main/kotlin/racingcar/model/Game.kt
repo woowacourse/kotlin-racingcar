@@ -1,6 +1,7 @@
 package racingcar.model
 
 import racingcar.enums.MoveState
+import racingcar.util.ErrorConstants.ERROR
 
 class Game(
     private val cars: List<Car>,
@@ -35,7 +36,6 @@ class Game(
     }
 
     companion object {
-        private const val ERROR = "[ERROR]"
         const val NOT_UNIQUE_NAME_ERROR = "$ERROR 자동차 이름이 중복됩니다."
     }
 }
