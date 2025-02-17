@@ -14,11 +14,11 @@ data class Car(val name: String) {
     }
 
     companion object {
-        const val CAR_INITIAL_POSITION = 0
-        const val CAR_NAME_MAX_LENGTH = 5
-        const val CAR_MOVE_THRESHOLD = 4
+        private const val CAR_INITIAL_POSITION = 0
+        private const val CAR_NAME_MAX_LENGTH = 5
+        private const val CAR_MOVE_THRESHOLD = 4
 
-        const val MESSAGE_CAR_NAME_EMPTY = "자동차 이름은 공백일 수 없습니다."
-        const val MESSAGE_CAR_NAME_TOO_LONG = "자동차 이름은 최대 5자입니다."
+        private const val MESSAGE_CAR_NAME_EMPTY = "자동차 이름은 공백일 수 없습니다."
+        private const val MESSAGE_CAR_NAME_TOO_LONG = "자동차 이름은 최대 5자입니다."
     }
 }

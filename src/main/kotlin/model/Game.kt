@@ -23,8 +23,8 @@ class Game(val cars: List<Car>, val rounds: Int) {
     }
 
     companion object {
-        const val RANDOM_NUMBER_MIN = 0
-        const val RANDOM_NUMBER_MAX = 9
+        private const val RANDOM_NUMBER_MIN = 0
+        private const val RANDOM_NUMBER_MAX = 9
 
         private const val MESSAGE_DUPLICATE_CAR_NAME = "자동차 이름에 중복이 있습니다."
         private const val MESSAGE_NOT_ENOUGH_CARS = "최소 두 대의 자동차가 참가해야 합니다."
