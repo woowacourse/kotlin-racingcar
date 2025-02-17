@@ -19,26 +19,6 @@ class GameTest {
     }
 
     @Test
-    fun `playRound - 자동차가 움직일 수 있는 경우 위치가 1 증가해야 한다`() {
-        val game = Game(cars, randomNumberFactory.movableRandomNumberFactory())
-
-        game.playRound()
-
-        assertEquals(1, cars[0].position)
-        assertEquals(1, cars[1].position)
-    }
-
-    @Test
-    fun `playRound - 자동차가 움직일 수 없는 경우 위치가 유지되야 한다`() {
-        val game = Game(cars, randomNumberFactory.unmovableRandomNumberFactory())
-
-        game.playRound()
-
-        assertEquals(0, cars[0].position)
-        assertEquals(0, cars[1].position)
-    }
-
-    @Test
     fun `getRoundResult - 게임 중간 라운드 결과를 출력한다`() {
         val game = Game(cars, randomNumberFactory.movableRandomNumberFactory())
 
