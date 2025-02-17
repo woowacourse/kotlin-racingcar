@@ -19,7 +19,8 @@ class View {
         runCatching {
             val userInput: String =
                 readlnOrNull() ?: throw IllegalArgumentException(ErrorMessage.FAIL_TO_READ_INPUT)
-            Car.Companion.createCars(userInput)
+            val carNames: List<String> = userInput.split(CAR_NAME_SEPARATOR).map { carName: String -> carName.trim() }
+            carNames.map { carName: String -> Car(carName) }
         }.onSuccess { cars: List<Car> ->
             return cars
         }.onFailure { error: Throwable ->
@@ -36,7 +37,8 @@ class View {
         runCatching {
             val userInput: String =
                 readlnOrNull() ?: throw IllegalStateException(ErrorMessage.FAIL_TO_READ_INPUT)
-            RoundManager.Companion.from(userInput)
+            userInput.toIntOrNull()?.let { round: Int -> RoundManager(round) }
+                ?: throw IllegalStateException(ErrorMessage.INVALID_ROUND)
         }.onSuccess { roundManager: RoundManager ->
             return roundManager
         }.onFailure { error: Throwable ->
@@ -58,5 +60,9 @@ class View {
             println()
         })
         print("최종 우승자: ${racecourse.winners.joinToString { car: Car -> car.name }}")
+    }
+
+    companion object {
+        const val CAR_NAME_SEPARATOR: String = ","
     }
 }
