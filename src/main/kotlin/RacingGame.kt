@@ -22,7 +22,8 @@ class RacingGame {
     private fun getCars(): Cars {
         val carName = inputView.readCarName()
         InputValidator.validateCarName(carName)
-        return Cars(carName)
+        val carsArgument = RacingCarConverter.toCarsArgument(carName)
+        return Cars(carsArgument)
     }
 
     private fun getTryCount(): Int {
