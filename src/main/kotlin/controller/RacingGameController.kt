@@ -54,7 +54,8 @@ class RacingGameController(
     ) {
         printGameResult()
         repeat(count) {
-            val currentPositions: List<String> = roundResult.runCarAndGetRoundResult()
+            roundResult.runEachCar()
+            val currentPositions: List<String> = roundResult.getRoundResult()
             printCurrentPositions(currentPositions)
         }
     }
