@@ -1,18 +1,14 @@
 package view
 
-import java.util.Scanner
-
 class InputView {
-    private val scanner = Scanner(System.`in`)
-
     fun readName(): String {
         println(INPUT_CAR_NAME_MESSAGE)
-        return scanner.nextLine()
+        return readln()
     }
 
     fun readTryCount(): String {
         println(INPUT_TRY_COUNT_MESSAGE)
-        return scanner.nextLine()
+        return readln()
     }
 
     companion object {
