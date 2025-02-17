@@ -18,10 +18,6 @@ value class Rounds private constructor(val value: Int) {
     }
 
     companion object {
-        private fun getValidValue(value: String): Int {
-            return value.toInt()
-        }
-
         private fun validNumericValue(value: String) {
             checkEmpty(value)
             checkNumeric(value)
@@ -37,8 +33,8 @@ value class Rounds private constructor(val value: Int) {
 
         fun from(value: String): Rounds {
             validNumericValue(value)
-            val validValue = getValidValue(value)
-            return Rounds(validValue)
+            val numericValue = value.toInt()
+            return Rounds(numericValue)
         }
 
         operator fun invoke(input: String): Rounds = from(input)
