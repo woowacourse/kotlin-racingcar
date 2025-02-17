@@ -1,4 +1,4 @@
-package model
+package racingcar.domain.model
 
 class AttemptCount(private val input: String) {
     init {

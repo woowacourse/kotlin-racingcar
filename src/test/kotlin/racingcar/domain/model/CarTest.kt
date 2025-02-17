@@ -1,4 +1,4 @@
-package model
+package racingcar.domain.model
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Assertions.assertEquals
@@ -36,11 +36,12 @@ class CarTest {
     @Test
     @DisplayName("자동차 이름이 6자 이상이면 예외를 발생한다.")
     fun carNameExceptionTest() {
+        val wrongCarName = "오이오이오이"
         val exception =
             assertThrows<IllegalArgumentException> {
-                Car("오이오이오이")
+                Car(wrongCarName)
             }
-        assertEquals("자동차 이름이 5자를 초과하였습니다.", exception.message)
+        assertEquals("자동차 이름이 5자를 초과하였습니다.: $wrongCarName", exception.message)
     }
 
     @Test
