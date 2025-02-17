@@ -16,7 +16,7 @@ class InputView {
     fun readRound(): Int? {
         val userInput: String? = readlnOrNull()
         requireNotNull(userInput) { "시도 횟수를 입력해주세요." }
-        if (checkRoundValid(userInput) != 0) {
+        if (checkRoundValid(userInput)) {
             return userInput.toInt()
         }
         return null
@@ -29,10 +29,10 @@ class InputView {
         return false
     }
 
-    fun checkRoundValid(userInput: String): Int {
-        val validatedNumber = userInput.toIntOrNull() ?: 0
-        if (validatedNumber <= 0) return 0
-        return validatedNumber
+    fun checkRoundValid(userInput: String): Boolean {
+        val validatedNumber = userInput.toIntOrNull() ?: return false
+        if (validatedNumber <= 0) return false
+        return true
     }
 
     companion object {
