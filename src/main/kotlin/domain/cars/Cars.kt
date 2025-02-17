@@ -1,10 +1,11 @@
 package domain.cars
 
 import Constants
+import domain.numbergenerator.NumberGenerator
 
 class Cars(private val cars: List<Car>) {
-    fun lap(number: Int) {
-        cars.forEach { it.moveOrStop(number) }
+    fun lap(numberGenerator: NumberGenerator) {
+        cars.forEach { it.moveOrStop(numberGenerator.generate()) }
     }
 
     fun getWinners(): String {

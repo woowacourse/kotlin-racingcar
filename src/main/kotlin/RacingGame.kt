@@ -12,7 +12,7 @@ class RacingGame {
         val tryCount = getTryCount()
         outputView.showResult()
         repeat(tryCount) {
-            cars.lap(RandomNumberGenerator.generate())
+            cars.lap(RandomNumberGenerator)
             outputView.showStatus(cars)
         }
         outputView.showWinners(cars.getWinners())
