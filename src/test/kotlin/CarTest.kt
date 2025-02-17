@@ -1,4 +1,6 @@
 import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
+import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
@@ -12,9 +14,11 @@ class CarTest {
     @EmptySource
     @ValueSource(strings = [" ", "\t", "\n"])
     fun `자동차 이름이 공백일 때 에러를 발생시킨다`(name: String) {
-        assertThrows<IllegalArgumentException> {
+        val exception = assertThrows<IllegalArgumentException> {
             Car(name)
         }
+
+        assertTrue(exception.message?.contains("공백") ?: false)
     }
 
     @Test
@@ -37,7 +41,7 @@ class CarTest {
     fun `자동차의 초기 위치는 0이다`() {
         val car = Car("공백")
         val initialPosition = 0
-        Assertions.assertEquals(initialPosition, car.position)
+        assertEquals(initialPosition, car.position)
     }
 
     @ParameterizedTest
@@ -48,7 +52,7 @@ class CarTest {
 
         car.moveForward(randomNumber)
 
-        Assertions.assertEquals(isMoved, car.position > previousPosition)
+        assertEquals(isMoved, car.position > previousPosition)
     }
 
     @ParameterizedTest
@@ -84,7 +88,7 @@ class CarTest {
 
         val winnerNames = Car.getWinnerNames(cars)
 
-        Assertions.assertEquals(listOf("제이슨"), winnerNames)
+        assertEquals(listOf("제이슨"), winnerNames)
     }
 
     @Test
@@ -98,6 +102,6 @@ class CarTest {
 
         val winnerNames = Car.getWinnerNames(cars)
 
-        Assertions.assertEquals(listOf("제이슨", "디노", "레아", "제임스"), winnerNames)
+        assertEquals(listOf("제이슨", "디노", "레아", "제임스"), winnerNames)
     }
 }
