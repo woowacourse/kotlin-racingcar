@@ -3,7 +3,7 @@ package domain.cars
 import domain.numbergenerator.NumberGenerator
 
 class Cars(input: String) {
-    private val cars: List<Car> = input.split(CAR_NAME_DELIMITER).map { Car(it) }
+    private val cars: List<Car> = input.split(CAR_NAME_DELIMITER).map { Car(it.trim()) }
 
     fun moveAll(numberGenerator: NumberGenerator) {
         cars.forEach { car ->
