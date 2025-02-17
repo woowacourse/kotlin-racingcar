@@ -1,4 +1,4 @@
-package racing
+package racingcar
 
 fun String.toOnlyIntOrNull(): Int? {
     if (this.contains(".")) return null

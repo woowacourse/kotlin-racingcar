@@ -1,11 +1,11 @@
-package racing.ui.controller
+package racingcar.ui.controller
 
-import racing.domain.generator.car.CarGenerator
-import racing.domain.model.Car
-import racing.domain.service.CarWinnersService
-import racing.domain.service.RaceService
-import racing.ui.view.InputView
-import racing.ui.view.OutputView
+import racingcar.domain.generator.car.CarGenerator
+import racingcar.domain.model.Car
+import racingcar.domain.service.CarWinnersService
+import racingcar.domain.service.RaceService
+import racingcar.ui.view.InputView
+import racingcar.ui.view.OutputView
 
 class RacingController(private val inputView: InputView = InputView(), private val outputView: OutputView = OutputView()) {
     fun play() {

@@ -1,6 +1,6 @@
-package racing.domain.service
+package racingcar.domain.service
 
-import racing.domain.model.Car
+import racingcar.domain.model.Car
 
 class RaceService(
     private val _cars: List<Car>,

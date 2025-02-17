@@ -1,6 +1,6 @@
-package racing.ui.view
+package racingcar.ui.view
 
-import racing.domain.model.Car
+import racingcar.domain.model.Car
 
 class OutputView {
     fun printRemoveDuplicateCars() {

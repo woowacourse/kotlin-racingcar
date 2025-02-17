@@ -1,7 +1,7 @@
-package racing.domain.model
+package racingcar.domain.model
 
-import racing.domain.generator.trymove.TryMoveNumberGenerator
-import racing.domain.generator.trymove.TryMoveNumberStrategy
+import racingcar.domain.generator.trymove.TryMoveNumberGenerator
+import racingcar.domain.generator.trymove.TryMoveNumberStrategy
 
 data class Car(
     val name: String,

@@ -1,4 +1,4 @@
-package racing.domain.generator.anonymous
+package racingcar.domain.generator.anonymous
 
 import java.util.LinkedList
 
