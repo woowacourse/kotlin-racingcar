@@ -1,10 +1,9 @@
 import org.junit.jupiter.api.Assertions
-import org.junit.jupiter.api.Assertions.assertFalse
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertDoesNotThrow
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -42,26 +41,36 @@ class CarTest {
     }
 
     @ParameterizedTest
-    @ValueSource(booleans = [true, false])
-    fun `전진 가능 여부에 따라 자동차는 전진하거나 멈춘다`(isMoved: Boolean) {
+    @CsvSource("9, true", "0, false")
+    fun `전진 가능 여부에 따라 자동차는 전진하거나 멈춘다`(randomNumber: Int, isMoved: Boolean) {
         val car = Car("뭉치")
         val previousPosition = car.position
 
-        car.moveForward(isMoved)
+        car.moveForward(randomNumber)
 
         Assertions.assertEquals(isMoved, car.position > previousPosition)
     }
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
-    fun `랜덤 숫자가 4 미만인 경우 false 를 반환한다`(randomNumber: Int) {
-        assertFalse(Car.isCarAbleToMove(randomNumber))
+    fun `랜덤 숫자가 4 미만인 경우 자동차는 멈춘다`(randomNumber: Int) {
+        val car = Car("공백")
+        val previousPosition = car.position
+
+        car.moveForward(randomNumber)
+
+        Assertions.assertTrue(car.position == previousPosition)
     }
 
     @ParameterizedTest
     @ValueSource(ints = [4, 5, 6, 7, 8, 9])
-    fun `랜덤 숫자가 4 이상인 경우 true 를 반환한다`(randomNumber: Int) {
-        assertTrue(Car.isCarAbleToMove(randomNumber))
+    fun `랜덤 숫자가 4 이상인 경우 자동차는 앞으로 이동한다`(randomNumber: Int) {
+        val car = Car("공백")
+        val previousPosition = car.position
+
+        car.moveForward(randomNumber)
+
+        Assertions.assertTrue(car.position > previousPosition)
     }
 
     @Test
