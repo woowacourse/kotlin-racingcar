@@ -3,7 +3,7 @@ package model
 import view.OutputView
 
 class RacingGame(
-    private val generator: RandomNumberGenerator,
+    private val generator: NumberGenerator,
     private val cars: List<Car>,
 ) {
     fun runRace(rawCount: String) {

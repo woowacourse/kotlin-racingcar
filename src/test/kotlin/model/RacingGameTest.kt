@@ -17,7 +17,7 @@ class RacingGameTest {
     @ParameterizedTest
     @ValueSource(strings = ["", " ", "0", "-1"])
     fun `입력 값으로부터 경주 실행 횟수 검증 예외 테스트`(input: String) {
-        val generator = RandomNumberGeneratorImpl()
+        val generator = RandomNumberGenerator()
         val generateCar = CarCreator().createCars("carA, carB")
         val racingGame = RacingGame(generator, generateCar)
         assertThrows<IllegalArgumentException> { racingGame.runRace(input) }
@@ -52,7 +52,7 @@ class RacingGameTest {
 
     inner class TestNumberGenerator(
         private val numbers: List<Int>,
-    ) : RandomNumberGenerator {
+    ) : NumberGenerator {
         private var idx: Int = 0
 
         override fun generate(): Int {

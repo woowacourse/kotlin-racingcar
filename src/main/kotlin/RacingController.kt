@@ -1,7 +1,7 @@
 import model.Car
 import model.CarCreator
 import model.RacingGame
-import model.RandomNumberGeneratorImpl
+import model.RandomNumberGenerator
 import view.InputView
 import view.OutputView
 
@@ -11,7 +11,7 @@ class RacingController(
 ) {
     fun run() {
         val cars: List<Car> = generateCar()
-        val racingGame = RacingGame(RandomNumberGeneratorImpl(), cars)
+        val racingGame = RacingGame(RandomNumberGenerator(), cars)
 
         val raceRound: String = getRaceRounds()
         runRace(racingGame, raceRound)
