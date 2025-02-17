@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test
 
 class CarTest {
     @Test
-    fun `자동차는 전진한다`() {
+    fun `자동차는 전진할 수 있다`() {
         val car = Car("Test")
         car.move()
         assertThat(car.distance).isEqualTo(1)
