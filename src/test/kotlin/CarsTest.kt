@@ -1,6 +1,6 @@
 import domain.cars.Cars
 import domain.numbergenerator.NumberGenerator
-import org.junit.jupiter.api.Assertions
+import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class CarsTest {
@@ -9,7 +9,7 @@ class CarsTest {
         val cars = Cars("포비,크론,디노")
         cars.moveAll(TestNumberGenerator(mutableListOf(1, 2, 5)))
         val expected = "디노"
-        Assertions.assertEquals(expected, cars.getWinners())
+        assertEquals(expected, cars.getWinners())
     }
 
     private class TestNumberGenerator(private val numbers: MutableList<Int>) : NumberGenerator {
