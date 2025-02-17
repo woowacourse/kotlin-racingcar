@@ -1,9 +1,11 @@
 package model
 
-import view.OutputView
 import java.lang.IllegalArgumentException
 
 class Game(private val cars: List<Car>, private val rounds: Int) {
+    var result: String = ""
+        private set
+
     init {
         require(cars.size == cars.toSet().size) { throw IllegalArgumentException(MESSAGE_DUPLICATE_CAR_NAME) }
         require(cars.size > 1) { throw IllegalArgumentException(MESSAGE_NOT_ENOUGH_CARS) }
@@ -13,7 +15,6 @@ class Game(private val cars: List<Car>, private val rounds: Int) {
     fun play() {
         repeat(rounds) {
             moveCars()
-            OutputView.printState(cars)
         }
     }
 
@@ -21,7 +22,9 @@ class Game(private val cars: List<Car>, private val rounds: Int) {
         cars.forEach { car ->
             val randomNumber = (RANDOM_NUMBER_MIN..RANDOM_NUMBER_MAX).random()
             car.move(randomNumber)
+            result += car.getStatus()
         }
+        result += "\n"
     }
 
     fun getWinner(): List<Car> {

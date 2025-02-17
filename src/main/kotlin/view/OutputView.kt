@@ -3,16 +3,10 @@ package view
 import model.Car
 
 object OutputView {
-    fun printState(cars: List<Car>) {
-        cars.forEach { car ->
-            println("${car.name} : ${CAR_POSITION_INDICATOR.repeat(car.position)}")
-        }
-        println()
-    }
-
-    fun printResultHeader() {
+    fun printResult(result: String) {
         println()
         println(MESSAGE_OUTPUT_RESULT_HEADER)
+        println(result)
     }
 
     fun printWinner(winners: List<Car>) {
@@ -23,7 +17,6 @@ object OutputView {
         println(prompt)
     }
 
-    private const val CAR_POSITION_INDICATOR = "-"
     private const val WINNER_OUTPUT_SEPARATOR = ", "
 
     private const val MESSAGE_OUTPUT_RESULT_HEADER = "실행 결과"

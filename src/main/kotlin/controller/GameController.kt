@@ -8,7 +8,7 @@ import view.OutputView
 object GameController {
     fun run() {
         val game = initializeGame()
-        playGame(game)
+        game.play()
         announceResult(game)
     }
 
@@ -23,12 +23,8 @@ object GameController {
         return carNames.map { Car(it) }
     }
 
-    private fun playGame(game: Game) {
-        OutputView.printResultHeader()
-        game.play()
-    }
-
     private fun announceResult(game: Game) {
+        OutputView.printResult(game.result)
         val winner = game.getWinner()
         OutputView.printWinner(winner)
     }
