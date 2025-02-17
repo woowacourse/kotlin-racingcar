@@ -15,7 +15,8 @@ class CarsTest {
 }
 
 fun getDummy(): Cars {
-    val cars = Cars("포비,크론,디노")
+    val arguments = RacingCarConverter.toCarsArgument("포비,크론,디노")
+    val cars = Cars(arguments)
     cars.lap(TestWinnerNumberGenerator())
     return cars
 }
