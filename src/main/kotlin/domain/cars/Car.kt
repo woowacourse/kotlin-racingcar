@@ -2,6 +2,7 @@ package domain.cars
 
 import Constants
 import Constants.MOVING_STANDARD
+import domain.numbergenerator.NumberGenerator
 
 class Car(val carName: String) {
     var distance: Int = 0

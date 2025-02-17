@@ -6,6 +6,7 @@ import view.OutputView
 class RacingGame {
     private val inputView = InputView()
     private val outputView = OutputView()
+    private val randomNumberGenerator = RandomNumberGenerator()
 
     fun play() {
         val cars = getCars()
