@@ -1,12 +1,15 @@
 package racingcar.view
 
+import racingcar.controller.RacingCarController
 import racingcar.domain.Car
 import racingcar.domain.Racecourse
 import racingcar.domain.RoundManager
 import racingcar.util.ErrorMessage
 import racingcar.util.extension.times
 
-class View {
+class RacingCarView {
+    private val controller: RacingCarController = RacingCarController()
+
     fun playRacingGame() {
         val cars: List<Car> = readCars()
         val roundManager: RoundManager = readRound()
@@ -20,7 +23,7 @@ class View {
             val userInput: String =
                 readlnOrNull() ?: throw IllegalArgumentException(ErrorMessage.FAIL_TO_READ_INPUT)
             val carNames: List<String> = userInput.split(CAR_NAME_SEPARATOR).map { carName: String -> carName.trim() }
-            carNames.map { carName: String -> Car(carName) }
+            controller.parseToCars(carNames)
         }.onSuccess { cars: List<Car> ->
             return cars
         }.onFailure { error: Throwable ->
@@ -37,7 +40,7 @@ class View {
         runCatching {
             val userInput: String =
                 readlnOrNull() ?: throw IllegalStateException(ErrorMessage.FAIL_TO_READ_INPUT)
-            userInput.toIntOrNull()?.let { round: Int -> RoundManager(round) }
+            userInput.toIntOrNull()?.let { round: Int -> controller.parseToRoundManager(round) }
                 ?: throw IllegalStateException(ErrorMessage.INVALID_ROUND)
         }.onSuccess { roundManager: RoundManager ->
             return roundManager

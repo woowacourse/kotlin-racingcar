@@ -1,8 +1,8 @@
 package racingcar
 
-import racingcar.view.View
+import racingcar.view.RacingCarView
 
 fun main() {
-    val view = View()
-    view.playRacingGame()
+    val racingCarView = RacingCarView()
+    racingCarView.playRacingGame()
 }
