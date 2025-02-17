@@ -2,7 +2,6 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.Game
-import racingcar.model.Messenger
 import racingcar.model.Messenger.getRoundResultMessage
 import racingcar.model.Messenger.getWinnerMessage
 import racingcar.model.RandomNumberFactory
