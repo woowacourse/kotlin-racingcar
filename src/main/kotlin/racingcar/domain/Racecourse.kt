@@ -1,4 +1,4 @@
-package racingcar
+package racingcar.domain
 
 class Racecourse(
     private val cars: List<Car>,
@@ -22,12 +22,12 @@ class Racecourse(
     }
 
     fun displayDistance(car: Car) {
-        println("${car.name} : ${Car.DISTANCE_SYMBOL.repeat(car.distance)}")
+        println("${car.name} : ${DISTANCE_SYMBOL.repeat(car.distance)}")
     }
 
     private fun generateRandomNumber(): Int = (0..9).random()
 
-    fun isMovable(random: Int): Boolean = random >= MOVEMENT_CONDITION
+    fun isMovable(number: Int): Boolean = number >= MOVEMENT_CONDITION
 
     val winners: List<Car>
         get() {
@@ -37,6 +37,7 @@ class Racecourse(
         }
 
     companion object {
-        const val MOVEMENT_CONDITION: Int = 4
+        private const val MOVEMENT_CONDITION: Int = 4
+        private const val DISTANCE_SYMBOL: String = "-"
     }
 }
