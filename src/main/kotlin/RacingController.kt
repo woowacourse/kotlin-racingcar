@@ -9,34 +9,35 @@ class RacingController(
     private val inputView: InputView,
     private val outputView: OutputView,
 ) {
-    private lateinit var cars: List<Car>
-    private lateinit var racingGame: RacingGame
-
     fun run() {
-        generateCar()
-        racingGame = RacingGame(RandomNumberGeneratorImpl(), cars)
-        val round: String = getRaceRounds()
-        tryRacing(round)
-        printWinner()
+        val cars: List<Car> = generateCar()
+        val racingGame = RacingGame(RandomNumberGeneratorImpl(), cars)
+
+        val raceRound: String = getRaceRounds()
+        runRace(racingGame, raceRound)
+
+        val winners = racingGame.getWinners()
+        printRaceWinner(winners)
     }
 
-    private fun generateCar() {
-        val rawInput = inputView.inputCarName()
-        cars = CarCreator().createCars(rawInput)
+    private fun generateCar(): List<Car> {
+        val carNameInput = inputView.inputCarName()
+        return CarCreator().createCars(carNameInput)
     }
 
     private fun getRaceRounds(): String {
-        val rawCount = inputView.inputRacingCount()
-        return rawCount
+        return inputView.inputRacingCount()
     }
 
-    private fun tryRacing(round: String) {
+    private fun runRace(
+        racingGame: RacingGame,
+        round: String,
+    ) {
         outputView.printResultMessage()
         racingGame.runRace(round)
     }
 
-    private fun printWinner() {
-        val winners = racingGame.getWinners()
+    private fun printRaceWinner(winners: List<String>) {
         outputView.printWinner(winners)
     }
 }
