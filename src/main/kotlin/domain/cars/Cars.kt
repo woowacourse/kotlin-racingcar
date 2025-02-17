@@ -17,13 +17,7 @@ class Cars(input: String) {
         return winnerNames.joinToString(WINNER_NAME_DELIMITER) { it }
     }
 
-    override fun toString(): String {
-        return buildString {
-            cars.forEach {
-                appendLine(it.toString())
-            }
-        }
-    }
+    fun getCars(): List<Car> = cars
 
     companion object {
         const val CAR_NAME_DELIMITER = ","

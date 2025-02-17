@@ -13,12 +13,7 @@ class Car(val carName: String) {
 
     private fun isMovable(number: Int) = number >= MOVING_STANDARD
 
-    override fun toString(): String {
-        return "$carName : ${CAR_POSITION_MARK.repeat(distance)}"
-    }
-
     companion object {
-        const val CAR_POSITION_MARK = "-"
         private const val MOVING_STANDARD = 4
     }
 }
