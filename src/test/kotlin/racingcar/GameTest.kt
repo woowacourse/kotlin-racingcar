@@ -24,7 +24,7 @@ class GameTest {
     }
 
     @Test
-    fun `getRoundResult - 랜덤 숫자가 4미만 이여서 이동할 수 없을 때 게임 중간 라운드 결과를 출력한다`() {
+    fun `랜덤 숫자가 4미만 이여서 이동할 수 없을 때 게임 중간 라운드 결과를 출력한다`() {
         val game = Game(cars, unMoveAbleRandomNumberGenerator)
 
         game.playRound()
@@ -37,7 +37,7 @@ class GameTest {
     }
 
     @Test
-    fun `getRoundResult - 랜덤 숫자가 4이상 이여서 이동할 수 있을 때 게임 중간 라운드 결과를 출력한다`() {
+    fun `랜덤 숫자가 4이상 이여서 이동할 수 있을 때 게임 중간 라운드 결과를 출력한다`() {
         val game = Game(cars, moveAbleRandomNumberGenerator)
 
         game.playRound()
@@ -50,7 +50,7 @@ class GameTest {
     }
 
     @Test
-    fun `getWinners - 최종 우승자는 1칸 이동한 peto다`() {
+    fun `최종 우승자는 1칸 이동한 peto다`() {
         val cars: List<Car> = listOf(Car("Peto"), Car("Por"), Car("nana"))
         cars.first().moveCarWhenMovable(MoveState.MOVABLE)
 
@@ -63,7 +63,7 @@ class GameTest {
     }
 
     @Test
-    fun `validateUniqueName - 자동차 이름이 중복되면 예외가 발생해야 한다`() {
+    fun `자동차 이름이 중복되면 예외가 발생해야 한다`() {
         val duplicatedCars = listOf(Car("pobi"), Car("pobi"))
 
         Assertions.assertThatThrownBy {
