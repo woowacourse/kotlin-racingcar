@@ -10,7 +10,7 @@ import org.junit.jupiter.params.provider.ValueSource
 class GameTest {
     @Test
     fun `자동차 이름에 중복이 있을 경우 예외가 발생한다`() {
-        val cars = listOf(Car("A"), Car("B"), Car("C"), Car("A"))
+        val cars = listOf(Car("A", 1), Car("B", 2), Car("C", 3), Car("A", 4))
         assertThrows<IllegalArgumentException> { Game(cars, 1) }
     }
 

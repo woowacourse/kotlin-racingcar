@@ -1,6 +1,6 @@
 package domain
 
-data class Car(val name: String) {
+class Car(val name: String) {
     var position: Int = CAR_INITIAL_POSITION
         private set
 
@@ -19,6 +19,19 @@ data class Car(val name: String) {
 
     fun getStatus(): String {
         return "$name : ${CAR_POSITION_INDICATOR.repeat(position)}\n"
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Car
+
+        return name == other.name
+    }
+
+    override fun hashCode(): Int {
+        return name.hashCode()
     }
 
     companion object {
