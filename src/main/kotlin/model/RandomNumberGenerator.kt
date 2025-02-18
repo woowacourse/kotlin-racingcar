@@ -1,5 +1,10 @@
 package model
 
-interface RandomNumberGenerator {
-    fun generate(): Int
+class RandomNumberGenerator : NumberGenerator {
+    override fun generate(): Int = (MIN_RANGE..MAX_RANGE).random()
+
+    private companion object {
+        const val MIN_RANGE: Int = 0
+        const val MAX_RANGE: Int = 9
+    }
 }
