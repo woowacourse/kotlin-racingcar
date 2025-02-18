@@ -1,6 +1,5 @@
 package racingcar.controller
 
-import racingcar.model.Car
 import racingcar.model.Cars
 import racingcar.util.RandomGenerator
 import racingcar.view.InputReader
@@ -12,14 +11,14 @@ class RaceController(
     private val randomGenerator: RandomGenerator,
 ) {
     fun hostRace() {
-        val raceCars = Cars(getRaceCars())
+        val raceCars = getRaceCars()
         val raceCount = getRaceCount()
 
         executeRaces(raceCount, raceCars)
         getRaceWinners(raceCars)
     }
 
-    private fun getRaceCars(): List<Car> {
+    private fun getRaceCars(): Cars {
         outputPrinter.printRaceCarNamesGuide()
         return inputReader.readRaceCars()
     }
