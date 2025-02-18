@@ -8,7 +8,7 @@ object InputValidator {
 
     fun validateName(input: String) {
         require(input.isNotBlank()) { ERROR_EMPTY_CAR_NAME_MESSAGE }
-        val carNames = input.split(",").map {it.trim()}
+        val carNames = input.split(",").map { it.trim() }
         carNames.forEach { validateNameLength(it) }
         require(validateDuplicatedName(carNames)) { ERROR_DUPLICATED_CAR_NAME_MESSAGE }
     }
