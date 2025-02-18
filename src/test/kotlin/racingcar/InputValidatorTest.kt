@@ -2,6 +2,7 @@ package racingcar
 
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Test
+import racingcar.constants.ErrorMessages
 import racingcar.validator.InputValidator
 
 class InputValidatorTest {
@@ -10,6 +11,6 @@ class InputValidatorTest {
         Assertions.assertThatThrownBy {
             InputValidator.validateNotEmpty(" ")
         }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage(InputValidator.EMPTY_INPUT_ERROR)
+            .hasMessage(ErrorMessages.EMPTY_INPUT_ERROR)
     }
 }
