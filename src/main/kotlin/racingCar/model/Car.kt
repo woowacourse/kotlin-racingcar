@@ -1,9 +1,10 @@
-package racingCar
+package racingCar.model
 
 class Car(
     val name: String,
+    position: Int = INITIAL_CAR_POSITION,
 ) {
-    var position: Int = INITIAL_CAR_POSITION
+    var position: Int = position
         private set
 
     init {

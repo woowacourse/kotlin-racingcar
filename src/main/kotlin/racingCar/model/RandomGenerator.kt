@@ -1,4 +1,4 @@
-package racingCar
+package racingCar.model
 
 class RandomGenerator {
     fun getRandomNumber(): Int = (MIN_RANDOM_NUMBER..MAX_RANDOM_NUMBER).random()

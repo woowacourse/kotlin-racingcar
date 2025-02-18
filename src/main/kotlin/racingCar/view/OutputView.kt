@@ -1,4 +1,4 @@
-package racingCar
+package racingCar.view
 
 class OutputView {
     fun printRaceCarNamesGuide() {
@@ -10,14 +10,15 @@ class OutputView {
     }
 
     fun printRaceResultTitle() {
-        println("\n실행 결과")
+        printLineBreak()
+        println("실행 결과")
     }
 
-    fun printRaceProgress(cars: List<Car>) {
-        cars.forEach { car ->
-            println("${car.name} : ${RACE_CAR_POSITION_INDICATOR.repeat(car.position)}")
-        }
-        println()
+    fun printRaceProgress(
+        carName: String,
+        carPosition: Int,
+    ) {
+        println("$carName : ${RACE_CAR_POSITION_INDICATOR.repeat(carPosition)}")
     }
 
     fun printWinners(winnerNames: List<String>) {
@@ -26,6 +27,10 @@ class OutputView {
 
     fun printErrorMessage(message: String) {
         println(message)
+    }
+
+    fun printLineBreak() {
+        println()
     }
 
     companion object {
