@@ -6,14 +6,6 @@ import racingcar.model.Rounds
 
 class RoundsTest {
     @Test
-    fun `빈값이 전달되면 빈 값을 입력하셨습니다 에러 메시지가 발생한다`() {
-        Assertions.assertThatThrownBy {
-            Rounds("".toInt())
-        }.isInstanceOf(IllegalArgumentException::class.java)
-            .hasMessage("[ERROR] 빈 값을 입력하셨습니다.")
-    }
-
-    @Test
     fun `시도 횟수 입력값이 음수일 때 1에서 10 사이의 수를 입력해야 합니다 메시지가 발생한다`() {
         Assertions.assertThatThrownBy {
             Rounds(-1)

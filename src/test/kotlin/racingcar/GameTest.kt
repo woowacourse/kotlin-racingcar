@@ -8,24 +8,24 @@ import racingcar.enums.MoveState
 import racingcar.model.Car
 import racingcar.model.Game
 import racingcar.model.RoundResult
-import racingcar.model.random.RandomNumberGenerator
-import racingcar.model.random.RandomNumberGeneratorImpl
+import racingcar.model.random.NumberGenerator
+import racingcar.model.random.NumberGeneratorImpl
 
 class GameTest {
-    private lateinit var moveAbleRandomNumberGenerator: RandomNumberGenerator
-    private lateinit var unMoveAbleRandomNumberGenerator: RandomNumberGenerator
+    private lateinit var moveAbleNumberGenerator: NumberGenerator
+    private lateinit var unMoveAbleNumberGenerator: NumberGenerator
     private lateinit var cars: List<Car>
 
     @BeforeEach
     fun setUp() {
-        moveAbleRandomNumberGenerator = RandomNumberGeneratorImpl(MOVEABLE_RANGE_MIN, MOVEABLE_RANGE_MAX)
-        unMoveAbleRandomNumberGenerator = RandomNumberGeneratorImpl(UNMOVEABLE_RANGE_MIN, UNMOVEABLE_RANGE_MAX)
+        moveAbleNumberGenerator = NumberGeneratorImpl(MOVEABLE_RANGE_MIN, MOVEABLE_RANGE_MAX)
+        unMoveAbleNumberGenerator = NumberGeneratorImpl(UNMOVEABLE_RANGE_MIN, UNMOVEABLE_RANGE_MAX)
         cars = listOf(Car("peto"), Car("por"))
     }
 
     @Test
     fun `랜덤 숫자가 4미만 이여서 이동할 수 없을 때 게임 중간 라운드 결과를 출력한다`() {
-        val game = Game(cars, unMoveAbleRandomNumberGenerator)
+        val game = Game(cars, unMoveAbleNumberGenerator)
 
         game.playRound()
 
@@ -38,7 +38,7 @@ class GameTest {
 
     @Test
     fun `랜덤 숫자가 4이상 이여서 이동할 수 있을 때 게임 중간 라운드 결과를 출력한다`() {
-        val game = Game(cars, moveAbleRandomNumberGenerator)
+        val game = Game(cars, moveAbleNumberGenerator)
 
         game.playRound()
 
@@ -54,7 +54,7 @@ class GameTest {
         val cars: List<Car> = listOf(Car("Peto"), Car("Por"), Car("nana"))
         cars.first().moveCarWhenMovable(MoveState.MOVABLE)
 
-        val game = Game(cars, moveAbleRandomNumberGenerator)
+        val game = Game(cars, moveAbleNumberGenerator)
         val result = game.getWinners()
 
         val expected = listOf("Peto")
@@ -67,7 +67,7 @@ class GameTest {
         val duplicatedCars = listOf(Car("pobi"), Car("pobi"))
 
         Assertions.assertThatThrownBy {
-            Game(duplicatedCars, moveAbleRandomNumberGenerator)
+            Game(duplicatedCars, moveAbleNumberGenerator)
         }.isInstanceOf(IllegalArgumentException::class.java)
             .hasMessage("[ERROR] 자동차 이름이 중복됩니다.")
     }

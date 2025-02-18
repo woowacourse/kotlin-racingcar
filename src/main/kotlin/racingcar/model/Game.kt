@@ -1,12 +1,12 @@
 package racingcar.model
 
 import racingcar.enums.MoveState
-import racingcar.model.random.RandomNumberGenerator
+import racingcar.model.random.NumberGenerator
 import racingcar.util.ErrorConstants.ERROR
 
 class Game(
     private val cars: List<Car>,
-    private val randomNumberGenerator: RandomNumberGenerator,
+    private val numberGenerator: NumberGenerator,
 ) {
     init {
         validateUniqueName(cars.map { it.name })
@@ -14,7 +14,7 @@ class Game(
 
     fun playRound() {
         cars.forEach { car ->
-            val randomNumber = randomNumberGenerator()
+            val randomNumber = numberGenerator.generate()
             val moveState = MoveState.create(randomNumber)
             car.moveCarWhenMovable(moveState)
         }

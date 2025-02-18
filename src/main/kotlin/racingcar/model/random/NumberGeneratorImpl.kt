@@ -1,10 +1,10 @@
 package racingcar.model.random
 
-class RandomNumberGeneratorImpl(
+class NumberGeneratorImpl(
     private val start: Int = RANDOM_NUMBER_MIN,
     private val end: Int = RANDOM_NUMBER_MAX,
-) : RandomNumberGenerator {
-    override fun invoke(): Int {
+) : NumberGenerator {
+    override fun generate(): Int {
         return (start..end).random()
     }
 
