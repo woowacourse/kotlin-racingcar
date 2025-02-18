@@ -6,17 +6,28 @@ class RacingGame(
     private lateinit var racingCars: List<Car>
 
     fun generateCars(carNames: List<String>) {
+        validateCarNames(carNames)
         racingCars = carNames.map { Car(it.trim()) }
     }
 
+    private fun validateCarNames(carNames: List<String>) {
+        require(carNames.size > RACING_CAR_MIN_SIZE) { INVALID_CAR_SIZE_MESSAGE }
+        require(carNames.size == carNames.distinct().size) { DUPLICATE_CAR_NAME_MESSAGE }
+    }
+
     fun tryRacing(
-        count: Int,
+        count: String,
         printCurrentCarStep: (String) -> Unit,
     ) {
-        repeat(count) {
+        validateRacingCount(count)
+        repeat(count.toInt()) {
             tryRacingOnce(printCurrentCarStep)
             printCurrentCarStep("")
         }
+    }
+
+    private fun validateRacingCount(count: String) {
+        require(count.toIntOrNull()?.let { it > 0 } == true) { INVALID_COUNT_MESSAGE }
     }
 
     private fun tryRacingOnce(printCurrentCarStep: (String) -> Unit) {
@@ -40,5 +51,9 @@ class RacingGame(
         const val WINNER_SEPARATOR = ", "
         const val MIN_VALUE = 0
         const val MAX_VALUE = 9
+        private const val INVALID_CAR_SIZE_MESSAGE = "레이싱 게임은 두대 이상이어야 합니다."
+        private const val DUPLICATE_CAR_NAME_MESSAGE = "자동차 이름이 중복됩니다."
+        private const val INVALID_COUNT_MESSAGE = "시도할 횟수는 자연수여야 합니다."
+        private const val RACING_CAR_MIN_SIZE = 1
     }
 }

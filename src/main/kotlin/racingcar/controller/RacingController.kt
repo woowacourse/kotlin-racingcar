@@ -1,18 +1,12 @@
 package racingcar.controller
 
 import racingcar.model.RacingGame
-import racingcar.model.RandomNumberGenerator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class RacingController {
-    private var racingGame: RacingGame
-
-    init {
-        val randomNumberGeneratorImpl = RandomNumberGenerator()
-        racingGame = RacingGame(randomNumberGeneratorImpl)
-    }
-
+class RacingController(
+    private val racingGame: RacingGame,
+) {
     fun run() {
         prepareRacingCar()
         tryRacing()
