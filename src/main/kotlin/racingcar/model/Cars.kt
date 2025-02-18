@@ -2,9 +2,10 @@ package racingcar.model
 
 class Cars(
     val cars: List<Car>,
+    names: List<String> = cars.map { car -> car.name },
 ) {
     init {
-        validateApplicantCars(cars.map { car -> car.name })
+        validateApplicantCars(names)
     }
 
     private fun validateApplicantCars(carNames: List<String>) {

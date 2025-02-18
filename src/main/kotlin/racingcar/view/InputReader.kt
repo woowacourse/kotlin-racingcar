@@ -7,7 +7,7 @@ class InputReader {
     fun readRaceCars(): Cars {
         val carNames = readln().split(RACE_CAR_NAME_DIVIDER)
         val cars = carNames.map { name -> Car(name) }
-        return Cars(cars)
+        return Cars(cars, carNames)
     }
 
     fun readRaceCount(): Int {
