@@ -1,10 +1,12 @@
 package racingcar.util
 
 class RandomGenerator {
-    fun getRandomNumber(): Int = (MIN_RANDOM_NUMBER..MAX_RANDOM_NUMBER).random()
+    fun getRandomConditions(count: Int): List<Int> = List<Int>(count) { getRandomCondition() }
+
+    private fun getRandomCondition(): Int = (MIN_RANDOM_CONDITION..MAX_RANDOM_CONDITION).random()
 
     companion object {
-        private const val MIN_RANDOM_NUMBER = 0
-        private const val MAX_RANDOM_NUMBER = 9
+        private const val MIN_RANDOM_CONDITION = 0
+        private const val MAX_RANDOM_CONDITION = 9
     }
 }

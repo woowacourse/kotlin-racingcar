@@ -1,14 +1,10 @@
 package racingcar.model
 
-import racingcar.util.RandomGenerator
-
 class Cars(
     val cars: List<Car>,
-    private val randomGenerator: RandomGenerator,
 ) {
-    fun moveCars() {
-        cars.forEach { raceCar ->
-            val randomNumber = randomGenerator.getRandomNumber()
+    fun moveCars(conditions: List<Int>) {
+        cars.zip(conditions).forEach { (raceCar, randomNumber) ->
             raceCar.moveForward(randomNumber)
         }
     }

@@ -22,7 +22,7 @@ class Car(
         if (isCarAbleToMove(number)) position++
     }
 
-    private fun isCarAbleToMove(randomNumber: Int): Boolean = randomNumber >= MIN_RANDOM_AVAILABILITY_CONDITION
+    private fun isCarAbleToMove(condition: Int): Boolean = condition >= MIN_RANDOM_AVAILABILITY_CONDITION
 
     companion object {
         private const val INITIAL_CAR_POSITION = 0

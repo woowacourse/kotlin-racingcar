@@ -9,10 +9,10 @@ import racingcar.view.OutputPrinter
 class RaceController(
     private val inputReader: InputReader,
     private val outputPrinter: OutputPrinter,
+    private val randomGenerator: RandomGenerator,
 ) {
     fun hostRace() {
-        val randomGenerator = RandomGenerator()
-        val raceCars = Cars(getRaceCars(), randomGenerator)
+        val raceCars = Cars(getRaceCars())
         val raceCount = getRaceCount()
 
         executeRaces(raceCount, raceCars)
@@ -42,7 +42,8 @@ class RaceController(
     private fun executeRace(
         raceCars: Cars,
     ) {
-        raceCars.moveCars()
+        val conditions = randomGenerator.getRandomConditions(raceCars.cars.size)
+        raceCars.moveCars(conditions)
         outputPrinter.printRaceProgress(raceCars.cars)
     }
 
