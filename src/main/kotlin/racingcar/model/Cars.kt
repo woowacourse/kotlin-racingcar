@@ -15,10 +15,10 @@ class Cars(
 
     fun getWinnerNames(): List<String> {
         val maxPosition = cars.maxOf { raceCar -> raceCar.position }
-        return cars.toWinnerCars(maxPosition).toCarNames()
+        return cars.findWinnerCars(maxPosition).toCarNames()
     }
 
-    private fun List<Car>.toWinnerCars(maxPosition: Int) = this
+    private fun List<Car>.findWinnerCars(maxPosition: Int) = this
         .filter { raceCar ->
             raceCar.position == maxPosition
         }
