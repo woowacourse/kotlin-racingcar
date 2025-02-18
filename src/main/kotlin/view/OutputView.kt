@@ -1,14 +1,16 @@
 package view
 
-import model.Car
+import model.RaceResult
 
 object OutputView {
     fun printResultMessage() {
         println(RESULT_MESSAGE)
     }
 
-    fun printRaceState(cars: List<Car>) {
-        cars.forEach { println("${it.name} : ${FORWARD_SIGN.repeat(it.position)}") }
+    fun printRaceResult(raceResult: RaceResult) {
+        raceResult.carStates.forEach {
+            println("${it.name} : ${FORWARD_SIGN.repeat(it.position)}") // 위치에 맞게 "-" 출력
+        }
         println()
     }
 

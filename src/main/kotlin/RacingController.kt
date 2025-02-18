@@ -1,6 +1,5 @@
 import model.Car
 import model.CarFactory
-import model.RacingGame
 import model.RandomNumberGenerator
 import view.InputView
 import view.OutputView
@@ -34,8 +33,8 @@ class RacingController(
         round: Int,
     ) {
         outputView.printResultMessage()
-        val raceStates = racingGame.repeatRacing(round)
-        raceStates.forEach { outputView.printRaceState(it) }
+        val raceStates = racingGame.runRace(round)
+        raceStates.forEach { outputView.printRaceResult(it) }
     }
 
     private fun printRaceWinner(winners: List<String>) {
