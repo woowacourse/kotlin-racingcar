@@ -11,22 +11,9 @@ class RacingGame(
     }
 
     fun getWinners(): List<String> {
-        var maxPosition = Int.MIN_VALUE
-        val winners = mutableListOf<String>()
-
-        for (car in cars) {
-            when {
-                car.position > maxPosition -> {
-                    maxPosition = car.position
-                    winners.clear()
-                    winners.add(car.name)
-                }
-                car.position == maxPosition -> {
-                    winners.add(car.name)
-                }
-            }
-        }
-        return winners
+        val maxPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == maxPosition }
+            .map { it.name }
     }
 
     fun repeatRacing(count: Int): List<List<Car>> {
