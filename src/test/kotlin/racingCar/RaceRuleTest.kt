@@ -11,10 +11,6 @@ import racingCar.model.RaceRule
 
 class RaceRuleTest {
     private val raceRule = RaceRule()
-    private val car1 = Car("제이슨")
-    private val car2 = Car("디노")
-    private val car3 = Car("레아")
-    private val car4 = Car("제임스")
 
     @ParameterizedTest
     @ValueSource(ints = [0, 1, 2, 3])
@@ -30,11 +26,10 @@ class RaceRuleTest {
 
     @Test
     fun `주어진 자동차 목록에서 가장 많이 전진한 우승자의 이름을 반환한다`() {
-        repeat(4) { car1.moveForward() }
-        repeat(3) { car2.moveForward() }
-        repeat(2) { car3.moveForward() }
-        repeat(1) { car4.moveForward() }
-
+        val car1 = Car("제이슨", 100)
+        val car2 = Car("디노", 99)
+        val car3 = Car("레아", 98)
+        val car4 = Car("제임스", 97)
         val cars = listOf(car1, car2, car3, car4)
 
         val winnerNames = raceRule.selectWinnerNames(cars)
@@ -44,11 +39,10 @@ class RaceRuleTest {
 
     @Test
     fun `주어진 자동차 목록에서 가장 많이 전진한 여러 명의 우승자의 이름들을 반환한다`() {
-        repeat(4) { car1.moveForward() }
-        repeat(4) { car2.moveForward() }
-        repeat(4) { car3.moveForward() }
-        repeat(4) { car4.moveForward() }
-
+        val car1 = Car("제이슨", 100)
+        val car2 = Car("디노", 100)
+        val car3 = Car("레아", 100)
+        val car4 = Car("제임스", 100)
         val cars = listOf(car1, car2, car3, car4)
 
         val winnerNames = raceRule.selectWinnerNames(cars)
