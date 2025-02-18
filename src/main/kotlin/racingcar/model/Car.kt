@@ -3,8 +3,8 @@ package racingcar.model
 import racingcar.constants.ErrorMessages
 import racingcar.enums.MoveState
 
-class Car(val name: String) {
-    var position: Int = 0
+class Car(val name: String, position: Int = 0) {
+    var position: Int = position
         private set
 
     init {
