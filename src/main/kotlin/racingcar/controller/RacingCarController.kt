@@ -7,6 +7,7 @@ import racingcar.model.Messenger.getWinnerMessage
 import racingcar.model.Rounds
 import racingcar.model.random.RandomNumberGenerator
 import racingcar.util.retryWhenException
+import racingcar.validation.NumericValidator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
@@ -48,7 +49,8 @@ class RacingCarController(
         return retryWhenException(
             action = {
                 val input = inputView.readRounds()
-                Rounds(input)
+                NumericValidator(input)
+                Rounds(input.toInt())
             },
             onError = {
                 outputView.printErrorMessage(it)
