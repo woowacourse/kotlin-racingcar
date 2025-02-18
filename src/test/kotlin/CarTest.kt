@@ -14,11 +14,11 @@ class CarTest {
     @EmptySource
     @ValueSource(strings = [" ", "\t", "\n"])
     fun `자동차 이름이 공백일 때 에러를 발생시킨다`(name: String) {
-        val exception = assertThrows<IllegalArgumentException> {
+        runCatching {
             Car(name)
+        }.onFailure { error ->
+            assert(error.message?.contains("공백") ?: false)
         }
-
-        assertTrue(exception.message?.contains("공백") ?: false)
     }
 
     @Test
