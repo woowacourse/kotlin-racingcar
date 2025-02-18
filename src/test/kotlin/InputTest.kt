@@ -1,9 +1,8 @@
-import view.InputView
-import java.io.ByteArrayInputStream
-
 import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
+import view.InputView
+import java.io.ByteArrayInputStream
 
 class InputTest {
     @ParameterizedTest
