@@ -34,7 +34,7 @@ object GameController {
     }
 
     private fun announceResult(game: Game) {
-        OutputView.printResult(game.result)
+        OutputView.printResult(game.history)
         OutputView.printWinner(game.getWinner())
     }
 }

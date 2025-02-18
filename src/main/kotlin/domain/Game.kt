@@ -2,9 +2,14 @@ package domain
 
 import java.lang.IllegalArgumentException
 
-class Game(private val cars: List<Car>, private val rounds: Int) {
-    var result: String = ""
-        private set
+class Game(
+    private val cars: List<Car>,
+    private val rounds: Int
+) {
+    class Round(val state: List<Car>)
+
+    private val _history = mutableListOf<Round>()
+    val history: List<Round> get() = _history
 
     init {
         require(cars.size == cars.toSet().size) { throw IllegalArgumentException(MESSAGE_DUPLICATE_CAR_NAME) }
@@ -15,22 +20,26 @@ class Game(private val cars: List<Car>, private val rounds: Int) {
     fun play() {
         repeat(rounds) {
             moveCars()
+            recordHistory()
         }
-    }
-
-    private fun moveCars() {
-        cars.forEach { car ->
-            val randomNumber = (RANDOM_NUMBER_MIN..RANDOM_NUMBER_MAX).random()
-            car.move(randomNumber)
-            result += car.getStatus()
-        }
-        result += "\n"
     }
 
     fun getWinner(): List<Car> {
         val max = cars.maxOf { it.position }
         val winner = cars.filter { it.position == max }
         return winner
+    }
+
+    private fun moveCars() {
+        cars.forEach { car ->
+            val randomNumber = (RANDOM_NUMBER_MIN..RANDOM_NUMBER_MAX).random()
+            car.move(randomNumber)
+        }
+    }
+
+    private fun recordHistory() {
+        val history = Round(cars.map { Car(it.name, it.position) })
+        _history.add(history)
     }
 
     companion object {

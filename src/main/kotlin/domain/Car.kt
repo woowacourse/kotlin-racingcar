@@ -17,10 +17,6 @@ class Car(val name: String) {
         if (number >= CAR_MOVE_THRESHOLD) position++
     }
 
-    fun getStatus(): String {
-        return "$name : ${CAR_POSITION_INDICATOR.repeat(position)}\n"
-    }
-
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (javaClass != other?.javaClass) return false
