@@ -1,3 +1,4 @@
+import domain.cars.Car
 import domain.cars.Cars
 import domain.numbergenerator.RandomNumberGenerator
 import view.InputView
@@ -20,9 +21,9 @@ class RacingCar {
     }
 
     private fun getCars(): Cars {
-        val carName = inputView.readName()
-        InputValidator.validateName(carName)
-        return Cars(carName)
+        val carNameInput = inputView.readName()
+        val cars = InputValidator.validateName(carNameInput).map { Car(it) }
+        return Cars(cars)
     }
 
     private fun getTryCount(): Int {
