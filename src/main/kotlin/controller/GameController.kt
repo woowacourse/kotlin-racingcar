@@ -13,14 +13,24 @@ object GameController {
     }
 
     private fun initializeGame(): Game {
-        val carNames = InputView.readCarNames()
+        val carNames = getCarNames()
         val cars = generateCars(carNames)
-        val rounds = InputView.readRounds()
+        val rounds = getRounds()
         return Game(cars, rounds)
+    }
+
+    private fun getCarNames(): List<String> {
+        OutputView.promptCarNamesInput()
+        return InputView.readCarNames()
     }
 
     private fun generateCars(carNames: List<String>): List<Car> {
         return carNames.map { Car(it) }
+    }
+
+    private fun getRounds(): Int {
+        OutputView.promptRoundsInput()
+        return InputView.readRounds()
     }
 
     private fun announceResult(game: Game) {
