@@ -1,6 +1,6 @@
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import util.RandomGenerator
+import racingcar.util.RandomGenerator
 
 class RandomGeneratorTest {
     private val randomGenerator = RandomGenerator()

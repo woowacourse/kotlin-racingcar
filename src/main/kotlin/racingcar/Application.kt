@@ -1,6 +1,8 @@
-import controller.RaceController
-import ui.InputReader
-import ui.OutputPrinter
+package racingcar
+
+import racingcar.controller.RaceController
+import racingcar.ui.InputReader
+import racingcar.ui.OutputPrinter
 
 fun main() {
     val inputReader = InputReader()

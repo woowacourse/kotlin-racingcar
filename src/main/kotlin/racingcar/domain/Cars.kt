@@ -1,6 +1,6 @@
-package domain
+package racingcar.domain
 
-import util.RandomGenerator
+import racingcar.util.RandomGenerator
 
 class Cars(
     val cars: List<Car>,

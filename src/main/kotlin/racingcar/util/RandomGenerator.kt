@@ -1,4 +1,4 @@
-package util
+package racingcar.util
 
 class RandomGenerator {
     fun getRandomNumber(): Int = (MIN_RANDOM_NUMBER..MAX_RANDOM_NUMBER).random()
