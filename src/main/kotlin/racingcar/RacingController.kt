@@ -12,7 +12,7 @@ class RacingController(
         count: Int,
         cars: Cars,
     ) {
-        OutputView.printResultHeader()
+        outputView.printResultHeader()
         repeat(count) {
             val result = cars.playRound()
             outputView.printRound(result)
