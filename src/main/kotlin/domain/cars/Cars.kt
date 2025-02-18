@@ -2,9 +2,7 @@ package domain.cars
 
 import domain.numbergenerator.NumberGenerator
 
-class Cars(input: String) {
-    private val cars: List<Car> = input.split(CAR_NAME_DELIMITER).map { Car(it.trim()) }
-
+class Cars(private val cars: List<Car>) {
     fun moveAll(numberGenerator: NumberGenerator) {
         cars.forEach { car ->
             car.updateDistance(numberGenerator.generate())

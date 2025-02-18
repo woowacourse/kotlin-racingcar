@@ -6,11 +6,12 @@ object InputValidator {
     private const val ERROR_IS_NOT_NUMBER_MESSAGE = "[ERROR] 시도횟수는 숫자여야만 합니다."
     private const val ERROR_OUT_OF_BOUND_TRY_COUNT_MESSAGE = "[ERROR] 시도횟수는 1에서 1,000 사이의 숫자여야 합니다."
 
-    fun validateName(input: String) {
+    fun validateName(input: String): List<String> {
         require(input.isNotBlank()) { ERROR_EMPTY_CAR_NAME_MESSAGE }
-        val carNames = input.split(",").map { it.trim() }
+        val carNames = CarNameConverter.convert(input)
         carNames.forEach { validateNameLength(it) }
         require(validateDuplicatedName(carNames)) { ERROR_DUPLICATED_CAR_NAME_MESSAGE }
+        return carNames
     }
 
     private fun validateNameLength(input: String) {
