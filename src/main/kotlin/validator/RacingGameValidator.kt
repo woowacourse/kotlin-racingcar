@@ -2,7 +2,7 @@ package validator
 
 import constant.ErrorConstant
 
-class InputValidator {
+class RacingGameValidator {
     fun validateName(name: List<String>) {
         if (name.isEmpty()) throw IllegalArgumentException(ErrorConstant.ERROR_NO_NAME)
         if (name.toSet().size != name.size) throw IllegalArgumentException(ErrorConstant.ERROR_SAME_NAME)

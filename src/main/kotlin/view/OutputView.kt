@@ -1,7 +1,7 @@
 package view
 
-import constant.MessageConstant
-import model.Car
+import constant.RacingGameOutputConstant
+import domain.Car
 
 class OutputView {
     fun printCurrentResult(currentResult: String) {
@@ -9,11 +9,11 @@ class OutputView {
     }
 
     fun printGameResult() {
-        println(MessageConstant.GAME_RESULT)
+        println(RacingGameOutputConstant.GAME_RESULT)
     }
 
     fun printFinalResult(winnerList: List<Car>) {
-        print(MessageConstant.FINAL_RESULT)
+        print(RacingGameOutputConstant.FINAL_RESULT)
         println(winnerList.joinToString(", ") { it.name })
     }
 }

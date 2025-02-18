@@ -1,10 +1,10 @@
 package controller
 
-import constant.MessageConstant
-import model.Car
-import model.GameResult
-import model.RoundResult
-import validator.InputValidator
+import constant.RacingGameOutputConstant
+import domain.Car
+import domain.GameResult
+import domain.RoundResult
+import validator.RacingGameValidator
 import view.InputView
 import view.OutputView
 
@@ -12,7 +12,7 @@ class RacingGameController(
     private val inputView: InputView,
     private val outputView: OutputView,
 ) {
-    private val validator = InputValidator()
+    private val validator = RacingGameValidator()
 
     fun startRacingGameProgram() {
         val cars: List<Car> = getCarName().map { Car(it) }
@@ -25,7 +25,7 @@ class RacingGameController(
     }
 
     fun getCarName(): List<String> {
-        val input = inputView.getUserInput(MessageConstant.INPUT_NAME)
+        val input = inputView.getUserInput(RacingGameOutputConstant.INPUT_NAME)
         val carNames = splitToComma(input)
         validator.validateName(carNames)
         return carNames
@@ -37,7 +37,7 @@ class RacingGameController(
     }
 
     fun getTryCount(): Int {
-        val input = inputView.getUserInput(MessageConstant.INPUT_COUNT)
+        val input = inputView.getUserInput(RacingGameOutputConstant.INPUT_COUNT)
         val count = parseInt(input)
         validator.validateCount(count)
         return count!!
@@ -54,7 +54,8 @@ class RacingGameController(
     ) {
         printGameResult()
         repeat(count) {
-            val currentPositions: List<String> = roundResult.runCarAndGetRoundResult()
+            roundResult.runEachCar()
+            val currentPositions: List<String> = roundResult.getRoundResult()
             printCurrentPositions(currentPositions)
         }
     }

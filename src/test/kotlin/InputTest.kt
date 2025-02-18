@@ -1,5 +1,4 @@
 import controller.RacingGameController
-import model.Car
 import org.assertj.core.api.Assertions.assertThatThrownBy
 import org.junit.jupiter.api.AfterEach
 import org.junit.jupiter.api.BeforeEach
@@ -28,13 +27,7 @@ class InputTest {
     }
 
     @Test
-    fun `자동차 이름은 5자를 초과할 수 없다`() {
-        assertThatThrownBy { Car("hwannow") }
-            .isInstanceOf(IllegalArgumentException::class.java)
-    }
-
-    @Test
-    fun `자동차 이름은 중복될 수 없다`() {
+    fun `중복된 이름이 입력되면 에러가 발생한다`() {
         assertThatThrownBy {
             setInput("hwan,hwan")
             raceController.getCarName()
@@ -45,7 +38,7 @@ class InputTest {
     @ValueSource(
         strings = ["-3", "0", "-10"],
     )
-    fun `시도 횟수는 0 이하일 수 없다`(input: String) {
+    fun `시도 횟수로 0 이하의 숫자가 입력되면 에러가 발생한다`(input: String) {
         assertThatThrownBy {
             setInput(input)
             raceController.getTryCount()
@@ -53,7 +46,7 @@ class InputTest {
     }
 
     @Test
-    fun `입력받은 시도 횟수는 숫자 이외의 문자일 수 없다`() {
+    fun `시도 횟수로 숫자가 아닌 문자가 입력되면 에러가 발생한다`() {
         assertThatThrownBy {
             setInput("a")
             raceController.getTryCount()
@@ -61,7 +54,7 @@ class InputTest {
     }
 
     @Test
-    fun `자동차 이름을 아무것도 입력받지 않을 수 없다`() {
+    fun `자동차 이름을 입력받지 않으면 에러가 발생한다`() {
         assertThatThrownBy {
             setInput("\n")
             raceController.getCarName()
