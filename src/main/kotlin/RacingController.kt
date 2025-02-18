@@ -20,7 +20,7 @@ class RacingController(
     }
 
     private fun generateCar(): List<Car> {
-        val carNameInput = inputView.inputCarName()
+        val carNameInput = inputView.inputCarNames()
         return CarFactory().createCars(carNameInput)
     }
 

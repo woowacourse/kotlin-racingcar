@@ -12,14 +12,16 @@ class RacingGameTest {
     @ValueSource(strings = ["", " ", "car12345", "1", "car, car", "car1, car12345"])
     fun `입력 값으로부터 자동차 이름 검증 예외 테스트`(input: String) {
         val generateCar = CarFactory()
-        assertThrows<IllegalArgumentException> { generateCar.createCars(input) }
+        val carNames = input.split(",").map { it.trim() }
+        assertThrows<IllegalArgumentException> { generateCar.createCars(carNames) }
     }
 
     @ParameterizedTest
     @ValueSource(ints = [0, -1])
     fun `입력 값으로부터 경주 실행 횟수 검증 예외 테스트`(input: Int) {
         val generator = RandomNumberGenerator()
-        val generateCar = CarFactory().createCars("carA, carB")
+        val generateCar = CarFactory().createCars("carA, carB".split(",").map { it.trim() })
+
         val racingGame = RacingGame(generator, generateCar)
         assertThrows<IllegalArgumentException> { racingGame.runRace(input) }
     }
@@ -28,7 +30,7 @@ class RacingGameTest {
     fun `경주 종료후 우승자 검증 테스트`() {
         val numbers = listOf(1, 6, 3)
         val generator = TestNumberGenerator(numbers)
-        val generateCar = CarFactory().createCars("carA, carB")
+        val generateCar = CarFactory().createCars(listOf("carA", "carB"))
         val racingGame = RacingGame(generator, generateCar)
 
         val expected = "carB"
@@ -42,7 +44,7 @@ class RacingGameTest {
     fun `경주 종료후 복수 우승자 검증 테스트`() {
         val numbers = listOf(1, 6, 6)
         val generator = TestNumberGenerator(numbers)
-        val generateCar = CarFactory().createCars("carA, carB, carC")
+        val generateCar = CarFactory().createCars(listOf("carA", "carB", "carC"))
         val racingGame = RacingGame(generator, generateCar)
 
         racingGame.runRace(1)

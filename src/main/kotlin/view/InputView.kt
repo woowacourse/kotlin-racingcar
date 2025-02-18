@@ -1,7 +1,10 @@
 package view
 
 object InputView {
-    fun inputCarName(): String = readLine(INPUT_CAR_NAME_MESSAGE)
+    fun inputCarNames(): List<String> {
+        println(INPUT_CAR_NAME_MESSAGE)
+        return readLine()?.split(",")?.map { it.trim() } ?: emptyList()
+    }
 
     fun inputRacingCount(): Int {
         val input = readLine(INPUT_COUNT_MESSAGE).trim()
