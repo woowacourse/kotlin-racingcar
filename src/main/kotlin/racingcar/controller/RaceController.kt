@@ -3,12 +3,12 @@ package racingcar.controller
 import racingcar.model.Cars
 import racingcar.model.Race
 import racingcar.util.RandomGenerator
-import racingcar.view.InputReader
-import racingcar.view.OutputPrinter
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 class RaceController(
-    private val inputReader: InputReader,
-    private val outputPrinter: OutputPrinter,
+    private val inputView: InputView,
+    private val outputView: OutputView,
     private val randomGenerator: RandomGenerator,
 ) {
     fun hostRace() {
@@ -20,13 +20,13 @@ class RaceController(
     }
 
     private fun getRaceCars(): Cars {
-        outputPrinter.printRaceCarNamesGuide()
-        return inputReader.readRaceCars()
+        outputView.printRaceCarNamesGuide()
+        return inputView.readRaceCars()
     }
 
     private fun getRaceCount(): Int {
-        outputPrinter.printRaceCountGuide()
-        return inputReader.readRaceCount()
+        outputView.printRaceCountGuide()
+        return inputView.readRaceCount()
     }
 
     private fun startRace(
@@ -35,16 +35,16 @@ class RaceController(
     ) {
         val race = Race(raceCars, raceCount, randomGenerator)
 
-        outputPrinter.printRaceResultTitle()
+        outputView.printRaceResultTitle()
 
         while (race.isNotEnd()) {
             race.proceed()
-            outputPrinter.printRaceProgress(race.raceCars.cars)
+            outputView.printRaceProgress(race.raceCars.cars)
         }
     }
 
     private fun getRaceWinners(raceCars: Cars) {
         val winnerNames = raceCars.getWinnerNames()
-        outputPrinter.printWinners(winnerNames)
+        outputView.printWinners(winnerNames)
     }
 }

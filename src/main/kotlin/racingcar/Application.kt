@@ -2,16 +2,16 @@ package racingcar
 
 import racingcar.controller.RaceController
 import racingcar.util.RandomGenerator
-import racingcar.view.InputReader
-import racingcar.view.OutputPrinter
+import racingcar.view.InputView
+import racingcar.view.OutputView
 
 fun main() {
-    val inputReader = InputReader()
-    val outputPrinter = OutputPrinter()
+    val inputView = InputView()
+    val outputView = OutputView()
 
     val randomGenerator = RandomGenerator()
 
-    val raceController = RaceController(inputReader, outputPrinter, randomGenerator)
+    val raceController = RaceController(inputView, outputView, randomGenerator)
 
     raceController.hostRace()
 }
