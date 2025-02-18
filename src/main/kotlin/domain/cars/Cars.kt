@@ -2,13 +2,10 @@ package domain.cars
 
 import domain.numbergenerator.NumberGenerator
 
-class Cars(input: String) {
-    private val cars: List<Car> = input.split(CAR_NAME_DELIMITER).map { Car(it) }
-
+class Cars(private val cars: List<Car>) {
     fun moveAll(numberGenerator: NumberGenerator) {
         cars.forEach { car ->
-            val randomNumber = numberGenerator.generate()
-            car.updateDistanceIfMovable(randomNumber)
+            car.updateDistance(numberGenerator.generate())
         }
     }
 
@@ -18,13 +15,7 @@ class Cars(input: String) {
         return winnerNames.joinToString(WINNER_NAME_DELIMITER) { it }
     }
 
-    override fun toString(): String {
-        return buildString {
-            cars.forEach {
-                appendLine(it.toString())
-            }
-        }
-    }
+    fun getCars(): List<Car> = cars
 
     companion object {
         const val CAR_NAME_DELIMITER = ","
