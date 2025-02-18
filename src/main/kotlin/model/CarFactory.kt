@@ -1,6 +1,6 @@
 package model
 
-class CarCreator {
+class CarFactory {
     fun createCars(carNamesInput: String): List<Car> {
         val racingCars = carNamesInput.split(DELIMITER).map { Car(it.trim()) }
 
