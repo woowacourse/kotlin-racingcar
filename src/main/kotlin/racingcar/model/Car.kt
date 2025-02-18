@@ -24,11 +24,12 @@ class Car(val name: String) {
     }
 
     private fun validateNameFormat(name: String) {
-        val regex = Regex("^[a-zA-Z0-9]*\$")
         require(name.matches(regex)) { INVALID_NAME_FORMAT_ERROR }
     }
 
     companion object {
+        private val regex = Regex("^[a-zA-Z0-9]*\$")
+
         const val INVALID_NAME_LENGTH_ERROR = "$ERROR 자동차 이름은 1~5자이어야 합니다."
         const val INVALID_NAME_FORMAT_ERROR = "$ERROR 자동차 이름은 영문 또는 숫자로 이루어져야 합니다."
 
