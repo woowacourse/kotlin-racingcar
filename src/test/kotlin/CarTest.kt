@@ -1,5 +1,5 @@
 import domain.cars.Car
-import org.assertj.core.api.Assertions
+import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 
 class CarTest {
@@ -10,7 +10,7 @@ class CarTest {
 
         car.updateDistance(4)
 
-        Assertions.assertThat(car.getDistance()).isEqualTo(expected)
+        assertThat(car.getDistance()).isEqualTo(expected)
     }
 
     @Test
@@ -20,6 +20,6 @@ class CarTest {
 
         car.updateDistance(1)
 
-        Assertions.assertThat(car.getDistance()).isEqualTo(expected)
+        assertThat(car.getDistance()).isEqualTo(expected)
     }
 }
