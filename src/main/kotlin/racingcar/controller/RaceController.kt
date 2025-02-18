@@ -1,6 +1,7 @@
 package racingcar.controller
 
 import racingcar.model.Cars
+import racingcar.model.Race
 import racingcar.util.RandomGenerator
 import racingcar.view.InputReader
 import racingcar.view.OutputPrinter
@@ -14,7 +15,7 @@ class RaceController(
         val raceCars = getRaceCars()
         val raceCount = getRaceCount()
 
-        executeRaces(raceCount, raceCars)
+        startRace(raceCount, raceCars)
         getRaceWinners(raceCars)
     }
 
@@ -28,22 +29,18 @@ class RaceController(
         return inputReader.readRaceCount()
     }
 
-    private fun executeRaces(
+    private fun startRace(
         raceCount: Int,
         raceCars: Cars,
     ) {
-        outputPrinter.printRaceResultTitle()
-        repeat(raceCount) {
-            executeRace(raceCars)
-        }
-    }
+        val race = Race(raceCars, raceCount, randomGenerator)
 
-    private fun executeRace(
-        raceCars: Cars,
-    ) {
-        val conditions = randomGenerator.getRandomConditions(raceCars.cars.size)
-        raceCars.moveCars(conditions)
-        outputPrinter.printRaceProgress(raceCars.cars)
+        outputPrinter.printRaceResultTitle()
+
+        while (race.isNotEnd()) {
+            race.proceed()
+            outputPrinter.printRaceProgress(race.raceCars.cars)
+        }
     }
 
     private fun getRaceWinners(raceCars: Cars) {
