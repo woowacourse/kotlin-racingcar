@@ -2,15 +2,19 @@ package racingcar.controller
 
 import racingcar.model.Car
 import racingcar.model.Game
-import racingcar.model.RandomNumberFactory
+import racingcar.model.Messenger.getRoundResultMessage
+import racingcar.model.Messenger.getWinnerMessage
 import racingcar.model.Rounds
+import racingcar.model.random.NumberGenerator
 import racingcar.util.retryWhenException
+import racingcar.validation.NumericValidator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
 class RacingCarController(
     private val inputView: InputView,
     private val outputView: OutputView,
+    private val numberGenerator: NumberGenerator,
 ) {
     fun start() {
         val game = settingGame()
@@ -22,7 +26,7 @@ class RacingCarController(
         return retryWhenException(
             action = {
                 val cars = getCars()
-                Game(cars, randomNumberFactory())
+                Game(cars, numberGenerator)
             },
             onError = {
                 outputView.printErrorMessage(it)
@@ -45,7 +49,8 @@ class RacingCarController(
         return retryWhenException(
             action = {
                 val input = inputView.readRounds()
-                Rounds(input)
+                NumericValidator(input)
+                Rounds(input.toInt())
             },
             onError = {
                 outputView.printErrorMessage(it)
@@ -62,20 +67,16 @@ class RacingCarController(
             playRound(game)
         }
         val winners = game.getWinners()
-        outputView.printWinners(winners)
+        val winnersMsg = getWinnerMessage(winners)
+        outputView.printWinners(winnersMsg)
     }
 
     private fun playRound(game: Game) {
         game.playRound()
         val roundResult = game.getRoundResult()
-        outputView.printRoundResult(roundResult)
+        val roundResultMessage = getRoundResultMessage(roundResult)
+        outputView.printRoundResult(roundResultMessage)
     }
-
-    private fun randomNumberFactory() =
-        RandomNumberFactory {
-            val randomNumberRange = 0..9
-            (randomNumberRange).random()
-        }
 
     companion object {
         const val SEPARATOR = ","

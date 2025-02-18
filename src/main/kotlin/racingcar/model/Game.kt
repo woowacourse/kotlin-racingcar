@@ -1,10 +1,12 @@
 package racingcar.model
 
 import racingcar.enums.MoveState
+import racingcar.model.random.NumberGenerator
+import racingcar.util.ErrorConstants.ERROR
 
 class Game(
     private val cars: List<Car>,
-    private val randomNumberFactory: RandomNumberFactory,
+    private val numberGenerator: NumberGenerator,
 ) {
     init {
         validateUniqueName(cars.map { it.name })
@@ -12,22 +14,22 @@ class Game(
 
     fun playRound() {
         cars.forEach { car ->
-            val moveState = MoveState.create(randomNumberFactory())
-            car.increasePositionIfMovable(moveState)
+            val randomNumber = numberGenerator.generate()
+            val moveState = MoveState.create(randomNumber)
+            car.moveCarWhenMovable(moveState)
         }
     }
 
-    fun getRoundResult(): String {
+    fun getRoundResult(): List<RoundResult> {
         return cars.map { car ->
             RoundResult(car.name, car.position)
-        }.joinToString("\n")
+        }
     }
 
-    fun getWinners(): String {
+    fun getWinners(): List<String> {
         val maxPosition = cars.maxOf { it.position }
         val winners = cars.filter { it.position == maxPosition }.map { it.name }
-        val winnersMsg = winners.joinToString(", ")
-        return winnersMsg
+        return winners
     }
 
     private fun validateUniqueName(carNames: List<String>) {
@@ -35,7 +37,6 @@ class Game(
     }
 
     companion object {
-        private const val ERROR = "[ERROR]"
         const val NOT_UNIQUE_NAME_ERROR = "$ERROR 자동차 이름이 중복됩니다."
     }
 }
