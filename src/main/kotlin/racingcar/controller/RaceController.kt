@@ -1,10 +1,10 @@
 package racingcar.controller
 
-import racingcar.domain.Car
-import racingcar.domain.Cars
-import racingcar.ui.InputReader
-import racingcar.ui.OutputPrinter
+import racingcar.model.Car
+import racingcar.model.Cars
 import racingcar.util.RandomGenerator
+import racingcar.view.InputReader
+import racingcar.view.OutputPrinter
 
 class RaceController(
     private val inputReader: InputReader,

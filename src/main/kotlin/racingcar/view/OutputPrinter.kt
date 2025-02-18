@@ -1,6 +1,6 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.domain.Car
+import racingcar.model.Car
 
 class OutputPrinter {
     fun printRaceCarNamesGuide() {

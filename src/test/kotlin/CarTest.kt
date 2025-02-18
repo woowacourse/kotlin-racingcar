@@ -7,7 +7,7 @@ import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.CsvSource
 import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
-import racingcar.domain.Car
+import racingcar.model.Car
 
 class CarTest {
     @ParameterizedTest

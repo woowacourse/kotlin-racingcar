@@ -1,6 +1,6 @@
-package racingcar.ui
+package racingcar.view
 
-import racingcar.domain.Car
+import racingcar.model.Car
 
 class InputReader {
     fun readRaceCars(): List<Car> {

@@ -1,7 +1,7 @@
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Test
-import racingcar.domain.Car
-import racingcar.domain.Cars
+import racingcar.model.Car
+import racingcar.model.Cars
 import racingcar.util.RandomGenerator
 
 class CarsTest {
