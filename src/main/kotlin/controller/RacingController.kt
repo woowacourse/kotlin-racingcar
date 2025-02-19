@@ -9,7 +9,6 @@ import view.OutputView
 class RacingController(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
         val carNames: List<String> = splitCarNames(inputView.inputCarNames())
-        carNames.forEach { InputValidator.validateCarName(it) }
         InputValidator.validateDuplicatedName(carNames)
 
         val tryNumber: Int = InputValidator.validateTryNumber(inputView.inputTryNumber())
