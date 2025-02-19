@@ -1,14 +1,25 @@
-package racingcar
+package racingcar.domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
-    @Test
-    fun `자동차는 전진한다`() {
+    @ValueSource(ints = [4, 9])
+    @ParameterizedTest
+    fun `자동차는 4 이상의 숫자에서 전진한다`(int: Int) {
         val car = Car("Test")
-        car.move()
+        car.move(int)
         assertThat(car.distance).isEqualTo(1)
+    }
+
+    @ValueSource(ints = [0, 3])
+    @ParameterizedTest
+    fun `자동차는 4 이상의 숫자에서 정지한다`(int: Int) {
+        val car = Car("Test")
+        car.move(int)
+        assertThat(car.distance).isEqualTo(0)
     }
 
     @Test
