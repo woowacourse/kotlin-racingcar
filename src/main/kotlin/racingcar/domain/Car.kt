@@ -7,8 +7,14 @@ class Car(
     var distance: Int = initialDistance
         private set
 
-    fun move() {
-        distance += 1
+    fun move(number: Int) {
+        if (number >= MOVEMENT_CONDITION) {
+            distance += 1
+        }
+    }
+
+    companion object {
+        private const val MOVEMENT_CONDITION: Int = 4
     }
 }
 
