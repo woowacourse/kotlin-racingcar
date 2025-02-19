@@ -41,6 +41,10 @@ class RacingCarController(
     ) {
         outputView.printResult()
         val racecourse = Racecourse(cars, round)
-        racecourse.startRace()
+        repeat(round) {
+            racecourse.startRace()
+            outputView.displayDistance(cars, round)
+        }
+        outputView.printWinners(racecourse.winners)
     }
 }
