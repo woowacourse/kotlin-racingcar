@@ -1,4 +1,4 @@
-import controller.RacingController
+import racingcar.controller.RacingController
 
 fun main() {
     val racingController = RacingController()

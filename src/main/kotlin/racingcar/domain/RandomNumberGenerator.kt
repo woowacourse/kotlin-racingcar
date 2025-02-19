@@ -1,4 +1,4 @@
-package model
+package racingcar.domain
 
 import kotlin.random.Random
 
