@@ -1,0 +1,40 @@
+package domain
+
+class Car(
+    val name: String,
+    position: Int = CAR_INITIAL_POSITION,
+) {
+    var position: Int = position
+        private set
+
+    init {
+        require(name.isNotEmpty()) { MESSAGE_CAR_NAME_EMPTY }
+        require(name.length <= CAR_NAME_MAX_LENGTH) { MESSAGE_CAR_NAME_TOO_LONG }
+    }
+
+    fun move(number: Int) {
+        if (number >= CAR_MOVE_THRESHOLD) position++
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (javaClass != other?.javaClass) return false
+
+        other as Car
+
+        return name == other.name
+    }
+
+    override fun hashCode(): Int {
+        return name.hashCode()
+    }
+
+    companion object {
+        private const val CAR_INITIAL_POSITION = 0
+        private const val CAR_NAME_MAX_LENGTH = 5
+        private const val CAR_MOVE_THRESHOLD = 4
+
+        private const val MESSAGE_CAR_NAME_EMPTY = "자동차 이름은 공백일 수 없습니다."
+        private const val MESSAGE_CAR_NAME_TOO_LONG = "자동차 이름은 최대 5자입니다."
+    }
+}

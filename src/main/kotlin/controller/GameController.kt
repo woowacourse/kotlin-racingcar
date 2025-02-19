@@ -1,40 +1,40 @@
 package controller
 
-import model.Car
-import model.Game
+import domain.Car
+import domain.Game
 import view.InputView
 import view.OutputView
 
-class GameController {
+object GameController {
     fun run() {
         val game = initializeGame()
-        playGame(game)
+        game.play()
         announceResult(game)
     }
 
     private fun initializeGame(): Game {
-        val carNames = InputView.readCarNames()
+        val carNames = getCarNames()
         val cars = generateCars(carNames)
-        val rounds = InputView.readRounds()
+        val rounds = getRounds()
         return Game(cars, rounds)
     }
 
-    private fun generateCars(carNames: List<String>): List<Car> {
-        val cars = mutableListOf<Car>()
-        carNames.map { cars.add(Car(it)) }
-        return cars
+    private fun getCarNames(): List<String> {
+        OutputView.promptCarNamesInput()
+        return InputView.readCarNames()
     }
 
-    private fun playGame(game: Game) {
-        OutputView.printResultHeader()
-        repeat(game.rounds) {
-            game.moveCars()
-            OutputView.printState(game)
-        }
+    private fun generateCars(carNames: List<String>): List<Car> {
+        return carNames.map { Car(it) }
+    }
+
+    private fun getRounds(): Int {
+        OutputView.promptRoundsInput()
+        return InputView.readRounds()
     }
 
     private fun announceResult(game: Game) {
-        val winner = game.getWinner()
-        OutputView.printWinner(winner)
+        OutputView.printResult(game.history)
+        OutputView.printWinner(game.getWinner())
     }
 }
