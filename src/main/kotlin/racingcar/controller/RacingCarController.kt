@@ -5,10 +5,10 @@ import racingcar.domain.Racecourse
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class RacingCarController {
-    val outputView = OutputView()
-    val inputView = InputView()
-
+class RacingCarController(
+    private val inputView: InputView,
+    private val outputView: OutputView,
+) {
     fun start() {
         val cars = createCarName()
         val round = createRound()
