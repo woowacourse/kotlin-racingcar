@@ -1,5 +1,6 @@
 package racingcar.model
 
+import racingcar.constants.ErrorMessages
 import racingcar.enums.MoveState
 
 class Game(private val cars: List<Car>) {
@@ -28,7 +29,7 @@ class Game(private val cars: List<Car>) {
     }
 
     private fun validateUniqueName(carNames: List<String>) {
-        require(carNames.size == carNames.distinct().size) { NOT_UNIQUE_NAME_ERROR }
+        require(carNames.size == carNames.distinct().size) { ErrorMessages.NOT_UNIQUE_NAME_ERROR }
     }
 
     private fun makeRandomNumber(): Int {
@@ -36,9 +37,6 @@ class Game(private val cars: List<Car>) {
     }
 
     companion object {
-        private const val ERROR = "[ERROR]"
-        const val NOT_UNIQUE_NAME_ERROR = "$ERROR 자동차 이름이 중복됩니다."
-
         const val MIN_RANDOM_NUMBER = 0
         const val MAX_RANDOM_NUMBER = 9
     }
