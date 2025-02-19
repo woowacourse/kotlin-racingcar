@@ -3,11 +3,12 @@ package domain
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.params.ParameterizedTest
+import org.junit.jupiter.params.provider.EmptySource
 import org.junit.jupiter.params.provider.ValueSource
 
 class CarTest {
     @ParameterizedTest
-    @ValueSource(strings = [" ", "\t", "\r", "\n"])
+    @EmptySource
     fun `자동차 이름이 공백일 경우 예외가 발생한다`(name: String) {
         runCatching {
             Car(name)
