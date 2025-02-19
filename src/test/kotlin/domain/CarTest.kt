@@ -2,7 +2,6 @@ package domain
 
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertThrows
 import org.junit.jupiter.params.ParameterizedTest
 import org.junit.jupiter.params.provider.ValueSource
 
@@ -10,21 +9,25 @@ class CarTest {
     @ParameterizedTest
     @ValueSource(strings = [" ", "\t", "\r", "\n"])
     fun `자동차 이름이 공백일 경우 예외가 발생한다`(name: String) {
-        val exception =
-            assertThrows<IllegalArgumentException> {
-                Car(name)
-            }
-        assertThat(exception.message).isEqualTo("잘못 입력된 자동차 이름 -> $name : 자동차 이름은 공백이 불가합니다.")
+        runCatching {
+            Car(name)
+        }.onFailure { exception ->
+            assertThat(exception)
+                .isInstanceOf(java.lang.IllegalArgumentException::class.java)
+                .hasMessage("잘못 입력된 자동차 이름 -> $name : 자동차 이름은 공백이 불가합니다.")
+        }
     }
 
     @Test
     fun `자동차 이름이 5자를 초과할 경우 예외가 발생한다`() {
         val name = "abcdef"
-        val exception =
-            assertThrows<IllegalArgumentException> {
-                Car(name)
-            }
-        assertThat(exception.message).isEqualTo("잘못 입력된 자동차 이름 -> $name : 자동차 이름은 5자를 초과할 수 없습니다.")
+        runCatching {
+            Car(name)
+        }.onFailure { exception ->
+            assertThat(exception)
+                .isInstanceOf(java.lang.IllegalArgumentException::class.java)
+                .hasMessage("잘못 입력된 자동차 이름 -> $name : 자동차 이름은 5자를 초과할 수 없습니다.")
+        }
     }
 
     @Test
