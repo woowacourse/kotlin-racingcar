@@ -22,9 +22,10 @@ class InputView {
         return null
     }
 
-    fun checkCarNameValid(name: String): Boolean {
+    fun checkCarNameValid(userInput: String): Boolean {
+        val name = userInput.split(",")
         runCatching {
-            require(name.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH)
+            require(name.all { it.length in MIN_NAME_LENGTH..MAX_NAME_LENGTH })
         }.onSuccess { return true }
         return false
     }
