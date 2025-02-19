@@ -1,5 +1,6 @@
 package racingcar
 
+import racingcar.model.Car
 import racingcar.model.Cars
 import racingcar.view.InputView
 import racingcar.view.OutputView
@@ -8,6 +9,11 @@ class RacingController(
     private val inputView: InputView,
     private val outputView: OutputView,
 ) {
+    private fun generateCars(carInput: List<String>): Cars {
+        val carList = carInput.map { Car(it) }
+        return Cars(carList)
+    }
+
     private fun race(
         count: Int,
         cars: Cars,
@@ -22,8 +28,7 @@ class RacingController(
 
     fun start() {
         val carInput = inputView.readCars()
-        val cars = Cars()
-        cars.generateCars(carInput)
+        val cars = generateCars(carInput)
         val count = inputView.readCount()
         race(count, cars)
         val winner = cars.getWinner()

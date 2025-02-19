@@ -1,12 +1,8 @@
 package racingcar.model
 
-class Cars {
-    private lateinit var cars: List<Car>
-
-    fun generateCars(carInput: List<String>) {
-        cars = carInput.map { Car(it) }
-    }
-
+class Cars(
+    private val cars: List<Car>,
+) {
     fun playRound(): List<Car> {
         cars.forEach { car ->
             val number = (CONDITION_RANDOM_MIN..CONDITION_RANDOM_MAX).random()
