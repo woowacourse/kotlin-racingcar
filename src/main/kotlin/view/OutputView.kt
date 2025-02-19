@@ -1,14 +1,16 @@
 package view
 
-import model.Car
+import model.RaceResult
 
 object OutputView {
-    fun printMessage(message: String) {
-        println(message)
+    fun printResultMessage() {
+        println(RESULT_MESSAGE)
     }
 
-    fun printRaceState(cars: List<Car>) {
-        cars.forEach { println("${it.name} : ${FORWARD_SIGN.repeat(it.position)}") }
+    fun printRaceResult(raceResult: RaceResult) {
+        raceResult.carStates.forEach {
+            println("${it.name} : ${FORWARD_SIGN.repeat(it.position)}") // 위치에 맞게 "-" 출력
+        }
         println()
     }
 
@@ -16,6 +18,7 @@ object OutputView {
         println("최종 우승자 : ${winners.joinToString(WINNER_DELIMITER)}")
     }
 
+    private const val RESULT_MESSAGE = "\n실행 결과"
     private const val WINNER_DELIMITER = ", "
     private const val FORWARD_SIGN = "-"
 }

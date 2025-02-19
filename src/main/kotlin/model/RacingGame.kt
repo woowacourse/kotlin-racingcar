@@ -1,29 +1,33 @@
-package model
-
-import view.OutputView
+import model.Car
+import model.CarState
+import model.NumberGenerator
+import model.RaceResult
 
 class RacingGame(
-    private val generator: RandomNumberGenerator,
+    private val generator: NumberGenerator,
     private val cars: List<Car>,
 ) {
-    fun runRace(rawCount: String) {
-        require(rawCount.toIntOrNull()?.let { it > 0 } == true) { INVALID_COUNT_MESSAGE }
+    fun runRace(count: Int): List<RaceResult> {
+        require(count > 0) { INVALID_COUNT_MESSAGE }
+        return repeatRacing(count)
+    }
 
-        repeatRacing(rawCount.toInt())
+    private fun repeatRacing(count: Int): List<RaceResult> {
+        val raceResults = mutableListOf<RaceResult>()
+
+        repeat(count) { round ->
+            raceOneRound()
+            val carStates = cars.map { CarState.from(it) }
+            raceResults.add(RaceResult(round + 1, carStates))
+        }
+
+        return raceResults
     }
 
     fun getWinners(): List<String> {
-        return cars.filter { it.position == cars.maxOf { car -> car.position } }
+        val maxPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == maxPosition }
             .map { it.name }
-    }
-
-    private fun repeatRacing(count: Int) {
-        OutputView.printMessage("실행 결과\n")
-
-        repeat(count) {
-            raceOneRound()
-            OutputView.printRaceState(cars)
-        }
     }
 
     private fun raceOneRound() {
