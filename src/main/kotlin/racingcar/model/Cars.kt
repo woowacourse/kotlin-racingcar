@@ -1,29 +1,23 @@
 package racingcar.model
 
-import racingcar.util.Constants
-
-class Cars {
-    private lateinit var cars: List<Car>
-
-    fun generateCars(carInput: List<String>) {
-        cars = carInput.map { Car(it) }
-    }
-
+class Cars(
+    private val cars: List<Car>,
+) {
     fun playRound(): List<Car> {
         cars.forEach { car ->
-            val number = (Constants.CONDITION_RANDOM_MIN..Constants.CONDITION_RANDOM_MAX).random()
+            val number = (CONDITION_RANDOM_MIN..CONDITION_RANDOM_MAX).random()
             car.move(number)
         }
         return cars
     }
 
     fun getWinner(): List<String> {
-        val winner = mutableListOf<String>()
-        cars.forEach { car ->
-            if (car.position == cars.maxOf { it.position }) {
-                winner.add(car.name)
-            }
-        }
-        return winner
+        val maxPosition = cars.maxOf { it.position }
+        return cars.filter { it.position == maxPosition }.map { it.name }
+    }
+
+    companion object {
+        private const val CONDITION_RANDOM_MIN = 0
+        private const val CONDITION_RANDOM_MAX = 9
     }
 }

@@ -12,7 +12,7 @@ class Car(
     }
 
     companion object {
-        const val DEFAULT_POSITION = 0
-        const val CONDITION_MOVE_THRESHOLD = 4
+        private const val DEFAULT_POSITION = 0
+        private const val CONDITION_MOVE_THRESHOLD = 4
     }
 }
