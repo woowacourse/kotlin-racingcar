@@ -6,5 +6,6 @@ import kotlin.random.Random
 fun main() {
     val random = Random(RANDOM_SEED)
     val raceService = RaceService(random)
-    Controller(raceService).run()
+    val view = View()
+    Controller(raceService, view, random).run()
 }
