@@ -1,4 +1,4 @@
-package racingcar.domain
+package racingcar.global
 
 enum class Messages(
     val message: String,
