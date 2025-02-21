@@ -1,117 +1,71 @@
 package racingcar
 
 import org.assertj.core.api.Assertions.assertThat
-import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
-import org.junit.jupiter.api.assertDoesNotThrow
-import org.junit.jupiter.api.assertThrows
-import racingcar.domain.Messages
+import racingcar.domain.Car
+import racingcar.global.Configure.RANDOM_SEED
+import kotlin.random.Random
 
 class RaceServiceTest {
-    private lateinit var inputValidator: InputValidator
-    private lateinit var raceService: RaceService
-    private lateinit var random: RandomGenerator
-    private lateinit var inputView: InputView
-    private lateinit var outputView: TestOutputView
+    private val random = Random(RANDOM_SEED)
+    private val raceService = RaceService(random)
 
-    interface TestableOutputView : OutputView {
-        val messages: List<String>
-    }
+    @Test
+    @DisplayName("모든 경주가 종료된 후, 가장 멀리 이동한 자동차가 최종 우승자이다")
+    fun t1() {
+        val a = Car("a")
+        repeat(3) { a.moveForward(6) }
 
-    class TestOutputView : TestableOutputView {
-        override val messages: MutableList<String> = mutableListOf()
+        val b = Car("b")
+        repeat(1) { b.moveForward(6) }
 
-        override fun showMessage(
-            message: String,
-            endWithNewLine: Boolean,
-        ) {
-            messages.add(message)
-        }
-
-        override fun showBlankLine() {
-            messages.add("\n")
-        }
-    }
-
-    class TestInputView(
-        private val fakeInputs: List<String>,
-    ) : InputView {
-        private var currentIndex = 0
-
-        override fun readInput(): String {
-            require(currentIndex < fakeInputs.size) { "더 이상 입력이 없습니다" }
-            return fakeInputs[currentIndex++]
-        }
-    }
-
-    class TestRandom : RandomGenerator {
-        private var fixedValue = 4
-
-        override fun nextInt(
-            from: Int,
-            until: Int,
-        ): Int = fixedValue
-    }
-
-    @BeforeEach
-    fun setUp() {
-        inputValidator = InputValidator()
-        random = TestRandom()
-        outputView = TestOutputView()
+        val cars = listOf(a, b)
+        assertThat(raceService.getWinner(cars)).contains(a)
     }
 
     @Test
-    @DisplayName("자동차 초기화 테스트")
-    fun initCarsTest() {
-        inputView = TestInputView(listOf("메다,밀러"))
-        raceService = RaceService(random, outputView, inputView, inputValidator)
+    @DisplayName("우승자가 여러 명일 경우 모두 우승자로 처리한다")
+    fun t2() {
+        val a = Car("a")
+        repeat(3) { a.moveForward(6) }
 
-        assertDoesNotThrow {
-            raceService.carsInitializer()
-        }
-        assertThat(outputView.messages).contains(Messages.USERINFO_INPUT_CAR_NAME.message)
+        val b = Car("b")
+        repeat(3) { b.moveForward(6) }
+
+        val cars = listOf(a, b)
+        assertThat(raceService.getWinner(cars))
+            .contains(a)
+            .contains(b)
     }
 
+    // public 메서드만 현재 테스트한다. 내부적으로 여러 private 메서드를 호출하는데, 굳이 private 메서드를 테스트 할 필요가 있을까?
     @Test
-    @DisplayName("중복 자동차 이름으로 초기화 테스트")
-    fun initDuplicateNamesCarsTest() {
-        inputView = TestInputView(listOf("메다,메다"))
-        raceService = RaceService(random, outputView, inputView, inputValidator)
+    @DisplayName("각 자동차의 이름과 현재까지의 이동 거리를 출력합니다.")
+    fun t3() {
+        val a = Car("a")
+        val b = Car("b")
+        val c = Car("c")
 
-        assertThrows<IllegalArgumentException> {
-            raceService.carsInitializer()
-        }
-    }
+        assertThat(
+            raceService
+                .race(
+                    listOf(
+                        listOf(6, 6, 3),
+                        listOf(6, 3, 6),
+                    ),
+                    listOf(a, b, c),
+                ).toString(),
+        ).contains(
+            """
+            a : -
+            b : -
+            c : 
 
-    @Test
-    @DisplayName("레이스 진행 테스트")
-    fun raceTest() {
-        inputView = TestInputView(listOf("메다", "5"))
-        raceService = RaceService(random, outputView, inputView, inputValidator)
-
-        assertDoesNotThrow {
-            raceService.carsInitializer()
-            raceService.raceCountInitializer()
-            raceService.doWholeRace()
-        }
-
-        assertThat(outputView.messages).contains("메다 : -----")
-    }
-
-    @Test
-    @DisplayName("우승자 출력 테스트")
-    fun showWinnerTest() {
-        inputView = TestInputView(listOf("메다,밀러", "10"))
-        raceService = RaceService(random, outputView, inputView, inputValidator)
-
-        assertDoesNotThrow {
-            raceService.carsInitializer()
-            raceService.raceCountInitializer()
-            raceService.doWholeRace()
-            raceService.showCarNamesByWinnerFormat()
-        }
-        val lastMessage = outputView.messages.last()
-        assertThat(lastMessage).isEqualTo("최종 우승자 : 메다, 밀러")
+            a : --
+            b : -
+            c : -
+            """.trimIndent(),
+        )
     }
 }

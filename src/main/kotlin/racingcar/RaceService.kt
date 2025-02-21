@@ -10,21 +10,24 @@ class RaceService(
     fun getWinner(cars: List<Car>): List<Car> = cars.filter { it.distance == cars.maxOf { car -> car.distance } }
 
     fun race(
-        raceCount: Int,
+        moveTable: List<List<Int>>,
         cars: List<Car>,
     ): GameResult {
         val gameResult = GameResult()
-        repeat(raceCount) { singleRace(cars, gameResult) }
+        for (singleTable in moveTable) {
+            singleRace(cars, gameResult, singleTable)
+        }
         return gameResult
     }
 
     private fun singleRace(
         cars: List<Car>,
         gameResult: GameResult,
+        singleTable: List<Int>,
     ) {
-        cars.forEach {
-            it.moveForward(random.nextInt(0, 10))
-            gameResult.appendCar(it.name, it.distance)
+        for ((car, randomNum) in cars.zip(singleTable)) {
+            car.moveForward(randomNum)
+            gameResult.appendCar(car.name, car.distance)
         }
         gameResult.breakLine()
     }
