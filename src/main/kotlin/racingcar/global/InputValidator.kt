@@ -7,14 +7,9 @@ object InputValidator {
         requireDuplication(names)
 
         names.forEach { name ->
-            requireCarName(name)
+            requireNameLength(name)
+            requireAvailableName(name)
         }
-        return input
-    }
-
-    fun requireCarName(input: String): String {
-        requireNameLength(input)
-        requireAvailableName(input)
         return input
     }
 

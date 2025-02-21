@@ -1,34 +1,31 @@
 package racingcar
 
 import racingcar.domain.Car
-import racingcar.domain.Configure.Companion.RANDOM_SEED
-import racingcar.domain.Messages
+import racingcar.domain.GameResult
 import kotlin.random.Random
 
-class RaceService {
-    private val random = Random(RANDOM_SEED)
-    private var stringBuilder = StringBuilder()
-
-    fun getWinner(cars: List<Car>): String {
-        val winners = cars.filter { it.distance == cars.maxOf { car -> car.distance } }
-        return Messages.WINNER.formattedMessage(winners.joinToString(", ") { it.name })
-    }
+class RaceService(
+    private val random: Random,
+) {
+    fun getWinner(cars: List<Car>): List<Car> = cars.filter { it.distance == cars.maxOf { car -> car.distance } }
 
     fun race(
         raceCount: Int,
         cars: List<Car>,
-    ): String {
-        repeat(raceCount) {
-            singleRace(cars)
-            stringBuilder.append("\n")
-        }
-        return stringBuilder.toString()
+    ): GameResult {
+        val gameResult = GameResult()
+        repeat(raceCount) { singleRace(cars, gameResult) }
+        return gameResult
     }
 
-    private fun singleRace(cars: List<Car>) {
+    private fun singleRace(
+        cars: List<Car>,
+        gameResult: GameResult,
+    ) {
         cars.forEach {
-            if (random.nextInt(0, 10) >= 4) it.moveForward()
-            stringBuilder.append(it.getDistanceInfo() + "\n")
+            it.moveForward(random.nextInt(0, 10))
+            gameResult.appendCar(it.name, it.distance)
         }
+        gameResult.breakLine()
     }
 }

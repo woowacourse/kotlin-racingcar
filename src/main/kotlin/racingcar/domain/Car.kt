@@ -2,9 +2,13 @@ package racingcar.domain
 
 class Car(
     val name: String,
-    var distance: Int = 0,
 ) {
-    fun moveForward() = distance++
+    var distance: Int = 0
+        private set
 
-    fun getDistanceInfo() = "$name : ${"-".repeat(distance)}"
+    fun moveForward(inputNum: Int) {
+        if (inputNum >= 4) {
+            distance++
+        }
+    }
 }
