@@ -1,6 +1,7 @@
 package racingcar
 
 import racingcar.global.Configure.RANDOM_SEED
+import racingcar.view.View
 import kotlin.random.Random
 
 fun main() {
