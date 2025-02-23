@@ -2,20 +2,15 @@ package racingcar
 
 import racingcar.domain.Car
 import racingcar.domain.GameResult
-import kotlin.random.Random
+import racingcar.domain.MoveTable
 
-class RaceService(
-    private val random: Random,
-) {
+class RaceService {
     fun getWinner(cars: List<Car>): List<Car> = cars.filter { it.distance == cars.maxOf { car -> car.distance } }
 
-    fun race(
-        moveTable: List<List<Int>>,
-        cars: List<Car>,
-    ): GameResult {
+    fun race(moveTable: MoveTable): GameResult {
         val gameResult = GameResult()
-        for (singleTable in moveTable) {
-            singleRace(cars, gameResult, singleTable)
+        for (singleTable in moveTable.table) {
+            singleRace(moveTable.cars, gameResult, singleTable)
         }
         return gameResult
     }

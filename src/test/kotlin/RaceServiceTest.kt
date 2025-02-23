@@ -4,12 +4,10 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.DisplayName
 import org.junit.jupiter.api.Test
 import racingcar.domain.Car
-import racingcar.global.Configure.RANDOM_SEED
-import kotlin.random.Random
+import racingcar.domain.MoveTable
 
 class RaceServiceTest {
-    private val random = Random(RANDOM_SEED)
-    private val raceService = RaceService(random)
+    private val raceService = RaceService()
 
     @Test
     @DisplayName("모든 경주가 종료된 후, 가장 멀리 이동한 자동차가 최종 우승자이다")
@@ -46,15 +44,18 @@ class RaceServiceTest {
         val a = Car("a")
         val b = Car("b")
         val c = Car("c")
-
+        val moveTable =
+            MoveTable(
+                listOf(
+                    listOf(6, 6, 3),
+                    listOf(6, 3, 6),
+                ),
+                listOf(a, b, c),
+            )
         assertThat(
             raceService
                 .race(
-                    listOf(
-                        listOf(6, 6, 3),
-                        listOf(6, 3, 6),
-                    ),
-                    listOf(a, b, c),
+                    moveTable,
                 ).toString(),
         ).contains(
             """
