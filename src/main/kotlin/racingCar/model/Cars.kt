@@ -7,7 +7,7 @@ class Cars(
     maxValue: Int = DEFAULT_RANDOM_MAX_VALUE,
     private val numberGenerator: CarMovementPolicy = CarMovementPolicy(maxValue),
 ) {
-    val parsedCars: List<Car> = input.split(",").map { Car(it.trim()) }
+    val parsedCars: List<Car> = input.split(",").map { Car(CarName(it.trim())) }
 
     fun playOneRound() {
         parsedCars.forEach { car ->
@@ -15,7 +15,7 @@ class Cars(
         }
     }
 
-    fun getWinner(): List<String> {
+    fun getWinner(): List<CarName> {
         val maxPosition = parsedCars.maxOf { it.getPosition() }
         val winners = parsedCars.filter { it.getPosition() == maxPosition }.map { it.name }
         return winners

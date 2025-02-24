@@ -5,13 +5,14 @@ import org.junit.jupiter.api.*
 import org.junit.jupiter.api.Assertions.assertEquals
 import racingCar.constant.RacingCarRule
 import racingCar.model.Car
+import racingCar.model.CarName
 
 class CarTest {
     private lateinit var car: Car
 
     @BeforeEach
     fun setUp() {
-        car = Car("test")  // 각 테스트 전에 초기화
+        car = Car(CarName("test"))  // 각 테스트 전에 초기화
     }
 
     @Test
@@ -24,7 +25,7 @@ class CarTest {
     @DisplayName("자동차의 이름은 존재해야 한다.")
     fun carNameNullTest() {
         assertThrows<IllegalArgumentException> {
-            val car = Car("")
+            val car = Car(CarName(""))
         }
     }
 
@@ -32,7 +33,7 @@ class CarTest {
     @DisplayName("자동차의 이름은 5자 이하여야 한다.")
     fun carNameLengthLessThenFive() {
         assertDoesNotThrow {
-            val car = Car("pobib")
+            val car = Car(CarName("pobib"))
         }
     }
 
@@ -40,7 +41,7 @@ class CarTest {
     @DisplayName("자동차 이름이 6자 이상이면 예외를 발생한다.")
     fun carNameExceptionTest() {
         assertThrows<IllegalArgumentException> {
-            val car = Car("오이오이오이")
+            val car = Car(CarName("오이오이오이"))
         }
     }
 }
