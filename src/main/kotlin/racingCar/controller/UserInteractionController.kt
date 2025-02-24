@@ -1,5 +1,6 @@
 package racingCar.controller
 
+import racingCar.model.CarName
 import racingCar.model.Cars
 import racingCar.view.InputView
 import racingCar.view.OutputView
@@ -22,15 +23,13 @@ class UserInteractionController {
     }
 
     fun handleRoundResultMessage(cars: Cars) {
-        val builder = StringBuilder()
         cars.parsedCars.forEach { car ->
-            builder.append(car.name + " : " + "-".repeat(car.position))
-            builder.append("\n")
+            OutputView.printMessage("${car.name} : ${"-".repeat(car.getPosition())}")
         }
-        OutputView.printMessage(builder.toString())
+        OutputView.printMessage("\n")
     }
 
-    fun handleWinnerMessage(winners: List<String>) {
+    fun handleWinnerMessage(winners: List<CarName>) {
         OutputView.printMessage("최종 우승자: ${winners.joinToString(", ")}")
     }
 }

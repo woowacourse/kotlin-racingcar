@@ -1,22 +1,21 @@
 package racingCar.model
 
-class Cars(
-    input: String,
-    maxValue: Int = DEFAULT_RANDOM_MAX_VALUE,
-    private val numberGenerator: RandomNumberGenerator = RandomNumberGenerator(maxValue),
-) {
-    val parsedCars: List<Car> = input.split(",").map { Car(it.trim()) }
+import racingCar.constant.RacingCarRule
 
+class Cars(
+    val parsedCars: List<Car>,
+    maxValue: Int = DEFAULT_RANDOM_MAX_VALUE,
+    private val numberGenerator: CarMovementPolicy = CarMovementPolicy(maxValue),
+) {
     fun playOneRound() {
         parsedCars.forEach { car ->
-            car.moveForward(numberGenerator.generate())
+            if (numberGenerator.generate() >= RacingCarRule.CAR_MOVE_POINT.value) car.moveForward()
         }
     }
 
-    fun getWinner(): List<String> {
-        val maxPosition = parsedCars.maxOf { it.position }
-        val winners = parsedCars.filter { it.position == maxPosition }.map { it.name }
-
+    fun getWinner(): List<CarName> {
+        val maxPosition = parsedCars.maxOf { it.getPosition() }
+        val winners = parsedCars.filter { it.getPosition() == maxPosition }.map { it.name }
         return winners
     }
 

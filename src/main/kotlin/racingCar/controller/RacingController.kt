@@ -1,7 +1,9 @@
 package racingCar.controller
 
+import racingCar.controller.validation.AttemptCountValidation
 import racingCar.controller.validation.CarsNameValidation
-import racingCar.model.AttemptCount
+import racingCar.model.Car
+import racingCar.model.CarName
 import racingCar.model.Cars
 
 class RacingController(
@@ -17,21 +19,23 @@ class RacingController(
     private fun getCars(): Cars {
        val carsName = userInterface.handleStartMessage()
        CarsNameValidation(carsName)
-       return Cars(carsName)
+       val cars = carsName.split(",").map { Car(CarName(it.trim())) }
+       return Cars(cars)
     }
 
-    private fun getAttemptCount(): AttemptCount {
+
+    private fun getAttemptCount(): Int {
         val attemptCount = userInterface.handleAttemptCountMessage()
-        AttemptCount(attemptCount)
-        return AttemptCount(attemptCount)
+        AttemptCountValidation(attemptCount)
+        return attemptCount.toInt()
     }
 
     private fun playRacing(
         cars: Cars,
-        attemptCount: AttemptCount,
+        attemptCount: Int,
     ) {
         userInterface.handleStartRoundMessage()
-        repeat(attemptCount.getCount()) {
+        repeat(attemptCount) {
             cars.playOneRound()
             userInterface.handleRoundResultMessage(cars)
         }

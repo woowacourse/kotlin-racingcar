@@ -1,17 +1,14 @@
 package racingCar.model
 
 data class Car(
-    val name: String,
+    val name: CarName,
+    private var position: Int = INIT_POSITION,
 ) {
-    var position: Int = INIT_POSITION
-        private set
+    fun getPosition() = position
 
-    fun moveForward(number: Int) {
-        if (number >= MINIMUM_MOVE_POINT) position++
-    }
+    fun moveForward() = position++
 
     companion object {
-        const val MINIMUM_MOVE_POINT = 4
         const val INIT_POSITION = 0
     }
 }

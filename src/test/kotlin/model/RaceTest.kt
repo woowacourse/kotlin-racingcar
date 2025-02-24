@@ -9,7 +9,6 @@ import racingCar.model.Cars
 import racingCar.model.NumberGenerator
 
 class RaceTest {
-    private lateinit var race: Race
     private lateinit var cars: Cars
 
     @BeforeEach
@@ -24,10 +23,8 @@ class RaceTest {
             object : NumberGenerator {
                 override fun generate(): Int = 4
             }
-        race = Race(cars, moveGenerator)
-        race.playOneRound()
         cars.parsedCars.forEach { car ->
-            assertEquals(car.position, Car.INIT_POSITION + 1)
+            assertEquals(car.getPosition(), Car.INIT_POSITION + 1)
         }
     }
 
@@ -38,28 +35,24 @@ class RaceTest {
             object : NumberGenerator {
                 override fun generate(): Int = 3
             }
-        race = Race(cars, moveGenerator)
-        race.playOneRound()
         cars.parsedCars.forEach { car ->
-            assertEquals(car.position, Car.INIT_POSITION)
+            assertEquals(car.getPosition(), Car.INIT_POSITION)
         }
     }
 
     @Test
     @DisplayName("가장 멀리 이동한 자동차가 유일한 경우, 우승자가 1명 출력된다.")
     fun singleWinnerTest() {
-        cars.parsedCars[0].moveForward(4)
-        race = Race(cars)
-        assertEquals(race.getWinner(), listOf("test1"))
+        cars.parsedCars[0].moveForward()
+        assertEquals(cars.getWinner(), listOf("test1"))
     }
 
     @Test
     @DisplayName("가장 멀리 이동한 자동차가 여럿인 경우 공동 우승자가 된다.")
     fun multipleWinnerTest() {
         cars.parsedCars.forEach { car ->
-            car.moveForward(4)
+            car.moveForward()
         }
-        race = Race(cars)
-        assertEquals(race.getWinner(), listOf("test1", "test2"))
+        assertEquals(cars.getWinner(), listOf("test1", "test2"))
     }
 }
