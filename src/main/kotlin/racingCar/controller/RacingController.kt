@@ -2,6 +2,8 @@ package racingCar.controller
 
 import racingCar.controller.validation.AttemptCountValidation
 import racingCar.controller.validation.CarsNameValidation
+import racingCar.model.Car
+import racingCar.model.CarName
 import racingCar.model.Cars
 
 class RacingController(
@@ -17,7 +19,8 @@ class RacingController(
     private fun getCars(): Cars {
        val carsName = userInterface.handleStartMessage()
        CarsNameValidation(carsName)
-       return Cars(carsName)
+       val cars = carsName.split(",").map { Car(CarName(it.trim())) }
+       return Cars(cars)
     }
 
 

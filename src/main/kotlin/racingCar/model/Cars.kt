@@ -3,12 +3,10 @@ package racingCar.model
 import racingCar.constant.RacingCarRule
 
 class Cars(
-    input: String,
+    val parsedCars: List<Car>,
     maxValue: Int = DEFAULT_RANDOM_MAX_VALUE,
     private val numberGenerator: CarMovementPolicy = CarMovementPolicy(maxValue),
 ) {
-    val parsedCars: List<Car> = input.split(",").map { Car(CarName(it.trim())) }
-
     fun playOneRound() {
         parsedCars.forEach { car ->
             if (numberGenerator.generate() >= RacingCarRule.CAR_MOVE_POINT.value) car.moveForward()
