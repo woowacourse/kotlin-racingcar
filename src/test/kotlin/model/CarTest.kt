@@ -17,7 +17,7 @@ class CarTest {
     @Test
     @DisplayName("자동차가 생성되면, 위치는 0이어야 한다.")
     fun carInitialPositionTest() {
-        assertThat(car.getPosition()).isEqualTo(Car.INIT_POSITION)
+        assertThat(car.getPosition()).isEqualTo(0)
     }
 
     @Test
