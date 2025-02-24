@@ -5,7 +5,7 @@ import racingCar.constant.RacingCarRule
 class Cars(
     input: String,
     maxValue: Int = DEFAULT_RANDOM_MAX_VALUE,
-    private val numberGenerator: RandomNumberGenerator = RandomNumberGenerator(maxValue),
+    private val numberGenerator: CarMovementPolicy = CarMovementPolicy(maxValue),
 ) {
     val parsedCars: List<Car> = input.split(",").map { Car(it.trim()) }
 
