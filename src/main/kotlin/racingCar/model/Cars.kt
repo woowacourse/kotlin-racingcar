@@ -1,5 +1,7 @@
 package racingCar.model
 
+import racingCar.constant.RacingCarRule
+
 class Cars(
     input: String,
     maxValue: Int = DEFAULT_RANDOM_MAX_VALUE,
@@ -9,7 +11,7 @@ class Cars(
 
     fun playOneRound() {
         parsedCars.forEach { car ->
-            if (numberGenerator.generate() >= 4) car.moveForward()
+            if (numberGenerator.generate() >= RacingCarRule.CAR_MOVE_POINT.value) car.moveForward()
         }
     }
 
