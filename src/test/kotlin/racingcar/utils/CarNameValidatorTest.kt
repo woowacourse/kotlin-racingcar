@@ -2,13 +2,14 @@ package racingcar.utils
 
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
+import racingcar.domain.CarNameValidator
 
-class ValidatorTest {
-    private val validator = Validator()
+class CarNameValidatorTest {
+    private val validator = CarNameValidator()
 
     @Test
     fun `자동차 이름이 중복일 때 예외 발생`() {
-        val value = "a,b,b"
+        val value = listOf("a", "a", "b")
         assertThrows<IllegalArgumentException> {
             validator.validateCarName(value)
         }
@@ -16,7 +17,7 @@ class ValidatorTest {
 
     @Test
     fun `자동차 이름이 빈 값일 때 예외 발생`() {
-        val value = ""
+        val value = listOf("")
         assertThrows<IllegalArgumentException> {
             validator.validateCarName(value)
         }
@@ -24,25 +25,9 @@ class ValidatorTest {
 
     @Test
     fun `자동차 이름의 길이가 5자가 초과일 때 예외 발생`() {
-        val value = "ascdef"
+        val value = listOf("가나다라마바", "가", "나")
         assertThrows<IllegalArgumentException> {
-            validator.validateTryCount(value)
-        }
-    }
-
-    @Test
-    fun `시도횟수가 빈 값일 때 예외 발생`() {
-        val value = ""
-        assertThrows<IllegalArgumentException> {
-            validator.validateTryCount(value)
-        }
-    }
-
-    @Test
-    fun `시도횟수를 올바르지 않게 입력했을 때 예외 발생`() {
-        val value = "asc"
-        assertThrows<IllegalArgumentException> {
-            validator.validateTryCount(value)
+            validator.validateCarName(value)
         }
     }
 }

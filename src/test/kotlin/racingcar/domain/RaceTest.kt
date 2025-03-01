@@ -4,15 +4,15 @@ import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Test
 
 class RaceTest {
-    private val race = Race("a,b,c", "3")
-    private val cars = race.cars
+    private val race = Race(listOf(Car("a"), Car("b"), Car("c")))
 
     @Test
-    fun `우승자 리스트 정상 출력 확인`() {
+    fun `자동차의 총 전진 횟수가 같을 때 공동 우승한다`() {
         val randomValues = listOf(4, 2, 6, 4, 5, 6, 7, 8, 9)
+        val tryCount = 3
         var index = 0
-        repeat(race.tryCount) {
-            cars.forEach { car ->
+        repeat(tryCount) {
+            race.cars.forEach { car ->
                 car.moves(randomValues[index])
                 index++
             }

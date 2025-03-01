@@ -1,40 +1,32 @@
 package racingcar.controller
 
+import racingcar.domain.Car
+import racingcar.domain.CarNameValidator
 import racingcar.domain.Race
-import racingcar.utils.Validator
 import racingcar.view.InputView
 import racingcar.view.OutputView
 
-class RacingGameController {
-    private val inputView = InputView()
-    private val outputView = OutputView()
-    private val validator = Validator()
-
+class RacingGameController(private val inputView: InputView, private val outputView: OutputView) {
     fun run() {
-        val rawCarNames = inputView.insertCarNames()
-        validator.validateCarName(rawCarNames)
-        val rawTryCount = inputView.insertTryCount()
-        validator.validateTryCount(rawTryCount)
-        val gameResult = playing(rawCarNames, rawTryCount)
+        val carNames = inputView.insertCarNames()
+        CarNameValidator().validateCarName(carNames)
+        val cars = carNames.map { Car(it) }
 
-        printGameResult(gameResult)
+        val tryCount = inputView.insertTryCount() ?: throw IllegalArgumentException("[ERROR] 시도횟수를 다시 입력해주세요.")
+
+        outputView.printResultMessage()
+        printGameResult(Race(cars), tryCount)
     }
 
-    private fun playing(
-        rawCarNames: String,
-        rawTryCount: String,
-    ): Race {
-        val race = Race(rawCarNames, rawTryCount)
-        race.getPositions()
-        return race
-    }
-
-    private fun printGameResult(gameResult: Race) {
-        outputView.printRoundResult(
-            gameResult.cars.map { it.carName },
-            gameResult.cars.map { it.position },
-            gameResult.tryCount,
-        )
-        outputView.printWinners(gameResult.getWinners())
+    private fun printGameResult(
+        race: Race,
+        tryCount: Int,
+    ) {
+        val carNames = race.cars.map { it.carName }
+        repeat(tryCount) {
+            val roundPositions = race.getPositions()
+            outputView.printRoundResult(carNames, roundPositions)
+        }
+        outputView.printWinners(race.getWinners())
     }
 }
