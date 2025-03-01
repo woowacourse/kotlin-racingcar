@@ -3,15 +3,16 @@ package racingcar.view
 class OutputView {
     fun printRoundResult(
         carNames: List<String>,
-        roundPositions: List<List<Int>>,
+        roundPositions: List<Int>,
     ) {
-        println(RUNNING_RESULT_MESSAGE)
-        roundPositions.forEach { positions ->
-            carNames.forEachIndexed { index, carName ->
-                println("$carName : ${printMoves(positions[index])}")
-            }
-            println()
+        carNames.forEachIndexed { index, carName ->
+            println("$carName : ${printMoves(roundPositions[index])}")
         }
+        println()
+    }
+
+    fun printResultMessage() {
+        println(RUNNING_RESULT_MESSAGE)
     }
 
     private fun printMoves(position: Int): String {
